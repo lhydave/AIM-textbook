@@ -1,0 +1,135 @@
+% font set
+\usepackage{fontspec}
+\usepackage[T1]{fontenc}
+\usepackage[sc]{mathpazo}
+\setmainfont{Source Serif 4}
+\setsansfont{Source Sans 3}
+\setmonofont{Menlo}
+\setCJKmainfont[BoldFont=黑体-简 中等,ItalicFont=楷体-简 常规体]{宋体-简 常规体}
+
+% colors
+\usepackage[dvipsnames]{xcolor}
+\definecolor{pku-red}{RGB}{139,0,18}
+
+% environments
+\usepackage{array}
+\usepackage{caption}
+\usepackage[shortlabels,inline]{enumitem}
+\usepackage{booktabs}
+\usepackage{makecell}
+\usepackage{float}
+\usepackage{multicol}
+\usepackage{etoolbox}
+\usepackage{graphicx}
+\usepackage{multirow}
+
+\usepackage[normalem]{ulem}
+
+% math package
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{latexsym}
+
+% math notations
+\newcommand{\LHS}{\mathrm{LHS}}
+\newcommand{\RHS}{\mathrm{RHS}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\renewcommand{\O}{\mathcal{O}}
+\DeclareMathOperator*{\card}{card}
+\DeclareMathOperator*{\grad}{grad}
+\DeclareMathOperator*{\argmax}{argmax}
+\renewcommand{\d}{\mathrm{d}}
+\newcommand{\Pow}{\mathcal{P}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\cov}{\mathsf{Cov}}
+\newcommand{\var}{\mathsf{Var}}
+\renewcommand{\t}{\mathsf{T}}
+\newcommand{\T}{\top}
+\newcommand{\F}{\bot}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\inner}[2]{\left\langle{#1},{#2}\right\rangle}
+\newcommand{\e}{\mathrm{e}}
+\newcommand{\const}{\mathrm{const}}
+
+% math theorems
+\usepackage{mdframed}
+\usepackage[thmmarks,amsmath]{ntheorem}
+\newtheorem{construction}{构造}[chapter]
+\newtheorem{observation}{观察}[chapter]
+\newtheorem{lemma}{引理}[chapter]
+\newtheorem{proposition}{命题}[chapter]
+\newtheorem{corollary}{推论}[chapter]
+\newtheorem{definition}{定义}[chapter]
+\newtheorem{theorem}{定理}[chapter]
+\newtheorem{example}{例}[chapter]
+{
+\theoremstyle{nonumberplain}
+\newmdtheoremenv{remark}{注. }
+\AtBeginEnvironment{remark}{\small}
+}
+{
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\bfseries}
+\theorembodyfont{\normalfont}
+\theoremsymbol{\ensuremath{\Box}}
+\newtheorem{proof}{证明}
+}
+
+% chap/section set
+\ctexset{
+    chapter={format={\raggedright\bfseries\Huge}},
+    section={format={\raggedright\bfseries\LARGE},name={\S,}}
+}
+% appendix section
+\newenvironment{appsec}{
+    \ctexset{section={format={\raggedright\bfseries\Large},name={\S,}}}\footnotesize
+}{}
+
+% page style set
+\usepackage[a4paper,scale=0.7]{geometry}
+\usepackage{nonumonpart}
+
+% automation
+\usepackage{makeidx}
+\makeindex
+
+% cleveref
+\usepackage{crossreftools}
+% \pdfstringdefDisableCommands{%
+%     \let\Cref\crtCref
+%     \let\cref\crtcref
+% }
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=pku-red,     
+    urlcolor=violet,
+    citecolor=BlueViolet,
+    pdffitwindow=true,
+}
+\usepackage[capitalize, nameinlink]{cleveref}
+
+% customize Chinese cref name
+\Crefformat{ALC@unique}{第#2#1#3行}
+\Crefformat{construction}{构造\,#2#1#3}
+\Crefformat{part}{第#2#1#3部分}
+\Crefformat{chapter}{第#2#1#3章}
+\Crefformat{section}{第\,#2#1#3\,节}
+\Crefformat{theorem}{定理\,#2#1#3}
+\Crefformat{lemma}{引理\,#2#1#3}
+\Crefformat{proposition}{命题\,#2#1#3}
+\Crefformat{corollary}{推论\,#2#1#3}
+\Crefformat{observation}{观察\,#2#1#3}
+\Crefformat{definition}{定义\,#2#1#3}
+\Crefformat{remark}{注\,#2#1#3}
+\Crefformat{example}{例\,#2#1#3}
+\Crefformat{figure}{图\,#2#1#3}
+\Crefformat{table}{表\,#2#1#3}
+\Crefformat{appendix}{附录\,#2#1#3}
+
+% remarks
+\newcommand\lhysays[1]{\textcolor{blue}{[lhy: #1]}}

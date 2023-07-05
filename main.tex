@@ -1,0 +1,29 @@
+\documentclass[11pt,a5paper,oneside,fontset=none]{ctexbook}
+% \documentclass[11pt,a5paper,twoside,fontset=none]{ctexbook}
+
+\input{config}
+\title{\bfseries\Huge 标题title}
+\author{\itshape\Large 作者 author}
+\date{\today}
+\begin{document}
+\frontmatter
+\pagestyle{empty}
+\maketitle
+\cleardoublepage
+\setcounter{page}{1}
+\chapter{前言}
+\tableofcontents
+\mainmatter
+\pagestyle{plain}
+\part{科学的逻辑}
+\part{信息与数据}
+\input{Parts/information-and-data/information-theory}
+\part{决策与优化}
+\part{逻辑与博弈}
+\part{认知逻辑}
+
+\backmatter
+% \bibliographystyle{plain}
+% \bibliography{ref}
+\printindex
+\end{document}
