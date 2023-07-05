@@ -1,0 +1,14 @@
+*.log
+*.bbl
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.log
+*.out
+*.synctex.gz
+*.thm
+*.toc
+*.xdv
+.vscode
