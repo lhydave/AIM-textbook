@@ -177,7 +177,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
     $H(Y|X)\geq 0$，等号成立当且仅当$Y$是退化的，即$Y$概率$1$只取一个值.
 \end{proposition}
 \begin{proof}
-    仿照\Cref{prop:entropy-nonnegative}的证明即可.
+    仿照\Cref{prop:entropy-nonnegative} 的证明即可.
 \end{proof}
 类似地，我们可以考虑平均上$Y$中包含的关于$X$的信息量：
 \[\E[I(X=x:Y)]=H(Y)-H(Y|X).\]
@@ -194,7 +194,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
     $H(X)-H(X|Y)\geq 0$，等号成立当且仅当$X$和$Y$相互独立.
 \end{proposition}
 
-我们将在K-L部分看到，\Cref{prop:information-doesnt-hurt} 就是K-L散度信息不等式的一个特例，所以我们就不在这里给出证明了. \Cref{prop:information-doesnt-hurt} 表明知道任何信息都不会增加不确定性，这个原理被称为“Information doesn't hurt.” 根据以上讨论，我们可以自然地定义$X$和$Y$的\textbf{互信息}\index{互信息}为$I(X;Y)=I(Y;X)=\E[I(X=x:Y)]=\E[I(Y=y:X)]$.
+我们将在\Cref{sec:kl-divergence}看到，\Cref{prop:information-doesnt-hurt} 就是K-L散度信息不等式的一个特例，所以我们就不在这里给出证明了. \Cref{prop:information-doesnt-hurt} 表明知道任何信息都不会增加不确定性，这个原理被称为“Information doesn't hurt.” 根据以上讨论，我们可以自然地定义$X$和$Y$的\textbf{互信息}\index{互信息}为$I(X;Y)=I(Y;X)=\E[I(X=x:Y)]=\E[I(Y=y:X)]$.
 
 类似联合分布的熵，条件熵和互信息的概念也可以推广到多元情形. 对于三个随机变量$X,Y,Z$，我们可以定义条件熵为
 \[H(X,Y|Z)=H(X,Y,Z)-H(Z).\]
