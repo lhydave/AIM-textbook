@@ -12,3 +12,7 @@
 *.toc
 *.xdv
 .vscode
+*.aux
+*.run.xml
+*.blg
+.DS_Store

@@ -133,3 +133,16 @@
 
 % remarks
 \newcommand\lhysays[1]{\textcolor{blue}{[lhy: #1]}}
+
+% exercise set
+\newenvironment{hint}{% hint
+\par\itshape 提示：
+}{}
+
+\renewcommand{\theenumii}{\arabic{enumii}}
+
+% plots
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
