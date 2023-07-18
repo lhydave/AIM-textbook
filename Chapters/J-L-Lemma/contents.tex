@@ -1,0 +1,354 @@
+\chapter{Johnson-Lindenstrauss引理}\label{cha:J-L-Lemma}
+
+我们已经在上一章看到，使用概率分布建模的信息论在机器学习中起到了举足轻重的作用。基于概率论的信息论总是考虑一个集合的对象的信息量，因此\textbf{数据}成为了这种方法论的核心前提：数据表征了一个集合的对象的某一特征。在这一章，我们将探讨机器学习中数据的特性，以及一种重要的数据压缩的原理：Johnson-Lindenstrauss引理。证明这一引理所用到的概率论技术是\textbf{矩法}\index{矩法}，这是\emph{机器学习理论}\index{机器学习理论}中最为核心的几个技术之一。因此本章也可以看做机器学习理论的一个引论。
+
+\section{机器学习中的数据}
+从编码的角度来说，数据最简单的表示方法是使用固定长度的字符串。比如说，人的生理性别有男或者女两种，于是我们可以用字符串$0$表示男，$1$表示女。这样，我们就可以用一个长度为$1$的字符串来表示人的生理性别。人的属性还有很多，比如说年龄、身高、体重、学历、职业等等，这些属性都可以分别用固定长度的字符串来表示。于是，一个人就被抽象为了一个固定长度的字符串。
+
+然而，这种表示方式必须要假定数据只取有限个值。有时候，为了简化建模和计算，我们还会考虑可以取无限个值的数据。我们看一个具体的例子，人的身高。从现代物理的角度来说，身高的变化是离散的，它有一个最小变化的单位。从生物学的角度来说，身高是有上界的，比如说所有人的身高都不会超过十米。因此，从理论上说，身高也只能取有限个值，所以也可以用字符串来表示。然而，更加方便的方式是假定身高是一个\emph{非负实数}，因此用一个数而不是一个字符串来表示。
+
+因此，更加常见的情况下，我们会用\emph{实数}或者\emph{整数}来编码数据。此时，将对象的多种属性按顺序排在一起，我们就得到了一个\emph{向量}。总而言之，在机器学习的框架，\emph{数据被表示成数值向量}. 例如，要表示一个人的年龄、身高、体重、学历、职业，我们需要
+\begin{enumerate}
+    \item 身高使用厘米作为单位；体重用千克作为单位；给学历编一个编号，比如$0$是高中，$1$是本科，$2$是硕士，$3$是博士，$-1$是其他；给职业也编号，例如$1$表示提示词工程师。
+    \item 用一个五维向量来表示年龄、身高、体重、学历、职业。例如，$(20, 180, 70, 2, 1)$表示一个年龄为$20$岁，身高$180$厘米，体重$70$千克，学历为硕士，职业为提示词工程师的人。
+\end{enumerate}
+
+\begin{remark}
+    \lhysays{介绍一下计算机中对数值的编码}。
+\end{remark}
+
+机器学习中，如此表示数据具备了独特的性质，一言以蔽之：\textbf{维数高，但是稀疏}。
+
+\lhysays{介绍一下高维高斯分布的特点，以及图像处理中数据稀疏的特点。}
+
+\section{矩法与集中不等式}
+我们先引入示性函数的概念.
+\begin{definition}[示性函数]\label{def:indicator-function}
+    对事件$A$，定义$A$的\emph{示性函数}为一个从样本空间$\Omega$到$\R$的随机变量：
+\begin{equation*}
+    I(A)(\omega) := 
+    \begin{cases}
+        1,& \omega \in A. \\
+        0,& \omega \notin A.
+    \end{cases}
+\end{equation*}
+\end{definition}
+
+从定义就可以得到如下基本性质：
+\begin{proposition}\label{prop:indicator-function}
+    设$A, B$是两个事件，则
+    \begin{enumerate}
+        \item $I(AB) = I(A) I(B)$.
+        \item $I(A)^2 = I(A)$.
+        \item $I(A\cup B) = I(A) +I(B) - I(AB) $.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    这里只作为一个示意，证明第三点，其他都类似。我们需要证明，对任意样本点$\omega\in\Omega$，我们有
+    \[
+        I(A\cup B)(\omega) = I(A)(\omega) + I(B)(\omega) - I(AB)(\omega).
+    \]
+    假设$\omega\in A\cup B$，那么左边等于$1$。我们分类讨论：
+    \begin{itemize}
+        \item 如果$\omega\in A$，那么右边第一项为$1$.
+        \begin{itemize}
+            \item 如果$\omega\in B$，那么右边第二项为$1$。此时自然也有$\omega\in AB$，所以右边第三项为$1$，因此右边等于$1$，等于左边。
+            \item 如果$\omega\notin B$，那么右边第二项为$0$。此时自然也有$\omega\notin AB$，所以右边第三项为$0$，因此右边等于$1$，等于左边。
+        \end{itemize}
+        \item 如果$\omega\notin A$，那么右边第一项为$0$。此时必须有$\omega\in B$，所以右边第二项为$1$。但是此时自然也有$\omega\notin AB$，所以右边第三项为$0$，因此右边等于$1$，等于左边。
+    \end{itemize}
+    如果$\omega\notin A\cup B$，讨论类似，这里不再赘述。
+\end{proof}
+
+示性函数之所以重要，是因为它联系了期望与概率。我们先来看一个显然的命题：
+\begin{proposition}\label{prop:expectation-of-indicator-function}
+    设$A$是一个事件，则
+    \[
+        \E[I(A)] = \Pr(A).
+    \]
+\end{proposition}
+
+示性函数可以把对概率的计算变成对期望的计算。回忆期望的线性性：设$a,b\in\R$，$X,Y$是有期望的随机变量，那么成立
+\[\E(aX+bY)=a\E(X)+b\E(Y).\]
+利用期望的线性性，示性函数可以导出很多概率恒等式与不等式. 例如：容斥公式
+\begin{align*}
+    \Pr(A\cup B) &= \E[I(A\cup B)] = \E[I(A) + I(B) - I(AB)] \\
+    &= \E[I(A)] +  \E[I(B)] -  \E[I(AB)]\\
+    &= \Pr(A) + \Pr(B) - \Pr(AB).
+\end{align*}
+
+对于概率论以及机器学习理论来说，下面的这个不等式非常重要：
+
+\begin{theorem}[Markov不等式]\label{thm:markov-inequality}\index{Markov不等式}
+    如果$X$是非负有期望的随机变量，$a>0$，那么
+        \[
+            \Pr(X\geq a) \leq \frac{\E[X]}{a}.
+        \]
+\end{theorem}
+
+\begin{proof}
+直接利用示性函数，我们有：
+    \begin{align*}
+        \E[X] = &\E[X I(X\geq a)+X I(X<a)]\\
+        =&\E[\underbrace{X I(X\geq a)}_{\geq aI(X\geq a)}]+\E[\underbrace{XI(X<a)}_{\geq 0}]\\
+        \geq& a\E[I(X\geq a)]=a\Pr(X\geq a).
+    \end{align*}
+\end{proof}
+
+\begin{remark}
+    为了使得证明有效，我们必须要假设上面的推导中出现的期望都是存在的，当然这实际上很容易验证。为了避免不必要的技术细节，在后面的所有证明以及推导中，我们都会默认写出来的期望是存在的，不再赘述。
+\end{remark}
+
+我们利用Markov不等式可以直接得到以下结果. 
+\begin{corollary}[Chebyshev不等式]\label{cor:chebyshev-inequality}\index{Chebyshev不等式}
+设$X$是任意有方差的随机变量，那么对任意$a>0$，成立
+    \[
+        \Pr(|X - \E[X]| \geq a) \leq \frac{\var(X)}{a^2}.
+    \]
+\end{corollary}
+\begin{proof}
+设$Y=(X-\E[X])^2$，$t=a^2$，那么$Y$是非负随机变量，且$\E[Y]=\var(X)$，于是由Markov不等式，我们有
+\begin{align*}
+    \Pr(|X - \E[X]| \geq a) &= \Pr(|X - \E[X]|^2 \geq a^2) \\
+    &=\Pr(Y \geq t) \\
+    &\leq \frac{\E[Y]}{t}=\frac{\var(X)}{a^2}.
+\end{align*}
+\end{proof}
+
+Chebyshev不等式告诉我们采样到偏离其期望的概率有一个上界. 像这样利用矩（即$\E[f(X)]$）来估计概率上界的方法被称为\emph{矩法}\index{矩法}. 
+
+实际上，很多情况下，偏离期望是非常小概率的事件，远小于上面的估计值. 为了得到更精确的上界，我们需要一些技巧. 考虑任意随机变量$X$，对$\lambda >0$，
+\[
+X\geq a \iff \lambda X \geq \lambda a \iff e^{\lambda X} \geq e^{\lambda a}.
+\]
+由Markov不等式（如何得到？），
+\[
+\Pr(X\geq a) = \Pr\left(e^{\lambda X} \geq e^{\lambda a}\right) \leq e^{- \lambda a}\cdot \E\left[e^{\lambda X}\right]. 
+\]
+注意到这个不等式应该对任意$\lambda > 0$ 成立，所以
+\[
+\Pr(X\geq a) \leq \inf_{\lambda >0} e^{- \lambda a}\cdot \E \left[e^{\lambda X}\right].
+\]
+
+以上方法可以得到概率更精确的上界。这样用指数进行推导的方法称为\emph{指数矩}\index{指数法}或\emph{Cramér-Chernoff方法}\index{Cramér-Chernoff方法}. 
+
+利用指数矩，我们可以更加精确地研究Chebyshev不等式中随机变量所表现出来的性质，这种性质被称为概率的\emph{集中性}\index{集中性}. 我们可以用\emph{集中不等式}\index{集中不等式}来刻画这样的性质。这样的不等式描述随机变量$X$有多大概率偏离某个值$\mu$多少值（$t$），它表现为
+\[
+\Pr(| X - \mu| \geq t) \leq \text{ 小量}.
+\]
+通常来说，$\mu$是随机变量的期望或者中位数，在这本书中，只会讨论关于期望的集中性. 我们可以看到Chebyshev不等式就是一种特殊的集中不等式，但是它的界太松. 利用指数矩，我们将证明界更紧的Hoeffding不等式和Chernoff不等式. 
+
+\begin{theorem}[Hoeffding 不等式]\label{thm:hoeffding-inequality}\index{Hoeffding不等式}
+    设$X_1, \dots, X_n$相互独立且服从对称Bernoulli分布，即$X_i$满足$\Pr(X_i=1)=1-\Pr(X_i=-1)=1/2$. 考虑向量$a = (a_1, \dots, a_n) \in \R^n$，对任意$t\geq0$，我们有
+    \[
+        \Pr\left(\sum_{i=1}^n a_i X_i \geq t\right)\leq \exp \left( - \frac{t^2}{2\norm{a}^2_2}\right).
+    \]
+\end{theorem}
+\begin{proof}
+由指数矩，我们有
+\[
+\begin{aligned}
+    \Pr\left(\sum_{i=1}^n a_i X_i \geq t\right) &= \Pr\left(\exp\left(\lambda \sum_{i=1}^n a_i X_i\right) \geq \exp\left(\lambda t\right)\right) \\
+    &\leq e^{-\lambda t} \E \left[\exp\left(\lambda \sum_{i=1}^n a_i X_i\right)\right]\\
+    &=  e^{-\lambda t}\prod_{i=1}^n \E\left[\exp\left(\lambda a_i X_i\right)\right].
+\end{aligned}
+\]
+这个不等式对任意$\lambda > 0$都成立. 
+利用$X_1, \dots, X_n$服从对称Bernoulli分布，得到（习题）\lhysays{习题}
+\begin{equation}
+e^{-\lambda t}\prod_{i} \E\left[\exp\left(\lambda a_i X_i\right)\right]\leq\exp \left(-\lambda t + \frac{\lambda^2}{2} \sum_{i} a_i^2\right).\label{eq:exponential-moment}
+\end{equation}
+由于这一不等式对任意$\lambda > 0$都成立，根据二次函数的性质，取$\lambda = t / \sum_i a_i^2$，可得
+\[
+\begin{aligned}
+    \inf_{\lambda>0}\exp \left(-\lambda t + \frac{\lambda^2}{2} \sum_{i} a_i^2\right) &=\exp\left( -\frac{t}{\sum_i a_i^2} t + \frac12 \left(\frac{t}{\sum_i a_i^2}\right)^2 \sum_{i} a_i^2\right) \\
+    &= \exp \left( - \frac{t^2}{2\norm{a}_2^2}\right).
+\end{aligned}
+\]
+\end{proof}
+
+利用相同的证明技巧，我们可以证明一般形式的Hoeffding不等式，我们把证明留作习题.\lhysays{习题}
+
+\begin{theorem}[Hoeffding 不等式，一般情形]\label{thm:hoeffding-inequality-general}\index{Hoeffding不等式}
+    设$X_1, \dots, X_n$是相互独立的随机变量，对任意$i$都成立$X_i \in [m_i, M_i]$。那么对任意$t\geq0$，我们有
+    \[
+        \Pr\left(\sum_{i=1}^n (X_i - \E [X_i]) \geq t\right) \leq \exp \left( - \frac{2t^2}{\sum_{i=1}^n (M_i - m_i)^2}\right).
+    \]
+\end{theorem}
+
+下面我们介绍 Chernoff 不等式. 
+\begin{theorem}[Chernoff 不等式]\label{thm:chernoff-inequality}\index{Chernoff不等式}
+    设$X_1, \dots, X_n$是相互独立的随机变量，分别服从于参数为$p_1, \dots, p_n$的Bernoulli分布.  记$\sum_{i=1}^n X_i$的期望为$\mu = \sum_{i=1}^n p_i$，对于任意$t > \mu$，我们有
+    \[
+        \Pr\left( \sum_{i=1}^n X_i \geq t\right) \leq e^{-\mu} \left(\frac{e\mu}{t}\right)^t.  
+    \]
+    这里$e$是自然对数的底数.
+\end{theorem}
+
+\begin{proof}
+和证明Hoeffding 不等式的第一步相同，我们先利用指数矩，对任意$\lambda > 0$有
+    \[
+    \begin{aligned}
+        \Pr\left( \sum_{i=1}^n X_i \geq t\right) &\leq e^{-\lambda t}\prod_{i=1}^n \E\left[\exp (\lambda X_i)\right].
+    \end{aligned}
+    \]
+然后，将$\prod_{i=1}^n\E[\exp (\lambda X_i)]$进一步放缩：
+    \[
+    \begin{aligned}
+        \prod_{i=1}^n \E \left[\exp (\lambda X_i)\right]&= \prod_{i=1}^n \left(e^\lambda p_i + (1 - p_i) \right) \\
+         &\leq \prod_{i=1}^n \exp\left((e^\lambda -1)p_i \right). \\
+    \end{aligned}
+    \]
+因此
+    \[
+    \begin{aligned}
+        \Pr\left( \sum_{i=1}^n X_i \geq t\right) &\leq e^{-\lambda t}\prod_{i=1}^n \exp\left((e^\lambda -1)p_i \right) \\
+        &= e^{-\lambda t} \exp\left((e^\lambda -1)\sum_{i=1}^n p_i \right)\\
+        &=\exp\left(\mu e^\lambda -t\lambda-\mu \right).
+    \end{aligned}
+    \]
+右边的最小值在$\lambda = \log (t/\mu)$取得，代入得到：
+    \[
+    \begin{aligned}
+        \Pr\left( \sum_{i=1}^n X_i \geq t\right) \leq e^{-\mu} \left(\frac{e\mu}{t}\right)^t.
+    \end{aligned}
+    \]
+\end{proof}
+
+\section{J-L引理的陈述与证明}
+有了上面矩法的准备，我们可以陈述并证明J-L引理了.
+\begin{theorem}[Johnson-Lindenstrauss 引理]\label{thm:johnson-lindenstrauss-lemma}\index{Johnson-Lindenstrauss引理}
+给定$N$个单位向量$v_1,\dots,v_N\in\R^m$和$n >24\log N/\epsilon^2$，随机矩阵$A\in \R^{n\times m}$每个元素独立重复采样自$\mathcal N(0,1/n)$，$\epsilon \in (0,1)$是给定常数，那么至少有$(N-1)/N$的概率，使得对所有的$i\neq j$，都成立
+    \[
+        (1 - \epsilon)\norm{v_i-v_j}_2^2 <\norm{Av_i-Av_j}_2^2 < (1 + \epsilon)\norm{v_i-v_j}_2^2.
+    \]
+\end{theorem}
+
+我们可以把$n$理解成降维后的维度，$Av_i$是降维后的向量. 这个引理告诉我们只要$n > 24\log N/\epsilon^2$，我们就可以用变换$A$把原本$m$维的向量映射到$n$维空间，并且保证它们相对距离的偏离不超过$\epsilon$，因此我们可以把$A$看成一个损失率很低的压缩变换。不严格地说，\emph{塞下$N$个向量，只需要$\O(\log N)$维空间.}
+
+下面我们开始证明J-L引理。为了看出来证明的思路，我们第一个任务是算出压缩后$Av_i$的分布. 我们首先回忆一些正态向量的基本性质。关于正态向量的讨论，可以参考\Cref{???}。
+
+\begin{proposition}\label{prop:gaussian-vector}
+假设$u\sim\mathcal N(\mu,\Sigma)$是一个$n$维正态向量，$M$是一个$m\times n$矩阵，那么$Mu$是一个$m$维正态向量，并且$Au\sim \mathcal N(M\mu,M\Sigma M^T)$.
+\end{proposition}
+
+利用这一个命题，很容易可以得到$Av_i$的分布：
+
+\begin{lemma}\label{lemma:gaussian-vector}
+    假设$u\in\R^m$是一个单位向量，那么$Au\sim \mathcal N(0,n^{-1}I_n)$.
+\end{lemma}
+\begin{proof}
+    将$A$视作一个$mn$维的正态向量，注意到，$(Au)_i = \sum_{j=1}^m A_{ij}u_j$，所以$Au$是一个从向量$A$线性变换得到的向量。根据\Cref{prop:gaussian-vector}，$Au$是一个正态向量，只需计算它的期望和协方差矩阵。
+   
+   注意到，对不同的$i$，向量$(A_{ij})_{j}$相互是独立的，所以分量$(Au)_i$相互也是独立的，因此只需要计算正态变量$(Au)_i$的期望与方差。其期望为$\sum_{j=1}^m 0\cdot u_j = 0$，方差为
+   \[\sum_{j=1}^m \left(\frac{1}{n}\cdot u_j^2\right) = \frac{1}{n}.\] 
+   所以$Au$的期望是$0$，协方差矩阵是$n^{-1}I_n$.
+\end{proof}
+
+然而，我们关心的其实不单单是$Av_i$的分布，更重要的其实是$Av_i-Av_j$的分布，即压缩后的向量之间的相对距离，幸运的是，我们并不需要做额外的什么计算，我们直接有如下结果：
+
+\begin{lemma}\label{lemma:gaussian-vector-diff}
+    向量$u=\frac{v_i-v_j}{\norm{v_i-v_j}_2}$是一个单位向量，因此$Au\sim \mathcal N(0,n^{-1}I_n)$.
+\end{lemma}
+
+J-L引理实际上在说，$\norm{Au}_2$偏离$1$的一定程度的概率是非常小的。于是，为了证明J-L引理，我们最重要的任务是给出$Au$这样向量模长的集中不等式：
+\begin{lemma}[单位模引理]\label{lemma:unit-mod-lemma}\index{单位模引理}
+    设 $u\sim \mathcal N(0,n^{-1}I_n)$，$\epsilon \in (0,1 )$是给定的常数，那么我们有
+    \[
+        \Pr(|\norm{u}_2^2 - 1| \geq \epsilon) \leq 2\exp \left(-\frac{\epsilon^2 n}{8}\right).
+    \]
+\end{lemma}
+注意到$\E[\norm{u}_2^2]=n\cdot(1/n)=1$，所以这个引理在说高维空间中，如果正态向量具有单位模长平方期望，那么它的模长就会集中在单位长度附近，因此称为单位模引理.
+
+\begin{proof}
+$|\norm{u}_2^2 - 1| \geq \epsilon$发生有两种可能，$ \norm{u}_2^2 - 1 \geq \epsilon$和$ 1 - \norm{u}_2^2 \geq \epsilon$. 我们先来计算$ \norm{u}_2^2 - 1 \geq \epsilon$的概率，根据指数矩，
+    \[
+    \Pr\left(\norm{u}_2^2 - 1 \geq \epsilon\right) \leq \inf_{\lambda > 0} \left\{e^{- \lambda (\epsilon + 1)} \E \left[e^{\lambda \norm{u}_2^2}\right]\right\}. 
+    \]
+因为$u$的各个分量是相互独立的，所以我们可以把$\norm{u}_2^2$展开
+    \[
+    \E\left[e^{\lambda \norm{u}_2^2}\right] = \E\left[e^{\lambda \sum_i u_i^2}\right] = \E\left[\prod_i e^{\lambda u_i^2}\right] = \prod_i \E\left[e^{\lambda u_i^2}\right]. 
+    \]
+可以算得$\E\left[e^{\lambda u_i^2}\right]= \sqrt{n/(n-2\lambda)}$\lhysays{习题}，所以
+    \[
+    \Pr\left(\norm{u}_2^2 - 1 \geq \epsilon\right) \leq \inf_{\lambda > 0} \left\{e^{- \lambda (\epsilon + 1)} \left(\frac{n}{n-2\lambda} \right)^{n/2}\right\}. 
+    \]
+可以验证最小值在$\lambda = n\epsilon/(2(1+\epsilon))$处取到，代入可得
+    \[
+    \Pr\left(\norm{u}_2^2 - 1 \geq \epsilon\right) \leq e^{n(\log (1+\epsilon) - \epsilon)/2} \leq e^{-n\epsilon^2/8}. 
+    \]
+这里最后一个不等号使用了不等式$\log(1+\epsilon)\leq\epsilon-\epsilon^2/4$. 
+
+计算$1 - \norm{u}_2^2 \geq \epsilon$的概率的过程和$\norm{u}_2^2 - 1 \geq \epsilon$几乎完全相同的，可以得到
+    \[
+    \Pr\left(1 - \norm{u}_2^2 \geq \epsilon\right) \leq e^{n(\log (1-\epsilon) + \epsilon)/2} \leq e^{-n\epsilon^2/8}. 
+    \]
+    \begin{align*}
+        \Pr\left(| \norm{u}_2^2 - 1| \geq \epsilon\right) &\leq \Pr\left(\norm{u}_2^2 - 1 \geq \epsilon\right) + \Pr\left(1 - \norm{u}_2^2 \geq \epsilon\right) \\
+        &\leq 2e^{-n\epsilon^2/8}. 
+    \end{align*}
+\end{proof}
+
+有了单位模引理，我们就可以很容易证明J-L引理了。将\Cref{lemma:gaussian-vector-diff} 中的$u$带入单位模引理，得到
+\[
+    \Pr\left(\left|\norm{\frac{A(v_i-v_j)}{\norm{v_i-v_j}_2}}_2^2 - 1 \right| \geq \epsilon\right)\leq  2\exp \left(-\frac{\epsilon^2 n}{8}\right). 
+\]
+这个结论对任意$i\neq j$成立，因此遍历所有$i,j$对，可得
+\[
+\begin{aligned}
+    \Pr\left(\exists (i,j): \left|\norm{\frac{A(v_i-v_j)}{\norm{v_i-v_j}_2}}_2^2 - 1 \right| \geq \epsilon\right)
+    &\leq 2 \sum_{i\neq j} \exp \left(-\frac{\epsilon^2 n}{8}\right) \\
+    &=  2  \binom{N}{2}\exp \left(-\frac{\epsilon^2 n}{8}\right). 
+\end{aligned}
+\]
+换言之，对任意$i,j$，$\left|\norm{\frac{A(v_i-v_j)}{\norm{v_i-v_j}_2}}_2^2 - 1 \right| < \epsilon$都成立的概率不小于
+\[
+1 - 2  \binom{N}{2}\exp \left(-\frac{\epsilon^2 n}{8}\right) = 1 - N(N-1)\exp \left(-\frac{\epsilon^2 n}{8}\right). 
+\]
+代入$n > \frac{24\log N}{\epsilon^2}$，可得这一概率
+\[
+1 - N(N-1)\exp \left(-\frac{\epsilon^2 n}{8}\right) \geq 1 - N(N-1)N^{-3}\geq 1 - N^{-1} = \frac{N-1}{N}. 
+\]
+
+很多时候，我们关心的并不是向量间的距离，而是向量的内积（比如使用\emph{余弦度量}\index{余弦度量}的时候），这时候我们可以使用内积版本的J-L的引理：
+\begin{theorem}[J-L引理，内积形式]\label{thm:johnson-lindenstrauss-lemma-inner-product}\index{Johnson-Lindenstrauss引理}
+    给定$N$个单位向量$v_1,\dots,v_N\in\R^m$和$n > 24\log N/\epsilon^2$，随机矩阵$A\in \R^{n\times m}$每一个元素都独立重复采样自$\mathcal N(0,1/n)$，$\epsilon \in (0,1)$是给定常数，那么至少有$(N-1)/N$的概率，使得对所有的$i\neq j$，都成立
+    \[
+        |\langle Av_i, Av_j\rangle - \inner{v_i}{v_j}|< \epsilon.
+    \]
+\end{theorem}    
+\begin{proof}
+由原始J-L引理可知，至少有$\frac{N-1}{N}$的概率满足对于任意$i\neq j$有：
+    \[
+    \begin{aligned}
+        &(1 - \epsilon)\norm{v_i-v_j}_2^2 < \norm{Av_i-Av_j}_2^2< (1 + \epsilon)\norm{v_i-v_j}_2^2, \\
+        &(1 - \epsilon)\norm{v_i+v_j}_2^2 < \norm{Av_i+Av_j}_2^2 < (1 + \epsilon)\norm{v_i+v_j}_2^2. 
+    \end{aligned}
+    \]
+我们将第一行乘$-1$加到第二行可以得到
+    \[
+        4\inner{v_i}{v_j} - 2 \epsilon (\norm{v_i}_2^2 + \norm{v_j}_2^2) <4\langle Av_i, Av_j\rangle < 4\inner{v_i}{v_j} + 2 \epsilon (\norm{v_i}_2^2 + \norm{v_j}_2^2).
+    \]
+因为$v_i,v_j$是单位向量，所以上式等价于$|\langle Av_i, Av_j\rangle - \inner{v_i}{v_j}|<\epsilon$. 
+\end{proof}
+
+\section{J-L引理的应用}
+回顾：J-L引理描述的是对于$N$个向量，我们可以将它们降到$\O(\log N)$维空间，并将相对距离的误差控制在一定范围内. 它的内容本身就和降维相关，所以最基本的应用就是直接作为降维方法. 许多其它算法例如局部敏感哈希（LSH）、随机SVD，本质上也都依赖J-L引理. 除此之外，J-L引理对机器学习模型中维度的选择提供了一些理论解释. 下面我们将介绍两个具体的应用案例. 
+
+\begin{example}[词向量维度]
+在NLP的发展中产生了像Word2Vec、GloVe这样经典的词向量模型和基于注意力机制\index{注意力机制}的各种大语言模型。这里一个问题自然的问题是，当我们对$N$个单词进行建模，词向量的维度选择多少比较合适？ 如果维度过高，会使得后续的计算变得更加复杂. 如果维度过低，会无法完全表达出这些单词本身的信息. 对于这一问题，J-L引理给出了一个比较直接的结论，$\O(\log N)$空间足以容纳下$N$个单词. 但是要注意，这一结论成立的前提是正态随机矩阵，然而单词的空间是否符合正态分布是不知道的，所以这一结果只是从理论上给了一个直观，选择什么样的$n$还是由具体的实验效果来决定. 
+\end{example}
+
+\begin{example}[多头注意力]
+在\textbf{注意力机制}\index{注意力机制}中，我们往往会先把 \verb#head_size# 降低到$64$再做内积. 那么一个很自然的问题是，\verb#head_size# 为$64$的注意力机制是否足以拟合任何概率分布？具体来说，注意力的计算公式为
+    \[
+    a_{ij} = \frac{e^{\inner{q_i}{k_j}}}{\sum_{j=1}^L e^{\inner{q_i}{k_j}}}.
+    \]
+其中$q_i,k_j \in \R^d$。
+
+我们希望能够做到：给定任意的概率矩阵$(p_{ij})$，上述$(a_{ij})$都能够很好的逼近$(p_{ij})$.换言之，给定$(p_{ij})$和维度$d$，我们是否能找到一组$q_1,\dots,q_L,k_1,\dots,k_L\in \R^d$，使得对应项$a_{ij}$与$p_{ij}$足够接近. 其实这就和词向量模型的维度选择问题是等价的. 词向量的维度变成了\verb#head_size#，词表大小变成了序列长度. J-L引理告诉我们的答案依然是只需要$\O(\log N)$的空间就足以容纳下$N$个单词，一个很粗糙的计算，
+\end{example}
+\lhysays{这两个例子写得更详细一些。}
+\section{习题}
+
+\section{章末注记}
