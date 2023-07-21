@@ -5,6 +5,7 @@
 \title{\bfseries\Huge 标题title}
 \author{\itshape\Large 作者 author}
 \date{\today}
+\includeonly{Chapters/convex-analysis/contents}
 \begin{document}
 \frontmatter
 \pagestyle{empty}
@@ -15,16 +16,29 @@
 \tableofcontents
 \mainmatter
 \pagestyle{plain}
+
 \part{科学的逻辑}
+\include{Chapters/plausible-reasoning/contents}
+\include{Chapters/Markov-chain/contents}
 
 \part{信息与数据}
-\input{Chapters/information-theory/contents.tex}
-\input{Chapters/J-L-lemma/contents.tex}
-\input{Chapters/differential-privacy/contents.tex}
+\include{Chapters/information-theory/contents}
+\include{Chapters/J-L-lemma/contents}
+\include{Chapters/differential-privacy/contents}
 
 \part{决策与优化}
+\include{Chapters/convex-analysis/contents}
+\include{Chapters/duality/contents}
+\include{Chapters/fixed-point-theory/contents}
+
 \part{逻辑与博弈}
+\include{Chapters/dynamical-game/contents}
+\include{Chapters/static-game/contents}
+
 \part{认知逻辑}
+\include{Chapters/modal-logic/contents}
+\include{Chapters/epistemic-logic/contents}
+
 
 \backmatter
 \bibliographystyle{alpha}
