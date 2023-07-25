@@ -117,6 +117,13 @@
 
 \renewcommand{\theenumii}{\arabic{enumii}}
 
+% algorithm environment
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\renewcommand{\algorithmicrequire}{\textbf{输入：}}
+\renewcommand{\algorithmicensure}{\textbf{输出：}}
+\floatname{algorithm}{算法}
+
 % plots
 \usepackage{tikz}
 \usetikzlibrary{arrows}
@@ -134,6 +141,7 @@
 \DeclareMathOperator*{\card}{card}
 \DeclareMathOperator*{\grad}{grad}
 \DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\epi}{epi}
 \renewcommand{\d}{\mathrm{d}}
 \newcommand{\Pow}{\mathcal{P}}
 \newcommand{\E}{\mathbb{E}}
