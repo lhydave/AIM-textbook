@@ -1,1 +1,802 @@
 \chapter{合情推理}\label{chap:plausible-reasoning}
+
+
+\section{回顾：命题逻辑的演绎推理}
+\begin{frame}{命题逻辑}
+\begin{itemize}
+    \item \emph{命题逻辑}（propositional logic）的命题公式由如下定义递归形成
+    \begin{itemize}
+        \item 命题变元$p,q,r,\dots$是命题公式.
+        \item 如果$\phi$和$\psi$是命题公式，那么$(\neg\phi)$，$(\phi\vee\psi)$，$(\phi\wedge\psi)$，$(\phi\leftrightarrow\psi)$和$(\phi\to\psi)$都是命题公式.
+    \end{itemize}
+    \item 例：$(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
+    \item $\neg,\vee,\wedge,\leftrightarrow,\to$被称为\emph{连接词}（connectives）.
+    \item 在不产生混淆的时候也会省略括号.
+    \item $A\wedge B$也常写作$AB$，$\neg A$也常写作$\overline{A}$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{语义和语法}
+\begin{itemize}
+    \item 命题逻辑最重要的问题是
+    
+    \begin{center}
+    \itshape
+        什么样的公式是真的？    
+    \end{center}
+    
+    \item 给定一个公式集$\Gamma$，对一个公式$\phi$，我们有两种真的概念：
+    \begin{itemize}
+        \item 语义（semantic）：$\Gamma\models \phi$.
+        \item 语法（syntactic）：$\Gamma\vdash \phi$.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{语义}
+\begin{itemize}
+    \item 每一个命题变元可以赋值真假：$\T$（真）或$\F$（假）.
+    \item 对于一般公式，可以利用真值表递归地定义公式的真假赋值.
+    \begin{itemize}
+        \item 例如，$p\to q$的真值表为
+        \[\begin{array}{cc|c}
+        p&q&p\to q\\\hline
+             \T&\T&\T  \\
+             \T&\F&\F  \\
+             \F&\T&\T  \\
+             \F&\F&\T  \\
+        \end{array}\]
+    \end{itemize}
+    \item $\Gamma\models\phi$：对任意赋值，只要$\Gamma$全为真，$\phi$就为真.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{语法}
+\begin{itemize}
+    \item 推导规则（即语法）描述了从一些公式出发如何得到另外一些公式.
+    \item 语法推导的形式是
+    \[\begin{array}{c}
+         \phi\quad\phi\to\psi  \\\hline
+         \psi
+    \end{array}\]
+    横线上方的称为\emph{前提}（premise），横线下方的称为\emph{结论}（conclusion）.
+    \item 上面的推导法则被称为\emph{肯定前件}（Modus Ponens，MP），是三段论的基础.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{语法}
+\begin{itemize}
+    \item 语法推导可以引入新的连接词，例如
+    \[\begin{array}{c}
+         \phi\quad\psi  \\\hline
+         \phi\wedge\psi
+    \end{array}\]
+    \item 也可以消除连接词，例如
+    \[\begin{array}{c}
+         \phi\wedge\psi  \\\hline
+         \phi
+    \end{array}\]
+    \item 在给定一组推导法则下，我们就可以根据规则来推演命题.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{演绎推理}
+\begin{itemize}
+    \item 例如，将\emph{归谬法}（reductio ad absurdum rule, RAA）加入推导法则：将$\neg\phi$作为前提，得到了结论$\F$，那么可以推出$\phi$才是结论. 写作
+    \[\begin{array}{c}
+         [\neg\phi]  \\
+         \vdots\\
+         \F\\\hline
+         \phi
+    \end{array}\]
+    方括号表示假设$[\neg\phi]$是前提，省略号表示推导的中间步骤.
+    \item 我们就可以得到反证法. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{演绎推理}
+\begin{itemize}
+    \item $\Gamma\vdash\phi$：以$\Gamma$作为前提，依据推导法则，可以得到$\phi$作为结论.
+    \item 从前提出发，按照法则，得出结论的过程，即称谓\emph{演绎推理}（deductive reasoning）.
+    \item 命题逻辑的主要定理是
+    \begin{theorem}[完备性定理，Completeness theorem]
+        对任意公式集$\Gamma$和任意公式$\phi$，
+        \[\Gamma\models\phi\iff\Gamma\vdash\phi.\]
+    \end{theorem}
+    \item 推论：检验一个演绎推理的正确性可以用真值表完成.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{重言式}
+\begin{itemize}
+    \item 如果$\models \phi$，那么称$\phi$为\emph{重言式}（tautology）.
+    \item 重言式即是不需要加任何假设也一定成立的公式，表明了这一推理逻辑所包含的``正确的废话''.
+    \item 如果$\psi\leftrightarrow\phi$是重言式，我们就说$\psi,\phi$是\emph{等值}的（equivalent）.
+    \item 等值的公式在演绎推理中起着相同的作用.
+    \item 例如：$p\to q$与$\neg q\to\neg p$是等值的，所以证明一个定理也可以去证明它的逆否命题.
+\end{itemize}
+\end{frame}
+
+\section{合情推理的数学模型}
+\begin{frame}{合情推理}
+\begin{itemize}
+    \item 生活中的推理并不总是演绎推理.
+    \item 走在北大校园里，看到有人突然倒地不起，你的第一反应是？
+    \begin{itemize}
+        \item 他突发疾病了.
+    \end{itemize}
+    \item 在常识的意义下，这是一种合理的推理.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{强三段论}
+\begin{itemize}
+    \item 演绎推理包含两个强三段论.
+    \[
+        \begin{array}{c}
+            \begin{array}{c}  
+                A \to B \\ A\text{ 是真的} \\ \hline B\text{ 是真的}
+            \end{array} 
+            \qquad \qquad 
+            \begin{array}{c}  
+                A \to B \\ B\text{ 是假的} \\ \hline \text{A是假的}
+            \end{array}
+        \end{array} 
+    \]
+    \item 具体到上面的例子，$A$是``突发疾病''，$B$是``突然倒地不起''.
+    \item 因此演绎推理应该是：因为突发疾病，所以突然倒地不起.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{弱三段论}
+\begin{itemize}
+    \item 然而，我们实际上作出的推理形如：因为突然倒地不起，所以更可能突发疾病.
+    \item 这是一个弱三段论，数学上写作 
+        \[
+        \begin{array}{c}
+            \begin{array}{c}  
+                A \to B \\ B\text{ 是真的} \\ \hline A\text{ 变得更合理}
+            \end{array} 
+        \end{array} 
+    \]
+    \item 虽然我们不能得知$A$的真假，但是根据已有的事实$B$，我们可以得到$A$的合理性.
+    \item 这样没有严格真假的推理模式就是\emph{合情推理}（plausible reasoning）.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{推理的合理程度}
+\begin{itemize}
+    \item 再次考虑同样的问题，走在北大校园里，看到有人突然倒地不起，你的第一反应是？
+    \begin{itemize}
+        \item 选项1：他突发疾病了.
+        \item 选项2：他接到情报有一枚来自俄罗斯的导弹意外偏航，马上要落在北京，他正在躲避.
+    \end{itemize}
+    \item 虽然选项1和选项2都是可能的，但是他们的合理程度并不同.
+    \item 问题：如何刻画不同推理的合理程度？
+\end{itemize}
+\end{frame}
+
+\subsection{似然，合情推理的原则}
+\begin{frame}{似然的定义}
+\begin{itemize}
+    \item 用符号$A|B$表示当$B$已知（或假设）为真时，命题$A$合理程度的非负实数度量.
+    \item 如果$A|B$是一个度量，那么任意非负函数$f(A|B)$也会是一个度量，因此$A|B$还不是一个唯一的数学概念.
+    \item 因此，我们现在称$A|B$为以$B$为假设时命题$A$的\emph{似然}（likelihood）.
+    \item 似然不能定义在任意两个命题之间，只有有合理的关联的命题才能定义似然.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{合情推理的原则}
+\begin{itemize}
+    \item 合情推理的原则实际表明了似然之间的关系.
+    \item 给定相同的假设，似然应该保持命题逻辑中的等值命题. 例如：
+    \begin{itemize}
+        \item $(A\vee B) | C=(B\vee A) | C$.
+        \item $(AB)C|D=A(BC)|D$.
+        \item $\neg\neg A|B=A|B$.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{与规则}
+\begin{itemize}
+    \item 考虑从$C$出发推出$AB$为真.
+    \item 一种可能的推理方法是先推断出$A$为真，然后在$A$为真的前提下，推断出$B$为真.
+    \item 所以似然$AB|C$应该取决于这两段推理的似然，即$A|C$和$B|AC$，因此存在函数$F$满足
+    \[
+        AB|C=F(A|C,B|AC).
+    \]
+    \item 思考：能否写成$AB|C = F(B|C, A|C)$，如果不能，是否有违反常识的例子？
+    \begin{itemize}
+        \item 考虑$A$是指小明的左眼是蓝色的，$B$是指小明的右眼是棕色的. $A|C$和$B|C$都可以很合理，但$AB|C$则几乎不可能发生.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{与规则}
+    \begin{theorem}
+    如果$F$是连续函数，那么$F$充分必要地满足
+        \[cf(F(p,q))=f(p)f(q),\]
+        这里，$c$是某个常数，$f$是某个函数.
+        因此，
+        \[cf(AB|C)=f(A|C)f(B|AC).\]
+    \end{theorem}
+\begin{itemize}
+    \item 我们之前说过，如果$A|B$是一个合理性度量，那么$f(A|B)$也是，因此，遵循惯例，不妨就考虑似然$A|B$本身，并且取$c=1$. 因此
+        \[AB|C=(A|C)(B|AC).\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}{与规则}
+\begin{itemize}
+    \item 合情推理的与规则表述如下：
+    \begin{block}{与规则}
+    对命题$A,B,C$，成立
+    \[AB|C=(A|C)(B|AC).\]
+    \end{block}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{否定规则}
+\begin{itemize}
+    \item 第二个考虑的是似然$A|B$和$\neg A|B$的关系.
+    \item 两个似然应该存在某种函数关系，即存在函数$S$使得
+    \[\neg A|B=S(A|B).\]
+    \end{itemize}
+    \begin{theorem}
+        \begin{equation*}
+            S(x) = (1 - x^m)^{1/m},
+        \end{equation*}
+        这里的$m$是一个正常数.
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{否定规则}
+\begin{itemize}
+    \item 由上面的定理，我们可以得到以下性质
+    \begin{equation*}
+        (A|B)^m + (\neg A|B)^m = 1.
+    \end{equation*}
+    \item 证明：$(\neg A|B) = S(A|B) = (1 - (A|B)^m)^{1/m}$.
+    \item 注意到$(A|B)^m$也是一个满足与规则的似然，所以我们不妨就取似然为$(A|B)^m$，于是有
+    \begin{block}{否定规则}
+    对命题$A,B$，成立
+    \[(A|B) + (\neg A|B) = 1.\]
+    \end{block}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{合情推理的完备集}
+\begin{itemize}
+    \item 连接词$\{\wedge,\neg\}$组成了演绎逻辑的完备集：所有真值函数都可以用这个集合的词来表示.
+    \item 回忆：我们要求合情推理保持演绎逻辑的等值公式.
+    \item 与规则对应$\wedge$，否定规则对应$\neg$.
+    \item 因此合情推理的两个规则是完备的：任何命题都可以通过这两个公式计算出似然.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{合情推理的完备集}
+\begin{itemize}
+    \item 例如，计算$A\vee B|C$,
+    \begin{align*}
+        A \vee B|C 
+        &= 1 - (\overline{A}\overline{B}|C)\\
+        & = 1 - (\overline{A}|C)(\overline{B}|\overline{A}C) \\
+        &= 1 - (\overline{A}|C)(1 - (B|\overline{A}C))\\
+        &= (A|C) + (\overline{A}B|C) \\
+        &= (A|C) + (B|C)(\overline{A}|BC) \\
+        &= (A|C) + (B|C)(1 - (A|BC)) \\
+        &= (A|C) + (B|C) - (AB|C).
+    \end{align*}
+\end{itemize}
+\end{frame}
+
+\subsection{似然与概率}
+\begin{frame}{Kolmogorov公理化概率论}
+\begin{itemize}
+    \item Kolmogorov的概率论研究事件空间上的概率测度.
+    \item 其研究对象的总体被称为\emph{样本空间}，记为$\Omega$.
+    \item 我们只能观测到某种可观测的特性$P$，而不能直接观测样本点，即我们只能观察\emph{事件}，或者说集合
+    \[\{\omega\in \Omega:P(\omega)\}.\]
+    \item 我们可以观测的所有事件的集合称为\emph{事件域}，记为$\mathscr{F}$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{事件域}
+\begin{itemize}
+    \item 事件域$\mathscr{F}$中的事件之间互相有关联.
+    \item 我们自然可以观测到$\Omega$，因此$\Omega\in\mathscr{F}$.
+    \item 如果我们可以观测到事件$A$，那么我们也可以通过没有观测到$A$来判断观测到了$\Omega\setminus A$. 因此，
+    \[A\in\mathscr{F}\implies \Omega\setminus A\in\mathscr{F}.\]
+    \item 如果我们观测到了$A$或者$B$，我们其实也观测到了$A\cup B$，即
+    \[A,B\in\mathscr{F}\implies A\cup B\in\mathscr{F}.\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}{公理化概率论}
+\begin{itemize}
+    \item \emph{概率}$\Pr$是一个事件域$\mathscr{F}$到实数的映射，并且满足：
+    \begin{itemize}
+        \item 规范性：$\Pr(\Omega)=1$.
+        \item 非负性：$\forall A\in\mathscr{F}~\Pr(A)\in[0,1]$.
+        \item 可列可加性：对$A_1,A_2,\dots$满足$A_i\cap A_j=\varnothing,i\neq j$，有
+        \[\Pr\left(\bigcup_i A_i\right)=\sum_i \Pr(A_i).\]
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{事件与命题}
+\begin{itemize}
+    \item 事件是命题的集合论描述.
+    \item 具体来说，有如下对应
+    \[\begin{array}{c|c}
+         \text{事件}&\text{命题}  \\\hline
+         \Omega & \T\\
+         \varnothing & \F\\
+         A\cap B& A\wedge B\\
+         A\cup B& A\vee B\\
+         A\subseteq B& A\to B\\
+         A=B&A\leftrightarrow B
+    \end{array}\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}{条件概率}
+\begin{itemize}
+    \item 回忆条件概率的定义，我们可以得到链式法则：
+    \[\Pr(AB|C)=\frac{\Pr(ABC)}{\Pr(C)}=\frac{\Pr(B|AC)\Pr(AC)}{\Pr(C)}=\Pr(B|AC)\Pr(A|C).\]
+    \item 补事件公式：$\Pr(A|C)+\Pr(\overline{A}|C)=\Pr(\Omega|C)=1$.
+    \item 这两个公式恰好对应了合情推理的与规则以及否定规则.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{似然与概率}
+\begin{itemize}
+    \item 这并不是巧合. 可以证明，合情推理与事件域的公理化概率具有一一对应的关系：
+    \begin{table}[]
+        \centering
+        \begin{tabular}{c|c}
+        公理化概率论&合情推理  \\\hline
+        事件 & 命题\\
+        （条件）概率 & 似然\\
+        链式法则 & 与规则\\
+        补事件公式 & 否定规则
+        \end{tabular}
+    \end{table}
+\end{itemize}
+\begin{quotation}
+\centering
+（条件）概率是似然唯一的数学模型！
+\end{quotation}
+\begin{itemize}
+    \item 从此，我们将似然$A|B$定义为概率$\Pr(A|B)$.
+\end{itemize}
+\end{frame}
+
+\section{合情推理的归纳强论证}
+
+\subsection{先验与基率谬论}
+\begin{frame}{条件概率 vs. 概率}
+\begin{itemize}
+    \item 在前面，我们有意模糊了条件概率和概率在合情推理中的区别.
+    \item 然而，这样的区别是非常重要的.
+    \item 在合情推理中，非条件的概率被称为\emph{先验概率}（prior probability），它表示了对这个命题合理程度的一种无条件的信念.
+    \item 对应地，条件概率就是\emph{后验概率}（posterior probability）或似然，它表示了对合情推理合理程度的一种信念.
+    \item 先验概率和后验概率有若干相互转化的公式.
+\end{itemize}
+\end{frame}
+\begin{frame}{回忆：全概率公式}
+\begin{theorem}[全概率公式]
+设$A_i$是彼此互斥的事件，$\cup_i A_i=\Omega$，那么
+    \[\Pr(B)=\sum_{i}\Pr(B|A_i)\Pr(A_i).\]
+\end{theorem}
+\begin{itemize}
+    \item 全概率公式表明了如何使用似然建立起不同先验概率之间的联系.
+\end{itemize}
+\end{frame}
+\begin{frame}{回忆：Bayes定理}
+\begin{theorem}[Bayes定理]
+    \[\Pr(A|B) = \Pr(B|A)\frac{\Pr(A)}{\Pr(B)}.\]
+\end{theorem}
+    \begin{itemize}
+        \item Bayes定理表明了两个不同的后验概率如何基于先验概率相互转化.
+        \item 在合情推理中，这表明了前提推结果的强三段论和结果推前提合理性的弱三段论之间的关系.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{基率谬论}
+    \begin{itemize}
+        \item 一辆出租车在夜间发生了一起肇事逃逸事故.这座城市有两家出租车公司，绿色和蓝色.
+        \item 这个城市历史上肇事逃逸车辆85\%是绿色的，15\%是蓝色的.
+        \item 一名目击者指认出租车是蓝色的，这里的指认并不一定正确.
+        \item 考虑一种理想的假设，法庭知道这位证人80\%的概率能正确识别颜色，20\%的概率会把颜色识别错.
+        \item 问：事故车辆是那种颜色的可能性更大？
+        \item 忽略先验概率会产生答案是蓝车的结论.
+        \item \emph{基率谬论}（base-rate fallacy）指因为忽略先验概率（即基率）而产生的错误判断.
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}{基率谬论}
+    \begin{itemize}
+        \item 下面我们考虑先验概率再次做计算.
+        \item 记 $B$ 为肇事逃逸的出租车为蓝色，$G$ 为肇事逃逸的出租车为绿色，$R$为目击者指认出租车是蓝色.
+        \item 先验概率：$\Pr(B) = 0.15$，$\Pr(G) = 0.85$.
+        \item 似然：$\Pr(R|B) = 0.8$， $\Pr(R|G) = 0.2$.
+        \item $\Pr(R) = \Pr(B)\Pr(R|B) + \Pr(G)\Pr(R|G)  =0.29$.
+        \item $\Pr(B|R) = \Pr(R|B){\Pr(B)}/{\Pr(R)}\approx 0.41$.
+        \item 然而，$\Pr(G|R) = \Pr(R|G){\Pr(G)}/{\Pr(R)}\approx 0.59$.
+        \item 因此我们更应该倾向于认为肇事逃逸的出租车是绿色的！
+    \end{itemize}
+\end{frame}
+
+
+\subsection{归纳强论证}
+\begin{frame}{合情推理的论证方式}
+\begin{itemize}
+    \item 在基率谬论的例子中，我们看到合情推理必须要完整地考虑先验的影响.
+    \item 另一方面，我们看到最终做出决策的方式是\emph{最大似然}（maximum likelihood），即似然更高的那个命题更有可能是对的.
+    \item 这说明合情推理中有很不同于演绎推理的论证方式.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{强三段论}
+\begin{itemize}
+    \item 我们首先指出合情推理包含了命题逻辑中的两个强三段论：
+        \[
+        \begin{array}{c}
+            \begin{array}{c}  
+                A \to B \\ A\text{ 是真的} \\ \hline B\text{ 是真的}
+            \end{array} 
+            \qquad \qquad 
+            \begin{array}{c}  
+                A \to B \\ B\text{ 是假的} \\ \hline A\text{ 是假的}
+            \end{array}
+        \end{array} 
+    \]
+    \item 我们以第一个三段论为例，记$C \equiv A \to B$.
+    \begin{itemize}
+        \item 由链式法则，$\Pr(B|AC) = \Pr(AB|C) / \Pr(A|C)$.
+        \item $A \to B$意味着作为事件$A\subseteq B$，即$AB=A$，$\Pr(AB|C) = \Pr(A|C)$.
+        \item 代入上式得到 $\Pr(B|AC) = 1$，这就是说，当$A$为真时，$B$也为真.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{弱三段论}
+\begin{itemize}
+    \item 除了演绎逻辑中的强三段论，合情推理还包含了弱三段论的定量形式.
+    \[\begin{array}{c}  
+            A \to B \\ B\text{ 是真的} \\ \hline A\text{ 变得更合理}
+        \end{array}\]
+    \item $\Pr(A|C)$是$A$的似然，而$\Pr(A|BC)$是假设$B$为真时，$A$的似然.
+    \item 由链式法则，$\Pr(A|BC) = \Pr(A|C)\Pr(B|AC)/\Pr(B|C)$.
+    \item 因为$\Pr(B|AC) = 1$且$\Pr(B|C)\leq 1$，所以$\Pr(A|BC) \geq \Pr(A|C)$. 也就是当$B$为真时，$A$的合理程度会变大.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{有效论证的等价定义}
+\begin{itemize}
+    \item 回忆记号$X\vdash Y$：从前提为 $X$出发可以跟据推导规则得到结论$Y$.
+    \item 此时，我们说从$X$到$Y$的过程是一个\emph{有效论证}（valid argument）. 它与以下三个表述等价：
+    \begin{itemize}
+        \item $X\models Y$.
+        \item  $X\to Y$是重言式.
+        \item $X\wedge \lnot Y$ 是矛盾式.
+    \end{itemize}
+    \item 等价性证明：蕴含的推导法则（或演绎定理）+完备性定理.
+    \item 思考：如何在合情推理中定义类似的概念？
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{随机真值表}
+    \begin{itemize}
+        \item 回忆：事件是命题的集合论描述.
+        \item 合情推理中，每个事件被赋予一个概率（似然），对应的命题也会被赋予同样的概率.
+        \item 于是对应于演绎推理中的语义真值表，合情推理中有\emph{随机真值表}（stochastic truth table）.
+    \end{itemize}
+    \[
+    \begin{array}{c|ccc}
+        \Pr & A & B & A\vee B \\ \hline
+        0.4 & \T & \T & \T \\ 
+        0.2 & \T & \F & \T \\ 
+        0.25 & \F & \T & \T \\
+        0.15 & \F & \F & \F \\
+    \end{array}\]
+\end{frame}
+
+
+\begin{frame}{归纳强论证}
+	\begin{itemize}
+	\item     在合情推理中，我们也有和有效论证对应的归纳强论证.
+	\item 考虑如下推理：
+	\[\begin{array}{c}
+	     X\\\hline
+	     Y
+	\end{array}\]
+	利用随机真值表，我们可以尝试定义\emph{归纳强论证}为$X\wedge\neg Y$的\textbf{不太可能}为真（或$\neg X\vee Y$\textbf{很可能}为真）.
+	\item 然而我们会看到，仅仅用随机真值表得到的概念是不符合合情推理的直觉的.
+	\item 我们通过两个例子来引入归纳强论证的限制条件.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{奇怪的例子一}
+	\begin{itemize}
+	\item 记 $X$ 为一个北京大学的同学今年2000岁, $Y$ 为一个北京大学的同学今年2000岁,并且有三条胳膊.
+	\item 直观来讲, 如上 $X\models Y$ 不是归纳强论证.
+	\item 但是， 其等效的公式$\neg X\vee Y$，成立的概率足够大.
+	\item 这个悖论却为这个应该不成立的结论给了一个归纳强论证.
+    \item 所以，从这个角度来看，判断是否为归纳强论证不能只关注结论成立的概率.
+	\end{itemize}
+% https://text.phil171.org/docs/probability/inductively-strong-arguments
+\end{frame}
+
+\begin{frame}
+	\frametitle{限制条件一：证据支持（Evidential Support）}
+	\begin{itemize}
+        \item 假设 $X$ 和 $Y$ 是公式，$t\in [0.5, 1]$.
+        \item 如果 $\Pr(Y|X)>t$, 我们称：$X$ 支持 $Y$ 的证据强度大于 $t$.
+        \item 证据支持是比最大似然准则的更进一步的要求.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{奇怪的例子二}
+	\begin{itemize}
+	\item 记 $X$ 为小明是一位北京大学的学生, $Y$ 为小明不会飞.
+	\item 表面看来, $\Pr(Y|X)=1$，但我们知道 $X\models Y$ 并不应该是归纳强论证.
+    \item 问题出在了$\Pr(Y)$本身就等于$1$，所以$\Pr(Y|X)=1$并没有什么实际意义，由此引出第二条必要条件.
+	\end{itemize}
+    % https://text.phil171.org/docs/probability/inductively-strong-arguments
+\end{frame}
+
+\begin{frame}
+    \frametitle{必要条件二：正相关性}
+    \begin{itemize}
+        \item 我们称$X$ 与 $Y$ \emph{正相关}，如果$\Pr(Y|X) > \Pr(Y)$.
+        \item 等价地，示性函数$I(X)$和$I(Y)$相关系数大于$0$.
+        \item 类似地，
+        \begin{itemize}
+            \item 如果$\Pr(Y|X) < \Pr(Y)$（或$I(X)$和$I(Y)$的相关系数小于$0$），那么$X$和$Y$\emph{负相关}.
+            \item 如果$\Pr(Y|X) = \Pr(Y)$（或$I(X)$和$I(Y)$的相关系数等于$0$），那么$X$和$Y$\emph{不相关}.
+        \end{itemize}
+    \item 在归纳强论证中，我们要求$X$和$Y$正相关.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{归纳强论证的严格定义}
+	\begin{itemize}
+	    \item 如果$X \models Y$ 满足以下三个条件，我们称之为\emph{归纳强论证}（inductively strong argument）：
+	\begin{itemize}
+	\item $X$ 证据支持 $Y$：$\Pr(Y|X)>0.5$.
+	\item $X$ 与 $Y$ 正相关： $\Pr(Y|X) > \Pr(Y)$. 
+	\item $X\rightarrow Y$ 不是有效论证.
+	\end{itemize}
+	 \item 不将有效论证定义为归纳强论证得原因之一是：一个论证可以在前提$X$是矛盾式时成为有效.
+    \begin{itemize}
+            \item 例如：$P \wedge \neg P \models Q$ 是有效论证.
+            \item 但是，由于$\Pr(P \wedge \neg P) = 0$，$\Pr(Q | P \wedge \neg P)$是无定义的，所以$P \wedge \neg P$并不证据支持$Q$，也不和$Q$正相关.
+        \end{itemize}	
+
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{认可度（Confirmation Measure）}
+    \begin{itemize}
+    \item     进一步，我们还希望能够衡量前提$X$在多大程度上确认结论$Y$成立.
+    \item \emph{认可概率增量}：衡量事件$X$发生后给事件$Y$的发生增加了多大的概率.
+        \[
+            d(X, Y) = \Pr(Y|X) - \Pr(Y).
+        \]
+        \item \emph{认可度似然比}（Likelihood Ratios of Confirmation Measure）.
+        衡量假设$Y$发生时$X$的似然会比假设$Y$没发生时$X$的似然增加多少.
+        该差值越大表示观测到$X$的话越应该发生了$Y$. 分母归一化使得$\ell(X,Y)\in[-1,1]$.
+        \[
+            \ell(X, Y) = \frac{\Pr(X|Y) - \Pr(X|\lnot Y)}{\Pr(X|Y) + \Pr(X|\lnot Y)}
+        \]
+    \end{itemize} 
+\end{frame}
+
+\begin{frame}{认可度和相关性的关系}
+\begin{itemize}
+    \item 设 $0< \Pr(X),\Pr(Y) < 1$.
+    \item $X$ 和 $Y$ 正相关$\iff d(X,Y) > 0\iff \ell(X, Y) > 0$.
+    \item $X$ 和 $Y$ 不相关$\iff d(X, Y) = 0\iff \ell(X, Y) = 0$. 
+    \item $X$ 和 $Y$ 负相关$\iff d(X,Y) < 0\iff\ell(X, Y) < 0$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{认可度与有效论证的关系}
+\begin{itemize}
+    \item 设$0< \Pr(X),\Pr(Y) < 1$.
+    \item 
+    $\begin{aligned}
+        d(X, Y) =
+        \begin{cases}
+            \Pr(\lnot Y),& \text{如果 } X \models Y, \\
+            -\Pr(Y),& \text{如果 } X \models \lnot Y.
+        \end{cases}
+    \end{aligned}$
+    \item 
+    $\begin{aligned}
+        \ell(X, Y) = 
+        \begin{cases}
+            1,& \text{如果 } X \models Y, \\
+            -1,& \text{如果 } X \models \lnot Y.
+        \end{cases}
+    \end{aligned}$
+\end{itemize}
+\end{frame}
+
+\subsection{有效论证和归纳强论证的比较}
+
+
+\begin{frame}
+    \frametitle{回顾}
+\begin{itemize}
+    \item     考虑一个论证$X\Rightarrow Y$，我们已经有三种方式评估$X$如何支持$Y$：
+    \begin{enumerate}
+        \item $X\Rightarrow Y$是一个演绎推理：$X\models Y$.
+        \item 基于随机真值表，$X$证据支持$Y$：$\Pr(Y|X) > 0.5$.
+        \item 基于随机真值表，$X$正相关于$Y$：$\Pr(Y|X) > \Pr(Y)$.
+    \end{enumerate}
+    \item 其中，
+    \begin{itemize}
+        \item 1对应有效论证，
+        \item 2和3都是合情推理中的归纳强论证的必要条件.
+    \end{itemize}
+    \item 我们将进一步讨论有效论证和归纳强论证的一些不同之处.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{合情推理的非单调性}
+\begin{itemize}
+    \item 有效论证具有单调性：论证的有效性随着前提的增加不会下降. 即：
+    \item    
+    对于任意 $X, Y, Z$, 若 $X\models Y$, 则 $X,Z\models Y$. 
+    \item 然而合情推理中，单调性不再存在.
+    \item 存在这样的例子： $X, Y, Z$ 和对应的随机真值表，使得 $X$ 证据支持 $Y$, 但 $Z\wedge X$ 并不证据支持 $Y$.
+    \item 增加新的前提反而可能降低结论发生概率.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{非单调性：例子}
+    \[\begin{array}{c|ccccc}
+         \Pr & X & Y & Z & X \wedge Z \\ \hline
+         0.1 & \T & \T & \T & \T\\
+         0.2 & \T & \T & \F & \F\\
+         0.2 & \T & \F & \T & \T\\
+         0 & \T & \F & \F & \F\\ 
+         0.1 & \F & \T & \T & \F\\ 
+         0.1 & \F & \T & \F & \F\\
+         0.1 & \F & \F & \T & \F\\
+         0.2 & \F & \F & \F & \F\\
+    \end{array}\]
+    \begin{itemize}
+        \item $\Pr(Y|X) = (0.1 + 0.2) / (0.1 + 0.2 + 0.2 + 0) = 0.6 > 0.5$.
+        \item $\Pr(Y|X \wedge Z) = (0.1) / (0.1 + 0.2) = 1/3 < 0.5$.
+    \end{itemize}
+       
+\end{frame}
+
+\begin{frame}{确凿性原则}
+\begin{itemize}
+    \item 我们试图用$Z$论证$Y$，将$X$看作某种附加的条件，我们考虑$X$对$Y$这一论据的影响.
+    \item  在演绎推理中，若 $Z,X\models Y$ 和 $Z,\lnot X\models Y$ 都满足，则 $Z\models Y$. 如果类比到合情推理中呢？
+    \item \emph{确凿性原则}（Sure-thing Principle）：如果不论条件在$X$还是$\neg X$，$Z$都是$Y$的一个``好的论据''，那么$Z$就是$Y$的一个``好的论据''.
+    \item \emph{无条件确凿性原则}（Unconditional Sure-thing Principle）：如果$Z\wedge\neg X$和$Z\wedge X$都是$Y$的一个``好的论据''，那么$Z$就是$Y$的一个``好的论据''.
+    \item  ``好的论据''可以从证据支持和正相关性两方面考虑.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{确凿性原则}
+\begin{itemize}
+    \item 在任何随机真值表中，如果$\Pr(Y|Z\wedge X)>0.5$且$\Pr(Y|Z\wedge\neg X)>0.5$，那么$\Pr(Y|Z)>0.5$.
+    \begin{itemize}
+        \item 因此，从证据支持角度，确凿性原则是成立的.
+        \item 练习：从证据支持角度，无条件确凿性原则也是成立的.
+    \end{itemize}
+    \item 在任何随机真值表中，如果$\Pr(Y|Z\wedge X)>\Pr(Y)$且$\Pr(Y|Z\wedge\neg X)>\Pr(Y)$，那么$\Pr(Y|Z)>\Pr(Y)$.
+    \begin{itemize}
+        \item 因此，从正相关性角度，无条件确凿性原则是成立的.
+        \item 思考：从正相关性角度，确凿性原则成立吗？
+    \end{itemize}
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Simpson悖论}
+\begin{itemize}
+    \item 实际上，并不一定成立，有反直觉的例子：存在$X, Y, Z$和对应的随机真值表，使得
+    \begin{itemize}
+        \item $\Pr(Y| Z\wedge X)>\Pr(Y|X)$.
+        \item $\Pr(Y| Z \wedge \neg X)>\Pr(Y|\neg X)$.
+        \item 然而，$\Pr(Y|Z)\le \Pr(Y)$.
+    \end{itemize}
+    \item 这样的现象和Simpson悖论有关. \item 举个例子，球员甲的两分球和三分球命中率均高于球员乙，但是球员甲的总投篮命中率却可能低于乙.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Simpson悖论}
+    \begin{itemize}
+        \item 考虑如下具体的例子，有一个班中一半同学来自北京大学，另一半来自清华大学，我们抽出一名同学Bob，估计Bob投篮命中的概率.
+        \item 记 $Y$ 为Bob投篮命中，记$X$ 为Bob投出一个两分球，则 $\neg X$ 为Bob投出一个三分球（我们这里只考虑有两分和三分球），记 $Z$ 为Bob来自清华大学.
+        \item $\Pr(Y)$表示全班学生的投篮命中率.
+        \item $\Pr(Y|Z)$表示全班来自清华大学的学生的投篮命中率.
+        \item $\Pr(Y|X)$表示全班学生的两分命中率，\\$\Pr(Y|\neg X)$表示全班学生的三分命中率.
+        \item $\Pr(Y|Z \wedge X)$表示这个班来自清华大学的学生的两分命中率，$\Pr(Y|Z \wedge \neg X)$表示这个班来自清华大学的学生的三分命中率.
+    \end{itemize}  
+\end{frame}
+
+\begin{frame}{Simpson悖论}
+\begin{itemize}
+    \item 考虑这样一个投篮数据的实例：
+    \[
+    \begin{array}{c|cc}
+          & \text{全班同学} & \text{来自清华大学} \\ \hline
+         \text{两分球} & 50/100 & 6/10 \\
+         \text{三分球} & 1/101 & 1/100 \\
+         \text{总命中率} & 51/201 & 7/110 \\
+    \end{array}
+    \]
+    \item $\Pr(Y) = 51/201$，$\Pr(Y|Z) = 7/110$为投篮命中率.
+    \item $\Pr(Y|X) = 50/100 = 1/2$，$\Pr(Y|Z \wedge X) = 6/10 = 3/5$ 为两分命中率.
+    \item $\Pr(Y|\neg X) = 1/101$，$\Pr(Y|Z \wedge \neg X) = 1/100$为三分命中率.
+    \item Simpson悖论在这一实例下的解释：这个班里来自清华大学的学生两分命中率和三分命中率分别都比全班平均水平高，但总体投篮命中率反倒比全班水平低.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Simpson悖论}
+    \begin{itemize}
+        \item 我们将这两个概率用全概公式展开来寻找原因：
+            $$\Pr(Y|Z) = \textcolor{mLightBrown}{\Pr(Y|Z\land X)}\Pr(X|Z) + \textcolor{mLightBrown}{\Pr(Y|Z\wedge\neg X)}\Pr(\neg X|Z),$$
+    $$\Pr(Y) = \textcolor{mLightGreen}{\Pr(Y|X)}\Pr(X) +\textcolor{mLightGreen}{ \Pr(Y|\neg X)}\Pr(\neg X).$$
+        \item $\textcolor{mLightBrown}{\Pr}>\textcolor{mLightGreen}{\Pr}$.
+        \item 然而，关键是有可能发生$\Pr(X|Z) \neq \Pr(X)$.
+        \item 在上面篮球的例子中表现为清华大学的同学选择投两分球和三分球的比例和全班同学不同.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{合取谬误}
+    \begin{itemize}
+        \item  \emph{合取谬误}（Conjunction Fallacy）是一种认知偏差.
+    \item 经典例子：Linda是一位单身、外向且年龄为31岁的女性.在大学期间，她主修哲学，十分关注种族歧视和社会公正问题，而且曾参加过反核游行.（记为$E$）请问以下哪一件事情更可能发生？
+    \begin{enumerate}
+        \item Linda是一名银行出纳员（记为 $B$）
+        \item Linda是一名银行出纳员，同时她还是一名女权主义者（记为 $B\wedge F$）
+    \end{enumerate}
+    \item 在调查实验中多数被试选择了 2.
+    \item 但是，我们可以肯定 $\Pr(B \land F|E) \le \Pr(B|E)$. 如何理解？
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{合取原则}
+\begin{itemize}
+    \item 为了理解这种谬误产生的原因，考虑\emph{合取原则}（Conjunction Principle）：如果$E$是$P\wedge Q$的``好论据''，那么$E$也是$P$的``好论据''.
+    \item 在演绎推理中，因为$E\to(P\wedge Q)\models E\to P$，所以合取原则成立.
+    \item 类似确凿性原则，我们在合情推理中也可以从证据支持和正相关性两方面考虑.
+    \item 从证据支持的角度，合取原则成立.
+    \begin{itemize}
+        \item 如果$\Pr(P\wedge Q|E)>0.5$，那么$\Pr(P|E)\geq \Pr(P\wedge Q|E)>0.5$.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{合取原则}
+\begin{itemize}
+    \item 然而，从正相关性的角度，合取原则未必成立.
+    \begin{itemize}
+        \item 也就是说，假设$\Pr(P\wedge Q|E)>\Pr(P\wedge Q)$，不一定能推出$\Pr(P|E)>\Pr(P)$.
+    \end{itemize}
+    \item 当人们给定对Linda的描述$E$的时候，很容易建立起$E$和$B\wedge F$的正相关性.
+    \item 然而这并不意味着$E$和$B$是正相关的！因此发生了合取谬误.
+    \item 从Simpson悖论和合取谬误可以看出，只依靠正相关性进行推理很容易犯错误，因此证据支持（极大似然）是归纳强论证不可缺少的要素.
+\end{itemize}
+\end{frame}

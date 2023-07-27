@@ -1,0 +1,14 @@
+\begin{tikzpicture}[node distance=2cm]
+\node (w1) [circle,draw] {$w_1$};
+\node (w2) [circle,draw,right=of w1] {$w_2$};
+\node (w3) [circle,draw,below=of w1] {$w_3$};
+\node (w4) [circle,draw,right=of w3] {$w_4$};
+\draw[-Latex] (w1) -- (w2);
+\draw[-Latex] (w1) -- (w3);
+\draw[-Latex] (w2) -- (w4);
+\draw[-Latex] (w3) -- (w4);
+\node [above left=1pt of w1] {$p$};
+\node [above right=1pt of w2] {$p,q$};
+\node [below left=1pt of w3] {};
+\node [below right=1pt of w4] {$q$};
+\end{tikzpicture}
