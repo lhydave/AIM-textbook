@@ -1,1 +1,231 @@
 \chapter{不动点理论}\label{chap:fixed-point-theory}
+
+考虑优化算法$A$，它在函数$f$上的的收敛性如何？算法运行所产生的点列记为$\{x_n\}$，它满足$x_{n+1}=A(x_n)$. 如果关注序列$x_n$本身，那么这是一个数学分析的思路，通过寻找不同量之间的联系，来分析收敛性. 如果从算法$A$本身来看，这是一个算子法与泛函分析的思路，研究算法本身的性质，收敛性往往归结为吸收点的存在性. 后者是更加抽象且现代的思路。在本章中，我们将看到，从算子的角度来理解收敛性，最终问题就归结到了\emph{不动点理论}\index{不动点理论}。
+
+不动点的定义是非常直接的，考虑一个集合$X$以及它到自身的映射$f:X\to X$，元素$a\in X$称为映射$f:X\to X$的\textbf{不动点}\index{不动点}，如果$f(a)=a$. 本章将介绍三种不动点存在性定理。
+
+\section{Banach不动点定理}
+为了陈述不动点定理，我们需要引入一些数学概念。
+
+\begin{definition}[度量与度量空间]\index{度量}\index{度量空间}\index{距离}
+集合$X$上的\textbf{度量}（或\textbf{距离}）$d$是映射
+\[d:X\times X\to \R\]
+满足条件
+\begin{itemize}
+\item 非负性：$d(x_1,x_2)\geq 0$，并且$d(x_1,x_2)=0\iff x_1=x_2$.
+\item 对称性：$d(x_1,x_2)=d(x_2,x_1)$.
+\item 三角不等式：$d(x_1,x_3)\le d(x_1,x_2)+d(x_2,x_3)$.
+\end{itemize}
+其中$x_1,x_2,x_3$是$X$的任意元素. 
+
+此时，$(X,d)$或$X$被称为\textbf{度量空间}.
+\end{definition}
+
+下面给出一些度量的例子。
+\begin{example}
+    考虑实数集$\R$，要成为度量空间，可以装备以下度量：
+    \begin{itemize}
+            \item 平凡的离散度量：$\forall x_1\neq x_2\ d(x_1,x_2)\equiv 1, d(x,x)=0$. \index{度量!离散～}
+            \item $d(x_1,x_2)=|x_1-x_2|$. \index{度量!绝对值～}
+        \end{itemize}
+        考虑向量空间$\R^n$，要成为度量空间，可以装备以下度量：
+        \begin{itemize}
+            \item Minkowski度量（$L^p$度量）：$d(x_1,x_2)=(\sum_{i=1}^n|x_1^i-x_2^i|^p)^{1/p}\ (p\ge 1)$. \index{度量!Minkowski～}\index{度量!$L^p$～}
+            \item Manhattan度量（$L^1$度量）: $d(x_1,x_2)=\sum_{i=1}^n|x_1^i-x_2^i|$. \index{度量!Manhattan～}\index{度量!$L^1$～}
+            \item Euclid度量（$L^2$度量）：$d(x_1,x_2)=\sqrt{\sum_{i=1}^n|x_1^i-x_2^i|^2}$. \index{度量!Euclid～}\index{度量!$L^2$～}
+            \item Chebyshev度量（$L^\infty$度量）: $d(x_1,x_2)=\max_i|x_1^i-x_2^i|=\lim_{p\to\infty}(\sum_{i=1}^n|x_1^i-x_2^i|^p)^{1/p}$. \index{度量!Chebyshev～}\index{度量!$L^\infty$～}
+        \end{itemize}
+\end{example}
+
+我们的目标是找到一类和实数集非常像的度量空间。实数集一个非常重要的性质是实数列收敛当且仅当它是Cauchy列。我们把这一性质抽象出来，就得到了如下定义：
+
+\begin{example}
+    度量空间$(X,d)$的点列$\{x_n:n\in \N\}$称为\textbf{Cauchy列}\index{Cauchy列}，如果对于任何$\epsilon>0$，都可以找到序号$N\in\N$，使得对于任何大于$N$的序号$m,n\in\N$，$d(x_m,x_n)<\epsilon$成立.
+
+    度量空间$(X,d)$称为\textbf{完备的}\index{完备空间}，如果任意Cauchy列$\{x_n:n\in \N\}$都收敛：$\exists a\in X, \lim_{n\to\infty}d(a,x_n)=0.$
+\end{example}
+度量空间的任何收敛点列显然是Cauchy列，完备性本质上只是假设Cauchy收敛准则在该空间成立.
+
+下面是一些完备度量空间的例子
+\begin{example}
+\begin{itemize}
+\item $L^p$度量下下$\R^n$是完备的.
+\item 使用度量$d(x_1,x_2)=|x_1-x_2|$，则$X=\R\setminus\{0\}$不是完备度量空间. 考虑$\{x_n=\frac1n:n\in\N\}$，它是Cauchy列，但该点列在$X$中没有极限（极限是$0$）.
+
+\item $[0,1]$到自身的连续函数空间$C([0,1])$在$L^\infty$度量下是完备的.
+此时
+\[d(f,g)=\sup_{x\in[0,1]}|f(x)-g(x)|,\]
+完备性由一致收敛得到，函数空间是泛函分析中一个典型的研究对象.
+\end{itemize}
+\end{example}
+
+下面我们给出与Banach不动点定理相关的概念：
+
+\begin{definition}[压缩映射]
+度量空间$(X,d)$到自身的映射$f:X\to X$称为\textbf{压缩映射}\index{压缩映射}，如果存在$0<q<1$，使得不等式
+    \[d(f(x_1),f(x_2))\le q\cdot d(x_1,x_2)\]
+对于$X$中的任何两个点$x_1,x_2$都成立.
+\end{definition}
+
+用$\delta-\epsilon$语言容易证明压缩映射一定是连续映射：
+\begin{lemma}\label{lemma:contraction-continuous}
+    压缩映射$f:X\to X$是连续映射.
+\end{lemma}
+
+压缩映射一定有不动点，这就是Banach不动点定理：
+\begin{theorem}[Banach不动点定理，压缩映像原理]\label{thm:banach-fixed-point}\index{不动点定理!Banach～}\index{压缩映射原理}
+
+完备度量空间$(X,d)$到自身的压缩映射$f:X\to X$具有唯一的不动点$a$. 
+
+此外，对于任何点$x_0\in X$，迭代序列$x_0,x_1=f(x_0),\cdots,x_{n+1}=f(x_n),\cdots$收敛到$a$. 收敛速度由以下估计给出：
+\[d(a,x_n)\le \frac{q^n}{1-q}d(x_1,x_0).\]
+\end{theorem}
+
+\begin{proof}
+首先证明存在性。$d(x_{n+1},x_n)\le qd(x_n,x_{n-1})\le \cdots\le q^nd(x_1,x_0).$
+从而
+\begin{align*}
+d(x_{n+k},x_n)&\le d(x_n,x_{n+1})+\cdots+d(x_{n+k-1},x_{n+k})\\
+&\leq(q^n+\dots+q^{n+k-1})d(x_1,x_0)\le \frac{q^{n}}{1-q}d(x_1,x_0).
+\end{align*}
+因此$\{x_n\}$是Cauchy列，存在极限$\lim_{n\to\infty} x_n=a\in X$.
+结合压缩映射的连续性，有
+$a=\lim_{n\to\infty}x_{n+1} = \lim_{n\to\infty}f(x_n)=f(\lim_{n\to\infty}x_n)=f(a).$
+
+然后证明唯一性。若$f$还有其他不动点$a_1,a_2$，则
+$0\le d(a_1,a_2)=d(f(a_1),f(a_2))\le qd(a_1,a_2).$
+而这当且仅当$d(a_1,a_2)=0$，即$a_1=a_2$时才可能成立.
+最后证明收敛速度. 对
+$d(x_{n+k},x_n)\le \frac{q^n}{1-q}d(x_1,x_0).$
+取$k\to\infty$，得到
+$d(a,x_n)\le \frac{q^n}{1-q}d(x_1,x_0).$
+\end{proof}
+
+\begin{example}[落在地面上的地图]
+将一座公园的地图铺开在公园地面上，则地面上恰有唯一一点与地图上对应的点重合. 设公园可以用有界的面闭区域$\Omega$表示. 设地图的压缩比是$\lambda\in(0,1)$. 现在固定一个平面直角坐标系，把地图铺在区域$\Omega$内，则从$\Omega$内的点$x$（公园中的地点）到地图上对应点$x'$的变换由下面的公式给出：
+\[x' = f(x) := \lambda Rx + b.\]
+其中$R$和$b$分别为旋转和平移变换. 
+
+考虑$\norm{\lambda R}=\sup_{\norm{x}=1}\norm{\lambda Rx}=\lambda<1$，由Banach不动点定理可知，压缩映射$f(x)$有唯一不动点$a=f(a)$.
+\end{example}
+
+\begin{example}[梯度下降的收敛性]\index{梯度下降}
+我们优化目标是寻找二阶可微凸函数$f(x),x\in \R^n$的最小值. 使用梯度下降方法：每次往最小梯度方向移动.
+假设对任意$x\in \R^n$，
+    \[L \le \lambda_{\min}(\nabla^2 f(x))\le \lambda_{\max}(\nabla^2 f(x))\le U.\]
+    其中$\nabla^2f(x)$是$f$的Hessian矩阵（二次导数），$U\ge L>0$为给定的常数，$\lambda_{\min}(A),\lambda_{\max}(A)$表示矩阵$A$的最小、最大特征值.
+
+我们要证明：梯度下降能收敛到最小值点，且具有指数收敛速度.
+
+先看一下证明的思路，我们要设法证明梯度下降算法是完备度量空间中的一个压缩映射。首先，二阶可微凸函数的最小值点充分必要地满足$\nabla f(x)=0$. 其次，$\nabla f(x)=0 \iff x\in\R^n$是梯度下降算子$\mathcal T^{(\alpha)}$的不动点，其中$\mathcal T^{(\alpha)}: x\mapsto x - \alpha\nabla f(x)$, 这里$\alpha\in \R_+$为步长. 最后，$\mathcal T^{(\alpha)}$是一个完备度量空间的压缩映射，其压缩系数为$q(\alpha)=1-L\alpha$. 因此梯度下降可以收敛至唯一的最小值点，收敛速度可以由压缩系数估计.
+
+为了使$q(\alpha)$确实一个压缩系数，我们需要$\alpha<\min L^{-1}$. $\mathcal T^{(\alpha)}$的不动点恰好满足$\nabla f(x)=0$，因此是最小值点. 我们只需要证明$\mathcal T^{(\alpha)}$是压缩映射，并给出压缩系数
+
+由有限增量原理:
+    \[\norm{\mathcal T^{(\alpha)}x - \mathcal T^{(\alpha)}y} \le \sup_{z\in[x,y]}\norm{I - \alpha \nabla^2 f(z)}_2\cdot\norm{x-y}_2.\]
+    \item 最后，注意到$\norm{I-\alpha\nabla^2f(z)}_2$等于$I-\alpha\nabla^2f(z)$特征值的最大模，根据条件可知特征值的最大模 $\leq 1-L\alpha$.
+\end{example}
+
+\section{Brouwer不动点定理}
+下面我们考虑更一般的度量空间中的不动点定理，为此我们需要引入\emph{连续映射}的概念。
+
+\begin{definition}
+设$X$和$Y$是度量空间$(X,d_X),(Y,d_Y)$，映射$f:X\to Y$在点$a\in X$\textbf{连续}\index{连续}，指的是
+    \[\forall\epsilon>0\exists\delta>0\forall x\in X(d_X(a,x) < \delta\Rightarrow d_Y(f(a),f(x))<\epsilon).\]
+如果它在每个点$x\in X$连续，称$f$为\textbf{连续映射}\index{连续映射}. $X$到$Y$的连续映射的集合记为$C(X,Y)$. 
+\end{definition}
+
+当度量空间为欧氏空间时，连续映射的定义与欧氏空间中连续映射的定义相同. 接下来，我们还需要几个集合的概念。
+
+\begin{definition}[开集、闭集和紧集]
+    考虑度量空间$(X,d)$，$a\in X$的邻域$B(a,\delta):=\{x\in X|d(a,x)<\delta\}$.
+\begin{itemize}
+    \item 集合$G$是\textbf{开集}\index{开集}$G$指的是对于任何点$x\in G$，满足$B(x,\delta)\subset G$的邻域$B(x,\delta)$存在.
+    \item 集合$F$是\textbf{闭集}\index{闭集}，如果它的补集$X\setminus F$是$(X,d)$中的开集.
+    \item 集合$K$是\textbf{紧集}\index{紧集}，如果从$X$中任何覆盖$K$的开集族中可以选出有限个开集来覆盖$K$.
+\end{itemize}
+\end{definition}
+当度量空间为欧氏空间时，开集和紧集的定义与欧氏空间中的定义相同，紧集等价于有界闭集. 后一条在一般的度量空间不一定成立！
+
+有了上面的准备，我们就可以叙述Brouwer不动点定理了：
+
+\begin{theorem}[Brouwer不动点定理]\index{不动点定理!Brouwer～}
+    设$M\subset\R^n$是一个非空紧凸集，而$F:M\to M$是一个连续函数. 则存在$x\in M$使得$F(x)=x$成立.
+\end{theorem}
+
+Brouwer不动点定理可以通过该实际的例子来理解：将一张白纸平铺在桌面上，再将它揉成一团（不撕裂），放在原来白纸所在的地方，那么只要它不超出原来白纸平铺时的边界，那么白纸上一定有一点在水平方向上没有移动过. 这个断言依据Brouwer不动点定理在$\R^2$的情况，因为把纸揉皱是一个连续的变换过程.
+
+另一个例子：大商场等地方可以看到的平面地图，上面标有“您在此处”的红点. 如果标注足够精确，那么这个点就是把实际地形映射到地图的连续函数的不动点.
+
+下面我们看一个Brouwer不动点定理的应用例子。首先引入矩阵\textbf{不可约}的概念：对于$n$阶方阵$A$而言，如果存在一个置换矩阵（通过交换单位阵的列获得）$P$使得$P^\t AP$为一个分块上三角阵，我们就称矩阵$A$是\emph{可约的}，否则就称该矩阵是\emph{不可约的}.\index{不可约矩阵}
+
+\begin{theorem}[Perron-Frobenius定理]\index{Perron-Frobenius定理}
+    设$A=(a_{ij})$为$n\times n$不可约实矩阵，所有元素均非负，$a_{ij}\ge 0$，则下列结论成立.
+    \begin{itemize}
+        \item 存在一个实特征值$r$，其他特征值$\lambda$的模均不超过$r$，即$|\lambda|\le r$.
+        \item 存在一个与$r$对应的特征向量，其所有元素恒正.
+        \item $\min_i\sum_{j}a_{ij}\le r\le \max_i\sum_j a_{ij}$.
+    \end{itemize}
+\end{theorem}
+
+
+\begin{proof}
+首先证明$A$存在一个正的特征值$r>0$. 考虑单纯形$S:=\{x\in\R^n|x\ge 0,\sum_i x_i=1\}$. 则$\forall x\in S$，有$Ax\ge 0$. 
+
+断言$Ax>0$，若不然，$A$存在某一列全$0$（由$x\ge 0$和$A$非负可得）. 此时可通过置换阵将该$0$列交换到第一列，则得到的矩阵为分块上三角，与不可约性矛盾.
+
+可以在$S$上定义映射
+\[T(x) = \frac1{\rho(x)}Ax,\]
+其中$\rho(x) > 0$使得$T(x)\in S$.
+
+显然$T(x)$是$S\to S$的连续映射. $S$是一个有界凸闭集. 由Brouwer不动点定理，存在$x_0\in S, x_0 = T(x_0)=\frac1{\rho(x_0)}Ax_0$.
+
+令$r=\rho(x_0)$，则可得$r$为$A$的一个正的特征值.
+
+我们接下来证明，与$r$对应的特征向量所有元素恒正. 由之前的证明，与$r$对应的特征向量$x_0\in S$，则$x_0\ge 0$. 我们证明$x_0>0$.
+
+考虑$A = PBP^{-1}$，其中$P$是置换矩阵，则
+\[PBP^{-1}x_0=rx_0\implies B(P^{-1}x_0)=r(P^{-1}x_0).\]
+
+记$\tilde{x}_0 = P^{-1}x_0$.取$B$使得$\tilde{x}_0 = (\xi,0)^\t, \xi > 0$. 则
+\begin{align*}
+    \left(                 %左括号
+        \begin{array}{cc}   
+        B_{11} & B_{12}\\  
+        B_{21} & B_{22}\\  
+        \end{array}
+    \right)
+    \left(                 
+        \begin{array}{c}   
+        \xi\\  %第一行元素
+        0\\
+        \end{array}
+    \right)=
+    \left(                 
+        \begin{array}{c}   
+        r\xi\\  %第一行元素
+        0\\
+        \end{array}
+    \right).
+\end{align*}
+
+此时$B_{21}\xi=0$，由$\xi>0$可得$B_{21}=0$. 这与不可约矛盾，因此$x_0 > 0$.
+
+然后我们证明：若$\alpha$是$A$的任意特征值，有$|\alpha|\le r$. 设$0\le B\le A, By=\beta y$. 记$y^\star = |y|=(|y_i|)_i$. 于是有
+\[|\beta|y^\star = |\beta y| = |By| \le By^\star\le Ay^\star.\]
+
+由$A^\t$不可约，存在特征值$r_1>0$和特征向量$x_1>0, A^\t x_1 = r_1x_1$. 因此有
+\[|\beta|x_1^\t y^\star \le x_1^\t Ay^\star = r_1x_1^\t y^\star.\]
+
+由$x_1^\t y^\star>0$，则$|\beta|\le r_1$. 令$B=A$可得$|\alpha|\le r_1$，特别地$r\le r_1$. 同样有$r_1\le r$，故$r=r_1$. 
+
+最后证明：
+\[\min_i\sum_j a_{ij}\le r\le \max_i\sum_j a_{ij}.\]
+以这样的方式获得$\tilde A$: 将$A$的每一行都扩增（不减小某个元素），使得每一行都达到$\max_i\sum_j a_{ij}$. 此时$\max_i\sum_j a_{ij}$成为$A$的一个正特征值，且特征向量$\tilde{x}_0=\frac 1n\cdot\mathbf{1}\in S$. 由之前的结论，假设$0\le A\le \tilde A$，可以得到$\tilde A$的正特征值$\tilde r\ge r$. 因此$r \le \max_i\sum_j a_{ij}$. 同理缩小$A$可得$\min_i\sum_j a_{ij}\le r$.
+\end{proof}
+
+Perron-Frobenius定理在Markov链中的有非常重要应用。回忆Markov链的平稳分布：满足矩阵方程$\pi = \pi P$和$\sum_i\pi_i=1$.  设该Markov链状态有限且对应的转移矩阵$P$是（非负实）不可约方阵. 由Perron-Frobenius定理，$P$存在一个特征值$1=\min_i\sum_ja_{ij}\le r\le\max_i\sum_j a_{ij}=1$，对应一个正特征向量$x_0\in S=\{x\in\R^n|x\ge 0,\sum_ix_i=1\}$. 因此不可约有限状态Markov链必然存在平稳遍历分布.
+
+
+\section{不动点的一般视角}
+    
