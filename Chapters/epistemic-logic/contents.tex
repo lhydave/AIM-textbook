@@ -1,15 +1,18 @@
 \chapter{认知逻辑与共同知识}\label{chap:epistemic-logic}
 
+\begingroup
+\newcommand{\pref}{Chapters/epistemic-logic/figures}
+
 \section{“泥泞的孩童”谜题}
-\begin{frame}{“泥泞的孩童”}
+{“泥泞的孩童”}
 \begin{itemize}
     \item 有$n$个孩子在玩泥巴，他们互相泼泥巴.
     \item 母亲告诉孩子们，如果他们脸上沾上了泥巴，会受到严厉的惩罚.
     \item 孩子们不能看到自己的脸，但是可以看到其他所有人的脸.
     \item 所有孩子都希望保持自己的脸干净，但是弄脏别人的脸.
 \end{itemize}
-\end{frame}
-\begin{frame}{“泥泞的孩童”}
+
+{“泥泞的孩童”}
 \begin{itemize}
     \item 此时，孩子的父亲出现了，于是，孩子们停止泼泥巴.
     \item 孩子们互相不说话.
@@ -18,9 +21,9 @@
     \begin{center}
         “你们至少有一个人脸上沾了泥巴.”
     \end{center}
-\end{frame}
 
-\begin{frame}{“泥泞的孩童”}
+
+{“泥泞的孩童”}
 \begin{itemize}
     \item 之后，父亲会公开地问若干轮如下问题：
 \end{itemize}
@@ -32,34 +35,34 @@
     \item 假设孩子们观察力敏锐、聪慧且诚实，并且每一轮他们都同时回答.
     \item 接下来会发生什么？
 \end{itemize}
-\end{frame}
 
-\begin{frame}{“泥泞的孩童”：谜底}
+
+{“泥泞的孩童”：谜底}
 \begin{itemize}
     \item 假设有$k$个孩子脸上有泥巴.
     \item 谜底：在前$k-1$轮中，所有孩子都会说“不知道”，在第$k$轮中，所有脸上有泥巴的孩子都会说“知道”.
     \item “证明”：对$k$归纳.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{“泥泞的孩童”：谜底}
+
+{“泥泞的孩童”：谜底}
 \begin{itemize}
     \item 当$k=1$时，脸上沾满泥巴的孩子看到其他人都没有泥巴. 
     \item 既然他知道至少有一个孩子的脸上有泥巴，他就能推出那个人肯定是他自己. 
 \end{itemize}
-\end{frame}
 
 
-\begin{frame}{“泥泞的孩童”：谜底}
+
+{“泥泞的孩童”：谜底}
 \begin{itemize}
     \item 现在假设$k=2$，脸上沾满泥巴的孩子是$a$和$b$. 
     \item 一开始，因为他们分别看到了对方的脸上有泥巴，所以他们每个人都回答“不知道”. 
     \item 但是，当$b$回答“不知道”时，$a$意识到他自己肯定是脸上有泥巴的那个孩子，否则$b$就会在第一轮中知道泥巴在他的脸上，并回答“知道”. 因此，$a$在第二轮回答“知道”. 
     \item $b$也会通过同样的推理得出相同的结论. 
 \end{itemize}
-\end{frame}
 
-\begin{frame}{“泥泞的孩童”：谜底}
+
+{“泥泞的孩童”：谜底}
 \begin{itemize}
     \item 现在假设$k=3$，脸上沾满泥巴的孩子分别是$a$，$b$和$c$. 
     \item 孩子$a$的论证如下. 
@@ -72,9 +75,9 @@
     \item $b$和$c$的论证也是类似的.
     \item $k=3$的论证具有一般性，所以归纳假设成立.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{“蓝眼睛红眼睛”谜题}
+
+{“蓝眼睛红眼睛”谜题}
 \begin{itemize}
     \item “泥泞的孩童”还有其他流行的陈述方式，比如“蓝眼睛红眼睛”.
     \item 一个岛上有100个人，其中有5个红眼睛，95个蓝眼睛.
@@ -86,9 +89,9 @@
     \end{enumerate}
     \item 岛民是不知道具体有几个红眼睛. 
 \end{itemize}
-\end{frame}
 
-\begin{frame}{“蓝眼睛红眼睛”谜题}
+
+{“蓝眼睛红眼睛”谜题}
 \begin{itemize}
     \item 某天，有个旅行者到了这个岛上. 
     \item 由于不知道这里的规矩，所以他在和全岛人一起狂欢的时候，一不留神说了一句话：
@@ -98,9 +101,9 @@
     \item 假设这个岛上的人足够聪明，每个人都可以做出缜密的逻辑推理. 
     \item 请问这个岛上将会发生什么？
 \end{itemize}
-\end{frame}
 
-\begin{frame}{为什么会这样？}
+
+{为什么会这样？}
 \begin{itemize}
     \item 如果$k>1$，那么所有人都知道$p$：“至少有一个人脸上有泥巴”.
     \item 那么父亲说这句话的意义是什么？
@@ -108,9 +111,9 @@
     \item 无论父亲问多少轮，所有孩子都只会回答“不知道”！（为什么）% HW
     \item 因此，父亲公开说了$p$，这是谜题的关键.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{$k=2$的情况分析}
+
+{$k=2$的情况分析}
 \begin{itemize}
     \item 假设$k=2$，脸上沾满泥巴的孩子是$a$和$b$. 
     \item 在父亲宣布$p$之前，$a$和$b$都知道$p$.
@@ -122,9 +125,9 @@
     \item 当父亲宣布$p$之后，$a$知道了$b$知道$p$.
     \item 当第一轮$b$回答“不知道”之后，$a$可以用“$b$知道$p$”这一知识推出自己脸上有泥巴.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{$k=3$的情况分析}
+
+{$k=3$的情况分析}
 \begin{itemize}
     \item 假设$k=3$，脸上沾满泥巴的孩子是$a$，$b$和$c$. 
     \item 在父亲宣布$p$之前，$a$，$b$和$c$不仅知道$p$，而且知道彼此知道$p$.
@@ -133,9 +136,9 @@
     \end{itemize}
     \item 但是，$a$，$b$，$c$都不知道所有人知道所有人知道$p$！
 \end{itemize}
-\end{frame}
 
-\begin{frame}{父亲宣布$p$的意义}
+
+{父亲宣布$p$的意义}
 \begin{itemize}
     \item 用$E^m p$表示所有人知道所有人知道……所有人知道（$m$次）$p$.
     \item 在一般情况下，父亲没有宣布$p$之前，$E^k p$并不成立.
@@ -143,9 +146,9 @@
     \item 因此，父亲宣布$p$带来了\emph{共同知识}（common knowledge）.
     \item 有了共同知识，这一谜题就可以按照我们所讨论的方式进行下去.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{共同知识假设}
+
+{共同知识假设}
 \begin{itemize}
     \item 我们曾经假设过所有人“观察力敏锐、聪慧且诚实”.
     \item 然而，这一假设并不足够.
@@ -154,9 +157,9 @@
     \item 假设还是只有两个孩子$a,b$脸上有泥巴.
     \item 假如$a$不知道$b$是诚实的，即便$b$回答了“不知道”，$a$也无法从$b$的回答中得到任何额外的知识！
 \end{itemize}
-\end{frame}
 
-\begin{frame}{共同知识假设}
+
+{共同知识假设}
 \begin{itemize}
     \item 除了假设“所有人观察力敏锐、聪慧且诚实”是共同知识，我们还需要假设以下陈述是共同知识：
     \begin{itemize}
@@ -169,9 +172,9 @@
     \item 任何假设的破坏都会导致之前的讨论失效.
     \item 那么，为什么父亲宣布$p$就可以让$p$变成共同知识呢？
 \end{itemize}
-\end{frame}
 
-\begin{frame}{共同知识的产生}
+
+{共同知识的产生}
 \begin{itemize}
     \item 所有人都\emph{听到}父亲说$p$并不能产生共同知识.
     \item 假如父亲只是对每一个孩子单独宣布$p$.
@@ -185,18 +188,18 @@
     \end{itemize}
     \item 因此，父亲宣布$p$会产生共同知识的核心原因是“公开宣布”，此时对每一个$m$都有$E^m p$.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{启示}
+
+{启示}
 \begin{itemize}
     \item “泥泞的孩童”谜题足以表明，关于“知道”的讨论远比想象的复杂.
     \item 关于“知道”（know）和知识（knowledge）的研究在哲学中划归为\emph{知识论}（epistemology）.
     \item 接下来，我们将使用模态逻辑来形式化关于“知道”和知识的讨论，这被称之为\emph{认知逻辑}（epistemic logic）.
 \end{itemize}
-\end{frame}
+
 
 \section{认知逻辑的基本模型与性质}
-\begin{frame}{命题认知逻辑}
+{命题认知逻辑}
 \begin{itemize}
     \item 假设有$n$个人，分别叫$1,2,\dots,n$.
     \item 基本命题集为$\mathbf P$，用字母$p,q,r,\dots$表示基本命题.
@@ -211,8 +214,8 @@
         \item 语义$\vDash$：可能世界语义
     \end{itemize}
 \end{itemize}
-\end{frame}
-\begin{frame}{命题认知逻辑}
+
+{命题认知逻辑}
 \begin{itemize}
     \item 模态公式$K_i\phi$被读作“$i$知道$\phi$”.
     \item 从语义来说，$K_i$是$\Box$算子，即我知道$\phi$意味着在我认为的所有可能世界中$\phi$都是真的.
@@ -225,8 +228,8 @@
         \item 在框架上有效：$\mathcal F\vDash\phi$.
     \end{itemize}
 \end{itemize}
-\end{frame}
-\begin{frame}{例子}
+
+{例子}
 \begin{itemize}
     \item 虽然我们没有定义$K_i$的对偶算子，但是$K_i$的对偶相当于$\Diamond$算子.
     \item $\neg K_i\neg\phi$表示的意思是“$i$不知道$\phi$不是真的”，因此$i$会考虑$\phi$可能是真的. 当然，这也意味着$i$会考虑$\neg\phi$也可能是真的.
@@ -236,9 +239,9 @@
         \item 显然，前者是更弱的一种表述，因此$\neg K$和$K\neg$的含义完全不同.
     \end{itemize}
 \end{itemize}
-\end{frame}
 
-\begin{frame}{例子}
+
+{例子}
 \begin{itemize}
     \item $K_1K_2p\wedge \neg K_2K_1K_2 p$.
     \begin{itemize}
@@ -255,9 +258,9 @@
         \item 我知道$p$，但是我又知道我不知道$p$.
     \end{itemize}
 \end{itemize}
-\end{frame}
 
-\begin{frame}{Kripke模型的限制}
+
+{Kripke模型的限制}
 \begin{itemize}
     \item 模态算子$K_i$有特殊的性质，这要求我们对$K_i$对应的关系$R_i$也有额外的要求.
     \item 我们要求每一个$R_i$都是等价关系$\sim_i$：
@@ -268,15 +271,15 @@
     \end{itemize}
     \item 从可能世界的角度来说，这一要求就是说对$i$来说，她所认为可能的世界之间都是不可区分的.
 \end{itemize}
-\end{frame}
-\begin{frame}{算子$K_i$的公理}
+
+{算子$K_i$的公理}
 \begin{itemize}
     \item 从模态可定义性的角度来说，$R_i$的特殊性质会对应$K_i$特殊的公式.
     \item 这些公式就可以被看成关于“知道”的公理（模式）或推导规则.
     \item 承认某一条公理（模式）或推导规则就必须承认可能世界具有某一种性质，反之亦然.
 \end{itemize}
-\end{frame}
-\begin{frame}{分配公理}
+
+{分配公理}
 \begin{itemize}
     \item \emph{分配公理}（distribution axiom）：$\vDash (K_i(\phi\to\psi)\wedge K_i\phi)\to K_i\psi$.
     \item 有效性验证.
@@ -288,8 +291,8 @@
     \item 类比：演绎推理的肯定前件（Modus ponens，MP）推导规则.
     \item 分配公理意味着拥有知识的个体可以对自己的知识做任意的演绎推理，因而假设个体是\emph{逻辑全知的}（logically omniscient）.
 \end{itemize}
-\end{frame}
-\begin{frame}{知识泛化规则}
+
+{知识泛化规则}
 \begin{itemize}
     \item \emph{知识泛化规则}（knowledge generalization rule）：对所有$\mathcal F$，如果$\mathcal F\vDash\phi$，那么$\mathcal F\vDash K_i\phi$.
     \item 有效性验证.
@@ -304,9 +307,9 @@
         \item 其实更重要的是，知识的一切性质都是共同知识（练习）.% HW
     \end{itemize}
 \end{itemize}
-\end{frame}
 
-\begin{frame}{知识公理}
+
+{知识公理}
 \begin{itemize}
     \item \emph{知识公理}（knowledge axiom）或\emph{真理公理}（truth axiom）：$\vDash_H K_i\phi\to\phi$.
     \item 验证留作练习. % HW
@@ -318,8 +321,8 @@
         \item 我考试挂了，但我不相信我考试挂了.
     \end{itemize}
 \end{itemize}
-\end{frame}
-\begin{frame}{内省公理}
+
+{内省公理}
 \begin{itemize}
     \item \emph{正内省公理}（positive introspective axiom）：$\vDash_H K_i\phi\to K_iK_i\phi$.
     \item \emph{负内省公理}（positive introspective axiom）：$\vDash_H \neg K_i\phi\to K_i\neg K_i\phi$.
@@ -327,8 +330,8 @@
     \item 这两条公理意味着个体会通过内省来知道自己的处境，特别是“我知道什么”和“我不知道什么”.
     \item 思考：（负）内省公理是否合理？
 \end{itemize}
-\end{frame}
-\begin{frame}{其他公理}
+
+{其他公理}
 \begin{itemize}
     \item 以上五条性质（四条公理+一条推导规则）加上MP形成的推理系统称为S5公理系统.
     \begin{itemize}
@@ -340,8 +343,8 @@
         \item 因此，个体不能够知道假的陈述，以此区别于信念.
     \end{itemize}
 \end{itemize}
-\end{frame}
-\begin{frame}{公理与模型结构}
+
+{公理与模型结构}
 \begin{itemize}
     \item 我们基于框架类$H$给出了关于知识的公理.
     \item 反过来，公理对应什么样的框架结构呢？
@@ -359,9 +362,9 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
 \end{tabular}
     \end{table}
 \end{itemize}
-\end{frame}
 
-\begin{frame}{公理与模型结构}
+
+{公理与模型结构}
 \begin{itemize}
     \item 欧氏性：$\forall x,y,z(xR_iy\wedge xR_iz\to yR_iz)$.
     \begin{itemize}
@@ -375,9 +378,9 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
     \item 思考：从可能世界角度，$R_i$的这些性质有什么直观的含义？
     \item 思考：为什么有些公理没有对应的结构性质？（提示：注意观察一个公理/规则是否有$H$出现）
 \end{itemize}
-\end{frame}
 
-\begin{frame}{公理与模型结构}
+
+{公理与模型结构}
 \begin{itemize}
     \item 可以看出来，以上关系其实并不是孤立的，我们有：
 \begin{lemma} %HW
@@ -394,9 +397,9 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
 \end{lemma}
 \item 证明留作练习.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{引入共同知识算子}
+
+{引入共同知识算子}
 \begin{itemize}
     \item 下面我们将认知逻辑语言加入共同知识算子和它的语义.
     \item 首先加入“所有人都知道”这个算子：$E\phi\leftrightarrow\bigwedge_i K_i\phi$.
@@ -404,17 +407,17 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
     \item 于是，共同知识算子$C$的语义定义为：
     \[\mathcal M,w\vDash C\phi\iff\mathcal M,w\vDash E^k\phi,\quad k=1,2,\dots\]
 \end{itemize}
-\end{frame}
 
-\begin{frame}{模型含义}
+
+{模型含义}
 \begin{itemize}
     \item 我们可以从图结构来理解共同知识算子.
     \item $\mathcal M,w\vDash E^k\phi$的含义是，从$w$出发走$k$步可到达的可能世界$v$上都有$\mathcal M,v\vDash \phi$.
     \item $\mathcal M,w\vDash C\phi$的含义则是，从$w$出发可到达的可能世界$v$上都有$\mathcal M,v\vDash \phi$.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{共同知识的公理}
+
+{共同知识的公理}
 \begin{itemize}
     \item 类似算子$K_i$，$C$也有它对应的公理和推导规则.
     \item \emph{不动点公理}（fixed-point axiom）：$\vDash C\phi\leftrightarrow E(\phi\wedge C\phi)$.
@@ -428,9 +431,9 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
     \item 将S5公理系统中加入关于$E$和$C$的公理，我们就扩展了认知逻辑. 
     \item 因为$E$和$C$是用$K_i$定义的，因此他们本身并不会带来Kripke模型新的结构性质.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{“泥泞的孩童”再回顾}
+
+{“泥泞的孩童”再回顾}
 \begin{itemize}
     \item 现在，我们可以形式化、严格讨论“泥泞的孩童”这一谜题了.
     \item 这一问题对应的逻辑语言是认知逻辑语言.
@@ -439,9 +442,9 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
     \item 假设每个孩童$i$对应的$R_i$都是一个等价关系.
     \item 当我们如此假设时，每个孩子唯一不是共同知识的事情就是脸上泥巴的状态，其他的所有事情都被隐含在了共同知识之中.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{“泥泞的孩童”再回顾}
+
+{“泥泞的孩童”再回顾}
 \begin{itemize}
     \item 原子命题$p_i$：孩子$i$脸上有泥巴，$p$：至少有一个孩子脸上有泥巴.
     \item 假设现在父亲还没有说出$p$.
@@ -451,19 +454,19 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
     \end{itemize}
     \item 因此，框架$\mathcal F$会对应一个$n$维超立方体.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{“泥泞的孩童”再回顾}
+
+{“泥泞的孩童”再回顾}
 \begin{itemize}
     \item $n=3$的例子：
 \end{itemize}
-\begin{figure}
+\begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.4]{Slides/Figures/11/cubic-example.png}
+    \includegraphics[scale=0.4]{\pref/cubic-example.png}
 \end{figure}
-\end{frame}
 
-\begin{frame}{“泥泞的孩童”再回顾}
+
+{“泥泞的孩童”再回顾}
 \begin{itemize}
     \item 从框架$\mathcal F$到模型$\mathcal M$，我们还需要确定赋值$V$.
     \item $w\in V(p_i)$当且仅当$w_i=1$.
@@ -471,19 +474,19 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
     \item 从模型到点模型，我们还需要确定我们所处的可能世界，于是我们就可以讨论模态公式的可满足性.
     \item 例如：$\mathcal M,(1,0,1)\vDash Ep$，但是$\mathcal M,(1,0,1)\vDash \neg E^2p$.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{“泥泞的孩童”再回顾}
+
+{“泥泞的孩童”再回顾}
 \begin{itemize}
     \item 假设现在父亲宣布了$p$，那么$\mathcal F$将会发生变化：
 \end{itemize}
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.5]{Slides/Figures/11/cubic-example-after-father.png}
+    \includegraphics[scale=0.5]{\pref/cubic-example-after-father.png}
 \end{figure}
-\end{frame}
 
-\begin{frame}{“泥泞的孩童”再回顾}
+
+{“泥泞的孩童”再回顾}
 \begin{itemize}
     \item 在$i$眼中，只有两个可能世界，因此$i$回答“知道”意味着她能够确定只有一个世界；她回答不知道意味着还有两个可能世界.
     \item 假如现在是第一轮问答.
@@ -492,27 +495,27 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
     \item 同理，所有那些只有一个$1$的可能世界都会被消掉.
     \item 因此，归纳可得，第$k$轮的时候，所有那些只有$k$个$1$的可能世界会被消掉. % HW：证明这个
 \end{itemize}
-\end{frame}
 
-\begin{frame}{“泥泞的孩童”再回顾}
+
+{“泥泞的孩童”再回顾}
 \begin{itemize}
     \item 如果父亲没有宣布$p$，那么$\mathcal M$是一个超立方体.
     \item 无论在任何轮，每一个孩子都会觉得两个可能世界，因此不会有任何可能世界被消掉！
     \item 因此，从结构上来说，父亲宣布$p$改变了每个孩子对应的$R_i$等价的可能世界，使得一些孩子可以确定自己所处的世界.
     \item 这一套方法可以将类似的智力谜题都用算法化的方式得到解答.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{基于事件的认知理论}
+
+{基于事件的认知理论}
 \begin{itemize}
     \item 如果我们限制Kripke模型中$R_i$为等价关系，那么认知逻辑还可以有另一种理解方式.
     \item 回忆：概率论（或者似然）理解世界的方式基于“事件”.
     \item 我们只能感知事件的发生与否，而不能具体知道是哪个样本点.
     \item 用事件的方式理解认知，得到的结构被称为\emph{Aumann结构}.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{Aumann结构}
+
+{Aumann结构}
 \begin{itemize}
     \item 考虑全集$\Omega$，理解为样本空间.
     \item 事件$e\subseteq \Omega$是样本点的集合.
@@ -522,9 +525,9 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
     \item 在Aumann结构中，对每一个个体$i$，它的知识被刻画为$\Omega$的划分$\mathcal P_i=\{\Omega_j\}$，$\Omega_j$是$\Omega$的子集.
     \item $S_j$被称为$i$的\emph{信息集}（information sets），可以被理解为$i$能够感知到的最基本的事件.
 \end{itemize}    
-\end{frame}
 
-\begin{frame}{Aumann结构}
+
+{Aumann结构}
 \begin{itemize}
     \item $\mathcal P_i(\omega)$被定义为$\omega$所属于的那个信息集.
     \item 现在我们重新定义算子$K_i:2^\Omega\to 2^\Omega$为
@@ -532,18 +535,18 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
     \item $K_i(e)$定义了“个体$i$知道事件$e$”这一事件.
     \item 思想：将所有关于知识的讨论转化为关于事件的讨论.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{Aumann结构}
+
+{Aumann结构}
 \begin{itemize}
     \item 类似地，可以定义算子$E:2^\Omega\to 2^\Omega$为：
     \[E(e)=\bigcap_{i=1}^n K_i(e).\]
     \item 定义共同知识算子$C:2^\Omega\to 2^\Omega$为：
     \[C(e)=\bigcap_{k=1}^\infty E^k(e).\]
 \end{itemize}
-\end{frame}
 
-\begin{frame}{Kripke模型与Aumann结构的关系}
+
+{Kripke模型与Aumann结构的关系}
 \begin{itemize}
     \item 我们再一次看到逻辑和集合的对应，我们总结如下表：
     \begin{table}[ht]
@@ -560,18 +563,18 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
         \end{tabular}
     \end{table}
 \end{itemize}
-\end{frame}
 
-\begin{frame}{Kripke模型与Aumann结构的关系}
+
+{Kripke模型与Aumann结构的关系}
 \begin{itemize}
     \item Kripke语义偏好逻辑，Aumann结构偏好（Bayes）概率论，因此用数学来研究知识论就有了两种风格，一种是计算机、逻辑、哲学的风格，另一种是经济学、信息论的风格.
     \item 但是，这两种对应关系完全取决于我们对知识的那些基本假设，所以如果这些假设被打破，那么这样的对应关系就不再成立！
     \item 下面我们分别用这两种风格来讨论共同知识的意义.
 \end{itemize}
-\end{frame}
+
 
 \section{对不一致达成一致}
-\begin{frame}{问题背景}
+{问题背景}
 \begin{itemize}
     \item 本部分将用模态逻辑的方式来探讨达成一致与共同知识的关系.
     \item 最早由Aumann给出.
@@ -583,9 +586,9 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
 \begin{center}
     players cannot ``agree to disagree''.
 \end{center}
-\end{frame}
 
-\begin{frame}{模型}
+
+{模型}
 \begin{itemize}
     \item 假想一个含时的系统，有两个玩家1和2.
     \item 在任意时刻，每个玩家处于一个状态$s_i$之中.
@@ -599,9 +602,9 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
     \item \emph{系统}（system）$\mathcal R$指的是$\mathcal G$上所有可能运行的集合.
     \item 给定$r\in\mathcal R$，$(r,m)$被称为系统$\mathcal R$的一个点.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{模型}
+
+{模型}
 \begin{itemize}
     \item 玩家处于某个状态的时候可以采取某种行动.
     \item 为了反映“玩家按照相同的规则行事”这件事，我们规定两个玩家的行动集都是$A$，并且这一集合不依赖于全局或局部的状态.
@@ -610,9 +613,9 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
         \item 因此，转移函数描述了所有人的行动如何导致系统从一个状态到另一个状态.
     \end{itemize}
 \end{itemize}
-\end{frame}
 
-\begin{frame}{模型}
+
+{模型}
 \begin{itemize}
     \item 如何描述“按照规则行事”？
     \item 我们用\emph{协议}（protocol）来描述这种概念.
@@ -622,19 +625,19 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
     \end{itemize}
     \item 两个玩家的联合协议记为$P=(P_1,P_2)$.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{模型}
+
+{模型}
 \begin{itemize}
     \item 一个联合协议要执行起来，还需要初始状态.
     \item 初始状态可能的集合记为$\mathcal G_0$.
     \item 给定初始状态集$\mathcal G_0$和转移函数$\tau$，我们就可以在系统上执行任何一种协议.
     \item 我们把元组$\gamma=(\mathcal G_0,\tau)$称为系统的\emph{上下文}（context）.
 \end{itemize}
-\end{frame}
 
 
-\begin{frame}{模型}
+
+{模型}
 \begin{itemize}
     \item 给定上下文$\gamma=(\mathcal G_0,\tau)$和一个联合协议$P$，我们可以讨论$P$产生的所有可能运行.
     \item 一个运行$r$与$P$\emph{相容}（compatible）指的是
@@ -645,11 +648,11 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
     \item 换言之，$r$是从跟某个可能的初始状态开始执行协议产生的运行.
     \item 一个系统$\mathcal R$表示了上下文$\gamma$和联合协议$P$，指的是所有$r\in\mathcal R$都与$P$相容. 这样的系统我们用记号$\mathcal R^{rep}(P,\gamma)$来表示.
 \end{itemize}
-\end{frame}
 
 
 
-\begin{frame}{模型}
+
+{模型}
 \begin{itemize}
     \item 接下来我们引入Kripke模型.
     \item Kripke模型的点是系统的点.
@@ -662,9 +665,9 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
     \end{itemize}
     \item 第一步定义如下：状态$s\in V(perf_i(a))$当且仅当在状态$s$玩家$i$采取过行动$a$.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{模型}
+
+{模型}
 \begin{itemize}
     \item 然后我们引入知识算子$K_i$的语义.
     \item 同样，我们假设$K_i$对应的是等价关系$\sim_i$.
@@ -675,9 +678,9 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
     \item 这样，我们就得到了Kripke点模型$\mathcal M,(r,m)$.
     \item $K_i$的语义按照基本认知逻辑定义即可.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{模型}
+
+{模型}
 \begin{itemize}
     \item 接下来，我们引入关于时间的模态算子.
     \item 特别地，我们只引入算子$X$，表示“下一时刻”.
@@ -686,10 +689,10 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
     \item 有了算子$X$，我们可以用公式表达“将要采取行动”：
     \[act_i(a)=\neg perf_i(a)\wedge X perf_i(a).\]
 \end{itemize}
-\end{frame}
 
 
-\begin{frame}{模型}
+
+{模型}
 \begin{itemize}
     \item 接下来，我们定义关于Kripke模型的\emph{决策函数}（decision function），用它来在点模型的角度讨论协议的执行.
     \item 设Kripke模型的点集为$S$.
@@ -702,17 +705,17 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
         \item 回忆Aumann结构，$S$的子集是事件.
     \end{itemize}
 \end{itemize}
-\end{frame}
 
-\begin{frame}{模型}
+
+{模型}
 \begin{itemize}
     \item 我们要求协议$P_i$和决策函数$D$是相容的，也就是决策函数在某个信息集上采取的行动恰好是这个协议在该状态要执行的行动：
     \[P_i(s_i)=D(IS_i(s_i,\mathcal R)),\forall s_i\in S_i.\]
     \item 反过来说，联合协议$P$在上下文$\gamma$中\emph{实现}（implement）了决策函数$D$，如果对所有$i$，$P_i$与$D$在系统$\mathcal R^{rep}(P,\gamma)$中是相容的.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{模型}
+
+{模型}
 \begin{itemize}
     \item 协议和决策函数是两个非常容易混淆的概念，尽管他们有密切联系.
     \item 直观来说，协议就是处于什么局部状态采取什么行动，这并不涉及知识的内容.
@@ -721,9 +724,9 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
     \[\text{知道的信息}=\text{处于的局部状态}.\]
     \item 因此二者其实是从不同角度描述同一个概念.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{模型}
+
+{模型}
 \begin{itemize}
     \item 我们对决策函数$D$有一个额外的技术要求，我们要求$D$是并-一致的（union-consistent）.
     \item 具体来说，给定$S$一列互不相交的子集$T_1,\dots,T_k$，每一个都有$D(T_i)=a$，那么我们要求$D(\cup_i T_i)=a$.
@@ -733,9 +736,9 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
     \end{itemize}
     \item 性质：任何联合协议都可以从某个并-一致的决策函数产生.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{模型}
+
+{模型}
 \begin{itemize}
     \item 我们现在回顾一下这个模型.
     \item 两个玩家处于同一个系统中.
@@ -744,9 +747,9 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
     \item 决策函数要求是并-一致的，由某个联合协议实现.
     \item 给定可能的初始状态和系统的转移函数（上下文），系统可以产生一系列可能的运行.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{达成一致定理}
+
+{达成一致定理}
 \begin{theorem}[Aumann，达成一致定理，Agreement theorem]
 给定联合协议$P$，上下文$\gamma$，由此产生Kripke框架$\mathcal F$. 设$a,b\in A$是两个不同的行动，如果在上下文$\gamma$中$P$实现了某个并-一致决策函数，那么
 \[\mathcal F\vDash\neg C(act_1(a)\wedge act_2(b)).\]
@@ -755,9 +758,9 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
     \item 如果两个玩家选择了同样的并-一致决策函数，那么他们不可能对“我们采取不同行动”这件事形成共同知识.
     \item 他们不可能对不一致达成一致（agree to disagree）.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{达成一致定理：证明}
+
+{达成一致定理：证明}
 \begin{itemize}
     \item 用反证法. 假设某个基于$\mathcal F$的点模型$\mathcal M,(r,m)$使得
     \[\mathcal M,(r,m)\vDash C(act_1(a)\wedge act_2(b)).\]
@@ -770,9 +773,9 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
         \item 因此$a=b$.
     \end{itemize}
 \end{itemize}
-\end{frame}
 
-\begin{frame}{达成一致定理：证明}
+
+{达成一致定理：证明}
 \begin{itemize}
     \item 假设$S'$是从$(r,m)$出发，通过关系$\sim_1$或$\sim_2$可到达的点集.
     \item 取一个点$(r',m')\in S'$，设$r'(m')_1=s_1'$.
@@ -780,9 +783,9 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
     \item 因此，$IS_1(s_1',\mathcal R)\subseteq S'$.
     \item 当$s_1'$取遍$S_1$，根据信息集的性质，$S'$是$IS_1(s_1',\mathcal R)$的不交并.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{达成一致定理：证明}
+
+{达成一致定理：证明}
 \begin{itemize}
     \item 因为$\mathcal M,(r,m)\vDash C(act_1(a))$，所以有$\mathcal M,(r',m')\vDash act_1(a)$.
     \item 这一公式意味着$P_1(s_1')=a$.
@@ -791,9 +794,9 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
     \item 同理，从玩家2的角度来说$D(S')=b$.
     \item 因此$a=b$.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{达成一致定理：拓展}
+
+{达成一致定理：拓展}
 \begin{itemize}
     \item 我们的定理是对于确定性的协议证明的.
     \item 然而，一个协议可能是非确定的，也就是在一个状态可能会有多种行动的选择，比如选择带有随机性.
@@ -803,16 +806,16 @@ $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
         \item 只要协议能够对应一个并-一致的决策函数，结论都有效.
     \end{itemize}
 \end{itemize}
-\end{frame}
+
 
 \section{Rubinstein电子邮件博弈}
-\begin{frame}{Rubinstein电子邮件博弈}
+{Rubinstein电子邮件博弈}
 \begin{itemize}
     \item 接下来我们使用Bayes概率论来说明在二人静态博弈中，共同知识对到底实现哪一个Nash均衡非常关键.
     \item 此时，知道一件事与否被赋予了不确定性的含义：我确定或不确定某件事发生.
 \end{itemize}
-\end{frame}
-\begin{frame}{Decision Letter on the``E-Mail Game'', AER, 1989}
+
+{Decision Letter on the``E-Mail Game'', AER, 1989}
 \begin{center}
     \begin{minipage}[c]{0.8\textwidth}
 \footnotesize
@@ -833,10 +836,10 @@ Sincerely yours,
 The Editor
 \end{minipage}
 \end{center}
-\end{frame}
 
-\begin{frame}{Rubinstein电子邮件博弈}
-\begin{table}[]
+
+{Rubinstein电子邮件博弈}
+\begin{table}[ht]
     \centering
 \begin{tabular}{c|cc}
 &$A$ & $B$ \\
@@ -865,10 +868,10 @@ $B$ & $(1, -10)$ & $(0, 0)$ \\
 \item 观察：$(A,A)$给出比$(B,B)$更高的收益，但行动$A$比$B$更有风险.
 \end{itemize}
 \end{itemize}
-\end{frame}
 
-\begin{frame}{Rubinstein电子邮件博弈}
-\begin{table}[]
+
+{Rubinstein电子邮件博弈}
+\begin{table}[ht]
     \centering
 \begin{tabular}{c|cc}
 &$A$ & $B$ \\
@@ -889,11 +892,11 @@ $B$ & $(1, -10)$ & $(0, 0)$ \\
 \item 玩家1知道真实的矩阵，而玩家2不知道.
 \item 如果选择了右边矩阵，玩家1会给玩家2发送一条消息.
 \end{itemize}
-\end{frame}
 
 
-\begin{frame}{Rubinstein电子邮件博弈}
-\begin{table}[]
+
+{Rubinstein电子邮件博弈}
+\begin{table}[ht]
     \centering
 \begin{tabular}{c|cc}
 &$A$ & $B$ \\
@@ -914,10 +917,10 @@ $B$ & $(1, -10)$ & $(0, 0)$ \\
 \item 如果玩家1收到了回复，她会发送第二条消息来确认她收到了玩家2的回复.  
 \item 以此类推.  
 \end{itemize}
-\end{frame}
 
-\begin{frame}{Rubinstein电子邮件博弈}
-\begin{table}[]
+
+{Rubinstein电子邮件博弈}
+\begin{table}[ht]
     \centering
 \begin{tabular}{c|cc}
 &$A$ & $B$ \\
@@ -937,9 +940,9 @@ $B$ & $(1, -10)$ & $(0, 0)$ \\
 \item 每条消息都以$\epsilon$的概率独立等可能丢失.  
 \item 注意：发送电子邮件不是一个行动，而是一个规则.  
 \end{itemize}
-\end{frame}
 
-\begin{frame}{Rubinstein电子邮件博弈}
+
+{Rubinstein电子邮件博弈}
 \begin{itemize}
 \item $\Theta_i = \{\theta_i^0, \theta_i^1, \theta_i^2, \dots\}$.
 \item $\theta_i^m$：$m$是玩家$i$发的邮件数量.
@@ -955,10 +958,10 @@ $B$ & $(1, -10)$ & $(0, 0)$ \\
 \item （$\theta_1^1, \theta_2^1)$：真实收益矩阵是右边的，2收到了第一封电子邮件，但1没有收到2的回复. 
 \end{itemize}
 \end{itemize}
-\end{frame}
 
-\begin{frame}{Rubinstein电子邮件博弈}
-\begin{table}[]
+
+{Rubinstein电子邮件博弈}
+\begin{table}[ht]
     \centering
 \begin{tabular}{c|cccc}
 左& $\theta_2^0$ & $\theta_2^1$ & $\theta_2^2$ & $\cdots$ \\
@@ -974,10 +977,10 @@ $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$
 \item 而且没有人发送消息.
 \item 因此，$(\theta_1^0,\theta_2^0)$的概率是$p$.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{Rubinstein电子邮件博弈}
-\begin{table}[]
+
+{Rubinstein电子邮件博弈}
+\begin{table}[ht]
     \centering
 \begin{tabular}{c|cccc}
 右& $\theta_2^0$ & $\theta_2^1$ & $\theta_2^2$ & $\cdots$ \\
@@ -994,19 +997,19 @@ $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$
 \item 玩家1发送一条消息，它会以概率$\epsilon$丢失.
 \item 因此，$(\theta_1^1,\theta_2^0)$的概率是$\epsilon(1 - p)$.
 \end{itemize}
-\end{frame}
 
 
-\begin{frame}{Rubinstein电子邮件博弈}
+
+{Rubinstein电子邮件博弈}
 \begin{itemize}
 \item 对类型$\theta_i^m$，收益矩阵是到第$m$层的共同知识，即$E^m$.
 \item 所以对于很大的$m$，收益矩阵是“几乎公共知识”.
 \item 信息结构是玩家的共同知识，玩家们进行博弈.
 \item 问题：这个博弈的BNE是什么？
 \end{itemize}
-\end{frame}
 
-\begin{frame}{Rubinstein电子邮件博弈}
+
+{Rubinstein电子邮件博弈}
 \begin{itemize}
 \item 我们需要弄清楚对每个类型$\theta_i^m$，玩家会做什么.
 \item 假设玩家1的类型为$\theta_1^0$.
@@ -1014,9 +1017,9 @@ $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$
 \item$\implies$左边的矩阵被选择.
 \item 据此推理：玩家1选择占优策略$B$.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{Rubinstein电子邮件博弈}
+
+{Rubinstein电子邮件博弈}
 \begin{itemize}
 \item 假设玩家2的类型为$\theta_2^0$.
 \item Bayes定理意味着：
@@ -1037,9 +1040,9 @@ $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$
 \end{itemize}
 \item $\implies$ $B$更好，因为对于所有$\epsilon$，$\mu_2^0 \geq p > \frac{1}{2}$.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{Rubinstein电子邮件博弈}
+
+{Rubinstein电子邮件博弈}
 \begin{itemize}
 \item 假设玩家1的类型为$\theta_1^1$$\implies$ 右边的矩阵被选择. 
 \item Bayes定理意味着：
@@ -1059,21 +1062,22 @@ $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$
 \end{itemize}
 \item $\implies$ B更好，因为对于所有$\epsilon$，$\mu_1^1 > \frac{1}{2}$. 
 \end{itemize}
-\end{frame}
 
-\begin{frame}{Rubinstein电子邮件博弈}
+
+{Rubinstein电子邮件博弈}
 \begin{itemize}
 \item 逐步迭代上述过程. 
 \item $\implies$ 在唯一的BNE中，所有类型都选择$B$. 
 \item 回忆：如果右边的矩阵是共同知识，$(A,A)$是一个严格Nash均衡. 
 \item 结论：即便收益矩阵是“几乎共同知识”，Nash均衡也不一定是一个可实现的均衡. 
 \end{itemize}
-\end{frame}
 
-\begin{frame}{关于均衡的进一步思考}
+
+{关于均衡的进一步思考}
 \begin{itemize}
     \item 用$Nash(x)$表示“$x$是Nash均衡”，那么$\exists x C(Nash(x))$和$C(\exists x C(Nash(x)))$的含义是否一样？
     \item 如果不引入不确定性，在完全信息下，实现特定的Nash均衡是否还需要共同知识？
     \item 如果玩家不是逻辑全知的，或者说她的推理、计算能力是有限的，那么Nash均衡还是否会达到？是否可接近？
 \end{itemize}
-\end{frame}
+
+\endgroup

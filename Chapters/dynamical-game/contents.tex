@@ -1,4 +1,7 @@
 \chapter{动态博弈}\label{chap:dynamical-game}
+\begingroup
+\newcommand{\pref}{Chapters/dynamical-game/figures}
+
 
 本章我们讨论每个玩家需要操作多次的博弈，此时，博弈被称为\textbf{动态博弈}\index{博弈!动态～}.
 
@@ -23,7 +26,7 @@
     斗地主是一个多人有限轮不完全信息合作输赢博弈.
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth]{Chapters/dynamical-game/figures/fight-landlord.jpg}
+    \includegraphics[width=0.75\textwidth]{\pref/fight-landlord.jpg}
     \caption{斗地主.}
 \end{figure}
 
@@ -41,7 +44,7 @@
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.4]{Chapters/dynamical-game/figures/gametree.jpg}
+    \includegraphics[scale=0.4]{\pref/gametree.jpg}
     \caption{井字棋的博弈树.}
     \label{fig:gametree}
 \end{figure}
@@ -338,3 +341,5 @@ $R_s(\alpha^*)$定义的矩阵博弈的最优策略$(\pi_1,\pi_2)$是随机博�
 \end{proof}
 
 随机博弈在机器学习中对应着\emph{多智能体强化学习}（MARL），正如Markov决策过程对应着（单智能体）强化学习. MARL是多智能体系统（MAS）研究领域中的一个重要分支，它将强化学习技术、博弈论等应用到多智能体系统，使得多个智能体能在更高维且动态的真实场景中通过交互和决策完成更错综复杂的任务. 解MDP的过程是根据环境信息，优化决策，最大化远期收益，这是单智能体强化学习. 解随机博弈的过程，是在MDP的基础上引入多玩家，玩家有自己的效用函数，最大化自己的远期收益，这是多智能体强化学习. \index{多智能体强化学习}\index{MARL}\index{多智能体系统}\index{MAS}\index{强化学习}\index{MDP}
+
+\endgroup

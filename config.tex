@@ -11,6 +11,7 @@
 \usepackage[dvipsnames]{xcolor}
 \definecolor{pku-red}{RGB}{139,0,18}
 \usepackage{colortbl}
+\newcommand{\light}[1]{\textcolor{red}{#1}}
 
 % environments
 \usepackage{array}
@@ -23,6 +24,7 @@
 \usepackage{etoolbox}
 \usepackage{graphicx}
 \usepackage{multirow}
+\usepackage{inputenx}
 
 
 \usepackage[normalem]{ulem}
@@ -31,7 +33,10 @@
 \usepackage{amsmath}
 \usepackage{mathrsfs}
 \usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{stmaryrd}
 \usepackage{latexsym}
+
 
 % math theorems
 \usepackage{mdframed}
@@ -129,6 +134,7 @@
 % plots
 \usepackage{tikz}
 \usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta,positioning}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 
@@ -156,3 +162,6 @@
 \newcommand{\inner}[2]{\left\langle{#1},{#2}\right\rangle}
 \newcommand{\e}{\mathrm{e}}
 \newcommand{\const}{\mathrm{const}}
+
+\DeclareSymbolFont{symbolsC}{U}{txsyc}{m}{n}
+\DeclareMathSymbol{\strictif}{\mathrel}{symbolsC}{74}

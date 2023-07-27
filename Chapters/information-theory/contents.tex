@@ -1,4 +1,6 @@
 \chapter{信息论基础}\label{chap:information-theory}
+\begingroup
+\newcommand{\pref}{Chapters/information-theory/figures}
 
 信息是什么？不同于真实的物理世界，信息仿佛看不见，摸不着. 然而，任何人都可以体会到信息的存在，信息是我们认识世界的基础. 信息的存在正如同物理世界中的能量、动量一般，抽象而具有一般性. 信息论已经在计算机、AI、认知理论等诸多领域中得到了广泛的应用. 本章探讨信息论的基础，并给出他们在AI中的一些应用. 
 
@@ -25,7 +27,7 @@
 \begin{remark}
     第三个假设可以用下图来理解. 
 \begin{center}
-\input{Chapters/information-theory/figures/decomposition-assumption.tex}
+\input{\pref/decomposition-assumption.tex}
 \end{center}
 
     假设我们有一个试验，有三种可能的结果，$1,2,3$，概率分别为$1/2,1/3,1/6$. 该试验的不确定性是$H(1/2,1/3,1/6)$. 我们把试验分成两步相继的试验，第一步试验有两种可能的结果，概率分别都是$1/2$. 当第一步试验出现上面的结果时，第二步试验以概率$1$产生结果$1$；当第二步试验出现下面的结果时，第二步试验以概率$2/3$产生结果$2$，以概率$1/3$产生结果$3$. 我们可以看到，分成两步之后，第一步试验的不确定性是$H(1/2,1/2)$，第二步试验的不确定性有一半概率是$H(1)$（上面的分支），有一半概率是$H(2/3,1/3)$（下面的分支），因而加权的不确定性是$1/2\cdot 0+1/2\cdot H(2/3,1/3)$. 因此第三个假设可以具体表述为
@@ -92,7 +94,7 @@ H\left(\frac{1}{2},\frac{1}{3},\frac{1}{6}\right)=H\left(\frac{1}{2},\frac{1}{2}
 $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 \begin{figure}[ht]
         \centering
-        \input{Chapters/information-theory/figures/entropy-figure.tex}
+        \input{\pref/entropy-figure.tex}
         \caption{熵$H(p)$的图像.}
         \label{fig:entropy-figure}
 \end{figure}
@@ -233,7 +235,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 \end{table}
 \begin{figure}[ht]
     \centering
-    \input{Chapters/information-theory/figures/entropy-relations.tex}
+    \input{\pref/entropy-relations.tex}
     \caption{熵和信息量的关系.}
     \label{fig:entropy-relation}
 \end{figure}
@@ -359,7 +361,7 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.6]{Chapters/information-theory/figures/bart.pdf}
+    \includegraphics[scale=0.6]{\pref/bart.pdf}
     \caption{生成式语言模型BART的示意图.}
     \label{fig:autoencoder}
 \end{figure}
@@ -502,3 +504,5 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
 关于信息论的经典教科书，可以参见 \cite{coverElementsInformationTheory2012} ，此外，概率论的教材中也有很多很好的讨论，比如 \cite{jaynesProbabilityTheoryLogic2002}，\cite{shiryaevProbability1996} 以及\cite{LiXianPingGaiLuLunJiChu2010}.
 
 关于Kolmogorov复杂度的讨论，可以参见专著 \cite{???}，这本书对于随机、信息、编码、复杂度，乃至归纳推理等概念都有非常独到的见解，值得一读. 
+
+\endgroup
