@@ -3,668 +3,397 @@
 \begingroup
 \newcommand{\pref}{Chapters/modal-logic/figures}
 
-{动机}
-    \begin{itemize}
-        \item 人工智能的讨论不可避免要接触到很多人独有的哲学概念：认知、信念、知识、理解、情感、意识……
-        \item 我们需要有一套恰当的数学工具来表述这些哲学概念，从而算法化、自动化地模拟人.
-        \item 过去，现在，乃至未来，最为成功的数学模型就是模态逻辑.
-        \item 很多不精确的哲学讨论可以通过逻辑的方式形式化、数学化，最后算法化.
-        \item 模态逻辑已经在计算机科学中起到了重要的作用（模型验证、形式化方法），它势必会在人工智能中也起到根基性的作用.
-    \end{itemize}
+ 人工智能的讨论不可避免要接触到很多人独有的哲学概念：认知、信念、知识、理解、情感、意识……我们需要有一套恰当的数学工具来表述这些哲学概念，从而算法化、自动化地模拟人. 过去，现在，乃至未来，最为成功的数学模型就是\textbf{模态逻辑}\index{模态逻辑}. 很多不精确的哲学讨论可以通过逻辑的方式形式化、数学化，最后算法化. 模态逻辑已经在计算机科学中起到了重要的作用（模型验证、形式化方法），它势必会在人工智能中也起到根基性的作用.
     
+\section{模态逻辑的起源}
+\subsection{三段论}\index{三段论}
+
+早在亚里士多德的时期，模态逻辑的概念就被提了出来. 回忆：亚里士多德的\emph{强三段论}\index{三段论!强～}是有效的：
+\begin{itemize}
+    \item 大前提：所有$A$都是$B$.
+    \item 小前提：所有$B$都是$C$.
+    \item 结论：因此，所有$A$都是$C$.
+\end{itemize}
+人都会死，苏格拉底是人，所以苏格拉底会死.
+
+三段论可以进行各种形式的扩展. 例如：
+\begin{itemize}
+    \item 加入量词：\light{任何对象}，如果这个对象是人，那么它会死，苏格拉底这个对象是人，所以苏格拉底会死.
+    \item 加入性质词：肯定的、否定的
+    \item 加入\emph{模态词}\index{模态词}：无效、可能、必然、根据情况……
+\end{itemize}
     
-    \section{模态逻辑的起源}
+实际上亚里士多德也考虑过\emph{模态三段论}\index{三段论!模态～}. 亚里士多德认为如下模态三段论是有效的：% HW: 写一个具体的LLL的例子
+\begin{itemize}
+    \item 大前提：所有$A$都必然是$B$.
+    \item 小前提：所有$B$都是$C$.
+    \item 结论：因此，所有$A$都必然是$C$.
+\end{itemize}
+然而，他认为如下的模态三段论不是有效的：
+\begin{itemize}
+\item 所有$A$都是$B$.
+\item 所有$B$都必然是$C$.
+\item 因此，所有$A$都必然是$C$.
+\end{itemize}
+所有通班同学都是单身汉，所有单身汉都必然是男性. 那么是否有：所有通班同学都必然是男性？实际上，通过现代模态逻辑的表述可以证明，XLL型三段论也是有效的。这足以说明，亚里士多德对于模态的理解还有很多缺陷，或者反过来说，模态三段论比经典的三段论更加复杂.
     
-    {三段论}
-    \begin{itemize}
-        \item 早在亚里士多德的时期，模态逻辑的概念就被提了出来.
-        \item 回忆：亚里士多德的强三段论（Barbara XXX）是有效的：
-        \begin{itemize}
-            \item 大前提：所有$A$都是$B$.
-            \item 小前提：所有$B$都是$C$.
-            \item 结论：因此，所有$A$都是$C$.
-        \end{itemize}
+ 类似的例子是，从物和从言，考虑如下句子：
+\begin{center}
+\itshape 我觉得有人作弊.
+\end{center}
+这句话有两种解读方式. 从物的角度，应该读作$\exists x$（我觉得$:x$作弊）. 从言的角度，应该读作我觉得（$\exists x:x$作弊）.
+
+以上例子说明，关于模态的逻辑，并没有非常干净漂亮的、符合直观的定义，所以模态三段论的讨论并没有流行起来。
     
-        \item 人都会死，苏格拉底是人，所以苏格拉底会死.
-        \item 三段论可以进行各种形式的扩展.
-    \end{itemize}
-    
-    
-    {三段论}
-    \begin{itemize}
-        \item 三段论可以进行各种形式的扩展.
-        \item 加入量词：\light{任何对象}，如果这个对象是人，那么它会死，苏格拉底这个对象是人，所以苏格拉底会死.
-        \item 加入性质词：肯定的、否定的
-        \item 加入\emph{模态词}（mode）：无效、可能、必然、根据情况……
-    \end{itemize}
-    
-    
-    {三段论}
-    \begin{itemize}
-        \item 亚里士多德也考虑过模态三段论.
-        \item 亚里士多德认为如下模态三段论（Barbara LXL）是有效的：% HW: 写一个具体的LLL的例子
-        \begin{itemize}
-            \item 大前提：所有$A$都必然是$B$.
-            \item 小前提：所有$B$都是$C$.
-            \item 结论：因此，所有$A$都必然是$C$.
-        \end{itemize}
-        \item 然而，他认为如下的模态三段论（Barbara XLL）不是有效的：
-            \begin{itemize}
-            \item 所有$A$都是$B$.
-            \item 所有$B$都必然是$C$.
-            \item 因此，所有$A$都必然是$C$.
-        \end{itemize}
-        \item 所有通班同学都是单身汉，所有单身汉都必然是男性. 那么是否有：所有通班同学都必然是男性？
-    \end{itemize}
-    
-    
-    {三段论}
-    \begin{itemize}
-        \item 类似的例子是，从物（De re）和从言（De dicto）：
-            \begin{center}
-            \it 我觉得有人作弊.
-        \end{center}
-        \begin{itemize}
-            \item 这句话有两种解读方式.
-            \item 从物：$\exists x$（我觉得$:x$作弊）.
-            \item 从言：我觉得（$\exists x:x$作弊）.
-        \end{itemize}
-        \item 模态三段论的讨论并没有流行起来，因为它并没有非常干净漂亮的、符合直观的定义.
-    \end{itemize}
-    
-    
-    {非经典逻辑}
-    \begin{itemize}
-        \item 回忆：经典逻辑中的语义等值
+\subsection{非经典逻辑}
+经典逻辑并不能够非常准确刻画我们对于“逻辑”的认识，我们将给出以下几个例子。
+
+回忆经典逻辑中的语义等值
         \[p\to q\iff\neg p\vee q.\]
-        \item 然而，在哲学上，这两者是不一样的含义.
-        \item $p$：$1+1>2$，$q$：太阳从东边升起.
-        \begin{itemize}
-            \item “如果$1+1>2$，那么太阳从东边升起”是毫无道理的.
-            \item 然而，“或者$1+1\not>2$，或者太阳从东边升起”是含义清晰的.
-        \end{itemize}
-        \item $p_n$：$\pi$的小数位包含连续的$n$个1.
-        \begin{itemize}
-            \item $p_{100}\to p_{99}$是显然的，然而$\neg p_{100}\vee p_{99}$并不直观！
-        \end{itemize}
-    \end{itemize}
+然而，在哲学上，这两者是不一样的含义. 考虑命题$p$：$1+1>2$，$q$：太阳从东边升起. “如果$1+1>2$，那么太阳从东边升起”是毫无道理的. 然而，“或者$1+1\not>2$，或者太阳从东边升起”是含义清晰的.
+
+再看另一个例子，考虑命题$p_n$：$\pi$的小数位包含连续的$n$个1. $p_{100}\to p_{99}$是显然的，然而$\neg p_{100}\vee p_{99}$并不直观！
     
+以上的缺陷都源自我们对蕴含的理解过于简单粗暴。上面的那种蕴含被称为\textbf{实质蕴含}\index{实质蕴含}，它最重要的特性是承认$p\rightarrow q \iff
+\lnot {p}\vee q$，特别地允许有$p$假但是$q$真.
+
+为了解决上面的问题，C. I. Lewis提出了\textbf{严格蕴含}\index{严格蕴含}的概念，其符号为$p\strictif q$. 从语义上说，这个符号的意思是\light{必然有}当$p$是真的时候，$q$是真的. 也可以说，\light{不可能}有$p$是真且$q$是假. 严格蕴含其实是对实质蕴含的一种改造，我们后面可以证明，$p$严格蕴含$q$当且仅当\light{必然有} $p$实质蕴含$q$.
     
-    {非经典逻辑}
+实质蕴含还会导出还有很多不合乎常理的重言式. 比如$p\to(q\to p)$或者$(p\to q)\vee (q\to r)$.
+
+另一种解决此问题的方式是从否定入手，这就是Brouwer的\emph{直觉主义逻辑}\index{逻辑!直觉主义～}，它不承认反证法. 因而否定和蕴含的含义发生了变化，例如$\neg\neg p$不再等价于$p$. 
     
+从本质上说，非经典逻辑都是尝试将\emph{元语言}中的概念拿到\emph{对象语言}中. 例如经典逻辑的元语言就是自然语言，而对象语言就是经典逻辑形式系统. 在经典逻辑中，必然、可能、过去、未来、知识、信念、可证明等概念都没有办法表示，因此模态逻辑的解决方案是：将这些元语言的概念拿到对象语言中，并进行形式化. \index{元语言}\index{对象语言}
+    
+\section{模态语言}\index{模态语言}
+现在我们正式定义模态语言。我们只考虑最简单的情况，没有量词，只有一个\emph{模态算子}\index{模态算子}. \emph{基本模态语言}\index{模态语言!基本～} $L$ 可以按照如下定义递归生成：
+\begin{itemize}
+    \item 命题字母$p\in \mathbf P$属于$L$，$\top$属于$L$.
+    \item 如果$\phi$属于$L$，那么$\neg\phi$ 和$\Box\phi$也属于$L$.
+    \item 如果$\phi_1,\phi_2$属于$L$，那么$(\phi_1\wedge\phi_2)$也属于$L$.
+\end{itemize}
+$\Box$：读作“Box”. 定义$L$更便捷的记号是使用Backus-Naur范式：
+    \[\phi\quad::=\quad p\mid \top\mid \neg\phi\mid (\phi\wedge\phi)\mid \Box\phi.\] 
+
+类似命题逻辑，我们有如下缩写：
+\begin{itemize}
+    \item $\phi\vee\psi\iff\neg(\neg \phi\wedge\neg\psi)$.
+    \item $\phi\to\psi\iff\neg\phi\vee\psi$.
+    \item $\bot\iff\neg\top$.
+\end{itemize}
+这些缩写意味着，我们对Boole连接词，依然保持经典逻辑的含义. 非经典性只体现在模态算子$\Box$. 对偶模态算子$\Diamond$定义为$\neg\Box\neg$，读作“diamond”. 类比：$\exists=\neg\forall\neg$.
+
+模态逻辑的哲学是\emph{多视角下看同一个数学概念}. 下面是一些模态逻辑的例子，他们对于模态算子的解读都不一样：
+
+\begin{itemize}
+    \item \index{逻辑!基本模态～}基本模态逻辑：可能/必然是
+    \item \index{逻辑!时序～}时序逻辑：将会是
+    \item \index{逻辑!道义～}道义逻辑：被允许是
+    \item \index{逻辑!认知～}\light{认知逻辑：被知道是}
+    \item \index{逻辑!可证性～}可证性逻辑：可以被证明是
+    \item \index{逻辑!动态～}动态逻辑：（在经过某些程序步骤之后）会是
+    \item \index{逻辑!联盟～}联盟逻辑：被（她的父母）确保是
+    \item \index{逻辑!特征～}\index{逻辑!描述～}特征逻辑和描述逻辑：具有的属性是
+\end{itemize}
+
+下面我们看一些不同的逻辑下模态算子的解读：
+
+\begin{example}[基础语义]\index{逻辑!基本模态～}
+如果我们把模态算子按照基础语义来解读的话，我们可以把模态算子$\Box$读成“必然”。$\Box\phi$读作“必然有$\phi$”. $\Diamond\phi$读作“不是必然有非$\phi$”，即可能有$\phi$. 因此，$\Diamond$读作“可能”. 反之，$\Box\phi$也可以读作“不可能有非$\phi$”，即必然有$\phi$. 因此$\Diamond$和$\Box$确实是对偶的. 在这样的语义下，我们还有这些例子：
+\begin{itemize}
+    \item $\Box p\to\Diamond p$：必然的是可能的.
+    \item $p\to\Box p$：真的是必然的.
+    \item $\Diamond p\to\Box\Diamond p$：可能的是必然可能的.
+    %HW: $p\to\Box\Diamond p$ 的解释，以及是否合理.
+\end{itemize}
+\end{example}
+
+\begin{example}[认知语义]\index{逻辑!认知～}
+    如果把模态算子按照认知逻辑来解读解读，我们可以把模态算子$\Box$读成“知道”，并写成$K$. 于是，$K$表示某个特定的个体对世界的认知. 有如下例子：
     \begin{itemize}
-        \item C. I. Lewis \emph{严格蕴含}（strict implication）：
-         $p\strictif q$.
-        \begin{itemize}
-            \item 
-            %\light{（}
-            \light{必然有}当$p$是真的时候，$q$是真的.
-            \item 也可以说，\light{不可能}有$p$是真且$q$是假.
-        \end{itemize}
-            \item 实质蕴含（materially imply）
-        $p\rightarrow q \iff
-        \lnot {p}\vee q$
-        \begin{itemize}
-              \item 允许有$p$假但是$q$真（false negatives).
-        \end{itemize}
-        \item 换句话说：$p$严格蕴含$q$当且仅当\light{必然有} $p$实质蕴含$q$.
-    \end{itemize}
-    
-    
-    {非经典逻辑}
+        \item $K\phi$（即$\Box\phi$）表示我知道$\phi$. 
+        \item $K\phi\to\phi$表示如果我知道$\phi$，那么$\phi$是真的. 
+        \item $\phi\to K\phi$表示如果$\phi$是真的，那么我知道$\phi$. 
+        \item 最后，$\neg K\phi$与$K(\neg\phi)$的含义是不同的，比如$\phi$表示“上帝存在”，那么前者是“我不知道上帝存在”，而后者是“我知道上帝不存在”，明显后者的判断要更强一些.
+\end{itemize}
+\end{example}
+
+\newcommand{\PA}{\mathbf{PA}}
+
+\begin{example}[可证性语义]\index{逻辑!可证性～}
+如果把模态算子按照可证性逻辑解读，我们可以把模态算子$\Box$读成“可证明”. 例如，$\Box\phi$读作$\phi$是可证明的. 考虑Peano算术系统$\PA$，即一阶逻辑加上Peano公理. 符号$\PA\vdash \phi$表示$\phi$可以由$\PA$演绎出，即$\phi$可以被证明. 算术公理系统一个重要的定理叫\emph{Löb定理}\index{Löb定理}：如果$\PA\vdash\mathsf{Prov}(\ulcorner\phi\urcorner)\to\phi$，那么$\PA\vdash\phi$. 用自然语言来读，如果可以证明“如果$\phi$是可证明的，那么$\phi$是真的”，那么就可以证明$\phi$. 因此，在可证逻辑中，它对应\emph{Löb公式}\index{Löb公式}：$\Box(\Box\phi\to\phi)\to\Box\phi$. 
+\end{example}
+
+ 一般地，我们可以考虑多个模态算子、一个模态算子涉及多个公式的情形. \emph{模态语言类型}\index{模态语言类型}是一个元组$(O,\rho)$，其中$O$是一个模态算子$\nabla$的非空集合，$\rho:O\to\N$表示每一个模态算子的元数. \emph{多元模态语言}\index{模态语言!多元～}的BNF为：
+    \[\phi\quad::=\quad p\mid \top\mid \neg\phi\mid (\phi\wedge\phi)\mid \nabla(\underbrace{\phi,\dots,\phi}_{\rho(\nabla)}),\]
+    其中$p\in \mathbf P$，$\nabla\in O$.
+
+类似地，定义对偶模态算子$\triangle(\phi_1,\dots,\phi_k)$为$\neg\nabla(\neg\phi_1,\dots,\neg\phi_k)$.
+
+
+\begin{example}[时序逻辑]\index{逻辑!时序～}
+基础时序逻辑有两个一元模态算子：$G$和$H$. $G\phi$表示未来总会有$\phi$（always $G$oing to be）. $H\phi$表示过去总有$\phi$（always $H$as been）.
+
+他们的对偶算子是：$F$和$P$. $F\phi$表示在未来某个时刻会有$\phi$（be true at some $F$uture time）. $P\phi$表示在过去某个时刻有$\phi$（was true at some $P$ast time）.
+
+还可以加入一个“直到”（$U$ntil）算子$U(\phi,\psi)$，它表示直到$\phi$发生都有$\psi$.
+
+下面是一些时序逻辑的例子：
+\begin{itemize}
+    \item $P\phi\to GP\phi$：如果过去发生过$\phi$，那么$\phi$在未来总会发生过.
+    \item $F\phi\to FF\phi$：如果未来某个时刻会有$\phi$，那么在未来的某个时刻会发生：未来的某个时刻会有$\phi$.
+    \item \emph{McKinsey公式}\index{McKinsey公式}$GF p\to FG p$：如果原子的信息总会在某个未来时刻为真，那么他会在未来某个时刻之后变得总为真.
+\end{itemize}
+\end{example}
+
+
+\begin{example}[认知逻辑]\index{逻辑!认知～}
+基本模态算子为$K_a$和$B_a$，$K_a$表示个体$a$知道，$B_a$表示个体$a$相信. 例如$K_aK_b\phi\leftrightarrow K_bK_a\phi$表示我知道你知道$\phi$当且仅当你知道我知道$\phi$.
+
+此外，我们也可以加入共同知识算子$C$，$C \phi$当且仅当$K_a(\phi\wedge C\phi)$对任意$a$成立.
+
+我们也可以加入二元的相对算子。如相对共同知识$C^r(\phi,\psi)$，表示当所有人都知道$\psi$时，所有人具有共同知识$\phi$. 以及条件信念$B_a(\phi,\psi)$，表示当$\psi$为真时，个体$a$相信$\phi$.
+\end{example}
+
+\begin{example}[命题动态逻辑]\index{逻辑!命题动态～}\index{PDL}
+命题动态逻（PDL）辑有无穷多个模态算子，记为$[\pi]$，其中$\pi$按照程序来理解。$[\pi]\phi$解释为：从当前状态开始运行程序$\pi$，任何一种终止状态，$\phi$都成立。它的对偶算子记为$\langle\pi\rangle$，$\langle\pi\rangle\phi$解释为：从当前状态开始运行程序$\pi$，存在一种终止状态，$\phi$成立。
+
+PDL的重要区别在于我们可以用模态算子来构造新的模态算子。假设基本程序为$a,b,\dots$，我们可以用三种操作构造新的程序（模态算子）：
+\begin{itemize}
+    \item 选择：如果$\pi_1,\pi_2$是程序，那么$\pi_1\cup\pi_2$也是程序，它（非确定性地）执行$\pi_1$或$\pi_2$. 模态算子为$[\pi_1\cup\pi_2]$和$\langle\pi_1\cup\pi_2\rangle$.
+    \item 复合：如果$\pi_1,\pi_2$是程序，那么$\pi_1;\pi_2$也是程序，它先执行$\pi_1$再执行$\pi_2$. 模态算子为$[\pi_1;\pi_2]$和$\langle\pi_1;\pi_2\rangle$.
+    \item 迭代：如果$\pi$是程序，那么$\pi^*$也是程序，它执行$\pi$有限次（可能是零次）. 模态算子为$[\pi^*]$和$\langle\pi^*\rangle$.
+\end{itemize}
+以上构造得到的PDL被称为\textbf{正则PDL}\index{PDL!正则～}。我们还可以引入交$\pi_1\cap\pi_2$，表示并行计算；也可以引入条件程序$\phi?$，其中$\phi$是公式。
+
+下面是一些命题动态逻辑的例子：
+\begin{itemize}
+    \item $\left\langle\pi^*\right\rangle \phi \leftrightarrow \phi \vee\left\langle\pi ; \pi^*\right\rangle \phi$。在执行$\pi$有限次数后到达一个带有信息$\phi$的状态当且仅当要么我们已经在当前状态中拥有信息$\phi$，要么我们可以执行一次$\pi$，然后在有限次数的$\pi$迭代后找到一个带有信息$\phi$的状态。
+    \item Segerberg公理（归纳公理）：$[\pi^*](\phi \to [\pi]\phi) \to (\phi \to [\pi^*]\phi)$. 这个公式的含义是什么？
+    \item 用模态算子表示\texttt{if $\phi$ then $a$ else $b$}：$(\phi?;a)\cup(\neg\phi?;b)$。
+\end{itemize}
+\end{example}
+
+\section{Kripke语义与框架语义}
+
+从模型论的角度来说，一个逻辑框架是一个三元组：(语言，模型，语义) $(\mathbf L,C,\vDash)$. 例如在命题逻辑中，这三元组分别是：
+\begin{itemize}
+    \item 语言：命题公式的集合$\{\top,\bot,p,p\vee q,\dots\}$.
+    \item 模型：常值和命题字母的真假：$\top:\top$，$p:\top$，$q:\bot$，等等.
+    \item 语义：Boole函数的真值表递归定义.
+\end{itemize}
+
+对于基本模态逻辑，我们有如下要素：
+\begin{itemize}
+    \item 语言：基本模态语言$\mathbf{ML}(\mathbf P, \Box)$.
+    \item 模型：Kripke模型.
+    \item 语义：Kripke语义.
+\end{itemize}
+
+一个\emph{Kripke模型}（关系模型）\index{Kripke模型}\index{关系模型}可以看作是一个带有标记的有向边和节点的图，节点表示可能的世界，状态或对象等，用命题字母标记；边表示节点之间的关系，用模态算子标记. 一个\emph{框架}\index{框架}是一个没有节点标记的模型.
+
+在数学上，Kripke模型是唯一的定义，然而在哲学上，我们可以对这一数学结构做不同的解读。
+
+在\emph{可能世界语义}（或\emph{Kripke语义}）\index{语义!可能世界～}\index{语义!Kripke～}中，我们将节点解读为\emph{可能世界}. 此时$\Box$被理解为“必然”，$\Diamond$被理解为“可能”. $\Box\phi$在当前世界为真当且仅当$\phi$在当前世界的所有可能的替代世界上为真. 用形式化的表述就是，$\Box\phi$在世界$w$上成立当且仅当$\phi$在$w$的所有后继上为真. 在这种语义中，一个世界的意义取决于它与其他世界的联系.
+
+在\emph{状态语义}\index{语义!状态～}中，我们将节点解读为\emph{状态}. 于是边就被解读为状态的转移. $\Box\phi$在当前状态为真当且仅当$\phi$在所有可能转移到的状态上为真. PDL 可以用以上语义来理解. 在哲学中，状态往往是不完全可观测的，此时模态逻辑可以被理解为不完全信息中可以确定的性质.
+
+在\emph{对象语义}\index{语义!对象～}中，我们将节点解读为\emph{对象}. $w$有边指向$v$意味着$w$是$v$包含的一个整体，$v$是$w$的一个部分. 在哲学上，模态逻辑可以讨论整体论与还原论. $\Box\phi$对一个对象为真当且仅当$\phi$在它的所有部分都为真.
+
+在基本情形下，Kripke模型的正式定义如下：
+
+\begin{definition}[Kripke框架，模型，点模型，二元情形]\index{Kripke框架}\index{Kripke点模型}\index{Kripke模型}
+    一个\textbf{Kripke框架}是元组$\mathcal F=(W,R)$，其中
     \begin{itemize}
-        \item 还有很多重言式也是不合乎常理的.
-        \begin{itemize}
-            \item $p\to(q\to p)$.
-            \item $(p\to q)\vee (q\to r)$.
-        \end{itemize}
-        \item Brouwer\emph{直觉逻辑}（intuitionistic logic），不承认反证法. 
-        \begin{itemize}
-            \item 因而否定和蕴含的含义发生了变化，例如$\neg\neg p$不再等价于$p$.
-        \end{itemize}
+        \item $W$是非空集合（可能世界集）；
+        \item $R\subseteq W\times W$是一个$W$上的二元关系（边）.
     \end{itemize}
-    
-    
-    {非经典逻辑}
+
+    一个\textbf{Kripke模型}$\mathcal{M}$是一个元组$(\mathcal F,V)$，其中$\mathcal F$是Kripke框架，$V:\mathbf P\to 2^W$是赋值函数.
+
+    一个\textbf{Kripke点模型}$(\mathcal{M},w)$是一个Kripke模型$\mathcal M$加上一个指定的点$w\in W$.
+\end{definition}
+
+一个典型的Kripke模型如\Cref{fig:Kripke-model-basic}所示.
+
+\begin{figure}[ht]
+    \centering
+    \input{\pref/Kripke-model-basic}
+    \caption{Kripke模型的例子}
+    \label{fig:Kripke-model-basic}
+\end{figure}
+
+对于多元情形，我们有如下定义：
+
+\begin{definition}[Kripke框架，模型，点模型：一般情形]\index{Kripke框架}\index{Kripke点模型}\index{Kripke模型}
+    考虑$\mathbf{ML}(\mathbf{P},(O,\rho))$，一个\textbf{Kripke框架}指的是元组$\mathcal F=(W,\{R_\nabla:\nabla\in O\})$，其中$W$是非空集合（可能世界集），$R_\nabla$是一个$W$上的$\rho(\nabla)+1$元关系.
+
+    一个\textbf{Kripke模型}$\mathcal{M}$指的是元组$(\mathcal F,V)$，其中$\mathcal F$是框架，$V:\mathbf P\to 2^W$是\emph{赋值函数}.
+
+    一个\textbf{Kripke点模型}$(\mathcal{M},w)$是Kripke模型$\mathcal M$加上一个指定的点$w\in W$.
+\end{definition}
+
+
+下面我们再给出Kripke语义的形式化定义.
+
+\begin{definition}[Kripke语义：基本情形]\index{Kripke语义}
+    考虑$\mathbf{ML}(\mathbf{P},\Box)$. 符号$\mathcal M,w\vDash\phi$表示$\phi$在点模型$\mathcal M,w$是\emph{可满足的}\index{可满足}. 这一个概念可以递归定义如下
     \begin{itemize}
-        \item 非经典逻辑本质上说，都是尝试将\emph{元语言}（meta language）中的概念拿到\emph{对象语言}（objective language）中.
-        \begin{itemize}
-        \item 例如，元语言：自然语言，对象语言：经典逻辑形式系统.
-        \end{itemize}
-        \item 在经典逻辑中，必然、可能、过去、未来、知识、信念、可证明等概念都没有办法表示，因此模态逻辑的解决方案是：将这些元语言的概念拿到对象语言中，并进行形式化.
+        \item $\mathcal M, w\vDash\top\iff$ 总是.
+        \item $\mathcal M, w\vDash p\iff p\in V(w)$.
+        \item $\mathcal M, w\vDash (\phi\wedge\psi)\iff\mathcal M,w\vDash\phi$且$\mathcal M,w\vDash\phi$.
+        \item $\mathcal M, w\vDash \neg\phi\iff\mathcal M,w\not\vDash\phi$.
+        \item $\mathcal M, w\vDash \Box\phi\iff$对所有$v$，如果$wRv$，那么$\mathcal M,v\vDash\phi$.
     \end{itemize}
-    
-    
-    \section{模态语言}
-    
-    {基本命题模态语言}
+    因此，$\mathcal M, w\vDash \Diamond\phi\iff$存在$v$满足$wRv$使得$\mathcal M,v\vDash\phi$.
+\end{definition}
+
+思考：在\Cref{fig:Kripke-model-basic}中，有对哪些$i$来说，成立$\mathcal M,w_i\vDash\Box (p\to\Diamond q)$？
+
+
+\begin{definition}[Kripke语义：一般情形]\index{Kripke语义}
+    考虑$\mathbf{ML}(\mathbf{P},(O,\rho))$. 符号$\mathcal M,w\vDash\phi$表示$\phi$在点模型$\mathcal M,w$是\emph{可满足的}\index{可满足}. 这一个概念可以递归定义如下
     \begin{itemize}
-        \item 我们只考虑最简单的情况，没有量词，只有一个\emph{模态算子}（modality operator）.
-        \item \emph{基本模态语言}（basic modal logic language）$L$ 可以按照如下定义递归生成：
-        \begin{itemize}
-            \item 命题字母$p\in \mathbf P$属于$L$，$\top$属于$L$.
-            \item 如果$\phi$属于$L$，那么$\neg\phi$ 和$\Box\phi$也属于$L$.
-            \item 如果$\phi_1,\phi_2$属于$L$，那么$(\phi_1\wedge\phi_2)$也属于$L$.
-        \end{itemize}
-        \item $\Box$：读作“Box”.
-        \item 更便捷的记号是使用Backus-Naur范式（BNF）：
-        \[\phi\quad::=\quad p\mid \top\mid \neg\phi\mid (\phi\wedge\phi)\mid \Box\phi.\] 
+        \item $\mathcal M, w\vDash\top\iff$ 总是.
+        \item $\mathcal M, w\vDash p\iff p\in V(w)$.
+        \item $\mathcal M, w\vDash (\phi\wedge\psi)\iff\mathcal M,w\vDash\phi$且$\mathcal M,w\vDash\psi$.
+        \item $\mathcal M, w\vDash \neg\phi\iff\mathcal M,w\not\vDash\phi$.
+        \item $\mathcal M, w\vDash \nabla(\phi_1,\dots,\phi_{\rho(\nabla)})\iff$对\light{任意} $w_1,w_2,\dots w_{\rho(\nabla)}$，如果$R(w,w_1,\dots,w_{\rho(\nabla)})$，那么\light{存在} $w_i$使得$\mathcal M,w_i\vDash\phi_1$.
     \end{itemize}
+\end{definition}
+
+思考：为什么要这么定义$\nabla$的语义？
+
+如果一个模态算子对应的关系是二元关系，我们就称这个模态算子是\emph{一元的}. 此时，关系$wRv$可以记为$w\to_a v$. 模态算子一般写作$\Box_a$.
+
+
+\begin{remark}[模型验证]\index{模型验证}
+我们考虑如下两个\textbf{模型验证}问题：局部模型验证，即测试 $\mathcal M,w \vDash \varphi$ 是否成立；全局模型验证，即计算集合 $\{w \in W_{\mathcal M} : \mathcal M,w \vDash \varphi\}$.
+
+设 $l_R(X) = \{w \in W_{\mathcal M} : \forall v : w \to_{\mathcal M} v \implies v \in X\}$，我们可以递归定义$\mathcal M$中公式的\emph{扩张}：
+\[\begin{array}{rlrl}\llbracket \top \rrbracket^{\mathcal{M}} & =W_{\mathcal{M}}, & \llbracket p \rrbracket^{\mathcal{M}} & =\{w : p \in V(w)\}, \\ 
+\llbracket \neg \varphi \rrbracket^{\mathcal{M}} & =W_{\mathcal M}\setminus \llbracket \varphi \rrbracket^{\mathcal{M}}, & \llbracket(\varphi \wedge \psi) \rrbracket^{\mathcal{M}} & =\llbracket \varphi \rrbracket^{\mathcal{M}} \cap \llbracket \psi \rrbracket^{\mathcal{M}}, \\
+\llbracket \square \varphi \rrbracket^{\mathcal{M}} & =l_R\left(\llbracket \varphi \rrbracket^{\mathcal{M}}\right).\end{array}\]
+
+全局模型验证的有一个很容易想到的算法：按照公式的复杂程度，用 $\varphi$的子公式标记$\mathcal M$中每个状态的真值. 然而，这个问题在实践中并不平凡，因为状态的数量可能是指数多的！
+\end{remark}
+
+模态公式的（语义）真值可以从两个维度来讨论：全局还是局部，模型还是框架. 我们有如下四种语义真值的定义：
+
+\begin{itemize}
+    \item $\phi$在点模型$\mathcal M,w$\emph{可满足}\index{可满足}指的是$\mathcal M,w\vDash \phi$.
+    \item $\phi$在模型$\mathcal M$\emph{有效}\index{有效}，记为$\mathcal M\vDash \phi$指的是$\mathcal M,w\vDash\phi$对所有$w$成立.
+    \item $\phi$在点框架$\mathcal F,w$\emph{有效}\index{有效}，记为$\mathcal F,w\vDash \phi$指的是$\mathcal M,w\vDash\phi$对所有基于点框架$\mathcal F,w$的点模型$\mathcal M, w$上可满足.
+    \item $\phi$在框架$\mathcal F$\emph{有效}\index{有效}，记为$\mathcal F\vDash \phi$指的是$\mathcal M\vDash\phi$对所有基于框架$\mathcal F$的模型$\mathcal M$上有效.
+    \item $\phi$对框架类$K$\emph{有效}\index{有效}，记为$\vDash_K\phi$指的是$\mathcal F\vDash\phi$对所有$\mathcal F\in K$成立.
+\end{itemize}
+
+模态逻辑的真值总结为\Cref{tab:modal-logic-validity}，我们主要关心高亮的两个部分.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{c|cc}
+            &模型&框架  \\\hline
+            局部&\light{$\mathcal M,w\vDash \phi$} &$\mathcal F,w\vDash \phi$\\
+            全局&$\mathcal M\vDash \phi$ &\light{$\mathcal F\vDash \phi$}\\
+    \end{tabular}
+    \caption{模态逻辑的真值}
+    \label{tab:modal-logic-validity}
+\end{table}
+
+
+我们来看一个框架语义的例子。如\Cref{fig:modal-logic-frame} 所示，是否成立$\mathcal F\vDash\Box(p\to\Diamond p)$？
+\begin{figure}[ht]
+    \centering
+    \input{\pref/frame-validity}
+    \caption{框架语义的例子}
+    \label{fig:modal-logic-frame}
+\end{figure}
+
+\begin{example}[基本模态逻辑]\index{逻辑!基本模态～}
+考虑基本模态逻辑，因此他只有模态算子$\Box$和$\Diamond$，分别表示必然和可能. Kripke模型的点应该被解读为可能世界. 我们可以将对于可能和必然的理解写成模态公式. 如果一个东西是真的，那么他也是可能的：$\phi:p\to\Diamond p$.
+
+如果一个东西是真的，那么他也是可能的：$\phi:p\to\Diamond p$. 我们可以将对于可能和必然的理解反映到Kripke模型中. 真实世界是一个可能的世界：$xRx$，这是一个自反关系. 对于自反点模型以及框架，$\mathcal M,v\vDash \phi$以及$\mathcal F\vDash \phi$.
+\end{example}
+
+
+\begin{example}[时序逻辑]\index{逻辑!时序～}
+考虑基本的时序逻辑，因此他只有模态算子$G$和$H$，以及对偶$F$和$P$，他们分别对应未来和过去. Kripke模型的点应该被解读为时刻，时刻之间有两个关系：$t_1 R_F t_2$表示时刻$t_2$是时刻$t_1$的未来，$t_1 R_P t_2$表示时刻$t_2$是时刻$t_1$的过去. 我们对时间的理解将会反映在Kripke模型上.
+
+关于时间的的一个自然的假设是过去是未来的倒转：对任意时刻$t_1,t_2$，$t_1 R_F t_2\iff t_2 R_P t_1$. 如果我们承认时间具有这样的性质，那么$R_F$和$R_P$实际上就是箭头倒转一下. 记$R_F=R$，我们有：
+    \[\mathcal M,w\vDash F\phi\iff\exists v(wRv\wedge\mathcal M,v\vDash \phi).\]
+    \[\mathcal M,w\vDash P\phi\iff\exists v(vRw\wedge\mathcal M,v\vDash \phi).\]
+
+进一步假设时间是线性的，也就是关系$R$是一个严格全序：
+\begin{itemize}
+    \item 反自反：$\forall x\neg xRx$.
+    \item 传递：$\forall x,y,z(xRy\wedge yRz\to xRz)$.
+    \item 完全：$\forall x,y(xRy\vee yRx\vee x=y)$.
+\end{itemize}
+设$\mathcal F$是时间框架，是否有：$\mathcal F\vDash Pp\to GP p$以及$\mathcal F\vDash Fp\to HF p$？
+\end{example}
+
+
+\section{模态可定义性}
+
+逻辑的意义在于把对事物的抽象认知用形式化的语言表述出来. 我们已经看到，我们对事物的认知可以被两种方式描述出来： Kripke模型（框架）的特殊结构，或者具体的模态公式. 本节探讨这两种方式之间的联系。
+
+我们先看几个简单的例子：
+\begin{example}
+\begin{itemize}
+    \item $\mathcal M,w\vDash\Diamond\top$.
+
+    存在一个$v$，$w\to v$并且$\mathcal M,v\vDash\top$，也就是$w$有一个后继.
+
+    \item $\mathcal F\vDash\Diamond \top$.
     
-    {基本命题模态语言}
-    \begin{itemize}
-        \item 类似命题逻辑，我们有如下缩写：
-        \begin{itemize}
-            \item $\phi\vee\psi\iff\neg(\neg \phi\wedge\neg\psi)$.
-            \item $\phi\to\psi\iff\neg\phi\vee\psi$.
-            \item $\bot\iff\neg\top$.
-        \end{itemize}
-        \item 这些缩写意味着，我们对Boole连接词，依然保持经典逻辑的含义.
-        \item 非经典性只体现在模态算子$\Box$.
-        \item 对偶模态算子$\Diamond$定义为$\neg\Box\neg$，读作“diamond”.
-        \begin{itemize}
-            \item 类比：$\exists=\neg\forall\neg$.
-        \end{itemize}
+    每个基于$\mathcal F$的点模型$\mathcal M,v$都有$\Diamond \top$，即$\mathcal F$每个点都有后继.
+
+    \item $\mathcal F\vDash p\to\Diamond p$.
+    
+    任意赋值$V$和任意点$w$，都有$\mathcal M,w\vDash p\to\Diamond p$. 因此，如果$w$上有$p$，那么$w$必须有一个后继上面也有$p$. 取$V$使得只有$w$上有$p$，因为对任意赋值都要成立，所以在这个赋值下，$w$必须要以自己为后继. 因此$\mathcal F$充分必要地是一个自反框架.
     \end{itemize}
-    
-    {}
-        \begin{quotation}
-        模态逻辑的哲学：多视角下看同一个数学概念.
-        \end{quotation}
-    
-    
-    {模态逻辑的例子}
-    \begin{itemize}
-        \item 基本模态逻辑（basic modal logic）：可能/必然是
-        \item 时序逻辑（temporal logic）：将会是
-        \item 道义逻辑（deontic logic）：被允许是
-        \item \light{认知逻辑（epistemic logic）：被知道是}
-        \item 可证性逻辑（provability logic）：可以被证明是
-        \item 动态逻辑（dynamic logic）：（在经过某些程序步骤之后）会是
-        \item 联盟逻辑（coalition logic）：被（她的父母）确保是
-        \item 特征逻辑和描述逻辑（feature logic and description logic）：具有的属性是
-    \end{itemize}
-    
-    
-    {模态算子的解读：基础语义}
-    \begin{itemize}
-        \item 我们可以把模态算子$\Box$读成“必然”.
-        \item $\Box\phi$：必然有$\phi$.
-        \item $\Diamond\phi$：不是必然有非$\phi$，即可能有$\phi$.
-        \item 因此，$\Diamond$读作“可能”.
-        \item 反之，$\Box\phi$也可以读作：不可能有非$\phi$，即必然有$\phi$.
-        \item 因此$\Diamond$和$\Box$确实是对偶的.
-    \end{itemize}
-    
-    {基础语义：例子}
-    \begin{itemize}
-        \item $\Box p\to\Diamond p$：必然的是可能的.
-        \item $p\to\Box p$：真的是必然的.
-        \item $\Diamond p\to\Box\Diamond p$：可能的是必然可能的.
-        %HW: $p\to\Box\Diamond p$ 的解释，以及是否合理.
-    \end{itemize}
-    
-    {模态算子的解读：认知逻辑}
-    \begin{itemize}
-        \item 我们可以把模态算子$\Box$读成“知道”，并写成$K$（know）.
-        \item 于是，$K$表示某个特定的个体对世界的认知.
-        \item $K\phi$（即$\Box\phi$）：我知道$\phi$.
-        \item $K\phi\to\phi$：如果我知道$\phi$，那么$\phi$是真的.
-        \item $\phi\to K\phi$：如果$\phi$是真的，那么我知道$\phi$.
-        \item $\neg K\phi$ vs. $K(\neg\phi)$.
-        \begin{itemize}
-            \item 我不知道上帝存在 vs. 我知道上帝不存在.
-        \end{itemize}
-    \end{itemize}
-    
-    \newcommand{\PA}{\mathbf{PA}}
-    {模态算子的解读：可证性逻辑}
-    \begin{itemize}
-        \item 我们可以把模态算子$\Box$读成“可证明”.
-        \item $\Box\phi$：$\phi$是可证明的.
-        \item 考虑Peano算术系统$\PA$，即一阶逻辑加上Peano公理.
-        \item 符号$\PA\vdash \phi$表示$\phi$可以由$\PA$演绎出，即$\phi$可以被证明.
-        \item Löb定理：如果$\PA\vdash\mathsf{Prov}(\ulcorner\phi\urcorner)\to\phi$，那么$\PA\vdash\phi$.
-        \begin{itemize}
-            \item 如果可以证明“如果$\phi$是可证明的，那么$\phi$是真的”，那么就可以证明$\phi$.
-        \end{itemize}
-        \item 在可证逻辑中，它对应Löb公式：$\Box(\Box\phi\to\phi)\to\Box\phi$.
-    \end{itemize}
-    
-    
-    {命题模态逻辑：一般情形}
-    \begin{itemize}
-        \item 一般地，我们可以考虑多个模态算子、一个模态算子涉及多个公式的情形.
-        \item \emph{模态语言类型}（modal similarity type）是一个元组$(O,\rho)$，其中$O$是一个模态算子$\nabla$的非空集合，$\rho:O\to\N$表示每一个模态算子的元数.
-        \item 多元模态语言的BNF为：
-        \[\phi\quad::=\quad p\mid \top\mid \neg\phi\mid (\phi\wedge\phi)\mid \nabla(\underbrace{\phi,\dots,\phi}_{\rho(\nabla)}),\]
-        其中$p\in \mathbf P$，$\nabla\in O$.
-        \item 类似地，定义对偶模态算子$\triangle(\phi_1,\dots,\phi_k)$为$\neg\nabla(\neg\phi_1,\dots,\neg\phi_k)$.
-    \end{itemize}
-    
-    
-    {例子：时序逻辑}
-    \begin{itemize}
-        \item 基础时序逻辑有两个一元模态算子：$G$和$H$.
-        \begin{itemize}
-            \item $G\phi$：未来总会有$\phi$（always $G$oing to be）.
-        \item $H\phi$：过去总有$\phi$（always $H$as been）.
-        \end{itemize}
-        \item 他们的对偶算子是：$F$和$P$.
-        \begin{itemize}
-             \item $F\phi$：在未来某个时刻会有$\phi$（be true at some $F$uture time）.
-        \item $P\phi$：在过去某个时刻有$\phi$（was true at some $P$ast time）.
-        \end{itemize}
-        \item 还可以加入一个“直到”（$U$ntil）算子$U(\phi,\psi)$：直到$\phi$发生都有$\psi$.
-    \end{itemize}
-    
-    
-    {例子：时序逻辑}
-    \begin{itemize}
-        \item $P\phi\to GP\phi$：如果过去发生过$\phi$，那么$\phi$在未来总会发生过.
-        \item $F\phi\to FF\phi$：如果未来某个时刻会有$\phi$，那么在未来的某个时刻会发生：未来的某个时刻会有$\phi$.
-        \begin{itemize}
-            \item 这一公式意味着时间是稠密的.
-        \end{itemize}
-        \item McKinsey公式$GF p\to FG p$：如果原子的信息总会在某个未来时刻为真，那么他会在未来某个时刻之后变得总为真.
-    \end{itemize}
-    
-    
-    {例子：认知逻辑}
-    \begin{itemize}
-        \item 基本模态算子：$K_a$：个体$a$知道，$B_a$：个体$a$相信.
-        \item 例：$K_aK_b\phi\leftrightarrow K_bK_a\phi$：我知道你知道$\phi$当且仅当你知道我知道$\phi$.
-        \item 此外，我们也可以加入共同知识算子$C$，$C \phi$当且仅当$K_a(\phi\wedge C\phi)$对任意$a$成立.
-        \begin{itemize}
-            \item 注意，$C\phi$并不等价于$K_a\phi$，$\forall a$.
-        \end{itemize}
-        \item 我们也可以加入二元的相对算子.
-        \begin{itemize}
-            \item 相对共同知识$C^r(\phi,\psi)$：当所有人都知道$\psi$        时，所有人具有共同知识$\phi$.
-            \item 条件信念$B_a(\phi,\psi)$：当$\psi$为真时，个体$a$相信$\phi$.
-        \end{itemize} 
-    \end{itemize}
-    
-    
-    {*例子：命题动态逻辑}
-    \begin{itemize}
-        \item 命题动态逻辑（PDL），有无穷多个模态算子.
-        \item 模态算子被记为$[\pi]$，这里$\pi$按照程序来理解.
-        \item $[\pi]\phi$解释为：从当前状态开始运行程序$\pi$，任何一种终止状态，$\phi$都成立.
-        \item 它的对偶算子记为$\langle\pi\rangle$.
-        \item $\langle\pi\rangle\phi$解释为：从当前状态开始运行程序$\pi$，存在一种终止状态，$\phi$成立.
-    \end{itemize}
-    
-    
-    {*例子：命题动态逻辑}
-    \begin{itemize}
-        \item PDL的重要区别在于：我们可以用模态算子来构造新的模态算子.
-        \item 基本程序：$a,b,\dots$.
-        \item 我们可以用三种操作构造新的程序（模态算子）：
-        \begin{itemize}
-            \item 选择：如果$\pi_1,\pi_2$是程序，那么$\pi_1\cup\pi_2$也是程序，它（非确定性地）执行$\pi_1$或$\pi_2$. 模态算子为$[\pi_1\cup\pi_2]$和$\langle\pi_1\cup\pi_2\rangle$.
-            \item 复合：如果$\pi_1,\pi_2$是程序，那么$\pi_1;\pi_2$也是程序，它先执行$\pi_1$再执行$\pi_2$. 模态算子为$[\pi_1;\pi_2]$和$\langle\pi_1;\pi_2\rangle$.
-            \item 迭代：如果$\pi$是程序，那么$\pi^*$也是程序，它执行$\pi$有限次（可能是零次）. 模态算子为$[\pi^*]$和$\langle\pi^*\rangle$.
-        \end{itemize}
-        \item 以上构造得到的PDL被称为\emph{正则PDL}.
-        \item 我们还可以引入交$\pi_1\cap\pi_2$，表示并行计算；也可以引入条件程序$\phi?$，其中$\phi$是公式.
-    \end{itemize}
-    
-    
-    {*例子：命题动态逻辑}
-    \begin{itemize}
-        \item $\left\langle\pi^*\right\rangle \phi \leftrightarrow \phi \vee\left\langle\pi ; \pi^*\right\rangle \phi$.
-        \begin{itemize}
-            \item 在执行$\pi$有限次数后到达一个带有信息$\phi$的状态当且仅当要么我们已经在当前状态中拥有信息$\phi$，要么我们可以执行一次$\pi$，然后在有限次数的$\pi$迭代后找到一个带有信息$\phi$的状态.
-        \end{itemize}
-        \item Segerberg公理（归纳公理）：$[\pi^*](\phi \to [\pi]\phi) \to (\phi \to [\pi^*]\phi).$
-        \begin{itemize}
-            \item 思考：这个公式的含义是什么？
-        \end{itemize}
-        \item 如何用模态算子表示
-        \texttt{if $\phi$ then $a$ else $b$}？
-        \begin{itemize}
-            \item $(\phi?;a)\cup(\neg\phi?;b)$.
-        \end{itemize}
-    \end{itemize}
-    
-    
-    \section{Kripke语义与框架语义}
-    {模态逻辑的模型论} 
-    \begin{itemize} 
-    \item 一个逻辑框架是一个三元组：(语言，模型，语义) $(\mathbf L,C,\vDash)$.
-    \item 命题逻辑的例子：
-    \begin{itemize}
-        \item 语言：命题公式的集合$\{\top,\bot,p,p\vee q,\dots\}$.
-        \item 模型：常值和命题字母的真假：$\top:\top$，$p:\top$，$q:\bot$，等等.
-        \item 语义：Boole函数的真值表递归定义.
-    \end{itemize}
-    \item 对于基本模态逻辑，我们有如下要素：
-    \begin{itemize}
-        \item 语言：基本模态语言$\mathbf{ML}(\mathbf P, \Box)$.
-        \item 模型：Kripke模型.
-        \item 语义：Kripke语义.
-    \end{itemize}
-    \end{itemize} 
-    
-    
-    {Kripke模型和框架} 
-    \begin{itemize} 
-    \item 一个\emph{Kripke模型}（\emph{关系模型}，Kripke model）可以看作是一个带有标记的有向边和节点的图： 
-    \begin{itemize} 
-    \item 节点表示可能的世界，状态或对象等，用命题字母标记； 
-    \item 边表示节点之间的关系，用模态算子标记.
-    \end{itemize} 
-    \item 一个\emph{框架}（frame）是一个没有节点标记的模型.
-    \end{itemize} 
-    
-    
-    {可能世界语义} 
-    \begin{itemize} 
-    \item 我们将节点解读为\emph{可能世界}（possible world）.
-    \item 此时$\Box$被理解为“必然”，$\Diamond$被理解为“可能”.
-    \item $\Box\phi$在当前世界为真当且仅当$\phi$在当前世界的所有可能的替代世界上为真.
-    \item 形式化：$\Box\phi$在世界$w$上成立当且仅当$\phi$在$w$的所有后继上为真.
-    \item 这种语义通常被称为Kripke语义或可能世界语义. 一个世界的意义取决于它与其他世界的联系.
-    \end{itemize} 
-    
-    
-    {状态语义}
-    \begin{itemize}
-    \item 我们将节点解读为\emph{状态}（state）.
-    \item 于是边就被解读为状态的转移.
-    \item $\Box\phi$在当前状态为真当且仅当$\phi$在所有可能转移到的状态上为真.
-    \item PDL 可以用以上语义来理解.
-    \item 在哲学中，状态往往是不完全可观测的，此时模态逻辑可以被理解为不完全信息中可以确定的性质.
-    \end{itemize}
-    
-    
-    {对象语义}
-    \begin{itemize}
-    \item 我们将节点解读为\emph{对象}（object）.
-    \item $w$有边指向$v$意味着$w$是$v$包含的一个整体，$v$是$w$的一个部分.
-    \item 在哲学上，模态逻辑可以讨论整体论与还原论.
-    \item $\Box\phi$对一个对象为真当且仅当$\phi$在它的所有部分都为真.
-    \end{itemize}
-    
-    
-    {Kripke模型：基本情形}
-    \begin{itemize}
-        \item 考虑$\mathbf{ML}(\mathbf{P},\Box)$.
-        \item 一个\emph{Kripke框架}（Kripke frame）指的是元组$\mathcal F=(W,R)$，其中
-        \begin{itemize}
-            \item $W$是非空集合（可能世界集）；
-            \item $R\subseteq W\times W$是一个$W$上的二元关系（边）.
-        \end{itemize}
-        \item 一个\emph{Kripke模型}（Kripke model）$\mathcal{M}$指的是元组$(\mathcal F,V)$，其中$\mathcal F$是框架，$V:\mathbf P\to 2^W$是\emph{赋值函数}（valuation function）.
-        \item 一个\emph{Kripke点模型}（pointed Kripke model）$(\mathcal{M},w)$是Kripke模型$\mathcal M$加上一个指定的点$w\in W$.
-    \end{itemize}
-    
-    
-    {Kripke模型：基本情形}
-    \begin{figure}
-        \centering
-        \input{\pref/Kripke-model-basic}
-    \end{figure}
-    
-    
-    {Kripke模型：一般情形}
-    \begin{itemize}
-        \item 考虑$\mathbf{ML}(\mathbf{P},(O,\rho))$.
-        \item 一个\emph{Kripke框架}指的是元组$\mathcal F=(W,\{R_\nabla:\nabla\in O\})$，其中
-        \begin{itemize}
-            \item $W$是非空集合（可能世界集）；
-            \item $R_\nabla$是一个$W$上的$\rho(\nabla)+1$元关系.
-        \end{itemize}
-        \item 一个\emph{Kripke模型}$\mathcal{M}$指的是元组$(\mathcal F,V)$，其中$\mathcal F$是框架，$V:\mathbf P\to 2^W$是\emph{赋值函数}（valuation function）.
-        \item 一个\emph{Kripke点模型}（pointed Kripke model）$(\mathcal{M},w)$是Kripke模型$\mathcal M$加上一个指定的点$w\in W$.
-    \end{itemize}
-    
-    
-    {Kripke语义：基本情形}
-    \begin{itemize}
-        \item 考虑$\mathbf{ML}(\mathbf{P},\Box)$.
-        \item 符号$\mathcal M,w\vDash\phi$表示$\phi$在点模型$\mathcal M,w$是\emph{可满足的}（satisfiable）.
-        \item 这一个概念可以递归定义如下
-        \begin{itemize}
-            \item $\mathcal M, w\vDash\top\iff$ 总是.
-            \item $\mathcal M, w\vDash p\iff p\in V(w)$.
-            \item $\mathcal M, w\vDash (\phi\wedge\psi)\iff\mathcal M,w\vDash\phi$且$\mathcal M,w\vDash\phi$.
-            \item $\mathcal M, w\vDash \neg\phi\iff\mathcal M,w\not\vDash\phi$.
-            \item $\mathcal M, w\vDash \Box\phi\iff$对所有$v$，如果$wRv$，那么$\mathcal M,v\vDash\phi$.
-        \end{itemize}
-        \item 因此，$\mathcal M, w\vDash \Diamond\phi\iff$存在$v$满足$wRv$使得$\mathcal M,v\vDash\phi$.
-    \end{itemize}
-    
-    
-    {Kripke语义：基本情形}
-    \begin{figure}
-        \centering
-        \input{\pref/Kripke-model-basic}
-    \end{figure}
-    \begin{itemize}
-        \item 对哪些$i$来说，$\mathcal M,w_i\vDash\Box (p\to\Diamond q)$？
-    \end{itemize}
-    
-    
-    {Kripke语义：一般情形}
-    \begin{itemize}
-        \item 考虑$\mathbf{ML}(\mathbf{P},(O,\rho))$.
-        \item 符号$\mathcal M,w\vDash\phi$表示$\phi$在点模型$\mathcal M,w$是\emph{可满足的}.
-        \item 这一个概念可以递归定义如下
-        \begin{itemize}
-            \item $\mathcal M, w\vDash\top\iff$ 总是.
-            \item $\mathcal M, w\vDash p\iff p\in V(w)$.
-            \item $\mathcal M, w\vDash (\phi\wedge\psi)\iff\mathcal M,w\vDash\phi$且$\mathcal M,w\vDash\psi$.
-            \item $\mathcal M, w\vDash \neg\phi\iff\mathcal M,w\not\vDash\phi$.
-            \item $\mathcal M, w\vDash \nabla(\phi_1,\dots,\phi_{\rho(\nabla)})\iff$对\light{任意} $w_1,w_2,\dots w_{\rho(\nabla)}$，如果$R(w,w_1,\dots,w_{\rho(\nabla)})$，那么\light{存在} $w_i$使得$\mathcal M,w_i\vDash\phi_1$.
-        \end{itemize}
-        \item 思考：为什么要这么定义$\nabla$的语义？
-    \end{itemize}
-    
-    
-    {Kripke语义：一般情形}
-    \begin{itemize}
-        \item 如果一个模态算子对应的关系是二元关系，我们就称这个模态算子是\emph{一元的}（unary）.
-        \item 此时，关系$wRv$可以记为$w\to_a v$.
-        \item 模态算子一般写作$\Box_a$.
-    \end{itemize}
-    
-    
-    {*模型验证}
-    \begin{itemize}
-        \item 我们考虑如下两个\emph{模型验证}（model checking）问题：
-        \begin{itemize}
-        \item 局部模型验证：测试 $\mathcal M,w \vDash \varphi$ 是否成立；
-        \item 全局模型验证：计算集合 $\{w \in W_{\mathcal M} : \mathcal M,w \vDash \varphi\}$.
-        \end{itemize}
-        \item 设 $l_R(X) = \{w \in W_{\mathcal M} : \forall v : w \to_{\mathcal M} v \implies v \in X\}$，我们可以递归定义$\mathcal M$中公式的\emph{扩张}（extension）：
-    \[\begin{array}{rlrl}\llbracket \top \rrbracket^{\mathcal{M}} & =W_{\mathcal{M}}, & \llbracket p \rrbracket^{\mathcal{M}} & =\{w : p \in V(w)\}, \\ 
-    \llbracket \neg \varphi \rrbracket^{\mathcal{M}} & =W_{\mathcal M}\setminus \llbracket \varphi \rrbracket^{\mathcal{M}}, & \llbracket(\varphi \wedge \psi) \rrbracket^{\mathcal{M}} & =\llbracket \varphi \rrbracket^{\mathcal{M}} \cap \llbracket \psi \rrbracket^{\mathcal{M}}, \\
-    \llbracket \square \varphi \rrbracket^{\mathcal{M}} & =l_R\left(\llbracket \varphi \rrbracket^{\mathcal{M}}\right).\end{array}\]
-        \item 全局模型验证的一个算法：按照公式的复杂程度，用 $\varphi$的子公式标记$\mathcal M$中每个状态的真值.
-        \item 这个问题在实践中并不平凡，因为状态的数量可能是指数多的！
-    \end{itemize}
-    
-    
-    {模态公式的真值} % HW：给个例子算一算
-    \begin{itemize}
-        \item 模态公式的（语义）真值可以从两个维度来讨论：全局还是局部，模型还是框架.
-        \item $\phi$在点模型$\mathcal M,w$\emph{可满足}（satisfiable）指的是$\mathcal M,w\vDash \phi$.
-        \item $\phi$在模型$\mathcal M$\emph{有效}（valid），记为$\mathcal M\vDash \phi$指的是$\mathcal M,w\vDash\phi$对所有$w$成立.
-        \item $\phi$在点框架$\mathcal F,w$\emph{有效}，记为$\mathcal F,w\vDash \phi$指的是$\mathcal M,w\vDash\phi$对所有基于点框架$\mathcal F,w$的点模型$\mathcal M, w$上可满足.
-        \item $\phi$在框架$\mathcal F$\emph{有效}，记为$\mathcal F\vDash \phi$指的是$\mathcal M\vDash\phi$对所有基于框架$\mathcal F$的模型$\mathcal M$上有效.
-        \item $\phi$对框架类$K$\emph{有效}，记为$\vDash_K\phi$指的是$\mathcal F\vDash\phi$对所有$\mathcal F\in K$成立.
-    \end{itemize}
-    
-    
-    {模态公式的真值}
-    \begin{itemize}
-        \item 模态公式的（语义）真值可以从两个维度来讨论：全局还是局部，模型还是框架.
-        \begin{table}[ht]
-        \centering
-        \begin{tabular}{c|cc}
-             &模型&框架  \\\hline
-             局部&\light{$\mathcal M,w\vDash \phi$} &$\mathcal F,w\vDash \phi$\\
-             全局&$\mathcal M\vDash \phi$ &\light{$\mathcal F\vDash \phi$}\\
-        \end{tabular}
-    \end{table}
-        \item 我们主要讨论高亮的两个部分.
-    \end{itemize}
-    
-    
-    {框架语义：例子}
-    \begin{figure}
-        \centering
-        \input{\pref/frame-validity}
-    \end{figure}
-    \begin{itemize}
-        \item 是否成立$\mathcal F\vDash\Box(p\to\Diamond p)$？
-    \end{itemize}
-    
-    
-    {例子：基本模态逻辑}
-    \begin{itemize}
-        \item 考虑基本模态逻辑，因此他只有模态算子$\Box$和$\Diamond$，分别表示必然和可能.
-        \item Kripke模型的点应该被解读为可能世界.
-        \item 我们可以将对于可能和必然的理解写成模态公式.
-        \item 如果一个东西是真的，那么他也是可能的：$\phi:p\to\Diamond p$.
-    \end{itemize}
-    
-    
-    {例子：基本模态逻辑}
-    \begin{itemize}
-        \item 如果一个东西是真的，那么他也是可能的：$\phi:p\to\Diamond p$.
-        \item 我们可以将对于可能和必然的理解反映到Kripke模型中.
-        \item 真实世界是一个可能的世界：$xRx$，这是一个自反关系.
-        \item 对于自反点模型以及框架，$\mathcal M,v\vDash \phi$以及$\mathcal F\vDash \phi$.
-    \end{itemize}
-    
-    
-    {例子：时序逻辑}
-    \begin{itemize}
-        \item 考虑基本的时序逻辑，因此他只有模态算子$G$和$H$，以及对偶$F$和$P$，他们分别对应未来和过去.
-        \item Kripke模型的点应该被解读为时刻，时刻之间有两个关系：
-        \begin{itemize}
-            \item $t_1 R_F t_2$表示时刻$t_2$是时刻$t_1$的未来.
-            \item $t_1 R_P t_2$表示时刻$t_2$是时刻$t_1$的过去.
-        \end{itemize}
-        \item 我们对时间的理解将会反映在Kripke模型上.
-    \end{itemize}
-    
-    
-    {例子：时序逻辑}
-    \begin{itemize}
-        \item 过去是未来的倒转：对任意时刻$t_1,t_2$，$t_1 R_F t_2\iff t_2 R_P t_1$.
-        \item 如果我们承认时间具有这样的性质，那么$R_F$和$R_P$实际上就是箭头倒转一下.
-        \item 记$R_F=R$，我们有：
-        \[\mathcal M,w\vDash F\phi\iff\exists v(wRv\wedge\mathcal M,v\vDash \phi).\]
-        \[\mathcal M,w\vDash P\phi\iff\exists v(vRw\wedge\mathcal M,v\vDash \phi).\]
-    \end{itemize}
-    
-    
-    {例子：时序逻辑}
-    \begin{itemize}
-        \item 我们再进一步假设时间是线性的，也就是关系$R$是一个严格全序：
-        \begin{itemize}
-            \item 反自反：$\forall x\neg xRx$.
-            \item 传递：$\forall x,y,z(xRy\wedge yRz\to xRz)$.
-            \item 完全：$\forall x,y(xRy\vee yRx\vee x=y)$.
-        \end{itemize}
-        \item 设$\mathcal F$是时间框架，是否有：$\mathcal F\vDash Pp\to GP p$以及$\mathcal F\vDash Fp\to HF p$？
-    \end{itemize}
-    
-    
-    \section{模态可定义性}
-    {模态可定义性}
-    \begin{itemize}
-        \item 逻辑的意义在于把对事物的抽象认知用形式化的语言表述出来.
-        \item 我们已经看到，我们对事物的认知可以被两种方式描述出来：
-        \begin{itemize}
-            \item Kripke模型（框架）的特殊结构.
-            \item 具体的模态公式.
-        \end{itemize}
-        \item 这两种方式之间有什么联系？
-    \end{itemize}
-    
-    {例子}
-    \begin{itemize}
-        \item $\mathcal M,w\vDash\Diamond\top$.
-        \begin{itemize}
-            \item 存在一个$v$，$w\to v$并且$\mathcal M,v\vDash\top$，也就是$w$有一个后继.
-        \end{itemize}
-        \item $\mathcal F\vDash\Diamond \top$.
-        \begin{itemize}
-            \item 每个基于$\mathcal F$的点模型$\mathcal M,v$都有$\Diamond \top$，即$\mathcal F$每个点都有后继.
-        \end{itemize}
-        \item $\mathcal F\vDash p\to\Diamond p$.
-        \begin{itemize}
-            \item 任意赋值$V$和任意点$w$，都有$\mathcal M,w\vDash p\to\Diamond p$.
-            \item 因此，如果$w$上有$p$，那么$w$必须有一个后继上面也有$p$.
-            \item  取$V$使得只有$w$上有$p$，因为对任意赋值都要成立，所以在这个赋值下，$w$必须要以自己为后继.
-            \item 因此$\mathcal F$充分必要地是一个自反框架.
-        \end{itemize}
-    \end{itemize}
-    
-    
-    {模态可定义性}
-    \begin{itemize}
-        \item 从点模型的角度，我们可以讨论模态公式定义了什么样的点模型.
-        \item 设$K$是一些点模型的集合，$\Sigma$是一些模态公式的集合.
-        \item 我们说$K$可由公式集$\Sigma$定义，指的是对任意点模型$\mathcal M,w$，$\mathcal M,w\in K$当且仅当任何$\Sigma$中的公式在$\mathcal M,w$都是可满足的.
-        \item 如果$\Sigma=\{\phi\}$，我们就说$K$可以由公式$\phi$定义.
-        \item 对于框架可定义性，我们有类似的定义.
-    \end{itemize}
-    
-    
-    {模态可定义性}
-    \begin{itemize}
-        \item 如果定义$K$的公式集$\Sigma$有限，那么$K$也可以由单个公式$\bigwedge_{\phi\in\Sigma}\phi$定义.
-        \item 如果$K$由公式$\phi$定义，那么它的补$\overline{K}$就可以由$\neg\phi$定义.
-        \item 然而，如果$K$由无穷个公式定义，它的补$\overline{K}$不一定可以用无穷个公式定义！
-        \begin{itemize}
-            \item 形式上来说，$\overline{K}$可以被$\bigvee_{\phi\in\Sigma}\neg\phi$定义，然而这是一个无穷析取，不一定能等价于某一个集合的公式.
-        \end{itemize}
-    \end{itemize}
-    
-    
-    {框架类可定义性：更多例子}
-    \begin{itemize}
-        \item $\Box p\to\Diamond p$.
-        \begin{itemize}
-            \item 定义了每一个点都有后继的框架，与$\Diamond\top$定义了一样的框架类.
-        \end{itemize}
-        \item $\Box p\to\Box\Box p$.
-        \begin{itemize}
-            \item 定义了传递的框架类.
-        \end{itemize}
-        \item $\Diamond p\to\Diamond \Diamond p$.
-        \begin{itemize}
-            \item 定义了稠密的框架类，即如果$x\to y$，那么存在$z$满足$x\to z$且$z\to y$.
-        \end{itemize}
-        \item 如果将这些模态算子放在时序逻辑中理解，我们实际上已经得到了关于时间的公理！% HW：Lob公式
-    \end{itemize}
-    
-    
-    {*模态可定义与一阶可定义}
-    \begin{itemize}
-        \item 我们注意到，所有以上的例子，模型的结构都是可以用一阶公式描述的.
-        \begin{itemize}
-            \item 每个点都有后继：$\forall x\exists y(xRy)$.
-            \item 传递：$\forall x,y,z(xRy\wedge yRz\to xRz)$.
-            \item 稠密：$\forall x,y(xRy\to\exists z(xRz\wedge zRy))$.
-        \end{itemize}
-        \item 将一阶公式中的变元$x,y,\dots$看成模型的点，类似模态公式，我们可以讨论一阶公式可定义的模型类/框架类.
-        \item 思考：一阶可定义和模态可定义是什么样的关系？
-    \end{itemize}
-    
-    
-    {*模态可定义性：一般结果}
-    \begin{itemize}
-        \item 更一般地，给定一个点模型类$K$，是否存在模态公式（集）可以定义$K$？
-        \item 类似地，给定一个框架类$K$，是否存在模态公式（集）可以定义$K$？
-        \item 对于点模型来说，可以被模态公式集定义以及可以被模态公式定义，都有充分必要的刻画定理.
-        \item 对于框架来说，如果限制框架是一阶可定义的框架，我们有GoldBlatt-Thomason定理，这是一个充分必要条件.
-    \end{itemize}
-    
+\end{example}
+
+以上例子启发我们，模态公式可以定义Kripke模型的特殊结构，特殊的Kripke模型划定了具体的模态公式，这种联系可以被形式化为\textbf{模态可定义性}\index{模态可定义性}.
+
+从点模型的角度，我们可以讨论模态公式定义了什么样的点模型. 
+
+\begin{definition}[点模型可定义性]\index{模态可定义性!点模型可定义性}
+设$K$是一些点模型的集合，$\Sigma$是一些模态公式的集合. 我们说\textbf{$K$可由公式集$\Sigma$定义}，指的是对任意点模型$\mathcal M,w$，$\mathcal M,w\in K$当且仅当任何$\Sigma$中的公式在$\mathcal M,w$都是可满足的. 如果$\Sigma={\phi}$，我们就说\textbf{$K$可以由公式$\phi$定义}. 
+\end{definition}
+对于框架可定义性，我们有类似的定义.
+
+模态可定义性：如果定义$K$的公式集$\Sigma$有限，那么$K$也可以由单个公式$\bigwedge_{\phi\in\Sigma}\phi$定义。如果$K$由公式$\phi$定义，那么它的补$\overline{K}$就可以由$\neg\phi$定义。然而，如果$K$由无穷个公式定义，它的补$\overline{K}$不一定可以用无穷个公式定义。这是因为形式上来说，$\overline{K}$可以被$\bigvee_{\phi\in\Sigma}\neg\phi$定义，然而这是一个无穷析取，不一定能等价于某一个集合的公式.
+
+我们来看框架类可定义性的更多例子：
+\begin{example}
+\begin{itemize}
+    \item $\Box p\to\Diamond p$.
+ 
+    定义了每一个点都有后继的框架，与$\Diamond\top$定义了一样的框架类.
+    
+    \item $\Box p\to\Box\Box p$.
+    
+    定义了传递的框架类.
+    
+    \item $\Diamond p\to\Diamond \Diamond p$.
+    
+    定义了稠密的框架类，即如果$x\to y$，那么存在$z$满足$x\to z$且$z\to y$.
+\end{itemize}
+注意，如果将这些模态算子放在时序逻辑中理解，我们实际上已经得到了关于时间的公理！% HW：Lob公式
+\end{example}
+
+\begin{remark}
+我们注意到，所有以上的例子，模型的结构都是可以用一阶公式描述的.
+\begin{itemize}
+    \item 每个点都有后继：$\forall x\exists y(xRy)$.
+    \item 传递：$\forall x,y,z(xRy\wedge yRz\to xRz)$.
+    \item 稠密：$\forall x,y(xRy\to\exists z(xRz\wedge zRy))$.
+\end{itemize}
+ 将一阶公式中的变元$x,y,\dots$看成模型的点，类似模态公式，我们可以讨论一阶公式可定义的模型类/框架类. 
+ 
+ 更一般地，我们可以问，给定一个点模型类$K$，是否存在模态公式（集）可以定义$K$？类似地，给定一个框架类$K$，是否存在模态公式（集）可以定义$K$？对于点模型来说，可以被模态公式集定义以及可以被模态公式定义，都有充分必要的刻画定理. 对于框架来说，如果限制框架是一阶可定义的框架，我们有GoldBlatt-Thomason定理，这是一个充分必要条件.
+\end{remark}
+
 \endgroup
