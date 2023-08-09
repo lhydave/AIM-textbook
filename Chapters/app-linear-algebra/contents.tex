@@ -1,1 +1,126 @@
 \chapter{线性代数基础}\label{chap:linear-algebra}
+
+\section{线性空间}
+
+从动机上说，线性空间试图将$\R^n$或者$\C^n$这样的集合连同他们上面的代数结构抽象出来。除此之外，函数和无穷数列的集合也是非常重要的对象，比如说$\R$上的连续函数组成的集合$C(\R)$，或者具有“模长”的无穷实数列（$\ell^2(\R)$-空间）：
+\[\ell^2(\R)=\left\{x=(x_1,x_2,\cdots)\in\R^\infty:\sum_{i=1}^\infty x_i^2<\infty\right\}.\]
+
+我们将这些对象的共性抽象出来，得到线性空间的概念。线性空间都是基于某个域定义的，我们先给出域的定义。
+
+\begin{definition}[域]\index{域}
+一个\textbf{域}是一个集合$F$，其上定义了两种二元运算：加法$+$和乘法$\cdot$，他们都是$F\times F$到$F$的映射，满足下面的公理：
+\begin{enumerate}
+    \item （结合律）对于任意的$a,b,c\in F$，有$(a+b)+c=a+(b+c)$和$(a\cdot b)\cdot c=a\cdot (b\cdot c)$；
+    \item （交换律）对于任意的$a,b\in F$，有$a+b=b+a$和$a\cdot b=b\cdot a$；
+    \item（分配律）对于任意的$a,b,c\in F$，有$a\cdot(b+c)=a\cdot b+a\cdot c$。
+    \item （单位元）存在唯一的两个元素$0,1\in F$，使得对于任意的$a\in F$，有$a+0=a$和$a\cdot 1=a$；
+    \item （加法逆元）对于任意的$a\in F$，存在唯一$b\in F$，使得$a+b=0$，记$b$作$-a$；
+    \item （乘法逆元）对于任意的$a\in F$，如果$a\neq 0$，则存在唯一$b\in F$，使得$a\cdot b=1$，记$b$作$a^{-1}$；
+\end{enumerate}
+通常将$a\cdot b$写作$ab$，并且乘法的优先级高于加法，即$ab+c=(ab)+c$。
+\end{definition}
+
+域的重要例子包括有理数域$\Q$，实数域$\R$和复数域$\C$，他们都是无限域。我们将在后面的内容中使用这些域。
+
+\begin{definition}[线性空间，向量空间]\index{线性空间}\index{向量空间}
+设$V$是一个集合，$F$是一个域。如果在$V$上定义了两种运算：加法$+$和数乘$\cdot$，使得$V$满足下面的公理：
+\begin{enumerate}
+    \item （$V$的结合律）对于任意的$x,y,z\in V$，有$(x+y)+z=x+(y+z)$；
+    \item （$V$的交换律）对于任意的$x,y\in V$，有$x+y=y+x$；
+    \item （加法零元）存在唯一的元素$0\in V$，使得对于任意的$x\in V$，有$x+0=x$；
+    \item （加法逆元）对于任意的$x\in V$，存在唯一$y\in V$，使得$x+y=0$，记$y$作$-x$；
+    \item 对于任意的$x\in V$，有$1\cdot x=x$；
+    \item 对于任意的$a,b\in F$和$x\in V$，有$(ab)\cdot x=a\cdot (b\cdot x)$；
+    \item 对于任意的$a\in F$和$x,y\in V$，有$a\cdot(x+y)=a\cdot x+a\cdot y$；
+    \item 对于任意的$a,b\in F$和$x\in V$，有$(a+b)\cdot x=a\cdot x+b\cdot x$。
+\end{enumerate}
+则称$V$是一个\textbf{$F$-线性空间}，简称\textbf{线性空间}，也称\textbf{向量空间}。$V$中的元素被称为\textbf{向量}\index{向量}. 通常将数乘$a\cdot x$写作$ax$，并且乘法的优先级高于加法，即$a\cdot x+y=(a\cdot x)+y$。
+\end{definition}
+
+“线性”一词的含义是指的$ax+by$这种形式的数学对象，线性代数就是研究这种对象的学科。线性空间的典型例子包括：
+\begin{itemize}
+    \item $\R^n$和$\C^n$.
+    \item $M_{m\times n}(F)$，即所有$m\times n$矩阵组成的集合.
+    \item $C(\R)$，即$\R$上的连续函数组成的集合.
+    \item $C^k(\R)$，即$\R$上的$k$次连续可微函数组成的集合.
+    \item $\ell^2(\R)$，即所有二次可和的实数序列组成的集合.
+\end{itemize}
+
+如同所有其他的代数结构，线性空间也有各式各样构造新的线性空间的方法。为了看出来线性空间本质的特性，我们有如下引理：
+
+\begin{lemma}\label{lemma:linear-space-subspace}
+设$V$是$F$-线性空间，$W$是$V$的一个子集。则$W$是一个线性空间当且仅当对任意$a,b\in F$和$x,y\in W$，有$ax+by\in W$。
+\end{lemma}
+\begin{proof}
+    按照定义即可验证。
+\end{proof}
+
+我们给$ax+by$这样的对象一个正式的定义。
+
+\begin{definition}[线性组合]\index{线性组合}
+设$V$是$F$-线性空间，$x_1,\cdots,x_n\in V$，$a_1,\cdots,a_n\in F$，则称$a_1x_1+\cdots+a_nx_n$是$x_1,\cdots,x_n$的一个\textbf{线性组合}。
+\end{definition}
+
+接下来，基于某些特定的线性空间，我们构造各种新的线性空间。
+
+\begin{definition}[线性子空间]\index{线性子空间}
+设$V$是$F$-线性空间，$W$是$V$的一个子集。如果$W$是一个线性空间，则称$W$是$V$的一个\textbf{线性子空间}。
+\end{definition}
+
+例如，$\Q$是$\R$的一个线性子空间，但$\Z$不是$\R$的一个线性子空间。再比如，当$k<l$，$C^k(\R)$是$C^l(\R)$的一个线性子空间。
+
+\begin{definition}[乘积空间]\index{乘积空间}
+设$V_1,\cdots,V_n$是$F$-线性空间，则$V_1\times\cdots\times V_n$是一个$F$-线性空间，其中加法和数乘分别定义为
+\begin{align*}
+    &(x_1,\cdots,x_n)+(y_1,\cdots,y_n)=(x_1+y_1,\cdots,x_n+y_n),\\
+    &a(x_1,\cdots,x_n)=(ax_1,\cdots,ax_n).
+\end{align*}
+\end{definition}
+
+例如，$\R^n$就是$n$个$\R$的乘积空间，$M_{m\times n}(F)$就是$m\times n$个$F$的乘积空间。
+
+接下来，我们按照\emph{表示论}\index{表示论}的观点，引入基的概念。线性空间是一个非常抽象的数学概念，因此我们需要一些具体的元素去表示这整个空间。
+
+\begin{definition}[生成集]\index{生成集}
+设$V$是$F$-线性空间，$S\subseteq V$，如果$V$中的每一个元素都是$S$的线性组合，则称$S$是$V$的一个\textbf{生成集}。
+
+更一般地，任意一个$S\subseteq V$，我们可以定义 \textbf{$S$生成的线性子空间}为所有$S$的线性组合的集合，记为$\Span(S)$。
+\end{definition}
+
+我们希望用尽可能少的元素来表示整个线性空间，为此，我们需要把“可表示”这样的概念严格化。
+
+\begin{definition}[线性相关]\index{线性相关}
+设$V$是$F$-线性空间，$S\subseteq V$，如果存在$x_1,\cdots,x_n\in S$，$a_1,\cdots,a_n\in F$，使得$a_1x_1+\cdots+a_nx_n=0$，且至少有一个$a_i\neq 0$，则称$S$是\textbf{线性相关}的，否则称$S$是\textbf{线性无关}的。
+\end{definition}
+
+$S$线性相关意味着$S$中的一些元素可以被另一些元素的线性组合表示出来，因而$S$中有一些冗余。线性无关意味着$S$中的元素都是必要的，没有冗余。由此，我们可以给出基的定义。
+
+\begin{definition}[基]\index{基}
+设$V$是$F$-线性空间，$S\subseteq V$，如果$S$是线性无关的，并且$\Span(S)=V$，则称$S$是$V$的一个\textbf{基}。
+\end{definition}
+
+线性空间的一个核心定理是基的存在性定理。
+
+\begin{theorem}[基的存在性定理]\label{thm:existence-of-basis}
+设$V$是$F$-线性空间，则$V$中存在一个基。
+\end{theorem}
+
+要注意，这一定理并不是平凡的。首先，基是线性无关的集合，所以$V$本身通常就不是基。此外，这一定理要求有一个线性无关的集合$S\subseteq V$，任意向量$x\in V$都可以用$S$中\emph{有限个}元素的线性组合来表示，这样的$S$并不容易找到。该定理的证明是构造性的，这一构造依赖于选择公理（或者Zorn引理），我们在此略去。
+
+基的典型例子包括：
+\begin{itemize}
+    \item $\R^n$的标准基是$\{e_1,\cdots,e_n\}$，其中$e_i$是第$i$个分量为$1$，其余分量为$0$的向量；
+    \item $M_{m\times n}(F)$的标准基是$\{E_{ij}:1\leq i\leq m,1\leq j\leq n\}$，其中$E_{ij}$是第$i$行第$j$列为$1$，其余元素为$0$的矩阵；
+    \item $\ell^2(\R)$的标准基是$\{e_1,e_2,\cdots\}$，其中$e_i$是第$i$个分量为$1$，其余分量为$0$的实数列。
+\end{itemize}
+
+线性空间的基可以衡量线性空间的复杂程度，基元素越少，线性空间越简单。我们可以定义维数来衡量线性空间的复杂程度。
+
+\begin{definition}[维数]\index{维数}
+设$V$是$F$-线性空间，如果$V$的一个基有限，则称$V$是\textbf{有限维}的，否则称$V$是\textbf{无限维}的。有限维线性空间的基的元素个数称为$V$的\textbf{维数}，记为$\dim V$。
+\end{definition}
+这一定义隐含的事实是，如果$V$有有限基，那么所有基都是有限的，并且任意两个基的元素个数相同。我们这里略去证明。
+
+例如，$\R^n$的维数是$n$，$M_{m\times n}(F)$的维数是$mn$，$C^k(\R)$和$\ell^2(\R)$的维数是无穷。
+
+\section{线性映射}
