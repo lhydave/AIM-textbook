@@ -41,7 +41,7 @@ Markov链是一种简化的带时间的概率模型，它最重要的性质是Ma
 \begin{proposition}[Markov性]\index{Markov性}\label{prop:markov}
 条件在$X_n=i$下，$\{Y_m\}_{m=0}^{\infty}:=\{X_{m+n}\}_{m=0}^{\infty}$是一个转移矩阵为$P$的Markov链，并且与$(X_0,\dots,X_{n-1})$相互独立. % HW: 证明这个命题
 \end{proposition}
-证明留做习题。
+证明留做习题. 
 
 我们考虑的Markov链还有时齐性，即状态的转移不依赖当前时间，只和当前的状态有关. 时齐性的数学表述为：
 \begin{proposition}
@@ -49,7 +49,7 @@ Markov链是一种简化的带时间的概率模型，它最重要的性质是Ma
     $\Pr(X_{m+n}=j| X_{n}=k)=\Pr(X_{m}=j| X_{0}=k)$.
 \end{proposition}
 
-我们来看一个Markov链的例子。
+我们来看一个Markov链的例子. 
 \begin{example}[赌徒模型]\index{赌徒模型}
     考虑公平对赌. 玩家$A$和$B$抛硬币来赌钱，$A$赌正面，$B$赌反面. 每一轮独立地抛硬币，正面朝上的概率和反面朝上的概率相等，都是$1/2$. 赢的一方给输的一方一块钱. $A$输$a$块钱破产，$B$输$b$块钱破产，$Z_i$是第$i$轮$A$的收入. $Z_0=X_0=0$是$A$初始的收入. $X_n=Z_0+\dots+Z_n$是$A$的累计收入. 那么，$\{X_n\}_{n\geq 0}$是一个Markov链.
     \begin{itemize}
@@ -152,7 +152,7 @@ Kolmogorov-Chapman方程有两个重要的特例，前向方程：$\P^{(k+1)}=\P
 
 如果Markov链是遍历的，那么平稳分布是唯一的：
 \begin{proposition}\label{prop:unique-stationary-distribution}
-设$\{X_n\}$是遍历的Markov链，那么它有唯一平稳分布$\mu$。
+设$\{X_n\}$是遍历的Markov链，那么它有唯一平稳分布$\mu$. 
 \end{proposition}
     \begin{proof}
         假设$\mu$是另外一个平稳分布，那么$\mu_j=\sum_\alpha\mu_\alpha p_{\alpha j}=\dots=\sum_{\alpha}\mu_\alpha p_{\alpha j}^{(n)}$. 因为$p_{\alpha j}^{(n)}\to \lambda_j$，所以$\mu_j=\sum_{\alpha} (\mu_\alpha\lambda_j)=\lambda_j$.
@@ -178,7 +178,7 @@ Kolmogorov-Chapman方程有两个重要的特例，前向方程：$\P^{(k+1)}=\P
 \end{definition}
 
 
-接下来我们看一个例子：学生MRP。
+接下来我们看一个例子：学生MRP. 
 \begin{example}[学生MRP]
 见\Cref{fig:student-MRP}.\lhysays{补全}
 \begin{figure}[ht]
@@ -261,24 +261,24 @@ Bellman方程是一个线性方程，可以被直接解:
     \[\pi(a|s) = \Pr(A_t=a | S_t = s).\]
 一个策略完全决定了一个智能体在MDP环境中的行为. 它蕴含着Markov性：MDP的策略取决于当前状态，而非历史状态；也蕴含着时齐性：MDP的策略不依赖于时刻$t$.
 
-MDP与Markov链、MDP的关系由策略给出。
+MDP与Markov链、MDP的关系由策略给出. 
 \begin{proposition}
 给定一个MDP $\M=\langle\MS,\mathcal A,\P,\mathcal R, \gamma\rangle$和一个策略$\pi$，$\langle \MS, \P^{\pi}\rangle$是一个Markov链，$\langle\MS,\P^{\pi}, \mathcal R^{\pi}, \gamma\rangle$是一个MRP，其中
 \[\P_{s,s'}^{\pi} = \E_{a\sim\pi(\cdot|s)}(\P^a_{s,s'})=\sum_{a\in \mathcal A}\pi(a|s)\mathcal P_{s,s'}^{a},\]
     \[\mathcal R_s^{\pi} =\E_{a\sim\pi(\cdot|s)}(\mathcal R^a_s)=\sum_{a\in\mathcal A}\pi(a|s)\mathcal R_s^a.\]
 \end{proposition}
 \begin{proof}
-利用全概率公式。
+利用全概率公式. 
 \end{proof}
 
-在MDP中，\emph{状态-价值函数}\index{状态-价值函数}和\emph{行动-价值函数}\index{行动-价值函数}是两个重要的价值函数，它们分别描述了从某一状态出发，遵从某一策略的期望回报。
+在MDP中，\emph{状态-价值函数}\index{状态-价值函数}和\emph{行动-价值函数}\index{行动-价值函数}是两个重要的价值函数，它们分别描述了从某一状态出发，遵从某一策略的期望回报. 
 状态-价值函数$v_\pi(s)$是从状态$s$出发，遵从策略$\pi$的期望回报
     \[v_\pi(s) = \E_\pi(G_t|S_t=s).\]
 行动-价值函数$q_\pi(s,a)$是从状态$s$出发，采取行动$a$，遵从策略$\pi$的期望回报
     \[q_\pi(s,a) = \E_\pi(G_t|S_t=s,A_t=a).\]
 注意，以上定义都具有Markov性和时齐性.
 
-下面我们给出状态-价值函数和行动-价值函数的Bellman方程。
+下面我们给出状态-价值函数和行动-价值函数的Bellman方程. 
 状态-价值函数可以被分解为：\emph{即时回报}加\emph{后续状态的折扣价值}，
 \[v_\pi(s) = \E_\pi(R_{t+1} + \gamma v_\pi(S_{t+1})|S_t=s).\]
 
@@ -298,7 +298,7 @@ MDP与Markov链、MDP的关系由策略给出。
 状态-价值函数的Bellman方程可以被写成矩阵形式：
 \[v_\pi = \mathcal R^\pi + \gamma \P^\pi v_\pi = (I-\gamma \mathcal P^\pi)^{-1}\mathcal R^\pi.\]
 
-接下来我们讨论最优策略和最优价值函数。
+接下来我们讨论最优策略和最优价值函数. 
 
 \begin{definition}[最优状态-价值函数和最优行动-价值函数]\index{最优状态-价值函数}\index{最优行动-价值函数}
 \textbf{最优状态-价值函数} $v_\star(s)$ 是所有决策中最大的状态-价值函数
@@ -322,7 +322,7 @@ MDP与Markov链、MDP的关系由策略给出。
 \end{theorem}
 
 \begin{proof}
-我们给出一个构造性证明，即找出最优决策。可以通过最大化$q_\star(s,a)$来寻找：
+我们给出一个构造性证明，即找出最优决策. 可以通过最大化$q_\star(s,a)$来寻找：
     \begin{itemize}
         \item 固定$s$.
         \item 找到一个$a_\star$使得$q_\star(s,a_\star)=\max_{a}q_\star(s,a)$，令$\pi_\star(a_\star|s)=1$.
@@ -374,7 +374,7 @@ Bellman方程是\emph{\index{强化学习}强化学习}、经济学\emph{\index{
 
 
 
-我们可以更具体地说写出来HMM的结构。一个HMM包含：
+我们可以更具体地说写出来HMM的结构. 一个HMM包含：
     \begin{itemize}
         \item $\mathcal Z$
         : 有限的状态集合.
@@ -437,23 +437,23 @@ Bellman方程是\emph{\index{强化学习}强化学习}、经济学\emph{\index{
 \end{enumerate}
 
 
-首先考虑过滤：$\Pr(Z_k = s|X_{1:k}=x_{1:k}, \M)$。回顾记号$\alpha_k(s)= \Pr(X_{1:k}=x_{1:k}, Z_k=s| \M)$，我们有
+首先考虑过滤：$\Pr(Z_k = s|X_{1:k}=x_{1:k}, \M)$. 回顾记号$\alpha_k(s)= \Pr(X_{1:k}=x_{1:k}, Z_k=s| \M)$，我们有
     \begin{align*}
         \Pr(Z_k = s|X_{1:k}=x_{1:k}, \M) & = \frac{\Pr(X_{1:k}=x_{1:k}, Z_k=s| \M)}{\Pr(X_{1:k}=x_{1:k}| \M)} \\
         &= \frac{\alpha_k(s)}{\sum_{z\in\mathcal Z}\alpha_k(z)}.
     \end{align*}
 这一推导给出了一个计算过滤的算法.
 
-然后是平滑：$\Pr(Z_k = s|X=x, \M)$，$k < t$。 回顾记号$\alpha_k(s)= \Pr(X_{1:k}=x_{1:k}, Z_k=s| \M)$，以及$\beta_k(s)=\Pr(X_{k+1:t}=x_{k+1:t} |Z_k=s, \M)$. 可以证明：
+然后是平滑：$\Pr(Z_k = s|X=x, \M)$，$k < t$.  回顾记号$\alpha_k(s)= \Pr(X_{1:k}=x_{1:k}, Z_k=s| \M)$，以及$\beta_k(s)=\Pr(X_{k+1:t}=x_{k+1:t} |Z_k=s, \M)$. 可以证明：
         \[\Pr(z_k = s|X=x, \M)=\frac{\beta_k(s)\alpha_k(s)}{\sum_{z\in\mathcal Z}\alpha_t(z)}.
     \]
 这一推导给出了一个计算平滑的算法.
 
 
-之后是预测：$\Pr(Z_k = s|X=x, \M)$，$k > t$。首先用过滤计算 $\lambda=\Pr(Z_t = s|X=x, \M)$. 然后用 $\lambda$ 作为Markov的初始状态，利用Kolmogorov-Chapman方程向前计算$k-t$步.
+之后是预测：$\Pr(Z_k = s|X=x, \M)$，$k > t$. 首先用过滤计算 $\lambda=\Pr(Z_t = s|X=x, \M)$. 然后用 $\lambda$ 作为Markov的初始状态，利用Kolmogorov-Chapman方程向前计算$k-t$步.
 
 
-最后是解码。定义 
+最后是解码. 定义 
     $$\delta_k(s) = \max_{Z_{1:k-1}}\Pr(Z_{1:k} = (z_{1:k-1}, s), X_{1:k}=x_{1:k}| \M).$$
 根据一步转移，我们有
     $$\delta_{k+1}(s) = \max_{q\in \mathcal Z}\{\delta_k(q)T_{q,s}\}M_{s,x_{k+1}}.$$

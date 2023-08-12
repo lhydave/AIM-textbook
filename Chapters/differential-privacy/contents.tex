@@ -10,15 +10,15 @@
 
 保护病人的隐私信息的一种理解是不会让数据获得者将数据和人对应起来. 那么最直观的想法就是将每条\emph{数据匿名化}\index{数据匿名化}. 比如，每条数据只包含患者的生日、性别、邮政编号（代表位置）、病情. 这样做依然有问题：同一天生日、同一性别、相同邮政编号的人很少，而这些信息很容易被找到，比如公开的选民名册. 于是通过一条数据的各种属性可以轻易定位到这个人，这样的匿名化是不安全的.
 
-我们再看一个例子。2006年，Netflix 举办了关于电影推荐系统的算法设计比赛.
+我们再看一个例子. 2006年，Netflix 举办了关于电影推荐系统的算法设计比赛.
 只公开了匿名代号和对应用户的观看电影名称、打分的数据集（这次连生日、性别都没有）. 但这一数据集很快被破解，问题出在只要对某个用户稍微熟悉一些，就很容易对应出这个用户和观影数据. 这种破解让部分用户感到焦虑，例如性少数群体害怕其他人可以从自己的观影记录中判断出自己的性取向. 第二届Netflix Prize 竞赛也因此停办.
 
-这两个例子展现的是一种\emph{去匿名化}\index{去匿名化}的现象，也就是说匿名的数据实际上揭示了数据对应的那个个体。这去匿名化的出现都是因为数据具有\emph{独特性}. 比如我们看\Cref{tab:tab01}，这是医院甲的病人数据表。56岁的病人只有Rebecca，所以假如我们知道Rebecca的年龄并了解到她去过这家医院，便立即得知她患有HIV.
+这两个例子展现的是一种\emph{去匿名化}\index{去匿名化}的现象，也就是说匿名的数据实际上揭示了数据对应的那个个体. 这去匿名化的出现都是因为数据具有\emph{独特性}. 比如我们看\Cref{tab:tab01}，这是医院甲的病人数据表. 56岁的病人只有Rebecca，所以假如我们知道Rebecca的年龄并了解到她去过这家医院，便立即得知她患有HIV.
 
 \begin{table}[!ht]
 \centering
 \input{\pref/tab01}
-\caption{医院甲的病人数据表。}
+\caption{医院甲的病人数据表. }
 \label{tab:tab01}
 \end{table}
 
@@ -27,7 +27,7 @@
 \begin{table}[!ht]
 \centering
 \input{\pref/tab02}
-\caption{医院甲的病人数据表，模糊了姓名、年龄和邮编。}
+\caption{医院甲的病人数据表，模糊了姓名、年龄和邮编. }
 \label{tab:tab02}
 \end{table}
 
@@ -36,19 +36,19 @@
 \begin{table}[!ht]
 \centering
 \input{\pref/tab03}
-\caption{医院乙的病人数据表，模糊了姓名、年龄和邮编。}
+\caption{医院乙的病人数据表，模糊了姓名、年龄和邮编. }
 \label{tab:tab03}
 \end{table}
 
 除了使用匿名化的手段，还有一种方法可以保护隐私：不再提供单人的数据，而是直接公布将数据集的总体信息，比如平均值. 但这种方法也不一定能保证不泄露单人数据. 例如：我们只公布一个机器学习模型（这算是一直非常抽象的总体信息）. 很多研究表明可以通过尝试不同的测试数据来判断出这个机器学习模型的训练集，这是因为机器学习模型总是会偏向于过拟合训练集数据. 所以如果对某个测试数据的结果很有自信，往往说明这一数据存在于训练集中. \lhysays{给一个ref}
 
 \begin{remark}
-以上这些内容都说明\textbf{匿名化}很难保护个人隐私. 那么是否可以使用密码学的手段进行\textbf{加密}？其实加密和隐私在出发点上完全不同. 加密的目的是为了不让别人获取到真实数据. 而隐私是一个比简单地锁定数据更微妙的问题——我们希望我们的算法的结果能够释放有用的信息，而不是泄露私人信息. 因此我们这里讨论的其实是隐私保护问题而不是加密问题。
+以上这些内容都说明\textbf{匿名化}很难保护个人隐私. 那么是否可以使用密码学的手段进行\textbf{加密}？其实加密和隐私在出发点上完全不同. 加密的目的是为了不让别人获取到真实数据. 而隐私是一个比简单地锁定数据更微妙的问题——我们希望我们的算法的结果能够释放有用的信息，而不是泄露私人信息. 因此我们这里讨论的其实是隐私保护问题而不是加密问题. 
 \end{remark}
 
 \section{差分隐私的定义与性质}
 
-我们上面探讨了隐私保护的必要性以及它的微妙之处，现在我们要给出一种合理的方案解决隐私保护的问题，这个方案就是\emph{差分隐私}。要给出一个数学模型，不仅要知道什么情况下算是隐私泄漏，也需要知道什么情况下不算，所以我们再来看一个反面的例子。
+我们上面探讨了隐私保护的必要性以及它的微妙之处，现在我们要给出一种合理的方案解决隐私保护的问题，这个方案就是\emph{差分隐私}. 要给出一个数学模型，不仅要知道什么情况下算是隐私泄漏，也需要知道什么情况下不算，所以我们再来看一个反面的例子. 
 
 Broky是一位长期吸烟的男子，他参加了一项有关“吸烟与健康”的调查. 这项调查在不久后发布了一项结果，表明长期吸烟的人患上肺癌的几率更大. 伴随着这一结果的公布，保险公司在出售相同保险时会对长期吸烟者索要更高的价格. Broky当然也受到了这一政策的影响. 那我们是否可以认为这项研究泄露了Broky（更有可能患病）的隐私呢？
 
@@ -64,7 +64,7 @@ Broky的例子告诉我们对于隐私的一种合理的衡量应该有以下性
 
 在之前的例子中，含有Broky的被调查者的数据集和把Broky换为任意一个其他人的数据集时$1$-相邻数据集.
 
-现在我们给出差分隐私的定义。
+现在我们给出差分隐私的定义. 
 
 \begin{definition}[$\epsilon$-DP]\index{$\epsilon$-DP}
 考虑随机算法 $A : \mathcal X^n \to \mathcal Y$，如果对于任一对$1$-相邻数据集$x, x'$，对任意（可测）值集 $E \subseteq \mathcal Y$，有
@@ -74,7 +74,7 @@ Broky的例子告诉我们对于隐私的一种合理的衡量应该有以下性
 那么我们称$A$为\emph{数据集大小为 $n$ 的 $\epsilon$-DP算法}.
 \end{definition}
 
-需要注意的是，这一定义是针对随机算法的，并且是对称的，也就是$x$和$x'$的地位是平等的。直观上一个，$\epsilon$-DP算法的输出分布在相邻数据集上的变化不会太大. $\epsilon$衡量的是信息的泄漏量；$\epsilon$越大，算法泄漏的信息就越多，隐私保护效果当然也变差.
+需要注意的是，这一定义是针对随机算法的，并且是对称的，也就是$x$和$x'$的地位是平等的. 直观上一个，$\epsilon$-DP算法的输出分布在相邻数据集上的变化不会太大. $\epsilon$衡量的是信息的泄漏量；$\epsilon$越大，算法泄漏的信息就越多，隐私保护效果当然也变差.
 
 以上定义需要对所有的（可测）值集$E$都成立，这给验证带来了极大的困难，如果随机算法的输出分布是更加常规的，我们可以简化验证的过程. 
 
@@ -105,7 +105,7 @@ $\impliedby$：假设$E=\{y_1,\dots,y_k,\dots\}$. 对每一个$y_i$，都有
     h_{x}(y) \leq e^{\epsilon} \cdot h_{x'}(y).
     \]
 \end{proposition}
-\begin{proof}\footnote{这一部分的严格表述需要测度论的基础，所以这一证明从直观上理解即可，不需要考虑严格的定义。}
+\begin{proof}\footnote{这一部分的严格表述需要测度论的基础，所以这一证明从直观上理解即可，不需要考虑严格的定义. }
 $\implies$：根据概率密度函数的定义（实际上是Lebesgue微分定理），对$x\in\mathcal X^n$，取$E_\delta = (y-\delta, y+\delta)$，对几乎所有的$y\in\mathcal Y$，有
 \[\frac{\d}{\d\delta}\Pr(A(x)\in E_\delta)=h_x(y).\]
 因此，对几乎所有的$y\in\mathcal Y$，
@@ -114,7 +114,7 @@ $\impliedby$：依然根据概率密度函数的定义，考虑$x,x'\in\mathcal 
 \[\Pr(A(x)\in E)=\int_E h_x(y)\d y\leq e^\epsilon\cdot\int_E h_{x'}(y)\d y=e^\epsilon\cdot\Pr(A(x')\in E).\]
 \end{proof}
 
-接下来我们给出差分隐私的基本性质。
+接下来我们给出差分隐私的基本性质. 
 
 \begin{proposition}[复合性，两个算法的情形]\label{prop:composition}\index{差分隐私!复合性}
     $A_1$ 和 $A_2$ 是相互独立的随机算法，其中 $A_1 : X^n \to \mathcal Y_1$，$A_2 : \mathcal Y_1 \times \mathcal X^n \to \mathcal Y_2$. 假设$A_1$是 $\epsilon_1$-DP算法，$A_2$ 是 $\epsilon_2$-DP算法.
@@ -166,7 +166,7 @@ $\impliedby$：依然根据概率密度函数的定义，考虑$x,x'\in\mathcal 
     \]
 \end{proof}
 
-最后，我们讨论如果有多个人的数据都发生变化的时候，隐私保护的性质会发生什么变化。
+最后，我们讨论如果有多个人的数据都发生变化的时候，隐私保护的性质会发生什么变化. 
 
 \begin{proposition}[群体隐私]\label{prop:group-privacy}\index{差分隐私!群体隐私}
     令 $x, x' \in \mathcal X^n$ 是$k$-相邻数据集，$1 \leq k \leq n$. 如果 $A$ 是 $\epsilon$-DP算法，那么对所有的值集$E$，我们有
@@ -184,19 +184,19 @@ $\impliedby$：依然根据概率密度函数的定义，考虑$x,x'\in\mathcal 
     \]
 \end{proof}
 
-换言之，$k$-相邻数据集上$\epsilon$-DP算法的表现仿佛一个$k\epsilon$-DP算法。
+换言之，$k$-相邻数据集上$\epsilon$-DP算法的表现仿佛一个$k\epsilon$-DP算法. 
 
-这一性质还可以推出$\epsilon$的含义。我们知道数据集$x, x' \in \mathcal X^n$最多在$n$个位置不同. 所以对于一个$\epsilon$-DP算法$A$，一定有
+这一性质还可以推出$\epsilon$的含义. 我们知道数据集$x, x' \in \mathcal X^n$最多在$n$个位置不同. 所以对于一个$\epsilon$-DP算法$A$，一定有
         \[
         \Pr(A(x) \in E) \leq e^{n\epsilon}\Pr(A(x') \in E).
         \]
 如果这里的$\epsilon$太小，意味着这一算法对任何输入都有相似的输出. 换句话说，算法压根没有输出任何有意义的内容. 于是，我们更定量说明了，$\epsilon$还代表信息的泄露量. 因此，一个实用的DP算法不能让$\epsilon$太小，否则输出没有意义；也不能让$\epsilon$太大，否则隐私保护效果不好.
 
 \section{差分隐私的应用}
-在这一部分，我们将会具体讨论三个差分隐私的算法。
+在这一部分，我们将会具体讨论三个差分隐私的算法. 
 
 \subsection{随机反应算法}
-我们从一个具体场景开始。假设有一名老师想要调查班上的同学有多少人曾经在考试中作弊. 设班上一共有$n$名同学，每个人回答一个数字$x_i \in \{0,1\}$. 对于每个$i$，独立地按照以下规则根据$x_i$得到对应的$y_i$：
+我们从一个具体场景开始. 假设有一名老师想要调查班上的同学有多少人曾经在考试中作弊. 设班上一共有$n$名同学，每个人回答一个数字$x_i \in \{0,1\}$. 对于每个$i$，独立地按照以下规则根据$x_i$得到对应的$y_i$：
 \[\begin{aligned}
     y_i =
     \begin{cases}
@@ -244,7 +244,7 @@ RR算法在隐私保护上的表现由以下定理给出：
     \mathsf{GS}_f = \sup_{x, x' \text{ 在 }\mathcal X^n\text{ $1$-相邻}} |f(x) - f(x')|. 
     \]
 \end{definition}
-定义中的$1$-相邻，可能会随着情景不同而改变. 全局灵敏度的定义是很直观的，就是改变一条数据会对算法输出带来的最大可能变化。
+定义中的$1$-相邻，可能会随着情景不同而改变. 全局灵敏度的定义是很直观的，就是改变一条数据会对算法输出带来的最大可能变化. 
 
 我们来计算一个简单的例子.
 \begin{example}
@@ -264,7 +264,7 @@ RR算法在隐私保护上的表现由以下定理给出：
 我们称具有这一密度的分布为\emph{Laplace分布}，记为$\mathsf{Lap}(\mu,\lambda)$.
 \end{definition}
 
-Laplace分布是服从双边指数分布的随机变量进行线性变换后服从的分布. 具体来说，设$X\sim\mathsf{DExp}(1)$，那么$\lambda X+\mu\sim\mathsf{Lap}(\mu,\lambda)$. 在\Cref{fig:Laplace-distribution} 中，我们展示了不同参数的Laplace分布密度函数图像。更多关于Laplace分布的性质，我们留做习题. \lhysays{习题}
+Laplace分布是服从双边指数分布的随机变量进行线性变换后服从的分布. 具体来说，设$X\sim\mathsf{DExp}(1)$，那么$\lambda X+\mu\sim\mathsf{Lap}(\mu,\lambda)$. 在\Cref{fig:Laplace-distribution} 中，我们展示了不同参数的Laplace分布密度函数图像. 更多关于Laplace分布的性质，我们留做习题. \lhysays{习题}
 
 \begin{figure}[ht]
     \centering
@@ -275,7 +275,7 @@ Laplace分布是服从双边指数分布的随机变量进行线性变换后服�
     \label{fig:Laplace-distribution}
 \end{figure}
 
-下面我们来陈述Laplace机制。我们想利用Laplace分布来创造一些随机性. 给定一个数据集$x \in \mathcal X^n$ 和参数$\epsilon$. 对于一个算法$f:\mathcal X^n \to \R$，先计算出$f$的全局灵敏度$\mathsf{GS}_f$。输出$A_{\mathsf{Lap}}(\epsilon, x) = f(x) + Z$，其中$Z\sim \mathsf{Lap}(0, \mathsf{GS}_f/\epsilon)$. 将随机算法$A_{\mathsf{Lap}}(\epsilon, \cdot)$称为\emph{Laplace机制}\index{Laplace机制}。我们有以下定理：
+下面我们来陈述Laplace机制. 我们想利用Laplace分布来创造一些随机性. 给定一个数据集$x \in \mathcal X^n$ 和参数$\epsilon$. 对于一个算法$f:\mathcal X^n \to \R$，先计算出$f$的全局灵敏度$\mathsf{GS}_f$. 输出$A_{\mathsf{Lap}}(\epsilon, x) = f(x) + Z$，其中$Z\sim \mathsf{Lap}(0, \mathsf{GS}_f/\epsilon)$. 将随机算法$A_{\mathsf{Lap}}(\epsilon, \cdot)$称为\emph{Laplace机制}\index{Laplace机制}. 我们有以下定理：
 \begin{theorem}\label{thm:laplace-mechanism}
     对于任意的$\epsilon > 0$，Laplace机制是$\epsilon$-DP算法.
 \end{theorem}
@@ -289,7 +289,7 @@ Laplace分布是服从双边指数分布的随机变量进行线性变换后服�
         &\leq \exp \left(\epsilon \frac{|\mu - \mu'|}{GS_f} \right)\leq \exp(\epsilon).
     \end{aligned}
     \]
-根据\Cref{prop:continuous-dp}，命题得证。
+根据\Cref{prop:continuous-dp}，命题得证. 
 \end{proof}
 
 \subsection{DP版本Llyod算法}
@@ -337,7 +337,7 @@ Laplace分布是服从双边指数分布的随机变量进行线性变换后服�
     \item 输出：$c_1^{(T)}$, $c_2^{(T)}$, $\cdots$, $c_k^{(T)}$.
 \end{itemize}
 
-以下定理表明上面的算法确实是一个$\epsilon$-DP算法。
+以下定理表明上面的算法确实是一个$\epsilon$-DP算法. 
 \begin{theorem}
     DP 版本的 Lloyd算法是$\epsilon$-DP算法.
 \end{theorem}

@@ -3,7 +3,7 @@
 \newcommand{\pref}{Chapters/duality/figures}
 
 
-在本章中，我们考虑带约束的规划问题。它的一般形式是
+在本章中，我们考虑带约束的规划问题. 它的一般形式是
         \begin{alignat*}{2}
         \min\quad&f({x}) \\
         \text{s.t.}\quad&h_i({x})=0,&\quad i=1,\dots,m,\\
@@ -22,7 +22,7 @@
 
 约束${h}({x})={0},{g}({x})\le{0}$被称作\textbf{\index{函数约束}函数约束}. ${x}\in\Omega$是\textbf{\index{集合约束}集合约束}. 我们并不强调集合约束，因此假设在大部分情况下$\Omega$就是整个$\R^n$的空间，或者问题的解就在$\Omega$的内部. 
 
-一个满足所有函数约束的点${x}\in\Omega$被称作\textbf{\index{可行解}可行解}，而使得$f$取得最小值的可行解叫做\textbf{\index{最优解}最优解}. 有时候优化问题的目标可能是最大化$f$，此时相应的最优解就是使得$f$取得最大值的可行解。本章的任务是讨论各种情况下最优值的必要条件，这些必要条件最终形成了所谓的\textbf{对偶理论}\index{对偶理论}。
+一个满足所有函数约束的点${x}\in\Omega$被称作\textbf{\index{可行解}可行解}，而使得$f$取得最小值的可行解叫做\textbf{\index{最优解}最优解}. 有时候优化问题的目标可能是最大化$f$，此时相应的最优解就是使得$f$取得最大值的可行解. 本章的任务是讨论各种情况下最优值的必要条件，这些必要条件最终形成了所谓的\textbf{对偶理论}\index{对偶理论}. 
 
 \section{条件极值与Lagrange乘子法}
 我们现在先只考虑等式约束
@@ -49,10 +49,10 @@
 
 切空间的重要特点是，它是一个线性空间.
 \begin{lemma}\label{lemma:tan-space}\index{线性空间}
-    切空间是一个线性空间。
+    切空间是一个线性空间. 
 \end{lemma}
 
-既然切空间是一个线性空间，我们的一个主要目标就是给出切空间的显示表达，比如给出它的一组基向量。考虑一条曲线$x(t)$，如果它在$h_i(x)=0$形成的曲面上，那么应该有
+既然切空间是一个线性空间，我们的一个主要目标就是给出切空间的显示表达，比如给出它的一组基向量. 考虑一条曲线$x(t)$，如果它在$h_i(x)=0$形成的曲面上，那么应该有
     \[\frac{\d}{\d t}h_i(x(t))=0\iff \nabla_x h_i(x(t))\dot{x}(t)=0.\]
 因此${x}(t)$的切向量和该点处函数$h_i({x}(t))$的导数正交. 于是，如果$x(t)$在$h(x)=0$形成的曲面上，那么${x}(t)$处的导数$\nabla h(x(t))$是切平面的法向量. 这一数学推导的示意图见\Cref{fig:tangent-space}.
 
@@ -67,7 +67,7 @@
     
 我们把刚刚得到的垂直于$\nabla {h(x^\ast)y}$的子空间（即正交补空间）记作
     \[M=\{{y}\in\R^n:\nabla {h(x^\ast)y}=0\}.\]
-我们已经证明$T_{x^\ast}(S)\subseteq M$。反过来，在什么条件下会有$M=T_{x^\ast}(S)$？为此，我们引入\emph{正规点}的概念。
+我们已经证明$T_{x^\ast}(S)\subseteq M$. 反过来，在什么条件下会有$M=T_{x^\ast}(S)$？为此，我们引入\emph{正规点}的概念. 
 
 \begin{definition}[正规点]\label{def:regular-point}\index{正规点}
 考虑优化问题 \eqref{eq:eq-constraint-only-differentiable}，当一个点${x^\ast}\in\Omega$满足约束${h(x^\ast)}=0$，且梯度向量$\nabla h_1({x^\ast}),\nabla h_2({x^\ast}),\dots,\nabla h_m({x^\ast})$线性无关时，它被称作该约束的\textbf{正规点}. 
@@ -77,7 +77,7 @@
     \begin{figure}
         \centering
         \includegraphics[scale=0.17]{\pref/tan-2constraint.png}
-        \caption{正规点示意图。}
+        \caption{正规点示意图. }
         \label{fig:tan-2constraint}
     \end{figure}
 
@@ -156,7 +156,7 @@ $$p_i=\exp((\lambda-1)+\mu x_i),\quad i=1,2,\dots, n.$$
 \end{itemize}
 \end{definition}
 
-换言之，此时的正规点不仅考虑等式约束，还要考虑起作用的或者说被激活的不等式约束，这些不等式约束相当于等式约束。类似Lagrange乘子法，此时的一阶必要条件为：
+换言之，此时的正规点不仅考虑等式约束，还要考虑起作用的或者说被激活的不等式约束，这些不等式约束相当于等式约束. 类似Lagrange乘子法，此时的一阶必要条件为：
 
 \begin{theorem}[Karush-Kuhn-Tucker条件]\label{thm:KKT}\index{Karush-Kuhn-Tucker条件}\index{一阶必要条件}
 令${x^\ast}$为优化问题 \eqref{eq:ineq-constraint-inequality-differentiable} 的正规极小值点，那么，存在向量${\lambda}\in\R^m$和向量${\mu}\in \R^p$且${\mu\ge 0}$使得
@@ -258,7 +258,7 @@ $A$是$\omega$的上图，$B$是$f^\ast$向下延申并与原点对齐的垂线.
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.3]{\pref/sep-hyperplane-eq.png}
-    \caption{证明示意图。}
+    \caption{证明示意图. }
     \label{fig:sep-hyperplane-eq}
 \end{figure}
 
@@ -278,7 +278,7 @@ $A$是$\omega$的上图，$B$是$f^\ast$向下延申并与原点对齐的垂线.
 其中，${g}$是一个$p$维的函数. 
 
 
-然后我们引入正规性条件。对于不等式约束来说，正规性条件也被称为做\emph{Slater条件}. 
+然后我们引入正规性条件. 对于不等式约束来说，正规性条件也被称为做\emph{Slater条件}. 
 
 \begin{definition}[Slater条件]\index{正规性条件}\index{Slater条件}
 考虑优化问题 \eqref{eq:ineq-zero-cond}，令
@@ -297,7 +297,7 @@ $A$是$\omega$的上图，$B$是$f^\ast$向下延申并与原点对齐的垂线.
 此外，${\mu^\t g(x^\ast)}=0.$
 \end{theorem}
 
-这一定理的证明类似于\Cref{thm:eq-zero-cond} 的证明。首先还是引入原始函数。问题 \eqref{eq:ineq-zero-cond} 对应的原始函数\index{原始函数}为：
+这一定理的证明类似于\Cref{thm:eq-zero-cond} 的证明. 首先还是引入原始函数. 问题 \eqref{eq:ineq-zero-cond} 对应的原始函数\index{原始函数}为：
     $$\omega({z})=\inf\{f({x}):g(x)\le{z},x\in\Omega\},z\in D.$$
 
 
@@ -311,7 +311,7 @@ $A$和$B$都是凸的. 证明依然是构造$A,B$的分离超平面，正规性�
 \begin{figure}
     \centering
     \includegraphics[scale=0.3]{\pref/sep-hyperplane-ineq.png}
-    \caption{证明示意图。}
+    \caption{证明示意图. }
     \label{fig:sep-hyperplane-ineq}
 \end{figure}
 
@@ -384,7 +384,7 @@ $$\varphi({\mu})=\inf \{f({x})+{\mu^\t g(x)}:{x}\in\Omega\}.$$
     由此，$\varphi^\ast\le f^\ast$. 
 \end{proof}
 
-弱对偶定理也有非常几何的解释。考虑向量$(\mu,1)\in \R^{p}\times\R$，${\mu}\ge{0}$和一个常数$c$. 关于$(z,r)$的方程$({\mu},1)^\t (z,r)=r+{\mu^\t z}=c$定义了一个$\R^{p}\times\R$内的超平面. 不同的$c$得到不同的超平面，他们都是平行的. 对于给定的$({\mu},1)$（即平行的超平面），选取一个最低的超平面，使得它刚刚碰到了原始函数上图边界. 假设${x_1}$是这个触点，有$r=f(x_1)$和$z=g(x_1)$. 那么$c=f({x_1})+{\mu^\t g(x_1)}=\varphi({\mu})$. 注意到此时$c=\varphi({\mu})$就是截距，这就是$\varphi(\mu)$的几何含义.
+弱对偶定理也有非常几何的解释. 考虑向量$(\mu,1)\in \R^{p}\times\R$，${\mu}\ge{0}$和一个常数$c$. 关于$(z,r)$的方程$({\mu},1)^\t (z,r)=r+{\mu^\t z}=c$定义了一个$\R^{p}\times\R$内的超平面. 不同的$c$得到不同的超平面，他们都是平行的. 对于给定的$({\mu},1)$（即平行的超平面），选取一个最低的超平面，使得它刚刚碰到了原始函数上图边界. 假设${x_1}$是这个触点，有$r=f(x_1)$和$z=g(x_1)$. 那么$c=f({x_1})+{\mu^\t g(x_1)}=\varphi({\mu})$. 注意到此时$c=\varphi({\mu})$就是截距，这就是$\varphi(\mu)$的几何含义.
 
 另一方面，求截距$c$（对偶函数值）的最大值$\varphi^*$，就是求位于原始函数之下的超平面的最大截距. 因此至少有$\varphi^*\leq f^*$，差$f^*-\varphi^*$被称为\emph{对偶间距}\index{对偶间距}. 这就是弱对偶定理，图示参见\Cref{fig:highest-hyperplane}.
 
@@ -406,7 +406,7 @@ $$\varphi({\mu})=\inf \{f({x})+{\mu^\t g(x)}:{x}\in\Omega\}.$$
     \label{fig:strong-dual}
 \end{figure}
 
-下面我们叙述并证明强对偶定理。我们直接考虑一般的优化问题.
+下面我们叙述并证明强对偶定理. 我们直接考虑一般的优化问题.
 \begin{equation}
         \begin{aligned}
     \min\quad & f({x}) \\
@@ -460,7 +460,7 @@ $$\varphi({\lambda,\mu})=f^\ast.$$
 作为例子，下面我们给一个对偶规划的经济学解释. 
 
 \begin{example}[线性规划的经济学解释]
-\Cref{tab:cleaner} 描述了公司甲用原料生产清洁剂的价格与存量表。
+\Cref{tab:cleaner} 描述了公司甲用原料生产清洁剂的价格与存量表. 
 \begin{table}
         \centering
         \begin{tabular}{c|ccc|c}
@@ -473,7 +473,7 @@ $$\varphi({\lambda,\mu})=f^\ast.$$
              存量（吨）&120&150&50& \\
              \hline
         \end{tabular}
-        \caption{清洁剂原料价格存量表。}
+        \caption{清洁剂原料价格存量表. }
         \label{tab:cleaner}
 \end{table}
 
@@ -517,7 +517,7 @@ $$\varphi({\lambda,\mu})=f^\ast.$$
 		-1, &w^\t x+b<0.
 	\end{cases}$$
 
-学习问题的首要目标是找到正确的以及最优的$w$和$b$。本质上说，这就是一个\emph{找分离超平面}\index{分离超平面}的过程。那么，什么才叫最优呢？从几何视角来看，一个自然的想法是最大化\emph{分离距离}\index{分离距离}，即训练集中所有点到分离超平面的距离和的最小值，见\Cref{fig:svm}.
+学习问题的首要目标是找到正确的以及最优的$w$和$b$. 本质上说，这就是一个\emph{找分离超平面}\index{分离超平面}的过程. 那么，什么才叫最优呢？从几何视角来看，一个自然的想法是最大化\emph{分离距离}\index{分离距离}，即训练集中所有点到分离超平面的距离和的最小值，见\Cref{fig:svm}.
 \begin{figure}
     \centering
     \includegraphics[scale=0.8]{\pref/svm.png}
