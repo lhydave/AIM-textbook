@@ -109,7 +109,7 @@ $d(a,x_n)\le \frac{q^n}{1-q}d(x_1,x_0).$
 考虑$\norm{\lambda R}=\sup_{\norm{x}=1}\norm{\lambda Rx}=\lambda<1$，由Banach不动点定理可知，压缩映射$f(x)$有唯一不动点$a=f(a)$.
 \end{example}
 
-\begin{example}[梯度下降的收敛性]\index{梯度下降}
+\begin{example}[梯度下降的收敛性]\index{梯度下降}\label{ex:gradient-descent}
 我们优化目标是寻找二阶可微凸函数$f(x),x\in \R^n$的最小值. 使用梯度下降方法：每次往最小梯度方向移动.
 假设对任意$x\in \R^n$，
     \[L \le \lambda_{\min}(\nabla^2 f(x))\le \lambda_{\max}(\nabla^2 f(x))\le U.\]

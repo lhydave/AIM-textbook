@@ -125,7 +125,7 @@
 
 
 我们给几个开集的例子：
-\begin{example}[范等价拓扑空间]
+\begin{example}[范等价拓扑空间]\label{ex:lp-topology}
     设$X$是一个线性空间，它上面有两个等价的范数$\norm{\cdot}_1$和$\norm{\cdot}_2$\footnote{注意，对一般空间来说，这样的记号不意味着$L^1$或者$L^2$范数. }，则两个赋范空间$(X,\norm{\cdot}_1)$和$(X,\norm{\cdot}_2)$定义了相同的拓扑空间. 因此，在拓扑意义下，$\R^n$空间到底装备了哪个$L^p$范数是不重要的，因此对于同一个数学对象（集合、序列、函数）来说，收敛性、完备性以及连续性在$L^p$范数下都是完全一样的. 
 
     事实上，设$U$是$(X,\norm{\cdot}_1)$中的开集，$x\in U$，则存在$r>0$，使得$B_1(x,r)\subseteq U$，由范数等价，存在$c,C>0$，使得$c\norm{x}_2\leq \norm{x}_1\leq C\norm{x}_2$，则$B_2(x,r/c)\subseteq B_1(x,r)\subseteq U$，所以$U$是$(X,\norm{\cdot}_2)$中的开集. 反之亦然. 
@@ -282,14 +282,14 @@ $\delta$-$\epsilon$语言的定义实际上给出了\emph{映射的极限}这一
 \begin{definition}[映射的极限]\index{极限}
     设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，$f:X\to Y$是一个映射，$x_0\in X$，$y\in Y$，如果对任意$\epsilon>0$，存在$\delta>0$，使得对任意$x\in X$，如果$0<d_X(x,x_0)<\delta$，则$d_Y(f(x),y)<\epsilon$，则称$y$是$f$在$x_0$处的\textbf{极限}，记作$\lim_{x\to x_0}f(x)=y$或$f(x)\to y$，$x\to x_0$.
 \end{definition}
-注意到，定义中我们实际上划定了$x$的范围，即$x\neq x_0$，或者说去心邻域$B(x_0,\delta)\setminus\{x_0\}$，这样做允许极限并不等于$f(x_0)$本身。
+注意到，定义中我们实际上划定了$x$的范围，即$x\neq x_0$，或者说去心邻域$B(x_0,\delta)\setminus\{x_0\}$，这样做允许极限并不等于$f(x_0)$本身. 
 
 \begin{remark}
 映射的极限还可以定义自变量趋于无穷、单侧极限以及其他情况，我们后面会使用这些概念，他们的直观含义都是明确的，这里我们不再给出正式定义，我们只给出他们的记号：
 \begin{itemize}
     \item 趋于无穷：$\lim_{x\to\infty}f(x)=y$或$f(x)\to y$，$x\to\infty$；
     \item 如果定义域是$\R$，还可以定义趋于正、负无穷：$\lim_{x\to+\infty}f(x)=y$或$f(x)\to y$，$x\to+\infty$，$\lim_{x\to-\infty}f(x)=y$或$f(x)\to y$，$x\to-\infty$；
-    \item 单调递增趋于：$x\uparrow x_0$，单调递减趋于：$x\downarrow x_0$。这些记号既可以出现在自变量中，也可以出现在函数值中，例如我们可以写$n/(n+1)\uparrow 1$，$n\to\infty$.
+    \item 单调递增趋于：$x\uparrow x_0$，单调递减趋于：$x\downarrow x_0$. 这些记号既可以出现在自变量中，也可以出现在函数值中，例如我们可以写$n/(n+1)\uparrow 1$，$n\to\infty$.
     \item 如果定义域是$\R$，还可以定义单侧极限，从负向趋于某点（左极限）：$\lim_{x\uparrow x_0}f(x)=y$或$f(x)\to y$，$x\uparrow x_0$，以及从正向趋于某点（右极限）：$\lim_{x\downarrow x_0}f(x)=y$或$f(x)\to y$，$x\downarrow x_0$.
 \end{itemize}
 \end{remark}
@@ -314,7 +314,7 @@ $\delta$-$\epsilon$语言的定义实际上给出了\emph{映射的极限}这一
     \item  $f$在$x\in X$处连续当且仅当对任意包含$f(x)$的开集$U\subseteq Y$，存在包含$x$的开集$V\subseteq X$，使得$f(V)\subseteq U$.
 \end{enumerate}
 \end{proposition}
-这一命题的证明非常类似\Cref{prop:open-ball}，我们这里就不给出了. 注意，极限的开集定义所用的集合$V\setminus\{x_0\}$也是一个开集，它是$x_0$的去心邻域。连续映射的定义也可以完全由拓扑给出：
+这一命题的证明非常类似\Cref{prop:open-ball}，我们这里就不给出了. 注意，极限的开集定义所用的集合$V\setminus\{x_0\}$也是一个开集，它是$x_0$的去心邻域. 连续映射的定义也可以完全由拓扑给出：
 
 \begin{proposition}\label{prop:continuous-topology}
     设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，$f:X\to Y$是一个映射，则下列表述等价：
@@ -326,7 +326,7 @@ $\delta$-$\epsilon$语言的定义实际上给出了\emph{映射的极限}这一
 \end{proposition}
 利用\Cref{prop:continuous-open}、\Cref{prop:closed-prop} 以及开集的定义，很容易证明这一命题，我们就不再证明了. 
 
-\begin{example}
+\begin{example}\label{ex:metric-norm-continuous}
 在不给任何额外定义的时候，我们有一个非常自然的连续函数的例子，那就是\textbf{度量}. 设$(X,d)$是一个度量空间，我们证明度量$d:X\times X\to\R$是一个连续函数. 
 
 我们利用点连续的定义，证明$d$在每一点都连续. 设$(x_1,y_1)\in X\times X$. 我们利用\Cref{prop:continuous-open} 和原始定义的混合版本. 注意到要证明所有包含$d_0=d(x_1,y_1)$的开集$U$满足条件，根据$U$的构造，只需要证明，对任意$\epsilon>0$，$B(d_0,\epsilon)$满足条件. 为此，取一个包含$(x_1,y_1)$的开集$V=B(x_1,\epsilon/2)\times B(y_1,\epsilon/2)$（关于这个为什么是开集，详细讨论见\Cref{ex:product-topology}），则对任意$(x_2,y_2)\in V$，有$d(x_1,x_2)<\epsilon/2$，$d(y_1,y_2)<\epsilon/2$，所以根据三角不等式，
@@ -337,6 +337,8 @@ $\delta$-$\epsilon$语言的定义实际上给出了\emph{映射的极限}这一
 \implies& d(x_2,y_2)>d_0-\epsilon.
 \end{align*}
 所以，$d(x_2,y_2)\in B(d_0,\epsilon)$，即$V\subseteq B(d_0,\epsilon)$，所以$d$在$(x_1,y_1)$连续. 因为$(x_1,y_1)$是任意的，所以$d$是连续的.
+
+最后，一个直接的推论是，范数$\norm{\cdot}$也是连续函数. 
 \end{example}
 
 连续性的定义实际分为了两部分，一个是局部的、点的连续性，另一个是整体的、只依赖开集而不依赖具体点的定义. 他们也对应了连续不同的性质. 我们首先讨论局部连续的性质，以下命题我们都不再给出证明. 
@@ -383,11 +385,11 @@ $\delta$-$\epsilon$语言的定义实际上给出了\emph{映射的极限}这一
     设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，$f:X\to Y$是一个连续映射，$F\subseteq X$是紧集，则$f(F)$是紧集. 
 \end{proposition}
 
-其他性质将在下一节给出。
+其他性质将在下一节给出. 
 
 \subsection{与实数有关的性质}
 
-本节要讨论的性质都限制映射的值是实数，即$f:X\to \R$. 这样的映射我们称之为\emph{函数}. $\R^n$区别于$\R^n$最大的不同是实数可以比大小而实数向量不行，实数与大小相关的性质有很多，我们列出其中两个与实数公理等价的. 这些性质需要用到\emph{界}和\emph{确界}的概念，这一概念将会频繁出现在我们的讨论中，所以这里单独给出：
+本节要讨论的性质都限制映射的值是实数，即$f:X\to \R$. 这样的映射我们称之为\emph{实值函数}或简单称为\emph{函数}. $\R^n$区别于$\R^n$最大的不同是实数可以比大小而实数向量不行，实数与大小相关的性质有很多，我们列出其中两个与实数公理等价的. 这些性质需要用到\emph{界}和\emph{确界}的概念，这一概念将会频繁出现在我们的讨论中，所以这里单独给出：
 
 \begin{definition}[上界，上确界，下界，下确界]\index{上确界}\index{下确界}\index{上界}\index{下界}
     设$A\subseteq\R$，如果存在$M\in\R$，使得对任意$a\in A$，$a\leq M$，则称$M$是$A$的一个\textbf{上界}，如果$M$是$A$的上界，且对任意$M'<M$，存在$a\in A$，使得$a>M'$，则称$M$是$A$的一个\textbf{上确界}，记作$\sup A$. 
@@ -417,19 +419,19 @@ $\delta$-$\epsilon$语言的定义实际上给出了\emph{映射的极限}这一
     设$M=\sup A$（由确界原理知$M$存在），对任意$n\in\N$，由$M-1/n$不是$A$的上界，存在$a_n\in A$，使得$M-1/n<a_n\leq M$. 根据极限的定义易知$\lim_{n\to\infty}a_n=M$.
 \end{proof}
 
-对于实值函数来说，我们还需要比较在极限情况下两个函数的\emph{渐进大小}，这就是$o$和$\O$符号。我们先给出这一概念在序列上的定义：
+对于实值函数来说，我们还需要比较在极限情况下两个函数的\emph{渐进大小}，这就是$o$和$\O$符号. 我们先给出这一概念在序列上的定义：
 
 \begin{definition}[阶，无穷小，等价]\index{阶}\index{无穷小}\index{等价}
     设$\{x_n\}_{n=1}^\infty$和$\{y_n\}_{n=1}^\infty$是两个序列，如果$\lim_{n\to\infty}\frac{x_n}{y_n}=0$，则称$\{x_n\}_{n=1}^\infty$是$\{y_n\}_{n=1}^\infty$的\textbf{高阶无穷小}，记作$x_n=o(y_n)$；如果存在一个正常数$C$使得除去有限个$n$都有$|x_n|\leq C |y_n|$，则称$\{x_n\}_{n=1}^\infty$的\textbf{阶不高于}$\{y_n\}_{n=1}^\infty$，记作$x_n=\O(y_n)$.
 
     如果$x_n=\O(y_n)$且$y_n=\O(x_n)$，那么称$\{x_n\}_{n=1}^\infty$和$\{y_n\}_{n=1}^\infty$是\textbf{同阶}的. 如果进一步$\lim_{n\to\infty}\frac{x_n}{y_n}=1$，则称$\{x_n\}_{n=1}^\infty$和$\{y_n\}_{n=1}^\infty$是\textbf{等价}的，记作$x_n\sim y_n$.
 \end{definition}
-上述定义可以非常自然迁移到函数上，我们不再赘述。下面是一些例子：
+上述定义可以非常自然迁移到函数上，我们不再赘述. 下面是一些例子：
 
 \begin{example}
 \begin{itemize}
     \item $n\to\infty$时，$n^2=o(2^n)$，$n^{1/n}\sim 1$，$n^2\sim n^2+\log n$.
-    \item $x\to 0$时，$\sin x\sim x$，$1/x=o(1/x^2)$。
+    \item $x\to 0$时，$\sin x\sim x$，$1/x=o(1/x^2)$. 
     \item $n\to\infty$时，$\sum_{k=1}^n\frac{1}{n}\sim\ln n$.
 \end{itemize}
 \end{example}
@@ -449,11 +451,11 @@ $\delta$-$\epsilon$语言的定义实际上给出了\emph{映射的极限}这一
 
 \section{一元函数的微分学}
 
-接下来，我们进入微分学的部分，同样，我们先从最基本的一元函数的情况入手。
+接下来，我们进入微分学的部分，同样，我们先从最基本的一元函数的情况（即$\R\to\R$的函数）入手. 
 
 \subsection{导数与微分的定义}\index{导数}\index{微分}
 
-从近似的角度来说，\emph{微分}或者\emph{导数}的概念，本身在描述在某个点函数的线性近似，因此微分和导数本身也是一个（线性）映射。在一元函数中，我们或许无法看出来这一点，但是在更加一般的微分学中，这样的观点非常重要。因此，即便在一元部分，我们也尝试将这样的观点引入。
+从近似的角度来说，\emph{微分}或者\emph{导数}的概念，本身在描述在某个点函数的线性近似，因此微分和导数本身也是一个（线性）映射. 在一元函数中，我们或许无法看出来这一点，但是在更加一般的微分学中，这样的观点非常重要. 因此，即便在一元部分，我们也尝试将这样的观点引入. 
 
 考虑一个函数$f:\R\to\R$，和点$x_0\in\R$，我们希望找到一个线性映射$df_{x_0}:\R\to\R$，使得$f(x)$在$x_0$附近的行为很接近这线性映射，即
 
@@ -468,7 +470,7 @@ $\delta$-$\epsilon$语言的定义实际上给出了\emph{映射的极限}这一
 \begin{equation}
 \d f_{x_0}(1)=\frac{f(x)-f(x_0)}{x-x_0}+o(1).\label{eq:df-1}
 \end{equation}
-注意$\d f_{x_0}(x)=kx$，所以左边就是$k$，而右边是割线的斜率。式 \eqref{eq:df-1} 的含义其实就是说$k$就是割线斜率的极限，直观上这就是切线的斜率，这就是导数的几何含义. 这一过程可以见下图：
+注意$\d f_{x_0}(x)=kx$，所以左边就是$k$，而右边是割线的斜率. 式 \eqref{eq:df-1} 的含义其实就是说$k$就是割线斜率的极限，直观上这就是切线的斜率，这就是导数的几何含义. 这一过程可以见下图：
 
 \begin{center}
 \begin{tikzpicture}
@@ -496,7 +498,7 @@ $\delta$-$\epsilon$语言的定义实际上给出了\emph{映射的极限}这一
 
     如果$f$在$\R$的每一点都可微，则称$f$是\textbf{可微}的或者\textbf{可导}的，$\d f$是$f$的\textbf{微分}，$f'$是$f$的\textbf{导（函）数}，也记作$\frac{\d f}{\d x}$或$\dot{f}$.
 \end{definition}
-关于导数的符号也有一些注。最能体现几何意义的是$\frac{\d f}{\d x}$，它是由Leibniz发明的。符号$\d$的意思就是“微”，可以理解为无穷小的变化量，所以导数就是自变量和函数值无穷小变化量的比值。另一方面，这个符号也可以理解为“切”，表示切向量的意思，例如$\d x$就是沿着$x$轴的任意切向量（实际上就是正方向或者负方向），而$\d y$就是相应地沿着$y$轴的切向量. 从这个角度来说，$\frac{\d f}{\d x}$就是$x$轴切向量到$y$轴切向量的一个线性映射。因此，微分其实就是所谓的\emph{切映射}\index{切映射}，即从切向量到切向量的映射。这一视角在更抽象的微分学中是更本质的。
+关于导数的符号也有一些注. 最能体现几何意义的是$\frac{\d f}{\d x}$，它是由Leibniz发明的. 符号$\d$的意思就是“微”，可以理解为无穷小的变化量，所以导数就是自变量和函数值无穷小变化量的比值. 另一方面，这个符号也可以理解为“切”，表示切向量的意思，例如$\d x$就是沿着$x$轴的任意切向量（实际上就是正方向或者负方向），而$\d y$就是相应地沿着$y$轴的切向量. 从这个角度来说，$\frac{\d f}{\d x}$就是$x$轴切向量到$y$轴切向量的一个线性映射. 因此，微分其实就是所谓的\textbf{切映射}\index{切映射}，即从切向量到切向量的映射. 这一视角在更抽象的微分学中是更本质的. 
 
 导数的定义也可以用更常见的形式给出：
 
@@ -505,12 +507,12 @@ $\delta$-$\epsilon$语言的定义实际上给出了\emph{映射的极限}这一
     \[
         \lim_{x\to x_0}\frac{f(x)-f(x_0)}{x-x_0}.
     \]
-    这个极限就是$f$在$x_0$处的导数.
+    这个极限就是$f$在$x_0$处的导数. 因而，微分或者说导数是唯一的. 
 \end{proposition}
 
-下面我们不加证明地列举导数的一些性质，这些性质自然也导出了微分的性质。
+下面我们不加证明地列举导数的一些性质，这些性质自然也导出了微分的性质. 
 
-\begin{proposition}\label{prop:derivative-property}
+\begin{proposition}\label{prop:uni-derivative-property}
     设$f,g:\R\to\R$在$x_0$处可微，则
     \begin{itemize}
         \item $f$在$x_0$处连续；
@@ -543,9 +545,9 @@ $\delta$-$\epsilon$语言的定义实际上给出了\emph{映射的极限}这一
 \end{itemize}
 \end{proposition}
 
-从这个意义上说，微分号$\d$相当于把$\R\to\R$的函数变成了另外一个$\R\to\R$的函数（即切映射），同时保持函数复合运算的单位元（$\id$）、复合和逆元关系。利用这一性质，我们可以用更加代数的方法研究微分（微分函子），但这超出了本书的范围，我们就不再详细讨论了.
+从这个意义上说，微分号$\d$相当于把$\R\to\R$的函数变成了另外一个$\R\to\R$的函数（即切映射），同时保持函数复合运算的单位元（$\id$）、复合和逆元关系. 利用这一性质，我们可以用更加代数的方法研究微分（微分函子），但这超出了本书的范围，我们就不再详细讨论了.
 
-最后，我们讨论高阶导数的概念。高阶微分是一个相当抽象的概念，所以我们这里就不深入讨论了。我们只给出高阶导数的定义：
+最后，我们讨论高阶导数的概念. 高阶微分是一个相当抽象的概念，所以我们这里就不深入讨论了. 我们只给出高阶导数的定义：
 
 \begin{definition}[高阶导数]\index{导数}
     设$f:\R\to\R$，$x_0\in\R$，如果$f$在$x_0$处可微，则$f$在$x_0$处的导数$f'(x_0)$是一个实数. 如果$f'$在$x_0$处可微，则称$f$在$x_0$处\textbf{二阶可微}，此时$f''(x_0)$是$f'$在$x_0$处的导数，称为$f$在$x_0$处的\textbf{二阶导数}. 一般地，如果$f^{(n-1)}$在$x_0$处可微，则称$f$在$x_0$处\textbf{$n$阶可微}，此时$f^{(n)}(x_0)$是$f^{(n-1)}$在$x_0$处的导数，称为$f$在$x_0$处的\textbf{$n$阶导数}.
@@ -554,16 +556,16 @@ $\delta$-$\epsilon$语言的定义实际上给出了\emph{映射的极限}这一
 \[
     \frac{\d^n y}{\d x^n}=\underbrace{\frac{\d}{\d x}\cdots\frac{\d}{\d x}}_{n\text{个}}y.
 \]
-从这里我们可以看出，$\d/\d x$这个记号又仿佛是一个算子，它作用在函数上，得到一个新的函数，这个视角结合谱理论，发展出了非常重要的数学理论，成为了量子力学的基础。当然，这也不在本书的讨论范围之内了.
+从这里我们可以看出，$\d/\d x$这个记号又仿佛是一个算子，它作用在函数上，得到一个新的函数，这个视角结合谱理论，发展出了非常重要的数学理论，成为了量子力学的基础. 当然，这也不在本书的讨论范围之内了.
 
-我们将在集合$X$上$n$次连续可微的函数的集合记作$C^n(X)$，任意次连续可微的函数的集合记作$C^\infty(X)$。
+我们将在集合$X$上$n$次连续可微的函数的集合记作$C^n(X)$，任意次连续可微的函数的集合记作$C^\infty(X)$. 在后面更一般的微分学中，$X$可以不是$\R$的子集，但我们依然沿用此记号，如果我们讨论的映射取值不在$\R$上，而是在抽象的集合$Y$上，我们将$C^n(X,Y)$记作$n$次连续可微的从$X$到$Y$的映射的集合，$C^\infty(X,Y)$记作任意次连续可微的从$X$到$Y$的映射的集合，这些概念的定义将在后面给出. 
 
-\section{微分学基本定理}
+\subsection{微分学基本定理}
 
-微分学几乎都与极值联系在一起，刻画这些关系的定理就是微分学的基本定理. 我们依然只罗列定理，不给出证明. 首先我们给出极值的定义。
+微分学几乎都与极值联系在一起，刻画这些关系的定理就是微分学的基本定理. 我们依然只罗列定理，不给出证明. 首先我们给出极值的定义. 
 
 \begin{definition}[极大值，严格极大值，极小值，严格极小值]\index{极值}
-    设$f:X\to\R$，$x_0\in X$，如果存在包含$x_0$的开集$U$，使得对任意$x\in U$，有$f(x)\leq f(x_0)$，则称$f(x_0)$是$f$在$x_0$处的一个\textbf{极大值}，$x_0$是$f$的一个\textbf{极大值点}。如果$f(x)=f(x_0)$只在$x_0$处成立，则称$f(x_0)$是$f$在$x_0$处的一个\textbf{严格极大值}，$x_0$是$f$的一个\textbf{严格极大值点}.
+    设$f:X\to\R$，$x_0\in X$，如果存在包含$x_0$的开集$U$，使得对任意$x\in U$，有$f(x)\leq f(x_0)$，则称$f(x_0)$是$f$在$x_0$处的一个\textbf{极大值}，$x_0$是$f$的一个\textbf{极大值点}. 如果$f(x)=f(x_0)$只在$x_0$处成立，则称$f(x_0)$是$f$在$x_0$处的一个\textbf{严格极大值}，$x_0$是$f$的一个\textbf{严格极大值点}.
     
     如果不等式反向，则称$f(x_0)$是$f$在$x_0$处的一个\textbf{极小值}，$x_0$是$f$的一个\textbf{极小值点}. 如果$f(x)=f(x_0)$只在$x_0$处成立，则称$f(x_0)$是$f$在$x_0$处的一个\textbf{严格极小值}，$x_0$是$f$的一个\textbf{严格极小值点}.
     
@@ -610,7 +612,7 @@ $\delta$-$\epsilon$语言的定义实际上给出了\emph{映射的极限}这一
     \]
 \end{theorem}
 
-接下来我们讨论高阶导数与极值的关系。这样的关系是由Taylor公式给出的。我们说过，微分是用线性函数去近似函数的过程，而Taylor公式则是用多项式去近似函数的过程。考虑函数$f:\R\to\R$，如果$f$在$x_0$处$n$次可微，我们尝试用一个$n$次多项式去近似$f$，即
+接下来我们讨论高阶导数与极值的关系. 这样的关系是由Taylor公式给出的. 我们说过，微分是用线性函数去近似函数的过程，而Taylor公式则是用多项式去近似函数的过程. 考虑函数$f:\R\to\R$，如果$f$在$x_0$处$n$次可微，我们尝试用一个$n$次多项式去近似$f$，即
 
 \[
     f(x)=a_0+a_1(x-x_0)+\cdots+a_n(x-x_0)^n+o((x-x_0)^n).
@@ -637,4 +639,267 @@ $\delta$-$\epsilon$语言的定义实际上给出了\emph{映射的极限}这一
 
 \section{多元函数的微分学}
 
-\section{线性赋范空间的微分学，矩阵微分学}
+这一部分讨论$\R^n\to\R^m$的微分学，当$m=1$，我们称之为实值函数；当$m\geq 2$，我们称之为向量值函数. 
+
+\subsection{微分、偏导数与导数的定义}
+
+沿袭一元函数的情况，我们希望找到一个线性映射$df_x:\R^n\to\R^m$，使得$f$在$x$附近的行为很接近这个线性映射，而这件事情本身就可以作为微分的定义：
+
+\begin{definition}[微分]\index{微分}
+    设$f:\R^n\to\R^m$，$x\in\R^n$，如果存在一个线性映射$\d f_{x}:\R^n\to\R^m$，使得
+    \[
+        f(x+h)=f(x)+\d f_{x}h+o(h),
+    \]
+    则称$f$在$x_0$处\textbf{可微}或者\textbf{可导}，$\d f_{x_0}$是$f$在$x_0$处的\textbf{微分}. 这里$o(h)$理解为一个向量值函数$\alpha:\R^n\to\R^m$，它满足$\lim_{h\to 0}\norm{\alpha(h)}/\norm{h}=0$\footnote{在\Cref{ex:lp-topology} 中我们提到过，$L^p$范数下的$\R^n$的拓扑都是一样的. 但是，为了利用内积的性质，之后我们写出符号$\norm{\cdot}$的时候，都指$L^2$范数.}.
+
+    如果$f$在$\R^n$的每一点都可微，则称$f$是\textbf{可微}的或者\textbf{可导}的，$\d f$是$f$的\textbf{微分}.
+\end{definition}
+
+现在我们来解释这一定义的含义. 微分的定义依然是将一个关于$x$的函数转变到一个关于$h$的线性映射，这个线性映射表明了函数在$x$处的线性近似，而这个线性近似的误差是一个关于$h$的高阶无穷小. 从这个角度来说，微分的定义和一元函数的情况是一样的，只不过这里的误差是一个向量值函数而已. 微分的作用是将
+
+$h$被称为\textbf{切向量}\index{切向量}（想象一下一维的情况），所有允许$h$的集合记为$T\R_x^n$，称为在$x$点处的\textbf{切空间}\index{切空间}. 当然，此时$h$可以取遍所有$\R^n$的向量，所以其实$T\R_x^n=\R^n$. 然而在\Cref{chap:duality}中，我们会看到，当定义域不是整个$\R^n$，而只是某个子集的时候，切空间的定义就变得不平凡了. 于是，从切线的视角来看，微分其实是一个\textbf{切映射}\index{切映射}，即从切向量到切向量的映射，这可以用下图来表示：
+
+\[\begin{tikzcd} f:\arrow[mapsto, d, "\d"] & \R^n\arrow[r, ""] & \R^m \\
+\d f_x: & T\R^n_x \arrow[r, ""] & T\R^m_{f(x)}
+\end{tikzcd}\]
+
+接下来的问题就是，如何表示线性映射$\d f_x$？我们先从实值函数开始. 考虑$\R^n$的标准正交基$\{e_i\}_{i=1}^n$，自然，它也是切空间$T\R^n_x$的标准正交基，根据Riesz表示定理（\Cref{thm:riesz}），存在一个向量$g$，使得
+\[
+    \d f_x h=\inner{g}{h}.
+\]
+这个向量$g$被称为$f$在$x$处的\textbf{梯度}\index{梯度}，记作$\grad f(x)$. 我们需要进一步将梯度的坐标$(g_1,\dots,g_n)^\t$求出来. 考虑一个具体的分量$e_i$，根据定义，
+\[f(x+te_i)=f(x)+t\d f_x(te_i)+o(te_i)=f(x)+g_it+o(t).\]
+因此，
+\[g_i=\lim_{t\to 0}\frac{f(x+te_i)-f(x)}{t}.\]
+我们给这样的导数一个名字，称为$f$在$x$对$x_i$的\textbf{偏导数}\index{偏导数}，记作$\frac{\partial f}{\partial x_i}(x)$或$\partial_i f(x)$，于是我们得到了梯度的坐标：
+\[\left(\frac{\partial f}{\partial x_1}(x),\dots,\frac{\partial f}{\partial x_n}(x)\right)^\t.\]
+沿着这个思路，我们不一定要沿着$e_i$去算导数，我们可以沿着任意单位向量$u$去算，于是我们得到了$f$在$x$处沿着$u$的\textbf{方向导数}\index{方向导数}：
+\[\frac{\partial f}{\partial u}(x)=\lim_{t\to 0}\frac{f(x+tu)-f(x)}{t},\quad\norm{u}=1.\]
+
+有了梯度，我们可以很快算出任意方向导数：
+
+\begin{proposition}\label{prop:directional-derivative}
+    设$f:\R^n\to\R$在$x$处可微，$u$是单位向量，则
+    \[\frac{\partial f}{\partial u}(x)=\inner{\grad f(x)}{u}.\]
+\end{proposition}
+在微积分中，我们总是假设在标准正交基下进行计算，在这种情况下，我们有更简便的表示方式. 形式上，记
+\[\nabla =e_1\frac{\partial }{\partial x_1}+\cdots+e_n\frac{\partial }{\partial x_n},\]
+则
+\[\grad f(x)=\nabla f(x).\]
+符号$\nabla$被称为\textbf{nabla算子}\index{nabla算子}，它就是标准正交基下梯度的具体表示. 通常，我们会更简单地将$\nabla $记为$(\partial_1 ,\dots,\partial_n)^\t$. 
+
+接下来我们讨论向量值函数微分的表示问题. 选取$\R^m$（也就是$T\R_x^n$）的标准正交基$e_i$，选取$\R^m$（也就是$T\R^m_{f(x)}$）的标准正交基$e_i$，则根据\Cref{sec:matrix}的讨论，我们可以用一个$m\times n$的矩阵来表示$\d f_x$，这个矩阵被称为$f$在$x$处的\textbf{Jacobi矩阵}\index{Jacobi矩阵}，记作$J_f(x)$. 下面我们计算$J_f(x)$的具体表示. 假设$f(x)$的坐标是$(f_1(x),\dots,f_m(x))^\t$，考虑$h\in T\R_x^n$，它的坐标是$(h_1,\dots,h_n)^\t$，$\d f_x h$的坐标应该是
+\[\begin{pmatrix}
+    \d f_{1,x}h \\
+    \vdots \\
+    \d f_{m,x}h
+\end{pmatrix}=
+\begin{pmatrix}
+    \sum_{i=1}^n\partial_i f_1(x)h_i \\
+    \vdots \\
+    \sum_{i=1}^n\partial_i f_m(x)h_i
+\end{pmatrix}=
+\begin{pmatrix}
+    \partial_1 f_1(x) & \cdots & \partial_n f_1(x) \\
+    \vdots & \ddots & \vdots \\
+    \partial_1 f_m(x) & \cdots & \partial_n f_m(x)
+\end{pmatrix}
+\begin{pmatrix}
+    h_1 \\
+    \vdots \\
+    h_n
+\end{pmatrix}.\]
+因此，我们得到了Jacobi矩阵：
+\[J_f(x)=(\partial_j f_i)=\begin{pmatrix}
+    \partial_1 f_1(x) & \cdots & \partial_n f_1(x) \\
+    \vdots & \ddots & \vdots \\
+    \partial_1 f_m(x) & \cdots & \partial_n f_m(x)
+\end{pmatrix}.\]
+
+在$m=n$的特殊情况下，$J_f(x)$的行列式被称为$f$在$x$处的\textbf{Jacobi行列式}\index{Jacobi行列式}，记作
+\[\frac{\partial(f_1,\dots,f_n)}{\partial(x_1,\dots,x_n)}(x).\]
+这一行列式在微分学中不会使用，但是在积分学中对变量替换起着核心作用，我们在后面概率论中会稍加讨论. 
+
+总结来说，实值函数的微分可以用\emph{行}向量$(\partial_1 f_1(x),\dots,\partial_n f_1(x))$和切向量相乘表示，而向量值函数的微分可以用Jacobi矩阵$J_f(x)$和切向量相乘来表示，我们将这些符号统称$f$在$x$处的\textbf{导数}\index{导数}，记为$f'(x)$或$\frac{\d f}{\d x}(x)$，于是，在坐标表示下，我们可以将微分简单写作$df_x=f'(x)\d x$，这里我们将$\d x$理解为一个切向量（列向量）. 
+
+接下来，我们不加证明地列举微分的一些性质：
+
+\begin{proposition}\label{prop:derivative-property}
+    设$f,g:\R^n\to\R^m$在$x$处可微，则
+    \begin{itemize}
+        \item $f$在$x$处连续；
+        \item 对任意$\lambda_1,\lambda_2\in\R$, $\d(\lambda_1 f_x+\lambda_2 g_x)=\lambda_1\d f_x+\lambda_2\d g_x$；
+        \item 如果$m=1$，那么$\d(f\cdot g)_x=g(x)\d f_x+f(x)\d g_x$；
+        \item 如果$m=1$，并且$g(x)\neq 0$，则
+        \[\d\left(\frac{f}{g}\right)_x=\frac{1}{g(x)^2}\left(g(x)\d f_x-f(x)\d g_x\right);\]
+        \item 如果$m=n$，那么$\d x=\id$；
+        \item 链式法则：如果$f$在$x$处可微，$g$在$f(x)$处可微，则$g\circ f$在$x$处可微，且$\d(g\circ f)_x=\d g_{f(x)}\circ\d f_x$；
+        \item 如果$f$存在反函数$f^{-1}$，则$f^{-1}$在$f(x)$处可微，且$\d(f^{-1})_{f(x)}=(\d f_x)^{-1}$.
+    \end{itemize}
+\end{proposition}
+同样，最后三条说明了微分保持了复合单位元、复合和逆元关系. 而第二条则说明微分是一个函数空间（$\R^n\to\R^m$）到函数空间（$T\R_x^n\to T\R^m_{f(x)}$）的线性映射.
+
+链式法则与反函数求导法则可以用导数写出：
+\[(f\circ g)'(x)=f'(g(x))g'(x),\quad (f^{-1})'(f(x))=(f'(x))^{-1}.\]
+这里我们都将导数理解为矩阵. 同样，在Leibniz记号下，如果$z=z(y)$，$y=y(x)$，那么链式法则可以写作
+\[
+    \frac{\d z}{\d x}=\frac{\d z}{\d y}\cdot\frac{\d y}{\d x}.
+\]
+反函数的导数则可以写作
+\[
+    \frac{\d y}{\d x}=\left(\frac{\d x}{\d y}\right)^{-1}.
+\]
+他们的含义都非常清晰. 
+
+
+我们看几个重要的例子. 
+
+\begin{example}\label{ex:linear-derivative}
+线性映射和线性函数本身的导数也非常简单：
+\[\frac{\d (Ax)}{\d x}=A,\quad \frac{\d (b^\t x)}{\d x}=b^\t.\]
+其中$A$是一个矩阵，$b$是一个向量. 
+\end{example}
+
+\begin{example}
+    考虑一个多元实值函数$g(x)=f(u_1(x),\dots,u_k(x))$，先求$f$对$u=(u_i)$的导数：
+    \[\frac{\d f}{\d u}=\left(\frac{\partial f}{\partial u_1},\dots,\frac{\partial f}{\partial u_k}\right).\]
+    再求$u$对$x$的导数$\d u/\d x=(u_1'(x),\dots,u_k'(x))^\t$. 根据链式法则，
+    \[\frac{\d g}{\d x}=\frac{\d f}{\d u}\cdot\frac{\d u}{\d x}=\left(\frac{\partial f}{\partial u_1},\dots,\frac{\partial f}{\partial u_k}\right)\begin{pmatrix}
+        u_1'(x) \\
+        \vdots \\
+        u_k'(x)
+    \end{pmatrix}=\sum_{i=1}^k\frac{\partial f}{\partial u_i}u_i'(x).\]
+\end{example}
+
+\begin{example}
+我们来看一个更复杂的例子，这个例子可以表明所谓\textbf{求导链}\index{求导链}的意义. 考虑函数$f(x,y,z)=z\exp(x+y)$，其中$z(x,y)=x+y$. 我们来求$f$对$x$的偏导数. 首先，我们把变量之间的依赖关系用如下图表示出来，其中$z\to y$表示$z$依赖$y$.
+\begin{center}
+\begin{tikzpicture}
+    \node (f) at (0,0) {$f$};
+    \node (z) at (0,-2) {$z$};
+    \node (x) at (-3,-2) {$x$};
+    \node (y) at (3,-2) {$y$};
+    \draw[->] (f) -- (x);
+    \draw[->] (f) -- (y);
+    \draw[->] (f) -- (z);
+    \draw[->] (z) -- (x);
+    \draw[->] (z) -- (y);
+\end{tikzpicture}
+\end{center}
+我们要求$f$对$x$的偏导数，首先找到从$f$出发可以到达$x$的全部路径，即$f\to z\to x$和$f\to x$，然后将路径上的相邻变量的偏导数相乘再相加，即
+\[\frac{\partial f}{\partial x}=\frac{\partial f}{\partial z}\cdot\frac{\partial z}{\partial x}+\frac{\partial f}{\partial x}=\exp(x+y)\cdot 1+z\exp(x+y).\]
+这里两边都出现了$\partial f/\partial x$，但他们的含义是不同的，左边的$\partial f/\partial x$是$f$对$x$这个变量的偏导数，右边的$\partial f/\partial x$是$f$对第一个位置偏导数，即$\partial_1 f$，一个不容易引起困惑但不太直观的写法是
+\[\frac{\partial f}{\partial x}=\partial_3 f\cdot\partial_1 z+\partial_1 f.\]
+这就是著名的\textbf{反向传播算法}\index{反向传播算法}的一个简单例子，它是神经网络中最重要的算法之一，也是很多神经网络框架优化的重点. 
+\end{example}
+
+\begin{example}\label{ex:quadratic-derivative}
+考虑二次型$f(x)=x^\t A x$（因此假设$A$是对称矩阵），我们来求$f'(x)$. 为此，考虑一个新函数$g(x,y)=x^\t A y$，则$f(x)=g(x,x)$，于是
+
+\[f'(x)=g'(x,x)=\partial_1 g(x,x)\cdot\frac{\partial x}{\partial x}+\partial_2 g(x,x)\cdot\frac{\partial x}{\partial x}=\partial_1 g(x,x)+\partial_2 g(x,x).\]
+
+我们来计算$\partial_1 g(x,x)$，$g(x,y)=(Ay)^\t x$，因此根据\Cref{ex:linear-derivative}，$\partial_1 g(x,y)=(Ay)^\t$，于是$\partial_1 g(x,x)=x^\t A^\t$，同理$\partial_2 g(x,x)=x^\t A$，因此$f'(x)=x^\t A+x^\t A^\t=(2Ax)^\t$.
+\end{example}
+
+\begin{remark}
+在求向量对向量的导数的时候，很容易搞不清楚Jacobi矩阵的行列顺序，一个简单的检查方法是看看导数的维度是否正确，例如我们可以试试这一个矩阵是否可以乘自变量，然后得到因变量的维数，例如\Cref{ex:quadratic-derivative} 中，如果我们求出来导数是$2Ax$，那么$2Axx$是一个无意义的量，说明我们的导数求错了，应该要进行转置. 矩阵行列如何排列其实不影响导数值，但是在进行链式法则的时候，正确的排列可以机械地写出链式法则的结果，这样才能实现自动求导器. 
+\end{remark}
+
+最后，我们讨论高阶导数的概念. 对于向量值函数来说，高阶导数是一个非常难以理解的概念，所以我们只局限在实值函数讨论这一问题. 考虑一个实值函数$f:\R^n\to\R$，它对第$i$个坐标的偏导数是$\partial_i f$，注意到这本身又是一个$\R^n$到$\R$实值函数，我们可以继续讨论它的偏导数性质，于是我们得到了\textbf{二阶偏导数}\index{偏导数}：$\partial_j(\partial_i f)$，也记为
+\[\frac{\partial^2 f}{\partial x_j\partial x_i},\quad\partial_{j,i} f(x).\]
+一般地，我们也可以归纳定义$k$阶偏导数，这里就不再赘述. 关于二阶偏导数一个重要的性质是，一般情况下它可交换求偏导的顺序：
+
+\begin{proposition}\label{prop:partial-commute}
+    设$f:\R^n\to\R$具有下列两个二阶偏导数
+    \[\frac{\partial^2 f}{\partial x_j\partial x_i}(x),\frac{\partial^2 f}{\partial x_i\partial x_j}(x),\]
+    并且在$x$处他们都连续，则两个偏导数相等.
+\end{proposition}
+一个直接的推论是，对于$C^k(X)$的函数来说，求$k$阶偏导数不依赖于求导的顺序. 
+
+我们来看一个重要的例子. 
+\begin{example}\label{ex:multi-taylor}
+设函数$f\in C^k(\R^n)$，$x,h\in\R^n$，考虑$g(t)=f(x+th)$，$t\in[0,1]$，我们来求$g^{(m)}(t)$，其中$m\leq k$. 先求一阶导数，根据链式法则，
+\[g'(t)=\sum_{i=1}^n\partial_i f(x+th)h_i.\]
+利用nabla算子，我们可以写作$g'(t)=(h^\t\nabla) f$.
+再求二阶导数，根据\Cref{prop:partial-commute} 和链式法则，
+\[g''(t)=\sum_{i=1}^nh_i\frac{\d}{\d t}(\partial_i f(x+th))=\sum_{i=1}^nh_i\sum_{j=1}^n\partial_j(\partial_i f(x+th))h_j=\sum_{i,j=1}^nh_ih_j\partial_{j,i}f(x+th).\]
+用nabla算子，我们可以写作$g''(t)=(h^\t\nabla)^2f(x+th)$. 一般地，我们有
+\[g^{(m)}(t)=\sum_{i_1,\dots,i_m}\partial_{i_m,\dots,i_1}f(x+th)h_{i_1}\cdots h_{i_m}=(h^\t\nabla)^mf(x+th).\]
+\end{example}
+
+接下来，我们定义二阶导数\footnote{更高阶的导数定义需要更加复杂的线性代数概念，我们这里就不引入了. }. 注意到，一个实值函数的一阶导数可以表示成一个向量值函数，即$\grad f$，因此，这个向量值函数的导数就是一个矩阵，我们将这个矩阵称为$f$的\textbf{Hessian矩阵}\index{Hessian矩阵}，记作$H_f(x)$，实际上，Hessian矩阵就是二阶导数. 很容易算出，Hessian矩阵为
+\[H_f(x)=\begin{pmatrix}
+    \partial_{1,1}f(x) & \cdots & \partial_{1,n}f(x) \\
+    \vdots & \ddots & \vdots \\
+    \partial_{n,1}f(x) & \cdots & \partial_{n,n}f(x)
+\end{pmatrix}.\]
+显然，Hessian矩阵是一个对称矩阵，因而可以构成某个二次型. \Cref{ex:multi-taylor} 中二阶导数其实已经暗示了这一点，我们可以将二阶导数写成一个二次型的形式：
+\[g''(t)=h^\t H_f(x+th)h.\]
+
+\subsection{微分学基本定理}
+类似一元函数，我们讨论极值与导数的关系，我们也不给出具体证明. 注意，一元函数的极值的定义可以很自然推广到多元函数，这里就不给出了. 首先是Fermat引理的推广：
+
+\begin{lemma}[Fermat引理]\label{lemma:fermat-multi}
+    设$f:\R^n\to\R$，$x_0\in\R^n$是$f$的一个极值点，且$f$在$x_0$处可微，则$f'(x_0)=0$.
+\end{lemma}
+
+接下来是一系列中值定理，我们这里依然只给出Lagrange中值定理：
+
+\begin{theorem}[Lagrange中值定理]\label{thm:lagrange-mid-multi}
+    设$f:\R^n\to\R$是一个实值函数，在闭区间$[x,x+h]=\{x+th:t\in[0,1]\}$上连续，开区间$(x,x+h)=\{x+th:t\in(0,1)\}$上可微，则存在$\xi\in(x,x+h)$，使得
+    \[
+        f(x+h)-f(x)=f'(\xi)h.
+    \]
+\end{theorem}
+用参数的形式，$\xi$可以写作$\xi=x+\theta h$，其中$\theta\in(0,1)$.
+
+接下来我们讨论向量值函数的中值定理. 下面的例子表明，向量值函数上中值定理不一定成立：
+\begin{example}
+考虑匀速圆周运动，$r(t)=(\cos t,\sin t)$，它的速度向量是$r'(t)=(-\sin t,\cos t)$. 当绕一个周期之后，位置又回到了原点，于是$r(2\pi)-r(0)=0$，然而$r'(t)$恒不为$0$，因此不存在$\xi\in(0,2\pi)$使得$r(2\pi)-r(0)=r'(\xi)(2\pi-0)$.
+\end{example}
+然而，中值定理的弱化版本，有限增量定理，是成立的：
+
+\begin{theorem}[Lagrange有限增量定理]\label{thm:lagrange-finite-multi}
+    设$f:\R^n\to\R^m$是一个函数，在闭区间$[x,x+h]$上连续，开区间$(x,x+h)$上可微，则
+    \[
+        \norm{f(x+h)-f(x)}\leq \norm{h}\sup_{\xi\in(x,x+h)}\norm{f'(\xi)}.
+    \]
+\end{theorem}
+注意，这里的$f'(\xi)$可能是一个矩阵，此时$\norm{f'(\xi)}$的含义是矩阵范数，具体的讨论参见\Cref{sec:operator-norm}. 
+
+\begin{example}\label{ex:lagrange-finite-multi}
+这个例子探讨如何用二阶导数控制一阶导数的差. 这一部分需要算子范数和谱理论的知识，请参阅\Cref{sec:operator-norm}. 
+
+假设$f\in C^2(X)$，$X\subseteq\R^n$，那么对任意$x,y\in X$满足$[x,y]\in X$，根据\Cref{thm:lagrange-finite-multi}和Hessian矩阵的定义，我们有
+\[\norm{\grad f(x)-\grad f(y)}\leq \norm{x-y}\sup_{\xi\in(x,y)}\norm{H_f(\xi)}.\]
+
+我们讨论两种情况，首先假设$X$是紧集. 因为$H_f(x)$连续，根据\Cref{ex:metric-norm-continuous}，$\norm{\cdot}$连续，再根据\Cref{prop:continuous-composition}，$\norm{H_f(x)}$连续. 由于$X$是紧集，根据Weierstrass最值定理（\Cref{thm:weierstrass}）$\norm{H_f(x)}$在$X$上取到最大值$M$，因此，我们有
+\[\norm{\grad f(x)-\grad f(y)}\leq M\norm{x-y}.\]
+满足这一条件的函数被称为\textbf{Lipschitz连续}\index{Lipschitz连续}，这是一种非常重要的函数类. 这一推导表明紧集上的$C^2$函数的梯度是Lipschitz连续的. 
+
+在第二种情况下，假设$X=\R^n$，我们使用$L^2$范数，于是根据\Cref{prop:symmetric-operator-norm}，我们有
+\[\norm{\grad f(x)-\grad f(y)}\leq\sup_{\lambda\in\sigma(H_f(z),z\in(x,y))}|\lambda|\cdot \norm{x-y}.\]
+这里$\sigma(A)$是矩阵$A$的谱. 
+
+因此，只要知道了Hessian矩阵的谱，我们就可以控制梯度的变化，这一点对于凸优化算法非常重要，具体讨论见\Cref{ex:gradient-descent}.
+\end{example}
+
+最后，我们要讨论高阶导数与极值的关系. 首先，利用\Cref{ex:multi-taylor} 和一元的Taylor公式，我们可以得到多元函数的Taylor公式：
+
+\begin{theorem}[Taylor展开]\index{Taylor展开}
+    设$f\in C^k(U)$，$[x,x+h]\subseteq U$，那么
+    \[
+        f(x+h)=\sum_{j=0}^k\frac{1}{j!}(h^\t\nabla)^jf(x)+o(\norm{h}^k).
+    \]
+\end{theorem}
+
+根据这一定理，我们可以得到二阶导数判定极值的充分条件：
+
+\begin{theorem}\label{thm:second-derivative-test}
+    设$f\in C^2(U)$，$U$是开集，$x_0\in U$且$f'(x_0)=0$，则
+    \begin{itemize}
+        \item 如果$H_f(x_0)$是正定的，则$f$在$x_0$处取极小值；
+        \item 如果$H_f(x_0)$是负定的，则$f$在$x_0$处取极大值；
+        \item 如果$H_f(x_0)$不定（既非半正定也非半负定），则$f$在$x_0$处不取极值.
+    \end{itemize}
+\end{theorem}
