@@ -275,10 +275,28 @@ Cauchy列描述了另一种收敛的概念，它要求的是序列中的点越�
 \end{proof}
 
 \subsection{连续映射}
-接下来我们讨论两个拓扑空间之间的映射. 我们说过，拓扑空间完全由开集给出，所以某种程度保持拓扑性质的映射也会与开集有关系. 对于微积分来说，连续性是其中最重要的一种. 遵循先前的惯例，我们先给出更像微积分的$\delta-\epsilon$语言的点定义，然后再给出更像拓扑的定义. 
+接下来我们讨论两个拓扑空间之间的映射. 我们说过，拓扑空间完全由开集给出，所以某种程度保持拓扑性质的映射也会与开集有关系. 对于微积分来说，连续性是其中最重要的一种. 遵循先前的惯例，我们先给出更像微积分的$\delta$-$\epsilon$语言的点定义，然后再给出更像拓扑的定义. 
 
+$\delta$-$\epsilon$语言的定义实际上给出了\emph{映射的极限}这一概念：
+
+\begin{definition}[映射的极限]\index{极限}
+    设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，$f:X\to Y$是一个映射，$x_0\in X$，$y\in Y$，如果对任意$\epsilon>0$，存在$\delta>0$，使得对任意$x\in X$，如果$0<d_X(x,x_0)<\delta$，则$d_Y(f(x),y)<\epsilon$，则称$y$是$f$在$x_0$处的\textbf{极限}，记作$\lim_{x\to x_0}f(x)=y$或$f(x)\to y$，$x\to x_0$.
+\end{definition}
+注意到，定义中我们实际上划定了$x$的范围，即$x\neq x_0$，或者说去心邻域$B(x_0,\delta)\setminus\{x_0\}$，这样做允许极限并不等于$f(x_0)$本身。
+
+\begin{remark}
+映射的极限还可以定义自变量趋于无穷、单侧极限以及其他情况，我们后面会使用这些概念，他们的直观含义都是明确的，这里我们不再给出正式定义，我们只给出他们的记号：
+\begin{itemize}
+    \item 趋于无穷：$\lim_{x\to\infty}f(x)=y$或$f(x)\to y$，$x\to\infty$；
+    \item 如果定义域是$\R$，还可以定义趋于正、负无穷：$\lim_{x\to+\infty}f(x)=y$或$f(x)\to y$，$x\to+\infty$，$\lim_{x\to-\infty}f(x)=y$或$f(x)\to y$，$x\to-\infty$；
+    \item 单调递增趋于：$x\uparrow x_0$，单调递减趋于：$x\downarrow x_0$。这些记号既可以出现在自变量中，也可以出现在函数值中，例如我们可以写$n/(n+1)\uparrow 1$，$n\to\infty$.
+    \item 如果定义域是$\R$，还可以定义单侧极限，从负向趋于某点（左极限）：$\lim_{x\uparrow x_0}f(x)=y$或$f(x)\to y$，$x\uparrow x_0$，以及从正向趋于某点（右极限）：$\lim_{x\downarrow x_0}f(x)=y$或$f(x)\to y$，$x\downarrow x_0$.
+\end{itemize}
+\end{remark}
+
+由此，我们可以定义连续映射：
 \begin{definition}[连续映射]\index{连续映射}
-    设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，$f:X\to Y$是一个映射，考虑点$x\in X$，对任意$\epsilon>0$，存在$\delta>0$，使得对任意$y\in X$，如果$d_X(x,y)<\delta$，则$d_Y(f(x),f(y))<\epsilon$，则称$f$在点$x$处\textbf{连续}，如果$f$在$X$的每一点都连续，则称$f$是\textbf{连续映射}. 
+    设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，$f:X\to Y$是一个映射，考虑点$x\in X$，如果对任意$y\in Y$，如果$\lim_{x\to x'}f(x)=y$，则称$f$在$x$处\textbf{连续}，如果$f$在$X$的每一点都连续，则称$f$是\textbf{连续映射}.
 \end{definition}
 
 直观上说，连续映射是指，$x$和$y$足够接近的时候$f(x)$和$f(y)$也足够接近. 然而，数学定义其实是反过来的：想让$f(x)$和$f(y)$足够接近，我们只需要让$x$和$y$足够接近. 更精确一些来说，如果我们画了一个$f(x)$的任意小的范围，我们只需要找到一个$x$的范围，使得$x$的范围里的点都被映射到$f(x)$的范围里. 这一定义可以用开集来表述，为此，我们需要先引入一些关于映射的概念. 
@@ -287,12 +305,16 @@ Cauchy列描述了另一种收敛的概念，它要求的是序列中的点越�
     设$f:X\to Y$是一个映射，$A\subseteq X$，则$f(A)=\{f(x):x\in A\}$称为$A$的\textbf{像}，如果$B\subseteq Y$，则$f^{-1}(B)=\{x\in X:f(x)\in B\}$称为$B$的\textbf{原像}. 
 \end{definition}
 
-于是，我们可以用开集表述连续性了：
+于是，我们可以用开集表述极限和连续性了：
 
 \begin{proposition}\label{prop:continuous-open}
-    设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，$f:X\to Y$是一个映射，则$f$在$x\in X$处连续当且仅当对任意包含$f(x)$的开集$U\subseteq Y$，存在包含$x$的开集$V\subseteq X$，使得$f(V)\subseteq U$.
+    设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，$f:X\to Y$是一个映射，则
+\begin{enumerate}
+    \item $\lim_{x\to x_0} f(x)=y$当且仅当对任意包含$y$的开集$U\subseteq Y$，存在包含$x_0$的开集$V\subseteq X$，使得$f(V\setminus\{x_0\})\subseteq U$；
+    \item  $f$在$x\in X$处连续当且仅当对任意包含$f(x)$的开集$U\subseteq Y$，存在包含$x$的开集$V\subseteq X$，使得$f(V)\subseteq U$.
+\end{enumerate}
 \end{proposition}
-这一命题的证明非常类似\Cref{prop:open-ball}，我们这里就不给出了. 连续映射的定义也可以完全由拓扑给出：
+这一命题的证明非常类似\Cref{prop:open-ball}，我们这里就不给出了. 注意，极限的开集定义所用的集合$V\setminus\{x_0\}$也是一个开集，它是$x_0$的去心邻域。连续映射的定义也可以完全由拓扑给出：
 
 \begin{proposition}\label{prop:continuous-topology}
     设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，$f:X\to Y$是一个映射，则下列表述等价：
@@ -319,15 +341,25 @@ Cauchy列描述了另一种收敛的概念，它要求的是序列中的点越�
 
 连续性的定义实际分为了两部分，一个是局部的、点的连续性，另一个是整体的、只依赖开集而不依赖具体点的定义. 他们也对应了连续不同的性质. 我们首先讨论局部连续的性质，以下命题我们都不再给出证明. 
 
-首先，连续也可以用收敛性刻画：
+首先，极限也可以用收敛性刻画：
 
-\begin{proposition}\label{prop:continuous-converge}
+\begin{proposition}\label{prop:limit-converge}
+    设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，$f:X\to Y$是一个映射，$x_0\in X$，$y\in Y$，则下列表述等价：
+    \begin{enumerate}
+        \item $\lim_{x\to x_0}f(x)=y$；
+        \item 对任意$\{x_n\}_{n=1}^\infty$，如果$x_n\to x_0$，则$f(x_n)\to y$.
+    \end{enumerate}
+\end{proposition}
+
+利用这一条，很快就可以得到连续的序列版本：
+
+\begin{corollary}\label{cor:continuous-converge}
     设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，$f:X\to Y$是一个映射，则下列表述等价：
     \begin{enumerate}
         \item $f$是连续映射；
         \item 对任意$x\in X$，对任意$\{x_n\}_{n=1}^\infty$，如果$x_n\to x$，则$f(x_n)\to f(x)$.
     \end{enumerate}
-\end{proposition}
+\end{corollary}
 
 其次，连续对复合是封闭的：
 \begin{proposition}\label{prop:continuous-composition}
@@ -338,7 +370,7 @@ Cauchy列描述了另一种收敛的概念，它要求的是序列中的点越�
 \begin{corollary}\label{cor:continuous-linear}
     设$(X,\norm{\cdot}_X)$是赋范空间，则数乘是$X\to X$的连续映射，向量加法是$X\times X\to X$的连续映射. 因此，有限维线性空间到有限维线性空间的线性映射都是连续映射. 
 \end{corollary}
-根据\Cref{prop:continuous-converge}，这一结论也有对应的序列版本，我们就不再列出了. 特别要注意的是，这一结论也适用于$\R$，从数乘来看，对于$\R$来说，乘法$\times:\R\times\R\to\R$和除法$\div:\R\times(\R\setminus\{0\})\to\R$也都是连续映射\footnote{尽管从证明的逻辑顺序来说，应该是先有了实数的四则运算连续性，然后才有了赋范空间的连续性. 我们这样写是为了避免不必要的冗余，直接从一个一般的视角出发来讨论. }. 
+根据\Cref{cor:continuous-converge}，这一结论也有对应的序列版本，我们就不再列出了. 特别要注意的是，这一结论也适用于$\R$，从数乘来看，对于$\R$来说，乘法$\times:\R\times\R\to\R$和除法$\div:\R\times(\R\setminus\{0\})\to\R$也都是连续映射\footnote{尽管从证明的逻辑顺序来说，应该是先有了实数的四则运算连续性，然后才有了赋范空间的连续性. 我们这样写是为了避免不必要的冗余，直接从一个一般的视角出发来讨论. }. 
 
 最后，连续意味着有界：
 \begin{proposition}\label{prop:continuous-bounded}
@@ -351,7 +383,11 @@ Cauchy列描述了另一种收敛的概念，它要求的是序列中的点越�
     设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，$f:X\to Y$是一个连续映射，$F\subseteq X$是紧集，则$f(F)$是紧集. 
 \end{proposition}
 
-然后要讨论的性质都限制映射的值是实数，即$f:X\to \R$. 这样的映射我们称之为\emph{函数}. $\R^n$区别于$\R^n$最大的不同是实数可以比大小而实数向量不行，实数与大小相关的性质有很多，我们列出其中两个与实数公理等价的. 这些性质需要用到\emph{界}和\emph{确界}的概念，这一概念将会频繁出现在我们的讨论中，所以这里单独给出：
+其他性质将在下一节给出。
+
+\subsection{与实数有关的性质}
+
+本节要讨论的性质都限制映射的值是实数，即$f:X\to \R$. 这样的映射我们称之为\emph{函数}. $\R^n$区别于$\R^n$最大的不同是实数可以比大小而实数向量不行，实数与大小相关的性质有很多，我们列出其中两个与实数公理等价的. 这些性质需要用到\emph{界}和\emph{确界}的概念，这一概念将会频繁出现在我们的讨论中，所以这里单独给出：
 
 \begin{definition}[上界，上确界，下界，下确界]\index{上确界}\index{下确界}\index{上界}\index{下界}
     设$A\subseteq\R$，如果存在$M\in\R$，使得对任意$a\in A$，$a\leq M$，则称$M$是$A$的一个\textbf{上界}，如果$M$是$A$的上界，且对任意$M'<M$，存在$a\in A$，使得$a>M'$，则称$M$是$A$的一个\textbf{上确界}，记作$\sup A$. 
@@ -381,7 +417,24 @@ Cauchy列描述了另一种收敛的概念，它要求的是序列中的点越�
     设$M=\sup A$（由确界原理知$M$存在），对任意$n\in\N$，由$M-1/n$不是$A$的上界，存在$a_n\in A$，使得$M-1/n<a_n\leq M$. 根据极限的定义易知$\lim_{n\to\infty}a_n=M$.
 \end{proof}
 
-然后我们回到连续的整体性质上来. 首先是Weierstrass最值定理：
+对于实值函数来说，我们还需要比较在极限情况下两个函数的\emph{渐进大小}，这就是$o$和$\O$符号。我们先给出这一概念在序列上的定义：
+
+\begin{definition}[阶，无穷小，等价]\index{阶}\index{无穷小}\index{等价}
+    设$\{x_n\}_{n=1}^\infty$和$\{y_n\}_{n=1}^\infty$是两个序列，如果$\lim_{n\to\infty}\frac{x_n}{y_n}=0$，则称$\{x_n\}_{n=1}^\infty$是$\{y_n\}_{n=1}^\infty$的\textbf{高阶无穷小}，记作$x_n=o(y_n)$；如果存在一个正常数$C$使得除去有限个$n$都有$|x_n|\leq C |y_n|$，则称$\{x_n\}_{n=1}^\infty$的\textbf{阶不高于}$\{y_n\}_{n=1}^\infty$，记作$x_n=\O(y_n)$.
+
+    如果$x_n=\O(y_n)$且$y_n=\O(x_n)$，那么称$\{x_n\}_{n=1}^\infty$和$\{y_n\}_{n=1}^\infty$是\textbf{同阶}的. 如果进一步$\lim_{n\to\infty}\frac{x_n}{y_n}=1$，则称$\{x_n\}_{n=1}^\infty$和$\{y_n\}_{n=1}^\infty$是\textbf{等价}的，记作$x_n\sim y_n$.
+\end{definition}
+上述定义可以非常自然迁移到函数上，我们不再赘述。下面是一些例子：
+
+\begin{example}
+\begin{itemize}
+    \item $n\to\infty$时，$n^2=o(2^n)$，$n^{1/n}\sim 1$，$n^2\sim n^2+\log n$.
+    \item $x\to 0$时，$\sin x\sim x$，$1/x=o(1/x^2)$。
+    \item $n\to\infty$时，$\sum_{k=1}^n\frac{1}{n}\sim\ln n$.
+\end{itemize}
+\end{example}
+
+最后，我们回到连续的整体性质上来. 首先是Weierstrass最值定理：
 
 \begin{theorem}[Weierstrass最值定理]\label{thm:weierstrass}
     紧集上的连续函数$f:F\to\R$在该紧集$F$的某个点取 最大（最小）值. 
@@ -394,8 +447,193 @@ Cauchy列描述了另一种收敛的概念，它要求的是序列中的点越�
 实际上，介值定理成立并不需要区间$[a,b]$，任何一个连通的拓扑空间都可以，但是连通性的表述不是很直观，所以我们这里就不给出了. 
 
 
-
 \section{一元函数的微分学}
+
+接下来，我们进入微分学的部分，同样，我们先从最基本的一元函数的情况入手。
+
+\subsection{导数与微分的定义}\index{导数}\index{微分}
+
+从近似的角度来说，\emph{微分}或者\emph{导数}的概念，本身在描述在某个点函数的线性近似，因此微分和导数本身也是一个（线性）映射。在一元函数中，我们或许无法看出来这一点，但是在更加一般的微分学中，这样的观点非常重要。因此，即便在一元部分，我们也尝试将这样的观点引入。
+
+考虑一个函数$f:\R\to\R$，和点$x_0\in\R$，我们希望找到一个线性映射$df_{x_0}:\R\to\R$，使得$f(x)$在$x_0$附近的行为很接近这线性映射，即
+
+\[
+    f(x)\approx f(x_0)+\d f_{x_0}(x-x_0).
+\]
+更精确来说，我们希望两边的误差是一个关于$x-x_0$的高阶无穷小：
+\[
+    f(x)=f(x_0)+\d f_{x_0}(x-x_0)+o(x-x_0).
+\]
+这一记号的含义可以通过一些变换看出来：
+\begin{equation}
+\d f_{x_0}(1)=\frac{f(x)-f(x_0)}{x-x_0}+o(1).\label{eq:df-1}
+\end{equation}
+注意$\d f_{x_0}(x)=kx$，所以左边就是$k$，而右边是割线的斜率。式 \eqref{eq:df-1} 的含义其实就是说$k$就是割线斜率的极限，直观上这就是切线的斜率，这就是导数的几何含义. 这一过程可以见下图：
+
+\begin{center}
+\begin{tikzpicture}
+\draw[->] (-1,0) -- (5,0) node[right] {$x$};
+\draw[->] (0,-1) -- (0,5) node[above] {$y$};
+\draw[domain=-0.5:4] plot (\x,{0.5*\x*\x-\x+1});
+\draw (2,0) node[below] {$x_0$};
+\draw (3,0) node[below] {$x$};
+\draw[dashed,->] (2,1) -- (3,1) node[midway,below] {$x-x_0$};
+\draw[dashed,->] (3,1) -- (3,2.5) node[midway,right] {$f(x)-f(x_0)$};
+\draw[thick] (2-1,1-1*1.5) -- (2+2.5,1+2.5*1.5) node[right] {$\frac{f(x)-f(x_0)}{x-x_0}$};
+\draw[thick, dashed] (2-1,1-1) -- (2+2.5,1+2.5) node[right] {$\d f_{x_0}(1)$};
+\draw[->] (2+2.3,1+2.3*1.5-0.2) -- (2+2.3,1+2.3+0.2) {};
+\end{tikzpicture}
+\end{center}
+
+我们将这些讨论整理为如下定义：
+
+\begin{definition}[微分，导数]\index{微分}\index{导数}
+    设$f:\R\to\R$，$x_0\in\R$，如果存在一个线性映射$\d f_{x_0}:\R\to\R$，使得
+    \[
+        f(x)=f(x_0)+\d f_{x_0}(x-x_0)+o(x-x_0),
+    \]
+    则称$f$在$x_0$处\textbf{可微}或者\textbf{可导}，$\d f_{x_0}$是$f$在$x_0$处的\textbf{微分}. 微分具有形式$\d f_{x_0}(x)=kx$，其中$k$称为$f$在$x_0$处的\textbf{导数}，记作$f'(x_0)$.
+
+    如果$f$在$\R$的每一点都可微，则称$f$是\textbf{可微}的或者\textbf{可导}的，$\d f$是$f$的\textbf{微分}，$f'$是$f$的\textbf{导（函）数}，也记作$\frac{\d f}{\d x}$或$\dot{f}$.
+\end{definition}
+关于导数的符号也有一些注。最能体现几何意义的是$\frac{\d f}{\d x}$，它是由Leibniz发明的。符号$\d$的意思就是“微”，可以理解为无穷小的变化量，所以导数就是自变量和函数值无穷小变化量的比值。另一方面，这个符号也可以理解为“切”，表示切向量的意思，例如$\d x$就是沿着$x$轴的任意切向量（实际上就是正方向或者负方向），而$\d y$就是相应地沿着$y$轴的切向量. 从这个角度来说，$\frac{\d f}{\d x}$就是$x$轴切向量到$y$轴切向量的一个线性映射。因此，微分其实就是所谓的\emph{切映射}\index{切映射}，即从切向量到切向量的映射。这一视角在更抽象的微分学中是更本质的。
+
+导数的定义也可以用更常见的形式给出：
+
+\begin{proposition}\label{prop:derivative}
+    设$f:\R\to\R$，$x_0\in\R$，那么$f$在$x_0$处可微当且仅当如下极限存在：
+    \[
+        \lim_{x\to x_0}\frac{f(x)-f(x_0)}{x-x_0}.
+    \]
+    这个极限就是$f$在$x_0$处的导数.
+\end{proposition}
+
+下面我们不加证明地列举导数的一些性质，这些性质自然也导出了微分的性质。
+
+\begin{proposition}\label{prop:derivative-property}
+    设$f,g:\R\to\R$在$x_0$处可微，则
+    \begin{itemize}
+        \item $f$在$x_0$处连续；
+        \item $(f+g)'(x_0)=f'(x_0)+g'(x_0)$；
+        \item $(fg)'(x_0)=f'(x_0)g(x_0)+f(x_0)g'(x_0)$；
+        \item 如果$g(x_0)\neq 0$，则
+        \[\left(\frac{f}{g}\right)'(x_0)=\frac{f'(x_0)g(x_0)-f(x_0)g'(x_0)}{g(x_0)^2};\]
+        \item 链式法则：如果$f$在$x_0$处可微，$g$在$f(x_0)$处可微，则$g\circ f$在$x_0$处可微，且$(g\circ f)'(x_0)=g'(f(x_0))f'(x_0)$；
+        \item 如果$f$存在反函数$f^{-1}$，则$f^{-1}$在$f(x_0)$处可微，且$(f^{-1})'(f(x_0))=\frac{1}{f'(x_0)}$.
+    \end{itemize}
+\end{proposition}
+在Leibniz记号下，如果$z=z(y)$，$y=y(x)$，那么链式法则可以写作
+\[
+    \frac{\d z}{\d x}=\frac{\d z}{\d y}\cdot\frac{\d y}{\d x}.
+\]
+反函数的导数则可以写作
+\[
+    \frac{\d y}{\d x}=\left(\frac{\d x}{\d y}\right)^{-1}.
+\]
+我们再次看到这种记号的天才之处，它将复杂的计算简化为了一种直观的形式.
+
+我们指出，链式法则和反函数求导法则在微分下有更加清晰的含义：
+
+\begin{proposition}\label{prop:derivative-geometric}
+设$f:\R\to\R$在$x_0$处可微，$g:\R\to\R$在$f(x_0)$处可微，则
+\begin{itemize}
+    \item $\d x=\id$；
+    \item $\d(g\circ f)_{x_0}=\d g_{f(x_0)}\circ\d f_{x_0}$.
+    \item  如果$f$存在反函数$f^{-1}$，则$\d(f^{-1})_{f(x_0)}=(\d f_{x_0})^{-1}$.
+\end{itemize}
+\end{proposition}
+
+从这个意义上说，微分号$\d$相当于把$\R\to\R$的函数变成了另外一个$\R\to\R$的函数（即切映射），同时保持函数复合运算的单位元（$\id$）、复合和逆元关系。利用这一性质，我们可以用更加代数的方法研究微分（微分函子），但这超出了本书的范围，我们就不再详细讨论了.
+
+最后，我们讨论高阶导数的概念。高阶微分是一个相当抽象的概念，所以我们这里就不深入讨论了。我们只给出高阶导数的定义：
+
+\begin{definition}[高阶导数]\index{导数}
+    设$f:\R\to\R$，$x_0\in\R$，如果$f$在$x_0$处可微，则$f$在$x_0$处的导数$f'(x_0)$是一个实数. 如果$f'$在$x_0$处可微，则称$f$在$x_0$处\textbf{二阶可微}，此时$f''(x_0)$是$f'$在$x_0$处的导数，称为$f$在$x_0$处的\textbf{二阶导数}. 一般地，如果$f^{(n-1)}$在$x_0$处可微，则称$f$在$x_0$处\textbf{$n$阶可微}，此时$f^{(n)}(x_0)$是$f^{(n-1)}$在$x_0$处的导数，称为$f$在$x_0$处的\textbf{$n$阶导数}.
+\end{definition}
+在Leibniz的记号下，$n$阶导数可以写作
+\[
+    \frac{\d^n y}{\d x^n}=\underbrace{\frac{\d}{\d x}\cdots\frac{\d}{\d x}}_{n\text{个}}y.
+\]
+从这里我们可以看出，$\d/\d x$这个记号又仿佛是一个算子，它作用在函数上，得到一个新的函数，这个视角结合谱理论，发展出了非常重要的数学理论，成为了量子力学的基础。当然，这也不在本书的讨论范围之内了.
+
+我们将在集合$X$上$n$次连续可微的函数的集合记作$C^n(X)$，任意次连续可微的函数的集合记作$C^\infty(X)$。
+
+\section{微分学基本定理}
+
+微分学几乎都与极值联系在一起，刻画这些关系的定理就是微分学的基本定理. 我们依然只罗列定理，不给出证明. 首先我们给出极值的定义。
+
+\begin{definition}[极大值，严格极大值，极小值，严格极小值]\index{极值}
+    设$f:X\to\R$，$x_0\in X$，如果存在包含$x_0$的开集$U$，使得对任意$x\in U$，有$f(x)\leq f(x_0)$，则称$f(x_0)$是$f$在$x_0$处的一个\textbf{极大值}，$x_0$是$f$的一个\textbf{极大值点}。如果$f(x)=f(x_0)$只在$x_0$处成立，则称$f(x_0)$是$f$在$x_0$处的一个\textbf{严格极大值}，$x_0$是$f$的一个\textbf{严格极大值点}.
+    
+    如果不等式反向，则称$f(x_0)$是$f$在$x_0$处的一个\textbf{极小值}，$x_0$是$f$的一个\textbf{极小值点}. 如果$f(x)=f(x_0)$只在$x_0$处成立，则称$f(x_0)$是$f$在$x_0$处的一个\textbf{严格极小值}，$x_0$是$f$的一个\textbf{严格极小值点}.
+    
+    如果$f(x_0)$是$f$在$x_0$处的一个极大（小）值，则称$f(x_0)$是$f$在$x_0$处的一个\textbf{极值}，$x_0$是$f$的一个\textbf{极值点}. 
+\end{definition}
+
+首先是Fermat引理，他其实就是极值的一阶必要条件：
+
+\begin{lemma}[Fermat引理]\label{lemma:fermat}
+    设$f:X\to\R$，$x_0\in X$是$f$的一个极值点，且$f$在$x_0$处可微，则$f'(x_0)=0$.
+\end{lemma}
+
+接下来是一系列中值定理，我们这里只给出Lagrange中值定理：
+
+\begin{theorem}[Lagrange中值定理]\label{thm:lagrange-mid}
+    设$f:[a,b]\to\R$是一个连续函数，且在$(a,b)$内可微，则存在$\xi\in(a,b)$，使得
+    \[
+        f'(\xi)=\frac{f(b)-f(a)}{b-a}.
+    \]
+\end{theorem}
+
+这一定理给出了割线斜率和切线斜率的关系，可以用下图来理解：
+
+\begin{center}
+\begin{tikzpicture}
+\draw[->] (-1,0) -- (5,0) node[right] {$x$};
+\draw[->] (0,-1) -- (0,4.5) node[above] {$y$};
+\draw[domain=-0.5:4] plot (\x,{0.5*\x*\x-\x+1});
+\draw[dashed] (0,0) node[below right] {$a$} -- (0,1);
+\draw[dashed] (3,0) node[below] {$b$} -- (3,2.5);
+\draw[dashed] (0,1) -- (3,1) ;
+\draw[dashed] (3,1) -- (3,2.5) ;
+\draw[thick] (0-0.5,1-0.5*0.5) -- (0+4,1+4*0.5) node[right] {$\frac{f(b)-f(a)}{b-a}$};
+\draw[dashed] (1.5,0) node[below] {$\xi$} -- (1.5,0.625);
+\draw[thick] (1.5-2,0.625-2*0.5) -- (1.5+2.5,0.625+2.5*0.5) node[right] {$f'(\xi)$};
+\end{tikzpicture}
+\end{center}
+我们将在后面指出，这一定理只适用于实值函数，假如想对向量值函数使用，需要对其进行适当的修改：
+
+\begin{theorem}[Lagrange有限增量定理]\label{thm:lagrange-finite}
+    设$f:[a,b]\to\R$是一个连续函数，且在$(a,b)$内可微，则
+    \[
+        |f(b)-f(a)|\leq |b-a|\sup_{\xi\in(a,b)}|f'(\xi)|.
+    \]
+\end{theorem}
+
+接下来我们讨论高阶导数与极值的关系。这样的关系是由Taylor公式给出的。我们说过，微分是用线性函数去近似函数的过程，而Taylor公式则是用多项式去近似函数的过程。考虑函数$f:\R\to\R$，如果$f$在$x_0$处$n$次可微，我们尝试用一个$n$次多项式去近似$f$，即
+
+\[
+    f(x)=a_0+a_1(x-x_0)+\cdots+a_n(x-x_0)^n+o((x-x_0)^n).
+\]
+容易求出，$a_0=f(x_0)$，$a_1=f'(x_0)$，$a_2=\frac{f''(x_0)}{2}$，$a_3=\frac{f'''(x_0)}{6}$，$\cdots$，$a_k=\frac{f^{(k)}(x_0)}{n!}$，因此我们得到了Taylor公式：
+
+\begin{theorem}
+    设$f:\R\to\R$在$x_0$处$n$次可微，则
+    \[
+        f(x)=\sum_{k=0}^n\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+o((x-x_0)^n).
+    \]
+\end{theorem}
+我们将这个$n$次多项式称为\textbf{Taylor展开}\index{Taylor展开}.
+
+利用高阶导数，我们可以得到极值判定的充分条件：
+
+\begin{theorem}\label{thm:extreme}
+    设$f:(a,b)\to\R$在$x_0$处$n$次可微，且$f'(x_0)=f''(x_0)=\cdots=f^{(n-1)}(x_0)=0$，$f^{(n)}(x_0)\neq 0$，则
+    \begin{itemize}
+        \item 如果$n$为奇数，$f$在$x_0$处没有极值；
+        \item 如果$n$为偶数，$f$在$x_0$处有极值，且当$f^{(n)}(x_0)>0$时，$f$在$x_0$处有严格极小值，当$f^{(n)}(x_0)<0$时，$f$在$x_0$处有严格极大值.
+    \end{itemize}
+\end{theorem}
 
 \section{多元函数的微分学}
 
