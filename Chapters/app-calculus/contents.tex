@@ -718,7 +718,7 @@ $h$被称为\textbf{切向量}\index{切向量}（想象一下一维的情况）
 
 在$m=n$的特殊情况下，$J_f(x)$的行列式被称为$f$在$x$处的\textbf{Jacobi行列式}\index{Jacobi行列式}，记作
 \[\frac{\partial(f_1,\dots,f_n)}{\partial(x_1,\dots,x_n)}(x).\]
-这一行列式在微分学中不会使用，但是在积分学中对变量替换起着核心作用，我们在后面概率论中会稍加讨论. 
+在\Cref{ex:polar-coordinates} 中我们会看到，Jacobi行列式表明了坐标变换时相应体积变化的比率。这一事实使得它在积分学的变量替换中有着核心作用。
 
 总结来说，实值函数的微分可以用\emph{行}向量$(\partial_1 f_1(x),\dots,\partial_n f_1(x))$和切向量相乘表示，而向量值函数的微分可以用Jacobi矩阵$J_f(x)$和切向量相乘来表示，我们将这些符号统称$f$在$x$处的\textbf{导数}\index{导数}，记为$f'(x)$或$\frac{\d f}{\d x}(x)$，于是，在坐标表示下，我们可以将微分简单写作$df_x=f'(x)\d x$，这里我们将$\d x$理解为一个切向量（列向量）. 
 
@@ -903,3 +903,103 @@ $h$被称为\textbf{切向量}\index{切向量}（想象一下一维的情况）
         \item 如果$H_f(x_0)$不定（既非半正定也非半负定），则$f$在$x_0$处不取极值.
     \end{itemize}
 \end{theorem}
+
+\subsection{隐函数定理}
+
+微积分中，还有一类非常重要的问题，那就是解方程，我们看一个非常简单的例子。设$f:\R^2\to\R$，$f(x,y)=x^2+y^2-1$，我们来求解方程$f(x,y)=0$，也就是求单位圆的方程. 由于$f$是一个二次型，因此我们可以直接求出它的根：
+    \[y=\pm\sqrt{1-x^2}.\]
+比如考虑圆周上的点$(0.6,0.8)$的附近，$x$就可以把$y$表示出来：$y=\sqrt{1-x^2}$. 如果考虑点$(0.6,-0.8)$的附近，我们也可以写出$y=-\sqrt{1-x^2}$。
+    
+总而言之，只要给定圆周上一个点$(x_0,y_0)$，我们就可以找到一个邻域，在这个邻域上确认一个$y$和$x$的函数关系$y=y(x)$.
+
+更一般地，给定函数方程$F(x,y)=0$，它确定了一个平面上的曲线$C=\{(x,y)\in\R^2:F(x,y)=0\}$。任取一点$(x_0,y_0)\in C$，如果在$(x_0,y_0)$的某个邻域$U$上，我们可以确认一个$y$和$x$的函数关系$y=y(x)$，使得$U\cap C$中的所有点都可以用这个关系表示，那么我们其实就把一个隐藏在$F(x,y)=0$中的函数$y$解出来了，这就是\textbf{隐函数}\index{隐函数}的概念.
+
+下面，我们考虑维数更高的情况。设$F:\R^n\times\R^m\to\R^k$，$F(x,y)=0$，其中$x\in\R^n$，$y\in\R^m$。任取一点$(x_0,y_0)$满足$F(x_0,y_0)=0$，同样，我们希望在$(x_0,y_0)$的某个邻域$U$上，将$F(x,y)=0$转化为一个等价的函数关系$y=y(x)$. 
+
+首先我们指出，在一般情况下，$k=m$的时候讨论才有意义，这可以从线性方程组的理论看出，相关的线性代数理论可以参见\Cref{chap:linear-algebra}。假如说$F(x,y)=0$就是一个线性方程组：
+\begin{equation}
+    \begin{gathered}
+        a_{11}x_1+\cdots+a_{1n}x_n+b_{11}y_1+\cdots+b_{1m}y_m-c_1=0, \\
+        \dots \\
+        a_{k1}x_1+\cdots+a_{kn}x_n+b_{k1}y_1+\cdots+b_{km}y_m-c_k=0.
+    \end{gathered}
+    \label{eq:linear-equation}
+\end{equation}
+我们也可以写成矩阵形式：
+\[Ax+By=c.\]
+其中$A$是一个$k\times n$的矩阵，$B$是一个$k\times m$的矩阵，$c$是一个$k$维向量.
+
+如果$k<m$，那么线性映射$y\mapsto By$的秩是$k<m$，根据\Cref{cor:kernel-image-isomorphism}，这个映射的核不是$\{0\}$，所以对于任意一个满足$Ax_0+By_0=c$的$(x_0,y_0)$来说，总可以再加上一个$y\neq 0$使得$Ax_0+B(y+y_0)=c$，因此在任何情况下都不会有$y=y(x)$的函数关系.
+
+如果$k>m$，那么$F(x,y)=0$很有可能是空集。比如，下列线性方程组就没有解：
+\begin{gather*}
+    x_1+x_2=0, \\
+    x_1+x_2=1.
+\end{gather*}
+
+对于非线性方程组的情况，如果$F(x,y)$是可微的，那么在一个点的局部函数的性质可以用线性映射近似，于是也应该有$k=m$. 这一事实可以简单归结为：\emph{要解$m$个未知数（即$y$），应该恰好有$m$个方程（即$F(x,y)=0$）}.
+
+我们继续来看线性方程组的情况，即 \eqref{eq:linear-equation}，如果$k=m$，$c=0$，$B$可逆，很快就可以解出
+\[y=-B^{-1}Ax.\]
+
+对于一般的$F$，在它的每一个局部，我们都可以用一个线性映射近似，根据微分的偏导数表示，这一线性映射恰好形如
+\[\underbrace{\frac{\partial F}{\partial x}}_A h_x+\underbrace{\frac{\partial F}{\partial y}}_B h_y.\]
+这里$h_y$和$h_x$就应该理解为映射在这一点的切向量。
+于是，假如$\frac{\partial F}{\partial y}$可逆，那么我们就可以解出
+\[h_y=-\left(\frac{\partial F}{\partial y}\right)^{-1}\frac{\partial F}{\partial x}h_x.\]
+注意，这里的$h_y$和$h_x$不是别的，正是切向量，假设我们可以解出函数关系$y=f(x)$，根据导数的定义，我们有
+\[f'(x)=-\left(\frac{\partial F}{\partial y}\right)^{-1}\frac{\partial F}{\partial x}.\]
+确定了导数求可以确定这个函数本身，这就是\textbf{隐函数定理}\index{隐函数定理}的内容. 下面，我们正式给出它的陈述。
+
+\begin{theorem}[隐函数定理]\label{thm:implicit-function}
+    设$F:\R^n\times\R^m\to\R^m$，$F(x,y)=0$，其中$x\in\R^n$，$y\in\R^m$，考虑点$(x_0,y_0)$的邻域$U$，如果：
+    \begin{itemize}
+        \item $F\in C^p(U;\R^m)$，$p\geq 1$；
+        \item $F(x_0,y_0)=0$；
+        \item $\frac{\partial F}{\partial y}(x_0,y_0)$可逆，
+    \end{itemize}
+    那么存在开球$B(x_0,r)\subseteq\R^n$，开球$B(y_0,s)\subseteq\R^m$，以及一个函数$f\in C^p(B(x_0,r);\R^m)$，使得对任意$x\in B(x_0,r)$，$y\in B(y_0,s)$，都有
+    \[F(x,y)=0\iff y=f(x).\]
+    此外，$f$的导数可以用$F$的偏导数表示：
+    \[f'(x)=-\left(\frac{\partial F}{\partial y}\right)^{-1}\frac{\partial F}{\partial x}.\]
+\end{theorem}
+这一定理可以用Banach不动点定理（\Cref{thm:banach-fixed-point}）证明，具体内容请参见\Cref{chap:fixed-point-theory}的习题\Cref{???}. 
+
+隐函数定理的一个特例是向量值函数的反函数的存在性定理：
+
+\begin{theorem}[反函数定理]\label{thm:inverse-function}
+    设$f\in C^p(U;\R^n)$，$p\geq 1$，$U$是开集，$f'(x_0)$可逆，那么存在$x_0$的邻域$V$，以及$f(x_0)$的邻域$W$，使得$f:V\to W$是一个双射，且$f^{-1}\in C^p(W;\R^n)$，此外，$f^{-1}$的导数可以用$f$的导数表示，对于$x\in U,y=f(x)\in V$，我们有
+    \[f^{-1}(y)'=(f'(x))^{-1}.\]
+\end{theorem}
+作为一个注，反函数定理中可逆性的判断可以利用Jacobi行列式来判断。
+
+反函数定理最重要的用途是坐标变换。我们之前的坐标变换都是线性的基到线性的基，然而在微积分中非线性的“基”也非常常用，比如极坐标、球坐标等，这些坐标变换都是非线性的，因此我们需要反函数定理来处理这些坐标变换. 我们考虑极坐标的例子。
+
+\begin{example}[极坐标]\label{ex:polar-coordinates}
+    考虑一个半平面$\R_{\geq 0}\times\R=\{(r,\phi)\in\R\times\R:r\geq 0\}$. 我们将它映射到$\R^2$平面上，映射$f$定义为$f(r,\phi)=(r\cos\phi,r\sin\phi)$. 我们也可以写得更像坐标变换一些：
+    \begin{gather*}
+        x=r\cos\phi, \\
+        y=r\sin\phi.
+    \end{gather*}
+    这个变换的Jacobi行列式是$r$，因此除了$r=0$的点，这个变换都是可逆的，于是在$\R^2$的任何局部上，我们都可以用极坐标来表示平面上的点.
+
+    我们借着这个例子来看一下Jacobi行列式的几何意义。上述坐标变换的微分形式是：
+    \[\begin{pmatrix}
+        \d x \\
+        \d y
+    \end{pmatrix}=\begin{pmatrix}
+        \cos\phi & -r\sin\phi \\
+        \sin\phi & r\cos\phi
+    \end{pmatrix}\begin{pmatrix}
+        \d r \\
+        \d\phi
+    \end{pmatrix}=J_f \begin{pmatrix}
+        \d r \\
+        \d\phi
+    \end{pmatrix}.\]
+    这里对诸如$\d x$的符号，我们有两种理解方式，一种是把他们理解为切向量，另一种是把他们理解为一段微小位移。不论哪一种，最终结果都是将$f$在局部近似为了一个线性映射。根据\Cref{sec:determinant}的讨论，这一线性映射将平行六面体$\Pi(\d r,\d \phi)$映射为平行六面体$\Pi(\d x,\d y)$，而Jacobi行列式就是他们有向体积变化的比率。如果我们把$\Pi(\d r,\d \phi)$的有向体积记为$\partial(r,\phi)$，那么我们有
+    \[\frac{\partial(x,y)}{\partial(r,\phi)}=\det J_f.\]
+    这正是Jacobi行列式这一符号的意义。我们还可以用Leibniz的记号更加形象地表达这件事情。作为坐标，我们认为$\d x\d y$表示的正好就是长方形$\Pi(\d x,\d y)$的面积（长乘宽），而$\d r\d\phi$表示的正好就是长方形$\Pi(\d r,\d \phi)$的面积，于是我们有
+    \[\frac{\d x\d y}{\d r\d\phi}=\frac{\partial(x,y)}{\partial(r,\phi)}\iff \d x \d y= \frac{\partial(x,y)}{\partial(r,\phi)}\d r\d\phi.\]
+    在积分学中，这一符号（再加上绝对值）实际上直接给出了变量替换的公式.
+\end{example}

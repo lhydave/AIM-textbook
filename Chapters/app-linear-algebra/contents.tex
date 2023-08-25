@@ -795,7 +795,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
     后半部分（“反之”之后）是显然的. 我们来证明前半部分. 设$v_1,\cdots,v_n$是$V$的标准正交基，$w_1,\cdots,w_n$是$W$的标准正交基，$A$是$f$在这两组基下的矩阵. 考虑任意一个点$x\in V$，它的坐标是$X$. 那么$f(x)$的坐标是$AX$. 由于$f$是等距同构，所以$\norm{f(x)}=\norm{x}$，根据\Cref{prop:projection}，这等价于$\norm{AX}=\norm{X}$，这就是说$A$是一个正交矩阵. 
 \end{proof}
 
-\section{行列式}
+\section{行列式}\label{sec:determinant}
 行列式可以进一步理解为矩阵的表示. 实际上，行列式具有明显的几何意义. 我们先从平面开始讨论. 
 
 考虑平面$\R^2$上的两个向量$\alpha=(a_1,a_2)^\t$和$\beta=(b_1,b_2)^\t$，我们可以用这两个向量作为平行四边形的两条边，构造一个平行四边形：
