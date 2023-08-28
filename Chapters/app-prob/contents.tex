@@ -1,10 +1,17 @@
 \chapter{概率论基础}\label{chap:prob}
 
+\begingroup
+\newcommand{\B}{\mathscr{B}}
+\renewcommand{\F}{\mathscr{F}}
+\newcommand{\Exp}{\mathsf{Exp}}
+\newcommand{\DExp}{\mathsf{DExp}}
+\newcommand{\Lap}{\mathsf{Lap}}
+
 本附录主要介绍Kolmogorov概率论，讨论只局限在数学层面，不涉及概率论的哲学讨论。
 
 \section{从朴素概率论到公理化概率论}
 
-\subsection{Kolmogorov概率论}
+\subsection{Kolmogorov概率论}\label{subsec:kolmogorov-probability}
 朴素的概率论通常讨论两种极端的情况，一个是可以用数数的方式来计算概率的情况，比如说掷骰子，另一个是用面积的方式来计算概率的情况，比如在随机选一个圆周上的点。这两个情况分别对应了\textbf{古典概型}和\textbf{几何概型}。
 
 我们先给一些术语。考虑一个随机试验，它的所有可能结果组成的集合称为\textbf{样本空间}\index{样本空间}，记为$\Omega$。样本空间的元素称为\textbf{样本点}\index{样本点}，通常记为$\omega$. 样本空间的\emph{某些}子集被称为\textbf{事件}。我们来看看这些概念在朴素的概率论中都具体是什么。
@@ -76,35 +83,35 @@
 因此，我们需要一个更加严格的定义来描述概率。首先注意到，概率应该是一个函数，它的值域是$[0,1]$. 那么，它的定义域应该是什么呢？我们已经看到，概率应该定义在\emph{事件}上，而非\emph{样本点}上。那么，概率可以定义在\emph{任意}事件上吗？这个问题的答案非常微妙，我们不在这里讨论。这里只是指出，我们关心的并不总是任意事件，而是一类被$\sigma$-代数所刻画的事件。
 
 \begin{definition}[$\sigma$-代数]\index{$\sigma$-代数}
-设$\Omega$是一个集合，$\mathscr{F}$是$\Omega$的子集的集合。如果$\mathscr{F}$满足
+设$\Omega$是一个集合，$\F$是$\Omega$的子集的集合。如果$\F$满足
 \begin{enumerate}
-    \item $\Omega\in\mathscr{F}$;
-    \item 如果$A\in\mathscr{F}$，则$A$的补集$\Omega\setminus A\in\mathscr{F}$;
-    \item 如果$A_1,A_2,\ldots\in\mathscr{F}$，则$\bigcup_{i=1}^\infty A_i\in\mathscr{F}$.
+    \item $\Omega\in\F$;
+    \item 如果$A\in\F$，则$A$的补集$\Omega\setminus A\in\F$;
+    \item 如果$A_1,A_2,\ldots\in\F$，则$\bigcup_{i=1}^\infty A_i\in\F$.
 \end{enumerate}
-则称$\mathscr{F}$是$\Omega$上的一个 \textbf{$\sigma$-代数}。
+则称$\F$是$\Omega$上的一个 \textbf{$\sigma$-代数}。
 \end{definition}
 
-在样本空间中，我们要求事件也形成一个$\sigma$-代数。这样的$\sigma$-代数称为\textbf{事件域}\index{事件域}，记为$\mathscr{F}$，关于这一定义的哲学讨论，可以见\Cref{chap:plausible-reasoning}. 接下来，我们给出Kolmogorov概率论的公理化定义。
+在样本空间中，我们要求事件也形成一个$\sigma$-代数。这样的$\sigma$-代数称为\textbf{事件域}\index{事件域}，记为$\F$，关于这一定义的哲学讨论，可以见\Cref{chap:plausible-reasoning}. 接下来，我们给出Kolmogorov概率论的公理化定义。
 
 \begin{definition}[概率空间，概率测度]\index{概率空间}\index{概率}\index{概率测度}
-设$\Omega$是一个集合，$\mathscr{F}$是$\Omega$上的一个$\sigma$-代数。如果函数$\Pr:\mathscr{F}\to[0,1]$满足
+设$\Omega$是一个集合，$\F$是$\Omega$上的一个$\sigma$-代数。如果函数$\Pr:\F\to[0,1]$满足
 \begin{enumerate}
     \item 正则性：$\Pr(\Omega)=1$;
-    \item 可列可加性：如果$A_1,A_2,\dots\in\mathscr{F}$是两两不相交的事件，则
+    \item 可列可加性：如果$A_1,A_2,\dots\in\F$是两两不相交的事件，则
     \[
         \Pr\left(\bigcup_{i=1}^\infty A_i\right) = \sum_{i=1}^\infty \Pr(A_i),
     \]
-    则称$(\Omega,\mathscr{F},\Pr)$是一个\textbf{概率空间}，$\Pr$称为\textbf{概率测度}或\textbf{概率}。
+    则称$(\Omega,\F,\Pr)$是一个\textbf{概率空间}，$\Pr$称为\textbf{概率测度}或\textbf{概率}。
 \end{enumerate}
 \end{definition}
 容易证明，概率有如下性质：
 \begin{proposition}
-设$(\Omega,\mathscr{F},\Pr)$是一个概率空间，则：
+设$(\Omega,\F,\Pr)$是一个概率空间，则：
 \begin{enumerate}
     \item $\Pr(\varnothing)=0$；
-    \item 单调性：对任意的$A,B\in\mathscr{F}$，如果$A\subseteq B$，则$\Pr(A)\leq\Pr(B)$；
-    \item 有限可加性：对两两不相交的$A_1,A_2,\dots,A_n\in\mathscr{F}$，有
+    \item 单调性：对任意的$A,B\in\F$，如果$A\subseteq B$，则$\Pr(A)\leq\Pr(B)$；
+    \item 有限可加性：对两两不相交的$A_1,A_2,\dots,A_n\in\F$，有
     \[
         \Pr\left(\bigcup_{i=1}^n A_i\right) = \sum_{i=1}^n \Pr(A_i).
     \]
@@ -112,7 +119,17 @@
 \end{proposition}
 他们的证明都不困难，我们略去。
 
-对于古典概型来说，我们容易写出它的概率空间。此时事件域恰好为所有$\Omega$的子集的集合，概率测度的定义也就是我们之前的定义。对于几何概型来说，这一定义需要克服很多技术层面的困难，我们不在这里讨论。
+下面我们来看一下之前的古典概型与几何概型都是如何构造概率空间的。
+
+对于古典概型来说，我们容易写出它的概率空间。此时事件域恰好为所有$\Omega$的子集的集合，概率测度的定义也就是我们之前的定义：$\Pr(A)=|A|/|\Omega|$. 
+
+对于几何概型来说，概率空间最大的困难在于事件域和概率测度的定义。为了简化讨论，我们集中在$\Omega=[0,1]^n$，也就是$n$维立方体的情况。我们知道，对于一个长方体
+\[\prod_i(a_i,b_i)=\{x=(x_1,x_2,\ldots,x_n)\in\R^n:a_i<x_i<b_i\},\]
+它的体积为$\prod_i(b_i-a_i)$. $\Omega$上事件域至少应该包含所有长方体，所以我们就定义事件域为包含所有长方体的最小$\sigma$-代数$\B([0,1]^n)$。换言之，如果还有一个$\sigma$-代数$\F$包含所有长方体，那么$\B([0,1]^n)\subseteq\F$. 我们将这一$\sigma$-代数称为\textbf{Borel代数}\index{Borel代数}. Borel代数包含了绝大部分我们要讨论的集合，例如开集、闭集、单点集、有限集、可数集等，可以简单归纳为“合理的集合”。
+
+事件域的定义已经给出，我们还需要定义概率测度。概率测度$\Pr$的第一个要求是，让正方体的概率等于它的体积。第二个要求是平移不变性，也就是说，如果$A\in\B([0,1]^n)$，那么对任意的$x\in\R^n$，定义$A+x=\{y\in\R^n:y=x+z,z\in A\}$，只要$A\in\B([0,1]^n)$，就有$\Pr(A+x)=\Pr(A)$. 这样的概率测度是存在且唯一的，我们称之为\textbf{Lebesgue测度}\index{Lebesgue测度}，常记为$\lambda$.
+
+注意，Borel代数和Lebesgue测度的定义可以不局限在$[0,1]^n$，他们可以定义在与实数相关的各种空间上。在本附录中，我们最主要是用的是$\R^n$上的相关定义，例如$\B(\R^n)$就是包含所有$n$维开长方体（每条边是开区间）的最小$\sigma$-代数，$\lambda$就是定义在$\B(\R^n)$上的Lebesgue测度。
 
 \subsection{条件概率，独立性}
 接下来，我们讨论条件概率与独立性。我们还是看先后掷两个骰子的例子。如果掷完第一个骰子，我们马上观察结果，然后再掷第二个骰子，问第一个骰子是$i$，第二个是$j$的概率是多少？如果继续套用原来的概率空间，我们很快就会觉得不对劲。此时，第一个骰子完全没有随机性！所以朴素的直觉告诉我们，这里的概率应该有另一个依赖于第一次投骰子结果的定义，这样的概率就是\emph{条件概率}。
@@ -120,7 +137,7 @@
 我们直接给出一般情况下条件概率的定义。
 
 \begin{definition}[条件概率]\index{条件概率}
-设$(\Omega,\mathscr{F},\Pr)$是一个概率空间，$A,B\in\mathscr{F}$是两个事件，且$\Pr(A)>0$. 则称
+设$(\Omega,\F,\Pr)$是一个概率空间，$A,B\in\F$是两个事件，且$\Pr(A)>0$. 则称
 \[
     \Pr(B|A) = \frac{\Pr(A\cap B)}{\Pr(A)}
 \]
@@ -135,9 +152,9 @@
 最后一个式子并不要求$\Pr(A)>0$，因此我们用它作为独立性的定义，这样定义可以不依赖条件概率。
 
 \begin{definition}[独立性]\index{独立性}
-设$(\Omega,\mathscr{F},\Pr)$是一个概率空间，$A,B\in\mathscr{F}$是两个事件。如果$\Pr(A\cap B)=\Pr(A)\Pr(B)$，则称事件$A$和$B$\textbf{相互独立}。
+设$(\Omega,\F,\Pr)$是一个概率空间，$A,B\in\F$是两个事件。如果$\Pr(A\cap B)=\Pr(A)\Pr(B)$，则称事件$A$和$B$\textbf{相互独立}。
 
-一般地，给定一个事件族$\mathscr{A}\subseteq\mathscr{F}$，如果对任意的有限个不同的$A_1,A_2,\ldots,A_n\in\mathscr{A}$，都有
+一般地，给定一个事件族$\mathscr{A}\subseteq\F$，如果对任意的有限个不同的$A_1,A_2,\ldots,A_n\in\mathscr{A}$，都有
 \[
     \Pr\left(\bigcap_{i=1}^n A_i\right) = \prod_{i=1}^n \Pr(A_i),
 \]
@@ -157,17 +174,17 @@
 最后，我们给出条件概率的一些性质。
 
 \begin{proposition}\label{prop:conditional-probability}
-设$(\Omega,\mathscr{F},\Pr)$是一个概率空间，那么
+设$(\Omega,\F,\Pr)$是一个概率空间，那么
 \begin{enumerate}
-    \item 对任意$A\in\mathscr{F}$满足$\Pr(A)>0$，$\Pr(\cdot|A)$也是一个概率测度；
+    \item 对任意$A\in\F$满足$\Pr(A)>0$，$\Pr(\cdot|A)$也是一个概率测度；
     \item $\Pr(|\Omega)=\Pr(\cdot)$，
-    \item 对任意$A\in\mathscr{F}$满足$\Pr(A)>0$，$\Pr(A|A)=1$.
+    \item 对任意$A\in\F$满足$\Pr(A)>0$，$\Pr(A|A)=1$.
 \end{enumerate}
 \end{proposition}
 以上性质的证明都很简单，我们就不给出了。
 
 \begin{theorem}[全概率公式]\index{全概率公式}\label{thm:total-probability}
-设$(\Omega,\mathscr{F},\Pr)$是一个概率空间，$A_1,A_2,\ldots\in\mathscr{F}$是一列两两不相交的事件，且$\Pr(A_i)>0$，$\bigcup_{i=1}^\infty A_i=B$，则对任意的$C\in\mathscr{F}$，有
+设$(\Omega,\F,\Pr)$是一个概率空间，$A_1,A_2,\ldots\in\F$是一列两两不相交的事件，且$\Pr(A_i)>0$，$\bigcup_{i=1}^\infty A_i=B$，则对任意的$C\in\F$，有
 \[
     \Pr(C|B) = \sum_{i=1}^\infty \Pr(C|A_i)\Pr(A_i).
 \]
@@ -204,7 +221,7 @@
 \end{example}
 
 \begin{theorem}[贝叶斯公式]\index{贝叶斯公式}\label{thm:bayes}
-设$(\Omega,\mathscr{F},\Pr)$是一个概率空间，$A,B\in\mathscr{F}$且$\Pr(A),\Pr(B)>0$，则
+设$(\Omega,\F,\Pr)$是一个概率空间，$A,B\in\F$且$\Pr(A),\Pr(B)>0$，则
 \[
     \Pr(A|B) = \frac{\Pr(B|A)\Pr(A)}{\Pr(B)}.
 \]
@@ -214,7 +231,7 @@
 一个特别重要的推论被称为\emph{链式法则}\index{链式法则}，它是\emph{Bayes网络}\index{Bayes网络}的基础。
 
 \begin{corollary}[链式法则]\index{链式法则}\label{cor:chain-rule}
-设$(\Omega,\mathscr{F},\Pr)$是一个概率空间，$A_1,A_2,\ldots,A_n\in\mathscr{F}$，且$\Pr(A_1\cap A_2\cap\cdots\cap A_n)>0$，则
+设$(\Omega,\F,\Pr)$是一个概率空间，$A_1,A_2,\ldots,A_n\in\F$，且$\Pr(A_1\cap A_2\cap\cdots\cap A_n)>0$，则
 \begin{align*}
     &\Pr(A_1\cap A_2\cap\cdots\cap A_n)\\
     = &\Pr(A_1)\Pr(A_2|A_1)\Pr(A_3|A_1\cap A_2)\cdots\Pr(A_n|A_1\cap A_2\cap\cdots\cap A_{n-1}).
@@ -247,6 +264,228 @@
 \end{remark}
 \section{随机变量，分布函数}\label{sec:random-variable}
 
-\section{随机变量的数字特征，期望}
+接下来，我们讨论随机变量。从某种意义上说，随机变量是另一种刻画概率测度的手段。然而，随机变量能够更加直观、定量描述概率空间中的事件，所以这是一个更加容易使用的概念。
+
+\subsection{基本定义}
+
+为了理解随机变量的概念，我们依然从古典概型入手。
+
+\begin{example}\label{ex:random-variable}
+继续考虑先后投两个骰子的情况，假设它的概率空间是$(\Omega,\F,\Pr)$，他们的定义我们在\Cref{subsec:kolmogorov-probability} 的末尾已经讨论过了。
+
+我们可以定义一个从样本空间$\Omega$到$\N$的函数$S(i,j)=i+j$，也就是两个点数的和。我们来看看$S$与事件域的关系。$\{S=s\}=\{(i,j)\in\Omega:i+j=s\}$，所以$S$将原本的事件精简成了一个数字。这个过程丢弃了一些事件，例如$S$无法表达事件$\{(1,2)\}$，实际上，它无法区分$(1,2)$和$(2,1)$，它把这两个样本点都看成了$3$. 但是，$S$仍然保留了很多信息，例如，$S$可以区分事件$\{(1,1)\}$和$\{(2,2)\}$，它们分别对应$2$和$4$. 总结来说，$S$将原本更精细的事件域压缩成了更粗糙的事件域。
+
+有了上面的感觉，我们可以看一个更抽象的函数。定义一个从样本空间$\Omega$到$\N^2$的函数$X$，它的定义为$X(i,j) = (i,j)$. 换句话说，它把样本点看成一个$\N^2$的元素。$\F$中的所有事件都可以表达为$\{X\in B\}$，这里$B\subseteq\N^2$. 所以$X$完全刻画了整个事件域。
+\end{example}
+
+上面例子中的$S$和$X$都是\emph{随机变量}的例子。我们给出随机变量的定义。
+
+\begin{definition}[随机变量，随机元]\index{随机变量}\index{随机元}
+设$(\Omega,\F,\Pr)$是一个概率空间，$X:\Omega\to\R$是一个函数。如果对任意的$x\in\R$，$\{X\in\B(\R)\}\in\F$，则称$X$是一个\textbf{随机变量}. 
+
+一般地，考虑一个集合$S$以及其上的$\sigma$-代数$\F_S$，$X:\Omega\to S$是一个映射。如果对任意的$A\in\F_S$，$\{X\in A\}\in\F$，则称$X$是一个\textbf{随机元}。如果$S=\R^n$且$\F_S=\B(\R^n)$，则称$X$是一个\textbf{$n$维随机向量}。
+\end{definition}
+
+下面对这个定义做一些说明。首先，随机变量是一个映射，而不是一个数字，这一点经常会被人误解。直观上说，它是一个映射是因为，它的值是随机的，背后有一个未知的力量在抛硬币，我们把从抛硬币到观测值这一整个东西称之为随机变量。
+
+定义的后面还涉及了$\sigma$-代数相关的东西，我们也给一个简要说明。Borel代数包含了“合理的集合”，所以$\{X\in\B(\R)\}$表示事件“$X$取合理的值”。随机变量的要求其实就是，“$X$取合理的值”是一个我们可以定义概率的事件。
+
+我们下面讨论一些随机变量的基本性质。
+
+\begin{proposition}\label{prop:random-variable}
+设$(\Omega,\F,\Pr)$是一个概率空间，$X:\Omega\to\R$是一个随机变量. 假设函数$g:\R\to\R$是一个连续函数，则$g(X)=g\circ X$也是一个随机变量。更一般地，如果$X:\Omega\to\R^n$是一个随机向量，$g:\R^n\to\R^m$是一个连续函数，则$g(X)=g\circ X$也是一个随机向量。
+\end{proposition}
+
+这一性质告诉我们了一种构造随机变量的方式，我们可以先构造一个随机变量，然后对它进行一些连续的操作，例如加减乘除、取指数、取对数、取幂等等，这样得到的新的函数也是一个随机变量。
+
+实际上，不连续的函数进行复合也可以构造新的随机变量，这样的函数可以用\textbf{Borel函数}\index{Borel函数}来刻画。实际上，Borel函数就是样本空间$\R^n$上的随机向量。
+
+
+接下来，我们进入分布函数的讨论。我们说过，随机变量某种意义上给出了概率测度的另一种刻画方式，而这一桥梁就是由分布函数给出的。
+
+考虑概率空间$(\Omega,\F,\Pr)$，以及一个随机变量$X:\Omega\to\R$. 要刻画概率测度$\Pr$，我们需要给出所有的事件$A\in\F$的$\Pr(A)$。如果$A$可以被写成$\{X\in B\}$的形式，那么我们可以用$\Pr(X\in B)$来刻画$\Pr(A)$. 而我们之前说过，要确定$\Pr(X\in B)$，基本上只需要确定$\Pr(X\in(a,b))$。这一概率还是有两个未定元$a,b$，所以更简便的方式是确定$F_X(b)=\Pr(X\in(-\infty,b])$，容易证明，开区间的概率完全可以由$F_X(b)$给出，所以$F_X$完全刻画了$\Pr$. 更一般地，我们有如下定义。
+
+\begin{definition}[分布函数]\index{分布函数}
+设$(\Omega,\F,\Pr)$是一个概率空间，$X:\Omega\to\R$是一个随机变量。定义函数$F_X:\R\to\R$为$F_X(x) = \Pr(X\leq x)$. 我们称$F_X$是$X$的\textbf{分布函数}，记作$X\sim F$.
+
+如果$X:\Omega\to\R^n$是一个随机向量，定义函数$F_X:\R^n\to\R$为$F_X(x) = \Pr(X\leq x)$，这里$X\leq x$是指对任意的$i=1,2,\ldots,n$，都有$X_i\leq x_i$. 我们称$F_X$是$X$的\textbf{分布函数}，记作$X\sim F$.
+\end{definition}
+
+容易验证，分布函数具有如下的性质：
+
+\begin{proposition}\label{prop:distribution-function}
+设$(\Omega,\F,\Pr)$是一个概率空间，$X:\Omega\to\R$是一个随机变量，$F_X$是它的分布函数，则
+\begin{enumerate}
+    \item $F_X$是一个非减函数；
+    \item $\lim_{x\to-\infty}F_X(x)=0$，$\lim_{x\to+\infty}F_X(x)=1$；
+    \item $F_X$是右连续的，即对任意的$x\in\R$，都有$\lim_{y\downarrow x}F_X(y)=F_X(x)$；
+    \item $F_X$在每一点处的左极限存在，即对任意的$x\in\R$，都有$F(x-)=\lim_{y\uparrow x}F_X(y)$存在.
+\end{enumerate}
+\end{proposition}
+
+实际上，分布函数也可以由上面四条给出定义，这是因为，满足上面四条性质的函数恰好是某个随机变量的分布函数：
+
+\begin{theorem}\label{thm:distribution-function}
+设$F$是$\R^n\to\R$的函数，满足\Cref{prop:distribution-function} 的四条性质. 
+
+在概率空间$([0,1]^n,\B([0,1]^n),\lambda)$上，存在一个随机变量$X$，使得$F_X=F$.
+\end{theorem}
+
+所以，我们今后也称呼满足\Cref{prop:distribution-function} 四条性质的函数为分布函数。
+
+我们看一个分布函数计算概率的简单例子。
+
+\begin{example}\label{ex:distribution-prob}
+考虑$\R$上的分布函数$F$，它由随机变量$X$定义。那么，
+\begin{itemize}
+    \item $\Pr(X\leq a)=F(a)$，
+    \item $\Pr(X<a)=F(a-)$，
+    \item $\Pr(X>a)=1-F(a)$，
+    \item $\Pr(X\geq a)=1-F(a-)$，
+    \item $\Pr(X=a)=F(a)-F(a-)$。
+\end{itemize}
+\end{example}
+
+如果我们就限制在空间$([0,1]^n,\B([0,1]^n),\lambda)$上，随机变量几乎就等同于分布函数。现在，我们将分布函数与概率测度联系在一起：
+
+\begin{theorem}\label{thm:uniqueness-of-distribution-function}
+设$F:\R^n\to\R$是一个分布函数，则在$\R^n$以及$\B(\R^n)$上，存在唯一的概率测度$\Pr$，使得对任意$a_i\leq b_i$，
+\[
+    \Pr\left(\prod_{i=1}^n(a_i,b_i]\right) = \prod_{i=1}^n (F(b_i)-F(a_i)).
+\]
+\end{theorem}
+
+特别地，分布函数
+\[F(x)=\begin{cases}
+    0,&x<0,\\
+    x,&0\leq x\leq 1,\\
+    1,&x>1.
+\end{cases}\]
+对应的概率测度就是我们之前讨论的$[0,1]$上的Lebesgue测度。
+
+根据上面的讨论，分布函数的特性决定了随机变量的特性。根据分布函数的不同性质，我们可以将随机变量分为不同的类型。下面我们将讨论一些重要的类别。
+
+\subsection{离散型随机变量}\index{随机变量!离散型～}
+
+我们首先讨论\emph{离散型随机变量}。离散型随机变量的分布函数$F$称之为\emph{离散型分布}\index{分布!离散型～}，它是一个阶梯函数，它的函数值只在有限或者可数个点$x_1,x_2,\dots$上发生跳变，在$x_i$的跳变为$p_i=F(x_i)-F(x_i-)$。这一分布函数对应的概率测度$\Pr$我们称之为\emph{离散型测度}\index{测度!离散型～}，这种测度集中在$x_i$上，即$\Pr(X=x_i)=p_i$。分布函数形如下图：
+
+\begin{center}
+\begin{tikzpicture}
+\draw[->] (-2,0) -- (5,0) node[right] {$x$};
+\draw[->] (0,0) -- (0,3) node[above] {$F(x)$};
+\draw[->,very thick] (-2+0.2,0) -- (-1,0) circle [radius=0.05];
+\draw[dashed] (-1,0) -- node[left] {$p_1$} (-1,1);
+\draw[->,very thick] (-1,1) --  (1,1) circle [radius=0.05];
+\draw[dashed] (1,1) -- node[left] {$p_2$} (1,2);
+\draw[->,very thick] (1,2) -- (3,2) circle [radius=0.05];
+\draw[dashed] (3,2) -- node[left] {$p_3$} (3,2.5);
+\draw[->,very thick] (3,2.5) -- (5-0.2,2.5);
+\draw (-1,0) node[below] {$x_1$};
+\draw (1,0) node[below] {$x_2$};
+\draw (3,0) node[below] {$x_3$};
+\end{tikzpicture}
+\end{center}
+
+离散型分布可以由分布列给出，分布列是一个序列$p_1,p_2,\dots$，其中$p_i=\Pr(X=x_i)$，且$\sum_{i=1}^\infty p_i=1$.
+
+\Cref{tab:discrete-distribution} 列举了一些本书中用到的离散型分布，他们都是整数取值，所以我们记$p_i=\Pr(X=i)$.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{cccc}
+\toprule
+名称 & 符号 & 分布列 & 参数 \\
+\midrule
+离散均匀 & $\U[n]$ &$p_i=1/n$，$i=1,\dots,n$ & $n\in\N$ \\
+Bernoulli & $B(1,p)$ & $p_1=p$，$p_0=1-p$ & $p\in[0,1]$ \\
+对称Bernoulli & — &$p_1=p_{-1}=1/2$ & — \\
+二项 &$B(n,p)$ &$p_k=\binom{n}{k}p^k(1-p)^{n-k}$ & $n\in\N$，$p\in[0,1]$ \\
+\bottomrule
+\end{tabular}
+\caption{本书中用到的离散型分布}
+\label{tab:discrete-distribution}
+\end{table}
+
+\subsection{连续型随机变量}\index{随机变量!连续型～}
+
+我们再来讨论\emph{连续型随机变量}，这一部分需要微积分的基本知识，关于微分学的部分，可以参见\Cref{chap:calculus}；积分学我们会在后面\Cref{sec:expectation} 以数学期望的形式介绍。连续型随机变量的分布函数$F$称为\emph{连续型分布}\index{分布!连续型～}，对应的概率测度$\Pr$称之为\emph{绝对连续测度}\index{测度!绝对连续～}. 从名字上就可以看出，测度才是定义连续型随机变量的关键。我们给出绝对连续测度的定义。
+
+\begin{definition}[绝对连续测度]\index{测度!绝对连续～}
+$\R$上的测度$\Pr$称为\textbf{绝对连续测度}，如果对任意$\epsilon>0$，存在$\delta>0$使得任意$A\in\B(\R)$满足$\lambda(A)<\delta$，都有$\Pr(A)<\epsilon$.
+\end{definition}
+
+直观上说，绝对连续测度的意思是当体积$\lambda(\cdot)$发生微小变化的时候（变化量为$\lambda(A)$），测度$\Pr(\cdot)$也只发生微小的变化（变化量为$\Pr(A)$），这和通常函数连续的定义并没有太大的区别。
+
+那么，绝对连续测度对应的是连续分布函数吗？答案是否定的，绝对连续测度对应的分布函数有相当漂亮的一种刻画方式：
+
+\begin{theorem}[Lebesgue微分定理]\label{thm:lebesgue-differentiation-theorem}
+设$F:\R\to\R$是绝对连续测度对应的分布函数，那么
+\[\lambda(\{x\in\R:F'(x)\text{ 不存在}\})=0.\]
+定义函数：
+\[f(x)=\begin{cases}
+    F'(x),&F'(x)\text{ 存在},\\
+    0,&\text{其他}.
+\end{cases}\]
+则$f$是一个非负可积函数，且对任意的$a<b$，都有
+\begin{equation}
+    F(b)-F(a) = \int_a^b f(x)\d x.\label{eq:Newton-Leibniz}
+\end{equation}
+\end{theorem}
+此处的积分可以理解为Riemann积分或者后面\Cref{sec:expectation} 中的Lebesgue积分。
+
+\Cref{thm:lebesgue-differentiation-theorem} 意味着，绝对连续测度对应的分布函数几乎处处可以求导，并且所得到的导函数积分回去还是原来的分布函数。这样的函数我们称之为\emph{绝对连续函数}\index{绝对连续函数}.
+
+那么，这个$f$应该如何理解呢？先不管\Cref{thm:lebesgue-differentiation-theorem}，回到绝对连续测度，仿照导数的定义，考虑极限
+\[\frac{\d\Pr}{\d\lambda}(x)=\lim_{\lambda(A)\to 0,x\in A}\frac{\Pr(A)}{\lambda(A)},\]
+也就是点$x$附近$\Pr(\cdot)$的微小变化相对于$\lambda(\cdot)$的微小变化.
+
+那么，给定一个集合$A$，要如何求$\Pr(A)$？按照微积分的朴素直观，我们应该将$\Pr$微小的变化转变为$\lambda$微小的变化，也就是积分：
+\[\Pr(A)=\int_{x\in A}\frac{\d\Pr}{\d\lambda}(x)\d\lambda(x).\]
+我们可以把\eqref{eq:Newton-Leibniz} 改写成如上的形式：
+\[\Pr((a,b])=\int_{x\in (a,b]}f(x)\d x.\]
+在一维的情况下，$x$的微小变化就是$\lambda(x)$的微小变化，所以$\d x=\d\lambda(x)$。综合这两点，我们容易相信，
+\[f(x)=\frac{\d\Pr}{\d\lambda}(x)\iff \d\Pr=f(x)\d\lambda.\]
+所以，$f$应该理解为“密度”。打个比方，$\lambda$是物体的体积，$\Pr$是物体的质量，那么$f$就是这个物体每个很小的部分上的体积质量除以体积，也就是密度。所以，我们将$f$称之为\textbf{概率密度函数}\index{概率密度函数}，或者简称\textbf{密度}。
+
+那么，概率测度和密度的区别是什么呢？对于刚接触概率论的人来说，似乎很难理解他们之间的区别。比如说，他们会写$p(X=x)$甚至$\Pr(X=x)$来表示密度在$x$处的值$p(x)$，又或者，用$\int\Pr(X=x)\d x$来表示对密度的积分。这些当然都是不对的，我们下面慢慢论述。
+
+首先，根据\Cref{thm:lebesgue-differentiation-theorem}，$F$是连续函数，所以根据\Cref{ex:distribution-prob}，$\Pr(X=x)=F(x)-F(x-)=F(x)-F(x)=0$. 所以$\Pr(X=x)$根本就是零，它和密度函数没有任何关系，所以上面这些写法都是错的。
+
+那么，要怎么理解密度$p(\cdot)$和概率测度$\Pr(\cdot)$的区别呢？当然，从定义的角度他们就完全不同：一个是从实数到实数的映射，一个是从实数的集合到实数的映射。但是这样的区别对于初学者来说并不直观。最直观的区别就在于密度这一词：虽然铅很重（密度大），但是几亿倍于铅体积的棉花却应该比铅重。所以，密度是微观的，刻画很小部分集合的概率值，也就是$\d\Pr=p\d \lambda$；而概率刻画的是宏观的，计算任何一个集合的概率，也就是$\Pr(A)$.
+
+\begin{remark}
+    上面的记号$\d\Pr/\d\lambda$并不是随意写出来的，我们叫它导数也不是随意的。在测度论中，\Cref{thm:lebesgue-differentiation-theorem} 可以被推广为\textbf{Radon-Nikodym定理}\index{Radon-Nikodym定理}，这一定理直接保证了形如$\d\Pr/\d\lambda$的函数的存在性，这一函数被称之为\textbf{Radon-Nikodym导数}\index{Radon-Nikodym导数}。
+\end{remark}
+
+在\Cref{tab:continuous-distribution} 中，我们给出本书中用到的一些连续型分布的密度函数。
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{cccc}
+\toprule
+名称 & 符号 & 密度函数 & 参数 \\
+\midrule
+连续均匀 & $\U(a,b)$ &$p(x)=\frac{1}{b-a}$，$x\in[a,b]$ & $a<b$ \\
+指数 & $\Exp(\lambda)$ & $p(x)=\lambda e^{-\lambda x}$，$x\geq 0$ & $\lambda>0$ \\
+双指数 & $\DExp(\lambda)$ & $p(x)=\frac{\lambda}{2}e^{-\lambda|x|}$，$x\in\R$ & $\lambda>0$ \\
+Laplace & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}e^{-\lambda|x-\mu|}$，$x\in\R$ & $\mu\in\R$，$\lambda>0$ \\
+正态（Gauss） & $\Nor(\mu,\sigma^2)$ & $p(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$，$x\in\R$ & $\mu\in\R$，$\sigma>0$ \\
+\bottomrule
+\end{tabular}
+\caption{本书中用到的连续型分布}
+\label{tab:continuous-distribution}
+\end{table}
+
+\begin{remark}
+从\Cref{thm:lebesgue-differentiation-theorem} 来看，密度函数的定义似乎是唯一的，但是从积分的角度，如果密度函数在几个点上的值发生了变化，并不影响整个积分的值，从而也不影响求概率。比如均匀分布$\U(a,b)$，端点$a,b$的值到底是$0$还是$1/(b-a)$并不重要，取任何一个值都是可以的。    
+\end{remark}
+
+\subsection{随机向量}
+
+\subsection{随机变量（向量）的函数}
+
+\section{随机变量的数字特征，期望}\label{sec:expectation}
 
 \section{多元正态分布（Gauss向量）}
+
+\endgroup
