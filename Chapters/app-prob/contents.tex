@@ -7,7 +7,7 @@
 \newcommand{\DExp}{\mathsf{DExp}}
 \newcommand{\Lap}{\mathsf{Lap}}
 
-本附录主要介绍Kolmogorov概率论，讨论只局限在数学层面，不涉及概率论的哲学讨论。
+本附录主要介绍Kolmogorov概率论，讨论只局限在数学层面，不涉及概率论的哲学讨论。本附录的连续型随机变量（向量）的讨论需要微积分的基本知识，关于微分学的部分，可以参见\Cref{chap:calculus}；积分学我们会在\Cref{sec:expectation} 以数学期望的形式介绍。
 
 \section{从朴素概率论到公理化概率论}
 
@@ -396,10 +396,10 @@
 \toprule
 名称 & 符号 & 分布列 & 参数 \\
 \midrule
-离散均匀 & $\U[n]$ &$p_i=1/n$，$i=1,\dots,n$ & $n\in\N$ \\
-Bernoulli & $B(1,p)$ & $p_1=p$，$p_0=1-p$ & $p\in[0,1]$ \\
-对称Bernoulli & — &$p_1=p_{-1}=1/2$ & — \\
-二项 &$B(n,p)$ &$p_k=\binom{n}{k}p^k(1-p)^{n-k}$ & $n\in\N$，$p\in[0,1]$ \\
+离散均匀\index{分布!离散均匀～} & $\U[n]$ &$p_i=1/n$，$i=1,\dots,n$ & $n\in\N$ \\
+Bernoulli\index{分布!Bernoulli～} & $B(1,p)$ & $p_1=p$，$p_0=1-p$ & $p\in[0,1]$ \\
+对称Bernoulli\index{分布!对称Bernoulli～} & — &$p_1=p_{-1}=1/2$ & — \\
+二项\index{分布!二项～} &$B(n,p)$ &$p_k=\binom{n}{k}p^k(1-p)^{n-k}$ & $n\in\N$，$p\in[0,1]$ \\
 \bottomrule
 \end{tabular}
 \caption{本书中用到的离散型分布}
@@ -408,7 +408,7 @@ Bernoulli & $B(1,p)$ & $p_1=p$，$p_0=1-p$ & $p\in[0,1]$ \\
 
 \subsection{连续型随机变量}\index{随机变量!连续型～}
 
-我们再来讨论\emph{连续型随机变量}，这一部分需要微积分的基本知识，关于微分学的部分，可以参见\Cref{chap:calculus}；积分学我们会在后面\Cref{sec:expectation} 以数学期望的形式介绍。连续型随机变量的分布函数$F$称为\emph{连续型分布}\index{分布!连续型～}，对应的概率测度$\Pr$称之为\emph{绝对连续测度}\index{测度!绝对连续～}. 从名字上就可以看出，测度才是定义连续型随机变量的关键。我们给出绝对连续测度的定义。
+我们再来讨论\emph{连续型随机变量}，连续型随机变量的分布函数$F$称为\emph{连续型分布}\index{分布!连续型～}，对应的概率测度$\Pr$称之为\emph{绝对连续测度}\index{测度!绝对连续～}. 从名字上就可以看出，测度才是定义连续型随机变量的关键。我们给出绝对连续测度的定义。
 
 \begin{definition}[绝对连续测度]\index{测度!绝对连续～}
 $\R$上的测度$\Pr$称为\textbf{绝对连续测度}，如果对任意$\epsilon>0$，存在$\delta>0$使得任意$A\in\B(\R)$满足$\lambda(A)<\delta$，都有$\Pr(A)<\epsilon$.
@@ -445,7 +445,7 @@ $\R$上的测度$\Pr$称为\textbf{绝对连续测度}，如果对任意$\epsilo
 \[\Pr((a,b])=\int_{x\in (a,b]}f(x)\d x.\]
 在一维的情况下，$x$的微小变化就是$\lambda(x)$的微小变化，所以$\d x=\d\lambda(x)$。综合这两点，我们容易相信，
 \[f(x)=\frac{\d\Pr}{\d\lambda}(x)\iff \d\Pr=f(x)\d\lambda.\]
-所以，$f$应该理解为“密度”。打个比方，$\lambda$是物体的体积，$\Pr$是物体的质量，那么$f$就是这个物体每个很小的部分上的体积质量除以体积，也就是密度。所以，我们将$f$称之为\textbf{概率密度函数}\index{概率密度函数}，或者简称\textbf{密度}。
+所以，$f$应该理解为“密度”。打个比方，$\lambda$是物体的体积，$\Pr$是物体的质量，那么$f$就是这个物体每个很小的部分上的体积质量除以体积，也就是密度。所以，我们将$f$称之为\textbf{概率密度函数}\index{概率密度函数}，或者简称\textbf{密度}。通常，$X$的密度记作$p_X$。
 
 那么，概率测度和密度的区别是什么呢？对于刚接触概率论的人来说，似乎很难理解他们之间的区别。比如说，他们会写$p(X=x)$甚至$\Pr(X=x)$来表示密度在$x$处的值$p(x)$，又或者，用$\int\Pr(X=x)\d x$来表示对密度的积分。这些当然都是不对的，我们下面慢慢论述。
 
@@ -457,6 +457,12 @@ $\R$上的测度$\Pr$称为\textbf{绝对连续测度}，如果对任意$\epsilo
     上面的记号$\d\Pr/\d\lambda$并不是随意写出来的，我们叫它导数也不是随意的。在测度论中，\Cref{thm:lebesgue-differentiation-theorem} 可以被推广为\textbf{Radon-Nikodym定理}\index{Radon-Nikodym定理}，这一定理直接保证了形如$\d\Pr/\d\lambda$的函数的存在性，这一函数被称之为\textbf{Radon-Nikodym导数}\index{Radon-Nikodym导数}。
 \end{remark}
 
+利用密度，我们可以很容易计算概率：
+\begin{proposition}\label{prop:continuous-prob}
+设$X$是一个连续型随机变量，$f$是它的密度函数，则对任意的$B\in\B(\R)$，都有
+\[\Pr(X\in B)=\int_{x\in B}f(x)\d x.\]
+\end{proposition}
+
 在\Cref{tab:continuous-distribution} 中，我们给出本书中用到的一些连续型分布的密度函数。
 
 \begin{table}[htbp]
@@ -465,11 +471,11 @@ $\R$上的测度$\Pr$称为\textbf{绝对连续测度}，如果对任意$\epsilo
 \toprule
 名称 & 符号 & 密度函数 & 参数 \\
 \midrule
-连续均匀 & $\U(a,b)$ &$p(x)=\frac{1}{b-a}$，$x\in[a,b]$ & $a<b$ \\
-指数 & $\Exp(\lambda)$ & $p(x)=\lambda e^{-\lambda x}$，$x\geq 0$ & $\lambda>0$ \\
-双指数 & $\DExp(\lambda)$ & $p(x)=\frac{\lambda}{2}e^{-\lambda|x|}$，$x\in\R$ & $\lambda>0$ \\
-Laplace & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}e^{-\lambda|x-\mu|}$，$x\in\R$ & $\mu\in\R$，$\lambda>0$ \\
-正态（Gauss） & $\Nor(\mu,\sigma^2)$ & $p(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$，$x\in\R$ & $\mu\in\R$，$\sigma>0$ \\
+连续均匀\index{分布!连续均匀～} & $\U(a,b)$ &$p(x)=\frac{1}{b-a}$，$x\in[a,b]$ & $a<b$ \\
+指数\index{分布!指数～} & $\Exp(\lambda)$ & $p(x)=\lambda e^{-\lambda x}$，$x\geq 0$ & $\lambda>0$ \\
+双指数\index{分布!双指数～} & $\DExp(\lambda)$ & $p(x)=\frac{\lambda}{2}e^{-\lambda|x|}$，$x\in\R$ & $\lambda>0$ \\
+Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}e^{-\lambda|x-\mu|}$，$x\in\R$ & $\mu\in\R$，$\lambda>0$ \\
+正态（Gauss）\index{分布!正态～}\index{分布!Gauss～} & $\Nor(\mu,\sigma^2)$ & $p(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$，$x\in\R$ & $\mu\in\R$，$\sigma>0$ \\
 \bottomrule
 \end{tabular}
 \caption{本书中用到的连续型分布}
@@ -480,12 +486,224 @@ Laplace & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}e^{-\lambda|x-\mu|}$，$x
 从\Cref{thm:lebesgue-differentiation-theorem} 来看，密度函数的定义似乎是唯一的，但是从积分的角度，如果密度函数在几个点上的值发生了变化，并不影响整个积分的值，从而也不影响求概率。比如均匀分布$\U(a,b)$，端点$a,b$的值到底是$0$还是$1/(b-a)$并不重要，取任何一个值都是可以的。    
 \end{remark}
 
-\subsection{随机向量}
+\begin{remark}
+密度函数通常是需要分段写出的，比如，$U(a,b)$的密度函数，严格来说应该写为
+\[p(x)=\begin{cases}
+    0,&x<a,\\
+    \frac{1}{b-a},&x\in[a,b],\\
+    0,&x>b.
+\end{cases}\]
+为了简化记号，我们可以用\textbf{示性函数}\index{示性函数}来表示这一分类。设$A\subseteq\R$，定义函数
+\[I_A(x)=\begin{cases}
+    1,&x\in A,\\
+    0,&x\notin A.
+\end{cases}\]
+则$U(a,b)$的密度函数可以写为
+\[p(x)=\frac{1}{b-a}I_{[a,b]}(x).\]
+
+更一般地，示性函数中的字母$A$可以是任意一个事件，而关于事件的那些记号都可以在$A$这里写出。示性函数在概率论中有着核心的作用，我们在后面将会经常用到示性函数。
+\end{remark}
+
+\subsection{随机向量，条件分布，独立性}
+
+我们前面已经说过，随机向量就是$\Omega\to\R^n$的随机元。$n$维的随机向量可以看成$n$个随机变量的组合，可以写作$X=(X_1,\dots,X_n)^\t$. 通常，我们将$X$的分布函数称为$X_1,\dots,X_n$的\emph{联合分布}\index{分布!联合～}，将$X_i$的分布函数称为$X$的\emph{边缘分布}\index{分布!边缘～}.
+
+关于随机变量的分类可以完全平行移植到随机向量上。下面我们分别讨论。
+
+离散型随机向量指的是它对应的概率测度集中在有限或可数个点上。这样的分布依然可以用分布列给出：$\Pr(X_1=x_1,\dots,X_n=x_n)=p_{x_1,\dots,x_n}$，其中$x_i$取遍所有可能的值。
+
+本书中使用的离散型随机向量只有多项分布\index{分布!多项～}，符号为$PN(n,p_1,\dots,p_k)$，分布列为
+\[\Pr(X_1=i_1,\dots,X_n=i_n)=\frac{n!}{i_1!\cdots i_k!}p_1^{i_1}\cdots p_k^{i_k},\]
+其中$n\in\N$，$p_i\geq 0$，$\sum_{i=1}^k p_i=1$。
+
+连续型随机向量指的是它对应的概率测度是绝对连续的。连续型随机向量的分布函数依然由绝对连续函数刻画：
+
+\begin{theorem}\label{thm:continuous-vector}
+设$F:\R^n\to\R$是绝对连续测度对应的分布函数，那么存在一个非负可积函数$f:\R^n\to\R$，使得对任意的$(x_1,\dots,x_n)\in\R^n$，都有
+\[F(x_1,\dots,x_n)=\int_{-\infty}^{x_1}\cdots\int_{-\infty}^{x_n}f(y_1,\dots,y_n)\d y_1\cdots\d y_n.\]
+\end{theorem}
+
+此时，$f$称为$X$的\textbf{概率密度函数}\index{概率密度函数}，或者简称\textbf{密度}。通常，$X$的密度记作$p_X$.
+
+类似随机变量的讨论，密度函数依然可以被写做导数的形式。假设$\Pr$是绝对连续测度，它对应的密度是$p$，那么
+\[\frac{\d\Pr}{\d\lambda}(x)=p(x)\iff \d\Pr=p(x)\d\lambda.\]
+
+这里，我们需要再给出一些$\d\lambda$和$\d x$关系的讨论。$\d\lambda$应该理解为Lebesgue测度的微小变化，然而我们并不假定这一变化是如何产生的。$\d x$理解为$x$的微小变化。$x$的微小变化自然就产生了$\lambda$的微小变化，即$\lambda(\d x)$. 所以，在$x$处，$\d\lambda$和$\d x$之间的关系应该是$\d\lambda=\lambda(\d x)$，于是$\d\lambda$应该理解为$\d x$形成的长方体的体积。
+
+同样，密度给出了概率计算的一个重要工具：
+\begin{proposition}\label{prop:continuous-prob-vec}
+    设$X$是一个$n$维连续型随机向量，$f$是它的密度函数，则对任意的$B\in\B(\R^n)$，都有
+    \[\Pr(X\in B)=\int_{x\in B}f(x)\d x.\]
+\end{proposition}
+
+利用联合密度，可以计算边缘密度：
+\begin{proposition}\label{prop:continuous-marginal}
+    设$X=(X_1,\dots,X_n)$是一个$n$维连续型随机向量，，则对任意的$1\leq i\leq n$，都有
+    \[p_i(x_i)=\int_{(x_1,\dots,x_{i-1},x_{i+1},\dots,x_n)\in\R^{n-1}}f(x_1,\dots,x_n)\d x_1\cdots\d x_{i-1}\d x_{i+1}\cdots\d x_n.\]
+\end{proposition}
+这一命题当然也可以自然推广到求随机向量的边缘密度，例如利用$X=(X_1,X_2,X_3)$的联合密度计算$(X_1,X_2)$的边缘密度：
+\[
+    p_{X_1,X_2}(x_1,x_2) = \int_{x_3\in\R}p_X(x_1,x_2,x_3)\d x_3.
+\]
+
+连续型随机变量的一个重要的例子是多元正态向量，或者（非退化）Gauss向量。它的密度函数为
+\[p(x)=\frac{1}{(2\pi)^{n/2}\sqrt{\det\Sigma}}e^{-\frac{1}{2}(x-\mu)^\t\Sigma^{-1}(x-\mu)},\]
+其中$\mu\in\R^n$，$\Sigma$是一个$n\times n$的正定矩阵。
+
+关于Gauss向量的性质，我们将在\Cref{sec:multivariate-normal} 中讨论。
+
+接下来，我们讨论条件分布。
+
+对于离散型随机向量$X=(X_1,X_2)$，它的分布完全由分布列给出。我们可以定义$X_1$在给定$X_2$的条件下的分布列：
+\[\Pr(X_1=i|X_2=j)=\frac{\Pr(X_1=i,X_2=j)}{\Pr(X_2=j)}.\]
+由此给出了随机变量$X_1$在给定$X_2$的条件下的\emph{条件分布列}，继而给出了\emph{条件分布}\index{分布!条件～}。这一定义也可以推广到$X_i$是随机向量的情况。
+
+对于连续型随机向量$X=(X_1,X_2)$，它的分布完全由密度给出。一个自然的问题是，能否定义$\Pr(X_1=x_1|X_2=x_2)$？然而，用过去的办法是没有办法给出定义的。首先，$\{X_2=x_2\}$是一个零概率事件，其次，$\Pr(X_1=x_1,X_2=x_2)=0$，所以条件概率的分子和分布概率都是零，这样的定义是没有意义的。
+
+为此，我们考虑$\Pr(X_1\leq x_1|x_2< X_2\leq x_2+\epsilon)$，再令$\epsilon\downarrow 0$，我们有如下计算：
+\begin{align*}
+    &\lim_{\epsilon\downarrow 0}\Pr(X_1\leq x_1|x_2< X_2\leq x_2+\epsilon) \\
+    =&\lim_{\epsilon\downarrow 0}\frac{\Pr(X_1\leq x_1,X_2\leq x_2+\epsilon)-\Pr(X_1\leq x_1,X_2\leq x_2)}{\Pr(x_2< X_2\leq x_2+\epsilon)}\\
+    =&\lim_{\epsilon\downarrow 0}\frac{F_X(x_1,x_2+\epsilon)-F_X(x_1,x_2)}{F_{X_2}(x_2+\epsilon)-F_{X_2}(x_2)}\\
+    =&\frac{\partial F_X(x_1,x_2)}{\partial x_2}\frac{1}{p_{X_2}(x_2)}\\
+    =&\int_{-\infty}^{x_1}\frac{\partial^2 F_X(y,x_2)}{\partial x_2\partial y}\frac{1}{p_{X_2}(x_2)}\d y\\
+    =&\int_{-\infty}^{x_1}\frac{p_{X_1,X_2}(y,x_2)}{p_{X_2}(x_2)}\d y.
+\end{align*}
+对照\Cref{thm:lebesgue-differentiation-theorem}，我们知道，$p_{X_1,X_2}/p_{X_2}$具有密度函数的形式，所以我们定义
+\[\Pr(X_1\leq x_1|X_2=x_2)=\lim_{\epsilon\downarrow 0}\Pr(X_1\leq x_1|x_2< X_2\leq x_2+\epsilon).\]
+这形成了一个分布，我们称之为$X_1$在给定$X_2$的条件下的\emph{条件分布}\index{分布!条件～}，注意，这一定义实际上不需要假设$(X_1,X_2)$是连续型随机向量。
+
+如果$(X_1,X_2)$是连续型随机向量，条件分布是连续型分布，密度函数被$p_{X_1,X_2}/p_{X_2}$通常记作$p_{X_1|X_2}$，称为$X_1$在给定$X_2$的条件下的\emph{条件密度}。这一定义也可以自然推广到$X_i$是随机向量的情况，我们就不给出了。
+
+最后，我们讨论随机向量之间的独立性。随机向量之间的独立性完全由事件的独立性刻画，所以我们有如下定义：
+
+\begin{definition}[随机向量的独立性]\index{独立性}
+设$X_1,\dots,X_n$是$n$个随机向量，第$i$个的维数是$n_i$. 如果对任意的$1\leq i_1,\dots,i_k\leq n$，以及任意的$B_{i_1}\in\B(\R^{n_{i_1}}),\dots,B_{i_k}\in\B(\R^{n_{i_k}})$，都有
+\[\Pr(X_{i_1}\in B_{i_1},\dots,X_{i_k}\in B_{i_k})=\Pr(X_{i_1}\in B_{i_1})\cdots\Pr(X_{i_k}\in B_{i_k}),\]
+则称$X_1,\dots,X_n$是\textbf{独立的}。
+
+特别地，如果$X_1,\dots,X_n$是一维的，那么这定义了随机变量之间的独立性。
+\end{definition}
+
+这一定义中包含了无穷多个需要验证的等式，利用分布函数，我们可以将独立性的验证转化为一个等式的验证：
+
+\begin{proposition}\label{prop:independence}
+设$X_1,\dots,X_n$是$n$个随机向量，第$i$个的维数是$n_i$，$F_i$是$X_i$的分布函数，$F$是$(X_1,\dots,X_n)$的联合分布函数。$X_1,\dots,X_n$独立的充分必要条件是
+\[F(x_1,\dots,x_n)=F_1(x_1)\cdots F_n(x_n),\]
+其中$x_i\in\R^{n_i}$.
+\end{proposition}
+
+对于离散型随机向量，它的分布函数完全由分布列决定，所以\Cref{prop:independence} 等价于如下命题：
+
+\begin{proposition}\label{prop:independence-discrete}
+设$X_1,\dots,X_n$是$n$个离散型随机向量，第$i$个的维数是$n_i$，$p_i$是$X_i$的分布列，$p$是$(X_1,\dots,X_n)$的联合分布列。$X_1,\dots,X_n$独立的充分必要条件是
+\[p(x_1,\dots,x_n)=p_1(x_1)\cdots p_n(x_n),\]
+其中$x_i\in\R^{n_i}$.
+\end{proposition}
+
+对于连续型随机向量，它的分布函数完全由密度决定，所以\Cref{prop:independence} 等价于如下命题：
+
+\begin{proposition}\label{prop:independence-continuous}
+设$X_1,\dots,X_n$是$n$个连续型随机向量，第$i$个的维数是$n_i$，$p_i$是$X_i$的密度函数。假设他们的联合分布具有密度函数$p$。$X_1,\dots,X_n$独立的充分必要条件是
+\[p(x_1,\dots,x_n)=p_1(x_1)\cdots p_n(x_n),\]
+其中$x_i\in\R^{n_i}$.
+\end{proposition}
+
+这一命题有一简单的形式：
+
+\begin{corollary}\label{cor:independence-continuous}
+设$X_1,\dots,X_n$是$n$个连续型随机向量，第$i$个的维数是$n_i$，假设他们的联合分布具有密度函数$p$。$X_1,\dots,X_n$独立的充分必要条件存在函数$f_1,\dots,f_n$使得
+\[p(x_1,\dots,x_n)=f_1(x_1)\cdots f_n(x_n),\]
+其中$x_i\in\R^{n_i}$.
+\end{corollary}
+利用这一命题，判断独立性的时候，我们只要尝试将联合密度分解成若干个函数的乘积即可。对于连续型随机向量，这一判据特别要注意密度函数的分段情况。比如，考虑$X=(X_1,X_2)$，其密度函数为
+\[p(x_1,x_2)=\begin{cases}
+    8x_1x_2,& 0\leq x_1\leq x_2,0\leq x_2\leq 1,\\
+    0,&\text{其他}.
+\end{cases}\]
+如果忽略了$x_i$的取值范围，我们很容易以为$p(x_1,x_2)$可以写成$f(x_1)f(x_2)$，所以他们独立。然而事实并不是这样的！计算$X_1$的边缘密度：
+\[p_1(x_1)=\int_{x_2\in\R}p(x_1,x_2)\d x_2=\begin{cases}
+    4x_1(1-x_1^2),&0\leq x_1\leq 1,\\
+    0,&\text{其他}.
+\end{cases}\]
+再计算$X_2$的边缘密度：
+\[p_2(x_2)=\int_{x_1\in\R}p(x_1,x_2)\d x_1=\begin{cases}
+    4x_2^3,&0\leq x_2\leq 1,\\
+    0,&\text{其他}.
+\end{cases}\]
+显然，$p_1(x_1)\cdot p_2(x_2)\neq p(x_1,x_2)$，所以$X_1,X_2$不独立。
+
+如果使用示性函数来书写密度函数，这一问题更不容易被忽视，在上面的例子中，$p(x_1,x_2)=8x_1x_2I_{0\leq x_1\leq x_2\leq 1}(x_1,x_2)$，示性函数显然是拆不成分别只关于$x_1$和$x_2$的函数乘积的。
+
+自然，利用条件分布，我们可以给出独立的另一种刻画：
+
+\begin{proposition}\label{prop:independence-conditional}
+设$X_1,X_2$是两个随机变量，他们的联合分布是离散型或连续型的。$X_1,X_2$独立的充分必要条件是对任意的$x_1,x_2$，都有
+\[\Pr(X_1\leq x_1|X_2=x_2)=\Pr(X_1\leq x_1).\]
+如果$X_1,X_2$是离散型的，那么这一条件可以改写为
+\[\Pr(X_1=x_1|X_2=x_2)=\Pr(X_1=x_1).\]
+如果$X_1,X_2$是连续型的，那么这一条件可以改写为
+\[p_{X_1|X_2}(x_1|x_2)=p_{X_1}(x_1).\]
+\end{proposition}
+注意，上述判据并不需要真的把等式右边的量算出来，我们只需要判断刻画条件分布的量（条件分布函数、条件分布列或条件密度）中，是不是只出现了$x_1$而没有出现$x_2$. 
 
 \subsection{随机变量（向量）的函数}
 
-\section{随机变量的数字特征，期望}\label{sec:expectation}
+我们前面说过，如果$X$是随机向量，$g$是一个连续函数（更一般地，Borel函数），那么$g(X)=g\circ X$也是一个随机向量。这里，记号$g\circ X$将$X$看成一个映射，于是得到的是一个复合函数；而记号$g(X)$则更直观，它表示把$X$看成一个数学对象（随机向量），然后对它进行函数运算，得到另一个同类型的数学对象（随机向量）。我们将始终采取后者的记号，但请务必注意，符号$g(X)$中的$X$绝对不应该理解为一个数，而应该理解为一个随机向量。
 
-\section{多元正态分布（Gauss向量）}
+随机变量的函数最直接的问题就是，它的分布是什么？
+
+对于离散型随机向量，它的分布完全由分布列决定，很容易得到如下命题：
+
+\begin{proposition}\label{prop:discrete-function}
+设$X$是一个离散型随机向量，$g$是一个函数，那么$Y=g(X)$也是一个离散型随机向量，它的分布列为
+\[\Pr(Y=y)=\sum_{x\in g^{-1}(y)}\Pr(X=x).\]
+\end{proposition}
+
+对于连续型随机向量，它的分布完全由密度决定。我们现在来推导连续型随机向量的函数的密度。
+
+设$X$是一个$n$维连续型随机向量，$g\in C^1(\R^n,\R^n)$，即$\R^n\to\R^n$的连续可微函数。为了简便起见，我们假设$g$是单射，并且反函数也连续可微。设$Y=g(X)$，可以证明，$Y$是一个连续型随机向量。我们现在来计算$Y$的密度。考虑$Y$取值的一个微小的区域$\d y$，$\d P_Y=p_Y\lambda(\d y)$是$Y$在$\d y$上的概率，同样区域的概率也可以用$X$去计算：$\d P_X=p_X\lambda(\d x)$，$Y\in\d y\iff X\in\d x$，当然，这里$\d y$和$\d x$由函数$g$联系在一起，因为$Y=g(X)$，所以$\d y/\d x=g'(X)$，注意，这相当于微元$\d y$和微元$\d x$的有向体积的比。最后，根据概率相等，可以写出如下的等式：
+\begin{equation}
+    \d P_Y=\d P_X\iff p_Y\lambda(\d y)=p_X\lambda(\d x).\label{eq:eq-prob}
+\end{equation}
+考虑到密度是计算体积而非有向体积，所以
+\[p_Y(y)=p_X(x)\left|\frac{\d x}{\d y}\right|=|\det g'(x)|^{-1}p_X(x).\]
+这就得到了$Y$的密度函数。如果$g$不是单射，那么上面的 \eqref{eq:eq-prob} 需要考虑$g$每一个单射的局部。例如，如果$g(x)=x^2$，那么$g$在$(0,+\infty)$上和$(-\infty,0)$上都是单射，一个$y$对应了两个$x$. 在这种情况下，每一个$y$所对应的$x$都贡献了概率，所以 \eqref{eq:eq-prob} 需要写成
+\begin{equation}
+    \d P_Y=\sum_{g(x)=y}\d P_X(x)\iff p_Y\lambda(\d y)=\sum_{g(x)=y}p_X(x)\lambda(\d x)(x).\label{eq:eq-prob-2}
+\end{equation}
+总结以上讨论，我们得到连续型随机向量的函数的密度的计算公式：
+
+\begin{proposition}\label{prop:continuous-function}
+设$X$是一个连续型随机向量，$g\in C(\R^n,\R^n)$，即$\R^n\to\R^n$的连续函数，假设$\lambda(\{x\in\R^n:\det g'(x)\neq 0\})=0$，则$Y=g(X)$也是一个连续型随机向量，它的密度函数为
+\[p_Y(y)=\begin{cases}
+    \sum_{g(x)=y}|\det g'(g^{-1}(y))|^{-1}p_X(g^{-1}(y)),&\det g'(g^{-1}(y))\neq 0,\\
+    0,&\text{其他}.
+\end{cases}\]
+其中求和号中$g^{-1}(y)$是根据相应的$x$，用反函数定理（\Cref{thm:inverse-function}）求出局部反函数。
+\end{proposition}
+这一定理的表述比较宽泛，我们可以给一个具体的例子来理解。
+
+\begin{example}
+设$X$是一个连续型随机变量，$g(x)=x^2$，我们来计算$Y=X^2=g(X)$的密度。直接计算\Cref{prop:continuous-function} 中的公式，我们有
+\begin{align*}
+    &\sum_{g(x)=y}|\det g'(g^{-1}(y))|^{-1}p_X(g^{-1}(y))\\
+    =&\sum_{x^2=y}\frac{1}{2|x|}p_X(x)\\
+    =&\frac{1}{2\sqrt{y}}p_X(\sqrt{y})+\frac{1}{2\sqrt{y}}p_X(-\sqrt{y}).
+\end{align*}
+这就给出了$Y$的密度。
+\end{example}
+
+一般来说，\Cref{prop:continuous-function} 中的公式并不好记，最实用的还是利用直观直接写出 \eqref{eq:eq-prob-2}，然后根据具体的$g$来计算。比如上面的例子，我们可以直接写出
+\[p_Y\lambda(\d y)=p_X(\sqrt{y})\lambda(\d x)(\sqrt{y})+p_X(-\sqrt{y})\lambda(\d x)(-\sqrt{y}).\]
+两边除以$\lambda(\d y)$，再利用$\d y/\d x=1/(2x)$，就得到了$Y$的密度。
+
+最后，如果映射$g$并不是保持维度的，例如$g:\R^n\to\R^m$，但$m<n$\footnote{如果$m>n$，那么$g(X)$一定不会是连续型随机变量，因为它的每个维之间一定会产生相互的关联，所以我们不讨论这种情况。}，那么我们可以将$g$补全到$n$维映射，也就是说，我们可以定义一个新的函数$G:\R^n\to\R^n$满足
+\[G(x_1,\dots,x_n)=(g_1(x_1,\dots,x_n),\dots,g_m(x_1,\dots,x_n),x_{m+1},\dots,x_n)^\t.\]
+然后，利用这一函数计算出$g(X)$和$(X_{m+1},\dots,X_n)$的联合概率密度，再求出$g(X)$的边缘密度。
+
+\section{随机变量的数字特征}\label{sec:expectation}
+
+\section{多元正态分布（Gauss向量）}\label{sec:multivariate-normal}
 
 \endgroup
