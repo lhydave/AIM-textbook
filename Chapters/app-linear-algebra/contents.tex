@@ -675,7 +675,6 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 \end{proof}
 利用以上性质，容易验证，模实际上给了$V$一个\emph{范数}. 关于范数的详细讨论，见\Cref{subsec:metric-norm}. 对于一般的范数，我们无法像 \eqref{eq:inner} 一样去定义内积，所以内积有它独特的性质. 
 
-
 内积还给出了投影的概念：
 
 \begin{definition}[投影]\index{投影}
@@ -724,6 +723,39 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 设$V$是一个内积空间，$f$是$V$上的一个线性函数，那么存在唯一的向量$u\in V$，使得$f(v)=\inner{u}{v}$对任意的$v\in V$成立.
 \end{theorem}
 反之，如果给定了一个向量$u$，那么很容易验证，$f_u(\cdot)=\inner{u}{\cdot}$就是一个线性函数. 如此我们就给出了内积空间中的线性函数和向量的一一对应. 
+
+此外，利用标准正交基，内积空间中一组向量的线性无关性也可以用内积来简单计算判断. 给定一组向量$v_1,\dots,v_k$，定义他们的\textbf{Gram矩阵}\index{Gram矩阵}为$G=(\inner{v_i}{v_j})_{k\times k}$. 
+
+利用标准正交基，很容易可以计算Gram矩阵. 我们其实已经见过这样的例子. 给定任意一个实矩阵$A$，$A^\t A$就是列向量的Gram矩阵，$AA^\t$就是行向量的Gram矩阵.
+
+Gram矩阵的基本性质是：
+
+\begin{proposition}\label{prop:gram}
+设$V$是一个内积空间，$v_1,\dots,v_k\in V$，定义他们的Gram矩阵为$G=(\inner{v_i}{v_j})_{k\times k}$，那么
+\begin{enumerate}
+    \item $G$是对称矩阵；
+    \item $G$是半正定的；
+    \item $v_1,\dots,v_k$线性无关当且仅当$\det G\neq 0$.
+\end{enumerate}
+\end{proposition}
+利用这样的性质，我们可以很容易地判断一组向量的线性无关性. 
+
+半正定和对称性还暗示着，$G$可以形成某种半正定的二次型. 考虑空间$U=\Span(v_1,\dots,v_k)$，假如$x=\sum_{i}x_iv_i$，那么
+\[
+    \inner{x}{x}=\sum_{i,j}x_ix_j\inner{v_i}{v_j}=\sum_{i,j}x_ix_jG_{ij}.
+\]
+因而这就是我们要的二次型. 我们在\Cref{subsec:inner-product} 会遇到这样的例子，即一族随机变量的协方差矩阵. 
+
+向量组之间的正交性也可以用Gram矩阵来刻画：
+
+\begin{proposition}\label{prop:orthogonal-gram}
+设$V$是一个内积空间，$v_1,\dots,v_k\in V$，那么下列命题等价：
+\begin{enumerate}
+    \item $v_1,\dots,v_k$两两正交；
+    \item $G$是对角矩阵. 
+\end{enumerate}
+特别地，$v_1,\dots,v_k$是标准正交的当且仅当$G=I_k$.
+\end{proposition}
 
 内积空间中，直和分解也可以被加强. 为此，我们先引入正交补的概念. 
 
