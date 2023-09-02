@@ -2,6 +2,7 @@
 \usepackage{fontspec}
 \usepackage[T1]{fontenc}
 \usepackage[sc]{mathpazo}
+\usepackage{anyfontsize}
 \setmainfont{Source Serif 4}
 \setsansfont{Source Sans 3}
 \setmonofont{Menlo}
@@ -31,6 +32,7 @@
 \usepackage[normalem]{ulem}
 
 % math package
+\let\Bbbk\relax
 \usepackage{amsmath}
 \usepackage{mathrsfs}
 \usepackage{amssymb}
@@ -48,13 +50,24 @@
 \newtheorem{lemma}{引理}[chapter]
 \newtheorem{proposition}{命题}[chapter]
 \newtheorem{corollary}{推论}[chapter]
-\newtheorem{definition}{定义}[chapter]
 \newtheorem{theorem}{定理}[chapter]
-\newtheorem{example}{例}[chapter]
 \newtheorem{principle}{规则}[chapter]
 \newtheorem{axiom}{公理}[chapter]
 {
+\theoremstyle{plain}
+\theoremheaderfont{\bfseries}
+\theorembodyfont{\normalfont}
+\newtheorem{definition}{定义}[chapter]
+}
+{
+\theoremstyle{plain}
+\theoremheaderfont{\bfseries}
+\theorembodyfont{\normalfont}
+\newtheorem{example}{例}[chapter]
+}
+{
 \theoremstyle{nonumberplain}
+\theorembodyfont{\normalfont}
 \newmdtheoremenv{remark}{注. }
 \AtBeginEnvironment{remark}{\small}
 }
@@ -63,7 +76,7 @@
 \theoremheaderfont{\bfseries}
 \theorembodyfont{\normalfont}
 \theoremsymbol{\ensuremath{\Box}}
-\newtheorem{proof}{证明}
+\newtheorem{proof}{证明. }
 }
 
 % chap/section set
