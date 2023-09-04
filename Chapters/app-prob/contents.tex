@@ -342,9 +342,9 @@
 
 我们下面讨论一些随机变量的基本性质. 
 
-\begin{proposition}\label{prop:random-variable}
+\begin{theorem}\label{thm:random-variable}
 设$(\Omega,\F,\Pr)$是一个概率空间，$X:\Omega\to\R^n$是一个随机向量，$g:\R^n\to\R^m$是一个Borel函数，则$g(X)=g\circ X$也是一个随机向量. 
-\end{proposition}
+\end{theorem}
 
 这一性质告诉我们了一种构造随机变量的方式：对一个随机变量进行一些Borel函数的操作. 下面的性质告诉我们，Borel函数包含了绝大部分我们关心的函数，因此在实际中，我们不需要担心一个映射作用完之后是否还是随机变量.
 
@@ -574,10 +574,10 @@ $\R$上的测度$\Pr$称为\textbf{绝对连续测度}，如果对任意$\epsilo
 \end{remark}
 
 利用密度，我们可以很容易计算概率：
-\begin{proposition}\label{prop:continuous-prob}
+\begin{theorem}\label{thm:continuous-prob}
 设$X$是一个连续型随机变量，$f$是它的密度函数，则对任意的$B\in\B(\R)$，都有
 \[\Pr(X\in B)=\int_{x\in B}f(x)\d x.\]
-\end{proposition}
+\end{theorem}
 
 在\Cref{tab:continuous-distribution} 中，我们给出本书中用到的一些连续型分布的密度函数. 
 
@@ -647,16 +647,16 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 这里，我们需要再给出一些$\d\lambda$和$\d x$关系的讨论. $\d\lambda$应该理解为Lebesgue测度的微小变化，然而我们并不假定这一变化是如何产生的. $\d x$理解为$x$的微小变化. $x$的微小变化自然就产生了$\lambda$的微小变化，即$\lambda(\d x)$. 所以，在$x$处，$\d\lambda$和$\d x$之间的关系应该是$\d\lambda=\lambda(\d x)$，于是$\d\lambda$应该理解为$\d x$形成的长方体的体积. 
 
 同样，密度给出了概率计算的一个重要工具：
-\begin{proposition}\label{prop:continuous-prob-vec}
+\begin{theorem}\label{thm:continuous-prob-vec}
     设$X$是一个$n$维连续型随机向量，$f$是它的密度函数，则对任意的$B\in\B(\R^n)$，都有
     \[\Pr(X\in B)=\int_{x\in B}f(x)\d x.\]
-\end{proposition}
+\end{theorem}
 
 利用联合密度，可以计算边缘密度：
-\begin{proposition}\label{prop:continuous-marginal}
+\begin{theorem}\label{thm:continuous-marginal}
     设$X=(X_1,\dots,X_n)$是一个$n$维连续型随机向量，，则对任意的$1\leq i\leq n$，都有
     \[p_{X_i}(x_i)=\int_{(x_1,\dots,x_{i-1},x_{i+1},\dots,x_n)\in\R^{n-1}}p_X(x_1,\dots,x_n)\d x_1\cdots\d x_{i-1}\d x_{i+1}\cdots\d x_n.\]
-\end{proposition}
+\end{theorem}
 
 这一命题当然也可以自然推广到求随机向量的边缘密度，例如利用$X=(X_1,X_2,X_3)$的联合密度计算$(X_1,X_2)$的边缘密度：
 \[
@@ -710,13 +710,13 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 
 这一定义中包含了无穷多个需要验证的等式，利用分布函数，我们可以将独立性的验证转化为一个等式的验证：
 
-\begin{proposition}\label{prop:independence}
+\begin{theorem}\label{thm:independence}
 设$X_1,\dots,X_n$是$n$个随机向量，第$i$个的维数是$n_i$，$F_i$是$X_i$的分布函数，$F$是$(X_1,\dots,X_n)$的联合分布函数. $X_1,\dots,X_n$独立的充分必要条件是
 \[F(x_1,\dots,x_n)=F_1(x_1)\cdots F_n(x_n),\]
 其中$x_i\in\R^{n_i}$.
-\end{proposition}
+\end{theorem}
 
-对于离散型随机向量，它的分布函数完全由分布列决定，所以\Cref{prop:independence} 等价于如下命题：
+对于离散型随机向量，它的分布函数完全由分布列决定，所以\Cref{thm:independence} 等价于如下命题：
 
 \begin{proposition}\label{prop:independence-discrete}
 设$X_1,\dots,X_n$是$n$个离散型随机向量，第$i$个的维数是$n_i$，$p_i$是$X_i$的分布列，$p$是$(X_1,\dots,X_n)$的联合分布列. $X_1,\dots,X_n$独立的充分必要条件是
@@ -724,7 +724,7 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 其中$x_i\in\R^{n_i}$.
 \end{proposition}
 
-对于连续型随机向量，它的分布函数完全由密度决定，所以\Cref{prop:independence} 等价于如下命题：
+对于连续型随机向量，它的分布函数完全由密度决定，所以\Cref{thm:independence} 等价于如下命题：
 
 \begin{proposition}\label{prop:independence-continuous}
 设$X_1,\dots,X_n$是$n$个连续型随机向量，第$i$个的维数是$n_i$，$p_i$是$X_i$的密度函数. 假设他们的联合分布具有密度函数$p$. $X_1,\dots,X_n$独立的充分必要条件是
@@ -782,10 +782,10 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 
 对于离散型随机向量，它的分布完全由分布列决定，很容易得到如下命题：
 
-\begin{proposition}\label{prop:discrete-function}
+\begin{theorem}\label{thm:discrete-function}
 设$X$是一个离散型随机向量，$g$是一个函数，那么$Y=g(X)$也是一个离散型随机向量，它的分布列为
 \[\Pr(Y=y)=\sum_{x\in g^{-1}(y)}\Pr(X=x).\]
-\end{proposition}
+\end{theorem}
 
 对于连续型随机向量，它的分布完全由密度决定. 我们现在来推导连续型随机向量的函数的密度. 
 
@@ -807,19 +807,19 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 \end{equation}
 总结以上讨论，我们得到连续型随机向量的函数的密度的计算公式：
 
-\begin{proposition}\label{prop:continuous-function}
+\begin{theorem}\label{thm:continuous-function}
 设$X$是一个连续型随机向量，$g\in C(\R^n,\R^n)$，即$\R^n\to\R^n$的连续函数，假设$\lambda(\{x\in\R^n:\det g'(x)\neq 0\})=0$，则$Y=g(X)$也是一个连续型随机向量，它的密度函数为
 \[p_Y(y)=\begin{cases}
     \sum_{g(x)=y}|\det g'(g^{-1}(y))|^{-1}p_X(g^{-1}(y)),&\det g'(g^{-1}(y))\neq 0,\\
     0,&\text{其他}.
 \end{cases}\]
 其中求和号中$g^{-1}(y)$是根据相应的$x$，用反函数定理（\Cref{thm:inverse-function}）\index{反函数定理}求出局部反函数. 
-\end{proposition}
+\end{theorem}
 
 这一定理的表述比较宽泛，我们可以给一个具体的例子来理解. 
 
 \begin{example}
-设$X$是一个连续型随机变量，$g(x)=x^2$，我们来计算$Y=X^2=g(X)$的密度. 直接计算\Cref{prop:continuous-function} 中的公式，我们有
+设$X$是一个连续型随机变量，$g(x)=x^2$，我们来计算$Y=X^2=g(X)$的密度. 直接计算\Cref{thm:continuous-function} 中的公式，我们有
 \begin{align*}
     &\sum_{g(x)=y}|\det g'(g^{-1}(y))|^{-1}p_X(g^{-1}(y))\\
     =&\sum_{x^2=y}\frac{1}{2|x|}p_X(x)\\
@@ -828,7 +828,7 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 这就给出了$Y$的密度. 
 \end{example}
 
-一般来说，\Cref{prop:continuous-function} 中的公式并不好记，最实用的还是根据$X$和$Y$在算相同的概率这一事实直接写出 \eqref{eq:eq-prob-2}，然后根据具体的$g$来计算. 比如上面的例子，我们可以直接写出
+一般来说，\Cref{thm:continuous-function} 中的公式并不好记，最实用的还是根据$X$和$Y$在算相同的概率这一事实直接写出 \eqref{eq:eq-prob-2}，然后根据具体的$g$来计算. 比如上面的例子，我们可以直接写出
 \[p_Y\lambda(\d y)=p_X(\sqrt{y})\lambda(\d x)(\sqrt{y})+p_X(-\sqrt{y})\lambda(\d x)(-\sqrt{y}).\]
 两边除以$\lambda(\d y)$，再利用$\d y/\d x=1/(2x)$，就得到了$Y$的密度. 
 
@@ -984,7 +984,7 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 \end{enumerate}
 \end{proposition}
 
-接下来，我们讨论随机变量函数的期望的求法. 假设$X$是一个$n$维随机向量，$g:\R^n\to\R$是一个Borel函数，那么$g(X)$也是一个随机变量（\Cref{prop:random-variable}）. 计算$\E[g(X)]$有以下两种方式，我们下面分别讨论. 
+接下来，我们讨论随机变量函数的期望的求法. 假设$X$是一个$n$维随机向量，$g:\R^n\to\R$是一个Borel函数，那么$g(X)$也是一个随机变量（\Cref{thm:random-variable}）. 计算$\E[g(X)]$有以下两种方式，我们下面分别讨论. 
 
 第一种，利用\Cref{subsec:random-function} 中的方法，我们可以将$g(X)$的分布写出来，然后计算期望. 我们来看一个例子. 
 
@@ -1011,17 +1011,17 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 
 利用逼近的思想，我们可以将上述结论推广到$g$是任意的Borel函数的情况，于是我们有：
 
-\begin{proposition}\label{prop:expectation-function}
+\begin{theorem}\label{thm:expectation-function}
 设$X$是一个$n$维随机向量，每一维都可积，$g:\R^n\to\R$是一个Borel函数，那么$\E[g(X)]$存在，且
 \[\E[g(X)]=\int_{\R^n} g(x)\d F_X(x).\]
 特别地，如果$X$是一个离散型随机变量，取值为$x_1,x_2,\dots$，那么
 \[\E[g(X)]=\sum_{k=1}^\infty g(x_k)\Pr(X=x_k).\]
 如果$X$是一个连续型随机变量，密度为$p_X$，那么
 \[\E[g(X)]=\int_{\R^n} g(x)p_X(x)\d x.\]
-\end{proposition}
+\end{theorem}
 
 \begin{example}
-我们重新算一次上面的\Cref{ex:uniform-square}，这次我们用\Cref{prop:expectation-function} 来计算. 设$X\sim\U(0,1)$，我们有
+我们重新算一次上面的\Cref{ex:uniform-square}，这次我们用\Cref{thm:expectation-function} 来计算. 设$X\sim\U(0,1)$，我们有
 \[E[X^2]=\int_0^1 x^2\d x=\frac{1}{3}.\]
 \end{example}
 
@@ -1046,9 +1046,9 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 
 如果我们还记得随机变量的期望是如何定义的，那么我们可以发现，\Cref{prop:independent-expectation} 的结论可以推广到随机变量的情形：
 
-\begin{proposition}\label{prop:independent-expectation-2}
+\begin{theorem}\label{thm:independent-expectation-2}
 设$X,Y$是两个相互独立的随机变量，那么$\E[XY]=\E[X]\E[Y]$. 
-\end{proposition}
+\end{theorem}
 
 需要注意的是，这一命题的逆命题不一定成立. 
 
@@ -1056,10 +1056,10 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 \[g(tx+(1-t)y)\leq tg(x)+(1-t)g(y).\]
 关于凸函数的更多讨论，见\Cref{sec:convex-function}. 我们有如下不等式：
 
-\begin{proposition}[Jensen不等式]\label{prop:jensen}
+\begin{theorem}[Jensen不等式]\label{thm:jensen}
 设$X$是一个随机变量，$g:\R\to\R$是一个凸函数，那么
 \[g(\E[X])\leq \E[g(X)].\]
-\end{proposition}
+\end{theorem}
 
 \subsection{随机变量的内积空间}\label{subsec:inner-product}\index{内积空间}
 
@@ -1121,16 +1121,16 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 首先是期望，很容易证明如下的结论：
 
-\begin{proposition}\label{prop:expectation-linear}
+\begin{theorem}\label{thm:expectation-linear}
 设$X$是一个$n$维随机向量，$A$是一个$m\times n$的矩阵，那么$\E[AX]=A\E[X]$.
-\end{proposition}
+\end{theorem}
 
 接下来是协方差矩阵. 利用Gram矩阵与二次型的关系，我们容易写出如下的结论：
 
-\begin{proposition}\label{prop:covariance-linear}
+\begin{theorem}\label{thm:covariance-linear}
 设$X$是一个$n$维随机向量，$A$是一个$m\times n$的矩阵，那么
 \[\var(AX)=A\var(X)A^\t.\]
-\end{proposition}
+\end{theorem}
 \begin{proof}
 考虑向量$t$，和$n$维随机向量$Y$，$t^\t Y$是一个随机变量，我们可以得到一个二次型
 \[g(t)=\var(t^\t Y)=\cov(t^\t Y,t^\t Y)=t^\t\var(Y)t.\]
@@ -1181,25 +1181,25 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 特征函数特别适合处理独立随机变量的和：
 
-\begin{proposition}\label{prop:characteristic-function-sum}
+\begin{theorem}\label{thm:characteristic-function-sum}
 设$X_1,\dots,X_n$是$n$个相互独立的随机变量，它们的特征函数分别为$f_1,\dots,f_n$，那么$X_1+\dots+X_n$的特征函数为$f_1\dots f_n$.
-\end{proposition}
+\end{theorem}
 
 比起卷积\index{卷积}，用特征函数来算独立随机变量的和，方便得多. 
 
 特征函数也可以用来判定随机变量的独立性：
 
-\begin{proposition}\label{prop:characteristic-function-independence}
+\begin{theorem}\label{thm:characteristic-function-independence}
 设$X_1,\dots,X_n$是$n$个随机变量，它们的特征函数分别为$f_1,\dots,f_n$，随机向量$X=(X_1,\dots,X_n)^\t$，它的特征函数为$f$，那么$X_1,\dots,X_n$相互独立的充分必要条件是
 \[f(t_1,\dots,t_n)=f_1(t_1)\cdots f_n(t_n).\]
-\end{proposition}
+\end{theorem}
 
 特征函数的导数可以用来计算随机变量的矩：
 
-\begin{proposition}\label{prop:characteristic-function-moment}
+\begin{theorem}\label{thm:characteristic-function-moment}
 设$X$是一个随机变量，它的特征函数为$f_X$，那么对任意正整数$k$，
 \[\E[X^k]=\frac{f_X^{(k)}(0)}{i^k}.\]
-\end{proposition}
+\end{theorem}
 
 总结起来，我们之前可以用分布列和密度函数来计算或者判定随机变量的各种性质和特征，现在都可以用特征函数来处理了. 
 
@@ -1345,24 +1345,24 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 Gauss向量可以完全由它的期望和协方差矩阵刻画. 首先，Gauss向量的独立性等价于不相关性：
 
-\begin{proposition}\label{prop:gauss-vector-independence}
+\begin{theorem}\label{thm:gauss-vector-independence}
 设$X=(X_1,\dots,X_n)\sim\Nor(\mu,\Sigma)$，那么$X_1,\dots,X_n$相互独立的充分必要条件是$X_1,\dots,X_n$两两不相关，即$\Sigma$是一个对角矩阵. 
-\end{proposition}
+\end{theorem}
 
 需要注意的是，如果$X$是正态分布，$Y$是正态分布，这并不意味着$(X,Y)$是Gauss向量，因而并不能用不相关来作为独立性的判据. 因此，在一般情况下，我们必须要验证$(X_1,\dots,X_n)$是Gauss向量，然后才能断言不相关等价于独立. 
 
 当然，这一判据可以推广到多个Gauss向量的情形：
 
-\begin{proposition}\label{prop:gauss-vector-independence-2}
+\begin{corollary}\label{cor:gauss-vector-independence-2}
 设$X_1,\dots,X_n$是$n$个Gauss向量，它们相互独立的充分必要条件是$X_1,\dots,X_n$两两不相关，即协方差矩阵$\cov(X_i,X_j)=O$，$i\neq j$.
-\end{proposition}
+\end{corollary}
 
 
-其次，利用\Cref{prop:expectation-linear} 和\Cref{prop:covariance-linear}，我们可以得到如下的结论：
+其次，利用\Cref{thm:expectation-linear} 和\Cref{thm:covariance-linear}，我们可以得到如下的结论：
 
-\begin{proposition}\label{prop:gauss-vector-linear}
+\begin{theorem}\label{thm:gauss-vector-linear}
 设$X\sim\Nor(\mu,\Sigma)$，$A$是一个$m\times n$的矩阵，那么$AX\sim\Nor(A\mu,A\Sigma A^\t)$.
-\end{proposition}
+\end{theorem}
 
 取特定的$A$，我们可以得到一个实用的推论：Gauss向量的子向量仍然是Gauss向量，也就是说，取$X=(X_1,\dots,X_n)^\t\sim\Nor(\mu,\Sigma)$，那么对任意的$1\leq k\leq n$，$i_1,\dots,i_k\in\{1,\dots,n\}$，$(X_{i_1},\dots,X_{i_k})^\t$也是Gauss向量. 
 

@@ -57,13 +57,13 @@
 
 反之，任何一个范数都可以导出一个度量，即$d(x,y)=\norm{x-y}$. 这一结论可以总结为如下性质：
 
-\begin{proposition}\label{prop:metric-norm}
+\begin{theorem}\label{thm:metric-norm}
     设$X$是一个向量空间，$\norm{\cdot}$是$X$上的一个范数，则$d(x,y)=\norm{x-y}$是$X$上的一个度量，称之为\textbf{范数诱导的度量}. 反之，如果$d$是$X$上的一个度量，则$\norm{x}=d(x,0)$是$X$上的一个范数当且仅当对任意$x,y,z\in X$，$\lambda\in\R$，有
     \begin{enumerate}
         \item 平移不变性：$d(x+z,y+z)=d(x,y)$；
         \item 相似性：$d(\lambda x,\lambda y)=|\lambda|d(x,y)$.
     \end{enumerate}
-\end{proposition}
+\end{theorem}
 
 尽管都是$\R^n$，但是不同$p$对应的$L^p$范数是不一样的. 他们之间有如下的关系：
 
@@ -288,9 +288,9 @@ Cauchy列与收敛列的关系如下. 首先，收敛的点列是Cauchy列：
 
 最后我们指出，尽管完备度量空间已经足够发展微积分了，但是它和$\R^n$依然有一个本质的区别，这一区别在于紧集. 首先，在有限维情况下，紧集与有界闭集是等价的：
 
-\begin{proposition}\label{prop:compact-bounded}
+\begin{theorem}\label{thm:compact-bounded}
 设$\R^n$装备了$L^p$范数，设$F\subseteq\R^n$，那么$F$是紧集当且仅当$F$是有界闭集，有界指的是存在$M>0$，使得对任意$x\in F$，$\norm{x}_p\leq M$.
-\end{proposition}
+\end{theorem}
 
 这一命题的证明依赖于Heine-Borel有限覆盖原理，这里就不给出细节了. 
 
@@ -337,33 +337,33 @@ $\delta$-$\epsilon$语言的定义是从\emph{映射的极限}这一概念出发
 
 于是，我们可以用开集表述极限和连续性了：
 
-\begin{proposition}\label{prop:continuous-open}
+\begin{theorem}\label{thm:continuous-open}
     设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，$f:X\to Y$是一个映射，则
 \begin{enumerate}
     \item $\lim_{x\to x_0} f(x)=y$当且仅当对任意包含$y$的开集$U\subseteq Y$，存在包含$x_0$的开集$V\subseteq X$，使得$f(V\setminus\{x_0\})\subseteq U$；
     \item  $f$在$x\in X$处连续当且仅当对任意包含$f(x)$的开集$U\subseteq Y$，存在包含$x$的开集$V\subseteq X$，使得$f(V)\subseteq U$.
 \end{enumerate}
-\end{proposition}
+\end{theorem}
 
 这一命题的证明非常类似\Cref{prop:open-ball}，我们这里就不给出了. 注意，极限的开集定义所用的集合$V\setminus\{x_0\}$也是一个开集，它是$x_0$的去心邻域，所以这一定义确实是纯拓扑的. 
 
 连续映射的定义也可以完全由拓扑给出：
 
-\begin{proposition}\label{prop:continuous-topology}
+\begin{theorem}\label{thm:continuous-topology}
     设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，$f:X\to Y$是一个映射，则下列表述等价：
     \begin{enumerate}
         \item $f$是连续映射；
         \item 对任意$Y$中的开集$U$，原像$f^{-1}(U)$是$X$中的开集；
         \item 对任意$Y$中的闭集$F$，原像$f^{-1}(F)$是$X$中的闭集. 
     \end{enumerate}
-\end{proposition}
+\end{theorem}
 
-利用\Cref{prop:continuous-open}、\Cref{prop:closed-prop} 以及开集的定义，很容易证明这一命题，这里不再赘述. 
+利用\Cref{thm:continuous-open}、\Cref{prop:closed-prop} 以及开集的定义，很容易证明这一命题，这里不再赘述. 
 
 \begin{example}\label{ex:metric-norm-continuous}
 在不给任何额外定义的时候，我们有一个非常自然的连续映射的例子，那就是\textbf{度量}. 设$(X,d)$是一个度量空间，我们证明度量$d:X\times X\to\R$是一个连续函数. 
 
-我们利用点连续的定义，证明$d$在每一点都连续. 设$(x_1,y_1)\in X\times X$. 我们利用\Cref{prop:continuous-open} 和原始定义的混合版本. 注意到要证明所有包含$d_0=d(x_1,y_1)$的开集$U$满足条件，根据$U$的构造，只需要证明，对任意$\epsilon>0$，$B(d_0,\epsilon)$满足条件. 为此，取一个包含$(x_1,y_1)$的开集$V=B(x_1,\epsilon/2)\times B(y_1,\epsilon/2)$（关于这个为什么是开集，详细讨论见\Cref{ex:product-topology}），则对任意$(x_2,y_2)\in V$，有$d(x_1,x_2)<\epsilon/2$，$d(y_1,y_2)<\epsilon/2$，所以根据三角不等式，
+我们利用点连续的定义，证明$d$在每一点都连续. 设$(x_1,y_1)\in X\times X$. 我们利用\Cref{thm:continuous-open} 和原始定义的混合版本. 注意到要证明所有包含$d_0=d(x_1,y_1)$的开集$U$满足条件，根据$U$的构造，只需要证明，对任意$\epsilon>0$，$B(d_0,\epsilon)$满足条件. 为此，取一个包含$(x_1,y_1)$的开集$V=B(x_1,\epsilon/2)\times B(y_1,\epsilon/2)$（关于这个为什么是开集，详细讨论见\Cref{ex:product-topology}），则对任意$(x_2,y_2)\in V$，有$d(x_1,x_2)<\epsilon/2$，$d(y_1,y_2)<\epsilon/2$，所以根据三角不等式，
 \[d(x_2,y_2)\leq d(x_1,y_1)+d(x_1,x_2)+d(y_1,y_2)<d_0+\epsilon/2+\epsilon/2=d_0+\epsilon.\]
 另一方面，
 \begin{align*}
@@ -379,13 +379,13 @@ $\delta$-$\epsilon$语言的定义是从\emph{映射的极限}这一概念出发
 
 我们首先讨论局部连续的性质，以下命题我们都不再给出证明. 首先，极限也可以用收敛性刻画：
 
-\begin{proposition}\label{prop:limit-converge}
+\begin{theorem}\label{thm:limit-converge}
     设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，$f:X\to Y$是一个映射，$x_0\in X$，$y\in Y$，则下列表述等价：
     \begin{enumerate}
         \item $\lim_{x\to x_0}f(x)=y$. 
         \item 对任意$\{x_n\}_{n=1}^\infty$满足$x_0\notin\{x_n\}$，如果$x_n\to x_0$，则$f(x_n)\to y$.
     \end{enumerate}
-\end{proposition}
+\end{theorem}
 
 利用这一条，很快就可以得到连续的序列版本：
 

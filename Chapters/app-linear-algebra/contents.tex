@@ -859,7 +859,7 @@ Gram矩阵的基本性质是：
 
 正交矩阵有很多等价的刻画：
 
-\begin{proposition}\label{prop:orthogonal-matrix}
+\begin{theorem}\label{thm:orthogonal-matrix}
 设$A$是一个$n$阶方阵. 下列陈述等价：
 \begin{enumerate}
     \item $A$是一个正交矩阵.
@@ -868,7 +868,7 @@ Gram矩阵的基本性质是：
     \item $A$的列向量是两两正交的单位向量.
     \item $A^\t=A^{-1}$.
 \end{enumerate}
-\end{proposition}
+\end{theorem}
 \begin{proof}
     按照定义写出即可. 
 \end{proof}
@@ -905,13 +905,13 @@ Gram矩阵的基本性质是：
 \end{proof}
 
 等距同构对应的矩阵恰好就是正交矩阵. 
-\begin{proposition}\label{prop:isometry-matrix}
+\begin{theorem}\label{thm:isometry-matrix}
 设$V$和$W$都是有限维内积空间，$f:V\to W$是一个等距同构，那么在$V$和$W$的标准正交基之下$f$是一个正交矩阵. 反之，$n$阶正交矩阵$A$诱导的线性映射$f_A:\R^n\to\R^n$是一个等距同构. 
-\end{proposition}
+\end{theorem}
 \begin{proof}
-    后半部分（“反之”之后）由\Cref{prop:orthogonal-matrix} 的第二点直接得出. 我们来证明前半部分. 
+    后半部分（“反之”之后）由\Cref{thm:orthogonal-matrix} 的第二点直接得出. 我们来证明前半部分. 
     
-    设$v_1,\cdots,v_n$是$V$的标准正交基，$w_1,\cdots,w_n$是$W$的标准正交基，$A$是$f$在这两组基下的矩阵. 考虑任意一个点$x\in V$，它的坐标是$X$. 那么$f(x)$的坐标是$AX$. 由于$f$是等距同构，所以$\norm{f(x)}=\norm{x}$，根据\Cref{prop:projection}，这等价于$\norm{AX}=\norm{X}$，由\Cref{prop:orthogonal-matrix} 的第二点，$A$是一个正交矩阵. 
+    设$v_1,\cdots,v_n$是$V$的标准正交基，$w_1,\cdots,w_n$是$W$的标准正交基，$A$是$f$在这两组基下的矩阵. 考虑任意一个点$x\in V$，它的坐标是$X$. 那么$f(x)$的坐标是$AX$. 由于$f$是等距同构，所以$\norm{f(x)}=\norm{x}$，根据\Cref{prop:projection}，这等价于$\norm{AX}=\norm{X}$，由\Cref{thm:orthogonal-matrix} 的第二点，$A$是一个正交矩阵. 
 \end{proof}
 
 \section{行列式}\label{sec:determinant}
