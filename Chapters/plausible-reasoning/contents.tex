@@ -1,124 +1,285 @@
 \chapter{合情推理}\label{chap:plausible-reasoning}
 
+\emph{推理}\index{推理}是从一些观察和事实出发，得到一些结论的过程. 它通常被认为是人类智慧的一种体现，因而智能的一个重要标准就是具备推理能力. 在人类的历史上，有两种重要的推理方式：合情推理和演绎推理. 演绎推理代表着“严谨、客观、从一般到特殊”，是数学证明的逻辑基础；而合情推理则完全相反，“模糊、主观、从个体到全貌”. 不难理解，演绎推理很早就有了非常严格的逻辑学框架，得到了充分的研究. 然而，合情推理同样甚至更加重要，它不仅是人类与生俱来的能力，更是科学研究和人工智能的逻辑基础. 
 
-\section{回顾：命题逻辑的演绎推理}
+本章试图建立合情推理的一个数学模型，这一模型与Bayes概率论紧密地联系在一起. 我们会它来研究一些有趣的推理谬误，并与演绎推理进行对比. 最后，我们会讨论Bayes概率论中重要概念，例如似然、先验，以及他们在科学理论和机器学习中的意义. 
 
-\emph{命题逻辑}\index{命题逻辑}的命题公式由如下定义递归形成
+\section{命题逻辑的演绎推理}
+
+本节讨论的是\emph{演绎推理}\index{演绎推理}，它最主要的应用场景是数学证明和一些逻辑论证. 演绎推理定义了数学中一些非常重要的概念，例如“公理”“定理”“证明”. 我们会看到，与演绎推理密切相关的是\emph{形式推理系统}\index{形式推理系统}，它尝试将推理的过程抽象为一堆字符串的变换. 作为介绍，我们这里给出\emph{命题逻辑}\index{命题逻辑}的形式推理系统，它是最基本的形式推理系统. 
+
+\emph{命题}\index{命题}是一种陈述，它可以被判定为真或者假. 例如，“北京是中国的首都. ”是一个命题，而“北京是中国的首都吗？”是一个疑问句，所以不是命题. 然而，利用自然语言定义命题，很难判断一些奇怪的句子是不是命题：
+
+\begin{example}
+考虑句子$A$：“这句话是假的. ”是一个命题吗？首先，$A$是一个陈述句. 那它的真假呢？
 \begin{itemize}
-    \item 命题变元$p,q,r,\dots$是命题公式.
-    \item 如果$\phi$和$\psi$是命题公式，那么$(\neg\phi)$，$(\phi\vee\psi)$，$(\phi\wedge\psi)$，$(\phi\leftrightarrow\psi)$和$(\phi\to\psi)$都是命题公式.
+    \item 如果$A$是真的，$A$说的是“这句话是假的”，这与$A$真矛盾，所以它不是真的. 
+    \item 如果$A$是假的，$A$的含义是“这句话是真的”，这与$A$假矛盾，所以它不是假的. 
 \end{itemize}
-例如，$(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是. 
+因此，这句话既不是真的也不是假的！
+\end{example}
 
-$\neg,\vee,\wedge,\leftrightarrow,\to$被称为\emph{连接词}\index{连接词}，$\neg$被称为\emph{否定}，$\vee$被称为\emph{析取}，$\wedge$被称为\emph{合取}，$\leftrightarrow$被称为\emph{双向蕴含}，$\to$被称为\emph{蕴含}. 在不产生混淆的时候也会省略括号. $A\wedge B$也常写作$AB$，$\neg A$也常写作$\overline{A}$.
+以上的现象被称为\emph{自指}\index{自指}，也就是一个东西在描述自己. 自指在逻辑上和哲学上是非常有趣的概念，我们会在\Cref{sec:fixed-point-general-view}中简单讨论\lhysays{记得讨论}. 
 
-命题逻辑最重要的问题是：\emph{什么样的公式是真的？}给定一个公式集$\Gamma$，对一个公式$\phi$，我们有两种真的概念：
-    \begin{itemize}
-        \item 语义：$\Gamma\models \phi$.
-        \item 语型：$\Gamma\vdash \phi$.
-    \end{itemize}
+然而，自指为讨论命题的概念带来了非常大的麻烦. 为了避免这些麻烦，我们回避命题到底是什么这一哲学问题，而是把他们抽象为一些字符串，这就是\emph{命题公式}：
 
-首先看语义. 每一个命题变元可以赋值真假：$\T$（真）或$\F$（假）. 对于一般公式，可以利用真值表递归地定义公式的真假赋值. 例如，$p\to q$的真值表为
-        \[\begin{array}{cc|c}
-        p&q&p\to q\\\hline
-             \T&\T&\T  \\
-             \T&\F&\F  \\
-             \F&\T&\T  \\
-             \F&\F&\T  \\
-        \end{array}\]
-符号$\Gamma\models\phi$意味着对任意赋值，只要$\Gamma$全为真，$\phi$就为真.
+\begin{definition}[命题公式]\index{命题公式}
+\textbf{命题公式}（或简称\textbf{公式}）是由一些\textbf{命题变元}\index{命题变元}和\textbf{连接词}\index{连接词}组成的字符串，它们满足以下递归定义：
+\begin{itemize}
+    \item 命题变元$p,q,r,\dots$是命题公式. 
+    \item 如果$\phi$和$\psi$是命题公式，那么$(\neg\phi)$，$(\phi\vee\psi)$，$(\phi\wedge\psi)$，$(\phi\leftrightarrow\psi)$和$(\phi\to\psi)$都是命题公式. 
+\end{itemize}
 
+$\neg,\vee,\wedge,\leftrightarrow,\to$被称为\emph{连接词}\index{连接词}，$\neg$被称为\emph{否定}，$\vee$被称为\emph{析取}（\emph{或}），$\wedge$被称为\emph{合取}（\emph{与}），$\leftrightarrow$被称为\emph{双向蕴含}（\emph{等价}），$\to$被称为\emph{蕴含}（\emph{推出}）. 在不产生混淆的时候也会省略括号. $A\wedge B$也常写作$AB$，$\neg A$也常写作$\overline{A}$.
+\end{definition}
 
-然后再看语型. 推导规则（即语法）描述了从一些公式出发如何得到另外一些公式. 语法推导的形式是
-    \[\begin{array}{c}
-         \phi\quad\phi\to\psi  \\\hline
-         \psi
-    \end{array}\]
-横线上方的称为\emph{前提}\index{前提}，横线下方的称为\emph{结论}\index{结论}. 上面的推导法则被称为\emph{肯定前件}\index{肯定前件}（MP）\index{MP}，是三段论的基础.
+\begin{example}
+$(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是. 
+\end{example}
 
-语法推导可以引入新的连接词，例如
+命题最重要的概念是“真假”，因而命题逻辑一个重要的问题是：\emph{什么样的公式是真的？}给定一个公式集$\Gamma$，对一个公式$\phi$，我们有两种真的概念：
+\begin{itemize}
+    \item \emph{语义}\index{语义}：$\Gamma\models \phi$.
+    \item \emph{语形}\index{语形}：$\Gamma\vdash \phi$.
+\end{itemize}
+
+首先看语义. 所谓语义，就是“句子的含义”. 在命题逻辑中，句子就是命题公式，而含义就是真假. 既然命题公式是递归定义的，命题公式的真假我们也应该递归定义. 
+
+\begin{definition}[赋值]\index{赋值}
+给定命题变元集合$V$，它形成的命题公式的集合是$L$，一个\textbf{赋值}是一个从$L$到$\{\T,\F\}$的映射$v$，递归定义如下：
+\begin{itemize}
+    \item 如果$\phi=p\in V$，那么$v(\phi)=v_p$.
+    \item 如果$\phi=\neg\psi$，那么$v(\phi)=\begin{cases} \T, & v(\psi)=\F, \\ \F, & v(\psi)=\T. \end{cases}$
+    \item 如果$\phi=\psi\vee\chi$，那么$v(\phi)=\begin{cases} \T, & v(\psi)=\T\text{ 或 }v(\chi)=\T, \\ \F, & v(\psi)=\F\text{ 且 }v(\chi)=\F. \end{cases}$
+    \item 如果$\phi=\psi\wedge\chi$，那么$v(\phi)=\begin{cases} \T, & v(\psi)=\T\text{ 且 }v(\chi)=\T \\ \F, & v(\psi)=\F\text{ 或 }v(\chi)=\F. \end{cases}$
+    \item 如果$\phi=\psi\to\chi$，那么$v(\phi)=\begin{cases} \T, & v(\psi)=\F\text{ 或 }v(\chi)=\T, \\ \F, & v(\psi)=\T\text{ 且 }v(\chi)=\F. \end{cases}$
+    \item 如果$\phi=\psi\leftrightarrow\chi$，那么$v(\phi)=\begin{cases} \T, & v(\psi)=v(\chi) \\ \F & v(\psi)\neq v(\chi) \end{cases}$
+\end{itemize}
+\end{definition}
+
+以上定义看起来比较冗长，但是符合我们的直觉. 一种更为直观的表达方式是\emph{真值表}. 注意，连接词可以被理解为一个真值向量到真值的映射，例如$\wedge$可以被理解为$\{\T,\F\}^2\to\{\T,\F\}$的映射，这一映射可以用真值表表示：
+
+\begin{center}
+\begin{tabular}{cc|c}
+    $p$ & $q$ & $p\wedge q$ \\
+    \hline
+    $\T$ & $\T$ & $\T$ \\
+    $\T$ & $\F$ & $\F$ \\
+    $\F$ & $\T$ & $\F$ \\
+    $\F$ & $\F$ & $\F$ \\
+\end{tabular}
+\end{center}
+于是，定义中的递归可以用直接用$\wedge$来表示：如果$\phi=\psi\wedge\chi$，那么$v(\phi)=v(\psi)\wedge v(\chi)$.
+
+我们看一个例子. 
+
+\begin{example}
+考虑公式$(p\wedge q)\to r$，我们来定义赋值$v$. 首先给命题变元赋值：
+\[\begin{array}{c|ccc}
+    &p&q&r\\\hline
+    v&\F&\T&\F\\
+\end{array}\]
+然后递归计算公式的真值. 首先计算$(p\wedge q)$的真值. 根据真值表，我们有
+\[v(p\wedge q)=v(p)\wedge v(q)=\F\wedge\T=\F.\]
+然后计算$(p\wedge q)\to r$的真值：
+\[v((p\wedge q)\to r)=v(p\wedge q)\to v(r)=\F\to\F=\T.\]
+\end{example}
+
+接下来，我们从赋值到推理. 推理是从\emph{前提}\index{前提}出发，得到\emph{结论}\index{结论}的过程. 和赋值相关的推理概念有如下定义：
+
+\begin{definition}[语义蕴含]\index{语义蕴含}
+给定公式集$\Gamma$和公式$\phi$，如果对任意赋值$v$，如果$v(\psi)=\T$对任意$\psi\in\Gamma$都成立，那么$v(\phi)=\T$，则称$\Gamma$\textbf{语义蕴含}$\phi$，记作$\Gamma\models\phi$.
+\end{definition}
+
+换言之，给定一个真的前提$\Gamma$，我们所关注的公式$\phi$也是真的. 这一概念只关心真值之间的关系，但是至于$\Gamma$如何导致$\phi$为真，不是这一概念可以刻画的. 
+
+\begin{example}\label{ex:semantic-implication}
+如果$\Gamma=\{p\to q,q\to r\}$，那么$\Gamma\models p\to r$. 我们来证明这个，对任意赋值$v$，如果$v(p\to q)=\T$，那么$v(p)=\F$或者$v(q)=\T$，
+\begin{itemize}
+    \item 如果$v(p)=\F$，那么$v(p\to r)=\T$.
+    \item 如果$v(q)=\T$，那么$v(q\to r)=v(r)$. 因为$v(q\to r)=\T$，所以根据定义$v(r)=\T$，于是$v(p\to r)=\T$.
+\end{itemize}
+不论在何种情况，都有$v(p\to r)=\T$，即$\Gamma\models p\to r$.
+\end{example}
+
+接下来，我们看语形. 语形就是“句子的形态“，或者说一个句子是如何构造出来的. 它更像我们所理解的“推理”，也就是从一些公式出发，得出另一些公式. \emph{推导规则}\index{推导规则}描述了从一些公式出发如何得到另外公式. 语法推导的形式是
+\[\begin{array}{c}
+        \phi_1\quad\phi_2\quad\dots\quad\phi_n  \\\hline
+        \psi
+\end{array}\]
+横线上方的称为\emph{前提}\index{前提}，横线下方的称为\emph{结论}\index{结论}. 
+
+在一些命题逻辑的形式推理系统（比如Hilbert推理系统\index{Hilbert推理系统}）中，推导规则只有\emph{一条}，即\emph{肯定前件}\index{肯定前件}（MP）：
+\[\begin{array}{c}
+        \phi\to\psi\quad\phi  \\\hline
+        \psi
+\end{array}\]
+
+然而，引入更多推导规则可以有助于简化推理的过程，这是另外一些形式推理系统（比如自然演绎系统\index{自然演绎系统}）的做法. 比如，我们可以加入合取和析取的推导规则：
+\begin{itemize}
+    \item 引入新的连接词，例如
     \[\begin{array}{c}
          \phi\quad\psi  \\\hline
          \phi\wedge\psi
     \end{array}\]
-也可以消除连接词，例如
+    \item 消除连接词，例如
     \[\begin{array}{c}
-         \phi\wedge\psi  \\\hline
-         \phi
-    \end{array}\]
-在给定一组推导法则下，我们就可以根据规则来推演命题，这就是\textbf{演绎推理}\index{演绎推理}.
+        \phi\wedge\psi  \\\hline
+        \phi
+   \end{array}\]
+\end{itemize}
+    
+我们再看一个非常重要的例子. 
 
-例如，将\emph{归谬法}（RAA）加入推导法则：将$\neg\phi$作为前提，得到了结论$\F$，那么可以推出$\phi$才是结论. 写作
+\begin{example}
+将\emph{归谬法}\index{归谬法}（RAA）加入推导法则：将$\neg\phi$作为前提，得到了结论$\F$，那么可以推出$\phi$才是结论. 写作
     \[\begin{array}{c}
          [\neg\phi]  \\
          \vdots\\
          \F\\\hline
          \phi
     \end{array}\]
-方括号表示假设$[\neg\phi]$是前提，省略号表示推导的中间步骤. 我们就可以得到反证法. 
 
-记号$\Gamma\vdash\phi$的意思是以$\Gamma$作为前提，依据推导法则，可以得到$\phi$作为结论. 从前提出发，按照法则，得出结论的过程，即称谓\emph{演绎推理}\index{演绎推理}. 命题逻辑的主要定理是
+方括号表示\emph{假设}$[\neg\phi]$是前提，省略号表示推导的中间步骤. 注意，这里是\emph{假设}了一个前提，而不是真的前提，这一点是非常重要的. 利用这一推导规则，我们就可以得到反证法. 
+\end{example}
+
+
+演绎推理所对应的数学模型即为\emph{形式推理系统}\index{形式推理系统}：一系列字符串的集合（命题公式），以及一系列的推导规则，以及公理的集合（一些命题公式）. 
+
+在形式推理系统中，我们可以形式地定义什么是“推理”和“结论”，而这些东西构成了\emph{演绎推理}\index{演绎推理}的过程与结果：
+
+\begin{definition}[演绎推理]\index{演绎推理}\index{结论}\index{前提}
+设$L$是公式集，$A\subseteq L$ 是公理的集合，$\mathcal R$是推导规则，$\Gamma\subseteq L$，考虑$L$中的序列$\phi_1,\dots,\phi_n$，如果对任意$i$，$\phi_i$满足下面的其中一个条件：
+\begin{enumerate}
+    \item $\phi_i\in A$，
+    \item $\phi_i\in\Gamma$，或者
+    \item 存在一个推导规则，和$\phi_{i_1},\dots,\phi_{i_k}$，$i_1,\dots,i_k<i$使得$\phi_i$可以由$\phi_{i_1},\dots,\phi_{i_k}$推导出来，
+\end{enumerate}
+那么称$\phi_1,\dots,\phi_n$是从$\Gamma$出发的一个\textbf{演绎推理}，记作$\Gamma\vdash\phi_n$，$\phi_n$称为\textbf{结论}，$\Gamma$称为\textbf{前提}.
+\end{definition}
+
+
+简而言之，记号$\Gamma\vdash\phi$的意思是以$\Gamma$作为前提，依据推导法则，通过一系列（但有限）的推理步骤，可以得到$\phi$作为结论. 因而，语形定义的真值是“可以被推理出来”的概念. 对比语义，语形更加关注“过程”，而不是“关系”.
+
+介绍完了语义和语形，我们现在来看他们之间的关系，其中最重要的是\emph{完备性定理}\index{完备性定理}：
 \begin{theorem}[完备性定理]\index{完备性定理}
 对任意公式集$\Gamma$和任意公式$\phi$，
 \[\Gamma\models\phi\iff\Gamma\vdash\phi.\]
 \end{theorem}
-推论：检验一个演绎推理的正确性可以用真值表完成.
 
-如果$\models \phi$，那么称$\phi$为\emph{重言式}\index{重言式}. 重言式即是不需要加任何假设也一定成立的公式，表明了这一推理逻辑所包含的``正确的废话''. 如果$\psi\leftrightarrow\phi$是重言式，我们就说$\psi,\phi$是\emph{等值}的\index{等值}. 等值的公式在演绎推理中起着相同的作用. 例如：$p\to q$与$\neg q\to\neg p$是等值的，所以证明一个定理也可以去证明它的逆否命题.
+完备性定理有两层意思：能推理出来的都是真的，真的都能被推理出来. 并非所有的形式推理系统都有完备性定理，但是对于命题逻辑来说，这个定理成立的形式推理系统是更加符合直观的. 
+
+完备性定理的一个直接推论是，我们可以用真值表来检查从前提出发是否能推出结论. 例如，在\Cref{ex:semantic-implication} 中我们验证了$\{p\to q,q\to r\}\models p\to r$，所以也有
+\[\{p\to q,q\to r\}\vdash p\to r,\]
+即便我们完全不知道这一推理是如何进行的，我们依然知道这一推理是可行的！
+
+如果$\varnothing\models \phi$，那么称$\phi$为\emph{重言式}\index{重言式}. 重言式是不需要加任何假设也一定成立的公式，是这一推理系统所包含的``正确的废话''. 如果$\psi\leftrightarrow\phi$是重言式，我们就说$\psi,\phi$是\emph{等值}的\index{等值}. 等值的公式在演绎推理中可以互相替代使用. 例如：$p\to q$与$\neg q\to\neg p$是等值的，所以证明一个命题也可以去证明它的逆否命题.
 
 
 \section{合情推理的数学模型}
 
-现在我们从演绎推理过渡到合情推理. 生活中的推理并不总是演绎推理. 走在北大校园里，看到有人突然倒地不起，一个合理的第一反应是，\emph{他突发疾病了}. 在常识的意义下，这是一种合理的推理. 我们来仔细分析一下这个推理的过程.
+现在，我们将话题转到合情推理。出乎意料的是，人类先天所具备的推理能力，更接近\emph{合情推理}而不是演绎推理. 在婴儿时期，我们需要建立各式各样的经验规则，以便在这个世界生粗下来。例如，如果婴儿碰到了带电的插座，那么他/她会感受到疼痛，这样就知道了插座是危险的。下次遇到插座的时候，他就会避开插座，因为他学到了“所有插座都是危险的”这一经验。上面的例子都是从一些特殊的事件（摸插座触电了）出发，得到了一些一般的结论（所有插座都是危险的），这就是合情推理的基本形式.
+
+为了从更抽象的角度理解合情推理的形式，我们用经典的\emph{三段论}来对比演绎推理和合情推理。
 
 演绎推理包含两个\emph{强三段论}\index{三段论!强～}：
     \[
         \begin{array}{c}
             \begin{array}{c}  
-                A \to B \\ A\text{ 是真的} \\ \hline B\text{ 是真的}
+                \phi \to \psi \\ \phi\text{ 是真的} \\ \hline \psi\text{ 是真的}
             \end{array} 
             \qquad \qquad 
             \begin{array}{c}  
-                A \to B \\ B\text{ 是假的} \\ \hline \text{A是假的}
+                \phi \to \psi \\ \psi\text{ 是假的} \\ \hline \phi\text{ 是假的}
             \end{array}
         \end{array} 
     \]
-具体到上面的例子，$A$是``突发疾病''，$B$是``突然倒地不起''. 因此演绎推理应该是：因为突发疾病，所以突然倒地不起.
 
-然而，我们实际上作出的推理形如：因为突然倒地不起，所以更可能突发疾病. 这是一个\emph{弱三段论}\index{三段论!弱～}：，数学上写作 
+例如，从科学的角度，触电会疼痛（$\phi\to \psi$），摸插座会触电（$\phi$），所以摸插座会疼痛（$\psi$）. 这是一个演绎推理的例子.
+
+然而，合情推理是完全发过来的，即\emph{弱三段论}\index{三段论!弱～}，形式上写作 
         \[
         \begin{array}{c}
             \begin{array}{c}  
-                A \to B \\ B\text{ 是真的} \\ \hline A\text{ 变得更合理}
+                \phi \to \psi \\ \psi\text{ 是真的} \\ \hline \phi\text{ 变得更合理}
             \end{array} 
         \end{array} 
     \]
-虽然我们不能得知$A$的真假，但是根据已有的事实$B$，我们可以得到$A$的合理性. 这样没有严格真假的推理模式就是\emph{合情推理}\index{合情推理}.
 
+例如，触电会疼痛（$\phi\to \psi$），摸插座会疼痛（$\psi$），所以摸插座很可能会触电（$\phi$）.  这样的推理更符合上面婴儿推理的模式。虽然我们不能得知$\phi$的真假，但是根据已有的事实$\psi$，我们可以得到$\phi$的合理性推断. 这样没有严格真假的推理模式就是\emph{合情推理}\index{合情推理}.
 
-再次考虑同样的问题，走在北大校园里，看到有人突然倒地不起，你的第一反应是？
+推理的一个重要概念是“真假”，或者说这个推理的正确性、合理性。在演绎推理中，推理只有两种可能：正确的推理和错误的推理；而在合情推理中，推理的合理性有多种可能，例如“很可能正确”“可能正确”“很可能错误”等。我们来看一个例子。
+
+\begin{example}
+    假如婴儿摸了插座，并且感到了疼痛，那么，你觉得他/她会怎么想？
     \begin{itemize}
-        \item 选项1：他突发疾病了.
-        \item 选项2：他接到情报有一枚来自俄罗斯的导弹意外偏航，马上要落在北京，他正在躲避.
+        \item 选项1：摸插座是危险的。
+        \item 选项2：摸的插座上面有微小不可见的细针，细针扎了他/她的手指。
     \end{itemize}
-虽然选项1和选项2都是可能的，但是他们的合理程度并不同. 这里产生了一个自然的问题：如何刻画不同推理的合理程度？为此，我们引入似然的概念. 
+\end{example}
+虽然选项1和选项2都是可能的，但是他们的合理程度并不同：选项1明显比选项2要合理得多. 这里产生了一个自然的问题：如何刻画不同推理的合理程度？
 
+\subsection{合情推理的基本假设，似然}
 
-\subsection{似然，合情推理的原则}
+接下来，我们给合情推理建立一个数学模型. 
 
-用符号$A|B$表示当$B$已知（或假设）为真时，命题$A$合理程度的非负实数度量. 如果$A|B$是一个度量，那么任意非负函数$f(A|B)$也会是一个度量，因此$A|B$还不是一个唯一的数学概念. 因此，我们现在称$A|B$为以$B$为假设时命题$A$的\emph{似然}\index{似然}. 似然不能定义在任意两个命题之间，只有有合理的关联的命题才能定义似然.
+合情推理的基本方式是给定已知的命题$B$，推出命题$A$的\emph{合理程度}，比如“非常可能是真的”“可能是真的”“可能是假的”“非常可能是假的”等，我们用符号$A|B$表示这一合理程度。
 
-合情推理的原则实际表明了似然之间的关系. 给定相同的假设，似然应该保持命题逻辑中的等值命题. 例如：
-    \begin{itemize}
-        \item $(A\vee B) | C=(B\vee A) | C$.
-        \item $(AB)C|D=A(BC)|D$.
-        \item $\neg\neg A|B=A|B$.
-    \end{itemize}
+在写出符号的时候，我们已经假设了合理程度所对应的数学对象：$A|B$应该是$L\times L\to\R$的函数，这里$L$是命题公式的集合. 但是，这一表述是有瑕疵的，因为不是所有的前提到结论的推理都可以用合理程度来描述。比如，$B$是“太阳从西边升起“，前提根本就是一个假命题，从假命题出发，何谈“合情”？所以，符号$A|B$应该只对一些特定的$A,B$有意义，我们称之为$L\times L\to\R$的\emph{偏函数}\index{偏函数}，并将这一函数写为$f(A|B)$.
 
-考虑从$C$出发推出$AB$为真. 一种可能的推理方法是先推断出$A$为真，然后在$A$为真的前提下，推断出$B$为真. 所以似然$AB|C$应该取决于这两段推理的似然，即$A|C$和$B|AC$，因此存在函数$F$满足
+我们还没有确定这一映射的具体形式。但是，这样的映射应该符合我们对于合情推理的基本直观，并且易于计算。现在，我们暂时将所有符合合情推理直观的映射的集合记作$\mathcal L$. 我们给出$\mathcal L$中的函数要具备的性质（即假设），然后再确定具体的函数.
+
+首先，在命题逻辑中，我们只关心命题的真假，并不关心命题具体是什么。在合情推理中，我们依然希望有这样的性质：推理的合理程度不依赖具体的命题形式。在数学上，这等价于如下的假设：
+
+\begin{hypothesis}
+    对任意$f\in\mathcal L$，任意命题公式$\phi_1,\phi_2,\psi\in L$，如果$\phi_1$和$\phi_2$等值（即$\phi_1\leftrightarrow\phi_2$是重言式），那么
     \[
-        AB|C=F(A|C,B|AC).
+        f(\phi_1|\psi)=f(\phi_2|\psi).
     \]
+\end{hypothesis}
+
+例如，$\phi\to \psi$和$\neg \phi\vee \psi$的具体含义是不同的：一个是蕴含式（即$\phi$推出$\psi$），一个是两个命题（$\neg \phi$和$\psi$）的或；但是他们等值，所以$f(\phi\to \psi | \xi)=f(\neg \phi\vee \psi|\xi)$. 更多的例子如下：
+
+\begin{example}
+    对任意$f\in\mathcal L$以及公式$\alpha,\beta,\gamma$，成立
+    \begin{itemize}
+        \item $f(\alpha\vee \beta | \gamma)=f((\beta\vee \alpha) | \gamma)$.
+        \item $f((\alpha\beta)\gamma|\delta)=f(\alpha(\beta\gamma)|\delta)$.
+        \item $f(\neg\neg \alpha|\beta)=f(\alpha|\beta)$.
+    \end{itemize}
+\end{example}
+
+现在我们来看第二条假设，它与推理不同的路径有关。考虑从$\gamma$出发推出$\alpha\beta$为真. 我们有两种推理的链条：
+\begin{enumerate}
+    \item 直接推理：直接从$\gamma$推出$\alpha\beta$.
+    \item 分步推理：先从$\gamma$推出$\alpha$，然后从$\alpha\gamma$推出$\beta$，因此自然也推出了$\alpha\beta$.
+\end{enumerate}
+也可以用下面的图来直观表示，其中实线箭头表示直接推理，虚线箭头表示分步推理：
+
+\begin{center}
+    \begin{tikzpicture}
+        \node (gamma) at (0,0) {$\gamma$};
+        \node (ab) at (4,0) {$\alpha\beta$};
+        \node (a) at (0,-2) {$\alpha$};
+        \node (b) at (4,-2) {$\beta$};
+        \draw[->] (gamma) -- node[above] {$\gamma\implies\alpha\beta$} (ab);
+        \draw[->,dashed] (gamma) -- node[left] {$\gamma\implies\alpha$} (a);
+        \draw[->,dashed] (a) -- node[below] {$\alpha\gamma\implies\beta$} (b);
+        \draw[->,dashed] (b) -- node[right] {$\alpha,\beta\implies\alpha\beta$} (ab);
+    \end{tikzpicture}
+\end{center}
+
+我们前面要求，“推理的合理程度不依赖具体的命题形式”，现在，我们将这一要求进一步细化为“推理的合理程度不依赖推理的具体形式”. 因为上面的直接推理和分步推理都是从$\gamma$推出$\alpha\beta$，所以我们要求他们的合理程度相同，即
+
+\begin{hypothesis}
+    对任意$f\in\mathcal L$，存在一个$\R\times\R\to\R$的函数$F_f$，对任意命题公式$\alpha,\beta,\gamma$，
+    \[
+        f(\alpha\beta|\gamma)=F_f(f(\alpha|\gamma),f(\beta|\alpha\gamma)).
+    \]
+\end{hypothesis}
+
+换言之，在考虑我们不关心$\gamma$具体是怎么推出来$\alpha$的，我们
+
 然而，这并不能写成$AB|C = F(B|C, A|C)$，考虑$A$是指小明的左眼是蓝色的，$B$是指小明的右眼是棕色的. $A|C$和$B|C$都可以很合理，但$AB|C$则几乎不可能发生.
 
 我们定义的$F$具有如下性质：
@@ -488,3 +649,7 @@ $\textcolor{red}{\Pr}>\textcolor{green}{\Pr}$. 然而，关键是有可能发生
 
 
 讲 de finetti定理和奥卡姆剃刀. 
+
+\section{章末注记}
+
+Euclid在他伟大的《几何原本》\footnote{实际上，Euclid的书名直译是“原理”，并没有“几何”一词. 这说明Euclid其实在探求某些更加本质的东西，这样的思想后来被发展为了我们今天的\emph{形式推理系统}\index{形式推理系统}或\emph{公理系统}\index{公理系统}.}最早尝试将数学整理为一个完整的\emph{公理系统}\index{公理系统}. 
