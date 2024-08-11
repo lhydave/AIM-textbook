@@ -65,6 +65,7 @@
 \theoremstyle{plain}
 \theoremheaderfont{\bfseries}
 \theorembodyfont{\normalfont}
+\theoremsymbol{\ensuremath{\Box}}
 \newtheorem{example}{例}[chapter]
 }
 {
@@ -86,10 +87,6 @@
     chapter={format={\raggedright\bfseries\Huge}},
     section={format={\raggedright\bfseries\LARGE},name={\S,}}
 }
-% appendix section
-\newenvironment{appsec}{
-    \ctexset{section={format={\raggedright\bfseries\Large},name={\S,}}}\footnotesize
-}{}
 
 % page style set
 \usepackage[a4paper,scale=0.7]{geometry}
@@ -116,7 +113,6 @@
 \usepackage[capitalize, nameinlink]{cleveref}
 
 % customize Chinese cref name
-\Crefformat{ALC@unique}{第#2#1#3行}
 \Crefformat{construction}{构造\,#2#1#3}
 \Crefformat{part}{第#2#1#3部分}
 \Crefformat{chapter}{第#2#1#3章}
@@ -143,20 +139,13 @@
 
 \renewcommand{\theenumii}{\arabic{enumii}}
 
-% algorithm environment
-\usepackage{algorithm}
-\usepackage{algorithmic}
-\renewcommand{\algorithmicrequire}{\textbf{输入：}}
-\renewcommand{\algorithmicensure}{\textbf{输出：}}
-\floatname{algorithm}{算法}
-
 % plots
 \usepackage{tikz}
 \usepackage{tikz-cd}
 \usetikzlibrary{arrows}
-\usetikzlibrary{arrows.meta,positioning}
+\usetikzlibrary{arrows.meta,positioning,calc}
 \usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
+\pgfplotsset{compat=newest}
 
 % math notations
 \newcommand{\LHS}{\mathrm{LHS}}
