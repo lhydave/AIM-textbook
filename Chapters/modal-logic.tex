@@ -1,8 +1,5 @@
 \chapter{模态逻辑基础}\label{chap:modal-logic}
 
-\begingroup
-\newcommand{\pref}{Chapters/modal-logic/figures}
-
  人工智能的讨论不可避免要接触到很多人独有的哲学概念：认知、信念、知识、理解、情感、意识……我们需要有一套恰当的数学工具来表述这些哲学概念，从而算法化、自动化地模拟人. 过去，现在，乃至未来，最为成功的数学模型就是\textbf{模态逻辑}\index{模态逻辑}. 很多不精确的哲学讨论可以通过逻辑的方式形式化、数学化，最后算法化. 模态逻辑已经在计算机科学中起到了重要的作用（模型验证、形式化方法），它势必会在人工智能中也起到根基性的作用.
     
 \section{模态逻辑的起源}
@@ -218,7 +215,7 @@ PDL的重要区别在于我们可以用模态算子来构造新的模态算子. 
 
 \begin{figure}[ht]
     \centering
-    \input{\pref/Kripke-model-basic}
+    \input{Figures/modal-logic/Kripke-model-basic}
     \caption{Kripke模型的例子}
     \label{fig:Kripke-model-basic}
 \end{figure}
@@ -305,7 +302,7 @@ PDL的重要区别在于我们可以用模态算子来构造新的模态算子. 
 我们来看一个框架语义的例子. 如\Cref{fig:modal-logic-frame} 所示，是否成立$\mathcal F\vDash\Box(p\to\Diamond p)$？
 \begin{figure}[ht]
     \centering
-    \input{\pref/frame-validity}
+    \input{Figures/modal-logic/frame-validity}
     \caption{框架语义的例子}
     \label{fig:modal-logic-frame}
 \end{figure}
@@ -395,5 +392,3 @@ PDL的重要区别在于我们可以用模态算子来构造新的模态算子. 
  
  更一般地，我们可以问，给定一个点模型类$K$，是否存在模态公式（集）可以定义$K$？类似地，给定一个框架类$K$，是否存在模态公式（集）可以定义$K$？对于点模型来说，可以被模态公式集定义以及可以被模态公式定义，都有充分必要的刻画定理. 对于框架来说，如果限制框架是一阶可定义的框架，我们有GoldBlatt-Thomason定理，这是一个充分必要条件.
 \end{remark}
-
-\endgroup

@@ -1,25 +1,5 @@
 \chapter{Markov链与决策}\label{chap:markov-chain}
 
-\begingroup
-\tikzset{
-    punkt/.style={
-        rectangle,
-        rounded corners,
-        draw=black, very thick,
-        minimum height=2em,
-        inner sep=6pt,
-        text centered,
-        fill=gray!30
-    }
-}
-
-\newcommand{\pref}{Chapters/Markov-chain/figures}
-
-\renewcommand{\P}{\mathcal P}
-\newcommand{\MS}{\mathcal S}
-\newcommand{\M}{\mathcal M}
-\newcommand{\KL}{\mathrm{KL}}
-
 我们都知道，人的推理和决策会受到时间的影响：我们宁愿要现在的十块钱也不要十年后的二十块钱. 然而，人和人的耐心程度是不一样的. 2010年，来自意大利博洛尼亚大学Manuela Sellitto和她的同事进行了一项实验. 他们的实验对象是一组大脑正常的人（对照组）、一组非眶额叶区受损的病人（实验组1）和一组眶额叶周围受损的病人（实验组2）. 实验人员对被试进行提问，典型的问题如下：“你想要现在拿到10美元还是一个月后拿到12美元？”. 他们对食物和货币形式的奖励都进行了测试. 
 
 结果显示，眶额叶周围受损的病人更倾向于选择即时的奖励，而其他组的人更倾向于选择未来的奖励. 如果货币奖励翻倍（例如，从50美元变为100美元），对照组和实验组1的人愿意等待4到6个月，而眶额叶周围受损的人（实验组2）甚至不愿意等待3周. 换句话说，人的耐心程度是大脑结构决定的，而不是自己可以轻易改变的！
@@ -35,16 +15,16 @@
 \begin{definition}[Markov链]
 \textbf{Markov链}\index{Markov链}\index{马氏链}（\textbf{马氏链}）是一个随机变量序列$\{X_t\}_{t=0}^{\infty}$. 包含如下概念：
 \begin{itemize}
-	\item \emph{状态空间}\index{状态空间} $\MS$：$X_t$所有可能值构成的集合，有限或者可数.
-	\item \emph{转移矩阵}\index{转移矩阵} $\P$（\emph{转移核}\index{转移核}）：下一时刻系统状态之间转移的概率. $\P=(p_{ij})_{i,j\in \MS}$，$p_{ij}$是从$i$状态转移到$j$状态的概率.
-	\item \emph{Markov性}\index{Markov性}: 对任意时刻$t=1,\dots,n$和任意状态$j,k,j_0,\dots,j_{t-1}\in \MS$，如下等式成立
+	\item \emph{状态空间}\index{状态空间} $\calS$：$X_t$所有可能值构成的集合，有限或者可数.
+	\item \emph{转移矩阵}\index{转移矩阵} $\calP$（\emph{转移核}\index{转移核}）：下一时刻系统状态之间转移的概率. $\calP=(p_{ij})_{i,j\in \calS}$，$p_{ij}$是从$i$状态转移到$j$状态的概率.
+	\item \emph{Markov性}\index{Markov性}: 对任意时刻$t=1,\dots,n$和任意状态$j,k,j_0,\dots,j_{t-1}\in \calS$，如下等式成立
 		\begin{align*}
 		   \Pr(X_{t+1}=j| X_t=k,X_{t-1}=j_{t-1},\dots,X_0=j_0)= \Pr(X_{t+1}=j| X_{t}=k)=p_{kj}.
 		\end{align*}
     \end{itemize}
-    有时候也会考虑带初态的Markov链，此时$X_0$服从分布$\lambda=(\lambda_s)_{s\in \MS}$.
+    有时候也会考虑带初态的Markov链，此时$X_0$服从分布$\lambda=(\lambda_s)_{s\in \calS}$.
 \end{definition}
-我们给出的定义是简化的Markov链，每个时刻之间的转移都是一样的转移矩阵，这样的Markov链被称为\emph{时齐的}\index{时齐的}. 有时候也会考虑非时齐的Markov链（例如扩散模型\index{扩散模型}），即每个时刻之间的转移矩阵不一样，这样的Markov链被称为\emph{非时齐的}，此时$t$时刻的转移矩阵是$\P^{(t)}$，定义中Markov性的转移概率是$p_{kj}^{(t)}$.
+我们给出的定义是简化的Markov链，每个时刻之间的转移都是一样的转移矩阵，这样的Markov链被称为\emph{时齐的}\index{时齐的}. 有时候也会考虑非时齐的Markov链（例如扩散模型\index{扩散模型}），即每个时刻之间的转移矩阵不一样，这样的Markov链被称为\emph{非时齐的}，此时$t$时刻的转移矩阵是$\calP^{(t)}$，定义中Markov性的转移概率是$p_{kj}^{(t)}$.
 
 Markov链是一种简化的带时间的概率模型，它最重要的性质是Markov性，即在固定现在的情况下，过去与未来相互独立. 这一性质的数学表述为：
 \begin{proposition}[Markov性]\index{Markov性}\label{prop:markov}
@@ -54,7 +34,7 @@ Markov链是一种简化的带时间的概率模型，它最重要的性质是Ma
 
 我们考虑的Markov链还有时齐性，即状态的转移不依赖当前时间，只和当前的状态有关. 时齐性的数学表述为：
 \begin{proposition}
-    设$\{X_t\}_{t=0}^{\infty}$是一个Markov链，那么对任意的$t,m,n\in \N$和$i,j,k\in \MS$，有
+    设$\{X_t\}_{t=0}^{\infty}$是一个Markov链，那么对任意的$t,m,n\in \N$和$i,j,k\in \calS$，有
     $\Pr(X_{m+n}=j| X_{n}=k)=\Pr(X_{m}=j| X_{0}=k)$.
 \end{proposition}
 
@@ -62,13 +42,13 @@ Markov链是一种简化的带时间的概率模型，它最重要的性质是Ma
 \begin{example}[赌徒模型]\index{赌徒模型}
     考虑公平对赌. 玩家$A$和$B$抛硬币来赌钱，$A$赌正面，$B$赌反面. 每一轮独立地抛硬币，正面朝上的概率和反面朝上的概率相等，都是$1/2$. 赢的一方给输的一方一块钱. $A$输$a$块钱破产，$B$输$b$块钱破产，$Z_i$是第$i$轮$A$的收入. $Z_0=X_0=0$是$A$初始的收入. $X_n=Z_0+\dots+Z_n$是$A$的累计收入. 那么，$\{X_n\}_{n\geq 0}$是一个Markov链.
     \begin{itemize}
-        \item 状态空间：$\MS=\{-a,-a+1,\dots,0,1,\dots,b\}$.
+        \item 状态空间：$\calS=\{-a,-a+1,\dots,0,1,\dots,b\}$.
         \item 转移概率：对$-a<i<b-1$，$p_{i,i+1}=p_{i+1,i}=1/2$；$p_{-a+1,-a}=p_{b-1,b}=1/2$，$p_{-a,-a}=p_{b,b}=1$；其他值为$0$.
     \end{itemize}
     转移矩阵可以画成\Cref{fig:gambling}所示的形式.
     \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{\pref/gampling.eps}\lhysays{TODO：改图}
+    \includegraphics[width=0.8\textwidth]{Figures/Markov-chain/gampling.eps}\lhysays{TODO：改图}
     \caption{赌徒模型的转移矩阵}\label{fig:gambling}
     \end{figure}
 \end{example}
@@ -101,10 +81,10 @@ Pólya的坛子还有一种有趣的解读：如果我们把人生的每一次�
 
 如果对赌是公平的，那么我们应该认为两个人每一轮的累计收入分布都是一样的，即
     \[\Pr(X_n=i|X_0=0)=\Pr(X_n=-i|X_0=0).\]
-因此，我们需要能够计算多步转移的概率. 设$p_{ij}^{(k)}$表示从状态$i$用$k$步转移到状态$j$的概率. $k$步转移概率形成了一个矩阵$\P^{(k)}$. 下面的定理给出了计算\emph{多步转移概率}的方法.
+因此，我们需要能够计算多步转移的概率. 设$p_{ij}^{(k)}$表示从状态$i$用$k$步转移到状态$j$的概率. $k$步转移概率形成了一个矩阵$\calP^{(k)}$. 下面的定理给出了计算\emph{多步转移概率}的方法.
 
 \begin{theorem}[Kolmogorov-Chapman方程]\label{thm:kolmogorov-chapman}\index{Kolmogorov-Chapman方程}
-    $P^{(k+l)}=\P^{(k)}\P^{(l)}$.
+    $P^{(k+l)}=\calP^{(k)}\calP^{(l)}$.
 \end{theorem}
 
 \begin{proof}
@@ -117,19 +97,19 @@ Pólya的坛子还有一种有趣的解读：如果我们把人生的每一次�
 \end{align*}
 \end{proof}
 
-Kolmogorov-Chapman方程有两个重要的特例，前向方程：$\P^{(k+1)}=\P^{(k)}\P$，以及后向方程：$\P^{(l+1)}=\P\P^{(l)}$. 见\Cref{fig:forward-equation} 和\Cref{fig:backward-equation}.
+Kolmogorov-Chapman方程有两个重要的特例，前向方程：$\calP^{(k+1)}=\calP^{(k)}\calP$，以及后向方程：$\calP^{(l+1)}=\calP\calP^{(l)}$. 见\Cref{fig:forward-equation} 和\Cref{fig:backward-equation}.
 \begin{figure}[ht]
     \lhysays{TODO: 重画}
     \begin{minipage}[t]{0.45\linewidth}
         \centering
-        \includegraphics[width=0.7\linewidth]{\pref/forward-equation.eps}
+        \includegraphics[width=0.7\linewidth]{Figures/Markov-chain/forward-equation.eps}
         \caption{前向方程（往前一步）}
         \label{fig:forward-equation}
     \end{minipage}
     \hfill
     \begin{minipage}[t]{0.45\linewidth}
         \centering
-        \includegraphics[width=0.7\linewidth]{\pref/backward-equation.eps}
+        \includegraphics[width=0.7\linewidth]{Figures/Markov-chain/backward-equation.eps}
         \caption{后向方程（往回一步）}
         \label{fig:backward-equation}
     \end{minipage}
@@ -137,26 +117,26 @@ Kolmogorov-Chapman方程有两个重要的特例，前向方程：$\P^{(k+1)}=\P
 
 此外，利用归纳法，我们还有如下推论：
 \begin{corollary}\label{cor:kolmogorov-chapman}
-    $\P^{(k)}=\P^k$.    
+    $\calP^{(k)}=\calP^k$.    
 \end{corollary}
 
 若已知初始分布向量为$\lambda$，利用这一推论，我们可以计算它随时间的演化：
-	\[\lambda^\t,\lambda^\t \P,\dots,\lambda^\t \P^n,\dots\] %HW: 证明这个演化
+	\[\lambda^\t,\lambda^\t \calP,\dots,\lambda^\t \calP^n,\dots\] %HW: 证明这个演化
 
 回到赌徒模型，如何计算公平对赌中$X_n$的概率分布？我们先来看一个简化的例子. 考虑只有两个状态$0,1$，转移矩阵为
-	\[\P=\begin{pmatrix}p_{00}&p_{01}\\p_{10}&p_{11}
+	\[\calP=\begin{pmatrix}p_{00}&p_{01}\\p_{10}&p_{11}
 	\end{pmatrix}.\]
 或者画成\Cref{fig:simple-example} 的形式.
 \begin{figure}
     \centering
-    \includegraphics[width=0.4\textwidth]{\pref/simple-example.eps}
+    \includegraphics[width=0.4\textwidth]{Figures/Markov-chain/simple-example.eps}
     \caption{只有两个状态的Markov链}
     \label{fig:simple-example}
 \end{figure}
 
 可以归纳证明：
 \begin{align*}
-    \P^n=&\frac{1}{2-p_{00}-p_{11}}\begin{pmatrix}1-p_{11}&1-p_{00}\\1-p_{11}&1-p_{00}\end{pmatrix}\\
+    \calP^n=&\frac{1}{2-p_{00}-p_{11}}\begin{pmatrix}1-p_{11}&1-p_{00}\\1-p_{11}&1-p_{00}\end{pmatrix}\\
     &+\frac{(p_{00}+p_{11}-1)^n}{2-p_{00}-p_{11}}\begin{pmatrix}1-p_{00}&-(1-p_{00})\\-(1-p_{11})&1-p_{11}\end{pmatrix}.
 \end{align*}
 假设$|p_{00}+p_{11}-1|<1$，等价地，$p_{00}$和$p_{11}$不同时为$0$或同时为$1$，那么
@@ -169,7 +149,7 @@ Kolmogorov-Chapman方程有两个重要的特例，前向方程：$\P^{(k+1)}=\P
 我们再考虑一个例子. 一个六元环$\Z_6=\{0,1,2,3,4,5\}$上的Markov链$X_k$，转移矩阵为$p(i,i+1)=p(i,i-1)=1/2$，这里的表达式将$-1$和$5$等同，$6$和$0$等同. 如果初始分布集中在$0$上，那么我们会发现以概率$1$有$X_{2k}\in\{0,2,4\}$，$X_{2k+1}\in\{1,3,5\}$. 这种情况下，最终不会趋于一个稳定的分布！如果初始分布等概率地分布在$\{0,1\}$上，最终会趋于一个$\Z_6$上的均匀分布. 因此，并不是所有Markov链都具有这样的性质. 然而， 对于相当广泛的一类Markov链，这一结论成立，这就是\emph{遍历定理}.
 
 \begin{theorem}[遍历定理]\label{thm:ergodic-theorem}\index{遍历定理}
-    设Markov链的状态空间为$\MS=\{1,\dots,N\}$，转移矩阵为$\P=(p_{ij})$. 如果对于某一个$n_0$有
+    设Markov链的状态空间为$\calS=\{1,\dots,N\}$，转移矩阵为$\calP=(p_{ij})$. 如果对于某一个$n_0$有
     \begin{equation}
         \min_{ij}p_{ij}^{(n_0)}>0,\label{eq:reachable}
     \end{equation}
@@ -177,7 +157,7 @@ Kolmogorov-Chapman方程有两个重要的特例，前向方程：$\P^{(k+1)}=\P
     \begin{equation}
         \lambda_i>0,\quad\sum_i\lambda_i=1,\label{eq:positive-distribution}
     \end{equation}
-    并且对于每一个$j\in\MS$和任意$i\in\MS$都有
+    并且对于每一个$j\in\calS$和任意$i\in\calS$都有
     \begin{equation}
     p_{ij}^{(n)}\to\lambda_j,n\to\infty.\label{eq:converge-to-limit}
     \end{equation}
@@ -185,7 +165,7 @@ Kolmogorov-Chapman方程有两个重要的特例，前向方程：$\P^{(k+1)}=\P
 
     最后，在以上条件下，\eqref{eq:positive-distribution} 的$\lambda$满足
     \begin{equation}
-        \lambda^\t = \lambda^\t\P.\label{eq:stationary}
+        \lambda^\t = \lambda^\t\calP.\label{eq:stationary}
     \end{equation}
 \end{theorem}
 
@@ -258,12 +238,12 @@ p_{i j}^{(n)} \geq \pi_j - \varepsilon > 0, n \geq n_0.
 
 最后我们说明 \eqref{eq:converge-to-limit} 可以推出 \eqref{eq:stationary}. 注意到
 \[
-\lim_{n \to \infty} \lambda^\t \P^n = \left(\sum_i \lambda_i \pi_1, \sum_i \lambda_i \pi_2, \ldots, \sum_i \lambda_i \pi_N\right)=\lambda^\t.
+\lim_{n \to \infty} \lambda^\t \calP^n = \left(\sum_i \lambda_i \pi_1, \sum_i \lambda_i \pi_2, \ldots, \sum_i \lambda_i \pi_N\right)=\lambda^\t.
 \]
-等式两边同时右乘$\P$，左边的极限不变，右边变成$\lambda^\t \P$，所以$\lambda^\t \P = \lambda^\t$.
+等式两边同时右乘$\calP$，左边的极限不变，右边变成$\lambda^\t \calP$，所以$\lambda^\t \calP = \lambda^\t$.
 \end{proof}
 
-满足条件 \eqref{eq:stationary} 的分布被称为\emph{平稳分布}\index{平稳分布}. 用性质$\lambda^\t \P = \lambda^\t$很容易说明，平稳分布为初始状态时，Markov链的演化与时间无关：
+满足条件 \eqref{eq:stationary} 的分布被称为\emph{平稳分布}\index{平稳分布}. 用性质$\lambda^\t \calP = \lambda^\t$很容易说明，平稳分布为初始状态时，Markov链的演化与时间无关：
 \begin{proposition}\label{prop:stationary-distribution}
 设$\{X_n\}$是Markov链，如果$X_0$是平稳分布，那么$(X_k,\dots,X_{k+l})$的联合分布不依赖于$k$.
 \end{proposition}
@@ -277,7 +257,7 @@ p_{i j}^{(n)} \geq \pi_j - \varepsilon > 0, n \geq n_0.
     \end{proof}
 
 非遍历Markov链也可能存在（唯一）平稳分布，考虑如下转移矩阵：
-\[\P=\begin{pmatrix}0&1\\1&0\end{pmatrix},\]
+\[\calP=\begin{pmatrix}0&1\\1&0\end{pmatrix},\]
 它有唯一平稳分布$\lambda=(1/2,1/2)^\t$.
 
 
@@ -297,7 +277,7 @@ p_{i j}^{(n)} \geq \pi_j - \varepsilon > 0, n \geq n_0.
 李二的人生就在这些状态之间循环往复，当他进入某个状态之后，他就会获得相应的奖励. 这个过程可以被\Cref{fig:student-MRP} 描述. \lhysays{重画}
 \begin{figure}[ht]
     \centering
-    \includegraphics[height=0.4\textheight]{\pref/STR.eps}
+    \includegraphics[height=0.4\textheight]{Figures/Markov-chain/STR.eps}
     \caption{学生MRP}
     \label{fig:student-MRP}
 \end{figure}
@@ -308,10 +288,10 @@ p_{i j}^{(n)} \geq \pi_j - \varepsilon > 0, n \geq n_0.
 更一般地，我们可以形式上定义MRP.
 
 \begin{definition}[Markov奖励过程，MRP]
-一个\textbf{Markov奖励过程}（\textbf{Markov奖励模型}，\textbf{MRP}）\index{Markov奖励过程}\index{Markov奖励模型}\index{MRP}由四元组$\langle\MS,\P,\mathcal R,\gamma\rangle$构成：
+一个\textbf{Markov奖励过程}（\textbf{Markov奖励模型}，\textbf{MRP}）\index{Markov奖励过程}\index{Markov奖励模型}\index{MRP}由四元组$\langle\calS,\calP,\mathcal R,\gamma\rangle$构成：
 \begin{itemize}
-    \item $\MS$是一个有穷的状态集合.
-    \item $\P$是一个状态转移矩阵，从$i$转移到$j$的概率记为$\P_{i,j}$. 根据这一转移矩阵可以产生一个状态转移的Markov链$\{S_t\}_{t\geq 0}$.
+    \item $\calS$是一个有穷的状态集合.
+    \item $\calP$是一个状态转移矩阵，从$i$转移到$j$的概率记为$\calP_{i,j}$. 根据这一转移矩阵可以产生一个状态转移的Markov链$\{S_t\}_{t\geq 0}$.
     \item $\mathcal R$是（单步期望）奖励函数，定义为$\mathcal R_s = \E[\textcolor{TealBlue}{R_{t+1}}|S_t=s]$，其中，随机变量$\textcolor{TealBlue}{R_{t+1}}$表示下一阶段所处状态的奖励. 也就是说，当$t$时刻位于状态$s$时，$\mathcal R_s$是下一时刻获得的奖励的期望.
     \item $\gamma$是一个折扣系数，$\gamma\in[0,1]$.
 \end{itemize}
@@ -358,31 +338,31 @@ v(s) &= \E(G_t|S_t=s) \\
     &= \E(R_{t+1} + \gamma G_{t+1} | S_t = s) \\
     &= \E(R_{t+1} | S_t = s) + \gamma \E(G_{t+1} | S_t = s) \\
     &= \E(\textcolor{TealBlue}{R_{t+1}}|S_t=s) + \E[\textcolor{Orchid}{\gamma v(S_{t+1})}|S_t=s]\\
-    &= \textcolor{TealBlue}{\mathcal R_s} + \textcolor{Orchid}{\gamma \sum_{s'\in \MS}\P_{s,s'}v(s')}.
+    &= \textcolor{TealBlue}{\mathcal R_s} + \textcolor{Orchid}{\gamma \sum_{s'\in \calS}\calP_{s,s'}v(s')}.
 \end{align*}
 其中倒数第二行是因为
 \begin{align*}
-    \E(G_{t+1}|S_t=s) &= \sum_{s'\in \MS}\E(G_{t+1}|S_{t+1}=s',S_t=s)\Pr(S_{t+1}=s'|S_t=s)\\
-    &= \sum_{s'\in \MS}\E(G_{t+1}|S_{t+1}=s')\Pr(S_{t+1}=s'|S_t=s)\\
-    &= \sum_{s'\in \MS}v(s')\Pr(S_{t+1}=s'|S_t=s)\\
+    \E(G_{t+1}|S_t=s) &= \sum_{s'\in \calS}\E(G_{t+1}|S_{t+1}=s',S_t=s)\Pr(S_{t+1}=s'|S_t=s)\\
+    &= \sum_{s'\in \calS}\E(G_{t+1}|S_{t+1}=s')\Pr(S_{t+1}=s'|S_t=s)\\
+    &= \sum_{s'\in \calS}v(s')\Pr(S_{t+1}=s'|S_t=s)\\
     &=\E[v(S_{t+1})|S_t=s].
 \end{align*}
 我们因此得到了\textbf{Bellman方程}\index{Bellman方程}：
 \begin{theorem}[Bellman方程]\index{Bellman方程}\label{thm:MRP-Bellman}
-    $v(s)=\mathcal R_s + \gamma \sum_{s'\in \MS}\P_{s,s'}v(s')$.
+    $v(s)=\mathcal R_s + \gamma \sum_{s'\in \calS}\calP_{s,s'}v(s')$.
 \end{theorem}
 
 在后面，我们将不断看到这样形式的方程，它将一个和Markov链有关的计算分解为当前的部分和未来的部分. 我们将这样形式的方程统称Bellman方程. 
 
 Bellman方程可以用矩阵形式表达：
         \[v = \mathcal R + \gamma \mathcal P v.\]
-这里$v$是列向量$v=(v(s))_{s\in\MS}$.
+这里$v$是列向量$v=(v(s))_{s\in\calS}$.
 
 写成矩阵形式之后，我们可以看到，Bellman方程其实是一个线性方程，可以被直接解:
 \[
-    v =\mathcal R + \gamma \P v \implies (I-\gamma \P)v = \mathcal R \implies v = (I-\gamma \P)^{-1} \mathcal R.
+    v =\mathcal R + \gamma \calP v \implies (I-\gamma \calP)v = \mathcal R \implies v = (I-\gamma \calP)^{-1} \mathcal R.
 \]
-我们还可以有另一种观点，考虑一个映射$f:\MS\to \MS$，$f(v)=\mathcal R + \gamma \P v$，那么Bellman方程可以被写作
+我们还可以有另一种观点，考虑一个映射$f:\calS\to \calS$，$f(v)=\mathcal R + \gamma \calP v$，那么Bellman方程可以被写作
 \[v=f(v).\]
 因此，$v$是$f$的\emph{不动点}\index{不动点}. 在\Cref{chap:fixed-point-theory}，我们将系统地讨论不动点的性质以及它对于Markov链相关模型的重要性.
 
@@ -406,7 +386,7 @@ Bellman方程可以用矩阵形式表达：
 李二的MDP见\Cref{fig:studentMDP}. 
 \begin{figure}
     \centering
-    \includegraphics[height=0.4\textheight]{\pref/STD.eps}\lhysays{重画}
+    \includegraphics[height=0.4\textheight]{Figures/Markov-chain/STD.eps}\lhysays{重画}
     \caption{学生MDP}
     \label{fig:studentMDP}
 \end{figure}
@@ -420,12 +400,12 @@ Bellman方程可以用矩阵形式表达：
 
 接下来，我们给出一般的MDP的定义.
 \begin{definition}[Markov决策过程，MDP]
-\textbf{Markov决策过程}（\textbf{MDP}）\index{Markov决策过程}\index{MDP}是一个MDP是五元组$\langle\MS, \textcolor{Orchid}{\mathcal A}, \P, \mathcal R, \gamma\rangle$，其中
+\textbf{Markov决策过程}（\textbf{MDP}）\index{Markov决策过程}\index{MDP}是一个MDP是五元组$\langle\calS, \textcolor{Orchid}{\mathcal A}, \calP, \mathcal R, \gamma\rangle$，其中
 \begin{itemize}
-    \item $\MS$是一个有限的状态集合.
+    \item $\calS$是一个有限的状态集合.
     \item $\textcolor{Orchid}{\mathcal A}$是一个有限的\emph{行动}（action）集合.
-    \item $\P$是状态转移概率矩阵，
-    \[\P_{ss'}^{\textcolor{Orchid}{a}} = \Pr(S_{t+1} = s' | S_t = s, A_t = \textcolor{Orchid}{a}).\]
+    \item $\calP$是状态转移概率矩阵，
+    \[\calP_{ss'}^{\textcolor{Orchid}{a}} = \Pr(S_{t+1} = s' | S_t = s, A_t = \textcolor{Orchid}{a}).\]
     \item $\mathcal R$是一个奖励函数，$\mathcal R_s^{\textcolor{Orchid}{a}} = \E(\textcolor{TealBlue}{R_{t+1}} | S_t = s, A_t = \textcolor{Orchid}{a})$，随机变量$\textcolor{TealBlue}{R_{t+1}}$是进行某一行动到达某一状态后的奖励.
     \item $\gamma$是一个折扣系数$\gamma\in[0,1]$.
 \end{itemize}
@@ -441,8 +421,8 @@ Bellman方程可以用矩阵形式表达：
 
 MDP与MDP的关系由策略给出. 
 \begin{proposition}
-给定一个MDP $\M=\langle\MS,\mathcal A,\P,\mathcal R, \gamma\rangle$和一个策略$\pi$，$\langle \MS, \P^{\pi}\rangle$是一个Markov链，$\langle\MS,\P^{\pi}, \mathcal R^{\pi}, \gamma\rangle$是一个MRP，其中
-\[\P_{s,s'}^{\pi} = \E_{a\sim\pi(\cdot|s)}(\P^a_{s,s'})=\sum_{a\in \mathcal A}\pi(a|s)\mathcal P_{s,s'}^{a},\]
+给定一个MDP $\calM=\langle\calS,\mathcal A,\calP,\mathcal R, \gamma\rangle$和一个策略$\pi$，$\langle \calS, \calP^{\pi}\rangle$是一个Markov链，$\langle\calS,\calP^{\pi}, \mathcal R^{\pi}, \gamma\rangle$是一个MRP，其中
+\[\calP_{s,s'}^{\pi} = \E_{a\sim\pi(\cdot|s)}(\calP^a_{s,s'})=\sum_{a\in \mathcal A}\pi(a|s)\mathcal P_{s,s'}^{a},\]
     \[\mathcal R_s^{\pi} =\E_{a\sim\pi(\cdot|s)}(\mathcal R^a_s)=\sum_{a\in\mathcal A}\pi(a|s)\mathcal R_s^a.\]
 \end{proposition}
 \begin{proof}
@@ -486,12 +466,12 @@ MDP与MDP的关系由策略给出.
 \begin{proposition}\label{prop:state-action-value}
 状态-价值函数$v_\pi(s)$和行动-价值函数$q_\pi(s,a)$之间有如下关系：
     \[v_\pi(s) = \E_{a\sim\pi(\cdot|s)}(q_\pi(s,a))=\sum_{a\in\mathcal A}\pi(a|s)q_\pi(s,a),\]
-    \[q_\pi(s,a) =\mathcal R_s^a + \gamma \sum_{s'\in \MS}P_{s,s'}^a v_\pi(s').\]
+    \[q_\pi(s,a) =\mathcal R_s^a + \gamma \sum_{s'\in \calS}P_{s,s'}^a v_\pi(s').\]
 \end{proposition}
 \begin{proof}
     用$q_\pi(s,a)$来表示$v_\pi(s)$，对行动$a$用全概率公式即可得到. 
 
-    另一方面，用$v_\pi(s)$来表示$q_\pi(s,a)$也是全概率公式. 具体来说，在状态$s$采取行动$a$之后，期望上有$\mathcal R_s^a$的即时奖励，然后以$\P_{s,s'}^a$的概率转移到状态$s'$，在状态$s'$的期望回报是$\gamma v_\pi(s')$. 按照$s'$用全概率公式即可得到$q_\pi(s,a)$.
+    另一方面，用$v_\pi(s)$来表示$q_\pi(s,a)$也是全概率公式. 具体来说，在状态$s$采取行动$a$之后，期望上有$\mathcal R_s^a$的即时奖励，然后以$\calP_{s,s'}^a$的概率转移到状态$s'$，在状态$s'$的期望回报是$\gamma v_\pi(s')$. 按照$s'$用全概率公式即可得到$q_\pi(s,a)$.
 \end{proof}
 
 下面我们给出状态-价值函数和行动-价值函数的Bellman方程. 首先，价值函数可以被分解为\textcolor{TealBlue}{\emph{即时回报}}加\textcolor{Orchid}{\emph{未来的折扣回报}}，具体来说
@@ -505,12 +485,12 @@ MDP与MDP的关系由策略给出.
 他们的计算方法和\Cref{thm:MRP-Bellman} 中的方法类似. 继续仿照\Cref{thm:MRP-Bellman} 的证明，我们可以得到MDP的Bellman方程：
 
 \begin{theorem}[Bellman方程]\index{Bellman方程}
-\[v_\pi(s) = \sum_{a\in \mathcal A}\pi(a|s)\left(\mathcal R_s^a + \gamma \sum_{s'\in \MS}\P_{s,s'}^av_\pi(s')\right),\]
-\[q_\pi(s,a) = \mathcal R_s^a + \gamma \sum_{s'\in \MS}\P_{s,s'}^a \sum_{a'\in \mathcal A}\pi(a'|s')q_\pi(s',a').\]
+\[v_\pi(s) = \sum_{a\in \mathcal A}\pi(a|s)\left(\mathcal R_s^a + \gamma \sum_{s'\in \calS}\calP_{s,s'}^av_\pi(s')\right),\]
+\[q_\pi(s,a) = \mathcal R_s^a + \gamma \sum_{s'\in \calS}\calP_{s,s'}^a \sum_{a'\in \mathcal A}\pi(a'|s')q_\pi(s',a').\]
 \end{theorem}
 
 状态-价值函数的Bellman方程可以被写成矩阵形式：
-\[v_\pi = \mathcal R^\pi + \gamma \P^\pi v_\pi = (I-\gamma \mathcal P^\pi)^{-1}\mathcal R^\pi.\]
+\[v_\pi = \mathcal R^\pi + \gamma \calP^\pi v_\pi = (I-\gamma \mathcal P^\pi)^{-1}\mathcal R^\pi.\]
 
 注意，MDP的Bellman方程只能告诉我们给定策略$\pi$的价值函数，它并不能告诉智能体（也就是李二）要如何行动，所以，接下来我们要讨论最优策略和最优价值函数. 
 
@@ -560,7 +540,7 @@ MDP与MDP的关系由策略给出.
 两个最优价值函数之间有如下关系：
 \begin{proposition}\label{prop:state-action-value-optimal}
 \[v_\star(s) = \max_a q_\star(s,a),\]
-\[q_\star(s,a) = \mathcal R_s^a + \gamma \sum_{s'\in \MS}\P_{s,s'}^av_\star(s').\]
+\[q_\star(s,a) = \mathcal R_s^a + \gamma \sum_{s'\in \calS}\calP_{s,s'}^av_\star(s').\]
 \end{proposition}
 \begin{proof}
     在\Cref{thm:MDP-existence} 的证明中，我们将$\pi$取为$\pi_\star$，于是有
@@ -573,8 +553,8 @@ MDP与MDP的关系由策略给出.
 根据上面结论，如果我们知道$q_\star(s,a)$或者$v_\star(s)$，我们就能获得最优策略. 这一计算同样依赖Bellman方程\footnote{在文献中，这一Bellman方程被称为Bellman\emph{最优性}方程，而之前推导的Bellman方程被称为Bellman\emph{期望}方程. 为了不过度引入术语，我们这里不做这种区分. }：
 
 \begin{theorem}[Bellman方程]\index{Bellman方程}
-\[v_\star(s) = \max_a\left\{\mathcal R_s^a + \gamma \sum_{s'\in \MS}\P_{s,s'}^av_\star(s')\right\},\]
-\[q_\star(s,a) = \mathcal R_s^a+\gamma \sum_{s'\in \MS}\P_{s,s'}^a\max_{a'}q_\star(s',a').\]
+\[v_\star(s) = \max_a\left\{\mathcal R_s^a + \gamma \sum_{s'\in \calS}\calP_{s,s'}^av_\star(s')\right\},\]
+\[q_\star(s,a) = \mathcal R_s^a+\gamma \sum_{s'\in \calS}\calP_{s,s'}^a\max_{a'}q_\star(s',a').\]
 \end{theorem}
 \begin{proof}
     对于第一个方程，将\Cref{prop:state-action-value-optimal} 中第二个等式代入第一个等式即可得到. 
@@ -598,7 +578,7 @@ Bellman方程是\emph{\index{强化学习}强化学习}、经济学\emph{\index{
 
 最后，我们谈谈深度强化学习\index{强化学习!深度～}. 在一些非常复杂的情况下（例如下围棋），使用经典的迭代算法并不容易求解MDP. \emph{深度强化学习}是一种结合了深度学习和强化学习的方法. 在深度强化学习中，用神经网络来表示$\pi$和$v$，之后，用某种学习算法训练神经网络. 
 
-在一些深度强化学习模型中（例如AlphaZero\index{AlphaZero}），状态空间$\MS$也用一个神经网络表示. 用神经网络来表示状态空间的好处是可以减少人类的特征工程，让神经网络充分发掘状态空间好的表示方法.
+在一些深度强化学习模型中（例如AlphaZero\index{AlphaZero}），状态空间$\calS$也用一个神经网络表示. 用神经网络来表示状态空间的好处是可以减少人类的特征工程，让神经网络充分发掘状态空间好的表示方法.
 
 在很多深度强化学习模型中（例如AlphaGo\index{AlphaGo}），MDP的策略是基于过去$k$期的状态做当前的决策，这样可以更好地利用状态的历史信息. 这样的决策模型等价于一个利用一期信息决策的MDP（见习题\lhysays{出一下}），因此依然可以用同样的深度学习算法来求解. 
 
@@ -620,7 +600,7 @@ Bellman方程是\emph{\index{强化学习}强化学习}、经济学\emph{\index{
 示意见\Cref{fig:HMM}.
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.6\textwidth]{\pref/HMM.eps}\lhysays{重画}
+    \includegraphics[width=0.6\textwidth]{Figures/Markov-chain/HMM.eps}\lhysays{重画}
     \caption{隐Markov模型}
     \label{fig:HMM}
 \end{figure}    
@@ -632,26 +612,26 @@ Bellman方程是\emph{\index{强化学习}强化学习}、经济学\emph{\index{
 因为市场和汇率的波动，这个神秘势力无法完全决定股票的价格$X_t$，然而，他们每一天所决定的预期价格$Z_t$会导致股票价格的变化，我们可以认为$X_t$仅依赖于$Z_t$，但依然受到一些随机因素的影响. 作为简化，我们假设每天的随机影响是独立且一致的，服从分布$F(Z_t)$. 这样的得到的模型就是一个HMM.
 \end{example}
 
-接下来，我们给HMM引入一些记号. 为简便起见，我们只研究有限离散的HMM. 设HMM $\M$所形成的概率测度是$\Pr_\M$. 我们假设模型中以下的量都是已知的：
+接下来，我们给HMM引入一些记号. 为简便起见，我们只研究有限离散的HMM. 设HMM $\calM$所形成的概率测度是$\Pr_\calM$. 我们假设模型中以下的量都是已知的：
 \begin{itemize}
     \item $\mathcal Z$: 有限的状态集合，即$Z_t$的取值集合.
     \item $\mathcal X$: 有限的观测集合，即$X_t$的取值集合.
-    \item $T$：Markov链$\{Z_t\}$的转移矩阵，$T_{i,j}=\Pr_\M(Z_{t+1}=j|Z_t=i)$.
+    \item $T$：Markov链$\{Z_t\}$的转移矩阵，$T_{i,j}=\Pr_\calM(Z_{t+1}=j|Z_t=i)$.
     \item $M$：给定隐状态时的观测概率，$M_{i,k} = \Pr(X_t=k|Z_t=i)$.
     \item $\lambda$：隐状态的初始分布.
 \end{itemize}
 
 我们会把序列$A_i,\dots, A_j$记作$A_{i:j}$，然后将它看作一个向量. 例如$X=X_{1:t}$就是描述从时刻$1$到$t$的观测序列的随机向量，而$Z=Z_{1:t}$就是描述从时刻$1$到$t$的隐状态序列的随机向量.
 
-为了理解HMM的任务，我们接着看美为的例子. 假设我们已经知道一个HMM $\M$可以预测美为的股价$X_t$，作为一个使用者，我们希望$\M$确实有用. 因此，我们要\emph{评估}\index{评估}这个模型的表现. 具体来说，我们希望知道，给定观测历史$x=(x_1,x_2,\dots,x_t)$，如何计算$\Pr_\M(X=x)$. 这一方法也可以用来做\emph{预测}：利用全概率公式，我们可以计算$\Pr_\M(X_{t+1}=x_{t+1}|X=x)$，从而预测未来的股价.
+为了理解HMM的任务，我们接着看美为的例子. 假设我们已经知道一个HMM $\calM$可以预测美为的股价$X_t$，作为一个使用者，我们希望$\calM$确实有用. 因此，我们要\emph{评估}\index{评估}这个模型的表现. 具体来说，我们希望知道，给定观测历史$x=(x_1,x_2,\dots,x_t)$，如何计算$\Pr_\calM(X=x)$. 这一方法也可以用来做\emph{预测}：利用全概率公式，我们可以计算$\Pr_\calM(X_{t+1}=x_{t+1}|X=x)$，从而预测未来的股价.
 
-评估一个HMM固然重要，但是评估依然是把HMM当成一个黑盒来使用. 我们还希望知道这个模型背后到底发生了什么，这就是\emph{解释}\index{解释}问题. 具体来说，我们希望知道，给定观测历史$x=(x_1,x_2,\dots,x_t)$以及一个时刻$k$，如何计算$\Pr_\M(Z_k|X=x)$. 这一分布表明了在$k$时刻神秘势力更有可能做了什么样的决策，从而帮助我们更好理解股价的波动.
+评估一个HMM固然重要，但是评估依然是把HMM当成一个黑盒来使用. 我们还希望知道这个模型背后到底发生了什么，这就是\emph{解释}\index{解释}问题. 具体来说，我们希望知道，给定观测历史$x=(x_1,x_2,\dots,x_t)$以及一个时刻$k$，如何计算$\Pr_\calM(Z_k|X=x)$. 这一分布表明了在$k$时刻神秘势力更有可能做了什么样的决策，从而帮助我们更好理解股价的波动.
 
-接下来我们将分别阐述如何解决评估问题和解释问题. 因为我们只讨论某一个具体的HMM，为简便起见，我们此后都将概率测度$\Pr_\M$简记为$\Pr$.
+接下来我们将分别阐述如何解决评估问题和解释问题. 因为我们只讨论某一个具体的HMM，为简便起见，我们此后都将概率测度$\Pr_\calM$简记为$\Pr$.
 
 \subsection{评估问题}\index{评估}
 
-我们引入记号随机向量$X=(X_1,\dots,X_t)$，$Z=(Z_1,\dots,Z_t)$. 我们考虑HMM的\emph{评估}问题：给定一个HMM $\M$，以及它的观测历史$x=(x_1,x_2,\dots,x_t)$，计算$\Pr(X=x)$. 
+我们引入记号随机向量$X=(X_1,\dots,X_t)$，$Z=(Z_1,\dots,Z_t)$. 我们考虑HMM的\emph{评估}问题：给定一个HMM $\calM$，以及它的观测历史$x=(x_1,x_2,\dots,x_t)$，计算$\Pr(X=x)$. 
 
 关键困难是我们不知道隐状态历史$Z=(z_1,z_2,\dots,z_t)$，因此我们需要利用全概率公式将隐状态消除掉，即：
 \[
@@ -697,7 +677,7 @@ Bellman方程是\emph{\index{强化学习}强化学习}、经济学\emph{\index{
 
 
 \subsection{解释问题}\index{解释}
-接下来我们讨论HMM的\emph{解释问题}. 给定一个 HMM $\M = (\mathcal Z, \mathcal X, T, M, \lambda)$, 一列观测历史$x = (x_1, x_2, \dots, x_t)$, 解释问题旨在寻找一个状态序列，能最好地解释这些历史观察. 具体来说我们考虑如下四个问题：
+接下来我们讨论HMM的\emph{解释问题}. 给定一个 HMM $\calM = (\mathcal Z, \mathcal X, T, M, \lambda)$, 一列观测历史$x = (x_1, x_2, \dots, x_t)$, 解释问题旨在寻找一个状态序列，能最好地解释这些历史观察. 具体来说我们考虑如下四个问题：
 \begin{enumerate}
     \item \emph{过滤}\index{过滤}：计算$\Pr(Z_k = s|X_{1:k}=x_{1:k})$.
     \item \emph{平滑}\index{平滑}：计算$\Pr(Z_k = s|X=x)$，$k < t$.
@@ -756,7 +736,7 @@ Bellman方程是\emph{\index{强化学习}强化学习}、经济学\emph{\index{
 
 \begin{figure}[ht]
     \centering
-    \scalebox{0.7}{\input{\pref/Ehrenfest-model.tex}}
+    \scalebox{0.7}{\input{Figures/Markov-chain/Ehrenfest-model.tex}}
     \caption{Ehrenfest模型示意图}\label{fig:ehrenfest-model}
 \end{figure}
 
@@ -802,7 +782,7 @@ Bellman方程是\emph{\index{强化学习}强化学习}、经济学\emph{\index{
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.3]{\pref/diffusion-model.pdf}
+    \includegraphics[scale=0.3]{Figures/Markov-chain/diffusion-model.pdf}
     \caption{DDPM示意图}\label{fig:DDPM}
 \end{figure}
 
@@ -949,5 +929,3 @@ L_{t-1}=\E_q\left[\frac{1}{2 \sigma_t^2}\norm{\tilde{\mu}_t\left(x_t, x_0\right)
 Euclid在他伟大的《几何原本》\footnote{实际上，Euclid的书名直译是“原理”，并没有“几何”一词. 这说明Euclid其实在探求某些更加本质的东西，这样的思想后来被发展为了我们今天的\emph{形式推理系统}\index{形式推理系统}或\emph{公理系统}\index{公理系统}.}最早尝试将数学整理为一个完整的\emph{公理系统}\index{公理系统}. 
 
 \section{习题} \lhysays{TODO}
-
-\endgroup

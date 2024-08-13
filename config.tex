@@ -146,6 +146,17 @@
 \usetikzlibrary{arrows.meta,positioning,calc}
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
+\tikzset{
+    punkt/.style={
+        rectangle,
+        rounded corners,
+        draw=black, very thick,
+        minimum height=2em,
+        inner sep=6pt,
+        text centered,
+        fill=gray!30
+    }
+}
 
 % math notations
 \newcommand{\LHS}{\mathrm{LHS}}
@@ -155,6 +166,7 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\C}{\mathbb{C}}
+\newcommand{\E}{\mathbb{E}}
 \renewcommand{\O}{\mathcal{O}}
 \newcommand{\id}{\mathrm{id}}
 \DeclareMathOperator*{\Span}{Span}
@@ -166,7 +178,6 @@
 \DeclareMathOperator*{\epi}{epi}
 \renewcommand{\d}{\mathrm{d}}
 \newcommand{\Pow}{\mathcal{P}}
-\newcommand{\E}{\mathbb{E}}
 \newcommand{\cov}{\mathsf{Cov}}
 \newcommand{\var}{\mathsf{Var}}
 \newcommand{\Nor}{\mathcal{N}}
@@ -178,6 +189,15 @@
 \newcommand{\inner}[2]{\left\langle{#1},{#2}\right\rangle}
 \newcommand{\e}{\mathrm{e}}
 \newcommand{\const}{\mathrm{const}}
+\newcommand{\scB}{\mathscr{B}}
+\newcommand{\scF}{\mathscr{F}}
+\newcommand{\Exp}{\mathsf{Exp}}
+\newcommand{\DExp}{\mathsf{DExp}}
+\newcommand{\Lap}{\mathsf{Lap}}
+\newcommand{\calP}{\mathcal P}
+\newcommand{\calS}{\mathcal S}
+\newcommand{\calM}{\mathcal M}
+\newcommand{\KL}{\mathrm{KL}}
 
 \DeclareSymbolFont{symbolsC}{U}{txsyc}{m}{n}
 \DeclareMathSymbol{\strictif}{\mathrel}{symbolsC}{74}

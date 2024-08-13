@@ -1,6 +1,4 @@
 \chapter{差分隐私}\label{chap:differential-privacy}
-\begingroup
-\newcommand{\pref}{Chapters/differential-privacy/figures}
 
 在本章我们关心数据的另一个维度：社会属性. 机器学习需要大量的数据，这些数据从何而来？大部分时候，是通过收集个体的数据得到的. 于是这里就涉及到了隐私的问题，如何保护个体的隐私，同时又能够让机器学习得到足够的数据？\textbf{差分隐私}\index{差分隐私}就是解决这个问题的一个方法，本章将更详细地介绍差分隐私的概念和应用. 
 
@@ -17,7 +15,7 @@
 
 \begin{table}[!ht]
 \centering
-\input{\pref/tab01}
+\input{Figures/differential-privacy/tab01}
 \caption{医院甲的病人数据表. }
 \label{tab:tab01}
 \end{table}
@@ -26,7 +24,7 @@
 
 \begin{table}[!ht]
 \centering
-\input{\pref/tab02}
+\input{Figures/differential-privacy/tab02}
 \caption{医院甲的病人数据表，模糊了姓名、年龄和邮编. }
 \label{tab:tab02}
 \end{table}
@@ -35,7 +33,7 @@
 
 \begin{table}[!ht]
 \centering
-\input{\pref/tab03}
+\input{Figures/differential-privacy/tab03}
 \caption{医院乙的病人数据表，模糊了姓名、年龄和邮编. }
 \label{tab:tab03}
 \end{table}
@@ -268,7 +266,7 @@ Laplace分布是服从双边指数分布的随机变量进行线性变换后服�
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.6]{\pref/LaplaceDist.pdf}
+    \includegraphics[scale=0.6]{Figures/differential-privacy/LaplaceDist.pdf}
     
     \lhysays{重画}
     \caption{Laplace分布的密度函数图像}
@@ -356,5 +354,3 @@ Laplace分布是服从双边指数分布的随机变量进行线性变换后服�
 \section{习题}
 
 \section{章末注记}
-
-\endgroup

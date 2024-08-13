@@ -1,12 +1,5 @@
 \chapter{概率论基础}\label{chap:prob}
 
-\begingroup
-\newcommand{\B}{\mathscr{B}}
-\renewcommand{\F}{\mathscr{F}}
-\newcommand{\Exp}{\mathsf{Exp}}
-\newcommand{\DExp}{\mathsf{DExp}}
-\newcommand{\Lap}{\mathsf{Lap}}
-
 本附录主要介绍Kolmogorov概率论，讨论只局限在数学层面，不涉及概率论的哲学讨论. 本附录的连续型随机变量（向量）的讨论需要微积分的基本知识，关于微分学的部分，可以参见\Cref{chap:calculus}；积分学（主要是Lebesgue积分）我们会在\Cref{sec:expectation} 以数学期望的形式介绍. 
 
 \section{从朴素概率论到公理化概率论}
@@ -96,49 +89,49 @@
 首先注意到，概率应该是一个函数，它的值域是$[0,1]$. 那么，它的定义域应该是什么呢？我们已经看到，概率应该定义在\emph{事件}上，而非\emph{样本点}上. 那么，概率可以定义在\emph{任意}事件上吗？这个问题很微妙，我们不在这里讨论. 这里只是指出，我们关心的并不总是任意事件，而是一类被$\sigma$-代数所刻画的事件. 
 
 \begin{definition}[$\sigma$-代数]\index{$\sigma$-代数}
-设$\Omega$是一个集合，$\F$是$\Omega$的子集的集合. 如果$\F$满足
+设$\Omega$是一个集合，$\scF$是$\Omega$的子集的集合. 如果$\scF$满足
 \begin{enumerate}
-    \item $\Omega\in\F$;
-    \item 如果$A\in\F$，则$A$的补集$\Omega\setminus A\in\F$;
-    \item 如果$A_1,A_2,\ldots\in\F$，则$\bigcup_{i=1}^\infty A_i\in\F$.
+    \item $\Omega\in\scF$;
+    \item 如果$A\in\scF$，则$A$的补集$\Omega\setminus A\in\scF$;
+    \item 如果$A_1,A_2,\ldots\in\scF$，则$\bigcup_{i=1}^\infty A_i\in\scF$.
 \end{enumerate}
-则称$\F$是$\Omega$上的一个 \textbf{$\sigma$-代数}. 
+则称$\scF$是$\Omega$上的一个 \textbf{$\sigma$-代数}. 
 \end{definition}
 
 
-在样本空间中，我们要求事件也形成一个$\sigma$-代数，这样的$\sigma$-代数称为\textbf{事件域}\index{事件域}，记为$\F$. 在数学上，$\sigma$-代数包括了绝大部分我们可以构造的事件，这是因为，容易验证，$\sigma$-代数中的事件对可数交、可数并和补运算都是封闭的，并且包含了样本空间和空集. 关于这一定义的哲学讨论，可以见\Cref{chap:plausible-reasoning}.  
+在样本空间中，我们要求事件也形成一个$\sigma$-代数，这样的$\sigma$-代数称为\textbf{事件域}\index{事件域}，记为$\scF$. 在数学上，$\sigma$-代数包括了绝大部分我们可以构造的事件，这是因为，容易验证，$\sigma$-代数中的事件对可数交、可数并和补运算都是封闭的，并且包含了样本空间和空集. 关于这一定义的哲学讨论，可以见\Cref{chap:plausible-reasoning}.  
 
 样本空间连同它的事件域，被称为\emph{可测空间}. 
 
 \begin{definition}[可测空间] \index{可测空间}
-设$\Omega$是一个集合，$\F$是$\Omega$上的一个$\sigma$-代数. 则称$(\Omega,\F)$是一个\textbf{可测空间}.
+设$\Omega$是一个集合，$\scF$是$\Omega$上的一个$\sigma$-代数. 则称$(\Omega,\scF)$是一个\textbf{可测空间}.
 
-设$S\subseteq\Omega$，如果$S\in\F$，则称$S$是\textbf{$\F$-可测}的.
+设$S\subseteq\Omega$，如果$S\in\scF$，则称$S$是\textbf{$\scF$-可测}的.
 \end{definition}
 
-定义可测空间与$\F$-可测的概念，主要是为了区分一个集合到底是不是我们所关心的事件，我们只关心$\F$-可测的集合.
+定义可测空间与$\scF$-可测的概念，主要是为了区分一个集合到底是不是我们所关心的事件，我们只关心$\scF$-可测的集合.
 
 接下来，我们给出Kolmogorov概率论的公理化定义. 
 
 \begin{definition}[概率空间，概率测度]\index{概率空间}\index{概率}\index{概率测度}
-设$(\Omega,\F)$是一个可测空间. 如果函数$\Pr:\F\to[0,1]$满足
+设$(\Omega,\scF)$是一个可测空间. 如果函数$\Pr:\scF\to[0,1]$满足
 \begin{enumerate}
     \item 正则性：$\Pr(\Omega)=1$;
-    \item 可列可加性：如果$A_1,A_2,\dots\in\F$是两两不相交的事件，则
+    \item 可列可加性：如果$A_1,A_2,\dots\in\scF$是两两不相交的事件，则
     \[
         \Pr\left(\bigcup_{i=1}^\infty A_i\right) = \sum_{i=1}^\infty \Pr(A_i),
     \]
-    则称$(\Omega,\F,\Pr)$是一个\textbf{概率空间}，$\Pr$称为\textbf{概率测度}或\textbf{概率}. 
+    则称$(\Omega,\scF,\Pr)$是一个\textbf{概率空间}，$\Pr$称为\textbf{概率测度}或\textbf{概率}. 
 \end{enumerate}
 \end{definition}
 
 容易证明，概率有如下性质：
 \begin{proposition}
-设$(\Omega,\F,\Pr)$是一个概率空间，则：
+设$(\Omega,\scF,\Pr)$是一个概率空间，则：
 \begin{enumerate}
     \item $\Pr(\varnothing)=0$；
-    \item 单调性：对任意的$A,B\in\F$，如果$A\subseteq B$，则$\Pr(A)\leq\Pr(B)$；
-    \item 有限可加性：对两两不相交的$A_1,A_2,\dots,A_n\in\F$，有
+    \item 单调性：对任意的$A,B\in\scF$，如果$A\subseteq B$，则$\Pr(A)\leq\Pr(B)$；
+    \item 有限可加性：对两两不相交的$A_1,A_2,\dots,A_n\in\scF$，有
     \[
         \Pr\left(\bigcup_{i=1}^n A_i\right) = \sum_{i=1}^n \Pr(A_i).
     \]
@@ -155,7 +148,7 @@
 
 先考虑事件域. 首先，事件域至少要包含长方体
 \[\prod_i(a_i,b_i)=\{x=(x_1,x_2,\ldots,x_n)\in\R^n:a_i<x_i<b_i\}.\]
-这是我们可以构造的最基本的集合了. 我们就定义事件域为包含所有长方体的最小$\sigma$-代数$\B([0,1]^n)$. 换言之，如果还有一个$\sigma$-代数$\F$包含所有长方体，那么$\B([0,1]^n)\subseteq\F$. 我们将这一$\sigma$-代数称为\textbf{Borel代数}\index{Borel代数}. Borel代数包含了绝大部分我们要讨论的集合，例如开集、闭集、单点集、有限集、可数集等，可以简单归纳为“合理的集合”. 
+这是我们可以构造的最基本的集合了. 我们就定义事件域为包含所有长方体的最小$\sigma$-代数$\scB([0,1]^n)$. 换言之，如果还有一个$\sigma$-代数$\scF$包含所有长方体，那么$\scB([0,1]^n)\subseteq\scF$. 我们将这一$\sigma$-代数称为\textbf{Borel代数}\index{Borel代数}. Borel代数包含了绝大部分我们要讨论的集合，例如开集、闭集、单点集、有限集、可数集等，可以简单归纳为“合理的集合”. 
 
 事件域的定义已经给出，我们还需要定义概率测度$\Pr$，它应该满足以下两个要求：
 \begin{itemize}
@@ -163,11 +156,11 @@
     \[
         \Pr\left(\prod_i(a_i,b_i)\right) = \prod_i(b_i-a_i).
     \]
-    \item 平移不变性. 也就是说，如果$A\in\B([0,1]^n)$，那么对任意的$x\in\R^n$，定义$A+x=\{y\in\R^n:y=x+z,z\in A\}$，只要$A\in\B([0,1]^n)$，就有$\Pr(A+x)=\Pr(A)$.
+    \item 平移不变性. 也就是说，如果$A\in\scB([0,1]^n)$，那么对任意的$x\in\R^n$，定义$A+x=\{y\in\R^n:y=x+z,z\in A\}$，只要$A\in\scB([0,1]^n)$，就有$\Pr(A+x)=\Pr(A)$.
 \end{itemize}
 一个惊人的事实是，这样的概率测度是存在且唯一的，我们称之为\textbf{Lebesgue测度}\index{Lebesgue测度}，常记为$\lambda$.
 
-注意，Borel代数和Lebesgue测度的定义可以不局限在$[0,1]^n$，他们可以定义在与实数相关的各种集合上. 在本附录中，我们最主要是用的是$\R^n$上的相关定义，例如$\B(\R^n)$就是包含所有$n$维开长方体（每条边是开区间）的最小$\sigma$-代数，$\lambda$就是定义在$\B(\R^n)$上的Lebesgue测度. $\R^n$上的Lebesgue测度其实是概率测度的扩展（而非概率测度），因为此时不再要求有正则性（即$\lambda(\Omega)=1$），但额外要求$\lambda(\varnothing)=0$.
+注意，Borel代数和Lebesgue测度的定义可以不局限在$[0,1]^n$，他们可以定义在与实数相关的各种集合上. 在本附录中，我们最主要是用的是$\R^n$上的相关定义，例如$\scB(\R^n)$就是包含所有$n$维开长方体（每条边是开区间）的最小$\sigma$-代数，$\lambda$就是定义在$\scB(\R^n)$上的Lebesgue测度. $\R^n$上的Lebesgue测度其实是概率测度的扩展（而非概率测度），因为此时不再要求有正则性（即$\lambda(\Omega)=1$），但额外要求$\lambda(\varnothing)=0$.
 
 \subsection{条件概率，独立性}
 接下来，我们讨论条件概率与独立性. 我们还是看掷两个骰子的例子. 掷完第一个骰子，我们马上观察结果，然后再掷第二个骰子. 问第一个骰子是$i$，第二个是$j$的概率是多少？如果继续套用原来的概率空间，很快就会觉得不对劲. 此时，第一个骰子的结果完全没有随机性！所以朴素的直觉告诉我们，这里的概率应该有另一个依赖于第一次投骰子结果的定义，这样的概率就是\emph{条件概率}. 
@@ -175,7 +168,7 @@
 我们直接给出一般情况下条件概率的定义. 
 
 \begin{definition}[条件概率]\index{条件概率}
-设$(\Omega,\F,\Pr)$是一个概率空间，$A,B\in\F$是两个事件，且$\Pr(A)>0$. 则称
+设$(\Omega,\scF,\Pr)$是一个概率空间，$A,B\in\scF$是两个事件，且$\Pr(A)>0$. 则称
 \[
     \Pr(B|A) = \frac{\Pr(A\cap B)}{\Pr(A)}
 \]
@@ -190,9 +183,9 @@
 最后一个式子并不要求$\Pr(A)>0$，因此我们用它作为独立性的定义，这样定义可以不依赖条件概率. 
 
 \begin{definition}[独立性]\index{独立性}
-设$(\Omega,\F,\Pr)$是一个概率空间，$A,B\in\F$是两个事件. 如果$\Pr(A\cap B)=\Pr(A)\Pr(B)$，则称事件$A$和$B$\textbf{相互独立}. 
+设$(\Omega,\scF,\Pr)$是一个概率空间，$A,B\in\scF$是两个事件. 如果$\Pr(A\cap B)=\Pr(A)\Pr(B)$，则称事件$A$和$B$\textbf{相互独立}. 
 
-一般地，给定一个事件族$\mathscr{A}\subseteq\F$，如果对任意的有限个不同的$A_1,A_2,\ldots,A_n\in\mathscr{A}$，都有
+一般地，给定一个事件族$\mathscr{A}\subseteq\scF$，如果对任意的有限个不同的$A_1,A_2,\ldots,A_n\in\mathscr{A}$，都有
 \[
     \Pr\left(\bigcap_{i=1}^n A_i\right) = \prod_{i=1}^n \Pr(A_i),
 \]
@@ -216,11 +209,11 @@
 最后，我们给出条件概率的一些性质. 
 
 \begin{proposition}\label{prop:conditional-probability}
-设$(\Omega,\F,\Pr)$是一个概率空间，那么
+设$(\Omega,\scF,\Pr)$是一个概率空间，那么
 \begin{enumerate}
-    \item 对任意$A\in\F$满足$\Pr(A)>0$，$\Pr(\cdot|A)$也是一个概率测度；
+    \item 对任意$A\in\scF$满足$\Pr(A)>0$，$\Pr(\cdot|A)$也是一个概率测度；
     \item $\Pr(\cdot|\Omega)=\Pr(\cdot)$，
-    \item 对任意$A\in\F$满足$\Pr(A)>0$，$\Pr(A|A)=1$.
+    \item 对任意$A\in\scF$满足$\Pr(A)>0$，$\Pr(A|A)=1$.
 \end{enumerate}
 \end{proposition}
 以上性质的证明都很简单，我们就不给出了. 
@@ -228,7 +221,7 @@
 接下来我们给两个在Bayes概率论\index{Bayes概率论}以及随机过程\index{随机过程}中很重要的性质. 
 
 \begin{theorem}[全概率公式]\index{全概率公式}\label{thm:total-probability}
-设$(\Omega,\F,\Pr)$是一个概率空间，$A_1,A_2,\ldots\in\F$是一列两两不相交的事件，且$\Pr(A_i)>0$，$\bigcup_{i=1}^\infty A_i=B$，则对任意的$C\in\F$，有
+设$(\Omega,\scF,\Pr)$是一个概率空间，$A_1,A_2,\ldots\in\scF$是一列两两不相交的事件，且$\Pr(A_i)>0$，$\bigcup_{i=1}^\infty A_i=B$，则对任意的$C\in\scF$，有
 \[
     \Pr(C|B) = \sum_{i=1}^\infty \Pr(C|A_i)\Pr(A_i).
 \]
@@ -265,7 +258,7 @@
 \end{example}
 
 \begin{theorem}[贝叶斯公式]\index{贝叶斯公式}\label{thm:bayes}
-设$(\Omega,\F,\Pr)$是一个概率空间，$A,B\in\F$且$\Pr(A),\Pr(B)>0$，则
+设$(\Omega,\scF,\Pr)$是一个概率空间，$A,B\in\scF$且$\Pr(A),\Pr(B)>0$，则
 \[
     \Pr(A|B) = \frac{\Pr(B|A)\Pr(A)}{\Pr(B)}.
 \]
@@ -276,7 +269,7 @@
 一个特别重要的推论被称为\emph{链式法则}\index{链式法则}，它是\emph{Bayes网络}\index{Bayes网络}的基础. 
 
 \begin{corollary}[链式法则]\index{链式法则}\label{cor:chain-rule}
-设$(\Omega,\F,\Pr)$是一个概率空间，$A_1,A_2,\ldots,A_n\in\F$，且$\Pr(A_1\cap A_2\cap\cdots\cap A_n)>0$，则
+设$(\Omega,\scF,\Pr)$是一个概率空间，$A_1,A_2,\ldots,A_n\in\scF$，且$\Pr(A_1\cap A_2\cap\cdots\cap A_n)>0$，则
 \begin{align*}
     &\Pr(A_1\cap A_2\cap\cdots\cap A_n)\\
     = &\Pr(A_1)\Pr(A_2|A_1)\Pr(A_3|A_1\cap A_2)\cdots\Pr(A_n|A_1\cap A_2\cap\cdots\cap A_{n-1}).
@@ -321,29 +314,29 @@
 为了理解随机变量的概念，我们依然从古典概型入手. 
 
 \begin{example}\label{ex:random-variable}
-继续考虑先后投两个骰子的情况，假设它的概率空间是$(\Omega,\F,\Pr)$，他们的定义我们在\Cref{subsec:kolmogorov-probability} 的末尾已经讨论过了. 
+继续考虑先后投两个骰子的情况，假设它的概率空间是$(\Omega,\scF,\Pr)$，他们的定义我们在\Cref{subsec:kolmogorov-probability} 的末尾已经讨论过了. 
 
 我们可以定义一个从样本空间$\Omega$到$\N$的函数$S(i,j)=i+j$，也就是两个点数的和. 我们来看看$S$与事件域的关系. $\{S=s\}=\{(i,j)\in\Omega:i+j=s\}$，所以$S$将原本的事件精简成了一个数字. 这个过程丢弃了一些事件，例如$S$无法表达事件$\{(1,2)\}$，实际上，它无法区分$(1,2)$和$(2,1)$，它把这两个样本点都看成了$3$. 但是，$S$仍然保留了很多信息，例如，$S$可以区分事件$\{(1,1)\}$和$\{(2,2)\}$，它们分别对应$2$和$4$. 总结来说，$S$将原本更精细的事件域压缩成了更粗糙的事件域. 
 
-有了上面的感觉，我们可以看一个更抽象的函数. 定义一个从样本空间$\Omega$到$\N^2$的函数$X$，它的定义为$X(i,j) = (i,j)$. 换句话说，它把样本点看成一个$\N^2$的元素. $\F$中的所有事件都可以表达为$\{X\in B\}$，$B\subseteq\N^2$. 所以$X$完全刻画了整个事件域. 
+有了上面的感觉，我们可以看一个更抽象的函数. 定义一个从样本空间$\Omega$到$\N^2$的函数$X$，它的定义为$X(i,j) = (i,j)$. 换句话说，它把样本点看成一个$\N^2$的元素. $\scF$中的所有事件都可以表达为$\{X\in B\}$，$B\subseteq\N^2$. 所以$X$完全刻画了整个事件域. 
 \end{example}
 
 上面例子中的$S$和$X$都是\emph{随机变量}的例子. 我们给出随机变量的定义. 
 
 \begin{definition}[随机变量，随机向量，Borel函数]\index{随机变量}\index{随机向量}\index{Borel函数}
-设$(\Omega,\F,\Pr)$是一个概率空间，$X:\Omega\to\R$是一个函数. 如果对任意的$x\in\R$，$\{X\in\B(\R)\}\in\F$，则称$X$是一个\textbf{随机变量}. 
+设$(\Omega,\scF,\Pr)$是一个概率空间，$X:\Omega\to\R$是一个函数. 如果对任意的$x\in\R$，$\{X\in\scB(\R)\}\in\scF$，则称$X$是一个\textbf{随机变量}. 
 
-一般地，考虑一个集合$\R^n$以及其上的Borel代数$\B(\R^n)$，$X:\Omega\to \R^n$是一个映射. 如果对任意的$A\in\B(\R^n)$，集合$\{X\in A\}$ $\F$-可测，即$\{X\in A\}\in\F$，则称$X$是一个\textbf{$n$维随机向量}，简称\textbf{随机向量}. 如果$(\Omega,\F)=(\R^m,\B(\R^m))$，则称$X$是一个\textbf{Borel函数}.
+一般地，考虑一个集合$\R^n$以及其上的Borel代数$\scB(\R^n)$，$X:\Omega\to \R^n$是一个映射. 如果对任意的$A\in\scB(\R^n)$，集合$\{X\in A\}$ $\scF$-可测，即$\{X\in A\}\in\scF$，则称$X$是一个\textbf{$n$维随机向量}，简称\textbf{随机向量}. 如果$(\Omega,\scF)=(\R^m,\scB(\R^m))$，则称$X$是一个\textbf{Borel函数}.
 \end{definition}
 
 下面对这个定义做一些说明. 首先，随机变量是一个映射，而不是一个数字，这一点经常会被人误解. 直观上说，随机变量的值是随机的，这个随机性是因为背后有一个未知的力量在抛硬币，我们把从抛硬币到观测值这一整个东西称之为随机变量. 
 
-定义的后面还涉及了$\sigma$-代数相关的东西，我们也给一个简要说明. Borel代数包含了“合理的集合”，所以$\{X\in B\}$（$B\in\B(\R)$）表示事件“$X$落在合理的值集上”. 随机变量的要求其实就是，“$X$落在合理的值集上”是一个我们可以定义概率（即可测）的事件. 
+定义的后面还涉及了$\sigma$-代数相关的东西，我们也给一个简要说明. Borel代数包含了“合理的集合”，所以$\{X\in B\}$（$B\in\scB(\R)$）表示事件“$X$落在合理的值集上”. 随机变量的要求其实就是，“$X$落在合理的值集上”是一个我们可以定义概率（即可测）的事件. 
 
 我们下面讨论一些随机变量的基本性质. 
 
 \begin{theorem}\label{thm:random-variable}
-设$(\Omega,\F,\Pr)$是一个概率空间，$X:\Omega\to\R^n$是一个随机向量，$g:\R^n\to\R^m$是一个Borel函数，则$g(X)=g\circ X$也是一个随机向量. 
+设$(\Omega,\scF,\Pr)$是一个概率空间，$X:\Omega\to\R^n$是一个随机向量，$g:\R^n\to\R^m$是一个Borel函数，则$g(X)=g\circ X$也是一个随机向量. 
 \end{theorem}
 
 这一性质告诉我们了一种构造随机变量的方式：对一个随机变量进行一些Borel函数的操作. 下面的性质告诉我们，Borel函数包含了绝大部分我们关心的函数，因此在实际中，我们不需要担心一个映射作用完之后是否还是随机变量.
@@ -352,7 +345,7 @@
 下面函数是Borel函数：
 \begin{enumerate}
     \item 所有的连续函数；
-    \item 给定$A\in\B(\R^n)$，示性函数\index{示性函数}
+    \item 给定$A\in\scB(\R^n)$，示性函数\index{示性函数}
     $I_A(x) = \begin{cases}
         1, & x\in A,\\
         0, & x\notin A.
@@ -365,10 +358,10 @@
 
 接下来，我们进入分布函数的讨论. 我们说过，随机变量某种意义上给出了概率测度的另一种刻画方式，而这一桥梁就是由分布函数给出的. 
 
-考虑概率空间$(\Omega,\F,\Pr)$，以及一个随机变量$X:\Omega\to\R$. 要刻画概率测度$\Pr$，我们需要给出所有的事件$A\in\F$的概率$\Pr(A)$. 如果$A$可以被写成$\{X\in B\}$的形式，那么我们可以用$\Pr(X\in B)$来刻画$\Pr(A)$. 而我们之前说过，要确定$\Pr(X\in B)$，至少要先确定$\Pr(X\in(a,b))$. 这一概率还是有两个未定元$a,b$，所以更简便的方式是确定$F_X(b)=\Pr(X\in(-\infty,b])$，容易证明，开区间的概率完全可以由$F_X(b)$给出，所以$F_X$完全刻画了$\Pr$. 更一般地，我们有如下定义. 
+考虑概率空间$(\Omega,\scF,\Pr)$，以及一个随机变量$X:\Omega\to\R$. 要刻画概率测度$\Pr$，我们需要给出所有的事件$A\in\scF$的概率$\Pr(A)$. 如果$A$可以被写成$\{X\in B\}$的形式，那么我们可以用$\Pr(X\in B)$来刻画$\Pr(A)$. 而我们之前说过，要确定$\Pr(X\in B)$，至少要先确定$\Pr(X\in(a,b))$. 这一概率还是有两个未定元$a,b$，所以更简便的方式是确定$F_X(b)=\Pr(X\in(-\infty,b])$，容易证明，开区间的概率完全可以由$F_X(b)$给出，所以$F_X$完全刻画了$\Pr$. 更一般地，我们有如下定义. 
 
 \begin{definition}[分布函数]\index{分布函数}
-设$(\Omega,\F,\Pr)$是一个概率空间，$X:\Omega\to\R$是一个随机变量. 定义函数$F_X:\R\to\R$为$F_X(x) = \Pr(X\leq x)$. 我们称$F_X$是$X$的\textbf{分布函数}，记作$X\sim F_X$.
+设$(\Omega,\scF,\Pr)$是一个概率空间，$X:\Omega\to\R$是一个随机变量. 定义函数$F_X:\R\to\R$为$F_X(x) = \Pr(X\leq x)$. 我们称$F_X$是$X$的\textbf{分布函数}，记作$X\sim F_X$.
 
 如果$X:\Omega\to\R^n$是一个随机向量，定义函数$F_X:\R^n\to\R$为$F_X(x) = \Pr(X\leq x)$，这里$X\leq x$是指对任意的$i=1,2,\ldots,n$，都有$X_i\leq x_i$. 我们称$F_X$是$X$的\textbf{分布函数}，记作$X\sim F_X$.
 \end{definition}
@@ -376,7 +369,7 @@
 容易验证，分布函数具有如下的性质：
 
 \begin{proposition}\label{prop:distribution-function}
-设$(\Omega,\F,\Pr)$是一个概率空间，$X:\Omega\to\R$是一个随机变量，$F_X$是它的分布函数，则
+设$(\Omega,\scF,\Pr)$是一个概率空间，$X:\Omega\to\R$是一个随机变量，$F_X$是它的分布函数，则
 \begin{enumerate}
     \item $F_X$是一个非减函数；
     \item $\lim_{x\to-\infty}F_X(x)=0$，$\lim_{x\to+\infty}F_X(x)=1$；
@@ -390,7 +383,7 @@
 \begin{theorem}\label{thm:distribution-function}
 设$F$是$\R\to\R$的函数，满足\Cref{prop:distribution-function} 的前三条性质. 
 
-在概率空间$([0,1],\B([0,1]),\lambda)$上，存在一个随机变量$X$，使得$F_X=F$.
+在概率空间$([0,1],\scB([0,1]),\lambda)$上，存在一个随机变量$X$，使得$F_X=F$.
 \end{theorem}
 
 所以，我们今后也称呼满足\Cref{prop:distribution-function} 四条性质的函数为分布函数. 
@@ -420,7 +413,7 @@
 容易证明，分布函数具有如下的性质：
 
 \begin{proposition}\label{prop:distribution-function-n}
-设$(\Omega,\F,\Pr)$是一个概率空间，$X:\Omega\to\R^n$是一个随机向量，$F_X$是它的分布函数，则
+设$(\Omega,\scF,\Pr)$是一个概率空间，$X:\Omega\to\R^n$是一个随机向量，$F_X$是它的分布函数，则
 \begin{enumerate}
     \item 对任意$a_i\leq b_i$，$i=1,2,\ldots,n$，都有$\Delta_{a_ib_i}F_X(x_1,x_2,\ldots,x_n)\geq 0$；
     \item 所有$x_i$趋于正无穷时，$F_X$趋于$1$；任意一个$x_i$趋于负无穷时，$F_X$趋于$0$；
@@ -433,7 +426,7 @@
 \begin{theorem}\label{thm:distribution-function-n}
 设$F$是$\R^n\to\R$的函数，满足\Cref{prop:distribution-function-n} 的三条性质.
 
-在概率空间$([0,1]^n,\B([0,1]^n),\lambda)$上，存在一个随机向量$X$，使得$F_X=F$.
+在概率空间$([0,1]^n,\scB([0,1]^n),\lambda)$上，存在一个随机向量$X$，使得$F_X=F$.
 \end{theorem}
 
 因此，我们今后也称呼满足\Cref{prop:distribution-function-n} 三条性质的函数为分布函数. 
@@ -442,12 +435,12 @@
 \Cref{thm:distribution-function} 和\Cref{thm:distribution-function-n} 其实还发挥着另一个重要的作用. 随机变量和随机向量的定义是非常抽象的，所以我们并不能很直接验证随机变量的存在性. 然而，分布函数却是极其容易构造的. 所以利用分布函数的存在性我们可以确保随机变量的存在性. 
 \end{remark}
 
-如果我们就限制在空间$([0,1]^n,\B([0,1]^n),\lambda)$上，随机向量几乎就等同于分布函数. 在更一般的情况下，两个随机向量$X,Y$的分布函数相同时，我们称$X,Y$ \emph{同分布}，记为$X \stackrel{d}{=} Y$.
+如果我们就限制在空间$([0,1]^n,\scB([0,1]^n),\lambda)$上，随机向量几乎就等同于分布函数. 在更一般的情况下，两个随机向量$X,Y$的分布函数相同时，我们称$X,Y$ \emph{同分布}，记为$X \stackrel{d}{=} Y$.
 
 现在，我们将分布函数与概率测度联系在一起：
 
 \begin{theorem}\label{thm:uniqueness-of-distribution-function}
-设$F:\R^n\to\R$是一个分布函数，则在可测空间$(\R^n,\B(\R^n))$上，存在唯一的概率测度$\Pr$，使得对任意$a_i\leq b_i$，
+设$F:\R^n\to\R$是一个分布函数，则在可测空间$(\R^n,\scB(\R^n))$上，存在唯一的概率测度$\Pr$，使得对任意$a_i\leq b_i$，
 \[
     \Pr\left(\prod_{i=1}^n(a_i,b_i]\right) = \Delta_{a_1b_1}\Delta_{a_2b_2}\cdots\Delta_{a_nb_n}F(x_1,x_2,\ldots,x_n).
 \]
@@ -467,7 +460,7 @@
 \node (a) at (0,0) {$X:\Omega\to\R^n$};
 \node (b) at (6,0) {$F_X:\R^n\to[0,1]$};
 \draw[->] (a) -- node[above] {$\Pr(X\leq x)$} (b);
-\node (c) at (6,-2) {$P_X:\B(\R^n)\to[0,1]$};
+\node (c) at (6,-2) {$P_X:\scB(\R^n)\to[0,1]$};
 \draw[->] (b) -- node[right] {$\Delta_{a_1b_1}\dots\Delta_{a_nb_n}$} (c);
 \draw[->] (a) -- node[below left] {$\Pr(X\in B)$} (c);
 \end{tikzpicture}
@@ -526,7 +519,7 @@ Bernoulli\index{分布!Bernoulli～} & $B(1,p)$ & $p_1=p$，$p_0=1-p$ & $p\in[0,
 我们再来讨论\emph{连续型随机变量}，连续型随机变量的分布函数$F$称为\emph{连续型分布}\index{分布!连续型～}，对应的概率测度$\Pr$称之为\emph{绝对连续测度}\index{测度!绝对连续～}. 从名字上就可以看出，测度才是定义连续型随机变量的关键. 我们给出绝对连续测度的定义. 
 
 \begin{definition}[绝对连续测度]\index{测度!绝对连续～}
-$\R$上的测度$\Pr$称为\textbf{绝对连续测度}，如果对任意$\epsilon>0$，存在$\delta>0$使得任意$A\in\B(\R)$满足$\lambda(A)<\delta$，都有$\Pr(A)<\epsilon$.
+$\R$上的测度$\Pr$称为\textbf{绝对连续测度}，如果对任意$\epsilon>0$，存在$\delta>0$使得任意$A\in\scB(\R)$满足$\lambda(A)<\delta$，都有$\Pr(A)<\epsilon$.
 \end{definition}
 
 直观上说，绝对连续测度的意思是当体积$\lambda(\cdot)$发生微小变化的时候（变化量为$\lambda(A)$），测度$\Pr(\cdot)$也只发生微小的变化（变化量为$\Pr(A)$），这和通常函数连续的定义并没有太大的区别. 
@@ -575,7 +568,7 @@ $\R$上的测度$\Pr$称为\textbf{绝对连续测度}，如果对任意$\epsilo
 
 利用密度，我们可以很容易计算概率：
 \begin{theorem}\label{thm:continuous-prob}
-设$X$是一个连续型随机变量，$f$是它的密度函数，则对任意的$B\in\B(\R)$，都有
+设$X$是一个连续型随机变量，$f$是它的密度函数，则对任意的$B\in\scB(\R)$，都有
 \[\Pr(X\in B)=\int_{x\in B}f(x)\d x.\]
 \end{theorem}
 
@@ -648,7 +641,7 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 
 同样，密度给出了概率计算的一个重要工具：
 \begin{theorem}\label{thm:continuous-prob-vec}
-    设$X$是一个$n$维连续型随机向量，$f$是它的密度函数，则对任意的$B\in\B(\R^n)$，都有
+    设$X$是一个$n$维连续型随机向量，$f$是它的密度函数，则对任意的$B\in\scB(\R^n)$，都有
     \[\Pr(X\in B)=\int_{x\in B}f(x)\d x.\]
 \end{theorem}
 
@@ -701,7 +694,7 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 最后，我们讨论随机向量之间的独立性. 随机向量之间的独立性完全由事件的独立性刻画，所以我们有如下定义：
 
 \begin{definition}[随机向量的独立性]\index{独立性}
-设$X_1,\dots,X_n$是$n$个随机向量，第$i$个的维数是$n_i$. 如果对任意的$1\leq i_1,\dots,i_k\leq n$，以及任意的$B_{i_1}\in\B(\R^{n_{i_1}}),\dots,B_{i_k}\in\B(\R^{n_{i_k}})$，都有
+设$X_1,\dots,X_n$是$n$个随机向量，第$i$个的维数是$n_i$. 如果对任意的$1\leq i_1,\dots,i_k\leq n$，以及任意的$B_{i_1}\in\scB(\R^{n_{i_1}}),\dots,B_{i_k}\in\scB(\R^{n_{i_k}})$，都有
 \[\Pr(X_{i_1}\in B_{i_1},\dots,X_{i_k}\in B_{i_k})=\Pr(X_{i_1}\in B_{i_1})\cdots\Pr(X_{i_k}\in B_{i_k}),\]
 则称$X_1,\dots,X_n$是\textbf{独立的}. 
 
@@ -915,7 +908,7 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 当我们强调积分的时候，$\E[X]$也会写为
 \[E[X]=\int_\Omega X\d\Pr.\]
 
-以上定义适用于任何一种概率空间和概率测度. 容易看出来，这一定义也适用于$\R^n$上的Lebesgue测度，我们唯一需要改变的就是示性函数的Lebesgue积分的定义：对任意$A\in\B(\R^n)$，定义
+以上定义适用于任何一种概率空间和概率测度. 容易看出来，这一定义也适用于$\R^n$上的Lebesgue测度，我们唯一需要改变的就是示性函数的Lebesgue积分的定义：对任意$A\in\scB(\R^n)$，定义
 \[\int_{\R^n} I_A(\omega)\lambda(\d \omega)=\lambda(A).\]
 然后对简单函数定义积分，再对非负函数定义积分，最后对一般函数定义积分. 
 
@@ -1247,7 +1240,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
 \begin{definition}[基于$\sigma$-代数的条件数学期望]\label{def:conditional-expectation-2}\index{条件数学期望}
 设$X$是一个非负随机变量，$\G$是$\Omega$的一个$\sigma$-代数，随机变量$\E[X|\G]$被称为$X$关于$\G$的\textbf{条件数学期望}，如果它满足
 \begin{enumerate}
-    \item 对任意$B\in\B(\R)$，$\{\E[X|\G]\in B\}$是$\G$-可测的；
+    \item 对任意$B\in\scB(\R)$，$\{\E[X|\G]\in B\}$是$\G$-可测的；
     \item 对任意$A\in\G$，$\E[XI_A]=\E[\E[X|\G]I_A]$.
 \end{enumerate}
 
@@ -1266,7 +1259,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
 最后，随机向量也是可以诱导条件数学期望的：
 
 \begin{definition}[随机向量诱导的$\sigma$-代数]\index{$\sigma$-代数}
-设$X$是一个$n$维随机向量，那么\textbf{$X$诱导的$\sigma$-代数}是$\Omega$的一个$\sigma$-代数，记为$\sigma(X)$，它的元素为$\{X\in B\}$，其中$B\in\B(\R^n)$.
+设$X$是一个$n$维随机向量，那么\textbf{$X$诱导的$\sigma$-代数}是$\Omega$的一个$\sigma$-代数，记为$\sigma(X)$，它的元素为$\{X\in B\}$，其中$B\in\scB(\R^n)$.
 \end{definition}
 
 我们说过，$\{X\in B\}$表示“$X$落在合理的值集上”. 在之前定义随机变量的时候，我们要求取合理的值集是一个事件，这里则是更加简单粗暴，我们直接定义$\{X\in B\}$是一个事件. 接下来，我们可以定义随机向量诱导的条件数学期望：
@@ -1289,9 +1282,9 @@ $\cov(\cdot,\cdot)$具有以下性质：
 接下来我们讨论条件数学期望的性质，我们依然只列举而不证明. 
 
 \begin{proposition}\label{prop:conditional-expectation-basic}
-设$(\Omega,\F,\Pr)$是概率空间，$\G\subseteq\F$是$\Omega$的一个$\sigma$-代数，那么
+设$(\Omega,\scF,\Pr)$是概率空间，$\G\subseteq\scF$是$\Omega$的一个$\sigma$-代数，那么
 \begin{enumerate}
-\item 期望的线性性：设$X,Y$是随机变量，$a,b\in\R$，如果$\E[X|\G]$和$\E[Y|\G]$都存在，那么$\E[aX+bY|\F]$存在，且
+\item 期望的线性性：设$X,Y$是随机变量，$a,b\in\R$，如果$\E[X|\G]$和$\E[Y|\G]$都存在，那么$\E[aX+bY|\scF]$存在，且
 \[\E[aX+bY|\G]=a\E[X|\G]+b\E[Y|\G].\]
 \item 单调性：设$X,Y$是随机变量，如果$X\leq Y$，那么
 \[\E[X|\G]\leq \E[Y|\G].\]
@@ -1299,7 +1292,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
 \[\E[|X||\G]\geq |\E[X]|\G|.\]
 \item 如果$\G=\{\varnothing,\Omega\}$，那么
 \[\E[X|\G]=\E[X].\]
-\item 望远性：设$X$是随机变量，如果$\G_1,\G_2\subseteq\F$都是$\Omega$的$\sigma$-代数，且$\G_1\subseteq\G_2$，那么
+\item 望远性：设$X$是随机变量，如果$\G_1,\G_2\subseteq\scF$都是$\Omega$的$\sigma$-代数，且$\G_1\subseteq\G_2$，那么
 \[\E[\E[X|\G_2]|\G_1]=\E[\E[X|\G_1]|\G_2]=\E[X|\G_1].\]
 \item 重期望公式：设$X$是随机变量，那么
 \[\E[\E[X|\G]]=\E[X].\]
@@ -1365,6 +1358,3 @@ Gauss向量可以完全由它的期望和协方差矩阵刻画. 首先，Gauss�
 \end{theorem}
 
 取特定的$A$，我们可以得到一个实用的推论：Gauss向量的子向量仍然是Gauss向量，也就是说，取$X=(X_1,\dots,X_n)^\t\sim\Nor(\mu,\Sigma)$，那么对任意的$1\leq k\leq n$，$i_1,\dots,i_k\in\{1,\dots,n\}$，$(X_{i_1},\dots,X_{i_k})^\t$也是Gauss向量. 
-
-
-\endgroup

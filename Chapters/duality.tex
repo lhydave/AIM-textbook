@@ -1,8 +1,4 @@
 \chapter{对偶理论}\label{chap:duality}
-\begingroup
-\newcommand{\pref}{Chapters/duality/figures}
-
-
 在本章中，我们考虑带约束的规划问题. 它的一般形式是
         \begin{alignat*}{2}
         \min\quad&f({x}) \\
@@ -58,9 +54,9 @@
 
 \begin{figure}
 \centering
-    \includegraphics[scale=0.4]{\pref/tan-1dim.png}
+    \includegraphics[scale=0.4]{Figures/duality/tan-1dim.png}
 \centering
-    \includegraphics[scale=0.4]{\pref/tan-2dim.png}
+    \includegraphics[scale=0.4]{Figures/duality/tan-2dim.png}
 \caption{切空间的示意图.}
 \label{fig:tangent-space}
 \end{figure}
@@ -76,7 +72,7 @@
 直观上来说，正规点上每一条约束都起到了实际的作用，因此梯度向量$\nabla h_i({x^\ast})$形成了一个线性无关的集合，张成了空间$M^\perp$. 此时，切空间恰好完全垂直于$M^\perp$，即$T_{x^\ast}(S)=M$. 这一几何直观见\Cref{fig:tan-2constraint}，点${x^\ast }$处的两个等式约束共同确定了该点的切空间. 因此，在正规点，用约束函数的梯度来描述切空间是可行的. 
     \begin{figure}
         \centering
-        \includegraphics[scale=0.17]{\pref/tan-2constraint.png}
+        \includegraphics[scale=0.17]{Figures/duality/tan-2constraint.png}
         \caption{正规点示意图. }
         \label{fig:tan-2constraint}
     \end{figure}
@@ -257,7 +253,7 @@ $A$是$\omega$的上图，$B$是$f^\ast$向下延申并与原点对齐的垂线.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.3]{\pref/sep-hyperplane-eq.png}
+    \includegraphics[scale=0.3]{Figures/duality/sep-hyperplane-eq.png}
     \caption{证明示意图. }
     \label{fig:sep-hyperplane-eq}
 \end{figure}
@@ -310,7 +306,7 @@ $A$是$\omega$的上图，$B$是$f^\ast$向下延申并与原点对齐的垂线.
 $A$和$B$都是凸的. 证明依然是构造$A,B$的分离超平面，正规性条件保证了超平面不会是垂直的. 这个过程的示意见图\Cref{fig:sep-hyperplane-ineq}.
 \begin{figure}
     \centering
-    \includegraphics[scale=0.3]{\pref/sep-hyperplane-ineq.png}
+    \includegraphics[scale=0.3]{Figures/duality/sep-hyperplane-ineq.png}
     \caption{证明示意图. }
     \label{fig:sep-hyperplane-ineq}
 \end{figure}
@@ -358,7 +354,7 @@ $\Omega\subset \R^n$是凸集，函数$f$和${g}$定义在$\Omega$上. 函数${g
 设$x^\ast$是 \eqref{eq:ineq-dual} 的解，$f^\ast=f(x^\ast)$，那么函数$\omega(z)$与纵轴的交点是$f^*$. 如果 \eqref{eq:ineq-dual} 没有解，那么$f^*=\inf\{f(x):g(x)\leq 0,x\in\Omega\}$就是纵轴与$\omega(z)$的交点. 考虑在$\omega(z)$以下的超平面，关注其纵截距（见图\Cref{fig:hyperplane-below}），我们用它产生对偶原理.
 \begin{figure}
     \centering
-    \includegraphics[scale=0.2]{\pref/hyperplane-below.png}
+    \includegraphics[scale=0.2]{Figures/duality/hyperplane-below.png}
     \caption{纵截距的示意图.}
     \label{fig:hyperplane-below}
 \end{figure}
@@ -390,7 +386,7 @@ $$\varphi({\mu})=\inf \{f({x})+{\mu^\t g(x)}:{x}\in\Omega\}.$$
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.3]{\pref/highest-hyperplane.png}
+    \includegraphics[scale=0.3]{Figures/duality/highest-hyperplane.png}
     \caption{对偶间距的示意图.}
     \label{fig:highest-hyperplane}
 \end{figure}
@@ -401,7 +397,7 @@ $$\varphi({\mu})=\inf \{f({x})+{\mu^\t g(x)}:{x}\in\Omega\}.$$
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.3]{\pref/strong-dual.png}
+    \includegraphics[scale=0.3]{Figures/duality/strong-dual.png}
     \caption{强对偶定理的示意图.}
     \label{fig:strong-dual}
 \end{figure}
@@ -520,7 +516,7 @@ $$\varphi({\lambda,\mu})=f^\ast.$$
 学习问题的首要目标是找到正确的以及最优的$w$和$b$. 本质上说，这就是一个\emph{找分离超平面}\index{分离超平面}的过程. 那么，什么才叫最优呢？从几何视角来看，一个自然的想法是最大化\emph{分离距离}\index{分离距离}，即训练集中所有点到分离超平面的距离和的最小值，见\Cref{fig:svm}.
 \begin{figure}
     \centering
-    \includegraphics[scale=0.8]{\pref/svm.png}
+    \includegraphics[scale=0.8]{Figures/duality/svm.png}
     \caption{分离距离示意图.}
     \label{fig:svm}
 \end{figure}
@@ -549,5 +545,3 @@ $\gamma\le\gamma_i$等价于$$y_i\left(\left(\frac{w}{\gamma\norm{w}_2}\right)^\
     \item 第二步，写出对偶问题（max-min），验证强对偶定理的正规性条件，于是只需要求解对偶规划.
     \item 第三步，写出KKT条件，将对偶规划解为一个二次规划（min） ，用优化算法求解二次规划.
 \end{itemize}
-
-\endgroup

@@ -378,7 +378,7 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 \subsection{似然与概率}
 我们已经知道，似然是一个合理性度量，在本节中，我们将似然与概率联系起来：他们实际上是等价的.
 
-首先介绍\emph{Kolmogorov}的概率论. 这一概率论研究事件空间上的概率测度. 其研究对象的总体被称为\emph{样本空间}，记为$\Omega$. 我们只能观测到某种可观测的特性$P$，而不能直接观测样本点，即我们只能观察\emph{事件}，或者说集合
+首先介绍\emph{Kolmogorov}的概率论，详细的讨论见\Cref{chap:prob}. 这一概率论研究事件空间上的概率测度. 其研究对象的总体被称为\emph{样本空间}，记为$\Omega$. 我们只能观测到某种可观测的特性$P$，而不能直接观测样本点，即我们只能观察\emph{事件}，或者说集合
     \[\{\omega\in \Omega:P(\omega)\}.\]
 我们可以观测的所有事件的集合称为\emph{事件域}\index{事件域}，记为$\mathscr{F}$.
 
@@ -557,7 +557,7 @@ $\Pr(A|C)$是$A$的似然，而$\Pr(A|BC)$是假设$B$为真时，$A$的似然. 
 \end{itemize} 
 \end{definition}
 
-这两个认可度的定义其实相互可以转化，我们将这一转化留作习题. 利用这一转化，认可度和相关性的关系可以表达如下：
+这两个认可度的定义其实相互可以转化（见习题\lhysays{出一下}）. 利用这一转化，认可度和相关性的关系可以表达如下：
 \begin{proposition}
     设 $0< \Pr(X),\Pr(Y) < 1$，下列等价成立：
     \begin{itemize}
@@ -663,10 +663,10 @@ $\Pr(Y|X) = (0.1 + 0.2) / (0.1 + 0.2 + 0.2 + 0) = 0.6 > 0.5$，然而，$\Pr(Y|X
 $\Pr(Y) = 51/201$，$\Pr(Y|Z) = 7/110$为投篮命中率. $\Pr(Y|X) = 50/100 = 1/2$，$\Pr(Y|Z \wedge X) = 6/10 = 3/5$ 为两分命中率. $\Pr(Y|\neg X) = 1/101$，$\Pr(Y|Z \wedge \neg X) = 1/100$为三分命中率. Simpson悖论在这一实例下表现为：这个班里来自清华大学的学生两分命中率和三分命中率分别都比全班平均水平高，但总体投篮命中率反倒比全班水平低.
 
 我们将这两个概率用全概公式展开来寻找原因：
-$$\Pr(Y|Z) = \textcolor{red}{\Pr(Y|Z\land X)}\Pr(X|Z) + \textcolor{red}{\Pr(Y|Z\wedge\neg X)}\Pr(\neg X|Z),$$
-$$\Pr(Y) = \textcolor{green}{\Pr(Y|X)}\Pr(X) +\textcolor{green}{ \Pr(Y|\neg X)}\Pr(\neg X).$$
+$$\Pr(Y|Z) = \textcolor{Orchid}{\Pr(Y|Z\land X)}\Pr(X|Z) + \textcolor{Orchid}{\Pr(Y|Z\wedge\neg X)}\Pr(\neg X|Z),$$
+$$\Pr(Y) = \textcolor{TealBlue}{\Pr(Y|X)}\Pr(X) +\textcolor{TealBlue}{ \Pr(Y|\neg X)}\Pr(\neg X).$$
 
-上下两行对应的项，$\textcolor{red}{\Pr}>\textcolor{green}{\Pr}$. 然而，关键是有可能发生$\Pr(X|Z) \neq \Pr(X)$. 在上面篮球的例子中表现为清华大学的同学选择投两分球和三分球的比例和全班同学不同. 这表明，Simpson悖论发生的核心原因与基率谬误类似，即没有正确区分先验概率和后验概率.
+上下两行对应的项，$\textcolor{Orchid}{\Pr}>\textcolor{TealBlue}{\Pr}$. 然而，关键是有可能发生$\Pr(X|Z) \neq \Pr(X)$. 在上面篮球的例子中表现为清华大学的同学选择投两分球和三分球的比例和全班同学不同. 这表明，Simpson悖论发生的核心原因与基率谬误类似，即没有正确区分先验概率和后验概率.
 
 接下来我们考虑合取谬误（见本章开头）. \emph{合取谬误}\index{合取谬误}是一种认知偏差. 我们这里呈现一个简化的例子作为讨论. Linda是一位单身、外向且年龄为31岁的女性.在大学期间，她主修哲学，十分关注种族歧视和社会公正问题，而且曾参加过反核游行.（记为$E$）请问以下哪一件事情更可能发生？
     \begin{enumerate}
