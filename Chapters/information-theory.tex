@@ -2,9 +2,9 @@
 
 人脑和机器的区别是什么？我们有可能模拟人脑的功能吗？这些问题根植于认知科学和人工智能领域。在20世纪50年代，计算机科学、认知科学和人工智能仍然处于萌芽状态。就是在这个时候，基于对人类如何解决问题和决策的研究，Herbert A. Simon提出，人脑其实是一个“信息处理器”，也就是输入信息（视觉、听觉等），进行处理，然后输出信息（动作、语言等）。从这个观点上，人脑和机器并无区别。
 
-基于这样的观点，Simon和Allen Newell、 J. C. Shaw一起合作，制造了逻辑理论家（Logic Theorist）、通用问题求解器（General Problem Solver，GPS）等计算机程序。逻辑理论家可以证明《数学原理》（作者是Whitehead和Russell）第二章中前52个定理中的38个，而GPS则可以解决汉诺塔问题。展现出“信息处理器”这一观点的巨大潜力。
+基于这样的观点，Simon和Allen Newell、 J. C. Shaw一起合作，制造了逻辑理论家（Logic Theorist）、通用问题求解器（General Problem Solver，GPS）等计算机程序。逻辑理论家可以证明《数学原理》（作者是Whitehead和Russell）第二章前52个定理中的38个，而GPS则可以解决汉诺塔问题。这展现出“信息处理器”观点的巨大潜力。
 
-时至今日，“信息处理器”的观点已经深入认知科学和人工智能研究者的心中。然而，信息是一个特别抽象的概念，不像重量，可以从铅块中直观感受到。那么，信息到底是什么？本章将要讨论这一问题，并给出它在人工智能领域的应用。
+时至今日，“信息处理器”的观点已经深入认知科学和人工智能研究者的心中。然而，信息是一个特别抽象的概念。它不像重量，可以从沉甸甸的铅块中直观感受到。那么，信息到底是什么？本章将要讨论这一问题，并给出它在人工智能领域的应用。
 
 \section{熵}\label{sec:entropy}
 
@@ -93,7 +93,7 @@ H\left(\frac{1}{2},\frac{1}{3},\frac{1}{6}\right)=H\left(\frac{1}{2},\frac{1}{2}
     \[P=\frac{N!}{N_1!\dots N_m!}\left(\frac1m\right)^N.\]
 这是一个多项分布. 两边取对数，得
     \[\log P=\log(N!)-\sum_i\log(N_i!)-N\log m.\]
-考虑充分大的$N_i$，由Stirling公式，有
+考虑充分大的$N_i$，由Stirling公式\index{Stirling公式}，有
 \begin{align*}
     \log(N_i!)\sim\log\left(\sqrt{2\pi N_i}\left(\frac{N_i}{\e}\right)^{N_i}\right)\sim N_i\log N_i.    
 \end{align*}

@@ -85,7 +85,8 @@
 % chap/section set
 \ctexset{
     chapter={format={\raggedright\bfseries\Huge}},
-    section={format={\raggedright\bfseries\LARGE},name={\S,}}
+    section={format={\raggedright\bfseries\LARGE},name={\S,}},
+    subsection={format={\raggedright\bfseries\large},name={\S,}}
 }
 
 % page style set
@@ -143,7 +144,7 @@
 \usepackage{tikz}
 \usepackage{tikz-cd}
 \usetikzlibrary{arrows}
-\usetikzlibrary{arrows.meta,positioning,calc}
+\usetikzlibrary{arrows.meta,positioning,calc,3d}
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
 \tikzset{
@@ -198,6 +199,7 @@
 \newcommand{\calS}{\mathcal S}
 \newcommand{\calM}{\mathcal M}
 \newcommand{\KL}{\mathrm{KL}}
+\newcommand{\ReLU}{\mathsf{ReLU}}
 
 \DeclareSymbolFont{symbolsC}{U}{txsyc}{m}{n}
 \DeclareMathSymbol{\strictif}{\mathrel}{symbolsC}{74}
