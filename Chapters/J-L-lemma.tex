@@ -12,7 +12,7 @@
 
 在计算机的世界中，世界的一切都被表示为了数据，而且往往是高维数据。因此，如何理解和处理高维数据已经成为人工智能领域的一个重要问题。
 
-本章将初步揭示高维空间看似矛盾的两种性质。首先，与我们生活的三维空间相比，高维空间是极其反直觉的，这带来了望而生畏的复杂性，似乎“维数灾难”难以逾越。然而，硬币的另一面是，高维空间中的随机数据几乎都是高度集中，因而他们其实可以被压缩到更低维度的空间中进行处理。这一原理被广泛应用在机器学习中。
+本章将说明，高维空间有着令人着迷却看似矛盾的两种性质。首先，与我们生活的三维空间相比，高维空间是极其反直觉的，这带来了望而生畏的复杂性，似乎“维数灾难”难以逾越。然而，硬币的另一面是，高维空间中的随机数据几乎都是高度集中，因而他们其实可以被压缩到更低维度的空间中进行处理。这一原理被广泛应用在机器学习中。
 
 从技术上看，我们要证明Johnson-Lindenstrauss引理，它表明了高维随机变量的集中性. 证明这一引理所用到的概率论技术是\textbf{矩法}\index{矩法}，这是\emph{机器学习理论}\index{机器学习理论}中最为核心的几个技术之一. 因此本章也可以看做机器学习理论的一个引论. 
 
@@ -365,15 +365,15 @@ Chebyshev不等式告诉我们采样到偏离其期望的概率有一个上界. 
 
 实际上，很多情况下，偏离期望是非常小概率的事件，远小于上面的估计值. 为了得到更精确的上界，我们需要一些技巧. 考虑任意随机变量$X$，对$\lambda >0$，
 \[
-X\geq a \iff \lambda X \geq \lambda a \iff e^{\lambda X} \geq e^{\lambda a}.
+X\geq a \iff \lambda X \geq \lambda a \iff \e^{\lambda X} \geq \e^{\lambda a}.
 \]
 由Markov不等式（如何得到？），
 \[
-\Pr(X\geq a) = \Pr\left(e^{\lambda X} \geq e^{\lambda a}\right) \leq e^{- \lambda a}\cdot \E\left[e^{\lambda X}\right]. 
+\Pr(X\geq a) = \Pr\left(\e^{\lambda X} \geq \e^{\lambda a}\right) \leq \e^{- \lambda a}\cdot \E\left[\e^{\lambda X}\right]. 
 \]
 注意到这个不等式应该对任意$\lambda > 0$ 成立，所以
 \[
-\Pr(X\geq a) \leq \inf_{\lambda >0} e^{- \lambda a}\cdot \E \left[e^{\lambda X}\right].
+\Pr(X\geq a) \leq \inf_{\lambda >0} \e^{- \lambda a}\cdot \E \left[\e^{\lambda X}\right].
 \]
 
 以上方法可以得到概率更精确的上界. 这样用指数进行推导的方法称为\emph{指数矩}\index{指数法}或\emph{Cramér-Chernoff方法}\index{Cramér-Chernoff方法}. 
@@ -395,14 +395,14 @@ X\geq a \iff \lambda X \geq \lambda a \iff e^{\lambda X} \geq e^{\lambda a}.
 \[
 \begin{aligned}
     \Pr\left(\sum_{i=1}^n a_i X_i \geq t\right) &= \Pr\left(\exp\left(\lambda \sum_{i=1}^n a_i X_i\right) \geq \exp\left(\lambda t\right)\right) \\
-    &\leq e^{-\lambda t} \E \left[\exp\left(\lambda \sum_{i=1}^n a_i X_i\right)\right]\\
-    &=  e^{-\lambda t}\prod_{i=1}^n \E\left[\exp\left(\lambda a_i X_i\right)\right].
+    &\leq \e^{-\lambda t} \E \left[\exp\left(\lambda \sum_{i=1}^n a_i X_i\right)\right]\\
+    &=  \e^{-\lambda t}\prod_{i=1}^n \E\left[\exp\left(\lambda a_i X_i\right)\right].
 \end{aligned}
 \]
 这个不等式对任意$\lambda > 0$都成立. 
 利用$X_1, \dots, X_n$服从对称Bernoulli分布，得到（习题）\lhysays{习题}
 \begin{equation}
-e^{-\lambda t}\prod_{i} \E\left[\exp\left(\lambda a_i X_i\right)\right]\leq\exp \left(-\lambda t + \frac{\lambda^2}{2} \sum_{i} a_i^2\right).\label{eq:exponential-moment}
+\e^{-\lambda t}\prod_{i} \E\left[\exp\left(\lambda a_i X_i\right)\right]\leq\exp \left(-\lambda t + \frac{\lambda^2}{2} \sum_{i} a_i^2\right).\label{eq:exponential-moment}
 \end{equation}
 由于这一不等式对任意$\lambda > 0$都成立，根据二次函数的性质，取$\lambda = t / \sum_i a_i^2$，可得
 \[
@@ -426,7 +426,7 @@ e^{-\lambda t}\prod_{i} \E\left[\exp\left(\lambda a_i X_i\right)\right]\leq\exp 
 \begin{theorem}[Chernoff 不等式]\label{thm:chernoff-inequality}\index{Chernoff不等式}
     设$X_1, \dots, X_n$是相互独立的随机变量，分别服从于参数为$p_1, \dots, p_n$的Bernoulli分布.  记$\sum_{i=1}^n X_i$的期望为$\mu = \sum_{i=1}^n p_i$，对于任意$t > \mu$，我们有
     \[
-        \Pr\left( \sum_{i=1}^n X_i \geq t\right) \leq e^{-\mu} \left(\frac{e\mu}{t}\right)^t.  
+        \Pr\left( \sum_{i=1}^n X_i \geq t\right) \leq \e^{-\mu} \left(\frac{\e\mu}{t}\right)^t.  
     \]
     这里$e$是自然对数的底数.
 \end{theorem}
@@ -435,28 +435,28 @@ e^{-\lambda t}\prod_{i} \E\left[\exp\left(\lambda a_i X_i\right)\right]\leq\exp 
 和证明Hoeffding 不等式的第一步相同，我们先利用指数矩，对任意$\lambda > 0$有
     \[
     \begin{aligned}
-        \Pr\left( \sum_{i=1}^n X_i \geq t\right) &\leq e^{-\lambda t}\prod_{i=1}^n \E\left[\exp (\lambda X_i)\right].
+        \Pr\left( \sum_{i=1}^n X_i \geq t\right) &\leq \e^{-\lambda t}\prod_{i=1}^n \E\left[\exp (\lambda X_i)\right].
     \end{aligned}
     \]
 然后，将$\prod_{i=1}^n\E[\exp (\lambda X_i)]$进一步放缩：
     \[
     \begin{aligned}
-        \prod_{i=1}^n \E \left[\exp (\lambda X_i)\right]&= \prod_{i=1}^n \left(e^\lambda p_i + (1 - p_i) \right) \\
-         &\leq \prod_{i=1}^n \exp\left((e^\lambda -1)p_i \right). \\
+        \prod_{i=1}^n \E \left[\exp (\lambda X_i)\right]&= \prod_{i=1}^n \left(\e^\lambda p_i + (1 - p_i) \right) \\
+         &\leq \prod_{i=1}^n \exp\left((\e^\lambda -1)p_i \right). \\
     \end{aligned}
     \]
 因此
     \[
     \begin{aligned}
-        \Pr\left( \sum_{i=1}^n X_i \geq t\right) &\leq e^{-\lambda t}\prod_{i=1}^n \exp\left((e^\lambda -1)p_i \right) \\
-        &= e^{-\lambda t} \exp\left((e^\lambda -1)\sum_{i=1}^n p_i \right)\\
-        &=\exp\left(\mu e^\lambda -t\lambda-\mu \right).
+        \Pr\left( \sum_{i=1}^n X_i \geq t\right) &\leq \e^{-\lambda t}\prod_{i=1}^n \exp\left((\e^\lambda -1)p_i \right) \\
+        &= \e^{-\lambda t} \exp\left((\e^\lambda -1)\sum_{i=1}^n p_i \right)\\
+        &=\exp\left(\mu \e^\lambda -t\lambda-\mu \right).
     \end{aligned}
     \]
 右边的最小值在$\lambda = \log (t/\mu)$取得，代入得到：
     \[
     \begin{aligned}
-        \Pr\left( \sum_{i=1}^n X_i \geq t\right) \leq e^{-\mu} \left(\frac{e\mu}{t}\right)^t.
+        \Pr\left( \sum_{i=1}^n X_i \geq t\right) \leq \e^{-\mu} \left(\frac{\e\mu}{t}\right)^t.
     \end{aligned}
     \]
 \end{proof}
@@ -516,29 +516,29 @@ J-L引理实际上在说，$\norm{Au}_2$偏离$1$的一定程度的概率是非�
 \begin{proof}
 $|\norm{u}_2^2 - 1| \geq \epsilon$发生有两种可能，$ \norm{u}_2^2 - 1 \geq \epsilon$和$ 1 - \norm{u}_2^2 \geq \epsilon$. 我们先来计算$ \norm{u}_2^2 - 1 \geq \epsilon$的概率，根据指数矩，
     \[
-    \Pr\left(\norm{u}_2^2 - 1 \geq \epsilon\right) \leq \inf_{\lambda > 0} \left\{e^{- \lambda (\epsilon + 1)} \E \left[e^{\lambda \norm{u}_2^2}\right]\right\}. 
+    \Pr\left(\norm{u}_2^2 - 1 \geq \epsilon\right) \leq \inf_{\lambda > 0} \left\{\e^{- \lambda (\epsilon + 1)} \E \left[\e^{\lambda \norm{u}_2^2}\right]\right\}. 
     \]
 因为$u$的各个分量是相互独立的，所以我们可以把$\norm{u}_2^2$展开
     \[
-    \E\left[e^{\lambda \norm{u}_2^2}\right] = \E\left[e^{\lambda \sum_i u_i^2}\right] = \E\left[\prod_i e^{\lambda u_i^2}\right] = \prod_i \E\left[e^{\lambda u_i^2}\right]. 
+    \E\left[\e^{\lambda \norm{u}_2^2}\right] = \E\left[\e^{\lambda \sum_i u_i^2}\right] = \E\left[\prod_i \e^{\lambda u_i^2}\right] = \prod_i \E\left[\e^{\lambda u_i^2}\right]. 
     \]
-可以算得$\E\left[e^{\lambda u_i^2}\right]= \sqrt{n/(n-2\lambda)}$（见习题\lhysays{出一下}），所以
+可以算得$\E\left[\e^{\lambda u_i^2}\right]= \sqrt{n/(n-2\lambda)}$（见习题\lhysays{出一下}），所以
     \[
-    \Pr\left(\norm{u}_2^2 - 1 \geq \epsilon\right) \leq \inf_{\lambda > 0} \left\{e^{- \lambda (\epsilon + 1)} \left(\frac{n}{n-2\lambda} \right)^{n/2}\right\}. 
+    \Pr\left(\norm{u}_2^2 - 1 \geq \epsilon\right) \leq \inf_{\lambda > 0} \left\{\e^{- \lambda (\epsilon + 1)} \left(\frac{n}{n-2\lambda} \right)^{n/2}\right\}. 
     \]
 可以验证最小值在$\lambda = n\epsilon/(2(1+\epsilon))$处取到，代入可得
     \[
-    \Pr\left(\norm{u}_2^2 - 1 \geq \epsilon\right) \leq e^{n(\log (1+\epsilon) - \epsilon)/2} \leq e^{-n\epsilon^2/8}. 
+    \Pr\left(\norm{u}_2^2 - 1 \geq \epsilon\right) \leq \e^{n(\log (1+\epsilon) - \epsilon)/2} \leq \e^{-n\epsilon^2/8}. 
     \]
 这里最后一个不等号使用了不等式$\log(1+\epsilon)\leq\epsilon-\epsilon^2/4$. 
 
 计算$1 - \norm{u}_2^2 \geq \epsilon$的概率的过程和$\norm{u}_2^2 - 1 \geq \epsilon$几乎完全相同的，可以得到
     \[
-    \Pr\left(1 - \norm{u}_2^2 \geq \epsilon\right) \leq e^{n(\log (1-\epsilon) + \epsilon)/2} \leq e^{-n\epsilon^2/8}. 
+    \Pr\left(1 - \norm{u}_2^2 \geq \epsilon\right) \leq \e^{n(\log (1-\epsilon) + \epsilon)/2} \leq \e^{-n\epsilon^2/8}. 
     \]
     \begin{align*}
         \Pr\left(| \norm{u}_2^2 - 1| \geq \epsilon\right) &\leq \Pr\left(\norm{u}_2^2 - 1 \geq \epsilon\right) + \Pr\left(1 - \norm{u}_2^2 \geq \epsilon\right) \\
-        &\leq 2e^{-n\epsilon^2/8}. 
+        &\leq 2\e^{-n\epsilon^2/8}. 
     \end{align*}
 \end{proof}
 
@@ -621,7 +621,7 @@ v(\text{男人}) - v(\text{女人}) \approx v(\text{国王}) - v(\text{女王}).
 
 假设这些查询和键的向量都处在$\R^d$中，那么注意力的计算公式为
 \[
-    a_j = \frac{e^{\inner{q}{k_j}}}{\sum_{j=1}^N e^{\inner{q}{k_j}}}.
+    a_j = \frac{\e^{\inner{q}{k_j}}}{\sum_{j=1}^N \e^{\inner{q}{k_j}}}.
 \]
 换言之，我们把相似性转化为了概率分布，相似度越高的键，被选中的概率越大. 我们把$d$成为\emph{注意力头大小}，在很多深度学习框架中，它被记为 \verb#head_size#.
 
@@ -629,7 +629,7 @@ v(\text{男人}) - v(\text{女人}) \approx v(\text{国王}) - v(\text{女王}).
 
 在简化的场景下，我们可以假设所有数据库里的$k_i:v_i$对都是一致的，只是查询$q_i$不同. 那么，多头注意力就是要计算
 \[
-    a_{ij} = \frac{e^{\inner{q_i}{k_j}}}{\sum_{j=1}^N e^{\inner{q_i}{k_j}}}.
+    a_{ij} = \frac{\e^{\inner{q_i}{k_j}}}{\sum_{j=1}^N \e^{\inner{q_i}{k_j}}}.
 \]
 
 类似\Cref{ex:word-vector-dimension} 的问题，如果真实世界中$a_{ij}$是$p_{ij}$，我们应该如何选择向量维数$d$才能保证$a_{ij}$能够足够好地逼近$p_{ij}$呢？这个问题和\Cref{ex:word-vector-dimension} 是一样的.

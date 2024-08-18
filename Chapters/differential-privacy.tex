@@ -67,7 +67,7 @@ Broky的例子告诉我们对于隐私的一种合理的衡量应该有以下性
 \begin{definition}[$\epsilon$-DP]\index{$\epsilon$-DP}
 考虑随机算法 $A : \mathcal X^n \to \mathcal Y$，如果对于任一对$1$-相邻数据集$x, x'$，对任意（可测）值集 $E \subseteq \mathcal Y$，有
 \[
-\Pr(A(x)\in E) \leq e^{\epsilon} \cdot \Pr(A(x')\in E),
+\Pr(A(x)\in E) \leq \e^{\epsilon} \cdot \Pr(A(x')\in E),
 \]
 那么我们称$A$为\emph{数据集大小为 $n$ 的 $\epsilon$-DP算法}.
 \end{definition}
@@ -80,7 +80,7 @@ Broky的例子告诉我们对于隐私的一种合理的衡量应该有以下性
 \begin{proposition}\label{prop:discrete-dp}
     如果 $A(x)$对于任意 $x \in \mathcal X^n$ 都是离散型随机变量，那么随机算法$A$是数据集大小为 $n$ 的 $\epsilon$-DP算法，当且仅当对于任意一对$1$-相邻数据集$x, x'$和所有的 $y \in \mathcal Y$，有
     \[
-    \Pr(A(x) = y) \leq e^{\epsilon} \cdot \Pr(A(x') = y).
+    \Pr(A(x) = y) \leq \e^{\epsilon} \cdot \Pr(A(x') = y).
     \]
 \end{proposition}
 \begin{proof}
@@ -88,11 +88,11 @@ $\implies$：取$E = \{y\}$即可证明.
 
 $\impliedby$：假设$E=\{y_1,\dots,y_k,\dots\}$. 对每一个$y_i$，都有
     \[
-    \Pr(A(x) = y_i) \leq e^{\epsilon} \cdot \Pr(A(x') = y_i).
+    \Pr(A(x) = y_i) \leq \e^{\epsilon} \cdot \Pr(A(x') = y_i).
     \]
 因为$A(\cdot)=y_i$对于不同的$i$是互斥事件，所以概率可以直接相加，于是：
     \[
-    \Pr(A(x) \in E) = \sum_i \Pr(A(x) = y_i) \leq e^{\epsilon} \cdot \sum_i\Pr(A(x') = y_i) = e^{\epsilon} \cdot \Pr(A(x') \in E).
+    \Pr(A(x) \in E) = \sum_i \Pr(A(x) = y_i) \leq \e^{\epsilon} \cdot \sum_i\Pr(A(x') = y_i) = \e^{\epsilon} \cdot \Pr(A(x') \in E).
     \]
 \end{proof}
 
@@ -100,16 +100,16 @@ $\impliedby$：假设$E=\{y_1,\dots,y_k,\dots\}$. 对每一个$y_i$，都有
 \begin{proposition}\label{prop:continuous-dp}
 如果 $A(x)$对于任意 $x \in \mathcal X^n$ 都是连续型随机变量，那么它存在概率密度函数，记为$h_{x}$. 此时随机算法$A$是数据集大小为 $n$ 的 $\epsilon$-DP算法，当且仅当对于任意一对$1$-相邻数据集$x, x'$和几乎所有的 $y \in \mathcal Y$，有
     \[
-    h_{x}(y) \leq e^{\epsilon} \cdot h_{x'}(y).
+    h_{x}(y) \leq \e^{\epsilon} \cdot h_{x'}(y).
     \]
 \end{proposition}
 \begin{proof}\footnote{这一部分的严格表述需要测度论的基础，所以这一证明从直观上理解即可，不需要考虑严格的定义. }
 $\implies$：根据概率密度函数的定义（实际上是Lebesgue微分定理），对$x\in\mathcal X^n$，取$E_\delta = (y-\delta, y+\delta)$，对几乎所有的$y\in\mathcal Y$，有
 \[\frac{\d}{\d\delta}\Pr(A(x)\in E_\delta)=h_x(y).\]
 因此，对几乎所有的$y\in\mathcal Y$，
-\[\forall\delta>0\,\Pr(A(x)\in E_\delta) \leq e^{\epsilon} \cdot \Pr(A(x')\in E_\delta)\implies h_x(y)\leq e^\epsilon\cdot h_{x'}(y).\]
+\[\forall\delta>0\,\Pr(A(x)\in E_\delta) \leq \e^{\epsilon} \cdot \Pr(A(x')\in E_\delta)\implies h_x(y)\leq \e^\epsilon\cdot h_{x'}(y).\]
 $\impliedby$：依然根据概率密度函数的定义，考虑$x,x'\in\mathcal X^n$，对任意可测$E\subseteq\mathcal Y$，有
-\[\Pr(A(x)\in E)=\int_E h_x(y)\d y\leq e^\epsilon\cdot\int_E h_{x'}(y)\d y=e^\epsilon\cdot\Pr(A(x')\in E).\]
+\[\Pr(A(x)\in E)=\int_E h_x(y)\d y\leq \e^\epsilon\cdot\int_E h_{x'}(y)\d y=\e^\epsilon\cdot\Pr(A(x')\in E).\]
 \end{proof}
 
 接下来我们给出差分隐私的基本性质. 
@@ -129,8 +129,8 @@ $\impliedby$：依然根据概率密度函数的定义，考虑$x,x'\in\mathcal 
     \[
     \begin{aligned}
         \Pr(A(x) = (y_1, y_2)) &= \Pr(A_1(x) = y_1) \cdot \Pr(A_2(y_1, x) = y_2)\\
-        &\leq e^{\epsilon_1} \Pr(A_1(x') = y_1) \cdot e^{\epsilon_2} \Pr(A_2(y_1, x') = y_2) \\
-        &= e^{\epsilon_1 + \epsilon_2} \cdot \Pr(A(x') = (y_1, y_2)).
+        &\leq \e^{\epsilon_1} \Pr(A_1(x') = y_1) \cdot \e^{\epsilon_2} \Pr(A_2(y_1, x') = y_2) \\
+        &= \e^{\epsilon_1 + \epsilon_2} \cdot \Pr(A(x') = (y_1, y_2)).
     \end{aligned}
     \]
 \end{proof}
@@ -158,8 +158,8 @@ $\impliedby$：依然根据概率密度函数的定义，考虑$x,x'\in\mathcal 
     \[
     \begin{aligned}
         \Pr(B(A(x)) = b) &= \sum_{y \in \mathcal Y} \Pr(A(x) = y) \Pr(B(y) = b) \\
-        &\leq e^{\epsilon} \sum_{y\in \mathcal Y}\Pr(A(x') = y)\Pr(B(y) = b)\\
-        &= e^{\epsilon}\Pr(B(A(x')) = b).
+        &\leq \e^{\epsilon} \sum_{y\in \mathcal Y}\Pr(A(x') = y)\Pr(B(y) = b)\\
+        &= \e^{\epsilon}\Pr(B(A(x')) = b).
     \end{aligned}
     \]
 \end{proof}
@@ -169,15 +169,15 @@ $\impliedby$：依然根据概率密度函数的定义，考虑$x,x'\in\mathcal 
 \begin{proposition}[群体隐私]\label{prop:group-privacy}\index{差分隐私!群体隐私}
     令 $x, x' \in \mathcal X^n$ 是$k$-相邻数据集，$1 \leq k \leq n$. 如果 $A$ 是 $\epsilon$-DP算法，那么对所有的值集$E$，我们有
     \[
-    \Pr(A(x) \in E) \leq e^{k\epsilon}\Pr(A(x') \in E).
+    \Pr(A(x) \in E) \leq \e^{k\epsilon}\Pr(A(x') \in E).
     \]
 \end{proposition}
 \begin{proof}
     考虑数据集 $x_0, x_1, \cdots , x_k$，其中 $x_0 = x$, $x_k = x'$，且 $x_i$ 和 $x_{i+1}$ 是$1$-相邻数据集，$i = 0, \cdots, k-1$. 那么
     \[
     \begin{aligned}
-    \Pr(A(x) \in E) &\leq e^{\epsilon}\Pr(A(x_1) \in E) \leq e^{2\epsilon}\Pr(A(x_2) \in E)\\
-    &\leq \cdots \leq e^{k\epsilon}\Pr(A(x') \in E).
+    \Pr(A(x) \in E) &\leq \e^{\epsilon}\Pr(A(x_1) \in E) \leq \e^{2\epsilon}\Pr(A(x_2) \in E)\\
+    &\leq \cdots \leq \e^{k\epsilon}\Pr(A(x') \in E).
     \end{aligned}
     \]
 \end{proof}
@@ -186,7 +186,7 @@ $\impliedby$：依然根据概率密度函数的定义，考虑$x,x'\in\mathcal 
 
 这一性质还可以推出$\epsilon$的含义. 我们知道数据集$x, x' \in \mathcal X^n$最多在$n$个位置不同. 所以对于一个$\epsilon$-DP算法$A$，一定有
         \[
-        \Pr(A(x) \in E) \leq e^{n\epsilon}\Pr(A(x') \in E).
+        \Pr(A(x) \in E) \leq \e^{n\epsilon}\Pr(A(x') \in E).
         \]
 如果这里的$\epsilon$太小，意味着这一算法对任何输入都有相似的输出. 换句话说，算法压根没有输出任何有意义的内容. 于是，我们更定量说明了，$\epsilon$还代表信息的泄露量. 因此，一个实用的DP算法不能让$\epsilon$太小，否则输出没有意义；也不能让$\epsilon$太大，否则隐私保护效果不好.
 
