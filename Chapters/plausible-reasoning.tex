@@ -634,7 +634,7 @@ $\Pr(Y|X) = (0.1 + 0.2) / (0.1 + 0.2 + 0.2 + 0) = 0.6 > 0.5$，然而，$\Pr(Y|X
     \begin{itemize}
         \item $\Pr(Y| Z\wedge X)>\Pr(Y|X)$.
         \item $\Pr(Y| Z \wedge \neg X)>\Pr(Y|\neg X)$.
-        \item 然而，$\Pr(Y|Z)\le \Pr(Y)$.
+        \item 然而，$\Pr(Y|Z)\leq \Pr(Y)$.
     \end{itemize}
 这样的现象和\emph{Simpson悖论}\index{Simpson悖论}有关. 
 
@@ -673,7 +673,7 @@ $$\Pr(Y) = \textcolor{TealBlue}{\Pr(Y|X)}\Pr(X) +\textcolor{TealBlue}{ \Pr(Y|\ne
         \item Linda是一名银行出纳员（记为 $B$）.
         \item Linda是一名银行出纳员，同时她还积极参加女权运动（记为 $B\wedge F$）.
     \end{enumerate}
-在调查实验中，多数被试选择了2. 但是，我们可以肯定 $\Pr(B \land F|E) \le \Pr(B|E)$. 如何理解这一现象？
+在调查实验中，多数被试选择了2. 但是，我们可以肯定 $\Pr(B \land F|E) \leq \Pr(B|E)$. 如何理解这一现象？
 
 为了理解这种谬误产生的原因，考虑\emph{合取原则}\index{合取原则}：如果$E$是$P\wedge Q$的“好论据”，那么$E$也是$P$的“好论据”，也就是说，如果我可以论证两件事同时成立，那么我也一定可以论证其中一件成立. 在演绎推理中，因为$E\to(P\wedge Q)\vdash E\to P$，所以合取原则成立. 
 

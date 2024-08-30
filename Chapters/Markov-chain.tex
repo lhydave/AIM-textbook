@@ -671,7 +671,7 @@ Bellman方程是\emph{\index{强化学习}强化学习}、经济学\emph{\index{
 镜像地，我们可以使用后向方程的思路，从前$k+1$步的结果推出前$k$步的结果. 同样可以列出递推方程. 定义$\beta_k(z):=\Pr(X_{k+1:t}=x_{k+1:t} | Z_k=z)$，我们有递推：
 \begin{itemize}
     \item 当$k = t$，$\beta_k(z) = 1$.
-    \item 当$1 \le k < t$，$\beta_{k}(z) = \sum_{z' \in \mathcal Z}T_{z,z'}M_{z',x_{k+1}}\beta_{k+1}(z')$.
+    \item 当$1 \leq k < t$，$\beta_{k}(z) = \sum_{z' \in \mathcal Z}T_{z,z'}M_{z',x_{k+1}}\beta_{k+1}(z')$.
 \end{itemize}
 于是，$\Pr(X=x) = \sum_{z\in \mathcal Z}\lambda(z)M_{z,x_1}\beta_1(z)$. 这一方法需要算的乘法次数是$\mathcal O(t|\mathcal Z|^2)$.
 

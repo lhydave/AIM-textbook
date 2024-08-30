@@ -224,7 +224,7 @@ AlphaGo使用模仿学习（人类专家对弈数据）、强化学习（自博�
         \item 每个局面具有自己的行动空间：$\mathcal A_p = \{\mathcal A_{p,1},\mathcal A_{p,2},\cdots, \mathcal A_{p,N}\}, (p=1,2)$.
         \item 每个行动空间有限：$|\mathcal A_{p,k}|=n_{p,k},(p=1,2;k=1,2,\cdots,N)$.
     \end{itemize}
-    \item 在局面$s_k$, 若玩家1选择第$i$个行动$a_{1,k,i}(1\le i\le n_{1,k})$，玩家2选择第$j$个行动$a_{2,k,j}(1\le j\le n_{2,k})$，则
+    \item 在局面$s_k$, 若玩家1选择第$i$个行动$a_{1,k,i}(1\leq i\leq n_{1,k})$，玩家2选择第$j$个行动$a_{2,k,j}(1\leq j\leq n_{2,k})$，则
     
     \begin{itemize}
         \item 局面之间有转移概率：
@@ -238,7 +238,7 @@ AlphaGo使用模仿学习（人类专家对弈数据）、强化学习（自博�
 
 随机博弈的过程如下. 首先，博弈从某一个局面状态$s^0$开始，$s^0\in C$. 在每个阶段$t$，所有玩家同时选择自己的动作$a^t$. 环境根据所有玩家的动作$\boldsymbol a^t$和状态$s^t$，给予每个玩家对应的收益$q(\boldsymbol a^t, s^t)$，并转移到新的状态$s^{t+1}\in C$. 
 
-假设在阶段$T$，所有玩家可以观察到所有历史动作$\{\boldsymbol a^t\}_{t\le T}$. 和一般的动态博弈一样，我们可以定义每个玩家的策略$\pi$——基于历史信息（状态、行动）到当前局面的行动的映射. 玩家在博弈的过程中，其实就是按照某个策略$\pi$进行行动的. 求解一个博弈也是求解最优策略$\pi_*$. 下面我们定义什么是``最优".
+假设在阶段$T$，所有玩家可以观察到所有历史动作$\{\boldsymbol a^t\}_{t\leq T}$. 和一般的动态博弈一样，我们可以定义每个玩家的策略$\pi$——基于历史信息（状态、行动）到当前局面的行动的映射. 玩家在博弈的过程中，其实就是按照某个策略$\pi$进行行动的. 求解一个博弈也是求解最优策略$\pi_*$. 下面我们定义什么是``最优".
 
 依赖历史信息的策略$\pi$一般很复杂. 由于收益只与当前局面、当前玩家的行动有关，我们可以缩小策略空间. 考虑第$p$个玩家($p=1,2$)，定义\emph{平稳策略}\index{平稳策略}为$N$个概率分布：$\vec \pi_p=(\pi_p^1,\pi_p^2,\cdots,\pi_p^N)$，分别对应$N$个状态；每个概率分布$\pi_p^k=(\pi_{p,1}^k,\pi_{p,2}^k,\cdots,\pi_{p,n_{p,k}}^k)$，分别对应$|n_{p,k}|$个行动. 使用平稳策略时，无论博弈的历史轨迹如何，玩家$p$在状态$s_k$采取行动$a_{p,k,i}$的概率为$\pi_{p,i}^k$.
 
@@ -281,12 +281,12 @@ $s_i$是玩家$i$的混合策略，$\Delta(\mathcal A_i)$表示玩家$i$所有�
 首先证明一个引理：
 \begin{lemma}\label{lemma:matrix}
     对任意$m\times n$的矩阵$B,C$，成立：
-    \[|\val(B)-\val(C)| \le \max_{i,j}|B_{ij} - C_{ij}|.\]
+    \[|\val(B)-\val(C)| \leq \max_{i,j}|B_{ij} - C_{ij}|.\]
 \end{lemma}
 
 \begin{proof}
     设$(s_1,s_2)$为矩阵博弈B的Nash均衡，$(\bar{s}_1,\bar{s}_2)$为矩阵博弈C的Nash均衡. 于是由定义有：$s_1^\T B\bar{s}_2  \ge s_1^\T  B s_2$，且$\bar{s}_1 ^\T  C\bar{s}_2 \ge s_1^\T  C \bar{s}_2 $，因此
-    \[s_1^\T  B s_2 - \bar{s}_1 ^\T  C\bar{s}_2  \le s_1^\T  B\bar{s}_2  - s_1^\T  C \bar{s}_2  \le \max_{i,j}|B_{ij} - C_{ij}|.\]
+    \[s_1^\T  B s_2 - \bar{s}_1 ^\T  C\bar{s}_2  \leq s_1^\T  B\bar{s}_2  - s_1^\T  C \bar{s}_2  \leq \max_{i,j}|B_{ij} - C_{ij}|.\]
 \end{proof}
 
 下面，我们将矩阵博弈的概念迁移到随机博弈. 在双人零和的语境下，我们去掉收益函数$Q$的下标$i$. 定义\emph{值迭代}为以下过程：
@@ -308,8 +308,8 @@ $s_i$是玩家$i$的混合策略，$\Delta(\mathcal A_i)$表示玩家$i$所有�
 为方便，我们定义迭代算子$(T\alpha)(s) = \val(R_s(\alpha))$.
         \begin{align*}
             \norm{T\alpha-T\alpha'}_\infty &= \max_{s\in C}|\val (R_s(\alpha)) - \val(R_s(\alpha'))| \\
-            &\le \gamma \max_{s\in C} \max_{a_1,a_2}|\sum_{s'\in C}P(s'|a_1,a_2,s)(\alpha(s') - \alpha'(s'))| \\
-            &\le \gamma \max_{s'\in C} |\alpha(s') - \alpha'(s')| \\
+            &\leq \gamma \max_{s\in C} \max_{a_1,a_2}|\sum_{s'\in C}P(s'|a_1,a_2,s)(\alpha(s') - \alpha'(s'))| \\
+            &\leq \gamma \max_{s'\in C} |\alpha(s') - \alpha'(s')| \\
             &= \gamma \norm{\alpha-\alpha'}_\infty.
         \end{align*}
 第一个不等式的成立使用了矩阵博弈值的不等式. 对于有折扣的博弈，$\gamma\in (0,1)$，因此$T$是一个压缩映射，由Banach不动点定理可知，$\alpha_k\to \alpha^*$满足$T\alpha^*=\alpha^*$.
