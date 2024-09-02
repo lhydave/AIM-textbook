@@ -51,7 +51,7 @@
         考虑向量空间$\R^n$，要成为度量空间，可以装备以下度量：
         \begin{itemize}
             \item Minkowski度量（$L^p$度量）：\index{度量!Minkowski～}\index{度量!$L^p$～}
-            \[d(x_1,x_2)=\left(\sum_{i=1}^n|x_1^i-x_2^i|^p\right)^{1/p}\ (p\ge 1).\] 
+            \[d(x_1,x_2)=\left(\sum_{i=1}^n|x_1^i-x_2^i|^p\right)^{1/p}\ (p\geq 1).\] 
             \item Manhattan度量（$L^1$度量）：\index{度量!Manhattan～}\index{度量!$L^1$～}
             \[d(x_1,x_2)=\sum_{i=1}^n|x_1^i-x_2^i|.\]
             \item Euclid度量（$L^2$度量）：\index{度量!Euclid～}\index{度量!$L^2$～}
@@ -342,7 +342,7 @@ Brouwer不动点定理可以通过该实际的例子来理解：将一张白纸�
 接下来，我们说明，如果Markov链不可约（也就是流动性很好），它会有一个平稳遍历分布（即所有状态都是正概率）. 这个结论由以下定理给出：
 
 \begin{theorem}[Perron-Frobenius定理]\index{Perron-Frobenius定理}\label{thm:perron-frobenius}
-    设$A=(a_{ij})$为$n\times n$不可约实矩阵，所有元素均非负，$a_{ij}\ge 0$，则下列结论成立.
+    设$A=(a_{ij})$为$n\times n$不可约实矩阵，所有元素均非负，$a_{ij}\geq 0$，则下列结论成立.
     \begin{itemize}
         \item 存在一个实特征值$r$，其他（左右）特征值$\lambda$的模均不超过$r$，即$|\lambda|\leq r$.
         \item 存在一个与$r$对应的左特征向量和右特征向量，其所有元素恒正.
@@ -359,7 +359,7 @@ Brouwer不动点定理可以通过该实际的例子来理解：将一张白纸�
     根据定义，$P$是非负实不可约方阵. 由Perron-Frobenius定理，$P$存在一个特征值$r$使得
     \[1=\min_i\sum_jP_{ij}\leq r\le\max_i\sum_j P_{ij}=1,\]
     即$r=1$，并且，它对应一个正的左特征向量
-    \[\pi_0\in \left\{x\in\R^n|x\ge 0,\sum_ix_i=1\right\}.\]
+    \[\pi_0\in \left\{x\in\R^n|x\geq 0,\sum_ix_i=1\right\}.\]
     因此，
     \[\pi_0 P = \pi_0.\]
     即$\pi_0$是平稳遍历分布. 
@@ -368,10 +368,10 @@ Brouwer不动点定理可以通过该实际的例子来理解：将一张白纸�
 接下来，我们证明\Cref{thm:perron-frobenius}.
 \begin{proof}[\Cref{thm:perron-frobenius} 的证明]
 首先证明$A$存在一个正的特征值$r>0$. 考虑单纯形
-\[S:=\left\{x\in\R^n|x\ge 0,\sum_i x_i=1\right\}.\]
-任意$x\in S$，有$Ax\ge 0$. 
+\[S:=\left\{x\in\R^n|x\geq 0,\sum_i x_i=1\right\}.\]
+任意$x\in S$，有$Ax\geq 0$. 
 
-我们断言$Ax>0$. 若不然，$A$存在某一列全$0$（由$x\ge 0$和$A$非负可得）. 此时可将该$0$列交换到第一列，对应的行也交换，得到的矩阵为分块上三角，与不可约性矛盾.
+我们断言$Ax>0$. 若不然，$A$存在某一列全$0$（由$x\geq 0$和$A$非负可得）. 此时可将该$0$列交换到第一列，对应的行也交换，得到的矩阵为分块上三角，与不可约性矛盾.
 
 可以在$S$上定义映射
 \[T(x) = \frac1{\rho(x)}Ax,\]
@@ -383,7 +383,7 @@ Brouwer不动点定理可以通过该实际的例子来理解：将一张白纸�
 
 令$r=\rho(x_0)$，则可得$r$为$A$的一个正的特征值.
 
-我们接下来证明，与$r$对应的右特征向量所有元素恒正. 由之前的证明，与$r$对应的特征向量$x_0\in S$，则$x_0\ge 0$. 我们证明$x_0>0$.
+我们接下来证明，与$r$对应的右特征向量所有元素恒正. 由之前的证明，与$r$对应的特征向量$x_0\in S$，则$x_0\geq 0$. 我们证明$x_0>0$.
 
 我们将$A$的行列进行交换，使得$Ax_0$非零的元素在上方. 具体来说，设$A = PBP^{-1}$，其中$P$是置换矩阵，则
 \[PBP^{-1}x_0=rx_0\implies B(P^{-1}x_0)=r(P^{-1}x_0).\]
@@ -435,7 +435,7 @@ Brouwer不动点定理可以通过该实际的例子来理解：将一张白纸�
 以这样的方式获得$\tilde A$: 将$A$的每一行都扩增（不减小某个元素），使得每一行都达到$\max_i\sum_j a_{ij}$. 此时$\max_i\sum_j a_{ij}$成为$A$的一个正特征值，且有右特征向量
 \[\tilde{x}_0=\frac 1n\cdot\mathbf{1}\in S.\] 
 
-由之前的证明，根据$0\leq A\leq \tilde A$，可以得到$\tilde A$的正特征值$\tilde r\ge r$. 因此
+由之前的证明，根据$0\leq A\leq \tilde A$，可以得到$\tilde A$的正特征值$\tilde r\geq r$. 因此
 \[r \leq \max_i\sum_j a_{ij}.\]
 同理缩小$A$可得
 \[\min_i\sum_j a_{ij}\leq r.\]

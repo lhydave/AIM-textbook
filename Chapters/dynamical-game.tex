@@ -285,7 +285,7 @@ $s_i$是玩家$i$的混合策略，$\Delta(\mathcal A_i)$表示玩家$i$所有�
 \end{lemma}
 
 \begin{proof}
-    设$(s_1,s_2)$为矩阵博弈B的Nash均衡，$(\bar{s}_1,\bar{s}_2)$为矩阵博弈C的Nash均衡. 于是由定义有：$s_1^\T B\bar{s}_2  \ge s_1^\T  B s_2$，且$\bar{s}_1 ^\T  C\bar{s}_2 \ge s_1^\T  C \bar{s}_2 $，因此
+    设$(s_1,s_2)$为矩阵博弈B的Nash均衡，$(\bar{s}_1,\bar{s}_2)$为矩阵博弈C的Nash均衡. 于是由定义有：$s_1^\T B\bar{s}_2  \geq s_1^\T  B s_2$，且$\bar{s}_1 ^\T  C\bar{s}_2 \geq s_1^\T  C \bar{s}_2 $，因此
     \[s_1^\T  B s_2 - \bar{s}_1 ^\T  C\bar{s}_2  \leq s_1^\T  B\bar{s}_2  - s_1^\T  C \bar{s}_2  \leq \max_{i,j}|B_{ij} - C_{ij}|.\]
 \end{proof}
 
@@ -328,11 +328,11 @@ $R_s(\alpha^*)$定义的矩阵博弈的最优策略$(\pi_1,\pi_2)$是随机博�
 固定玩家2的一个任意策略$\hat{\pi}_2$（不一定是平稳策略）. 首先考虑一个$k$阶段截断博弈，我们定义$\alpha_0=\alpha^*$，可理解为，原博弈前$k$步动作待定，后面使用策略取得$\alpha^*$的远期收益.
 
 在这个博弈中，玩家1可以无视玩家2的策略，确保至少取得$\alpha^*$的远期收益（已证明），因此若采用$\pi_1$也能取得:
-\[\E\left[\sum_{t=0}^{k-1}\gamma^tQ(\pi_1(s^t),\hat{\pi}_2(s^t);s^t)+\gamma^k\alpha^*(s^k)\middle|s^0=s\right]\ge \alpha^*(s).\]
+\[\E\left[\sum_{t=0}^{k-1}\gamma^tQ(\pi_1(s^t),\hat{\pi}_2(s^t);s^t)+\gamma^k\alpha^*(s^k)\middle|s^0=s\right]\geq \alpha^*(s).\]
 化简可得
-\[\E\left[\sum_{t=0}^{k-1}\gamma^tQ(\pi_1(s^t),\hat{\pi}_2(s^t);s^t)\middle|s^0=s\right]\ge \alpha^*(s)-\gamma^k\norm{\alpha^*}_\infty.\]
+\[\E\left[\sum_{t=0}^{k-1}\gamma^tQ(\pi_1(s^t),\hat{\pi}_2(s^t);s^t)\middle|s^0=s\right]\geq \alpha^*(s)-\gamma^k\norm{\alpha^*}_\infty.\]
 因此
-\[\Pi(\pi_1,\hat{\pi}_2;s)\ge \alpha^*(s) - \gamma^k\norm{\alpha^*}_\infty - \frac{\gamma^k}{1-\gamma}\sup|Q|.\]
+\[\Pi(\pi_1,\hat{\pi}_2;s)\geq \alpha^*(s) - \gamma^k\norm{\alpha^*}_\infty - \frac{\gamma^k}{1-\gamma}\sup|Q|.\]
 
 同样地，令$k\to\infty$可得，上式R.H.S.趋于$\alpha^*(s)$. 对于玩家2的$\pi_2$证明对称，因此$(s_1,s_2)$是一个MPE.
 \end{proof}
