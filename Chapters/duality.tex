@@ -694,10 +694,11 @@ x_1^2+x_2^2&=5.
 
         根据$\mathcal G^*$的定义，对任意$x$，
         \begin{align*}
-            (f(x),h(x)^\t,g(x)^\t)^\t\in\mathcal G^*&\implies f(x)+\alpha_u h(x)+\alpha_v g(x)\geq p^*\\
-            &\iff L(x,\alpha_u,\alpha_v)\geq p^*\\
-            &\implies \varphi(\alpha_u,\alpha_v)=\inf_{x} L(x,\alpha_u,\alpha_v)\geq p^*.
+            (f(x),h(x)^\t,g(x)^\t)^\t\in\mathcal G^*&\implies f(x)+\alpha_u^\t h(x)+\alpha_v^\t g(x)\geq p^*\\
+            &\iff L(x,\alpha_u,\alpha_v)\geq p^*.
         \end{align*}
+        因此，
+        \[\varphi(\alpha_u,\alpha_v)=\inf_{x} L(x,\alpha_u,\alpha_v)\geq p^*.\]
         取$\lambda^*=\alpha_u$和$\mu^*=\alpha_v$，
         \[d^*=\sup_{\lambda,\mu\geq 0} \varphi(\lambda,\mu)\geq \varphi(\lambda^*,\mu^*)\geq p^*.\]
         根据弱对偶定理，$d^*\leq p^*$，所以$d^*=p^*$.
