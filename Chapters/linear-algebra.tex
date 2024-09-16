@@ -2,12 +2,12 @@
 
 \section{线性空间}
 
-从动机上说，线性空间试图将$\R^n$或者$\C^n$这样的集合连同他们上面的代数结构抽象出来. 除此之外，函数和无穷数列的集合也是非常重要的对象，比如说$\R$上的连续函数组成的集合$C(\R)$，或者具有“模长”的无穷复数列（$\ell^2$空间）\index{$\ell^2$空间}：
+从动机上说，线性空间试图将$\R^n$或者$\C^n$这样的集合连同他们上面的代数结构抽象出来. 除此之外，函数和无穷数列的集合也是非常重要的对象，比如说$\R$上的连续函数组成的集合$C(\R)$，或者具有“模长”的无穷复数列（$\ell^2$空间）：
 \[\ell^2=\left\{(x_1,x_2,\cdots)\in\C^\infty:\sum_{i=1}^\infty x_i^2<\infty\right\}.\]
 
 我们将这些对象的共性抽象出来，得到线性空间的概念. 线性空间都是基于某个域定义的，我们先给出域的定义. 
 
-\begin{definition}[域]\index{域}
+\begin{definition}[域]
 一个\textbf{域}是一个集合$F$，其上定义了两种二元运算：加法$+$和乘法$\cdot$，他们都是$F\times F$到$F$的映射，满足下面的公理：
 \begin{enumerate}
     \item （结合律）对于任意的$a,b,c\in F$，有$(a+b)+c=a+(b+c)$和$(a\cdot b)\cdot c=a\cdot (b\cdot c)$；
@@ -22,7 +22,7 @@
 
 域的重要例子包括有理数域$\Q$，实数域$\R$和复数域$\C$，他们都是无限域. 我们将在后面的内容中使用这些域. 接下来，我们定义线性空间. 
 
-\begin{definition}[线性空间，向量空间]\index{线性空间}\index{向量空间}
+\begin{definition}[线性空间，向量空间]
 设$V$是一个集合，$F$是一个域. 如果在$V$上定义了两种运算：加法$+$和数乘$\cdot$，使得$V$满足下面的公理：
 \begin{enumerate}
     \item （$V$的结合律）对于任意的$x,y,z\in V$，有$(x+y)+z=x+(y+z)$；
@@ -34,7 +34,7 @@
     \item 对于任意的$a\in F$和$x,y\in V$，有$a\cdot(x+y)=a\cdot x+a\cdot y$；
     \item 对于任意的$a,b\in F$和$x\in V$，有$(a+b)\cdot x=a\cdot x+b\cdot x$. 
 \end{enumerate}
-则称$V$是一个\textbf{$F$-线性空间}，简称\textbf{线性空间}，也称\textbf{向量空间}. $V$中的元素被称为\textbf{向量}\index{向量}. 通常将数乘$a\cdot x$写作$ax$，并且乘法的优先级高于加法，即$a\cdot x+y=(a\cdot x)+y$. 
+则称$V$是一个\textbf{$F$-线性空间}，简称\textbf{线性空间}，也称\textbf{向量空间}. $V$中的元素被称为\textbf{向量}. 通常将数乘$a\cdot x$写作$ax$，并且乘法的优先级高于加法，即$a\cdot x+y=(a\cdot x)+y$. 
 \end{definition}
 
 “线性”一词的含义是指的$ax+by$这种形式的数学对象，线性代数就是研究这种对象的学科. 线性空间的典型例子包括：
@@ -43,7 +43,7 @@
     \item $M_{m\times n}(F)$，即所有$m\times n$矩阵组成的集合.
     \item $C(\R)$，即$\R$上的连续函数组成的集合.
     \item $C^k(\R)$，即$\R$上的$k$次连续可微函数组成的集合.
-    \item $\ell^2$空间\index{$\ell^2$空间}，即所有二次可和的复数序列组成的集合.
+    \item $\ell^2$空间，即所有二次可和的复数序列组成的集合.
 \end{itemize}
 
 如同所有其他的代数结构，线性空间也有各式各样构造新的线性空间的方法. 为了看出来线性空间本质的特性，我们有如下引理：
@@ -57,19 +57,19 @@
 
 我们给$ax+by$这样的对象一个正式的定义. 
 
-\begin{definition}[线性组合]\index{线性组合}
+\begin{definition}[线性组合]
 设$V$是$F$-线性空间，$x_1,\cdots,x_n\in V$，$a_1,\cdots,a_n\in F$，则称$a_1x_1+\cdots+a_nx_n$是$x_1,\cdots,x_n$的一个\textbf{线性组合}. 
 \end{definition}
 
 接下来，基于某些特定的线性空间，我们构造各种新的线性空间. 
 
-\begin{definition}[线性子空间]\index{线性子空间}
+\begin{definition}[线性子空间]
 设$V$是$F$-线性空间，$W$是$V$的一个子集. 如果$W$是一个线性空间，则称$W$是$V$的一个\textbf{线性子空间}. 
 \end{definition}
 
 例如，$\Q$是$\R$的一个线性子空间，但$\Z$不是$\R$的一个线性子空间. 再比如，当$k<l$，$C^k(\R)$是$C^l(\R)$的一个线性子空间. 
 
-\begin{definition}[乘积空间]\index{乘积空间}
+\begin{definition}[乘积空间]
 设$V_1,\cdots,V_n$是$F$-线性空间，则$V_1\times\cdots\times V_n$是一个$F$-线性空间，其中加法和数乘分别定义为
 \begin{align*}
     &(x_1,\cdots,x_n)+(y_1,\cdots,y_n)=(x_1+y_1,\cdots,x_n+y_n),\\
@@ -79,9 +79,9 @@
 
 例如，$\R^n$就是$n$个$\R$的乘积空间，$M_{m\times n}(F)$就是$m\times n$个$F$的乘积空间. 
 
-接下来，我们按照\emph{表示论}\index{表示论}的观点，引入基的概念. 线性空间是抽象的数学概念，因此我们需要一些具体的元素去表示这整个空间. 
+接下来，我们按照\emph{表示论}的观点，引入基的概念. 线性空间是抽象的数学概念，因此我们需要一些具体的元素去表示这整个空间. 
 
-\begin{definition}[生成集]\index{生成集}
+\begin{definition}[生成集]
 设$V$是$F$-线性空间，$S\subseteq V$，如果$V$中的每一个元素都是$S$的线性组合，则称$S$是$V$的一个\textbf{生成集}. 
 
 更一般地，任意一个$S\subseteq V$，我们可以定义 \textbf{$S$生成的线性子空间}为所有$S$的线性组合的集合，记为$\Span(S)$. 
@@ -89,13 +89,13 @@
 
 我们希望用尽可能少的元素来表示整个线性空间，为此，我们需要把“可表示”这样的概念严格化. 
 
-\begin{definition}[线性相关]\index{线性相关}
+\begin{definition}[线性相关]
 设$V$是$F$-线性空间，$S\subseteq V$，如果存在$x_1,\cdots,x_n\in S$，$a_1,\cdots,a_n\in F$，使得$a_1x_1+\cdots+a_nx_n=0$，且至少有一个$a_i\neq 0$，则称$S$是\textbf{线性相关}的，否则称$S$是\textbf{线性无关}的. 
 \end{definition}
 
 $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性组合表示出来，因而$S$中有一些冗余. 线性无关意味着$S$中的元素都是必要的，没有冗余. 由此，我们可以给出基的定义. 
 
-\begin{definition}[基]\index{基}
+\begin{definition}[基]
 设$V$是$F$-线性空间，$S\subseteq V$，如果$S$是线性无关的，并且$\Span(S)=V$，则称$S$是$V$的一个\textbf{基}. 
 \end{definition}
 
@@ -114,11 +114,11 @@ $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性�
     \item $M_{m\times n}(F)$的标准基是$\{E_{ij}:1\leq i\leq m,1\leq j\leq n\}$，其中$E_{ij}$是第$i$行第$j$列为$1$，其余元素为$0$的矩阵. 
 \end{itemize}
 
-特别注意，无穷维空间经常违背直觉. 例如，考虑$\ell^2$空间\index{$\ell^2$空间}和向量组$\{e_1,e_2,\cdots\}$，其中$e_i$是第$i$个分量为$1$，其余分量为$0$的实数列. 这个向量组看上去非常像一个基，然而并非如此！比如说，$(1/n)_{n=1}^\infty\in\ell^2$，但是它不能写成有限个$e_i$的线性组合. 实际上，$\ell^2$空间的基一定是不可数的. 
+特别注意，无穷维空间经常违背直觉. 例如，考虑$\ell^2$空间和向量组$\{e_1,e_2,\cdots\}$，其中$e_i$是第$i$个分量为$1$，其余分量为$0$的实数列. 这个向量组看上去非常像一个基，然而并非如此！比如说，$(1/n)_{n=1}^\infty\in\ell^2$，但是它不能写成有限个$e_i$的线性组合. 实际上，$\ell^2$空间的基一定是不可数的. 
 
 给定一个基，我们可以用基来表示线性空间中的元素，容易证明，这一表示是唯一的. 因此，我们可以把线性空间中的元素看成基的线性组合，因而有了下面的定义. 
 
-\begin{definition}[坐标]\index{坐标}
+\begin{definition}[坐标]
 设$V$是$F$-线性空间，$S$是$V$的一个基，$x\in V$，如果$x=\sum_{v\in S} a_v v$，则称$(a_v)_{v\in S}$是$x$在基$S$下的\textbf{坐标}. 
 \end{definition}
 
@@ -126,7 +126,7 @@ $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性�
 
 线性空间的基可以衡量线性空间的复杂程度，基元素越少，线性空间越简单. 我们可以定义维数来衡量线性空间的复杂程度. 
 
-\begin{definition}[维数]\index{维数}
+\begin{definition}[维数]
 设$V$是$F$-线性空间，如果$V$的一个基有限，则称$V$是\textbf{有限维}的，否则称$V$是\textbf{无限维}的. 有限维线性空间的基的元素个数称为$V$的\textbf{维数}，记为$\dim V$. 
 \end{definition}
 
@@ -136,17 +136,17 @@ $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性�
 
 线性空间可以按照维数递降进行分解，变成越来越简单的线性空间的组合. 这种组合称为\emph{直和}. 
 
-\begin{definition}[和空间与直和]\index{直和}\index{和空间}
+\begin{definition}[和空间与直和]
 设$V$是$F$-线性空间，$U_1,U_2\subseteq V$是$V$的子空间，定义他们的和空间为
 \[
     U_1+U_2=\{u_1+u_2:u_1\in U_1,u_2\in U_2\}.
 \]
-如果$U_1\cap U_2=\{0\}$，换句话说，$U_1$与$U_2$线性无关，则称$U_1+U_2$是\textbf{直和}，记为$U_1\oplus U_2$. 如果$V=U_1\oplus U_2$，则称$U_1$和$U_2$是$V$的\textbf{直和分解}\index{直和分解}. 
+如果$U_1\cap U_2=\{0\}$，换句话说，$U_1$与$U_2$线性无关，则称$U_1+U_2$是\textbf{直和}，记为$U_1\oplus U_2$. 如果$V=U_1\oplus U_2$，则称$U_1$和$U_2$是$V$的\textbf{直和分解}. 
 \end{definition}
 
 例如，$\R^3$可以分解为$\R^3=\R e_1\oplus \R e_2\oplus \R e_3$，其中$\R e_i=\{\alpha e_i:\alpha\in\R\}$是$\R^3$的一维子空间，它们的直和就是$\R^3$. 注意到这个分解将三维线性空间分解成了三个一维线性空间，这不是偶然的，一般地，我们有下面的定理. 
 
-\begin{theorem}[维数定理]\label{thm:dim-thm}\index{维数定理}
+\begin{theorem}[维数定理]\label{thm:dim-thm}
 设$V$是有限维$F$-线性空间，$V=U_1\oplus U_2$，则
 \[
     \dim V=\dim U_1+\dim U_2.
@@ -164,7 +164,7 @@ $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性�
 
 接下来我们研究线性空间之间的关系. 并不是所有的关系都是重要的，我们所关心的是保持线性空间代数结构的这种关系，这种关系称为\emph{线性映射}. 
 
-\begin{definition}[线性映射，线性算子，线性函数]\index{线性映射}\index{线性算子}\index{线性函数}\index{线性变换}
+\begin{definition}[线性映射，线性算子，线性函数]
 设$V$和$W$是$F$-线性空间，如果映射$f:V\to W$满足：
 \begin{enumerate}
     \item 对任意$x,y\in V$，$f(x+y)=f(x)+f(y)$；
@@ -176,7 +176,7 @@ $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性�
 一个更简洁但也更本质的定义是，线性映射是保持线性组合的映射. 
 
 \begin{example}
-一个平凡的例子是\emph{零映射}\index{零映射}：$f:V\to W$，$f(x)=0$，这显然是线性映射，我们通常记为$O$. 另一个平凡的例子是\emph{恒等映射}\index{恒等映射}：$f:V\to V$，$f(x)=x$，这也是线性映射，我们通常记为$\id$.
+一个平凡的例子是\emph{零映射}：$f:V\to W$，$f(x)=0$，这显然是线性映射，我们通常记为$O$. 另一个平凡的例子是\emph{恒等映射}：$f:V\to V$，$f(x)=x$，这也是线性映射，我们通常记为$\id$.
 \end{example}
 
 线性映射有如下基本性质：
@@ -204,11 +204,11 @@ $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性�
 
 下面我们考虑两个线性映射的例子. 
 
-\begin{example}[微分算子]\index{微分算子}
+\begin{example}[微分算子]
 考虑$C^\infty(\R)$，即任意次可微的实函数空间. 求导$\d/\d x:C^\infty(\R)\to C^\infty(\R)$被称为\textbf{微分算子}. 容易验证，$\d/\d x$是线性算子. 
 \end{example}
 
-\begin{example}[投影变换]\index{投影变换}
+\begin{example}[投影变换]
 这个例子实际上是海上升明月的一般化. 考虑$\R^n$，设$m\leq n$. 映射
 \[\pi_m:(x_1,\dots,x_n)\mapsto (x_1,\dots,x_m,0,\dots,0)\]
 称为$\R^n$的\textbf{投影变换}. 容易验证，$\pi_m$是线性算子. 此外，实际上，$\pi_m$也可以被看作是$\R^n$到$\R^m$的线性映射，将$(x_1,\dots,x_m,0,\dots,0)$后面的$0$都丢掉，这就是一个$\R^m$的元素. 
@@ -216,7 +216,7 @@ $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性�
 
 从投影变换的例子中，我们可以体会到线性空间的微妙之处：不同的线性空间可能有着完全相同的本质. 由$(x_1,\dots,x_m,0,\dots,0)$形成的空间实际上就是$\R^m$，只是我们用了$\R^n$的元素来表示它. 这里引申出来了代数中两个重要的概念：\emph{同态}与\emph{同构}. 
 
-\begin{definition}[同态与同构]\index{同态}\index{同构}
+\begin{definition}[同态与同构]
 设$V$和$W$是$F$-线性空间，如果映射$f:V\to W$满足：
 \begin{enumerate}
     \item 对任意$x,y\in V$，$f(x+y)=f(x)+f(y)$；
@@ -229,7 +229,7 @@ $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性�
 
 刚刚讨论的$\R^m$与$\R^n$的同构是具有一般性的，这就是有限维线性空间的同构定理：
 
-\begin{theorem}[有限维线性空间的同构定理]\label{thm:finite-dim-linear-space-isomorphism}\index{同构定理}
+\begin{theorem}[有限维线性空间的同构定理]\label{thm:finite-dim-linear-space-isomorphism}
 设$V$和$W$是有限维$F$-线性空间，则$V$与$W$同构当且仅当$\dim V=\dim W$. 
 \end{theorem}
 这一定理充分说明了，有限维线性空间中维数的意义：维数刻画了线性空间. 
@@ -264,7 +264,7 @@ $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性�
 
 接下来我们进一步研究线性映射所带来的结构. 我们刚刚说过，同态就是说把一些东西丢掉，剩下的东西可以被看成另一个空间的子空间. 丢掉的东西是和剩下的东西，就是线性映射的\emph{核}与\emph{像}. 
 
-\begin{definition}[核与像]\label{def:kernel-image}\index{核}\index{像}
+\begin{definition}[核与像]\label{def:kernel-image}
 设$V$和$W$是$F$-线性空间，$f:V\to W$是一个线性映射. $f$的\textbf{核}定义为$\ker f=\{x\in V:f(x)=0\}$，$f$的\textbf{像}定义为$\im f=\{f(x):x\in V\}$. 
 \end{definition}
 
@@ -292,7 +292,7 @@ $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性�
 这一推论给了我们判断一个线性映射是否是单射、满射或者同构的方法. 
 
 最后，我们引入线性映射的秩的概念：
-\begin{definition}[线性映射的秩]\index{秩}
+\begin{definition}[线性映射的秩]
 设$V$和$W$是$F$-线性空间，$f:V\to W$是一个线性映射. $f$的\textbf{秩}定义为$\rank f=\dim\im f$. 
 \end{definition}
 
@@ -322,7 +322,7 @@ a_{21}&a_{22}&\cdots&a_{2n}\\
 a_{m1}&a_{m2}&\cdots&a_{mn}
 \end{pmatrix}.\]
 
-此时$A$被称为\emph{矩阵}\index{矩阵}. $m=n$的矩阵被称为\emph{方阵}. $A_i=(a_{i1},\dots,a_{in})$被称为矩阵$A$的第$i$行，$A^j=\begin{pmatrix}a_{1j}\\\vdots\\a_{mj}\end{pmatrix}$被称为矩阵$A$的第$j$列. 他们分别被叫做\emph{行向量}与\emph{列向量}. 第$i$行第$j$列的元素，也就是$a_{ij}$，记为$A_{ij}$. 为了节约空间，列向量通常被写成转置的形式，即$(a_{1j},\dots,a_{mj})^\t$. 注意，坐标向量都被视作列向量. 
+此时$A$被称为\emph{矩阵}. $m=n$的矩阵被称为\emph{方阵}. $A_i=(a_{i1},\dots,a_{in})$被称为矩阵$A$的第$i$行，$A^j=\begin{pmatrix}a_{1j}\\\vdots\\a_{mj}\end{pmatrix}$被称为矩阵$A$的第$j$列. 他们分别被叫做\emph{行向量}与\emph{列向量}. 第$i$行第$j$列的元素，也就是$a_{ij}$，记为$A_{ij}$. 为了节约空间，列向量通常被写成转置的形式，即$(a_{1j},\dots,a_{mj})^\t$. 注意，坐标向量都被视作列向量. 
 
 假设在基$v_i$下$x\in V$的坐标是$X=(x_1,\dots,x_n)^\t$. 我们现在来计算$f(x)$在基$w_i$下的坐标$Y=(y_1,\dots,y_m)^\t$. 因为$x=x_1v_1+\cdots+x_nv_n$，所以
 \begin{align*}
@@ -346,7 +346,7 @@ a_{m1}&a_{m2}&\cdots&a_{mn}
 
 我们看一个平凡的例子. 考虑零映射$O:x\mapsto 0$. 不管在什么基下，$O$的矩阵都是全零矩阵，我们称为\emph{零矩阵}，依然使用符号$O$表示. 反过来，如果一个线性映射的矩阵是零矩阵，那么这个线性映射也是零映射. 
 
-我们再看一个的例子，这个例子说明利用矩阵如何给出不同基之下的坐标变换公式. 设$V$是一个$n$维线性空间，$f:V\to V$是一个线性算子. $V$的一组基是$\{v_1,\dots,v_n\}$，另一组基是$\{v_1',\dots,v_n'\}$. 定义一个$V$的自同构满足$f(v_i)=v_i'$. 假设$f$在基$\{v_i\}$下的矩阵是$A$，这被称为基$\{v_i\}$到基$\{v_i'\}$的\emph{过渡矩阵}\index{过渡矩阵}.
+我们再看一个的例子，这个例子说明利用矩阵如何给出不同基之下的坐标变换公式. 设$V$是一个$n$维线性空间，$f:V\to V$是一个线性算子. $V$的一组基是$\{v_1,\dots,v_n\}$，另一组基是$\{v_1',\dots,v_n'\}$. 定义一个$V$的自同构满足$f(v_i)=v_i'$. 假设$f$在基$\{v_i\}$下的矩阵是$A$，这被称为基$\{v_i\}$到基$\{v_i'\}$的\emph{过渡矩阵}.
 
 考虑一个点$x\in V$，它在基$\{v_i\}$下的坐标是$X=(x_1,\dots,x_n)^\t$，在基$\{v_i'\}$下的坐标是$X'=(x_1',\dots,x_n')^\t$. 我们来计算$x$在基$\{v_i'\}$下的坐标. 因为$f(x)=f(x_1v_1+\cdots+x_nv_n)=x_1f(v_1)+\cdots+x_nf(v_n)$，而
 \[f(v_i)=v_i'=\sum_{j=1}^n a_{ji}v_j,\]
@@ -373,7 +373,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 \end{align*}
 因此，$AB$的第$i$行第$j$列的元素是$a_{1i}b_{j1}+\cdots+a_{mi}b_{jm}$. 这就是矩阵乘法的定义. 当有多个相同矩阵相乘时，我们可以写成幂的形式. 比如，$A^2=AA$，$A^3=AAA$等等. 
 
-接下来，我们考虑同构对应的矩阵. 最简单的同构是恒等映射$\id:V\to V$，它的矩阵是\emph{单位矩阵}\index{单位矩阵} $I_n$. 容易看出，无论在什么基下，$I_n$都等于
+接下来，我们考虑同构对应的矩阵. 最简单的同构是恒等映射$\id:V\to V$，它的矩阵是\emph{单位矩阵} $I_n$. 容易看出，无论在什么基下，$I_n$都等于
 \[\begin{pmatrix}
 1&0&\cdots&0\\
 0&1&\cdots&0\\
@@ -390,19 +390,19 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 \vdots&\vdots&\ddots&\vdots\\
 0&0&\cdots&\lambda_n
 \end{pmatrix}.\]
-我们将这样的矩阵称为\emph{对角矩阵}\index{对角矩阵}. 
+我们将这样的矩阵称为\emph{对角矩阵}. 
 
 对于一般的同构映射$f:V\to W$，它有一个同构逆映射$f^{-1}:W\to V$. 假设$V$的基是$\{v_1,\dots,v_n\}$，$W$的基是$\{w_1,\dots,w_n\}$，那么$f$和$f^{-1}$的矩阵分别是$A$和$B$. 我们来计算$AB$和$BA$. 因为$f^{-1}f=\id$，所以$AB=I_n$. 同理，$BA=I_n$. $B$可以被看成$A$的逆元，我们记作$B=A^{-1}$. 这就是矩阵的\emph{逆}的定义. 
 
 接下来，我们引入矩阵\emph{转置}的概念. 
 
-\begin{definition}[矩阵转置]\index{转置}
-    设$A=(a_{ij})$是一个$m\times n$矩阵，我们定义$A$的\textbf{转置}\index{转置}为一个$n\times m$矩阵$A^\t=(a_{ji})$.
+\begin{definition}[矩阵转置]
+    设$A=(a_{ij})$是一个$m\times n$矩阵，我们定义$A$的\textbf{转置}为一个$n\times m$矩阵$A^\t=(a_{ji})$.
 \end{definition}
 
 实矩阵的转置在线性映射中对应的是对偶空间的对偶映射，这里我们不展开讨论了. 
 
-对于满足$A^\t=A$的矩阵，我们称之为\textbf{对称矩阵}\index{对称矩阵}. 对于满足$A^\t=-A$的矩阵，我们称之为\textbf{反对称矩阵}\index{反对称矩阵}. 
+对于满足$A^\t=A$的矩阵，我们称之为\textbf{对称矩阵}. 对于满足$A^\t=-A$的矩阵，我们称之为\textbf{反对称矩阵}. 
 
 现在，矩阵作为一个代数结构所需要的要素都已经给出了. 我们来看看矩阵的一些基本性质. 这些性质大多是从线性映射继承过来的（\Cref{prop:linear-map-basic}），我们在此略去证明. 
 
@@ -444,7 +444,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
     设$V$是$F$-线性空间，$f:V\to V$是一个线性算子，$\{v_1,\dots,v_n\}$和$\{w_1,\dots,w_n\}$是$V$的两个基. 假设$A$和$A'$分别是$f$在这两个基下的矩阵，$B$是从$\{v_1,\dots,v_n\}$到$\{w_1,\dots,w_n\}$的过渡矩阵，那么$A'=B^{-1}AB$. 
 \end{theorem}
 
-矩阵$A$和$A'$通过可逆矩阵$B$联系了起来：$A'=B^{-1}AB$，行如这样的矩阵关系被称为\emph{相似}\index{相似}，记作$A\sim A'$. 容易验证，相似是一个等价关系，也就是说：
+矩阵$A$和$A'$通过可逆矩阵$B$联系了起来：$A'=B^{-1}AB$，行如这样的矩阵关系被称为\emph{相似}，记作$A\sim A'$. 容易验证，相似是一个等价关系，也就是说：
 \begin{itemize}
     \item $A\sim A$；
     \item 如果$A\sim A'$，那么$A'\sim A$；
@@ -455,14 +455,14 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 
 最后，我们讨论矩阵的秩. 同样，这一定义来自线性映射的秩：
 
-\begin{definition}[矩阵的秩，行空间，列空间]\index{秩}\index{行空间}\index{列空间}
+\begin{definition}[矩阵的秩，行空间，列空间]
 设$A$是一个$m\times n$矩阵，$f_A:F^n\to F^m$是它诱导的线性映射.
 \begin{itemize}
-    \item 定义$A$的\textbf{秩}\index{秩}为$f_A$的秩，记为$\rank A$.
-    \item $A$的$m$个行向量生成了一个线性空间，称为矩阵$A$的\textbf{行空间}\index{行空间}；类似地，所有的列向量生成了一个线性空间，称为矩阵$A$的\textbf{列空间}\index{列空间}.
-    \item 行空间的维数称为矩阵$A$的\textbf{行秩}\index{行秩}，列空间的维数称为矩阵$A$的\textbf{列秩}\index{列秩}.
-    \item 如果行秩等于$m$，即行空间的一组基就是所有行向量，那么我们称$A$是\textbf{行满秩}\index{行满秩}的；如果列秩等于$n$，即列空间的一组基就是所有列向量，那么我们称$A$是\textbf{列满秩}\index{列满秩}的.
-    \item  对于方阵来说，如果它同时是行满秩的和列满秩的，那么我们称它是\textbf{满秩}\index{满秩}的. 
+    \item 定义$A$的\textbf{秩}为$f_A$的秩，记为$\rank A$.
+    \item $A$的$m$个行向量生成了一个线性空间，称为矩阵$A$的\textbf{行空间}；类似地，所有的列向量生成了一个线性空间，称为矩阵$A$的\textbf{列空间}.
+    \item 行空间的维数称为矩阵$A$的\textbf{行秩}，列空间的维数称为矩阵$A$的\textbf{列秩}.
+    \item 如果行秩等于$m$，即行空间的一组基就是所有行向量，那么我们称$A$是\textbf{行满秩}的；如果列秩等于$n$，即列空间的一组基就是所有列向量，那么我们称$A$是\textbf{列满秩}的.
+    \item  对于方阵来说，如果它同时是行满秩的和列满秩的，那么我们称它是\textbf{满秩}的. 
 \end{itemize}
 \end{definition}
 
@@ -486,7 +486,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 
 本节考虑线性函数的一种推广，即\emph{双线性函数}. 它是两个变量的函数，而且每个变量都是线性的. 这种函数在几何上有很多应用，比如内积. 我们先来给出它的定义. 
 
-\begin{definition}[双线性型]\label{def:bilinear-form}\index{双线性型}
+\begin{definition}[双线性型]\label{def:bilinear-form}
     设$V$是一个$F$-线性空间，如果$V$上有一个映射$f:V\times V\to F$，满足
     \begin{enumerate}
         \item 对于任意的$v\in V$，$f(v,\cdot):V\to F$是一个线性映射；
@@ -518,24 +518,24 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 \]
 由于$x,y$是任意的，$X,Y$也是任意的，联立上面两式，$A'=A^\t P A$，这就是基变换公式. 对应到矩阵中，这被称为\emph{合同变换}. 
 
-\begin{definition}[合同矩阵]\label{def:congruent-matrix}\index{合同矩阵}
+\begin{definition}[合同矩阵]\label{def:congruent-matrix}
     设$A,B$都是$n$阶方阵，如果存在一个可逆方阵$P$，使得$B=P^\t A P$，那么称$A$和$B$是\textbf{合同的}. 
 \end{definition}
 
 容易验证，合同关系是一个等价关系，这与相似关系是类似的. 根据\Cref{prop:rank-multiplication}，可逆矩阵相乘不改变矩阵的秩，所以合同矩阵的秩是相同的. 于是，双线性型的任意矩阵表示都有相同的秩，我们因此可以定义双线性型的秩：
 
-\begin{definition}[双线性型的秩]\label{def:bilinear-form-rank}\index{秩}
+\begin{definition}[双线性型的秩]\label{def:bilinear-form-rank}
     设$f$是$V$上的一个双线性型，如果$f$在某个基下的矩阵的秩是$r$，那么称$f$的\textbf{秩}是$r$.
 \end{definition}
 
 接下来，我们考虑一种特殊的双线性型：对称双线性型，即$f(x,y)=f(y,x)$对任意$x,y\in V$成立. 注意到，对称双线性型对应的矩阵是对称矩阵. 我们现在令$x=y$，定义$q(x)=f(x,x)$，那么$q$是一个实值函数，这样的函数便是\emph{二次型}. 
 
-\begin{definition}[二次型]\label{def:quadratic-form}\index{二次型}
+\begin{definition}[二次型]\label{def:quadratic-form}
     设$V$是数域$F$上的线性空间，$f$是$V$上的一个对称双线性型，那么定义$q:V\to F$为$q(x)=f(x,x)$，称$q$是$f$诱导的\textbf{二次型}. 
 \end{definition}
 
 自然，秩的概念也可以被迁移到二次型上：
-\begin{definition}[二次型的秩]\label{def:quadratic-form-rank}\index{秩}
+\begin{definition}[二次型的秩]\label{def:quadratic-form-rank}
 设$q$是$V$上的一个二次型，如果定义$q$的\textbf{秩}为诱导它的双线性型$f$的秩. 
 \end{definition}
 
@@ -549,7 +549,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 \]
 这是一个关于$x_i$的二次函数. 通常来说，我们希望化简这一表示，如果能写成$\sum_{i=1}^n a_{ii}x_i^2$的形式，那么计算都会变得非常容易. 此时，二次型$q$的矩阵是对角矩阵. 
 
-\begin{definition}[规范型]\label{def:canonical-form}\index{规范型}\index{规范基}
+\begin{definition}[规范型]\label{def:canonical-form}
     设$V$是数域$F$上的线性空间，$q$是$V$上的一个二次型，如果存在一组基，使得$q$在这组基下的矩阵是对角矩阵，那么称这个对角矩阵是$q$的\textbf{规范型}，这组基是\textbf{规范基}. 
 \end{definition}
 
@@ -575,7 +575,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 
 在实数域上，这一定理还可以被加强：
 
-\begin{theorem}[惯性定理]\label{thm:inertia-theorem}\index{惯性定理}
+\begin{theorem}[惯性定理]\label{thm:inertia-theorem}
     设$V$是$\R$上的$n$维线性空间，$q$是$V$上的一个二次型，那么$q$存在形如
     \[
         q(x)=\sum_{i=1}^r \lambda_i x_i^2
@@ -587,7 +587,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 
 惯性定理给出了几类特殊的二次型：
 
-\begin{definition}[正定，半正定，负定，半负定]\label{def:positive-definite}\index{正定}\index{半正定}\index{负定}\index{半负定}
+\begin{definition}[正定，半正定，负定，半负定]\label{def:positive-definite}
     设$V$是$\R$上的$n$维线性空间，$q$是$V$上的一个二次型. 
     \begin{itemize}
         \item 如果$q$的规范型是
@@ -640,19 +640,19 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 内积的考虑是从几何中来的. 一个典型的例子是平面欧氏几何. 我们知道，笛卡尔的平面解析几何等价于平面欧氏几何. 建立坐标系的过程实际上就是选定了一个基，而坐标就是基的坐标. 在这个基下，平面上的点可以用坐标表示. 然而，并不是所有的坐标轴都是好计算的，我们考虑的是互相垂直的坐标轴，此时，平面上点的坐标就完全可以用投影来表示了. 计算投影的过程实际上就是内积的过程. 将平面解析几何的内积定义一般化，我们就得到了线性空间的内积. 
 
 
-\begin{definition}[内积]\index{内积}
-设$V$是一个实线性空间，如果$V$上有一个对称双线性型$\inner{\cdot}{\cdot}:V\times V\to F$，它诱导的二次型是正定的，那么称$\inner{\cdot}{\cdot}$是$V$上的一个\textbf{内积}\index{内积}，称$V$是一个\textbf{内积空间}\index{内积空间}. 
+\begin{definition}[内积]
+设$V$是一个实线性空间，如果$V$上有一个对称双线性型$\inner{\cdot}{\cdot}:V\times V\to F$，它诱导的二次型是正定的，那么称$\inner{\cdot}{\cdot}$是$V$上的一个\textbf{内积}，称$V$是一个\textbf{内积空间}. 
 \end{definition}
 
 注意，讨论内积的时候，我们只考虑实线性空间，这是因为实数可以比大小，并且不会像有理数那样对根号不封闭，所以可以定义模长. 自然，$\R^n$是内积空间，因为我们可以定义$\inner{x}{y}=\sum_{i=1}^n x_iy_i$. 
 
 利用内积，我们可以定义模长. 
 
-\begin{definition}[模]\index{模}\index{范数}
+\begin{definition}[模]
 设$V$是一个内积空间，$v\in V$，定义$v$的\textbf{模}或内积诱导的\textbf{范数}为$\norm{v}=\sqrt{\inner{v}{v}}$.
 \end{definition}
 
-容易证明，向量的模等于零当且仅当它是零向量，此外，对任意的$v\in V$和$\lambda\in\R$，有$\norm{\lambda v}=|\lambda|\norm{v}$. 模长为$1$的向量称为\textbf{单位向量}\index{单位向量}.
+容易证明，向量的模等于零当且仅当它是零向量，此外，对任意的$v\in V$和$\lambda\in\R$，有$\norm{\lambda v}=|\lambda|\norm{v}$. 模长为$1$的向量称为\textbf{单位向量}.
 
 反过来，内积诱导的范数也可以表示内积：
 
@@ -662,23 +662,23 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 
 利用内积，我们可以推广平面几何中的各种概念. 首先是垂直的概念. 
 
-\begin{definition}[正交]\index{正交}
-设$V$是一个内积空间，$v,w\in V$，如果$\inner{v}{w}=0$，那么称$v$与$w$\textbf{正交}\index{正交}，记作$v\perp w$.
+\begin{definition}[正交]
+设$V$是一个内积空间，$v,w\in V$，如果$\inner{v}{w}=0$，那么称$v$与$w$\textbf{正交}，记作$v\perp w$.
 \end{definition}
 
 对于一般情况，两个向量会有夹角的概念，我们可以利用内积来定义. 
 
-\begin{definition}[夹角]\index{夹角}
+\begin{definition}[夹角]
 设$V$是一个内积空间，$v,w\in V$，如果$\theta\in[0,\pi]$满足
 \[
     \cos\theta=\frac{\inner{v}{w}}{\norm{v}\norm{w}},
 \]
-那么称$\theta$是$v$与$w$的\textbf{夹角}\index{夹角}. 
+那么称$\theta$是$v$与$w$的\textbf{夹角}. 
 \end{definition}
 
 夹角对任意非零向量都可以定义，这是因为内积有Cauchy不等式：
 
-\begin{theorem}[Cauchy不等式]\label{thm:cauchy}\index{Cauchy不等式}
+\begin{theorem}[Cauchy不等式]\label{thm:cauchy}
 设$V$是一个内积空间，$v,w\in V$，那么有
 \[
     |\inner{v}{w}|\leq \norm{v}\norm{w}.
@@ -697,7 +697,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 \end{proof}
 
 利用Cauchy不等式，我们可以证明模长满足三角不等式：
-\begin{theorem}[三角不等式]\label{thm:triangle}\index{三角不等式}
+\begin{theorem}[三角不等式]\label{thm:triangle}
 设$V$是一个内积空间，$v,w\in V$，那么有
 \[
     \norm{v+w}\leq \norm{v}+\norm{w}.
@@ -714,12 +714,12 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 \end{align*}
 \end{proof}
 
-利用以上性质，容易验证，模实际上给了$V$一个\emph{范数}\index{范数}. 关于范数的详细讨论，见\Cref{subsec:metric-norm}. 对于一般的范数，我们无法像 \eqref{eq:inner} 一样去定义内积，所以内积有它独特的性质. 
+利用以上性质，容易验证，模实际上给了$V$一个\emph{范数}. 关于范数的详细讨论，见\Cref{subsec:metric-norm}. 对于一般的范数，我们无法像 \eqref{eq:inner} 一样去定义内积，所以内积有它独特的性质. 
 
 内积还给出了\emph{投影}的概念：
 
-\begin{definition}[投影]\index{投影}
-设$V$是一个内积空间，$v,w\in V$，如果$\lambda\in\R$满足$\inner{v-\lambda w}{w}=0$，那么称$\lambda w$是$v$在$w$上的\textbf{投影}\index{投影}，其中$\lambda=\inner{v}{w}/\norm{w}^2$.
+\begin{definition}[投影]
+设$V$是一个内积空间，$v,w\in V$，如果$\lambda\in\R$满足$\inner{v-\lambda w}{w}=0$，那么称$\lambda w$是$v$在$w$上的\textbf{投影}，其中$\lambda=\inner{v}{w}/\norm{w}^2$.
 \end{definition}
 
 接下来，我们继续表示论的观点，讨论内积空间中的基与坐标. 首先是正交与线性无关的关系. 
@@ -735,9 +735,9 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 因为$v_j\neq 0$，所以$\lambda_j=0$，这就证明了线性无关性. 
 \end{proof}
 
-两两正交的基被称为\textbf{正交基}\index{正交基}，如果正交基的每个向量都是单位向量，那么称为\textbf{标准正交基}\index{标准正交基}. 在内积空间中，基存在性定理（\Cref{thm:existence-of-basis}）可以被加强为标准正交基存在性定理：
+两两正交的基被称为\textbf{正交基}，如果正交基的每个向量都是单位向量，那么称为\textbf{标准正交基}. 在内积空间中，基存在性定理（\Cref{thm:existence-of-basis}）可以被加强为标准正交基存在性定理：
 
-\begin{theorem}[标准正交基存在性定理]\label{thm:orthogonal-basis}\index{标准正交基存在性定理}
+\begin{theorem}[标准正交基存在性定理]\label{thm:orthogonal-basis}
 设$V$是一个有限维内积空间，那么$V$中存在一个标准正交基. 
 \end{theorem}
 
@@ -750,7 +750,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 \[
     v=\sum_{i=1}^n\inner{v}{e_i}e_i.
 \]
-另外，成立勾股定理\index{勾股定理}：
+另外，成立勾股定理：
 \[
     \norm{v}^2=\sum_{i=1}^n\inner{v}{e_i}^2.
 \]
@@ -767,7 +767,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 
 综上，我们可以用一个向量的内积来表示线性函数：
 
-\begin{theorem}[Riesz表示定理]\label{thm:riesz}\index{Riesz表示定理}
+\begin{theorem}[Riesz表示定理]\label{thm:riesz}
 设$V$是一个内积空间，$f$是$V$上的一个线性函数，那么存在唯一的向量$u\in V$，使得$f(v)=\inner{u}{v}$对任意的$v\in V$成立.
 \end{theorem}
 
@@ -775,7 +775,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 
 此外，利用标准正交基，内积空间中一组向量的线性无关性也可以用内积来判断，这就是\emph{Gram矩阵}. 
 
-\begin{definition}[Gram矩阵]\label{def:gram-matrix}\index{Gram矩阵}
+\begin{definition}[Gram矩阵]\label{def:gram-matrix}
 给定内积空间$V$的一组向量$v_1,\dots,v_k$，定义他们的\textbf{Gram矩阵}为$G=(\inner{v_i}{v_j})_{k\times k}$. 
 \end{definition}
 
@@ -824,8 +824,8 @@ Gram矩阵的基本性质是：
 
 内积空间中，直和分解也可以被加强. 为此，我们先引入正交补的概念. 
 
-\begin{definition}[正交补]\label{def:orthogonal-complement}\index{正交补}
-设$V$是一个内积空间，$W\subseteq V$，那么$W$的\textbf{正交补}\index{正交补}是
+\begin{definition}[正交补]\label{def:orthogonal-complement}
+设$V$是一个内积空间，$W\subseteq V$，那么$W$的\textbf{正交补}是
 \[
     W^\bot=\{v\in V:\forall w\in W,\inner{v}{w}=0\}.
 \]
@@ -855,7 +855,7 @@ Gram矩阵的基本性质是：
 当$i=j$，上式就是$\sum_{k=1}^na_{ki}^2=1$，当$i\neq j$，上式就是$\sum_{k=1}^na_{ki}a_{kj}=0$. 这就证明了$AA^\t=I_n$. 同理可证$A^\t A=I_n$.
 \end{proof}
 
-我们将满足$A^\t A=AA^\t=I_n$的矩阵称为\textbf{正交矩阵}\index{正交矩阵}，它的逆矩阵就是它的转置矩阵. 
+我们将满足$A^\t A=AA^\t=I_n$的矩阵称为\textbf{正交矩阵}，它的逆矩阵就是它的转置矩阵. 
 
 正交矩阵有很多等价的刻画：
 
@@ -889,8 +889,8 @@ Gram矩阵的基本性质是：
 
 接下来，我们讨论内积空间的同构. 
 
-\begin{definition}[等距映射与等距同构]\label{def:isometry}\index{等距映射}\index{等距同构}
-设$V$和$W$都是内积空间，$T:V\to W$是一个线性映射，如果对任意的$v_1,v_2\in V$，都有$\inner{Tv_1}{Tv_2}=\inner{v_1}{v_2}$，那么称$T$是一个\textbf{等距映射}\index{等距映射}. 如果$T$是一个双射，那么称$T$是一个\textbf{等距同构}\index{等距同构}.
+\begin{definition}[等距映射与等距同构]\label{def:isometry}
+设$V$和$W$都是内积空间，$T:V\to W$是一个线性映射，如果对任意的$v_1,v_2\in V$，都有$\inner{Tv_1}{Tv_2}=\inner{v_1}{v_2}$，那么称$T$是一个\textbf{等距映射}. 如果$T$是一个双射，那么称$T$是一个\textbf{等距同构}.
 \end{definition}
 
 内积空间的同构是线性空间同构的加强版，因为它还要求保持内积.
@@ -948,7 +948,7 @@ Gram矩阵的基本性质是：
 
 对于一般情况，向量$A^1,\cdots,A^n$和$\R^n$的标准正交基$e_1,\cdots,e_n$之间同定向时$\Pi(A)$的体积是正的，否则就是负的. 这样，我们就定义了有向体积. 我们指出，行列式的定义恰好就给出了有向体积的计算公式. 下面我们给出行列式的定义. 
 
-\begin{definition}[行列式]\index{行列式}
+\begin{definition}[行列式]
     设$A$是一个$n$阶方阵，$A$的行列式$\det A$归纳定义为
 \begin{enumerate}
     \item $n=1$时，$\det A=A_{11}$；
@@ -974,7 +974,7 @@ Gram矩阵的基本性质是：
 \[\det A'=\det(B^{-1}AB)=(\det B^{-1})(\det A)(\det B)=(\det B^{-1})(\det B)(\det A)=\det A.\]
 因而行列式也是刻画线性算子的一个不变量. 
 
-\begin{definition}[线性算子的行列式]\index{行列式}
+\begin{definition}[线性算子的行列式]
 设$V$是一个$n$维内积空间，$f$是$V$上的一个线性算子，$A$是$f$在$V$的一个基下的矩阵，则$f$\textbf{的行列式}$\det f$定义为$\det A$.
 \end{definition}
 
@@ -1006,7 +1006,7 @@ Gram矩阵的基本性质是：
 \end{align*}
 这里$C=\max_{k}\sum_{i=1}^n|a_{ik}|^2$，这说明，对给定的算子$f$，我们可以找到一个常数$C$使得$\norm{f(x)}\leq C\norm{x}$对任意的$x\in V$都成立，因此，我们可以定义算子$f$的范数为最小的这样的常数$C$. 
 
-\begin{definition}[算子范数]\index{范数!算子～}
+\begin{definition}[算子范数]
     设$V$是一个$n$维内积空间，$f$是$V$上的一个线性算子，那么$f$的范数定义为
     \[\norm{f}=\inf\left\{C\geq 0:\norm{f(x)}\leq C\norm{x},\forall x\in V\right\}.\]
 或者等价地，
@@ -1025,7 +1025,7 @@ Gram矩阵的基本性质是：
 
 需要注意的是，我们这里定义的算子范数是非常受限的一个定义：我们只考虑了有限维内积空间，由内积诱导的范数定义的算子范数. 一般地，任意两个线性赋范空间之间的线性映射都可以定义范数：
 
-\begin{definition}[线性映射的范数]\index{范数!线性映射的～}
+\begin{definition}[线性映射的范数]
     设$V,W$是两个线性赋范空间，$f$是$V$到$W$的一个线性映射，如果
     \[\norm{f}=\sup_{\norm{x}=1}\norm{f(x)}\]
     不是无穷大，那么称$f$是\textbf{有界}的，$\norm{f}$是$f$的\textbf{算子范数}. 
@@ -1034,7 +1034,7 @@ Gram矩阵的基本性质是：
 如果线性映射的定义域是有限维空间，那么范数一定存在. 无限维内积空间中算子范数不一定存在，所以我们接下来的讨论都默认有限维线性空间. 
 
 注意到，算子范数自然地诱导了矩阵的范数：
-\begin{definition}[矩阵范数]\index{范数!矩阵～}
+\begin{definition}[矩阵范数]
     设$A$是一个$m\times n$的矩阵，那么$A$的范数定义为
     \[\norm{A}=\sup_{\norm{x}=1}\norm{Ax}.\]
 \end{definition}
@@ -1061,7 +1061,7 @@ Gram矩阵的基本性质是：
 
 上面的性质并不依赖于“内积”的性质，主要是依赖“范数”的性质. 接下来，我们将深入利用内积的性质来研究算子的性质. 这里面的关键概念是\emph{谱}，或者\emph{特征值}. 
 
-\begin{definition}[特征值，特征向量，谱]\index{特征值}\index{特征向量}\index{谱}
+\begin{definition}[特征值，特征向量，谱]
 设$V$是一个$n$维内积空间，$f$是$V$上的一个线性算子，$\lambda\in\R$. 如果存在一个非零向量$x\in V$使得$f(x)=\lambda x$，那么称$\lambda$是$f$的一个\textbf{特征值}，$x$是$\lambda$对应的\textbf{特征向量}. $f$的所有特征值的集合称为$f$的\textbf{谱}，记作$\sigma(f)$. 
 \end{definition}
 
@@ -1069,7 +1069,7 @@ Gram矩阵的基本性质是：
 
 我们下面的任务是给出特征值的刻画. 首先定义\emph{特征子空间}：
 
-\begin{definition}[特征子空间]\index{特征子空间}
+\begin{definition}[特征子空间]
 设$V$是一个$n$维内积空间，$f$是$V$上的一个线性算子，$\lambda\in\R$. 定义
 \[V^\lambda=\{x\in V:f(x)=\lambda x\}.\]
 称$V^\lambda$是$f$的\textbf{特征子空间}. 
@@ -1081,7 +1081,7 @@ Gram矩阵的基本性质是：
 \begin{equation}\label{eq:characteristic-equation}
     \det(A-\lambda I_n)=0.
 \end{equation}
-将$\lambda$展开，我们得到一个关于$\lambda$的$n$次多项式，称为$f$的\textbf{特征多项式}\index{特征多项式}. 这个多项式的根就是$f$的特征值. 
+将$\lambda$展开，我们得到一个关于$\lambda$的$n$次多项式，称为$f$的\textbf{特征多项式}. 这个多项式的根就是$f$的特征值. 
 
 我们需要验证特征多项式对于算子来说是良定义的，也就是不管怎么选取基，得到的特征多项式都是一样的.
 
@@ -1111,7 +1111,7 @@ Gram矩阵的基本性质是：
 
 接下来，我们考虑一类特殊的线性算子，被称为\emph{自伴算子}.
 
-\begin{definition}[自伴算子]\index{自伴算子}
+\begin{definition}[自伴算子]
 设$V$是一个$n$维内积空间，$f$是$V$上的一个线性算子. 如果对任意$x,y\in V$，都有$\inner{f(x)}{y}=\inner{x}{f(y)}$，那么称$f$是\textbf{自伴算子}. 
 \end{definition}
 
@@ -1176,4 +1176,4 @@ $\xLongrightarrow{\quad f\quad}$
     如果最大值在特征值$\lambda_0$取到，其对应单位特征向量是$e_0$，那么$\norm{f(e_0)}=\norm{f}=|\lambda_0|$.
 \end{theorem}
 
-最大的特征值模称为算子的\emph{谱半径}\index{谱半径}. 从几何意义来说，谱半径就是算子对应的线性变换对应的线性变换对向量的最大拉伸率. 一个更直观的理解方式是，将这些基向量画一个球包起来，算子会将这个球映射到一个椭球，这个椭球的最长轴就是谱半径. 例如，对于\Cref{fig:symmetric-operator} 中的算子，谱半径就是$1.5$. 
+最大的特征值模称为算子的\emph{谱半径}. 从几何意义来说，谱半径就是算子对应的线性变换对应的线性变换对向量的最大拉伸率. 一个更直观的理解方式是，将这些基向量画一个球包起来，算子会将这个球映射到一个椭球，这个椭球的最长轴就是谱半径. 例如，对于\Cref{fig:symmetric-operator} 中的算子，谱半径就是$1.5$. 

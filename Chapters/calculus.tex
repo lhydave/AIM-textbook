@@ -7,7 +7,7 @@
 \subsection{度量空间，范数}\label{subsec:metric-norm}
 实数集$\R$上面的元素可以被看成一些点，这些点之间有距离的概念. 这是$\R$最重要的几个性质之一. 我们把这种性质抽象出来，得到度量空间的概念. 
 
-\begin{definition}[度量空间]\index{度量空间}\index{度量}
+\begin{definition}[度量空间]
 设$X$是一个集合，$d:X\times X\to\R$是一个函数，如果满足
 \begin{enumerate}
     \item 非负性：对任意$x,y\in X$，$d(x,y)\geq 0$，$d(x,y)=0$当且仅当$x=y$；
@@ -21,16 +21,16 @@
 \begin{example}\label{ex:metric}
     实数集$\R$要成为度量空间，可以装备以下度量：
     \begin{itemize}
-            \item 平凡的离散度量：对$x_1\neq x_2$，$d(x_1,x_2)=1$；对$x_1=x_2$，$d(x_1,x_2)=0$. \index{度量!离散～}
-            \item 绝对值度量：$d(x_1,x_2)=|x_1-x_2|$. \index{度量!绝对值～}
+            \item 平凡的离散度量：对$x_1\neq x_2$，$d(x_1,x_2)=1$；对$x_1=x_2$，$d(x_1,x_2)=0$. 
+            \item 绝对值度量：$d(x_1,x_2)=|x_1-x_2|$. 
         \end{itemize}
 
         向量空间$\R^n$要成为度量空间，可以装备以下度量：
         \begin{itemize}
-            \item Minkowski度量（$L^p$度量）：$d(x_1,x_2)=(\sum_{i=1}^n|x_1^i-x_2^i|^p)^{1/p}\ (p\geq 1)$. \index{度量!Minkowski～}\index{度量!$L^p$～}
-            \item Manhattan度量（$L^1$度量）: $d(x_1,x_2)=\sum_{i=1}^n|x_1^i-x_2^i|$. \index{度量!Manhattan～}\index{度量!$L^1$～}
-            \item Euclid度量（$L^2$度量）：$d(x_1,x_2)=\sqrt{\sum_{i=1}^n|x_1^i-x_2^i|^2}$. \index{度量!Euclid～}\index{度量!$L^2$～}
-            \item Chebyshev度量（$L^\infty$度量）: $d(x_1,x_2)=\max_i|x_1^i-x_2^i|=\lim_{p\to\infty}(\sum_{i=1}^n|x_1^i-x_2^i|^p)^{1/p}$. \index{度量!Chebyshev～}\index{度量!$L^\infty$～}
+            \item Minkowski度量（$L^p$度量）：$d(x_1,x_2)=(\sum_{i=1}^n|x_1^i-x_2^i|^p)^{1/p}\ (p\geq 1)$. 
+            \item Manhattan度量（$L^1$度量）: $d(x_1,x_2)=\sum_{i=1}^n|x_1^i-x_2^i|$. 
+            \item Euclid度量（$L^2$度量）：$d(x_1,x_2)=\sqrt{\sum_{i=1}^n|x_1^i-x_2^i|^2}$. 
+            \item Chebyshev度量（$L^\infty$度量）: $d(x_1,x_2)=\max_i|x_1^i-x_2^i|=\lim_{p\to\infty}(\sum_{i=1}^n|x_1^i-x_2^i|^p)^{1/p}$. 
         \end{itemize}
 
     再看一个抽象的例子. 假设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，我们可以定义$X\times Y$上的度量$d$为
@@ -40,7 +40,7 @@
 
 上面关于$\R^n$的例子都有一个特点，他们都是用向量$x_1-x_2$的某种长度定义的，这种长度的概念在数学中有一个统一的抽象，即\emph{范数}. 
 
-\begin{definition}[范数，赋范空间]\index{范数}\index{赋范空间}
+\begin{definition}[范数，赋范空间]
 设$X$是一个向量空间，$\norm{\cdot}:X\to\R$是一个函数，如果满足
 \begin{enumerate}
     \item 非负性与非退化：对任意$x\in X$，$\norm{x}\geq 0$，且$\norm{x}=0$当且仅当$x=0$；
@@ -50,7 +50,7 @@
 则称$\norm{\cdot}$是$X$上的一个\textbf{范数}，$(X,\norm{\cdot})$称为一个\textbf{赋范空间}. 
 \end{definition}
 
-容易验证，\Cref{ex:metric} 中的度量都自然地导出了一个范数，即$\norm{x}=d(x,0)$. 我们可以沿袭度量的名字称呼这些范数，例如$L^p$范数就是$L^p$度量所诱导的范数. 很多无穷维线性空间都是先有范数才有空间本身的. 例如，$\ell^p$空间\index{$\ell^p$空间}就是由$L^p$范数划定的：
+容易验证，\Cref{ex:metric} 中的度量都自然地导出了一个范数，即$\norm{x}=d(x,0)$. 我们可以沿袭度量的名字称呼这些范数，例如$L^p$范数就是$L^p$度量所诱导的范数. 很多无穷维线性空间都是先有范数才有空间本身的. 例如，$\ell^p$空间就是由$L^p$范数划定的：
 \[ \ell^p=\left\{x\in\C^\infty:\norm{x}_p=\left(\sum_{i=1}^\infty|x_i|^p\right)^{1/p}<\infty\right\}. \]
 此外，函数空间$C[a,b]$也可以定义范数，例如
 \[ \norm{f}_\infty=\sup_{x\in[a,b]}|f(x)|. \]
@@ -101,7 +101,7 @@
 
 这一命题说明，虽然不同的范数对应的度量不同，但是他们之间的关系是最多差个常数倍. 我们后面会看到，这一性质表明$L^p$范数定义的所有拓扑性质都是完全相同的. 这一性质也可以一般化：
 
-\begin{definition}[等价范数]\index{范数!等价～}
+\begin{definition}[等价范数]
     设$X$是一个向量空间，$\norm{\cdot}_1$和$\norm{\cdot}_2$是$X$上的两个范数，如果存在正常数$c,C$，使得对任意$x\in X$，有
     \[c\norm{x}_1\leq \norm{x}_2\leq C\norm{x}_1,\]
     则称$\norm{\cdot}_1$和$\norm{\cdot}_2$是\textbf{等价}的. 
@@ -113,7 +113,7 @@
 
 在$\R$中，很早就已经有了\emph{开区间}的概念，它指的是集合$(a,b)=\{x\in\R:a<x<b\}$. $\R$中的开集定义其实很简单，就是若干开区间的并集. 在更一般的拓扑空间中，开集的定义也是类似的. 我们将视角聚焦在度量空间中. 我们可以把开区间$(a,b)$看成一个圆心在$(a+b)/2$，半径为$(b-a)/2$的一维开球. 从这个视角看，开集的定义是从开球给出的. 这样的定义有一般性：
 
-\begin{definition}[开球，开集，拓扑空间]\index{开球}\index{开集}\index{拓扑空间}
+\begin{definition}[开球，开集，拓扑空间]
     设$(X,d)$是一个度量空间，$x\in X$，$r>0$，定义
     \[B(x,r)=\{y\in X:d(x,y)<r\}.\]
     称$B(x,r)$是以$x$为球心，$r$为半径的\textbf{开球}. 
@@ -184,7 +184,7 @@
 
 与开集相对应的是闭集的概念. 闭集的定义是：
 
-\begin{definition}[闭集]\index{闭集}
+\begin{definition}[闭集]
     设$(X,d)$是一个度量空间，$F\subseteq X$，如果$X\setminus F$是开集，则称$F$是\textbf{闭集}. 
 \end{definition}
 闭集的定义是开集的对偶，所以有如下性质：
@@ -204,7 +204,7 @@
 
 接下来我们讨论一个更微妙的概念，\emph{紧致性}或者\emph{紧集}. 紧致性与极限、收敛、连续等概念有着密切的联系，然而如何恰当的定义紧致性是一个很难的问题. 我们这里不讨论历史，只给出历史的答案. 简单来说，\emph{紧}这个词的概念是\emph{压缩}，将无穷多的东西变成有限个. 我们的逻辑推理只能处理有限的东西，所以紧致性是沟通无穷和有限的桥梁. 下面给出紧集的定义：
 
-\begin{definition}[开覆盖，紧集]\index{开覆盖}\index{紧集}
+\begin{definition}[开覆盖，紧集]
     设$(X,d)$是一个度量空间，$F\subseteq X$，如果存在一族开集$\{U_i\}_{i\in I}$，使得$F\subseteq \bigcup_{i\in I}U_i$，则称$\{U_i\}_{i\in I}$是$F$的一个\textbf{开覆盖}. 
     
     如果对任意$F$的开覆盖$\{U_i\}_{i\in I}$，都存在有限子覆盖$\{U_{i_j}\}_{j=1}^n$，使得$F\subseteq \bigcup_{j=1}^nU_{i_j}$，则称$F$是\textbf{紧集}. 
@@ -220,7 +220,7 @@
 
 在度量空间上，紧集与收敛性密切相关. 为此，我们需要形式地定义度量空间中的收敛概念. 我们先使用$\epsilon-N$语言定义：
 
-\begin{definition}[收敛，极限]\index{收敛}\index{极限}
+\begin{definition}[收敛，极限]
     设$(X,d)$是一个度量空间，$\{x_n\}_{n=1}^\infty$是$X$中的一个序列，$x\in X$，如果对任意$\epsilon>0$，存在$N\in\N$，使得对任意$n>N$，$d(x_n,x)<\epsilon$，则称$\{x_n\}_{n=1}^\infty$\textbf{收敛}到$x$，记作$\lim_{n\to\infty}x_n=x$或$x_n\to x$，$n\to\infty$，$x$称为$\{x_n\}_{n=1}^\infty$的\textbf{极限}. 
 \end{definition}
 
@@ -242,7 +242,7 @@
 \begin{itemize}
     \item 在$\R$中，$\{1/n\}_{n=1}^\infty$收敛到$0$，然而，序列$\{n\}_{n=1}^\infty$则不收敛. 这个例子表明，极限未必需要在序列中出现，以及趋于无穷是一种特殊的不收敛.
     \item 在$\R^n$和$L^p$范数下，$\{x_k\}_{k=1}^\infty$收敛到$x$，当且仅当对任意$i=1,\dots,n$，$\{x_k^i\}_{k=1}^\infty$收敛到$x^i$，其中$x_k=(x_k^1,\dots,x_k^n)$，$x=(x^1,\dots,x^n)$. 这个例子表明，高维空间中的收敛性可以从每个分量看. 
-    \item 在$C([0,1])$和$L^\infty$范数下，$f_n\to f$实际上是所谓\textbf{一致收敛}\index{收敛!一致～}的概念，即对任意$\epsilon>0$，存在不依赖$x$的$N\in\N$，使得对任意$n>N$，任意$x\in[0,1]$，$|f_n(x)-f(x)|<\epsilon$. 在这一概念下，$\{x^n\}_{n=1}^\infty$就不收敛（尽管它逐点收敛）. 
+    \item 在$C([0,1])$和$L^\infty$范数下，$f_n\to f$实际上是所谓\textbf{一致收敛}的概念，即对任意$\epsilon>0$，存在不依赖$x$的$N\in\N$，使得对任意$n>N$，任意$x\in[0,1]$，$|f_n(x)-f(x)|<\epsilon$. 在这一概念下，$\{x^n\}_{n=1}^\infty$就不收敛（尽管它逐点收敛）. 
 \end{itemize}
 \end{example}
 
@@ -256,7 +256,7 @@
 
 \Cref{thm:compact-converge} 足以表明紧集这一概念的重要性了. 然而，这一定理的成立只需要度量空间，度量空间是一个非常弱的概念，我们关心的$\R^n$空间实际上有更强的性质，这一性质是\emph{完备性}. 要定义完备性，我们需要\emph{Cauchy列}. 
 
-\begin{definition}[Cauchy列]\index{Cauchy列}
+\begin{definition}[Cauchy列]
     设$(X,d)$是一个度量空间，$\{x_n\}_{n=1}^\infty$是$X$中的一个序列，如果对任意$\epsilon>0$，存在$N\in\N$，使得对任意$m,n>N$，$d(x_m,x_n)<\epsilon$，则称$\{x_n\}_{n=1}^\infty$是一个\textbf{Cauchy列}. 
 \end{definition}
 
@@ -273,7 +273,7 @@ Cauchy列与收敛列的关系如下. 首先，收敛的点列是Cauchy列：
 
 反过来，Cauchy列是否一定收敛呢？这一问题的答案是不一定. 在$\R$上，就如同有限覆盖原理，这件事的成立性只能作为与实数公理等价的命题存在！完备性指的就是Cauchy列一定收敛的性质：
 
-\begin{definition}[完备度量空间]\index{完备度量空间}
+\begin{definition}[完备度量空间]
     设$(X,d)$是一个度量空间，如果$X$中的任意Cauchy列都收敛，则称$(X,d)$是一个\textbf{完备度量空间}. 
 \end{definition}
 我们不加证明地给出完备度量空间的例子：
@@ -282,7 +282,7 @@ Cauchy列与收敛列的关系如下. 首先，收敛的点列是Cauchy列：
 \item 有限维空间的例子：$L^p$范数下$\R^n$是完备的.
 \item 反面的例子：使用度量$d(x_1,x_2)=|x_1-x_2|$，则$X=\R\setminus\{0\}$不是完备度量空间. 考虑$\{x_n=\frac1n:n\in\N\}$，它是Cauchy列，但该点列在$X$中没有极限（极限是$0$）.
 \item 无穷维空间的例子：$[0,1]$到$\R$的连续函数空间$C([0,1])$在$L^\infty$范数下是完备的.
-\item 无穷维空间的另一个例子：$\ell^p$空间\index{$\ell^p$空间}是完备的. 
+\item 无穷维空间的另一个例子：$\ell^p$空间是完备的. 
 \end{itemize}
 \end{example}
 
@@ -297,7 +297,7 @@ Cauchy列与收敛列的关系如下. 首先，收敛的点列是Cauchy列：
 然而，在无穷维空间中，这一命题不一定成立：
 
 \begin{proposition}\label{prop:compact-not-bounded}
-设$\ell^2$空间\index{$\ell^2$空间}的标准正交向量组是$\{e_i\}_{i=1}^\infty$，$e_i$是第$i$个分量为$1$，其他分量为$0$的向量. 考虑单位球面$E=\{x\in\ell^2:\norm{x}_2=1\}$，则$E$是有界闭集，但不是紧集. 
+设$\ell^2$空间的标准正交向量组是$\{e_i\}_{i=1}^\infty$，$e_i$是第$i$个分量为$1$，其他分量为$0$的向量. 考虑单位球面$E=\{x\in\ell^2:\norm{x}_2=1\}$，则$E$是有界闭集，但不是紧集. 
 \end{proposition}
 \begin{proof}
     因为对任意$x\in E$，$\norm{x}=1$，所以$\norm{x}_2\leq 1$，所以$E$是有界集. 取$x\in\ell^2\setminus E$. 如果$\norm{x}=r<1$，那么开球$B(x,(1-r)/2)\subseteq B(0,1)\subseteq \ell^2\setminus E$；对于$r>1$可以同理讨论. 这就证明了$E$是闭集. 最后证明$E$不是紧集. 考虑序列$\{e_i\}_{i=1}^\infty$，它是$E$中的序列，因为对任意不同的$m,n$，$\norm{e_m-e_n}=2$，因此$\{e_i\}$的任何子列都不是Cauchy列，根据\Cref{prop:cauchy-converge} 的逆否命题，$\{e_i\}$没有任何收敛子列，因而根据\Cref{thm:compact-converge}，$E$不是紧集. 
@@ -308,7 +308,7 @@ Cauchy列与收敛列的关系如下. 首先，收敛的点列是Cauchy列：
 
 $\delta$-$\epsilon$语言的定义是从\emph{映射的极限}这一概念出发的：
 
-\begin{definition}[映射的极限]\index{极限}
+\begin{definition}[映射的极限]
     设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，$f:X\to Y$是一个映射，$x_0\in X$，$y\in Y$，如果对任意$\epsilon>0$，存在$\delta>0$，使得对任意$x\in X$，如果$0<d_X(x,x_0)<\delta$，则$d_Y(f(x),y)<\epsilon$，则称$y$是$f$在$x_0$处的\textbf{极限}，记作$\lim_{x\to x_0}f(x)=y$或$f(x)\to y$，$x\to x_0$.
 \end{definition}
 
@@ -325,13 +325,13 @@ $\delta$-$\epsilon$语言的定义是从\emph{映射的极限}这一概念出发
 \end{remark}
 
 由此，我们可以定义连续映射：
-\begin{definition}[连续映射]\index{连续映射}\index{连续}
+\begin{definition}[连续映射]
     设$(X,d_X)$和$(Y,d_Y)$是两个度量空间，$f:X\to Y$是一个映射，考虑点$x\in X$，如果$\lim_{x'\to x}f(x')=f(x)$，则称$f$在$x$处\textbf{连续}，如果$f$在$X$的每一点都连续，则称$f$是\textbf{连续映射}.
 \end{definition}
 
 直观上说，连续映射是指，$x'$和$x$足够接近的时候$f(x')$和$f(x)$也足够接近. 不过，数学定义其实是反过来的：想让$f(x')$和$f(x)$足够接近，我们只需要让$x'$和$x$足够接近. 更精确一些来说，如果我们画了一个$f(x)$的任意小的范围，我们只需要找到一个$x$的范围，使得$x$的范围里的点都被映射到$f(x)$的范围里. 这一定义可以用开集来表述，为此，我们需要先引入一些关于映射的概念. 
 
-\begin{definition}[像，原像]\index{像}\index{原像}
+\begin{definition}[像，原像]
     设$f:X\to Y$是一个映射，$A\subseteq X$，则$f(A)=\{f(x):x\in A\}$称为$A$的\textbf{像}，如果$B\subseteq Y$，则$f^{-1}(B)=\{x\in X:f(x)\in B\}$称为$B$的\textbf{原像}. 
 \end{definition}
 
@@ -428,7 +428,7 @@ $\delta$-$\epsilon$语言的定义是从\emph{映射的极限}这一概念出发
 
 下面，我们列出其中两个与实数公理等价的序性质. 这些性质需要用到\emph{单调性}、\emph{界}和\emph{确界}的概念，这些概念将会频繁出现在我们的讨论中，所以这里单独给出：
 
-\begin{definition}[单调性]\index{单调性}
+\begin{definition}[单调性]
     设$\{x_n\}_{n=1}^\infty$是一个实数列. 
 \begin{itemize}
     \item 如果对任意$n\in\N$，$x_n\leq x_{n+1}$，则称$\{x_n\}_{n=1}^\infty$是一个\textbf{单调递增}的实数列. 
@@ -437,7 +437,7 @@ $\delta$-$\epsilon$语言的定义是从\emph{映射的极限}这一概念出发
 \end{itemize}
 \end{definition}
 
-\begin{definition}[上界，上确界，下界，下确界]\index{上确界}\index{下确界}\index{上界}\index{下界}
+\begin{definition}[上界，上确界，下界，下确界]
     设$A\subseteq\R$. 
 \begin{itemize}
     \item 如果存在$M\in\R$，使得对任意$a\in A$，$a\leq M$，则称$M$是$A$的一个\textbf{上界}. 
@@ -471,7 +471,7 @@ $\delta$-$\epsilon$语言的定义是从\emph{映射的极限}这一概念出发
 
 对于实值函数来说，我们还需要比较在极限情况下两个函数的\emph{渐近大小}，这就是$o$和$\O$符号. 我们先给出这一概念在序列上的定义：
 
-\begin{definition}[阶，无穷小，等价]\index{阶}\index{无穷小}\index{等价}
+\begin{definition}[阶，无穷小，等价]
     设$\{x_n\}_{n=1}^\infty$和$\{y_n\}_{n=1}^\infty$是两个序列. 
 \begin{itemize}
     \item  如果$\lim_{n\to\infty}\frac{x_n}{y_n}=0$，则称$\{x_n\}_{n=1}^\infty$是$\{y_n\}_{n=1}^\infty$的\textbf{高阶无穷小}，记作$x_n=o(y_n)$.
@@ -509,7 +509,7 @@ $\delta$-$\epsilon$语言的定义是从\emph{映射的极限}这一概念出发
 
 接下来，我们进入微分学的部分，同样，我们先从最基本的一元函数的情况（即$\R\to\R$的函数）入手. 
 
-\subsection{导数与微分的定义}\index{导数}\index{微分}
+\subsection{导数与微分的定义}
 
 从近似的角度来说，\emph{微分}或者\emph{导数}的概念，本身在描述在某个点函数的线性近似，因此微分和导数本身也是一个（线性）映射. 在一元函数中，我们或许无法看出来这一点，但是在更加一般的微分学中，这样的观点非常重要. 因此，即便在一元部分，我们也尝试将这样的观点引入. 
 
@@ -545,7 +545,7 @@ $\delta$-$\epsilon$语言的定义是从\emph{映射的极限}这一概念出发
 
 我们将这些讨论整理为如下定义：
 
-\begin{definition}[微分，导数]\index{微分}\index{导数}
+\begin{definition}[微分，导数]
     设$f:\R\to\R$，$x_0\in\R$，如果存在一个线性映射$\d f_{x_0}:\R\to\R$，使得
     \[
         f(x)=f(x_0)+\d f_{x_0}(x-x_0)+o(x-x_0),
@@ -555,7 +555,7 @@ $\delta$-$\epsilon$语言的定义是从\emph{映射的极限}这一概念出发
     如果$f$在$\R$的每一点都可微，则称$f$是\textbf{可微}的或者\textbf{可导}的，$\d f$是$f$的\textbf{微分}，$f'$是$f$的\textbf{导（函）数}，也记作$\frac{\d f}{\d x}$或$\dot{f}$.
 \end{definition}
 
-关于导数的符号有一些注. 最能体现几何意义的是$\frac{\d f}{\d x}$，它是由Leibniz发明的. 符号$\d$的意思就是“微”，可以理解为无穷小的变化量，所以导数就是自变量和函数值无穷小变化量的比值. 另一方面，这个符号也可以理解为“切”，表示切向量的意思，例如$\d x$就是沿着$x$轴的任意切向量（实际上就是正方向或者负方向），而$\d y$就是相应地沿着$y$轴的切向量. 从这个角度来说，$\frac{\d f}{\d x}$就是$x$轴切向量到$y$轴切向量的一个线性映射. 因此，微分其实就是所谓的\textbf{切映射}\index{切映射}，即切向量到切向量的映射. 这一视角在更抽象的微分学中是更本质的. 
+关于导数的符号有一些注. 最能体现几何意义的是$\frac{\d f}{\d x}$，它是由Leibniz发明的. 符号$\d$的意思就是“微”，可以理解为无穷小的变化量，所以导数就是自变量和函数值无穷小变化量的比值. 另一方面，这个符号也可以理解为“切”，表示切向量的意思，例如$\d x$就是沿着$x$轴的任意切向量（实际上就是正方向或者负方向），而$\d y$就是相应地沿着$y$轴的切向量. 从这个角度来说，$\frac{\d f}{\d x}$就是$x$轴切向量到$y$轴切向量的一个线性映射. 因此，微分其实就是所谓的\textbf{切映射}，即切向量到切向量的映射. 这一视角在更抽象的微分学中是更本质的. 
 
 导数的定义也可以用更常见的形式给出：
 
@@ -577,7 +577,7 @@ $\delta$-$\epsilon$语言的定义是从\emph{映射的极限}这一概念出发
         \item $(fg)'(x_0)=f'(x_0)g(x_0)+f(x_0)g'(x_0)$；
         \item 如果$g(x_0)\neq 0$，则
         \[\left(\frac{f}{g}\right)'(x_0)=\frac{f'(x_0)g(x_0)-f(x_0)g'(x_0)}{g(x_0)^2};\]
-        \item 链式法则\index{链式法则}：如果$f$在$x_0$处可微，$g$在$f(x_0)$处可微，则$g\circ f$在$x_0$处可微，且$(g\circ f)'(x_0)=g'(f(x_0))f'(x_0)$；
+        \item 链式法则：如果$f$在$x_0$处可微，$g$在$f(x_0)$处可微，则$g\circ f$在$x_0$处可微，且$(g\circ f)'(x_0)=g'(f(x_0))f'(x_0)$；
         \item 如果$f$存在反函数$f^{-1}$，则$f^{-1}$在$f(x_0)$处可微，且$(f^{-1})'(f(x_0))=\frac{1}{f'(x_0)}$.
     \end{itemize}
 \end{proposition}
@@ -607,7 +607,7 @@ $\delta$-$\epsilon$语言的定义是从\emph{映射的极限}这一概念出发
 
 最后，我们讨论高阶导数的概念. 注意，我们只关注导数而不关注微分，这是因为由于高阶微分是一个相当抽象的概念，所以就不深入讨论了. 
 
-\begin{definition}[高阶导数]\index{导数}
+\begin{definition}[高阶导数]
     设$f:\R\to\R$，$x_0\in\R$，如果$f$在$x_0$处可微，则$f$在$x_0$处的导数$f'(x_0)$是一个实数. 如果$f'$在$x_0$处可微，则称$f$在$x_0$处\textbf{二阶可微}，此时$f''(x_0)$是$f'$在$x_0$处的导数，称为$f$在$x_0$处的\textbf{二阶导数}. 一般地，如果$f^{(n-1)}$在$x_0$处可微，则称$f$在$x_0$处\textbf{$n$阶可微}，此时$f^{(n)}(x_0)$是$f^{(n-1)}$在$x_0$处的导数，称为$f$在$x_0$处的\textbf{$n$阶导数}.
 \end{definition}
 在Leibniz的记号下，$n$阶导数可以写作
@@ -623,7 +623,7 @@ $\delta$-$\epsilon$语言的定义是从\emph{映射的极限}这一概念出发
 
 微分学几乎都与极值联系在一起，刻画这些关系的定理就是微分学的基本定理. 我们依然只罗列定理，不给出证明. 首先我们给出极值的定义. 
 
-\begin{definition}[极大值，严格极大值，极小值，严格极小值]\index{极值}\label{def:extremum}
+\begin{definition}[极大值，严格极大值，极小值，严格极小值]\label{def:extremum}
     设$f:X\to\R$，$x_0\in X$，如果存在包含$x_0$的开集$U$，使得对任意$x\in U$，有$f(x)\leq f(x_0)$，则称$f(x_0)$是$f$在$x_0$处的一个\textbf{极大值}，$x_0$是$f$的一个\textbf{极大值点}. 如果$f(x)=f(x_0)$只在$x_0$处成立，则称$f(x_0)$是$f$在$x_0$处的一个\textbf{严格极大值}，$x_0$是$f$的一个\textbf{严格极大值点}.
     
     如果不等式反向，则称$f(x_0)$是$f$在$x_0$处的一个\textbf{极小值}，$x_0$是$f$的一个\textbf{极小值点}. 如果$f(x)=f(x_0)$只在$x_0$处成立，则称$f(x_0)$是$f$在$x_0$处的一个\textbf{严格极小值}，$x_0$是$f$的一个\textbf{严格极小值点}.
@@ -686,7 +686,7 @@ $\delta$-$\epsilon$语言的定义是从\emph{映射的极限}这一概念出发
     \]
 \end{theorem}
 
-我们将这个$n$次多项式称为\textbf{Taylor展开}\index{Taylor展开}.
+我们将这个$n$次多项式称为\textbf{Taylor展开}.
 
 利用Taylor展开，我们可以得到通过高阶导数判定极值的充分条件：
 
@@ -706,7 +706,7 @@ $\delta$-$\epsilon$语言的定义是从\emph{映射的极限}这一概念出发
 
 沿着一元函数的思路，我们希望找到一个线性映射$df_x:\R^n\to\R^m$，使得$f$在$x$附近的行为很接近这个线性映射，而这件事情本身就可以作为微分的定义：
 
-\begin{definition}[微分]\index{微分}
+\begin{definition}[微分]
     设$f:\R^n\to\R^m$，$x\in\R^n$，如果存在一个线性映射$\d f_{x}:\R^n\to\R^m$，使得
     \[
         f(x+h)=f(x)+\d f_{x}h+o(h),
@@ -718,7 +718,7 @@ $\delta$-$\epsilon$语言的定义是从\emph{映射的极限}这一概念出发
 
 现在我们来解释这一定义的含义. 微分的定义依然是将一个关于$x$的函数转变到一个关于$h$的线性映射，这个线性映射表明了函数在$x$处的线性近似，而这个线性近似的误差是一个关于$h$的高阶无穷小. 从这个角度来说，微分的定义和一元函数的情况是一样的，只不过这里的误差是一个向量值函数而已. 
 
-$h$被称为\textbf{切向量}\index{切向量}（回忆一维的情况），所有允许$h$的集合记为$T\R_x^n$，称为在$x$点处的\textbf{切空间}\index{切空间}. $\R^n$上定义的函数，切向量$h$自然可以取遍所有$\R^n$的向量，所以其实$T\R_x^n=\R^n$. 然而在\Cref{chap:duality}中，我们会看到，当定义域不是整个$\R^n$，而只是某个子集的时候，切空间的定义就变得不平凡了. 从“切”的视角来看，微分其实是一个\textbf{切映射}\index{切映射}，即从切向量到切向量的映射，这可以用下图来表示：
+$h$被称为\textbf{切向量}（回忆一维的情况），所有允许$h$的集合记为$T\R_x^n$，称为在$x$点处的\textbf{切空间}. $\R^n$上定义的函数，切向量$h$自然可以取遍所有$\R^n$的向量，所以其实$T\R_x^n=\R^n$. 然而在\Cref{chap:duality}中，我们会看到，当定义域不是整个$\R^n$，而只是某个子集的时候，切空间的定义就变得不平凡了. 从“切”的视角来看，微分其实是一个\textbf{切映射}，即从切向量到切向量的映射，这可以用下图来表示：
 
 \[\begin{tikzcd} f:\arrow[mapsto, d, "\d"] & \R^n\arrow[r, ""] & \R^m \\
 \d f_x: & T\R^n_x \arrow[r, ""] & T\R^m_{f(x)}
@@ -728,16 +728,16 @@ $h$被称为\textbf{切向量}\index{切向量}（回忆一维的情况），所
 \[
     \d f_x h=\inner{g}{h}.
 \]
-这个向量$g$被称为$f$在$x$处的\textbf{梯度}\index{梯度}，记作$\grad f(x)$. 
+这个向量$g$被称为$f$在$x$处的\textbf{梯度}，记作$\grad f(x)$. 
 
 我们需要进一步将梯度的坐标$(g_1,\dots,g_n)^\t$求出来. 考虑一个具体的分量$e_i$，根据定义，
 \[f(x+te_i)=f(x)+t\d f_x(te_i)+o(te_i)=f(x)+g_it+o(t).\]
 因此，
 \[g_i=\lim_{t\to 0}\frac{f(x+te_i)-f(x)}{t}.\]
-我们给这样的导数一个名字，称为$f$在$x$对$x_i$的\textbf{偏导数}\index{偏导数}，记作$\frac{\partial f}{\partial x_i}(x)$或$\partial_i f(x)$，于是我们得到了梯度的坐标：
+我们给这样的导数一个名字，称为$f$在$x$对$x_i$的\textbf{偏导数}，记作$\frac{\partial f}{\partial x_i}(x)$或$\partial_i f(x)$，于是我们得到了梯度的坐标：
 \[\left(\frac{\partial f}{\partial x_1}(x),\dots,\frac{\partial f}{\partial x_n}(x)\right)^\t.\]
 
-当然，我们不一定要沿着$e_i$去算导数，我们可以沿着任意单位向量$u$去算，于是我们得到了$f$在$x$处沿着$u$的\textbf{方向导数}\index{方向导数}：
+当然，我们不一定要沿着$e_i$去算导数，我们可以沿着任意单位向量$u$去算，于是我们得到了$f$在$x$处沿着$u$的\textbf{方向导数}：
 \[\frac{\partial f}{\partial u}(x)=\lim_{t\to 0}\frac{f(x+tu)-f(x)}{t},\quad\norm{u}=1.\]
 
 有了梯度，我们可以很快算出任意方向导数：
@@ -751,9 +751,9 @@ $h$被称为\textbf{切向量}\index{切向量}（回忆一维的情况），所
 \[\nabla =e_1\frac{\partial }{\partial x_1}+\cdots+e_n\frac{\partial }{\partial x_n},\]
 则
 \[\grad f(x)=\nabla f(x).\]
-符号$\nabla$被称为\textbf{nabla算子}\index{nabla算子}，它就是标准正交基下梯度的具体表示. 通常，我们会更简单地将$\nabla $记为$(\partial_1 ,\dots,\partial_n)^\t$. 
+符号$\nabla$被称为\textbf{nabla算子}，它就是标准正交基下梯度的具体表示. 通常，我们会更简单地将$\nabla $记为$(\partial_1 ,\dots,\partial_n)^\t$. 
 
-接下来我们讨论向量值函数微分的表示问题. 选取$\R^m$（也就是$T\R_x^n$）的标准正交基$e_i$，选取$\R^m$（也就是$T\R^m_{f(x)}$）的标准正交基$e_i$，则根据\Cref{sec:matrix}的讨论，我们可以用一个$m\times n$的矩阵来表示$\d f_x$，这个矩阵被称为$f$在$x$处的\textbf{Jacobi矩阵}\index{Jacobi矩阵}，记作$J_f(x)$. 
+接下来我们讨论向量值函数微分的表示问题. 选取$\R^m$（也就是$T\R_x^n$）的标准正交基$e_i$，选取$\R^m$（也就是$T\R^m_{f(x)}$）的标准正交基$e_i$，则根据\Cref{sec:matrix}的讨论，我们可以用一个$m\times n$的矩阵来表示$\d f_x$，这个矩阵被称为$f$在$x$处的\textbf{Jacobi矩阵}，记作$J_f(x)$. 
 
 下面我们计算$J_f(x)$的具体表示. 假设$f(x)$的坐标是$(f_1(x),\dots,f_m(x))^\t$，考虑$h\in T\R_x^n$，它的坐标是$(h_1,\dots,h_n)^\t$，$\d f_x h$的坐标应该是
 \[\begin{pmatrix}
@@ -783,11 +783,11 @@ $h$被称为\textbf{切向量}\index{切向量}（回忆一维的情况），所
     \partial_1 f_m(x) & \cdots & \partial_n f_m(x)
 \end{pmatrix}.\]
 
-在$m=n$的特殊情况下，$J_f(x)$的行列式被称为$f$在$x$处的\textbf{Jacobi行列式}\index{Jacobi行列式}，记作
+在$m=n$的特殊情况下，$J_f(x)$的行列式被称为$f$在$x$处的\textbf{Jacobi行列式}，记作
 \[\frac{\partial(f_1,\dots,f_n)}{\partial(x_1,\dots,x_n)}(x).\]
 在\Cref{ex:polar-coordinates} 中我们会看到，Jacobi行列式表明了坐标变换时相应体积变化的比率. 这一事实使得它在积分学的变量替换中有着核心作用. 
 
-总结来说，实值函数的微分可以用\emph{行}向量$(\partial_1 f_1(x),\dots,\partial_n f_1(x))$和切向量相乘表示，而向量值函数的微分可以用Jacobi矩阵$J_f(x)$和切向量相乘来表示，我们将这些符号统称$f$在$x$处的\textbf{导数}\index{导数}，记为$f'(x)$或$\frac{\d f}{\d x}(x)$，于是，在坐标表示下，我们可以将微分简单写作$\d f_x=f'(x)\d x$，这里我们将$\d x$理解为一个切向量（列向量）. 
+总结来说，实值函数的微分可以用\emph{行}向量$(\partial_1 f_1(x),\dots,\partial_n f_1(x))$和切向量相乘表示，而向量值函数的微分可以用Jacobi矩阵$J_f(x)$和切向量相乘来表示，我们将这些符号统称$f$在$x$处的\textbf{导数}，记为$f'(x)$或$\frac{\d f}{\d x}(x)$，于是，在坐标表示下，我们可以将微分简单写作$\d f_x=f'(x)\d x$，这里我们将$\d x$理解为一个切向量（列向量）. 
 
 接下来，我们不加证明地列举微分的一些性质：
 
@@ -800,7 +800,7 @@ $h$被称为\textbf{切向量}\index{切向量}（回忆一维的情况），所
         \item 如果$m=1$，并且$g(x)\neq 0$，则
         \[\d\left(\frac{f}{g}\right)_x=\frac{1}{g(x)^2}\left(g(x)\d f_x-f(x)\d g_x\right);\]
         \item 如果$m=n$，那么$\d x=\id$；
-        \item 链式法则\index{链式法则}：如果$f$在$x$处可微，$g$在$f(x)$处可微，则$g\circ f$在$x$处可微，且$\d(g\circ f)_x=\d g_{f(x)}\circ\d f_x$；
+        \item 链式法则：如果$f$在$x$处可微，$g$在$f(x)$处可微，则$g\circ f$在$x$处可微，且$\d(g\circ f)_x=\d g_{f(x)}\circ\d f_x$；
         \item 如果$f$存在反函数$f^{-1}$，则$f^{-1}$在$f(x)$处可微，且$\d(f^{-1})_{f(x)}=(\d f_x)^{-1}$.
     \end{itemize}
 \end{proposition}
@@ -859,7 +859,7 @@ $h$被称为\textbf{切向量}\index{切向量}（回忆一维的情况），所
 这里两边都出现了$\partial f/\partial x$，但他们的含义是不同的，左边的$\partial f/\partial x$是$f$对$x$这个变量的偏导数，右边的$\partial f/\partial x$是$f$对第一个位置偏导数，即$\partial_1 f$. 一个不容易引起困惑但不太直观的写法是
 \[\frac{\partial f}{\partial x}=\partial_3 f\cdot\partial_1 z+\partial_1 f.\]
 
-这就是著名的\textbf{反向传播算法}\index{反向传播算法}的一个简单例子，它是神经网络训练中最重要的算法之一，也是很多神经网络框架优化的重点. 
+这就是著名的\textbf{反向传播算法}的一个简单例子，它是神经网络训练中最重要的算法之一，也是很多神经网络框架优化的重点. 
 \end{example}
 
 \begin{example}\label{ex:quadratic-derivative}
@@ -878,7 +878,7 @@ $h$被称为\textbf{切向量}\index{切向量}（回忆一维的情况），所
 
 最后，我们讨论高阶导数的概念. 对于向量值函数来说，高阶导数是一个非常难以理解的概念，所以我们只局限在实值函数讨论这一问题. 
 
-考虑一个实值函数$f:\R^n\to\R$，它对第$i$个坐标的偏导数是$\partial_i f$，注意到这本身又是一个$\R^n$到$\R$实值函数，我们可以继续讨论它的偏导数性质，于是我们得到了\textbf{二阶偏导数}\index{偏导数}：$\partial_j(\partial_i f)$，也记为
+考虑一个实值函数$f:\R^n\to\R$，它对第$i$个坐标的偏导数是$\partial_i f$，注意到这本身又是一个$\R^n$到$\R$实值函数，我们可以继续讨论它的偏导数性质，于是我们得到了\textbf{二阶偏导数}：$\partial_j(\partial_i f)$，也记为
 \[\frac{\partial^2 f}{\partial x_j\partial x_i},\quad\partial_{j,i} f(x).\]
 
 一般地，我们也可以归纳定义$k$阶偏导数，这里就不再赘述. 
@@ -904,7 +904,7 @@ $h$被称为\textbf{切向量}\index{切向量}（回忆一维的情况），所
 \[g^{(m)}(t)=\sum_{i_1,\dots,i_m}\partial_{i_m,\dots,i_1}f(x+th)h_{i_1}\cdots h_{i_m}=(h^\t\nabla)^mf(x+th).\]
 \end{example}
 
-接下来，我们定义二阶导数\index{导数}\footnote{更高阶的导数定义需要更加复杂的线性代数概念，我们这里就不引入了. }. 注意到，一个实值函数的一阶导数可以表示成一个向量值函数，即$\grad f$，因此，这个向量值函数的导数就是一个矩阵. 我们将这个矩阵称为$f$的\textbf{Hessian矩阵}\index{Hessian矩阵}，记作$H_f(x)$. 很容易算出，Hessian矩阵为
+接下来，我们定义二阶导数\footnote{更高阶的导数定义需要更加复杂的线性代数概念，我们这里就不引入了. }. 注意到，一个实值函数的一阶导数可以表示成一个向量值函数，即$\grad f$，因此，这个向量值函数的导数就是一个矩阵. 我们将这个矩阵称为$f$的\textbf{Hessian矩阵}，记作$H_f(x)$. 很容易算出，Hessian矩阵为
 \[H_f(x)=\begin{pmatrix}
     \partial_{1,1}f(x) & \cdots & \partial_{1,n}f(x) \\
     \vdots & \ddots & \vdots \\
@@ -970,7 +970,7 @@ $h$被称为\textbf{切向量}\index{切向量}（回忆一维的情况），所
 
 最后，我们要讨论高阶导数与极值的关系. 首先，利用\Cref{ex:multi-taylor} 和一元的Taylor公式，我们可以得到多元函数的Taylor公式：
 
-\begin{theorem}[Taylor展开]\index{Taylor展开}
+\begin{theorem}[Taylor展开]
     设$f\in C^k(U)$，$[x,x+h]\subseteq U$，那么
     \[
         f(x+h)=\sum_{j=0}^k\frac{1}{j!}(h^\t\nabla)^jf(x)+o(\norm{h}^k).
@@ -996,7 +996,7 @@ $h$被称为\textbf{切向量}\index{切向量}（回忆一维的情况），所
     
 总而言之，只要给定圆周上一个点$(x_0,y_0)$（$y_0\neq 0$），我们就可以找到一个邻域，在这个邻域上确认一个$y$和$x$的函数关系$y=y(x)$.
 
-更一般地，给定函数方程$F(x,y)=0$，它确定了一个平面上的曲线$C=\{(x,y)\in\R^2:F(x,y)=0\}$. 任取一点$(x_0,y_0)\in C$，如果在$(x_0,y_0)$的某个邻域$U$上，我们可以确认一个$y$和$x$的函数关系$y=y(x)$，使得$U\cap C$中的所有点都可以用这个关系表示，那么我们其实就把一个隐藏在$F(x,y)=0$中的函数$y$解出来了，这就是\textbf{隐函数}\index{隐函数}的概念.
+更一般地，给定函数方程$F(x,y)=0$，它确定了一个平面上的曲线$C=\{(x,y)\in\R^2:F(x,y)=0\}$. 任取一点$(x_0,y_0)\in C$，如果在$(x_0,y_0)$的某个邻域$U$上，我们可以确认一个$y$和$x$的函数关系$y=y(x)$，使得$U\cap C$中的所有点都可以用这个关系表示，那么我们其实就把一个隐藏在$F(x,y)=0$中的函数$y$解出来了，这就是\textbf{隐函数}的概念.
 
 下面，我们考虑维数更高的情况. 设$F:\R^n\times\R^m\to\R^k$，$F(x,y)=0$，其中$x\in\R^n$，$y\in\R^m$. 任取一点$(x_0,y_0)$满足$F(x_0,y_0)=0$，同样，我们希望在$(x_0,y_0)$的某个邻域$U$上，将$F(x,y)=0$转化为一个等价的函数关系$y=y(x)$. 
 
@@ -1034,7 +1034,7 @@ $h$被称为\textbf{切向量}\index{切向量}（回忆一维的情况），所
 假设我们可以解出函数关系$y=f(x)$，由于$h_x$和$h_y$是切向量，根据导数的定义，
 \[f'(x)=-\left(\frac{\partial F}{\partial y}\right)^{-1}\frac{\partial F}{\partial x}.\]
 
-确定了导数就可以确定这个函数本身，这就是\textbf{隐函数定理}\index{隐函数定理}的内容. 下面，我们正式给出它的陈述. 
+确定了导数就可以确定这个函数本身，这就是\textbf{隐函数定理}的内容. 下面，我们正式给出它的陈述. 
 
 \begin{theorem}[隐函数定理]\label{thm:implicit-function}
     设$F:\R^n\times\R^m\to\R^m$，$F(x,y)=0$，其中$x\in\R^n$，$y\in\R^m$，考虑点$(x_0,y_0)$的邻域$U$，如果：

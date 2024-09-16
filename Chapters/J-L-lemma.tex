@@ -14,11 +14,11 @@
 
 本章将说明，高维空间有着令人着迷却看似矛盾的两种性质. 首先，与我们生活的三维空间相比，高维空间是极其反直觉的，这带来了望而生畏的复杂性，似乎“维数灾难”难以逾越. 然而，硬币的另一面是，高维空间中的随机数据几乎都是高度集中，因而他们其实可以被压缩到更低维度的空间中进行处理. 这一原理被广泛应用在机器学习中. 
 
-从技术上看，我们要证明Johnson-Lindenstrauss引理，它表明了高维随机变量的集中性. 证明这一引理所用到的概率论技术是\textbf{矩法}\index{矩法}，这是\emph{机器学习理论}\index{机器学习理论}中最为核心的几个技术之一. 因此本章也可以看做机器学习理论的一个引论. 
+从技术上看，我们要证明Johnson-Lindenstrauss引理，它表明了高维随机变量的集中性. 证明这一引理所用到的概率论技术是\textbf{矩法}，这是\emph{机器学习理论}中最为核心的几个技术之一. 因此本章也可以看做机器学习理论的一个引论. 
 
 \section{高维几何}
 
-\subsection{高维球体}\index{球}
+\subsection{高维球体}
 首先，我们探讨高维空间中“球体”的特殊性. 按照微积分的方式（见\Cref{subsec:kolmogorov-probability}），我们可以定义$n$维空间中的体积和表面积. 定义
 \[B_n = \{x \in \R^n: \norm{x} \leq 1\}.\]
 这是一个$n$维空间中的单位球体. 
@@ -31,7 +31,7 @@
     V_n&=\frac{\pi^{n/2}}{\Gamma(1+n/2)},\\
     S_n&=\frac{2\pi^{n/2}}{\Gamma(n/2)}.
 \end{align*}
-其中$\Gamma$是Gamma函数\index{Gamma函数}，对自然数$n$，它定义为
+其中$\Gamma$是Gamma函数，对自然数$n$，它定义为
 \[\Gamma\left(\frac{n}{2}\right)=\begin{cases}
     (m-1)!, & n=2m,\\
     \frac{(2m)!}{4^mm!}\sqrt{\pi}, & n=2m+1.
@@ -49,7 +49,7 @@
 \end{align*}
 \end{corollary}
 \begin{proof}
-    当$n$趋于无穷时，由Stirling公式\index{Stirling公式}，我们有
+    当$n$趋于无穷时，由Stirling公式，我们有
         \[\Gamma(n)\sim\sqrt{2\pi n}\left(\frac{n}{e}\right)^n.\]
     因此，当$n\to\infty$，
     \[V_n\sim\frac{\pi^{n/2}}{\sqrt{2\pi n}\left(\frac{n}{e}\right)^n}=\frac{1}{\sqrt{2\pi n}}\left(\frac{e}{n\sqrt{\pi}}\right)^n\to 0.\]
@@ -62,7 +62,7 @@
 \begin{proposition}
 对任意$\epsilon\in(0,1)$，
 \[\frac{\lambda(B_n(1-\epsilon))}{\lambda(B_n(1))}=(1-\epsilon)^n.\]
-其中$\lambda$是$\R^n$上的Lebesgue测度（体积）\index{Lebesgue测度}. 
+其中$\lambda$是$\R^n$上的Lebesgue测度（体积）. 
 
 因此，当$n$趋于无穷时，这一比值以指数速度趋于零. 
 \end{proposition}
@@ -80,7 +80,7 @@
 我们有如下定理：
 \begin{theorem}
 \[\lim_{n\to \infty} \frac{\lambda (A_{n,\epsilon}\cap (-1,1)^n)}{\lambda((-1,1)^n)} = 1,\]
-其中$\lambda$是$\R^n$上的Lebesgue测度（体积）\index{Lebesgue测度}. 
+其中$\lambda$是$\R^n$上的Lebesgue测度（体积）. 
 \end{theorem}
 
 我们来解释这一定理反直觉的地方. 
@@ -116,7 +116,7 @@ $Y_i=X_i^2$也是i.i.d.的，并且有\[\E[Y_i] = \int_{-1}^1 \frac{1}{2}\cdot x
 这就完成了证明. 
 \end{proof}
 
-\subsection{Stein悖论}\index{Stein悖论}
+\subsection{Stein悖论}
 接下来，我们转向更加抽象的高维空间，先考虑一维空间. 假设$X_1 \sim \mathcal{N}(\mu,1)$，但我们并不知道$\mu$是什么. 通过随机采样得到了一个样本$x_1 = 7$，怎样合理地估计$\mu$？既然没有多余的信息，我们不妨就猜$\hat{\mu} = 7$，这是一个符合直觉的估计. 
 
 然后转向二维空间，假设$(X_1, X_2) \sim \mathcal{N}(\mu,\mathbf{1}_2), \mu=(\mu_1,\mu_2)$，我们还是不知道$\mu$是什么. 同样，随机采样得到样本$x_1 = 7, x_2=6$，怎样合理地估计$\mu$？我们似乎依然没有多余的选择，$\hat{\mu}_1 = 7, \hat{\mu}_2=6$看起来也是一个“好的”估计. 
@@ -129,7 +129,7 @@ $\mu$未知. 随机采样得到样本$x_1,x_2,\dots,x_n$，怎样对$\mu$进行�
 \begin{equation}
     \hat{\mu}=(x_1,x_2,\dots,x_n), \label{eq:naive-estimation}
 \end{equation}
-似乎没有更好的选择，我们把这种估计称为\emph{朴素估计}\index{朴素估计}. 然而，在这部分我们将看到，在高维空间中，存在比朴素估计更好的估计方法！这就是\emph{Stein悖论}\index{Stein悖论}. 
+似乎没有更好的选择，我们把这种估计称为\emph{朴素估计}. 然而，在这部分我们将看到，在高维空间中，存在比朴素估计更好的估计方法！这就是\emph{Stein悖论}. 
 
 为了衡量一个估计量方法的优劣程度，可以定义损失函数（均方误差）：
 \[\ell = \E\left[\norm{\hat{\mu}-\mu}^2\right].\]
@@ -147,7 +147,7 @@ $\mu$未知. 随机采样得到样本$x_1,x_2,\dots,x_n$，怎样对$\mu$进行�
 
 上面的例子表明，如果一个模型的参数$\mu$，我们很可能无法判断哪一种方法更好. 但有一种情况，我们是可以明确说明一个方法$A$一定不好：有另外一个估计量在任何$\mu$下都比它好. 这就是如下定义：
 
-\begin{definition}[可接受性]\index{可接受性}
+\begin{definition}[可接受性]
 考虑对参数$\mu$的估计量方法$A$，如果存在估计量方法$B$，在任意的$\mu$下都成立
 \[\ell_B > \ell_A,\]
 我们就称$A$方法是\textbf{不可接受的}. 否则，我们称$A$方法是\textbf{可接受的}. 
@@ -155,7 +155,7 @@ $\mu$未知. 随机采样得到样本$x_1,x_2,\dots,x_n$，怎样对$\mu$进行�
 
 有了评判估计量好坏的标准，我们就可以引入James-Stein估计量了. 
 
-\begin{definition}[James-Stein估计量]\index{James-Stein估计量}
+\begin{definition}[James-Stein估计量]
 假设采样得到的数据点是$x_1,x_2,\dots,x_n$，对参数
 \[\mu=(\mu_1,\mu_2,\dots,\mu_n)^\t,\]
 定义 \textbf{James-Stein估计量}为：
@@ -166,7 +166,7 @@ $\mu$未知. 随机采样得到样本$x_1,x_2,\dots,x_n$，怎样对$\mu$进行�
 \end{equation}
 \end{definition}
 
-\begin{theorem}[Stein悖论]\label{thm:stein-paradox}\index{Stein悖论}
+\begin{theorem}[Stein悖论]\label{thm:stein-paradox}
     对于$n\geq 3$，朴素估计 \eqref{eq:naive-estimation} 是不可接受的，具体来说，James-Stein估计量 \eqref{eq:James-Stein-estimation} 在任意$\mu$下都比朴素估计更好. 
 \end{theorem}
 
@@ -257,7 +257,7 @@ $\mu$未知. 随机采样得到样本$x_1,x_2,\dots,x_n$，怎样对$\mu$进行�
 
 在机器学习中，我们可以把问题都归结为参数估计问题. 虽然参数空间的“原点”看起来并没有什么不同，但原点这一概念本身确实带着人类先验的知识. 例如，如果一个神经网络的所有参数都是零，无论输入是什么，它都会输出全零. 同样，在Stein悖论中，靠近原点就是会产生更好的估计量. 
 
-在机器学习中，我们同样有偏好“原点”的倾向，例如使用$L^2$正则化\index{正则化}这样的技术可以使模型变得更简单，因此不太可能过拟合. 本节的内容通过极端的例子展示了正则化背后的原理：在高维空间中，离原点较远的地方体积远大于靠近原点的地方. 因此，在高维空间中，向原点收缩一点就能减少大量的参数空间. 
+在机器学习中，我们同样有偏好“原点”的倾向，例如使用$L^2$正则化这样的技术可以使模型变得更简单，因此不太可能过拟合. 本节的内容通过极端的例子展示了正则化背后的原理：在高维空间中，离原点较远的地方体积远大于靠近原点的地方. 因此，在高维空间中，向原点收缩一点就能减少大量的参数空间. 
 
 换句话说，对于一个大型机器学习模型来说，过拟合的方式远多于欠拟合的方式，所以我们倾向于让模型更偏向于欠拟合：欠拟合只会带来少部分问题，而过拟合带来的是数不胜数、千奇百怪的问题. 
 
@@ -266,13 +266,13 @@ $\mu$未知. 随机采样得到样本$x_1,x_2,\dots,x_n$，怎样对$\mu$进行�
     \emph{“远有潜龙，勿用. ”}\footnote{原句出自《周易·乾卦》，“初九：潜龙勿用. ”孔子对这句话的解释是如果身居下位，时机还没有成熟，应当像潜藏的龙一样不要施展你的才干. 这里，复杂的、远离原点模型就像是潜龙，隐藏着巨大的力量，但是现在人类对他们的理解还远远不够，因此我们应当保持谨慎，不要轻易使用. }
 \end{quotation}
 
-\section{集中不等式}\index{集中不等式}
+\section{集中不等式}
 
 我们在前一节中阐述了高维空间中怪诞反直觉的性质. 从本节开始，我们将阐述高维空间中随机变量的另一重属性：集中不等式. 集中不等式说明的是，尽管整个空间非常庞大、难以理解，但如果随机变量具有某些性质，那么它们的取值就会集中在某个非常小的区域内，因而并没有我们所设想的那么复杂. 利用这一原理，我们可以将非常高维的数据压缩到一个较为低维的空间中，从而可以驾驭他们. 
 
 接下来，我们先做一些准备工作，更详细的讨论参见\Cref{chap:prob}. 我们先引入示性函数的概念.
 \begin{definition}[示性函数]\label{def:indicator-function}
-    对事件$A$，定义$A$的\textbf{示性函数}\index{示性函数}为一个从样本空间$\Omega$到$\R$的随机变量：
+    对事件$A$，定义$A$的\textbf{示性函数}为一个从样本空间$\Omega$到$\R$的随机变量：
 \begin{equation*}
     I(A)(\omega) := 
     \begin{cases}
@@ -327,7 +327,7 @@ $\mu$未知. 随机采样得到样本$x_1,x_2,\dots,x_n$，怎样对$\mu$进行�
 
 对于概率论以及机器学习理论来说，下面的这个不等式非常重要：
 
-\begin{theorem}[Markov不等式]\label{thm:markov-inequality}\index{Markov不等式}
+\begin{theorem}[Markov不等式]\label{thm:markov-inequality}
     如果$X$是非负有期望的随机变量，$a>0$，那么
         \[
             \Pr(X\geq a) \leq \frac{\E[X]}{a}.
@@ -346,7 +346,7 @@ $\mu$未知. 随机采样得到样本$x_1,x_2,\dots,x_n$，怎样对$\mu$进行�
 注意，为了使得证明有效，我们必须要假设上面的推导中出现的期望都是存在的，当然这实际上很容易验证. 为了避免不必要的技术细节，在后面的所有证明以及推导中，我们都会默认写出来的期望是存在的，不再赘述. 
 
 我们利用Markov不等式可以直接得到以下结果. 
-\begin{corollary}[Chebyshev不等式]\label{cor:chebyshev-inequality}\index{Chebyshev不等式}
+\begin{corollary}[Chebyshev不等式]\label{cor:chebyshev-inequality}
 设$X$是任意有方差的随机变量，那么对任意$a>0$，成立
     \[
         \Pr(|X - \E[X]| \geq a) \leq \frac{\var(X)}{a^2}.
@@ -361,7 +361,7 @@ $\mu$未知. 随机采样得到样本$x_1,x_2,\dots,x_n$，怎样对$\mu$进行�
 \end{align*}
 \end{proof}
 
-Chebyshev不等式告诉我们采样到偏离其期望的概率有一个上界. 像这样利用矩（即$\E[f(X)]$）来估计概率上界的方法被称为\emph{矩法}\index{矩法}. 
+Chebyshev不等式告诉我们采样到偏离其期望的概率有一个上界. 像这样利用矩（即$\E[f(X)]$）来估计概率上界的方法被称为\emph{矩法}. 
 
 实际上，很多情况下，偏离期望是非常小概率的事件，远小于上面的估计值. 为了得到更精确的上界，我们需要一些技巧. 考虑任意随机变量$X$，对$\lambda >0$，
 \[
@@ -376,15 +376,15 @@ X\geq a \iff \lambda X \geq \lambda a \iff \e^{\lambda X} \geq \e^{\lambda a}.
 \Pr(X\geq a) \leq \inf_{\lambda >0} \e^{- \lambda a}\cdot \E \left[\e^{\lambda X}\right].
 \]
 
-以上方法可以得到概率更精确的上界. 这样用指数进行推导的方法称为\emph{指数矩}\index{指数法}或\emph{Cramér-Chernoff方法}\index{Cramér-Chernoff方法}. 
+以上方法可以得到概率更精确的上界. 这样用指数进行推导的方法称为\emph{指数矩}或\emph{Cramér-Chernoff方法}. 
 
-利用指数矩，我们可以更加精确地研究Chebyshev不等式中随机变量所表现出来的性质，这种性质被称为概率的\emph{集中性}\index{集中性}. 我们可以用\emph{集中不等式}\index{集中不等式}来刻画这样的性质. 这样的不等式描述随机变量$X$有多大概率偏离某个值$\mu$多少值（$t$），它表现为
+利用指数矩，我们可以更加精确地研究Chebyshev不等式中随机变量所表现出来的性质，这种性质被称为概率的\emph{集中性}. 我们可以用\emph{集中不等式}来刻画这样的性质. 这样的不等式描述随机变量$X$有多大概率偏离某个值$\mu$多少值（$t$），它表现为
 \[
 \Pr(| X - \mu| \geq t) \leq \text{ 小量}.
 \]
 通常来说，$\mu$是随机变量的期望或者中位数，在这本书中，只会讨论关于期望的集中性. 我们可以看到Chebyshev不等式就是一种特殊的集中不等式，但是它的界太松. 利用指数矩，我们将证明界更紧的Hoeffding不等式和Chernoff不等式. 
 
-\begin{theorem}[Hoeffding 不等式]\label{thm:hoeffding-inequality}\index{Hoeffding不等式}
+\begin{theorem}[Hoeffding 不等式]\label{thm:hoeffding-inequality}
     设$X_1, \dots, X_n$相互独立且服从对称Bernoulli分布，即$X_i$满足$\Pr(X_i=1)=1-\Pr(X_i=-1)=1/2$. 考虑向量$a = (a_1, \dots, a_n) \in \R^n$，对任意$t\geq0$，我们有
     \[
         \Pr\left(\sum_{i=1}^n a_i X_i \geq t\right)\leq \exp \left( - \frac{t^2}{2\norm{a}^2_2}\right).
@@ -415,7 +415,7 @@ X\geq a \iff \lambda X \geq \lambda a \iff \e^{\lambda X} \geq \e^{\lambda a}.
 
 利用相同的证明技巧，我们可以证明一般形式的Hoeffding不等式（见习题\lhysays{出一下}）.
 
-\begin{theorem}[Hoeffding 不等式，一般情形]\label{thm:hoeffding-inequality-general}\index{Hoeffding不等式}
+\begin{theorem}[Hoeffding 不等式，一般情形]\label{thm:hoeffding-inequality-general}
     设$X_1, \dots, X_n$是相互独立的随机变量，对任意$i$都成立$X_i \in [m_i, M_i]$. 那么对任意$t\geq0$，我们有
     \[
         \Pr\left(\sum_{i=1}^n (X_i - \E [X_i]) \geq t\right) \leq \exp \left( - \frac{2t^2}{\sum_{i=1}^n (M_i - m_i)^2}\right).
@@ -423,7 +423,7 @@ X\geq a \iff \lambda X \geq \lambda a \iff \e^{\lambda X} \geq \e^{\lambda a}.
 \end{theorem}
 
 下面我们介绍 Chernoff 不等式. 
-\begin{theorem}[Chernoff 不等式]\label{thm:chernoff-inequality}\index{Chernoff不等式}
+\begin{theorem}[Chernoff 不等式]\label{thm:chernoff-inequality}
     设$X_1, \dots, X_n$是相互独立的随机变量，分别服从于参数为$p_1, \dots, p_n$的Bernoulli分布.  记$\sum_{i=1}^n X_i$的期望为$\mu = \sum_{i=1}^n p_i$，对于任意$t > \mu$，我们有
     \[
         \Pr\left( \sum_{i=1}^n X_i \geq t\right) \leq \e^{-\mu} \left(\frac{\e\mu}{t}\right)^t.  
@@ -463,7 +463,7 @@ X\geq a \iff \lambda X \geq \lambda a \iff \e^{\lambda X} \geq \e^{\lambda a}.
 
 \section{J-L引理的陈述与证明}
 有了上面矩法的准备，我们可以陈述并证明J-L引理了.
-\begin{theorem}[Johnson-Lindenstrauss 引理]\label{thm:johnson-lindenstrauss-lemma}\index{Johnson-Lindenstrauss引理}
+\begin{theorem}[Johnson-Lindenstrauss 引理]\label{thm:johnson-lindenstrauss-lemma}
 给定$N$个单位向量$v_1,\dots,v_N\in\R^m$和$n >24\log N/\epsilon^2$，随机矩阵$A\in \R^{n\times m}$每个元素独立重复采样自$\mathcal N(0,1/n)$，$\epsilon \in (0,1)$是给定常数，那么至少有$(N-1)/N$的概率，使得对所有的$i\neq j$，都成立
     \[
         (1 - \epsilon)\norm{v_i-v_j}_2^2 <\norm{Av_i-Av_j}_2^2 < (1 + \epsilon)\norm{v_i-v_j}_2^2.
@@ -505,7 +505,7 @@ X\geq a \iff \lambda X \geq \lambda a \iff \e^{\lambda X} \geq \e^{\lambda a}.
 \end{lemma}
 
 J-L引理实际上在说，$\norm{Au}_2$偏离$1$的一定程度的概率是非常小的. 于是，为了证明J-L引理，我们最重要的任务是给出$Au$这样向量模长的集中不等式：
-\begin{lemma}[单位模引理]\label{lemma:unit-mod-lemma}\index{单位模引理}
+\begin{lemma}[单位模引理]\label{lemma:unit-mod-lemma}
     设 $u\sim \mathcal N(0,n^{-1}I_n)$，$\epsilon \in (0,1 )$是给定的常数，那么我们有
     \[
         \Pr(|\norm{u}_2^2 - 1| \geq \epsilon) \leq 2\exp \left(-\frac{\epsilon^2 n}{8}\right).
@@ -563,8 +563,8 @@ $|\norm{u}_2^2 - 1| \geq \epsilon$发生有两种可能，$ \norm{u}_2^2 - 1 \ge
 1 - N(N-1)\exp \left(-\frac{\epsilon^2 n}{8}\right) \geq 1 - N(N-1)N^{-3}\geq 1 - N^{-1} = \frac{N-1}{N}. 
 \]
 
-很多时候，我们关心的并不是向量间的距离，而是向量的内积（比如使用\emph{余弦度量}\index{余弦度量}的时候），这时候我们可以使用内积版本的J-L的引理：
-\begin{theorem}[J-L引理，内积形式]\label{thm:johnson-lindenstrauss-lemma-inner-product}\index{Johnson-Lindenstrauss引理}
+很多时候，我们关心的并不是向量间的距离，而是向量的内积（比如使用\emph{余弦度量}的时候），这时候我们可以使用内积版本的J-L的引理：
+\begin{theorem}[J-L引理，内积形式]\label{thm:johnson-lindenstrauss-lemma-inner-product}
     给定$N$个单位向量$v_1,\dots,v_N\in\R^m$和$n > 24\log N/\epsilon^2$，随机矩阵$A\in \R^{n\times m}$每一个元素都独立重复采样自$\mathcal N(0,1/n)$，$\epsilon \in (0,1)$是给定常数，那么至少有$(N-1)/N$的概率，使得对所有的$i\neq j$，都成立
     \[
         |\langle Av_i, Av_j\rangle - \inner{v_i}{v_j}|< \epsilon.
@@ -594,9 +594,9 @@ J-L引理描述的是对于$N$个向量，我们可以将它们降到$\O(\log N)
 \begin{quotation}
     比如 / ， / 这句话 / 就 / 可以 / 被 / 分解 / 为 / 如下 / 成分
 \end{quotation}
-任何的中文句子都可以被这样分解，变成一个词的序列. 这一过程被称为\emph{分词}\index{分词}. 于是，为了表示一段中文，我们只需要能够表示所有的词. 
+任何的中文句子都可以被这样分解，变成一个词的序列. 这一过程被称为\emph{分词}. 于是，为了表示一段中文，我们只需要能够表示所有的词. 
 
-于是，一个基本的任务就是如何表示一个词. 词向量\index{词向量}就是这样的一个表示方法. 它的想法很简单：我们用一个向量空间来表示所有的词，每个词对应一个向量，我们用$v(w)$来表示词$w$对应的向量. 
+于是，一个基本的任务就是如何表示一个词. 词向量就是这样的一个表示方法. 它的想法很简单：我们用一个向量空间来表示所有的词，每个词对应一个向量，我们用$v(w)$来表示词$w$对应的向量. 
 
 很多时候，这些向量之间的关系可以反映出词之间的语义关系. 例如，“男人”和“女人”之间差异应该和“国王”和“女王”之间差异是类似的. 也就是说，我们希望
 \[
@@ -615,7 +615,7 @@ v(\text{男人}) - v(\text{女人}) \approx v(\text{国王}) - v(\text{女王}).
 \end{example}
 
 \begin{example}[多头注意力]
-\emph{注意力机制}\index{注意力机制}是现代深度学习架构中最核心的模块之一. 注意力机制的一种理解方式是将其看作一个键-值存储. 想象我们把数据都存储到了一个数据库中，它的存储方式是$\{k_i:v_i\}$，其中$k_i$是键，$v_i$是值，例如“性别：男”就是一种典型的键值对，其中“性别”是键，而“男”是值. 
+\emph{注意力机制}是现代深度学习架构中最核心的模块之一. 注意力机制的一种理解方式是将其看作一个键-值存储. 想象我们把数据都存储到了一个数据库中，它的存储方式是$\{k_i:v_i\}$，其中$k_i$是键，$v_i$是值，例如“性别：男”就是一种典型的键值对，其中“性别”是键，而“男”是值. 
 
 现在，假设数据库中的所有键、值对是$\{k_i:v_i\}_{i=1}^N$，我们希望从中找到与某个查询$q$最接近的键对应的值. 在深度学习中，键、值、查询都可以按照\Cref{ex:word-vector-dimension} 的方式表示成向量. 类似地，我们可以用内积来衡量键和查询的相似度. 
 
@@ -625,7 +625,7 @@ v(\text{男人}) - v(\text{女人}) \approx v(\text{国王}) - v(\text{女王}).
 \]
 换言之，我们把相似性转化为了概率分布，相似度越高的键，被选中的概率越大. 我们把$d$成为\emph{注意力头大小}，在很多深度学习框架中，它被记为 \verb#head_size#.
 
-在很多场景下，一个数据库只能查询一种键-值对的关系，对于一些复杂的问题，我们可能需要查询多种不同的键-值对. 例如，对于中文来说，两个词的意思是否相近可以形成一个数据库，而两个词的词性是否相近又可以形成另一个数据库. 因此，我们需要多个注意力机制来查询不同的数据库，这就是\emph{多头注意力}\index{多头注意力}.
+在很多场景下，一个数据库只能查询一种键-值对的关系，对于一些复杂的问题，我们可能需要查询多种不同的键-值对. 例如，对于中文来说，两个词的意思是否相近可以形成一个数据库，而两个词的词性是否相近又可以形成另一个数据库. 因此，我们需要多个注意力机制来查询不同的数据库，这就是\emph{多头注意力}.
 
 在简化的场景下，我们可以假设所有数据库里的$k_i:v_i$对都是一致的，只是查询$q_i$不同. 那么，多头注意力就是要计算
 \[

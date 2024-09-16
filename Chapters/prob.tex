@@ -7,7 +7,7 @@
 \subsection{Kolmogorov概率论}\label{subsec:kolmogorov-probability}
 朴素的概率论通常讨论两种极端的情况，一个是可以用数数的方式来计算概率的情况，比如说掷骰子，另一个是用面积的方式来计算概率的情况，比如在随机选一个圆周上的点. 这两个情况分别对应了\emph{古典概型}和\emph{几何概型}. 
 
-我们先给一些术语. 考虑一个随机试验，它的所有可能结果组成的集合称为\textbf{样本空间}\index{样本空间}，记为$\Omega$. 样本空间的元素称为\textbf{样本点}\index{样本点}，通常记为$\omega$. 样本空间的\emph{某些}子集被称为\textbf{事件}. 我们来看看这些概念在朴素的概率论中都具体是什么. 
+我们先给一些术语. 考虑一个随机试验，它的所有可能结果组成的集合称为\textbf{样本空间}，记为$\Omega$. 样本空间的元素称为\textbf{样本点}，通常记为$\omega$. 样本空间的\emph{某些}子集被称为\textbf{事件}. 我们来看看这些概念在朴素的概率论中都具体是什么. 
 
 \begin{example}[古典概型]
 先后掷两个骰子，样本空间为
@@ -51,7 +51,7 @@
 
 几何概型的定义看似合理，却并不严谨：我们并不知道如何定义“体积”. 我们来看一个有趣的例子. 
 
-\begin{example}[Bertrand悖论]\index{Bertrand悖论}
+\begin{example}[Bertrand悖论]
 考虑一个圆，它的半径为$1$. 现在我们随机地在圆上取一个弦，那么这个弦的长度超过$\sqrt{3}$（即圆内接正三角形的边长）的概率是多少？
 
 我们给出三种答案，这三种答案对应了我们对“随机”的不同理解.
@@ -88,7 +88,7 @@
 
 首先注意到，概率应该是一个函数，它的值域是$[0,1]$. 那么，它的定义域应该是什么呢？我们已经看到，概率应该定义在\emph{事件}上，而非\emph{样本点}上. 那么，概率可以定义在\emph{任意}事件上吗？这个问题很微妙，我们不在这里讨论. 这里只是指出，我们关心的并不总是任意事件，而是一类被$\sigma$-代数所刻画的事件. 
 
-\begin{definition}[$\sigma$-代数]\index{$\sigma$-代数}
+\begin{definition}[$\sigma$-代数]
 设$\Omega$是一个集合，$\scF$是$\Omega$的子集的集合. 如果$\scF$满足
 \begin{enumerate}
     \item $\Omega\in\scF$;
@@ -99,11 +99,11 @@
 \end{definition}
 
 
-在样本空间中，我们要求事件也形成一个$\sigma$-代数，这样的$\sigma$-代数称为\textbf{事件域}\index{事件域}，记为$\scF$. 在数学上，$\sigma$-代数包括了绝大部分我们可以构造的事件，这是因为，容易验证，$\sigma$-代数中的事件对可数交、可数并和补运算都是封闭的，并且包含了样本空间和空集. 关于这一定义的哲学讨论，可以见\Cref{chap:plausible-reasoning}.  
+在样本空间中，我们要求事件也形成一个$\sigma$-代数，这样的$\sigma$-代数称为\textbf{事件域}，记为$\scF$. 在数学上，$\sigma$-代数包括了绝大部分我们可以构造的事件，这是因为，容易验证，$\sigma$-代数中的事件对可数交、可数并和补运算都是封闭的，并且包含了样本空间和空集. 关于这一定义的哲学讨论，可以见\Cref{chap:plausible-reasoning}.  
 
 样本空间连同它的事件域，被称为\emph{可测空间}. 
 
-\begin{definition}[可测空间] \index{可测空间}
+\begin{definition}[可测空间] 
 设$\Omega$是一个集合，$\scF$是$\Omega$上的一个$\sigma$-代数. 则称$(\Omega,\scF)$是一个\textbf{可测空间}.
 
 设$S\subseteq\Omega$，如果$S\in\scF$，则称$S$是\textbf{$\scF$-可测}的.
@@ -113,7 +113,7 @@
 
 接下来，我们给出Kolmogorov概率论的公理化定义. 
 
-\begin{definition}[概率空间，概率测度]\index{概率空间}\index{概率}\index{概率测度}
+\begin{definition}[概率空间，概率测度]
 设$(\Omega,\scF)$是一个可测空间. 如果函数$\Pr:\scF\to[0,1]$满足
 \begin{enumerate}
     \item 正则性：$\Pr(\Omega)=1$;
@@ -148,7 +148,7 @@
 
 先考虑事件域. 首先，事件域至少要包含长方体
 \[\prod_i(a_i,b_i)=\{x=(x_1,x_2,\ldots,x_n)\in\R^n:a_i<x_i<b_i\}.\]
-这是我们可以构造的最基本的集合了. 我们就定义事件域为包含所有长方体的最小$\sigma$-代数$\scB([0,1]^n)$. 换言之，如果还有一个$\sigma$-代数$\scF$包含所有长方体，那么$\scB([0,1]^n)\subseteq\scF$. 我们将这一$\sigma$-代数称为\textbf{Borel代数}\index{Borel代数}. Borel代数包含了绝大部分我们要讨论的集合，例如开集、闭集、单点集、有限集、可数集等，可以简单归纳为“合理的集合”. 
+这是我们可以构造的最基本的集合了. 我们就定义事件域为包含所有长方体的最小$\sigma$-代数$\scB([0,1]^n)$. 换言之，如果还有一个$\sigma$-代数$\scF$包含所有长方体，那么$\scB([0,1]^n)\subseteq\scF$. 我们将这一$\sigma$-代数称为\textbf{Borel代数}. Borel代数包含了绝大部分我们要讨论的集合，例如开集、闭集、单点集、有限集、可数集等，可以简单归纳为“合理的集合”. 
 
 事件域的定义已经给出，我们还需要定义概率测度$\Pr$，它应该满足以下两个要求：
 \begin{itemize}
@@ -158,7 +158,7 @@
     \]
     \item 平移不变性. 也就是说，如果$A\in\scB([0,1]^n)$，那么对任意的$x\in\R^n$，定义$A+x=\{y\in\R^n:y=x+z,z\in A\}$，只要$A\in\scB([0,1]^n)$，就有$\Pr(A+x)=\Pr(A)$.
 \end{itemize}
-一个惊人的事实是，这样的概率测度是存在且唯一的，我们称之为\textbf{Lebesgue测度}\index{Lebesgue测度}，常记为$\lambda$.
+一个惊人的事实是，这样的概率测度是存在且唯一的，我们称之为\textbf{Lebesgue测度}，常记为$\lambda$.
 
 注意，Borel代数和Lebesgue测度的定义可以不局限在$[0,1]^n$，他们可以定义在与实数相关的各种集合上. 在本附录中，我们最主要是用的是$\R^n$上的相关定义，例如$\scB(\R^n)$就是包含所有$n$维开长方体（每条边是开区间）的最小$\sigma$-代数，$\lambda$就是定义在$\scB(\R^n)$上的Lebesgue测度. $\R^n$上的Lebesgue测度其实是概率测度的扩展（而非概率测度），因为此时不再要求有正则性（即$\lambda(\Omega)=1$），但额外要求$\lambda(\varnothing)=0$.
 
@@ -167,7 +167,7 @@
 
 我们直接给出一般情况下条件概率的定义. 
 
-\begin{definition}[条件概率]\index{条件概率}
+\begin{definition}[条件概率]
 设$(\Omega,\scF,\Pr)$是一个概率空间，$A,B\in\scF$是两个事件，且$\Pr(A)>0$. 则称
 \[
     \Pr(B|A) = \frac{\Pr(A\cap B)}{\Pr(A)}
@@ -182,7 +182,7 @@
 \[\Pr(B|A)=\Pr(B)\iff \frac{\Pr(A\cap B)}{\Pr(A)}=\Pr(B)\iff \Pr(A\cap B)=\Pr(A)\Pr(B).\]
 最后一个式子并不要求$\Pr(A)>0$，因此我们用它作为独立性的定义，这样定义可以不依赖条件概率. 
 
-\begin{definition}[独立性]\index{独立性}
+\begin{definition}[独立性]
 设$(\Omega,\scF,\Pr)$是一个概率空间，$A,B\in\scF$是两个事件. 如果$\Pr(A\cap B)=\Pr(A)\Pr(B)$，则称事件$A$和$B$\textbf{相互独立}. 
 
 一般地，给定一个事件族$\mathscr{A}\subseteq\scF$，如果对任意的有限个不同的$A_1,A_2,\ldots,A_n\in\mathscr{A}$，都有
@@ -218,9 +218,9 @@
 \end{proposition}
 以上性质的证明都很简单，我们就不给出了. 
 
-接下来我们给两个在Bayes概率论\index{Bayes概率论}以及随机过程\index{随机过程}中很重要的性质. 
+接下来我们给两个在Bayes概率论以及随机过程中很重要的性质. 
 
-\begin{theorem}[全概率公式]\index{全概率公式}\label{thm:total-probability}
+\begin{theorem}[全概率公式]\label{thm:total-probability}
 设$(\Omega,\scF,\Pr)$是一个概率空间，$A_1,A_2,\ldots\in\scF$是一列两两不相交的事件，且$\Pr(A_i)>0$，$\bigcup_{i=1}^\infty A_i=B$，则对任意的$C\in\scF$，有
 \[
     \Pr(C|B) = \sum_{i=1}^\infty \Pr(C|A_i)\Pr(A_i).
@@ -257,7 +257,7 @@
     这里$\bar A$指的是$A$的补集，即“第一个球是黑球”. 
 \end{example}
 
-\begin{theorem}[贝叶斯公式]\index{贝叶斯公式}\label{thm:bayes}
+\begin{theorem}[贝叶斯公式]\label{thm:bayes}
 设$(\Omega,\scF,\Pr)$是一个概率空间，$A,B\in\scF$且$\Pr(A),\Pr(B)>0$，则
 \[
     \Pr(A|B) = \frac{\Pr(B|A)\Pr(A)}{\Pr(B)}.
@@ -266,9 +266,9 @@
 
 这一公式的证明几乎是显然的，我们略去. 
 
-一个特别重要的推论被称为\emph{链式法则}\index{链式法则}，它是\emph{Bayes网络}\index{Bayes网络}的基础. 
+一个特别重要的推论被称为\emph{链式法则}，它是\emph{Bayes网络}的基础. 
 
-\begin{corollary}[链式法则]\index{链式法则}\label{cor:chain-rule}
+\begin{corollary}[链式法则]\label{cor:chain-rule}
 设$(\Omega,\scF,\Pr)$是一个概率空间，$A_1,A_2,\ldots,A_n\in\scF$，且$\Pr(A_1\cap A_2\cap\cdots\cap A_n)>0$，则
 \begin{align*}
     &\Pr(A_1\cap A_2\cap\cdots\cap A_n)\\
@@ -296,7 +296,7 @@
 \end{example}
 
 \begin{remark}
-    在概率论中，我们经常要讨论事件的交，所以我们通常会把$A\cap B$简记为$AB$. 此外，事件不相交我们也称之为\textbf{互斥}\index{互斥}. 事件$A$的补事件，即$\Omega\setminus A$.我们会记为$\bar{A}$或$A^c$.
+    在概率论中，我们经常要讨论事件的交，所以我们通常会把$A\cap B$简记为$AB$. 此外，事件不相交我们也称之为\textbf{互斥}. 事件$A$的补事件，即$\Omega\setminus A$.我们会记为$\bar{A}$或$A^c$.
     
     另外，我们也经常要讨论一个关于$\omega$的陈述$Q(\omega)$定义的事件$\{\omega\in\Omega:Q(\omega)\}$，在P\'olya的罐子的例子中，事件$A_1$其实就是由陈述$Q(\omega)$：“$\omega$中第一次取出的球是白球”定义的事件. 在这种情况下，我们将这一事件简记为$\{Q\}$，它的概率就是$\Pr(\{Q\})$或者简记为$\Pr(Q)$. 
     
@@ -323,7 +323,7 @@
 
 上面例子中的$S$和$X$都是\emph{随机变量}的例子. 我们给出随机变量的定义. 
 
-\begin{definition}[随机变量，随机向量，Borel函数]\index{随机变量}\index{随机向量}\index{Borel函数}
+\begin{definition}[随机变量，随机向量，Borel函数]
 设$(\Omega,\scF,\Pr)$是一个概率空间，$X:\Omega\to\R$是一个函数. 如果对任意的$x\in\R$，$\{X\in\scB(\R)\}\in\scF$，则称$X$是一个\textbf{随机变量}. 
 
 一般地，考虑一个集合$\R^n$以及其上的Borel代数$\scB(\R^n)$，$X:\Omega\to \R^n$是一个映射. 如果对任意的$A\in\scB(\R^n)$，集合$\{X\in A\}$ $\scF$-可测，即$\{X\in A\}\in\scF$，则称$X$是一个\textbf{$n$维随机向量}，简称\textbf{随机向量}. 如果$(\Omega,\scF)=(\R^m,\scB(\R^m))$，则称$X$是一个\textbf{Borel函数}.
@@ -345,7 +345,7 @@
 下面函数是Borel函数：
 \begin{enumerate}
     \item 所有的连续函数；
-    \item 给定$A\in\scB(\R^n)$，示性函数\index{示性函数}
+    \item 给定$A\in\scB(\R^n)$，示性函数
     $I_A(x) = \begin{cases}
         1, & x\in A,\\
         0, & x\notin A.
@@ -360,7 +360,7 @@
 
 考虑概率空间$(\Omega,\scF,\Pr)$，以及一个随机变量$X:\Omega\to\R$. 要刻画概率测度$\Pr$，我们需要给出所有的事件$A\in\scF$的概率$\Pr(A)$. 如果$A$可以被写成$\{X\in B\}$的形式，那么我们可以用$\Pr(X\in B)$来刻画$\Pr(A)$. 而我们之前说过，要确定$\Pr(X\in B)$，至少要先确定$\Pr(X\in(a,b))$. 这一概率还是有两个未定元$a,b$，所以更简便的方式是确定$F_X(b)=\Pr(X\in(-\infty,b])$，容易证明，开区间的概率完全可以由$F_X(b)$给出，所以$F_X$完全刻画了$\Pr$. 更一般地，我们有如下定义. 
 
-\begin{definition}[分布函数]\index{分布函数}
+\begin{definition}[分布函数]
 设$(\Omega,\scF,\Pr)$是一个概率空间，$X:\Omega\to\R$是一个随机变量. 定义函数$F_X:\R\to\R$为$F_X(x) = \Pr(X\leq x)$. 我们称$F_X$是$X$的\textbf{分布函数}，记作$X\sim F_X$.
 
 如果$X:\Omega\to\R^n$是一个随机向量，定义函数$F_X:\R^n\to\R$为$F_X(x) = \Pr(X\leq x)$，这里$X\leq x$是指对任意的$i=1,2,\ldots,n$，都有$X_i\leq x_i$. 我们称$F_X$是$X$的\textbf{分布函数}，记作$X\sim F_X$.
@@ -452,7 +452,7 @@
     x,&0\leq x\leq 1,\\
     1,&x>1.
 \end{cases}\]
-对应的概率测度就是我们之前讨论的$[0,1]$上的Lebesgue测度\index{Lebesgue测度}.
+对应的概率测度就是我们之前讨论的$[0,1]$上的Lebesgue测度.
 
 总结来说，随机向量$X$、概率测度$P_X$和分布函数$F_X$的关系如图：
 \begin{center}
@@ -470,9 +470,9 @@
 
 根据上面的讨论，分布函数的特性决定了随机变量的特性. 根据分布函数的不同性质，我们可以将随机变量分为不同的类型. 下面我们将讨论一些重要的类别. 
 
-\subsection{离散型随机变量}\index{随机变量!离散型～}
+\subsection{离散型随机变量}
 
-我们首先讨论\emph{离散型随机变量}. 离散型随机变量的分布函数$F$称之为\emph{离散型分布}\index{分布!离散型～}，它是一个阶梯函数，它的函数值只在有限或者可数个点$x_1,x_2,\dots$上发生跳变，在$x_i$的跳变为$p_i=F(x_i)-F(x_i-)$. 这一分布函数对应的概率测度$\Pr$我们称之为\emph{离散型测度}\index{测度!离散型～}，这种测度集中在$x_i$上，即$\Pr(X=x_i)=p_i$. 分布函数形如下图：
+我们首先讨论\emph{离散型随机变量}. 离散型随机变量的分布函数$F$称之为\emph{离散型分布}，它是一个阶梯函数，它的函数值只在有限或者可数个点$x_1,x_2,\dots$上发生跳变，在$x_i$的跳变为$p_i=F(x_i)-F(x_i-)$. 这一分布函数对应的概率测度$\Pr$我们称之为\emph{离散型测度}，这种测度集中在$x_i$上，即$\Pr(X=x_i)=p_i$. 分布函数形如下图：
 
 \begin{center}
 \begin{tikzpicture}
@@ -504,21 +504,21 @@
 \toprule
 名称 & 符号 & 分布列 & 参数 \\
 \midrule
-离散均匀\index{分布!离散均匀～} & $\U[n]$ &$p_i=1/n$，$i=1,\dots,n$ & $n\in\N$ \\
-Bernoulli\index{分布!Bernoulli～} & $B(1,p)$ & $p_1=p$，$p_0=1-p$ & $p\in[0,1]$ \\
-对称Bernoulli\index{分布!对称Bernoulli～} & — &$p_1=p_{-1}=1/2$ & — \\
-二项\index{分布!二项～} &$B(n,p)$ &$p_k=\binom{n}{k}p^k(1-p)^{n-k}$ & $n\in\N$，$p\in[0,1]$ \\
+离散均匀 & $\U[n]$ &$p_i=1/n$，$i=1,\dots,n$ & $n\in\N$ \\
+Bernoulli & $B(1,p)$ & $p_1=p$，$p_0=1-p$ & $p\in[0,1]$ \\
+对称Bernoulli & — &$p_1=p_{-1}=1/2$ & — \\
+二项 &$B(n,p)$ &$p_k=\binom{n}{k}p^k(1-p)^{n-k}$ & $n\in\N$，$p\in[0,1]$ \\
 \bottomrule
 \end{tabular}
 \caption{本书中用到的离散型分布}
 \label{tab:discrete-distribution}
 \end{table}
 
-\subsection{连续型随机变量}\index{随机变量!连续型～}\label{subsec:continuous-random-variable}
+\subsection{连续型随机变量}\label{subsec:continuous-random-variable}
 
-我们再来讨论\emph{连续型随机变量}，连续型随机变量的分布函数$F$称为\emph{连续型分布}\index{分布!连续型～}，对应的概率测度$\Pr$称之为\emph{绝对连续测度}\index{测度!绝对连续～}. 从名字上就可以看出，测度才是定义连续型随机变量的关键. 我们给出绝对连续测度的定义. 
+我们再来讨论\emph{连续型随机变量}，连续型随机变量的分布函数$F$称为\emph{连续型分布}，对应的概率测度$\Pr$称之为\emph{绝对连续测度}. 从名字上就可以看出，测度才是定义连续型随机变量的关键. 我们给出绝对连续测度的定义. 
 
-\begin{definition}[绝对连续测度]\index{测度!绝对连续～}
+\begin{definition}[绝对连续测度]
 $\R$上的测度$\Pr$称为\textbf{绝对连续测度}，如果对任意$\epsilon>0$，存在$\delta>0$使得任意$A\in\scB(\R)$满足$\lambda(A)<\delta$，都有$\Pr(A)<\epsilon$.
 \end{definition}
 
@@ -541,7 +541,7 @@ $\R$上的测度$\Pr$称为\textbf{绝对连续测度}，如果对任意$\epsilo
 \end{theorem}
 此处的积分可以理解为Riemann积分或者后面\Cref{sec:expectation} 中的Lebesgue积分. 
 
-\Cref{thm:lebesgue-differentiation-theorem} 意味着，绝对连续测度对应的分布函数几乎处处可以求导，并且所得到的导函数积分回去还是原来的分布函数，也就是微积分基本定理成立. 这样的函数我们称之为\emph{绝对连续函数}\index{绝对连续函数}.
+\Cref{thm:lebesgue-differentiation-theorem} 意味着，绝对连续测度对应的分布函数几乎处处可以求导，并且所得到的导函数积分回去还是原来的分布函数，也就是微积分基本定理成立. 这样的函数我们称之为\emph{绝对连续函数}.
 
 那么，这个$f$应该如何理解呢？先不管\Cref{thm:lebesgue-differentiation-theorem}，回到绝对连续测度，仿照导数的定义，考虑极限
 \[\frac{\d\Pr}{\d\lambda}(x)=\lim_{\lambda(A)\to 0,x\in A}\frac{\Pr(A)}{\lambda(A)},\]
@@ -554,7 +554,7 @@ $\R$上的测度$\Pr$称为\textbf{绝对连续测度}，如果对任意$\epsilo
 在一维的情况下，$x$的微小变化就是$\lambda(x)$的微小变化，所以$\d x=\d\lambda(x)$. 综合这两点，我们容易相信，
 \[f(x)=\frac{\d\Pr}{\d\lambda}(x)\iff \d\Pr=f(x)\d\lambda.\]
 
-所以，$f$应该理解为“密度”. 打个比方，$\lambda$是物体的体积，$\Pr$是物体的质量，那么$f$就是这个物体每个很小的部分上的体积质量除以体积，也就是密度. 所以，我们将$f$称之为\textbf{概率密度函数}\index{概率密度函数}，或者简称\textbf{密度}. 通常，$X$的密度记作$p_X$. 
+所以，$f$应该理解为“密度”. 打个比方，$\lambda$是物体的体积，$\Pr$是物体的质量，那么$f$就是这个物体每个很小的部分上的体积质量除以体积，也就是密度. 所以，我们将$f$称之为\textbf{概率密度函数}，或者简称\textbf{密度}. 通常，$X$的密度记作$p_X$. 
 
 那么，概率测度和密度的区别是什么呢？对于刚接触概率论的人来说，似乎很难理解他们之间的区别. 比如说，有时候会写$p(X=x)$甚至$\Pr(X=x)$来表示密度在$x$处的值$p(x)$，又或者，用$\int\Pr(X=x)\d x$来表示对密度的积分. 这些当然都是不对的，我们下面慢慢论述. 
 
@@ -563,7 +563,7 @@ $\R$上的测度$\Pr$称为\textbf{绝对连续测度}，如果对任意$\epsilo
 那么，要怎么理解密度$p(\cdot)$和概率测度$\Pr(\cdot)$的区别呢？当然，从定义的角度他们就完全不同：一个是从实数到实数的映射，一个是从实数的集合到实数的映射. 但是这样的区别对于初学者来说并不直观. 最直观的区别就在于密度这一词：虽然铅很重（密度大），但是几亿倍于铅体积的棉花却应该比铅重. 所以，密度是微观的，刻画很小部分集合的概率值，也就是$\d\Pr=p_X\d \lambda$；而概率刻画的是宏观的，计算任何一个集合的概率，也就是$\Pr(X\in A)$.
 
 \begin{remark}
-    上面的记号$\d\Pr/\d\lambda$并不是随意写出来的，我们叫它导数也不是随意的. 在测度论中，\Cref{thm:lebesgue-differentiation-theorem} 可以被推广为\textbf{Radon-Nikodym定理}\index{Radon-Nikodym定理}，这一定理直接保证了形如$\d\Pr/\d\lambda$的函数的存在性，这一函数被称之为\textbf{Radon-Nikodym导数}\index{Radon-Nikodym导数}. 
+    上面的记号$\d\Pr/\d\lambda$并不是随意写出来的，我们叫它导数也不是随意的. 在测度论中，\Cref{thm:lebesgue-differentiation-theorem} 可以被推广为\textbf{Radon-Nikodym定理}，这一定理直接保证了形如$\d\Pr/\d\lambda$的函数的存在性，这一函数被称之为\textbf{Radon-Nikodym导数}. 
 \end{remark}
 
 利用密度，我们可以很容易计算概率：
@@ -580,11 +580,11 @@ $\R$上的测度$\Pr$称为\textbf{绝对连续测度}，如果对任意$\epsilo
 \toprule
 名称 & 符号 & 密度函数 & 参数 \\
 \midrule
-连续均匀\index{分布!连续均匀～} & $\U(a,b)$ &$p(x)=\frac{1}{b-a}$，$x\in[a,b]$ & $a<b$ \\
-指数\index{分布!指数～} & $\Exp(\lambda)$ & $p(x)=\lambda \e^{-\lambda x}$，$x\geq 0$ & $\lambda>0$ \\
-双指数\index{分布!双指数～} & $\DExp(\lambda)$ & $p(x)=\frac{\lambda}{2}\e^{-\lambda|x|}$，$x\in\R$ & $\lambda>0$ \\
-Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}\e^{-\lambda|x-\mu|}$，$x\in\R$ & $\mu\in\R$，$\lambda>0$ \\
-正态（Gauss）\index{分布!正态～}\index{分布!Gauss～} & $\Nor(\mu,\sigma^2)$ & $p(x)=\frac{1}{\sqrt{2\pi}\sigma}\e^{-\frac{(x-\mu)^2}{2\sigma^2}}$，$x\in\R$ & $\mu\in\R$，$\sigma>0$ \\
+连续均匀 & $\U(a,b)$ &$p(x)=\frac{1}{b-a}$，$x\in[a,b]$ & $a<b$ \\
+指数 & $\Exp(\lambda)$ & $p(x)=\lambda \e^{-\lambda x}$，$x\geq 0$ & $\lambda>0$ \\
+双指数 & $\DExp(\lambda)$ & $p(x)=\frac{\lambda}{2}\e^{-\lambda|x|}$，$x\in\R$ & $\lambda>0$ \\
+Laplace & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}\e^{-\lambda|x-\mu|}$，$x\in\R$ & $\mu\in\R$，$\lambda>0$ \\
+正态（Gauss） & $\Nor(\mu,\sigma^2)$ & $p(x)=\frac{1}{\sqrt{2\pi}\sigma}\e^{-\frac{(x-\mu)^2}{2\sigma^2}}$，$x\in\R$ & $\mu\in\R$，$\sigma>0$ \\
 \bottomrule
 \end{tabular}
 \caption{本书中用到的连续型分布}
@@ -602,7 +602,7 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
     \frac{1}{b-a},&x\in[a,b],\\
     0,&x>b.
 \end{cases}\]
-为了简化记号，我们可以用\textbf{示性函数}\index{示性函数}来表示这一分类. 设$A\subseteq\R$，定义函数
+为了简化记号，我们可以用\textbf{示性函数}来表示这一分类. 设$A\subseteq\R$，定义函数
 \[I_A(x)=\begin{cases}
     1,&x\in A,\\
     0,&x\notin A.
@@ -615,13 +615,13 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 
 \subsection{随机向量，条件分布，独立性}\label{subsec:random-vector}
 
-我们前面已经说过，随机向量就是$\Omega\to\R^n$的映射. $n$维的随机向量可以看成$n$个随机变量的组合，可以写作$X=(X_1,\dots,X_n)^\t$. 通常，我们将$X$的分布函数称为$X_1,\dots,X_n$的\emph{联合分布}\index{分布!联合～}，将$X_i$的分布函数称为$X$的\emph{边缘分布}\index{分布!边缘～}.
+我们前面已经说过，随机向量就是$\Omega\to\R^n$的映射. $n$维的随机向量可以看成$n$个随机变量的组合，可以写作$X=(X_1,\dots,X_n)^\t$. 通常，我们将$X$的分布函数称为$X_1,\dots,X_n$的\emph{联合分布}，将$X_i$的分布函数称为$X$的\emph{边缘分布}.
 
 关于随机变量的分类可以完全平行移植到随机向量上. 下面我们分别讨论. 
 
 离散型随机向量指的是它对应的概率测度集中在有限或可数个点上. 这样的分布依然可以用分布列给出：$\Pr(X_1=x_1,\dots,X_n=x_n)=p_{x_1,\dots,x_n}$，其中$x_i$取遍所有可能的值. 
 
-本书中使用的离散型随机向量只有多项分布\index{分布!多项～}，符号为$PN(n,p_1,\dots,p_k)$，分布列为
+本书中使用的离散型随机向量只有多项分布，符号为$PN(n,p_1,\dots,p_k)$，分布列为
 \[\Pr(X_1=i_1,\dots,X_n=i_n)=\frac{n!}{i_1!\cdots i_k!}p_1^{i_1}\cdots p_k^{i_k},\]
 其中$n\in\N$，$p_i\geq 0$，$\sum_{i=1}^k p_i=1$. 
 
@@ -632,7 +632,7 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 \[F(x_1,\dots,x_n)=\int_{-\infty}^{x_1}\cdots\int_{-\infty}^{x_n}f(y_1,\dots,y_n)\d y_1\cdots\d y_n.\]
 \end{theorem}
 
-此时，$f$称为$X$的\textbf{概率密度函数}\index{概率密度函数}，或者简称\textbf{密度}. 通常，$X$的密度记作$p_X$.
+此时，$f$称为$X$的\textbf{概率密度函数}，或者简称\textbf{密度}. 通常，$X$的密度记作$p_X$.
 
 类似随机变量的讨论，密度函数依然可以被写做导数的形式. 假设$\Pr$是绝对连续测度，它对应的密度是$p$，那么
 \[\frac{\d\Pr}{\d\lambda}(x)=p(x)\iff \d\Pr=p(x)\d\lambda.\]
@@ -656,7 +656,7 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
     p_{X_1,X_2}(x_1,x_2) = \int_{x_3\in\R}p_X(x_1,x_2,x_3)\d x_3.
 \]
 
-连续型随机变量的一个重要的例子是多元正态分布，或者（非退化）Gauss向量\index{分布!多元正态～}\index{Gauss向量}. 它的密度函数为
+连续型随机变量的一个重要的例子是多元正态分布，或者（非退化）Gauss向量. 它的密度函数为
 \[p(x)=\frac{1}{(2\pi)^{n/2}\sqrt{\det\Sigma}}\e^{-\frac{1}{2}(x-\mu)^\t\Sigma^{-1}(x-\mu)},\]
 其中$\mu\in\R^n$，$\Sigma$是一个$n\times n$的正定矩阵. 这一分布的符号是$\Nor(\mu,\Sigma)$. 
 
@@ -666,7 +666,7 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 
 对于离散型随机向量$X=(X_1,X_2)$，它的分布完全由分布列给出. 我们可以定义$X_1$在给定$X_2$的条件下的分布列：
 \[\Pr(X_1=x_1|X_2=x_2)=\frac{\Pr(X_1=x_1,X_2=x_2)}{\Pr(X_2=x_2)}.\]
-由此给出了随机变量$X_1$在给定$X_2$的条件下的\emph{条件分布列}，继而给出了\emph{条件分布}\index{分布!条件～}. 这一定义也可以推广到$X_i$是随机向量的情况. 
+由此给出了随机变量$X_1$在给定$X_2$的条件下的\emph{条件分布列}，继而给出了\emph{条件分布}. 这一定义也可以推广到$X_i$是随机向量的情况. 
 
 然而，对于一般的随机向量，特别是连续型随机向量，这一定义是行不通的. 比如，如果$X=(X_1,X_2)$是连续型随机向量，那么 $\Pr(X_2=x_2)=\Pr(X_1=x_1,X_2=x_2)=0$，所以条件概率的分子和分布概率都是零，这样的定义是没有意义的. 
 
@@ -677,7 +677,7 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
     =&\lim_{\epsilon\downarrow 0}\frac{F_X(x_1,x_2+\epsilon)-F_X(x_1,x_2)}{F_{X_2}(x_2+\epsilon)-F_{X_2}(x_2)}.
 \end{align*}
 
-如果上面的极限存在，我们就定义它是$X_1$在给定$X_2$的条件下的\emph{条件分布}\index{分布!条件～}. 
+如果上面的极限存在，我们就定义它是$X_1$在给定$X_2$的条件下的\emph{条件分布}. 
 
 如果$X$是连续性随机变量，我们还可以继续算下去：
 \begin{align*}
@@ -693,7 +693,7 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 
 最后，我们讨论随机向量之间的独立性. 随机向量之间的独立性完全由事件的独立性刻画，所以我们有如下定义：
 
-\begin{definition}[随机向量的独立性]\index{独立性}
+\begin{definition}[随机向量的独立性]
 设$X_1,\dots,X_n$是$n$个随机向量，第$i$个的维数是$n_i$. 如果对任意的$1\leq i_1,\dots,i_k\leq n$，以及任意的$B_{i_1}\in\scB(\R^{n_{i_1}}),\dots,B_{i_k}\in\scB(\R^{n_{i_k}})$，都有
 \[\Pr(X_{i_1}\in B_{i_1},\dots,X_{i_k}\in B_{i_k})=\Pr(X_{i_1}\in B_{i_1})\cdots\Pr(X_{i_k}\in B_{i_k}),\]
 则称$X_1,\dots,X_n$是\textbf{独立的}. 
@@ -752,7 +752,7 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 \end{cases}\]
 显然，$p_1(x_1)\cdot p_2(x_2)\neq p(x_1,x_2)$，所以$X_1,X_2$不独立. 
 
-如果使用示性函数\index{示性函数}来书写密度函数，这一问题更不容易被忽视，在上面的例子中，$p(x_1,x_2)=8x_1x_2I_{0\leq x_1\leq x_2\leq 1}(x_1,x_2)$，示性函数显然是拆不成分别只关于$x_1$和$x_2$的函数乘积的. 
+如果使用示性函数来书写密度函数，这一问题更不容易被忽视，在上面的例子中，$p(x_1,x_2)=8x_1x_2I_{0\leq x_1\leq x_2\leq 1}(x_1,x_2)$，示性函数显然是拆不成分别只关于$x_1$和$x_2$的函数乘积的. 
 
 自然，利用条件分布，我们可以给出独立的另一种刻画：
 
@@ -790,7 +790,7 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 \begin{equation}
     \d P_Y=\d P_X\iff p_Y\lambda(\d y)=p_X\lambda(\d x).\label{eq:eq-prob}
 \end{equation}
-考虑到密度是计算体积而非有向体积，根据Jacobi行列式\index{Jacobi行列式}的几何意义（见\Cref{subsec:partial-derivative}），
+考虑到密度是计算体积而非有向体积，根据Jacobi行列式的几何意义（见\Cref{subsec:partial-derivative}），
 \[p_Y(y)=\left|\frac{\d x}{\d y}\right|p_X(x)=\left|\frac{\d y}{\d x}\right|^{-1}p_X(x)=|\det g'(x)|^{-1}p_X(x).\]
 这就得到了$Y$的密度函数. 
 
@@ -806,7 +806,7 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
     \sum_{g(x)=y}|\det g'(g^{-1}(y))|^{-1}p_X(g^{-1}(y)),&\det g'(g^{-1}(y))\neq 0,\\
     0,&\text{其他}.
 \end{cases}\]
-其中求和号中$g^{-1}(y)$是根据相应的$x$，用反函数定理（\Cref{thm:inverse-function}）\index{反函数定理}求出局部反函数. 
+其中求和号中$g^{-1}(y)$是根据相应的$x$，用反函数定理（\Cref{thm:inverse-function}）求出局部反函数. 
 \end{theorem}
 
 这一定理的表述比较宽泛，我们可以给一个具体的例子来理解. 
@@ -836,7 +836,7 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 \[p_{Z,Y}(z,y)=\left|\frac{\partial(z,y)}{\partial(x,y)}\right|^{-1}p_{X,Y}(x,y)=p_{X,Y}(z-y,y).\]
 于是，$Z$的边缘密度为
 \[p_Z(z)=\int_{y\in\R}p_{X,Y}(z-y,y)\d y.\]
-这被称为$X$和$Y$的\textbf{卷积}\index{卷积}. 
+这被称为$X$和$Y$的\textbf{卷积}. 
 \end{example}
 
 最后，对随机向量作用函数是不会影响独立性的：
@@ -867,7 +867,7 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 
 这个例子说明了期望的一种理解方式：在面对随机性的时候，我们按照概率的权重分配. 比如，上面的例子中，设$X$是甲赢的赌注，那么$X$的分布列为$\Pr(X=0)=1/4$，$\Pr(X=600)=3/4$，所以$\E[X]=0\times 1/4+600\times 3/4=450$.
 
-以上的例子给了我们定义随机变量期望的基础：定义\emph{示性函数}\index{示性函数}的数学期望. 设$A$是一个事件，那么$I_A$是一个随机变量：
+以上的例子给了我们定义随机变量期望的基础：定义\emph{示性函数}的数学期望. 设$A$是一个事件，那么$I_A$是一个随机变量：
 \[I_A(\omega)=\begin{cases}
     1,&\omega\in A,\\
     0,&\omega\notin A.
@@ -887,7 +887,7 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 
 第三步，定义\emph{非负随机变量}的数学期望. 非负随机变量是指$X(\omega)\geq 0$对任意$\omega$成立的随机变量$X$. 考虑一列简单随机变量$\{X_n\}_{n=1}^\infty$，它满足对于每一个$\omega\in\Omega$都有当$n\to\infty$时$X_n(\omega)\uparrow X(\omega)$. 容易验证，$\E[X_n]$也是单调递增的，所以根据\Cref{prop:monotone-bounded}，$\E[X_n]$有有限的极限或者趋于正无穷，我们都记为$\lim_{n\to\infty} \E[X_n]$.
 
-\begin{definition}[数学期望（Lebesgue积分），非负情形]\index{数学期望}\index{Lebesgue积分}
+\begin{definition}[数学期望（Lebesgue积分），非负情形]
 称
 \[\E[X]=\lim_{n\to\infty}\E[X_n]\]
 为随机变量$X$的\textbf{数学期望}或\textbf{Lebesgue积分}. 
@@ -897,7 +897,7 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 
 第四步，定义\emph{一般随机变量}的数学期望. 考虑随机变量$X$，定义$X^+=\max\{X,0\}$，$X^-=-\min\{X,0\}$，也就是$X$的正数部分和负数部分，那么$X=X^+-X^-$. 我们有如下定义：
 
-\begin{definition}[数学期望（Lebesgue积分），一般情形]\index{数学期望}\index{Lebesgue积分}
+\begin{definition}[数学期望（Lebesgue积分），一般情形]
 称随机变量$X$的数学期望\textbf{存在}，如果$\E[X^+]$和$\E[X^-]$至少有一个有限. 此时，定义
 \[\E[X]=\E[X^+]-\E[X^-]\]
 为随机变量$X$的\textbf{数学期望}或\textbf{Lebesgue积分}. 
@@ -951,7 +951,7 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 
 刻画随机变量的数字特征，除了可以用随机变量的期望，还可以用随机变量的函数的期望，我们列举一个重要的概念. 
 
-\begin{definition}[矩，方差，特征函数]\index{矩}\index{方差}\index{特征函数}
+\begin{definition}[矩，方差，特征函数]
 设$X$是一个随机变量，我们有如下定义：
 \begin{itemize}
     \item $k$是一个正整数，称$\E[X^k]$为$X$的\textbf{$k$阶矩}；称$\E[(X-\E[X])^k]$为$X$的\textbf{$k$阶中心矩}；
@@ -1045,7 +1045,7 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 
 需要注意的是，这一命题的逆命题不一定成立. 
 
-最后，我们给一个重要的不等式. 我们说函数$g:\R\to\R$是\emph{凸函数}\index{凸函数}，如果对任意$x,y\in\R$，$t\in[0,1]$，都有
+最后，我们给一个重要的不等式. 我们说函数$g:\R\to\R$是\emph{凸函数}，如果对任意$x,y\in\R$，$t\in[0,1]$，都有
 \[g(tx+(1-t)y)\leq tg(x)+(1-t)g(y).\]
 关于凸函数的更多讨论，见\Cref{sec:convex-function}. 我们有如下不等式：
 
@@ -1054,13 +1054,13 @@ Laplace\index{分布!Laplace～} & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}
 \[g(\E[X])\leq \E[g(X)].\]
 \end{theorem}
 
-\subsection{随机变量的内积空间}\label{subsec:inner-product}\index{内积空间}
+\subsection{随机变量的内积空间}\label{subsec:inner-product}
 
 我们指出，随机变量利用期望可以定义内积，从而定义内积空间，关于内积空间的讨论，见\Cref{sec:inner-product}. 在\Cref{sec:multivariate-normal} 中，这一事实非常重要. 
 
 我们定义内积如下：
 
-\begin{definition}[协方差] \index{协方差}
+\begin{definition}[协方差] 
 设$X,Y$是两个随机变量，称
 \[\cov(X,Y)=\E[(X-\E[X])(Y-\E[Y])]\]
 为$X$和$Y$的\textbf{协方差}. 
@@ -1093,7 +1093,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 协方差的概念可以推广到多个随机变量上：
 
-\begin{definition}[协方差矩阵]\index{协方差矩阵}
+\begin{definition}[协方差矩阵]
 设$X_1,\dots,X_n$是$n$个随机变量，称他们的Gram矩阵为\textbf{协方差矩阵}，记为$\Sigma$，其中
 \[\Sigma_{ij}=\cov(X_i,X_j).\]
 
@@ -1104,7 +1104,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 类似地，我们也可以定义随机向量的数学期望：
 
-\begin{definition}[随机向量的数学期望]\index{数学期望}
+\begin{definition}[随机向量的数学期望]
 设$X=(X_1,\dots,X_n)^\t$是一个$n$维随机向量，称
 \[\E[X]=(\E[X_1],\dots,\E[X_n])^\t\]
 为$X$的\textbf{数学期望}. 
@@ -1134,7 +1134,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 上面的计算可以有一个线性代数的理解. 假如说$X_1,\dots,X_n$是线性无关的，那么$t^\t X$可以理解为某个向量在$X_1,\dots,X_n$下的基表示，于是$t$是坐标. 而$t^\t AX=(A^\t t)X$，因此$A^\t$应该理解为某个线性映射$F$在$X_1,\dots,X_n$下的矩阵. Gram矩阵是二次型$f(x)=\norm{x}^2$在$X_1,\dots,X_n$下的矩阵，因此在$F$的作用下，二次型的矩阵表示会做一个相应的合同变换，即$A\var(X)A^\t$.
 
-\subsection{特征函数} \label{subsec:characteristic-function}\index{特征函数}
+\subsection{特征函数} \label{subsec:characteristic-function}
 
 在这一部分，我们讲述随机变量的特征函数，它是分布的另一种刻画方式. 
 
@@ -1145,7 +1145,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
 \end{theorem}
 
 特征函数其实可以求出随机变量的分布函数：
-\begin{theorem}[逆转公式]\label{prop:characteristic-function}\index{逆转公式}
+\begin{theorem}[逆转公式]\label{prop:characteristic-function}
 设$X$是随机变量，它的特征函数为$f_X$，分布函数为$F_X$，那么
 \begin{enumerate}
     \item 对于$F$的任意两个连续点$a<b$，
@@ -1157,7 +1157,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 这一公式也有随机向量的版本：
 
-\begin{theorem}[逆转公式，随机向量版本]\label{prop:characteristic-function-vector}\index{逆转公式}
+\begin{theorem}[逆转公式，随机向量版本]\label{prop:characteristic-function-vector}
 设$X$是$n$维随机向量，它的特征函数为$f_X$，分布函数为$F_X$，那么
 \begin{enumerate}
     \item 对于$F$的两个点$a<b$，满足
@@ -1178,7 +1178,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
 设$X_1,\dots,X_n$是$n$个相互独立的随机变量，它们的特征函数分别为$f_1,\dots,f_n$，那么$X_1+\dots+X_n$的特征函数为$f_1\dots f_n$.
 \end{theorem}
 
-比起卷积\index{卷积}，用特征函数来算独立随机变量的和，方便得多. 
+比起卷积，用特征函数来算独立随机变量的和，方便得多. 
 
 特征函数也可以用来判定随机变量的独立性：
 
@@ -1196,7 +1196,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 总结起来，我们之前可以用分布列和密度函数来计算或者判定随机变量的各种性质和特征，现在都可以用特征函数来处理了. 
 
-\subsection{条件数学期望}\label{subsec:conditional-expectation}\index{条件数学期望}
+\subsection{条件数学期望}\label{subsec:conditional-expectation}
 
 数学期望的定义，从本质上说，就是对所有的取值做加权平均. 但是，有时候我们并不需要对所有的取值做加权平均，而只需要对某些取值做加权平均. 这时候，我们就需要引入条件数学期望的概念. 我们从一个直观的例子出发. 
 
@@ -1211,18 +1211,18 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 更一般地，考虑样本空间$\Omega$，事件$A_1,\dots,A_n$，它们两两互斥，且$\bigcup_{i=1}^n A_i=\Omega$，这形成了$\Omega$的一个分割，记为$\mathscr{A}$. 我们再假设$\Pr(A_i)>0$，我们有如下定义：
 
-\begin{definition}[基于分割的条件数学期望]\label{def:conditional-expectation}\index{条件数学期望}
+\begin{definition}[基于分割的条件数学期望]\label{def:conditional-expectation}
 设$X$是一个随机变量，$\mathscr{A}=\{A_1,\dots,A_n\}$是$\Omega$的一个分割，满足$\Pr(A)>0$对任意$A\in\mathscr{A}$成立. $X$在$\mathscr{A}$上的\textbf{条件数学期望}是一个随机变量，记为$\E[X|\mathscr{A}]$，它的定义为
 \[\E[X|\mathscr{A}](\omega)=\sum_{i=1}^n \frac{\E[XI_{A_i}]}{\Pr(A_i)}I_{A_i}(\omega).\]
 \end{definition}
 这个定义就是在说，当$\omega$落在分割的某个集合$A_i$上时，我们按照$A_i$上的条件概率算期望. 记号$\frac{\E[XI_{A_i}]}{\Pr(A_i)}$也记为$\E[X|A_i]$，它的含义可以从$X=I_B$来理解：
 \[\frac{\E[I_{B}I_{A_i}]}{\Pr(A_i)}=\frac{\Pr(A_iB)}{\Pr(A_i)}=\Pr(B|A_i).\]
 
-这一计算对示性函数\index{示性函数}解释了“按照$A_i$上的条件概率算期望”. 按照随机变量数学期望的定义，这一理解可以推广到一般随机变量.  
+这一计算对示性函数解释了“按照$A_i$上的条件概率算期望”. 按照随机变量数学期望的定义，这一理解可以推广到一般随机变量.  
 
 条件数学期望是一个随机变量，意思就是我们能够消除某些不确定性. 在求数学期望的时候，我们完全不知道样本$\omega$落在哪里，所以只能对整个$\Omega$有一个预期. 在求对分割的条件数学期望的时候，我们能够知道$\omega$落在了某个$A_i$中，因此我们的不确定性只在于$A_i$上，所以我们可以只对$A_i$中的$\omega$有一个预期. 
 
-下面我们推广这一定义. 注意到，分割$\mathscr{A}$其实生成了一个$\Omega$的$\sigma$-代数\index{$\sigma$-代数}，即$\sigma(\mathscr{A})$，它是包含$A_1,\dots,A_n$的最小$\sigma$-代数. 容易验证，这一$\sigma$-代数里的集合都是若干个$A_i$的并形成的. 分割里的事件代表了我们可以感知到的最小事件，而$\sigma$-代数里的事件代表了我们可以感知到的事件的集合. 
+下面我们推广这一定义. 注意到，分割$\mathscr{A}$其实生成了一个$\Omega$的$\sigma$-代数，即$\sigma(\mathscr{A})$，它是包含$A_1,\dots,A_n$的最小$\sigma$-代数. 容易验证，这一$\sigma$-代数里的集合都是若干个$A_i$的并形成的. 分割里的事件代表了我们可以感知到的最小事件，而$\sigma$-代数里的事件代表了我们可以感知到的事件的集合. 
 
 取$A\in\sigma(\mathscr{A})$，要如何计算$X$在$A$上的期望呢？我们有两种方式，第一种，直接计算：$\E[XI_A]$. 第二种，我们将$A$写成$A=\bigcup_{i=1}^k A_{n_i}$.在每个$A_i$上，我们知道期望是$\E[XI_A|A_i]$. 而落到$A_i$上的概率是$\Pr(A_i)$，于是，按照数学期望加权平均的直觉，$X$在$A$上的期望应该是
 \[\sum_{i=1}^k \E[XI_A|A_i]\Pr(A_i).\]
@@ -1235,7 +1235,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 这给了我们一般情况下的条件数学期望的定义：
 
-\begin{definition}[基于$\sigma$-代数的条件数学期望]\label{def:conditional-expectation-2}\index{条件数学期望}
+\begin{definition}[基于$\sigma$-代数的条件数学期望]\label{def:conditional-expectation-2}
 设$X$是一个非负随机变量，$\G$是$\Omega$的一个$\sigma$-代数，随机变量$\E[X|\G]$被称为$X$关于$\G$的\textbf{条件数学期望}，如果它满足
 \begin{enumerate}
     \item 对任意$B\in\scB(\R)$，$\{\E[X|\G]\in B\}$是$\G$-可测的；
@@ -1256,13 +1256,13 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 最后，随机向量也是可以诱导条件数学期望的：
 
-\begin{definition}[随机向量诱导的$\sigma$-代数]\index{$\sigma$-代数}
+\begin{definition}[随机向量诱导的$\sigma$-代数]
 设$X$是一个$n$维随机向量，那么\textbf{$X$诱导的$\sigma$-代数}是$\Omega$的一个$\sigma$-代数，记为$\sigma(X)$，它的元素为$\{X\in B\}$，其中$B\in\scB(\R^n)$.
 \end{definition}
 
 我们说过，$\{X\in B\}$表示“$X$落在合理的值集上”. 在之前定义随机变量的时候，我们要求取合理的值集是一个事件，这里则是更加简单粗暴，我们直接定义$\{X\in B\}$是一个事件. 接下来，我们可以定义随机向量诱导的条件数学期望：
 
-\begin{definition}[随机向量诱导的条件数学期望]\label{def:conditional-expectation-vector}\index{条件数学期望}
+\begin{definition}[随机向量诱导的条件数学期望]\label{def:conditional-expectation-vector}
 设$X$是一个随机变量，$Y$是一个随机向量，那么$X$关于$Y$的\textbf{条件数学期望}是一个随机变量，记为$\E[X|Y]$，定义为$\E[X|\sigma(Y)]$.
 \end{definition}
 
@@ -1275,7 +1275,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
     \[\E[X|Y=y]=g(y).\]
 \end{proposition}
 
-我们不满足于$\E[X|Y=y]$，而是费尽周章定义条件期望$\E[X|Y]$，是因为他通常来说更好用，特别是在随机过程\index{随机过程}中，它能给出很多公式直观上的含义. 这一点在\Cref{chap:markov-chain} 中会有很多体现. 
+我们不满足于$\E[X|Y=y]$，而是费尽周章定义条件期望$\E[X|Y]$，是因为他通常来说更好用，特别是在随机过程中，它能给出很多公式直观上的含义. 这一点在\Cref{chap:markov-chain} 中会有很多体现. 
 
 接下来我们讨论条件数学期望的性质，我们依然只列举而不证明. 
 
@@ -1306,7 +1306,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 最后，性质7是在说，如果$Y$是$\G$-可测的（也就是我们用$\G$可以完全确定$Y$），那么求条件期望的时候$Y$就相当于一个常数，可以提到期望的外面. 
 
-\section{多元正态分布（Gauss向量）}\label{sec:multivariate-normal}\index{多元正态分布}\index{Gauss向量}
+\section{多元正态分布（Gauss向量）}\label{sec:multivariate-normal}
 
 在这一节中，我们利用\Cref{subsec:inner-product} 和\Cref{subsec:characteristic-function} 中的工具，来研究多元正态分布.
 
@@ -1326,7 +1326,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 现在我们将这一定义推广. 注意到，$\Sigma$就是$X$的协方差矩阵，所以\Cref{thm:multivariate-normal-characteristic-function} 中的$\Sigma$并不要求正定，只要半正定就可以定义一个特征函数了. 我们将这一定义推广到半正定矩阵的情形：
 
-\begin{definition}[Gauss向量]\label{def:gauss-vector}\index{Gauss向量}
+\begin{definition}[Gauss向量]\label{def:gauss-vector}
 设$\mu\in\R^n$，$\Sigma$是一个$n\times n$的对称半正定矩阵，如果随机向量$X$的特征函数为
 \[f_X(t)=\exp\left(it^\t\mu-\frac{1}{2}t^\t\Sigma t\right),\]
 那么称$X$是一个\textbf{Gauss向量}，记为$X\sim\Nor(\mu,\Sigma)$.
