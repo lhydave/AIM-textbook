@@ -371,7 +371,7 @@ $B$ & $(1, -10)$ & $(0, 0)$ \\
 
 在左边的矩阵中，$(B,B)$是唯一的Nash均衡. 在右边的矩阵中有多个Nash均衡：$(A,A)$和$(B,B)$. $(A,A)$给出比$(B,B)$更高的收益，但行动$A$比$B$更有风险.
 
-左边矩阵是真实矩阵概率是$p>1/2$. 玩家$1$知道真实的矩阵，而玩家$2$不知道. 如果选择了右边矩阵，玩家$1$会给玩家$2$发送一条消息. 如果玩家$2$收到了消息，她会回复. 如果玩家$1$收到了回复，她会发送第二条消息来确认她收到了玩家$2$的回复. 以此类推.  每条消息都以$\epsilon$的概率独立等可能丢失.\footnote{注意：发送电子邮件不是一个行动，而是一个规则.}  
+左边矩阵是真实矩阵概率是$p>1/2$. 玩家$1$知道真实的矩阵，而玩家$2$不知道. 如果选择了右边矩阵，玩家$1$会给玩家$2$发送一条消息. 如果玩家$2$收到了消息，他会回复. 如果玩家$1$收到了回复，他会发送第二条消息来确认他收到了玩家$2$的回复. 以此类推.  每条消息都以$\epsilon$的概率独立等可能丢失.\footnote{注意：发送电子邮件不是一个行动，而是一个规则.}  
 
 以上传信的过程可以用Bayes博弈的类型来刻画. 具体来说，两个玩家的类型集合为$\Theta_i = \{\theta_i^0, \theta_i^1, \theta_i^2, \dots\}$. $\theta_i^m$表示玩家$i$发了$m$封邮件. $\theta_i^m$有直观的含义. 例如，类型$\theta_1^0$表示真实收益矩阵是左边的.  而类型$\theta_1^1$表示真实收益矩阵是右边的，$1$发送了一封电子邮件，但$2$没有收到. 
 
@@ -467,13 +467,180 @@ $B$ & $(1, -10)$ & $(0, 0)$ \\
 
 \section{Aumann知识算子}
 
+在上一节中，我们给了一个非常具体的例子探讨共同知识和Nash均衡的关系. 上面的例子看起来太特定，那是不是说明，用Bayes博弈研究知识，就是得具体问题具体建模呢？这个问题的答案，是也不是。一方面，用具体的Bayes博弈去说明具体的道理往往简洁且富有内涵；另一方面，我们也可以用更加抽象的方式去研究知识. 这一节，我们将介绍Aumann的知识算子，它是一种抽象的方式去研究知识.
+
+首先，我们需要\Cref{chap:plausible-reasoning}的观点：概率论（或者似然）理解世界的方式基于“事件”. 我们只能感知事件的发生与否，而不能具体知道是哪个样本点. 用事件的方式理解认知，得到的结构被称为\emph{Aumann结构}. 下面，我们具体介绍这一数学模型。
+
+考虑全集$\Omega$，它的含义有多种多样，比如可以理解为样本空间（概率论视角）、状态空间（动态博弈视角）或者可能世界（信念的视角出发）的全体. 我们就具体考虑为，从一个罐子里抽球，$\Omega$是这次抽到球的颜色。
+
+对于最后一种关于$\Omega$的理解，我们可以再多解释一些。当我们面对不确定性的时候，我们会有一些信念，比如“这个球是红色的”、“这个球是蓝色的”等等. 实际上，这些不同信念背后对应了一个不同的“世界”。比如，我们考试的时候，我们可能会幻想考试通过时的场景，也可能幻想考试不通过时的场景. 他们代表了这个现实世界在未来不同的走向，因而被称为\emph{可能世界}.
+
+注意，上面的解释容易引起误会，实际上，可能世界完全可以不是未来的世界。例如，我们常常会做\emph{反事实因果}的推理，比如“如果我当时不天天吃油炸食品，那么我现在就不需要减肥了”. 这个“如果”引导我们进入了一个可能世界，这个可能世界甚至存在于过去，而不是未来.
+
+我们不再过多讨论$\Omega$的具体含义，而是专注于罐子的例子。\emph{事件}$e\subseteq \Omega$是样本点的集合，它表示了某些性质的发生. 例如，$e$可能是“抽到了红球”，或者“抽到的不是白色”等等. 一次\emph{观测}会产生一个具体的颜色，这个颜色对应了$\Omega$中的一个元素$\omega$，事件$e$发生当且仅当$\omega\in e$.
+
+接下来，我们进入博弈的部分。我们会有集合$I$的玩家，每个玩家$i$都有一个关于$\Omega$的\emph{知识}。例如，色觉正常的人会\emph{知道}红色和绿色是不同的，而红绿色盲的人可能不知道。因此，每个人会有不一样的知识。如何用数学语言来描述这种知识呢？
+
+实际上，知道一件事$e$发生与否意味着这个玩家有能力\emph{区分}一个样本点$\omega$是否属于$e$. 所以，我们可以先定义玩家知道的“基础知识”，即他能够感知到的最基本（原子）事件. 数学上，我们给如下的定义：
+
+\begin{definition}[信息集]
+    对于每一个玩家$i$，他的\textbf{信息集}是$\Omega$的一个划分
+    \[\mathcal P_i = \{\Omega_j\}_j.\]
+    划分的含义是，$\Omega_j$满足
+    \begin{itemize}
+        \item $\Omega_j\neq \varnothing$，
+        \item 对所有$j\neq k$，$\Omega_j\cap\Omega_k=\varnothing$，并且
+        \item $\bigcup_j\Omega_j=\Omega$.
+    \end{itemize}
+    此外，$\mathcal P_i(\omega)$被定义为$\omega$所属于的那个信息集.
+\end{definition}
+
+对于玩家$i$来说，他无法区分$\Omega_j$中元素，这就是原子性的含义。换言之，如果他能区分，就说明这个$\Omega_j$还不够小，因为它还是包含了可区分的不同元素。
+
+接下来，我们来定义知识中最基本的陈述，即“玩家$i$知道事件$e$”。我们还是用红绿色盲作为例子。显然，红绿色盲不知道事件$e$：“这个球是红色的”。这是因为，他的信息集中没有单独的红色，只有“红色或绿色”这一集合。
+
+上面的例子说明，玩家$i$知道事件$e$，说明对于这一个特定的观测$\omega$，玩家$i$能够完全确定$e$发生了. 注意，此时玩家$i$能够观察到的最基本事件是$\mathcal P_i(\omega)$，因此，这说明
+\[\mathcal P_i(\omega)\subseteq e.\]
+
+我们可以把所有能够完全确定$e$发生的$\omega$收集起来，在这些$\omega$上，玩家$i$充分必要地知道$e$发生。因此，我们有如下的定义：
+
+\begin{definition}[Aumann知识算子]
+    对于每一个玩家$i$，我们定义\textbf{Aumann知识算子}$K_i:2^\Omega\to 2^\Omega$为
+    \[K_i(e):=\{\omega\in\Omega:\mathcal P_i(\omega)\subseteq e\}.\]
+    因此$K_i(e)$是一个事件，表示“个体$i$知道事件$e$”. 不引起混乱的时候我们也省略括号，写作$K_ie$.
+\end{definition}
+
+Aumann知识算子的想法很清晰，它把所有关于知识的讨论转化为关于事件的讨论. 在\Cref{chap:plausible-reasoning}似然的讨论中，我们建立了集合论和逻辑的对应关系.
+    \[\begin{array}{c|c}
+        \text{事件}&\text{命题}  \\\hline
+        \Omega & \T\\
+        \varnothing & \F\\
+        \sim A & \neg A\\
+        A\cap B& A\wedge B\\
+        A\cup B& A\vee B\\
+        A\subseteq B& A\to B\\
+        A=B&A\leftrightarrow B
+    \end{array}\]
+这里，我们依然可以用一样的对应关系，来实现复杂的表达. 例如，我们可以用$K_i(e\cap f)$来表示“个体$i$知道事件$e$和事件$f$同时发生”.
+
+更进一步，我们可以将多个玩家的知识结合起来，定义共同知识算子：
+
+\begin{definition}[共同知识算子]
+定义“所有人都知道”算子$E:2^\Omega\to 2^\Omega$为
+\[E(e)=\bigcap_{i=1}^n K_i(e).\]
+然后，我们可以定义\textbf{共同知识算子}$C:2^\Omega\to 2^\Omega$为
+\[C(e)=\bigcap_{k=1}^\infty E^k(e).\]
+\end{definition}
+
+接下来，我们讨论知识的一些基本性质。这里，我们只讨论知识本身的性质，而不关心不同玩家之间知识的交互，因此，我们都把$K_i$写作$K$.
+
+\begin{proposition}[意识公理]
+    \begin{equation}
+        K(\Omega)=\Omega.\tag{K0}\label{eq:K0-awareness}
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    显然成立。
+\end{proof}
+
+意识公理意味着，每个人知道他在某一个状态（可能世界）中. 尽管是一个显然的公理，我们依然可以考虑“意识不到自己处于某个状态”的情况，见习题\lhysays{出一下}.
+
+\begin{proposition}
+    \begin{equation}
+        K(e\cap f)=K(e)\cap K(f).\tag{K1}\label{eq:K1-intersection}
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    我们证明两边相互包含。
+    \begin{itemize}
+        \item $\subseteq$：设$\omega\in K(e\cap f)$，则
+        \[\mathcal P(\omega)\subseteq e\cap f.\]
+        因此，同时成立
+        \[\mathcal P(\omega)\subseteq e,\quad \mathcal P(\omega)\subseteq f.\]
+        因此，根据知识算子的定义，
+        \[\omega\in K(e),\quad \omega\in K(f).\]
+        因此，
+        \[\omega\in K(e)\cap K(f).\]
+        \item $\supseteq$：将上面的证明倒着写一遍即可。
+    \end{itemize}
+\end{proof}
+
+这条性质意味着，一个人知道事件$e$和事件$f$，当且仅当他知道事件$e\cap f$. 考虑$e\cap f=f$的特殊情况，我们可以得到
+\[e\subseteq f\implies K(e)\subseteq K(f).\]
+换言之，如果客观事实上$e$可以推出$f$（即$e\subseteq f$），那么个体知道$e$就可以推出他知道$f$. 这条性质意味着玩家是\emph{逻辑全知}的，他可以对知识做任意复杂的逻辑推理. 特别地，他甚至可以做关于知识的逻辑推理！接下来，我们很快就会看到这会带来多么复杂的情况。
+
+\begin{proposition}[知识公理，真理公理]
+    \begin{equation}
+        K(e)\subseteq e.\tag{K2}\label{eq:K2-knowledge}
+    \end{equation}
+\end{proposition}
+知识公理意味着，知道的一定是真的. 在知识论中，这一要求实际上反映了“拥有知识”需要付出努力、值得一定的奖励. 与此相对应地，\emph{信念}则是更加主观、随意的，因而并不具有真理性。我们可以通过下面两句话来体会这两者的区别：
+    \begin{itemize}
+        \item 我考试挂了，但不知道我考试挂了.
+        \item 我考试挂了，但我不相信我考试挂了.
+    \end{itemize}
+
+\begin{proposition}[正内省公理]
+    \begin{equation}
+        K(e)\subseteq K(K(e)).\tag{K3}\label{eq:K3-positive-introspection}
+    \end{equation}
+\end{proposition}
+
+\begin{proposition}[负内省公理]
+    \begin{equation}
+        \sim K(e)\subseteq K(\sim K(e)).\tag{K4}\label{eq:K4-negative-introspection}
+    \end{equation}
+\end{proposition}
+
+这两条内省公理意味着，个体会通过内省来知道自己的处境，特别是“我知道什么”和“我不知道什么”，通过内省，个体可以产生更高层级的知识：“我知道自己知道什么”或者“我知道自己不知道什么”. 
+
+值得注意的是，内省这样的能力是灵长类动物区别于其他动物的重要特征. 例如，实验人员给黑猩猩若干工具，只有其中一种工具可以解决问题. 黑猩猩在没有任何提示的情况下，第一次就能够选出正确的工具. 科学家认为，这表明黑猩猩有能力内省，即知道自己知道什么（特别是物理世界的因果关系），并且利用这些知识来解决问题. 然而，诸如松鼠这样的哺乳动物，就没有这样的能力.
+
+相比正内省公理，负内省公理可能会引起一些争议. 例如，在数学界有一个“著名”的猜想，叫\emph{几何Langlands猜想}。这个猜想是一个非常复杂的数学问题，最近，一个由 9 位数学家组成的团队成功证明了这个猜想. 这样专门的数学猜想，对于非数学爱好者来说，确实是不知道的。然而，如果负内省公理是成立的，那么他们就应该\emph{知道自己不知道}这个猜想. 这显然是不合理的. 更多讨论见习题\lhysays{出一下}.
+
+上面的很多命题我们都会称呼为“公理”，这是因为他们反映了知识的基本性质，是我们对知识的直觉认识. 实际上，我们可以反过来，从这些公理出发，推导出Aumann知识算子的定义. 
+于知识的逻辑推理！
+
+\begin{theorem}\label{thm:Aumann-operator-iff}
+考虑一个映射$K:2^\Omega\to 2^\Omega$，那么，以下两条等价：
+\begin{itemize}
+    \item $K$满足 \eqref{eq:K0-awareness}--\eqref{eq:K4-negative-introspection}.
+    \item 存在一个信息集划分$\mathcal P$，使得$K$是由这个信息集划分定义的Aumann知识算子.
+\end{itemize}
+\end{theorem}
+
+这一定理的证明类似于上面公理的证明，见习题\lhysays{出一下}.
+
+诚然，Aumann知识算子的定义（在接受了之后）是非常直观且自然的。然而，\Cref{thm:Aumann-operator-iff} 告诉我们，这样定义的知识算子，必须要承认很多不是特别合理的性质，例如负内省公理或者逻辑全知。这似乎是一个两难的选择。
+
+因此，回到本节开头的问题，用Bayes博弈研究知识，是不是得具体问题具体建模呢？Aumann知识算子给了一个很好的回答：如果过分一般，就会过分简化知识的概念，引入很多不合理的性质\footnote{实际上，直到今天，做知识论的哲学家普遍持有这样的观点：知识是一个无法被严格定义的哲学概念！因此，当知识被更进一步形式化成数学模型，我们更不能迷信它的普适性.}. 因此，既需要具体问题具体建模，也需要对知识的一般性质有所了解.
+
+至此，在Aumann结构下，我们已经给\emph{知识}一个清晰的定义，作为本节的结束，我们给出Aumann结构中\emph{信念}的定义。同样，回忆\Cref{chap:plausible-reasoning}的思想，在基于事件的认知理论中，我们很容易通过概率（似然）来定义信念. 
+
+玩家$i$可以对信息集$\mathcal P_i(\omega)$中的状态形成信念. 设$\rho_i$为集合$\Omega$上的概率分布，它代表$i$的\emph{先验}信念，即在没有任何额外信息的情况下他会持有的信念. 如果$\rho_i(\mathcal P_A(\omega)) > 0$，那么$i$在状态$\omega$处对世界状态的信念由以下概率分布给出
+\[\rho_i(e|\omega)=\rho_i(e|\mathcal P_A(\omega)) = \frac{\rho_i(e\cap\mathcal P_A(\omega))}{\rho_i(\mathcal P_A(\omega))}.\]
+
+首先，这一定义是良定义的，因为对于所有的$\omega'\in\mathcal P_A(\omega)$，$\rho_i(e|\omega')$都是一样的.
+
+其次，直观上说，这一定义相当于\emph{后验}信念：每个人根据自己知道的信息做了Bayes更新.
+
+最后，这个定义与Aumann知识算子是相容的. 事实上，我们可以定义“知道”是“具有必然的信念”：
+\[K_i(e)=\{\omega\in\Omega:\rho_i(e|\omega) = 1\}.\]
+
 \section{习题}
 
     {关于均衡的进一步思考}
 \begin{itemize}
     \item 用$Nash(x)$表示“$x$是Nash均衡”，那么$\exists x C(Nash(x))$和$C(\exists x C(Nash(x)))$的含义是否一样？
     \item 如果不引入不确定性，在完全信息下，实现特定的Nash均衡是否还需要共同知识？
-    \item 如果玩家不是逻辑全知的，或者说她的推理、计算能力是有限的，那么Nash均衡还是否会达到？是否可接近？
+    \item 如果玩家不是逻辑全知的，或者说他的推理、计算能力是有限的，那么Nash均衡还是否会达到？是否可接近？
+\end{itemize}
+
+\begin{itemize}
+    \item 如果我们写一个算子$U(e)$表示“个体意识不到事件$e$”，它应该有性质如下两个性质. 
+    \item $\sim KU(e)=\Omega$：他不知道他不能意识到他不能意识到的事件.
+    \item $U(e)\subseteq \sim K(\sim K(U(e)))$：如果他不能意识到事件$e$，那么他不知道他不知道他不能意识到事件$e$.
+    \item 思考：这样的算子$U$存在吗？
 \end{itemize}
 
 \section{章末注记}
