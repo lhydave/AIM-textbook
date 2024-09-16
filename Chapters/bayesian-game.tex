@@ -620,6 +620,8 @@ Aumann知识算子的想法很清晰，它把所有关于知识的讨论转化�
 玩家$i$可以对信息集$\mathcal P_i(\omega)$中的状态形成信念. 设$\rho_i$为集合$\Omega$上的概率分布，它代表$i$的\emph{先验}信念，即在没有任何额外信息的情况下他会持有的信念. 如果$\rho_i(\mathcal P_A(\omega)) > 0$，那么$i$在状态$\omega$处对世界状态的信念由以下概率分布给出
 \[\rho_i(e|\omega)=\rho_i(e|\mathcal P_A(\omega)) = \frac{\rho_i(e\cap\mathcal P_A(\omega))}{\rho_i(\mathcal P_A(\omega))}.\]
 
+接下来，我们对这一定义做几点说明。
+
 首先，这一定义是良定义的，因为对于所有的$\omega'\in\mathcal P_A(\omega)$，$\rho_i(e|\omega')$都是一样的.
 
 其次，直观上说，这一定义相当于\emph{后验}信念：每个人根据自己知道的信息做了Bayes更新.
