@@ -663,10 +663,10 @@ $\Pr(Y|X) = (0.1 + 0.2) / (0.1 + 0.2 + 0.2 + 0) = 0.6 > 0.5$，然而，$\Pr(Y|X
 $\Pr(Y) = 51/201$，$\Pr(Y|Z) = 7/110$为投篮命中率. $\Pr(Y|X) = 50/100 = 1/2$，$\Pr(Y|Z \wedge X) = 6/10 = 3/5$ 为两分命中率. $\Pr(Y|\neg X) = 1/101$，$\Pr(Y|Z \wedge \neg X) = 1/100$为三分命中率. Simpson悖论在这一实例下表现为：这个班里来自清华大学的学生两分命中率和三分命中率分别都比全班平均水平高，但总体投篮命中率反倒比全班水平低.
 
 我们将这两个概率用全概公式展开来寻找原因：
-$$\Pr(Y|Z) = \textcolor{Orchid}{\Pr(Y|Z\land X)}\Pr(X|Z) + \textcolor{Orchid}{\Pr(Y|Z\wedge\neg X)}\Pr(\neg X|Z),$$
-$$\Pr(Y) = \textcolor{TealBlue}{\Pr(Y|X)}\Pr(X) +\textcolor{TealBlue}{ \Pr(Y|\neg X)}\Pr(\neg X).$$
+$$\Pr(Y|Z) = \light{\Pr(Y|Z\land X)}\Pr(X|Z) + \light{\Pr(Y|Z\wedge\neg X)}\Pr(\neg X|Z),$$
+$$\Pr(Y) = \contrastlight{\Pr(Y|X)}\Pr(X) +\contrastlight{ \Pr(Y|\neg X)}\Pr(\neg X).$$
 
-上下两行对应的项，$\textcolor{Orchid}{\Pr}>\textcolor{TealBlue}{\Pr}$. 然而，关键是有可能发生$\Pr(X|Z) \neq \Pr(X)$. 在上面篮球的例子中表现为清华大学的同学选择投两分球和三分球的比例和全班同学不同. 这表明，Simpson悖论发生的核心原因与基率谬误类似，即没有正确区分先验概率和后验概率.
+上下两行对应的项，$\light{\Pr}>\contrastlight{\Pr}$. 然而，关键是有可能发生$\Pr(X|Z) \neq \Pr(X)$. 在上面篮球的例子中表现为清华大学的同学选择投两分球和三分球的比例和全班同学不同. 这表明，Simpson悖论发生的核心原因与基率谬误类似，即没有正确区分先验概率和后验概率.
 
 接下来我们考虑合取谬误（见本章开头）. \emph{合取谬误}是一种认知偏差. 我们这里呈现一个简化的例子作为讨论. Linda是一位单身、外向且年龄为31岁的女性.在大学期间，她主修哲学，十分关注种族歧视和社会公正问题，而且曾参加过反核游行.（记为$E$）请问以下哪一件事情更可能发生？
     \begin{enumerate}

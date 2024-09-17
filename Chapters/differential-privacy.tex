@@ -464,8 +464,8 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\emph{Lloy
 尽管Llyod算法可以达到很好的效果，但它并不能保证DP性质. 我们希望对这一算法进行小规模的修改，让它具有$\epsilon$-DP的性质. 我们给出如下的DP版本Llyod算法.
 
 \begin{itemize}
-    \item 输入：数据集$x \in \mathcal X^n$，这里$\mathcal X = \{x \in \R^d : \norm{x}_1 \leq 1 \}$，参数$k$，最大迭代次数$T$，\textcolor{Orchid}{参数$\epsilon$}.
-    \item \textcolor{Orchid}{$\epsilon' = \frac{\epsilon}{2 T}$}，随机初始化$c_1^{(0)}$, $c_2^{(0)}$, $\cdots$, $c_k^{(0)} \in \mathcal X$.
+    \item 输入：数据集$x \in \mathcal X^n$，这里$\mathcal X = \{x \in \R^d : \norm{x}_1 \leq 1 \}$，参数$k$，最大迭代次数$T$，\light{参数$\epsilon$}.
+    \item \light{$\epsilon' = \frac{\epsilon}{2 T}$}，随机初始化$c_1^{(0)}$, $c_2^{(0)}$, $\cdots$, $c_k^{(0)} \in \mathcal X$.
     \item for $t=1$ to $T$
     \begin{itemize}
         \item for $j=1$ to $k$
@@ -473,13 +473,13 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\emph{Lloy
             \item 计算$S_j = \{i : c_{j}^{(t-1)} \text{ 是 } x_i \text{ 最近的中心}\}$.
             \item $n_j = |S_j|$.
             \item $a_j = \sum_{i\in S_j} x_i$.
-            \item \textcolor{Orchid}{计算 $\hat{n_j} = n_j + Y$，$Y \sim \mathsf{Lap}(0, 2/\epsilon')$.}
-            \item \textcolor{Orchid}{计算 $\hat{a_j} = a_j + (Z_1, \cdots, Z_d)$，$Z_i \text{ i.i.d.}\sim \mathsf{Lap}(0, 2/\epsilon')$.}
+            \item \light{计算 $\hat{n_j} = n_j + Y$，$Y \sim \mathsf{Lap}(0, 2/\epsilon')$.}
+            \item \light{计算 $\hat{a_j} = a_j + (Z_1, \cdots, Z_d)$，$Z_i \text{ i.i.d.}\sim \mathsf{Lap}(0, 2/\epsilon')$.}
             \item 更新
             $\begin{aligned}
             c_j^{(t)} =
             \begin{cases}
-                \textcolor{Orchid}{\hat{a_j}/\hat{n_j}}, & \hat{n_j} \geq 1, \\
+                \light{\hat{a_j}/\hat{n_j}}, & \hat{n_j} \geq 1, \\
                 \mathcal X\text{ 上的一个随机均匀采样}, & \hat{n_j} < 1.
             \end{cases}
             \end{aligned}$

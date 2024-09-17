@@ -456,11 +456,11 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
 
 从思路上来说，大语言模型的核心思想非常简单：给一段话，将其中一些词掩盖掉，让模型填出这些词来. 例如，给出
 \begin{quotation}
-    “我在\textcolor{Orchid}{[mask]}面条，它真好吃. ”    
+    “我在\light{[mask]}面条，它真好吃. ”    
 \end{quotation}
 模型应该能够填出
 \begin{quotation}
-    “我在\textcolor{Orchid}{吃}面条，它真好吃. ”
+    “我在\light{吃}面条，它真好吃. ”
 \end{quotation}
 
 对于GPT模型来说，这一思想更加简单：永远只预测下一个词. 它的哲学是“通过预测下一个词，可以理解世界.”

@@ -292,7 +292,7 @@ p_{i j}^{(n)} \geq \pi_j - \varepsilon > 0, n \geq n_0.
 \begin{itemize}
     \item $\calS$是一个有穷的状态集合.
     \item $\calP$是一个状态转移矩阵，从$i$转移到$j$的概率记为$\calP_{i,j}$. 根据这一转移矩阵可以产生一个状态转移的Markov链$\{S_t\}_{t\geq 0}$.
-    \item $\mathcal R$是（单步期望）奖励函数，定义为$\mathcal R_s = \E[\textcolor{TealBlue}{R_{t+1}}|S_t=s]$，其中，随机变量$\textcolor{TealBlue}{R_{t+1}}$表示下一阶段所处状态的奖励. 也就是说，当$t$时刻位于状态$s$时，$\mathcal R_s$是下一时刻获得的奖励的期望.
+    \item $\mathcal R$是（单步期望）奖励函数，定义为$\mathcal R_s = \E[\contrastlight{R_{t+1}}|S_t=s]$，其中，随机变量$\contrastlight{R_{t+1}}$表示下一阶段所处状态的奖励. 也就是说，当$t$时刻位于状态$s$时，$\mathcal R_s$是下一时刻获得的奖励的期望.
     \item $\gamma$是一个折扣因子，$\gamma\in[0,1]$.
 \end{itemize}
 \end{definition}
@@ -330,15 +330,15 @@ MRP中，$t$时刻以后的总\textbf{回报}$G_t$定义为
 
 因此，这一定义蕴含了Markov性：只从当前起考虑未来收益，不考虑历史收益（沉没成本）的影响；也蕴含了时齐性：价值函数的定义不依赖于时刻$t$（无穷阶段情形）. 我们在后面要各种相关概念的定义都需要用到这个性质，证明都是类似的，不再赘述.
 
-接下来我们展示价值函数的计算方法. 直观上说，回报应该被被分解为两部分：\textcolor{TealBlue}{即时回报$R_{t+1}$}以及\textcolor{Orchid}{未来的回报$\gamma v(S_{t+1})$}，也就是下一个状态期望回报再做折扣. 具体来说，我们有
+接下来我们展示价值函数的计算方法. 直观上说，回报应该被被分解为两部分：\contrastlight{即时回报$R_{t+1}$}以及\light{未来的回报$\gamma v(S_{t+1})$}，也就是下一个状态期望回报再做折扣. 具体来说，我们有
 \begin{align*}
 v(s) &= \E(G_t|S_t=s) \\
     &= \E(R_{t+1}+ \gamma R_{t+2} + \gamma^2 R_{t+3}+\dots | S_t= s) \\
     &= \E(R_{t+1} + \gamma (R_{t+2}+\gamma R_{t+3}+\dots) | S_t = s) \\
     &= \E(R_{t+1} + \gamma G_{t+1} | S_t = s) \\
     &= \E(R_{t+1} | S_t = s) + \gamma \E(G_{t+1} | S_t = s) \\
-    &= \E(\textcolor{TealBlue}{R_{t+1}}|S_t=s) + \E[\textcolor{Orchid}{\gamma v(S_{t+1})}|S_t=s]\\
-    &= \textcolor{TealBlue}{\mathcal R_s} + \textcolor{Orchid}{\gamma \sum_{s'\in \calS}\calP_{s,s'}v(s')}.
+    &= \E(\contrastlight{R_{t+1}}|S_t=s) + \E[\light{\gamma v(S_{t+1})}|S_t=s]\\
+    &= \contrastlight{\mathcal R_s} + \light{\gamma \sum_{s'\in \calS}\calP_{s,s'}v(s')}.
 \end{align*}
 其中倒数第二行是因为
 \begin{align*}
@@ -400,13 +400,13 @@ Bellman方程可以用矩阵形式表达：
 
 接下来，我们给出一般的MDP的定义.
 \begin{definition}[Markov决策过程，MDP]
-\textbf{Markov决策过程}（\textbf{MDP}）是一个MDP是五元组$\langle\calS, \textcolor{Orchid}{\mathcal A}, \calP, \mathcal R, \gamma\rangle$，其中
+\textbf{Markov决策过程}（\textbf{MDP}）是一个MDP是五元组$\langle\calS, \light{\mathcal A}, \calP, \mathcal R, \gamma\rangle$，其中
 \begin{itemize}
     \item $\calS$是一个有限的状态集合.
-    \item $\textcolor{Orchid}{\mathcal A}$是一个有限的\emph{行动}（action）集合.
+    \item $\light{\mathcal A}$是一个有限的\emph{行动}（action）集合.
     \item $\calP$是状态转移概率矩阵，
-    \[\calP_{ss'}^{\textcolor{Orchid}{a}} = \Pr(S_{t+1} = s' | S_t = s, A_t = \textcolor{Orchid}{a}).\]
-    \item $\mathcal R$是一个奖励函数，$\mathcal R_s^{\textcolor{Orchid}{a}} = \E(\textcolor{TealBlue}{R_{t+1}} | S_t = s, A_t = \textcolor{Orchid}{a})$，随机变量$\textcolor{TealBlue}{R_{t+1}}$是进行某一行动到达某一状态后的奖励.
+    \[\calP_{ss'}^{\light{a}} = \Pr(S_{t+1} = s' | S_t = s, A_t = \light{a}).\]
+    \item $\mathcal R$是一个奖励函数，$\mathcal R_s^{\light{a}} = \E(\contrastlight{R_{t+1}} | S_t = s, A_t = \light{a})$，随机变量$\contrastlight{R_{t+1}}$是进行某一行动到达某一状态后的奖励.
     \item $\gamma$是一个折扣因子$\gamma\in[0,1]$.
 \end{itemize}
 \end{definition}
@@ -474,12 +474,12 @@ MDP与MDP的关系由策略给出.
     另一方面，用$v_\pi(s)$来表示$q_\pi(s,a)$也是全概率公式. 具体来说，在状态$s$采取行动$a$之后，期望上有$\mathcal R_s^a$的即时奖励，然后以$\calP_{s,s'}^a$的概率转移到状态$s'$，在状态$s'$的期望回报是$\gamma v_\pi(s')$. 按照$s'$用全概率公式即可得到$q_\pi(s,a)$.
 \end{proof}
 
-下面我们给出状态-价值函数和行动-价值函数的Bellman方程. 首先，价值函数可以被分解为\textcolor{TealBlue}{\emph{即时回报}}加\textcolor{Orchid}{\emph{未来的折扣回报}}，具体来说
+下面我们给出状态-价值函数和行动-价值函数的Bellman方程. 首先，价值函数可以被分解为\contrastlight{\emph{即时回报}}加\light{\emph{未来的折扣回报}}，具体来说
 \begin{itemize}
     \item 状态-价值函数可以被分解为：
-    \[v_\pi(s) = \E_\pi[\textcolor{TealBlue}{R_{t+1}} + \textcolor{Orchid}{\gamma v_\pi(S_{t+1})}|S_t=s].\]
+    \[v_\pi(s) = \E_\pi[\contrastlight{R_{t+1}} + \light{\gamma v_\pi(S_{t+1})}|S_t=s].\]
     \item 行动-价值函数可以被类似地分解，
-\[q_\pi(s,a) = \E_\pi[\textcolor{TealBlue}{R_{t+1}} + \textcolor{Orchid}{\gamma q_\pi(S_{t+1},A_{t+1})}|S_t=s,A_t=a].\]
+\[q_\pi(s,a) = \E_\pi[\contrastlight{R_{t+1}} + \light{\gamma q_\pi(S_{t+1},A_{t+1})}|S_t=s,A_t=a].\]
 \end{itemize}
 
 他们的计算方法和\Cref{thm:MRP-Bellman} 中的方法类似. 继续仿照\Cref{thm:MRP-Bellman} 的证明，我们可以得到MDP的Bellman方程：
@@ -635,15 +635,15 @@ Bellman方程是\emph{强化学习}、经济学\emph{动态优化}的核心. Bel
 
 关键困难是我们不知道隐状态历史$Z=(z_1,z_2,\dots,z_t)$，因此我们需要利用全概率公式将隐状态消除掉，即：
 \[
-    \Pr(X=x) =\sum_{Z=(z_1, \dots, z_t) \in \mathcal Z^t} \textcolor{Orchid}{\Pr(X=x|Z=z)}\textcolor{TealBlue}{\Pr(Z=z)}.
+    \Pr(X=x) =\sum_{Z=(z_1, \dots, z_t) \in \mathcal Z^t} \light{\Pr(X=x|Z=z)}\contrastlight{\Pr(Z=z)}.
 \]
-接下来我们分别计算$\textcolor{Orchid}{\Pr(X=x|Z=z)}$和$\textcolor{TealBlue}{\Pr(Z=z)}$. 对于前者，因为每一个观测值$X_i$仅依赖于$Z_i$，我们有
+接下来我们分别计算$\light{\Pr(X=x|Z=z)}$和$\contrastlight{\Pr(Z=z)}$. 对于前者，因为每一个观测值$X_i$仅依赖于$Z_i$，我们有
 \[
-    \textcolor{Orchid}{\Pr(X=x|Z=z)} = \prod_{i=1}^t \Pr(X_i = x_i| Z_i = z_i) = M_{z_1,x_1}\cdot M_{z_2,x_2}\dots M_{z_t,x_t},
+    \light{\Pr(X=x|Z=z)} = \prod_{i=1}^t \Pr(X_i = x_i| Z_i = z_i) = M_{z_1,x_1}\cdot M_{z_2,x_2}\dots M_{z_t,x_t},
 \]
 对于后者，因为$Z$是一个Markov链，我们有
 \begin{align*}
-    \textcolor{TealBlue}{\Pr(Z=z)} &= \Pr(Z_1 = z_1) \prod_{i=2}^t\Pr(Z_i = z_i| Z_{i-1} = z_{i-1}) 
+    \contrastlight{\Pr(Z=z)} &= \Pr(Z_1 = z_1) \prod_{i=2}^t\Pr(Z_i = z_i| Z_{i-1} = z_{i-1}) 
     \\
     &= \lambda_{z_1}\cdot T_{z_1,z_2}\cdot T_{z_2,z_3}\dots T_{z_{t-1},z_t}.
 \end{align*}
@@ -659,14 +659,14 @@ Bellman方程是\emph{强化学习}、经济学\emph{动态优化}的核心. Bel
 \end{align*}
 如果把左边按照$Z_{k+1}$拆分，我们有
 \[
-    \sum_{z\in\mathcal Z}\textcolor{Orchid}{\Pr(X_{1:k+1}=x_{1:k+1}, Z_{k+1}=z)} = \sum_{z\in \mathcal Z}\textcolor{Orchid}{\Pr(X_{1:k}=x_{1:k}, Z_k=z)}\sum_{z'\in \mathcal Z}T_{z,z'}M_{z',x_{k+1}}.
+    \sum_{z\in\mathcal Z}\light{\Pr(X_{1:k+1}=x_{1:k+1}, Z_{k+1}=z)} = \sum_{z\in \mathcal Z}\light{\Pr(X_{1:k}=x_{1:k}, Z_k=z)}\sum_{z'\in \mathcal Z}T_{z,z'}M_{z',x_{k+1}}.
 \]
-如果令$\textcolor{Orchid}{\alpha_k(z):=\Pr(X_{1:k}=x_{1:k}, Z_k=z)}$，用类似的计算，我们有递推：
+如果令$\light{\alpha_k(z):=\Pr(X_{1:k}=x_{1:k}, Z_k=z)}$，用类似的计算，我们有递推：
 \begin{itemize}
-    \item 当$k=1$，$\textcolor{Orchid}{\alpha_k(z)} = \lambda(z)M_{z,x_k}$.
-    \item 当$k>1$，$\textcolor{Orchid}{\alpha_{k+1}(z)} = \sum_{z' \in \mathcal Z}\textcolor{Orchid}{\alpha_{k}(z')}T_{z',z}M_{z,x_{k+1}}$.
+    \item 当$k=1$，$\light{\alpha_k(z)} = \lambda(z)M_{z,x_k}$.
+    \item 当$k>1$，$\light{\alpha_{k+1}(z)} = \sum_{z' \in \mathcal Z}\light{\alpha_{k}(z')}T_{z',z}M_{z,x_{k+1}}$.
 \end{itemize}
-最后，$\Pr(X=x) = \sum_{z\in \mathcal Z}\textcolor{Orchid}{\alpha_t(z)}$. 这一方法需要算的乘法次数是$\mathcal O(t|\mathcal Z|^2)$，比前一种计算方法要快很多.
+最后，$\Pr(X=x) = \sum_{z\in \mathcal Z}\light{\alpha_t(z)}$. 这一方法需要算的乘法次数是$\mathcal O(t|\mathcal Z|^2)$，比前一种计算方法要快很多.
 
 镜像地，我们可以使用后向方程的思路，从前$k+1$步的结果推出前$k$步的结果. 同样可以列出递推方程. 定义$\beta_k(z):=\Pr(X_{k+1:t}=x_{k+1:t} | Z_k=z)$，我们有递推：
 \begin{itemize}
