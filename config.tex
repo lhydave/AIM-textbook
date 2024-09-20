@@ -29,6 +29,15 @@
 \usepackage{inputenx}
 \usepackage{subcaption}
 
+% author and title
+\usepackage[blocks]{authblk}    % author and affiliation
+\usepackage{titling}            % title
+
+\pretitle{\begin{center}\Huge\bfseries}
+\posttitle{\end{center}\vspace{8em}}
+\renewcommand\Authfont{\itshape\Large}
+\renewcommand\Authand{\quad}
+
 
 \usepackage[normalem]{ulem}
 
@@ -96,6 +105,25 @@
 \usepackage{nonumonpart}
 \usepackage{setspace}
 \setstretch{1.5}
+
+% footer and header
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{
+    \fancyhf{}  % Clear header and footer
+    \renewcommand{\headrulewidth}{0pt}  % Remove the line under the header
+    \renewcommand{\footrulewidth}{0pt}  % Remove the line above the footer
+}
+\pagestyle{fancy}
+% Clear default header and footer fields
+\fancyhf{}
+% Prevent uppercase in headers
+\fancyhead[RE]{\nouppercase{\itshape\leftmark}}
+\fancyhead[LO]{\nouppercase{\itshape\rightmark}}
+\fancyhead[RO,LE]{\thepage}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\usepackage{emptypage}  % 确保空白页不显示页眉页脚
 
 % cleveref
 \usepackage{crossreftools}

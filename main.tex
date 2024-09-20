@@ -1,10 +1,13 @@
 \documentclass[10pt,oneside,fontset=none]{ctexbook}
-% \documentclass[11pt,twoside,fontset=none]{ctexbook}
+% \documentclass[10pt,twoside,fontset=none]{ctexbook}
 
 \input{config}
             
-\title{\bfseries\Huge 标题title}
-\author{\itshape\Large 作者 author}
+\title{AI中的数学}
+\author{邓小铁}
+\author{李翰禹}
+\affil{}
+
 \date{\today}
 
 % \includeonly{Chapters/plausible-reasoning}
@@ -29,14 +32,11 @@
 
 \begin{document}
 \frontmatter
-\pagestyle{empty}
 \maketitle
-\cleardoublepage
-\setcounter{page}{1}
 \chapter{前言}
 \tableofcontents
+
 \mainmatter
-\pagestyle{plain}
 
 \part{AI的逻辑}\label{part:AI-logic}
 \include{Chapters/plausible-reasoning}
