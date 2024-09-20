@@ -174,7 +174,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 \begin{proposition}\label{prop:entropy-maximum}
     当$p_1=\dots=p_n=1/n$时$H$取得最大值$\log n$.
 \end{proposition}
-\begin{proof}
+\begin{proof}\lhysays{用反证法，这样无穷调整是有问题的。}
     我们将反复利用\Cref{prop:entropy-adjust}，直到所有的$p_i$都相等. 若存在$p_i\ne p_j$，因为$\sum_i p_i/n=1/n$，根据鸽巢原理，则必有$i,j$满足
     \[p_i<1/n<p_j.\]
     根据\Cref{prop:entropy-adjust}，我们可以将$p_i$和$p_j$替换为$1/n$和$p_i+p_j-1/n$，而$H$增大. 只要还有两个$p_i$不相等，这一过程就可以重复，每一次都会增大$H$，直到所有$p_i$都等于$1/n$.
