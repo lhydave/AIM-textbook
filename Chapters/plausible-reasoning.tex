@@ -286,16 +286,7 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 也可以用下面的图来直观表示，其中实线箭头表示直接推理，虚线箭头表示分步推理：
 
 \begin{center}
-    \begin{tikzpicture}
-        \node (gamma) at (0,0) {$\gamma$};
-        \node (ab) at (4,0) {$\alpha\beta$};
-        \node (a) at (0,-2) {$\alpha$};
-        \node (b) at (4,-2) {$\beta$};
-        \draw[->] (gamma) -- node[above] {$\gamma\implies\alpha\beta$} (ab);
-        \draw[->,dashed] (gamma) -- node[left] {$\gamma\implies\alpha$} (a);
-        \draw[->,dashed] (a) -- node[below] {$\alpha\gamma\implies\beta$} (b);
-        \draw[->,dashed] (b) -- node[right] {$\alpha,\beta\implies\alpha\beta$} (ab);
-    \end{tikzpicture}
+\includegraphics{Figures/plausible-reasoning/two-chain-reasoning.pdf}
 \end{center}
 
 我们前面要求，“推理的合理程度不依赖具体的命题形式”，现在，我们将这一要求进一步细化为“推理的合理程度不依赖推理的具体形式”. 因为上面的直接推理和分步推理都是从$\gamma$推出$\alpha\beta$，所以我们要求他们的合理程度相同，即
