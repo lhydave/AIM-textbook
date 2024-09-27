@@ -4,14 +4,17 @@
 \input{config}
             
 \title{AI中的数学}
+
 \author{邓小铁}
 \author{李翰禹}
 \affil{}
 
 \date{\today}
 
+\setcounter{chapter}{-1}
+
 % \includeonly{Chapters/plausible-reasoning}
-% \includeonly{Chapters/Markov-chain}
+\includeonly{Chapters/Markov-chain}
 
 % \includeonly{Chapters/information-theory}
 % \includeonly{Chapters/J-L-lemma}
@@ -33,10 +36,12 @@
 \begin{document}
 \frontmatter
 \maketitle
-\chapter{前言}
+\include{Chapters/preface}
 \tableofcontents
 
 \mainmatter
+
+\include{Chapters/introduction}
 
 \part{AI的逻辑}\label{part:AI-logic}
 \include{Chapters/plausible-reasoning}

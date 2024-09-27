@@ -51,7 +51,7 @@
 \usepackage{latexsym}
 \usepackage{extarrows}
 \SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
-
+\allowdisplaybreaks[3]
 
 % math theorems
 \usepackage{mdframed}
@@ -175,17 +175,7 @@
 \usetikzlibrary{arrows.meta,positioning,calc,3d}
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
-\tikzset{
-    punkt/.style={
-        rectangle,
-        rounded corners,
-        draw=black, very thick,
-        minimum height=2em,
-        inner sep=6pt,
-        text centered,
-        fill=gray!30
-    }
-}
+
 
 % math notations
 \newcommand{\LHS}{\mathrm{LHS}}

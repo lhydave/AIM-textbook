@@ -13,16 +13,17 @@
 用Bayes定理很容易证明，对任意$i\neq j$，$\Pr(W_i|W_j)=\Pr(W_j|W_i)$. 也就是说，$\Pr(W_i|W_j)$和$\Pr(W_j|W_i)$不仅是可计算的，而且是相等的. 然而，如果从推理的角度来说，我们基于时间更晚的状态推理时间更早的状态，这样的推理需要我们能够有对未来的模型. 因此，我们需要引入一个带有时间的推理模型，这就是Markov链.
 
 \begin{definition}[Markov链]
-\textbf{Markov链}（\textbf{马氏链}）是一个随机变量序列$\{X_t\}_{t=0}^{\infty}$. 包含如下概念：
+\textbf{Markov链}（\textbf{马氏链}）是一列随机变量$\{X_t\}_{t=0}^{\infty}$，包含如下概念：
 \begin{itemize}
 	\item \emph{状态空间} $\calS$：$X_t$所有可能值构成的集合，有限或者可数.
 	\item \emph{转移矩阵} $\calP$（\emph{转移核}）：下一时刻系统状态之间转移的概率. $\calP=(p_{ij})_{i,j\in \calS}$，$p_{ij}$是从$i$状态转移到$j$状态的概率.
 	\item \emph{Markov性}: 对任意时刻$t=1,\dots,n$和任意状态$j,k,j_0,\dots,j_{t-1}\in \calS$，如下等式成立
 		\begin{align*}
-		   \Pr(X_{t+1}=j| X_t=k,X_{t-1}=j_{t-1},\dots,X_0=j_0)= \Pr(X_{t+1}=j| X_{t}=k)=p_{kj}.
+		   &\Pr(X_{t+1}=j| X_t=k,X_{t-1}=j_{t-1},\dots,X_0=j_0)\\
+           =&\Pr(X_{t+1}=j| X_{t}=k)=p_{kj}.
 		\end{align*}
     \end{itemize}
-    有时候也会考虑带初态的Markov链，此时$X_0$服从分布$\lambda=(\lambda_s)_{s\in \calS}$.
+    有时候也考虑带初态的Markov链，此时$X_0$服从分布$\lambda=(\lambda_s)_{s\in \calS}$.
 \end{definition}
 我们给出的定义是简化的Markov链，每个时刻之间的转移都是一样的转移矩阵，这样的Markov链被称为\emph{时齐的}. 有时候也会考虑非时齐的Markov链（例如扩散模型），即每个时刻之间的转移矩阵不一样，这样的Markov链被称为\emph{非时齐的}，此时$t$时刻的转移矩阵是$\calP^{(t)}$，定义中Markov性的转移概率是$p_{kj}^{(t)}$.
 
@@ -45,12 +46,13 @@ Markov链是一种简化的带时间的概率模型，它最重要的性质是Ma
         \item 状态空间：$\calS=\{-a,-a+1,\dots,0,1,\dots,b\}$.
         \item 转移概率：对$-a<i<b-1$，$p_{i,i+1}=p_{i+1,i}=1/2$；$p_{-a+1,-a}=p_{b-1,b}=1/2$，$p_{-a,-a}=p_{b,b}=1$；其他值为$0$.
     \end{itemize}
-    转移矩阵可以画成\Cref{fig:gambling}所示的形式.
-    \begin{figure}[ht]
+    转移矩阵可以画成\Cref{fig:gambling} 所示的形式.
+    \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{Figures/Markov-chain/gampling.eps}\lhysays{TODO：改图}
+    \includegraphics[width=0.9\textwidth]{Figures/Markov-chain/gampling.pdf}
     \caption{赌徒模型的转移矩阵}\label{fig:gambling}
     \end{figure}
+    一般地，任何时齐可数状态的Markov链都可以用图表示.
 \end{example}
 
 接下来，我们来看一个非时齐的Markov链的例子.
@@ -97,19 +99,22 @@ Pólya的坛子还有一种有趣的解读：如果我们把人生的每一次�
 \end{align*}
 \end{proof}
 
-Kolmogorov-Chapman方程有两个重要的特例，前向方程：$\calP^{(k+1)}=\calP^{(k)}\calP$，以及后向方程：$\calP^{(l+1)}=\calP\calP^{(l)}$. 见\Cref{fig:forward-equation} 和\Cref{fig:backward-equation}.
+Kolmogorov-Chapman方程有两个重要的特例，前向方程：
+\[\calP^{(k+1)}=\calP^{(k)}\calP,\]
+以及后向方程：
+\[\calP^{(l+1)}=\calP\calP^{(l)}.\]
+这一过程示意见\Cref{fig:forward-equation} 和\Cref{fig:backward-equation}.
 \begin{figure}[ht]
-    \lhysays{TODO: 重画}
     \begin{minipage}[t]{0.45\linewidth}
         \centering
-        \includegraphics[width=0.7\linewidth]{Figures/Markov-chain/forward-equation.eps}
+        \includegraphics[width=0.8\linewidth]{Figures/Markov-chain/forward-equation.pdf}
         \caption{前向方程（往前一步）}
         \label{fig:forward-equation}
     \end{minipage}
     \hfill
     \begin{minipage}[t]{0.45\linewidth}
         \centering
-        \includegraphics[width=0.7\linewidth]{Figures/Markov-chain/backward-equation.eps}
+        \includegraphics[width=0.8\linewidth]{Figures/Markov-chain/backward-equation.pdf}
         \caption{后向方程（往回一步）}
         \label{fig:backward-equation}
     \end{minipage}
@@ -129,7 +134,7 @@ Kolmogorov-Chapman方程有两个重要的特例，前向方程：$\calP^{(k+1)}
 或者画成\Cref{fig:simple-example} 的形式.
 \begin{figure}
     \centering
-    \includegraphics[width=0.4\textwidth]{Figures/Markov-chain/simple-example.eps}
+    \includegraphics[width=0.5\textwidth]{Figures/Markov-chain/simple-example.pdf}
     \caption{只有两个状态的Markov链}
     \label{fig:simple-example}
 \end{figure}
@@ -274,10 +279,10 @@ p_{i j}^{(n)} \geq \pi_j - \varepsilon > 0, n \geq n_0.
 
 当处于某个状态时，李二会有一定的概率转移到另一个状态. 例如，在教室1中，因为李二并不情愿学习，所以他会有$0.5$的概率开始刷手机，还有另外$0.5$的概率，他发现差不多该去上课了，于是进入了教室2. 简化起见，在状态转移中，我们考虑抽象的时间单位，对于李二来说，时刻只会有$t=0,1,2,\dots$
 
-李二的人生就在这些状态之间循环往复，当他进入某个状态之后，他就会获得相应的奖励. 这个过程可以被\Cref{fig:student-MRP} 描述. \lhysays{重画}
+李二的人生就在这些状态之间循环往复，当他进入某个状态之后，他就会获得相应的奖励. 这个过程可以被\Cref{fig:student-MRP} 描述.
 \begin{figure}[ht]
     \centering
-    \includegraphics[height=0.4\textheight]{Figures/Markov-chain/STR.eps}
+    \includegraphics[width=0.7\textwidth]{Figures/Markov-chain/STR.pdf}
     \caption{学生MRP}
     \label{fig:student-MRP}
 \end{figure}
@@ -386,7 +391,7 @@ Bellman方程可以用矩阵形式表达：
 李二的MDP见\Cref{fig:studentMDP}. 
 \begin{figure}
     \centering
-    \includegraphics[height=0.4\textheight]{Figures/Markov-chain/STD.eps}\lhysays{重画}
+    \includegraphics[width=0.75\textwidth]{Figures/Markov-chain/STD.pdf}   
     \caption{学生MDP}
     \label{fig:studentMDP}
 \end{figure}
@@ -411,7 +416,7 @@ Bellman方程可以用矩阵形式表达：
 \end{itemize}
 \end{definition}
 
-现在我们对比MDP和MRP. MDP中，状态转移矩阵依赖动作，奖励函数也依赖动作. 在李二的例子中，在教室2如果选择学习，尽管都是在学习，但是学习并不一定会产生一个确定的结果：他会有$0.4$的概率睡着，$0.6$的概率继续学习. 自然，睡着的奖励和继续学习的奖励是不同的.
+现在我们对比MDP和MRP. MDP中，状态转移矩阵依赖动作，奖励函数也依赖动作. 在李二的例子中，在教室2如果选择听讲，尽管都是在听讲，但是并不一定会产生一个确定的结果：他会有$0.4$的概率睡着，$0.6$的概率继续听讲. 自然，睡着的奖励和继续听讲的奖励是不同的.
 
 \begin{definition}[策略]
 一个\emph{策略}$\pi$是给定状态下行动的分布，即
@@ -433,13 +438,7 @@ MDP与MDP的关系由策略给出.
 
 \begin{figure}[ht]
 \centering
-\begin{tikzpicture}[node distance=3cm, auto]
-    \node[punkt] (MDP) {MDP};
-        \node[punkt, right=of MDP] (MRP) {MRP};
-        \node[punkt, right=of MRP] (MC) {Markov链};
-        \draw[->, -stealth, very thick] (MDP) to node {固定策略} (MRP);
-        \draw[->, -stealth, very thick] (MRP) to node {去掉奖励函数} (MC);
-\end{tikzpicture}
+\includegraphics[width=0.8\textwidth]{Figures/Markov-chain/MDP-MRP-Markov-chain.pdf}
 \caption{MDP，MRP和Markov链的关系}\label{fig:MDP-MRP-MarkovChain}
 \end{figure}
 
@@ -600,7 +599,7 @@ Bellman方程是\emph{强化学习}、经济学\emph{动态优化}的核心. Bel
 示意见\Cref{fig:HMM}.
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.6\textwidth]{Figures/Markov-chain/HMM.eps}\lhysays{重画}
+    \includegraphics[width=0.8\textwidth]{Figures/Markov-chain/HMM.pdf}
     \caption{隐Markov模型}
     \label{fig:HMM}
 \end{figure}    
@@ -736,7 +735,7 @@ Bellman方程是\emph{强化学习}、经济学\emph{动态优化}的核心. Bel
 
 \begin{figure}[ht]
     \centering
-    \scalebox{0.7}{\input{Figures/Markov-chain/Ehrenfest-model.tex}}
+    \includegraphics[width=0.5\textwidth]{Figures/Markov-chain/Ehrenfest-model.pdf}
     \caption{Ehrenfest模型示意图}\label{fig:ehrenfest-model}
 \end{figure}
 
@@ -782,7 +781,7 @@ Bellman方程是\emph{强化学习}、经济学\emph{动态优化}的核心. Bel
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.3]{Figures/Markov-chain/diffusion-model.pdf}
+    \includegraphics[width=0.9\textwidth]{Figures/Markov-chain/DDPM.pdf}
     \caption{DDPM示意图}\label{fig:DDPM}
 \end{figure}
 

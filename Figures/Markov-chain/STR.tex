@@ -1,0 +1,89 @@
+\documentclass{standalone}
+% font set
+\usepackage{ctex}
+\usepackage{fontspec}
+\usepackage[T1]{fontenc}
+\usepackage[sc]{mathpazo}
+\usepackage{anyfontsize}
+\setmainfont{Source Serif 4}
+\setsansfont{Source Sans 3}
+\setmonofont{Menlo}
+\setCJKmainfont[BoldFont=黑体-简 中等,ItalicFont=楷体-简 常规体]{宋体-简 常规体}
+
+% colors
+\usepackage[dvipsnames]{xcolor}
+\definecolor{pku-red}{RGB}{139,0,18}
+\usepackage{colortbl}
+\newcommand{\light}[1]{\textcolor{Orchid}{#1}}
+\newcommand{\contrastlight}[1]{\textcolor{TealBlue}{#1}}
+
+% plots
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta,positioning,calc,3d}
+\usetikzlibrary{automata}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\tikzset{
+    reward/.style={
+        text color = TealBlue,
+    }
+}
+
+% math package
+\let\Bbbk\relax
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{stmaryrd}
+\usepackage{latexsym}
+\usepackage{extarrows}
+\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
+
+\usepackage{setspace}
+\setstretch{1.0}
+
+\begin{document}
+
+\begin{tikzpicture}[
+    ->, >=stealth',very thick, auto, node distance=3cm, scale=1.5, font=\small,
+    state/.style={circle, draw, minimum size=1.5cm, font=\normalsize, inner sep=2pt,very thick,fill=gray!10}
+]
+
+% Nodes for states
+\node[state] (S1) {教室1};
+\node[state, above of=S1] (Phone) {刷手机};
+\node[state, right of=S1] (S2) {教室2};
+\node[state, below of=S1] (Date) {约会};
+\node[state, above right of=S2, rectangle, minimum size=1.2cm] (Sleep) {睡觉};
+\node[state, right of=S2, align=center] (Pass) {考试\\通过};
+\node[state, below of=Pass, rectangle, minimum size=1.2cm, align=center] (Fail) {考试\\挂科};
+
+% Rewards outside the nodes
+\node[below left=0.05cm and 0.05cm of S1, text=TealBlue] (R1) {$R=-2$};
+\node[above left=0.05cm and 0.05cm of Phone, text=TealBlue] (R2) {$R=-1$};
+\node[below right=0.05cm and 0.05cm of S2, text=TealBlue] (R3) {$R=0$};
+\node[below right=0.05cm and 0.05cm of Date, text=TealBlue] (R4) {$R=+5$};
+\node[above=0.05cm of Sleep, text=TealBlue] (R5) {$R=+1$};
+\node[below=0.05cm of Pass, text=TealBlue] (R6) {$R=+10$};
+\node[below left=0.05cm and 0.05cm of Fail, text=TealBlue] (R7) {$R=-5$};
+
+% % Transitions between states
+\path[very thick] 
+    (S1) edge[bend left] node[left] {0.5} (Phone)
+    (S1) edge[right] node[above] {0.5} (S2)
+    (Phone) edge[bend left] node[right] {0.1} (S1)
+    (Phone) edge[loop above] node {0.9} (Phone)
+    (S2) edge[bend left] node[above left] {0.2} (Sleep)
+    (S2) edge[right] node[above] {0.6} (Pass)
+    (S2) edge[bend right] node[above right] {0.1} (Fail)
+    (Pass) edge[bend right] node[right] {1.0} (Sleep)
+    (S2) edge[bend right] node[below right] {0.1} (Date)
+    (Date) edge[bend right] node[below right] {0.8} (S2)
+    (Date) edge[bend left] node[left] {0.2} (S1);
+
+\end{tikzpicture}
+
+\end{document}
