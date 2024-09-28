@@ -176,13 +176,13 @@ $\mu$未知. 随机采样得到样本$x_1,x_2,\dots,x_n$，怎样对$\mu$进行�
 
 如\Cref{fig:circle-sample} 所示，坐标轴上有一个圆心为$c$的单位圆，圆内随机选取一个点$x$，那么
 \[
-\Pr(\norm{x} > \norm{c}) > \frac{1}{2}.
+\Pr(\light{\norm{x}} \textcolor{Salmon}{>} \contrastlight{\norm{c}}) > \frac{1}{2}.
 \]
 如果不是二维的圆而是高维的球，这一不等式依然成立，并且这种效应随维数的增加而变强（见习题\lhysays{出一下}）. 另一方面，圆心$c$离中心越远，这一概率越接近$1/2$. 
 
 \begin{figure}[ht]
     \centering
-    \input{Figures/J-L-lemma/spein}\lhysays{重画}
+    \includegraphics[width=0.5\textwidth]{Figures/J-L-lemma/stein.pdf}
     \caption{高维空间中的采样点}
     \label{fig:circle-sample}
 \end{figure}
@@ -204,7 +204,7 @@ $\mu$未知. 随机采样得到样本$x_1,x_2,\dots,x_n$，怎样对$\mu$进行�
 假设样本点恰好满足$x_1=\norm{\mu}$，而$x_i$以概率$1$都不为$0$，可以画出\Cref{fig:triangle}. 
 \begin{figure}[ht]
     \centering
-    \input{Figures/J-L-lemma/triangle}
+    \includegraphics[width=0.5\textwidth]{Figures/J-L-lemma/triangle.pdf}
     \caption{$x$与$\mu$形成的直角三角形}
     \label{fig:triangle}
 \end{figure}
