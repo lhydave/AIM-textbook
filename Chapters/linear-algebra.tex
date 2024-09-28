@@ -920,12 +920,7 @@ Gram矩阵的基本性质是：
 
 考虑平面$\R^2$上的两个向量$\alpha=(a_1,a_2)^\t$和$\beta=(b_1,b_2)^\t$，我们可以用这两个向量作为平行四边形的两条边，构造一个平行四边形：
 \begin{center}
-    \begin{tikzpicture}
-        \draw[->] (0,0) -- node[below] {$\alpha$} (2,0) ;
-        \draw[->] (0,0) -- node[left] {$\beta$} (1,2) ;
-        \draw[->] (1,2) -- node[above] {$\alpha$} (3,2);
-        \draw[->] (2,0) -- node[right] {$\beta$} (3,2);
-    \end{tikzpicture}
+\includegraphics[width=0.3\textwidth]{Figures/linear-algebra/parallelogram.pdf}
 \end{center}
 
 现在我们定义这个平行四边形的\emph{有向面积}. 数值上，有向面积就是我们通常理解的平行四边形面积. 有向面积的符号按照如下的规则给出. 从$\alpha$旋转到$\beta$所在的方向，转动一个平角以内的角度. 如果这个角度是逆时针的，面积就是正的，否则就是负的. 
@@ -1137,21 +1132,7 @@ Gram矩阵的基本性质是：
 
 \begin{figure}[ht]
 \centering
-\begin{minipage}[c]{0.3\linewidth}
-    \begin{tikzpicture}[scale=0.4]
-        \draw[->] (0,0) -- node[above right] {$v_1$} (3,-4);
-        \draw[->] (0,0) -- node[above left] {$v_2$} (4,3) ;
-        \draw (0,0) circle (5);
-    \end{tikzpicture}
-\end{minipage}
-$\xLongrightarrow{\quad f\quad}$
-\begin{minipage}[c]{0.3\linewidth}
-\begin{tikzpicture}[scale=0.4]
-        \draw[->] (0,0) -- node[right] {$f(v_1)$} (-3*1.5,4*1.5);
-        \draw[->] (0,0) -- node[right] {$f(v_2)$} (4*0.5,3*0.5);
-        \draw[rotate=36.87] (0,0) ellipse (5*0.5 and 5*1.5);
-    \end{tikzpicture}
-\end{minipage}
+\includegraphics[width=0.8\textwidth]{Figures/linear-algebra/self-adjoint.pdf}
 \caption{自伴算子的作用}
 \label{fig:symmetric-operator}
 \end{figure}

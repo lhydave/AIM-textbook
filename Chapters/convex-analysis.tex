@@ -40,7 +40,7 @@
 
 决策$T$的一种量化指标是最小化期望意义下的损失函数：
     \[\min_{T}\E_{X\sim P}[L(P,T(X))].\]
-在经济学中，这一量化指标实际上是von Neumann和Morgenstern \emph{期望效用理论}的具体体现，我们会在\Cref{???}\lhysays{补全引用}中详细讨论. 这一理论认为，个体在面对不确定的环境时，会选择最大化期望效用的决策；在这里，就是最小化期望损失的决策.
+在经济学中，这一量化指标实际上是von Neumann和Morgenstern \emph{期望效用理论}的具体体现，我们会在\Cref{sec:mixed-strategy}中详细讨论. 这一理论认为，个体在面对不确定的环境时，会选择最大化期望效用的决策；在这里，就是最小化期望损失的决策.
 
 现在我们考虑一个非常一般的决策任务. 假设我们的任务是估计函数$f$，但是我们只知道观测到的自变量$X$（来自总体$P$）以及它的函数值$Y=f(X)$，我们的决策是函数的估计值$\hat f$. 在机器学习中，$f$通常是需要训练的模型. 我们可以写出若干种损失函数：
 \begin{itemize}
@@ -100,7 +100,12 @@
 
     最小二乘法的解$x^*$实际上是\emph{投影}解. 为了说明这一点，我们需要基本的线性代数知识，请参阅\Cref{chap:linear-algebra}. 
     
-    具体来说，我们把$Ax$理解为$A$的列向量的线性组合，于是整个优化问题可以被看成\Cref{???}\lhysays{加个图}.
+    具体来说，我们把$Ax$理解为$A$的列向量的线性组合，于是整个优化问题可以被看成找一个向量到某个线性空间的最短距离，即投影，如\Cref{fig:projecting} 所示。
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Figures/convex-anlaysis/projecting.pdf}
+    \caption{最小二乘法的几何解法}\label{fig:projecting}
+    \end{figure}
 
     我们现在从代数上解释这张图. 我们可以得到一个线性子空间
     \[V=\{Ax:x\in\R^n\}.\]
@@ -200,7 +205,7 @@
     \begin{aligned}
     \min_{x}&\quad f(x)\\
     \text{s.t.}&\quad x\in[0,1]^n.
-\end{aligned}\label{opt:gird-search}
+\end{aligned}\label{opt:grid-search}
 \end{equation}
 其中$f(x)$是Lipschitz连续函数，即它满足
     \[|f(x)-f(y)|\leq L\norm{x-y}_\infty,\quad\forall x,y\in[0,1]^n.\]
@@ -224,14 +229,21 @@
 
 我们对于网格搜索算法问的问题是，它的复杂度如何. 也就是说，它需要调用先知多少次才能找到一个$\epsilon$-近似解？我们从一个引理开始. 
 
-\begin{lemma}\label{lemma:gird-search}
-    设 \eqref{opt:gird-search} 的最优值为$f^*$，那么
+\begin{lemma}\label{lemma:grid-search}
+    设 \eqref{opt:grid-search} 的最优值为$f^*$，那么
 \[f(\bar x)-f^*\leq\frac{L}{2p}.\]
 \end{lemma}
 \begin{proof}
 设$x^*$是最优点，存在一个方格包含$x^*$：
 \[x_{(i_1,\dots,i_n)}\leq x^*\leq x_{(i_1+1,\dots,i_n+1)}.\]
-这个方格的长为$1/p$，所以我们可以选取方格的某个顶点$\hat x$，使得它的每一个轴离$x^*$的距离都不超过$1/(2p)$.\lhysays{画个图}
+这个方格的长为$1/p$，所以我们可以选取方格的某个顶点$\hat x$，使得它的每一个轴离$x^*$的距离都不超过$1/(2p)$，如\Cref{fig:grid-partition} 所示。
+
+\begin{figure}[H]
+    \centering
+    \lhysays{画个图}
+    \caption{网格示意图}
+    \label{fig:grid-partition}
+\end{figure}
 
 于是根据Lipschitz条件，
     \[f(\bar x)-f^*\leq f(\hat x)-f(x^*)\leq L\norm{\hat x- x^*}_\infty\leq \frac{L}{2p}.\]
@@ -243,15 +255,15 @@
     \[\left(\left\lfloor\frac{L}{2\epsilon}\right\rfloor+2\right)^n.\]
 \end{theorem}
 \begin{proof}
-    取$p=\lfloor L/(2\epsilon)\rfloor+1$，代入\Cref{lemma:gird-search} 即可.
+    取$p=\lfloor L/(2\epsilon)\rfloor+1$，代入\Cref{lemma:grid-search} 即可.
 \end{proof}
 
-网格搜索法的运行时间给了优化问题 \eqref{opt:gird-search} 一个求解时间的\textbf{上界}. 然而这个上界和维数呈指数关系，通常来说都是不可接受的复杂度. 
+网格搜索法的运行时间给了优化问题 \eqref{opt:grid-search} 一个求解时间的\textbf{上界}. 然而这个上界和维数呈指数关系，通常来说都是不可接受的复杂度. 
 
-自然地，我们会问，\eqref{opt:gird-search} 会有更好的算法吗？ 这就是\textbf{下界问题}. 令人惊讶的是，对于这一个问题，我们可以证明网格搜索法是渐近意义下最优的！
+自然地，我们会问，\eqref{opt:grid-search} 会有更好的算法吗？ 这就是\textbf{下界问题}. 令人惊讶的是，对于这一个问题，我们可以证明网格搜索法是渐近意义下最优的！
 
-\begin{theorem}\label{thm:gird-search-lower-bound}
-    设$\epsilon<L/2$，要想对任意$f$都能找到 \eqref{opt:gird-search} 的 $\epsilon$-近似解，访问$\O$的算法（零阶算法）找到至少需要调用$\O$
+\begin{theorem}\label{thm:grid-search-lower-bound}
+    设$\epsilon<L/2$，要想对任意$f$都能找到 \eqref{opt:grid-search} 的 $\epsilon$-近似解，访问$\O$的算法（零阶算法）找到至少需要调用$\O$
     \[\left\lfloor\frac{L}{2\epsilon}\right\rfloor^n\]
     次.
 \end{theorem}
@@ -266,7 +278,14 @@
 
 因为只有$p^n-1$个测试点，所以根据鸽巢原理，网格中至少有一个长为$1/p$的小方格$B$内部没有包含任何测试点. 假设这个小方格的中心是$x^*$，构造
     \[\bar f(x)=\min\{0,L\norm{x-x^*}_\infty-\epsilon\}.\]
-这一构造如\Cref{???} \lhysays{加个图}所示，它就是以$x^*$为中心，往下“挖”了一个锥，最底部是$(x^*,-\epsilon)$.
+这一构造如\Cref{fig:grid-func} 所示，它就是以$x^*$为中心，往下“挖”了一个锥，最底部是$(x^*,-\epsilon)$.
+
+\begin{figure}[H]
+    \centering
+    \lhysays{画个图}
+    \caption{函数构造示意图}
+    \label{fig:grid-func}
+\end{figure}
 
 容易看出，$\bar f$是$L$-Lipschitz函数，并且最小值为$-\epsilon$.
 
@@ -275,7 +294,7 @@
 内部. 因为$1/(2p)\geq \epsilon/L$，所以$B'\subseteq B$. 所以所有测试点上$\O$都会返回$0$，这是一个$\epsilon$-近似解. 因此$A$通过小于$p^n$次对$\O$的调用最多只能找到$\epsilon$-近似解.
 \end{proof}
 
-以上两个结论分别给出了 \eqref{opt:gird-search} 问题的上下界，对比他们：
+以上两个结论分别给出了 \eqref{opt:grid-search} 问题的上下界，对比他们：
 \begin{center}
 \begin{minipage}[t]{0.4\textwidth}
 问题的上界：
@@ -286,7 +305,7 @@
     \[\left\lfloor\frac{L}{2\epsilon}\right\rfloor^n\]
 \end{minipage}
 \end{center}
-尽管网格搜索是一个很慢的算法，但是我们证明了，在渐近意义下，优化问题 \eqref{opt:gird-search} 的最优算法就是网格搜索！因此，我们可以说，一般的优化问题是难解的. 
+尽管网格搜索是一个很慢的算法，但是我们证明了，在渐近意义下，优化问题 \eqref{opt:grid-search} 的最优算法就是网格搜索！因此，我们可以说，一般的优化问题是难解的. 
 
 当我们聚焦在特定的问题类上，优化问题并不一定是难解的. 因此，我们接下来的关键问题是\textit{识别出一类可以快速求解的优化问题}，这就是凸函数的意义. 
 
@@ -349,16 +368,23 @@
 \end{equation}
 这一不等式给出了\textbf{可微凸函数}的定义：
 
-\begin{definition}[（可微）凸函数]
+\begin{definition}[可微凸函数]
     如果可微函数$f:\R^n\to\R$对任意$x,y\in\R^n$都满足 \eqref{eq:def-convex}，我们称$f$是\textbf{凸函数}. 
 \end{definition}
 
-实际上，这一不等式有很强的几何直观，从$x$处做函数$f$的切线，那么切线上的点都在函数下方. 从这个角度来看，凸函数的定义是向下凸的函数. \lhysays{画个图}
+实际上，这一不等式有很强的几何直观，如\Cref{fig:convex-tangent} 所示，从$x$处做函数$f$的切线，那么切线上的点都在函数下方. 从这个角度来看，凸函数的定义是向下凸的函数. \lhysays{画个图}
+
+\begin{figure}[ht]
+    \centering
+    \lhysays{画个图}
+    \caption{凸函数的切线示意}
+    \label{fig:convex-tangent}
+\end{figure}
 
 非常有趣的是，$\calF$完全由可微凸函数组成，这一点可以通过下面的定理得到证明. 
 
 \begin{theorem}\label{thm:differential-convex-equivalence}
-    函数$f\in\calF$当且仅当$f$是可微凸函数.
+    可微函数$f\in\calF$当且仅当$f$是凸函数.
 \end{theorem}   
 \begin{proof}
 只需验证满足 \eqref{eq:def-convex} 的函数属于$\calF$.
@@ -412,7 +438,16 @@
 \begin{equation}
     f(\alpha x+(1-\alpha) y)\leq \alpha f(x)+(1-\alpha) f(y). \label{eq:Jensen}
 \end{equation}
-Jensen不等式具有很强的几何解释：画一条$f$的割线，那么$f$的函数图像位于割线上方. 实际上，Jensen不等式给了凸函数一种等价的定义：
+Jensen不等式具有很强的几何解释：画一条$f$的割线，那么$f$的函数图像位于割线上方，如\Cref{fig:convex-Jensen} 所示. 
+
+\begin{figure}[ht]
+    \centering
+    \lhysays{画个图}
+    \caption{凸函数的割线示意}
+    \label{fig:convex-Jensen}
+\end{figure}
+
+实际上，Jensen不等式给了凸函数一种等价的定义：
 
 \begin{theorem}\label{thm:convex-equivalence}
     设$f$是连续可微的函数，那么$f$满足 \eqref{eq:def-convex} 当且仅当$f$满足 \eqref{eq:Jensen}.
@@ -487,7 +522,14 @@ Jensen不等式具有很强的几何解释：画一条$f$的割线，那么$f$�
     函数$f$的\textbf{上图}是指集合$\epi(f)=\{(x,y)\in\R^{n}\times\R:y\geq f(x)\}$. 直观上说，$\epi(f)$是位于函数$f$的图像上方的区域.
 \end{definition}
 
-例如，对于函数$f(x)=x^2$，上图是$\epi(f)=\{(x,y)\in\R^2:y\geq x^2\}$. 见\Cref{???}.\lhysays{补图}
+例如，对于函数$f(x)=x^2$，上图是$\epi(f)=\{(x,y)\in\R^2:y\geq x^2\}$. 如\Cref{fig:epigraph} 所示.
+
+\begin{figure}[ht]
+    \centering
+    \lhysays{画个图}
+    \caption{函数$f(x)=x^2$的上图}
+    \label{fig:epigraph}
+\end{figure}
 
 上图揭示了凸集与凸函数的关系：
 \begin{theorem}\label{thm:convex-epi}
@@ -514,8 +556,8 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
 \begin{definition}[下水平集]
     给定$t\in\R$，函数$f$的\textbf{下水平集}是指集合
     \[C_t(f)=\{x\in\R^n:f(x)\leq t\}.\]
-    直观上说，下水平集是函数值小于$t$的区域.
 \end{definition}
+直观上说，下水平集是函数值小于$t$的区域.
 
 \begin{proposition}\label{prop:level-set}
     如果函数$f$是凸函数，那么对任意$t\in\R$，下水平集$C_t(f)$是凸集.
@@ -589,7 +631,16 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
 
 \begin{proof}
 
-    我们有一个非常直观的几何证明. 如\Cref{???}\lhysays{画图}，我们可以找到两个凸集离得最近的点，然后作他们连线的中垂面，这条中垂面就是分离超平面. 下面我们严格叙述这一过程. 
+    我们有一个非常直观的几何证明. 如\Cref{fig:separation-proof}所示，我们可以找到两个凸集离得最近的点，然后作他们连线的中垂面，这条中垂面就是分离超平面. 
+    
+    \begin{figure}[H]
+        \centering
+        \lhysays{画个图}
+        \caption{分离超平面定理证明示意}
+        \label{fig:separation-proof}
+    \end{figure}
+    
+    下面我们严格叙述这一过程. 
 
     定义两个集合间的距离为：
     \[d(C,D)=\inf_{x\in C,y\in D}\norm{x-y}_2.\]
