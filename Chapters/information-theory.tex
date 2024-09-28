@@ -177,7 +177,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 \begin{proof}
     用反证法，假设达到最大值的时候存在$p_k\ne 1/n$，那么，因为$\sum_i p_i/n=1/n$，根据鸽巢原理，则必有$i,j$满足
     \[p_i<1/n<p_j.\]
-    根据\Cref{prop:entropy-adjust}，我们可以将$p_i$和$p_j$替换为$1/n$和$p_i+p_j-1/n$，而$H$增大，这与假设矛盾. 因此，$p_1=\dots=p_n=1/n$是$H$取得最大值的必要条件。
+    根据\Cref{prop:entropy-adjust}，我们可以将$p_i$和$p_j$替换为$1/n$和$p_i+p_j-1/n$，而$H$增大，这与假设矛盾. 因此，$p_1=\dots=p_n=1/n$是$H$取得最大值的必要条件. 
 
     另一方面，因为$H$连续，所以根据Weierstrass最值定理（\Cref{ thm:weierstrass}），$H$一定有最大值，所以$p_1=\dots=p_n=1/n$也是$H$取得最大值的充分条件.
 \end{proof}

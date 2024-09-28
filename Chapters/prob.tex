@@ -63,24 +63,7 @@
 \end{enumerate}
 三种解答的示意图见下（从左到右分别是解答1到3）：
 \begin{center}
-\begin{tikzpicture}
-\draw (0,0) circle [radius=1];
-\draw[dashed] (0,-1) node[below] {$A$} -- ({-sqrt(3)/2},0.5) node[left] {$C$} -- ({sqrt(3)/2},0.5) node[right] {$D$} -- cycle;
-\draw[very thick] (0,-1) -- (-0.6,0.8) node[above] {$B$};
-
-\draw (4,0) circle [radius=1];
-\draw (4,-1) -- (4,1);
-\draw[dashed] (4,-1)-- ({4-sqrt(3)/2},0.5)  -- ({4+sqrt(3)/2},0.5) -- cycle;
-\draw[fill] (4,0) circle [radius=0.05];
-\draw[fill] (4,0.3) circle [radius=0.05];
-\draw[very thick] ({4-sqrt(1-0.3^2)},0.3) node[left] {$A$} -- ({4+sqrt(1-0.3^2)},0.3) node[right] {$B$};
-
-\draw (8,0) circle [radius=1];
-\draw[fill,gray] (8,0) circle [radius=0.5];
-\draw[dashed] (8,-1)-- ({8-sqrt(3)/2},0.5)  -- ({8+sqrt(3)/2},0.5) -- cycle;
-\draw[fill] (8,0.3) circle [radius=0.05];
-\draw[very thick] ({8-sqrt(1-0.3^2)},0.3) node[left] {$A$} -- ({8+sqrt(1-0.3^2)},0.3) node[right] {$B$};
-\end{tikzpicture}
+\includegraphics[width=0.95\textwidth]{Figures/prob/Bertrand-paradox.pdf}
 \end{center}
 \end{example}
 
@@ -456,14 +439,7 @@
 
 总结来说，随机向量$X$、概率测度$P_X$和分布函数$F_X$的关系如图：
 \begin{center}
-\begin{tikzpicture}
-\node (a) at (0,0) {$X:\Omega\to\R^n$};
-\node (b) at (6,0) {$F_X:\R^n\to[0,1]$};
-\draw[->] (a) -- node[above] {$\Pr(X\leq x)$} (b);
-\node (c) at (6,-2) {$P_X:\scB(\R^n)\to[0,1]$};
-\draw[->] (b) -- node[right] {$\Delta_{a_1b_1}\dots\Delta_{a_nb_n}$} (c);
-\draw[->] (a) -- node[below left] {$\Pr(X\in B)$} (c);
-\end{tikzpicture}
+\includegraphics[width=0.8\textwidth]{Figures/prob/prob-relations.pdf}
 \end{center}
 
 这张图的每一个箭头都可以反过来，但是反过来的这些关系都比较不直观，所以我们不再讨论. 
@@ -475,23 +451,7 @@
 我们首先讨论\emph{离散型随机变量}. 离散型随机变量的分布函数$F$称之为\emph{离散型分布}，它是一个阶梯函数，它的函数值只在有限或者可数个点$x_1,x_2,\dots$上发生跳变，在$x_i$的跳变为$p_i=F(x_i)-F(x_i-)$. 这一分布函数对应的概率测度$\Pr$我们称之为\emph{离散型测度}，这种测度集中在$x_i$上，即$\Pr(X=x_i)=p_i$. 分布函数形如下图：
 
 \begin{center}
-\begin{tikzpicture}
-\draw[->] (-2,0) -- (5,0) node[right] {$x$};
-\draw[->] (0,0) -- (0,3) node[right] {$F(x)$};
-\draw[very thick] (-2+0.2,0) -- (-1,0);
-\draw[dashed] (-1,0) -- node[left] {$p_1$} (-1,1);
-\draw[very thick] (-1,1) --  (1,1);
-\draw[dashed] (1,1) -- node[left] {$p_2$} (1,2);
-\draw[very thick] (1,2) -- (3,2);
-\draw[dashed] (3,2) -- node[left] {$p_3$} (3,2.5);
-\draw[very thick] (3,2.5) -- (5-0.2,2.5);
-\draw[fill=white, very thick] (-1,0) circle [radius=0.05];
-\draw[fill=white, very thick] (1,1) circle [radius=0.05];
-\draw[fill=white, very thick] (3,2) circle [radius=0.05];
-\draw (-1,0) node[below] {$x_1$};
-\draw (1,0) node[below] {$x_2$};
-\draw (3,0) node[below] {$x_3$};
-\end{tikzpicture}
+\includegraphics[width=0.7\textwidth]{Figures/prob/distribution-func.pdf}
 \end{center}
 
 离散型分布可以由分布列给出，分布列是一个序列$p_1,p_2,\dots$，其中$p_i=\Pr(X=x_i)$，且$\sum_{i=1}^\infty p_i=1$.
@@ -1361,7 +1321,7 @@ Gauss向量可以完全由它的期望和协方差矩阵刻画. 首先，Gauss�
 
 接下来我们讨论大数定律. 大数定律来自人类对随机现象的直观认识，它表明，如果重复抛一枚公平的硬币，那么正面朝上的次数会趋于总次数的一半.
 
-首先，我们要定义，对于一系列随机的实验，什么叫做“趋于”。比如说，抛一万次硬币，当然有正的概率会出现一万次正面朝上，但是这件事情在现实中是不太可能的. 我们要定义一个概率的概念，来描述这种“趋于”.
+首先，我们要定义，对于一系列随机的实验，什么叫做“趋于”. 比如说，抛一万次硬币，当然有正的概率会出现一万次正面朝上，但是这件事情在现实中是不太可能的. 我们要定义一个概率的概念，来描述这种“趋于”.
 
 \begin{definition}[依概率收敛]
 设$X_1,X_2,\dots$是一系列随机变量，$X$是一个随机变量. 如果对任意$\varepsilon>0$，有
@@ -1404,5 +1364,5 @@ Gauss向量可以完全由它的期望和协方差矩阵刻画. 首先，Gauss�
         &=\Pr(S_n<\mu-\varepsilon)+1-\Pr(S_n\leq\mu+\varepsilon)\\
         &\to 0.
     \end{align*}
-    这就完成了证明。
+    这就完成了证明. 
 \end{proof}

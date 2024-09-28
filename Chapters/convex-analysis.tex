@@ -100,7 +100,7 @@
 
     最小二乘法的解$x^*$实际上是\emph{投影}解. 为了说明这一点，我们需要基本的线性代数知识，请参阅\Cref{chap:linear-algebra}. 
     
-    具体来说，我们把$Ax$理解为$A$的列向量的线性组合，于是整个优化问题可以被看成找一个向量到某个线性空间的最短距离，即投影，如\Cref{fig:projecting} 所示。
+    具体来说，我们把$Ax$理解为$A$的列向量的线性组合，于是整个优化问题可以被看成找一个向量到某个线性空间的最短距离，即投影，如\Cref{fig:projecting} 所示. 
     \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{Figures/convex-anlaysis/projecting.pdf}
@@ -236,7 +236,7 @@
 \begin{proof}
 设$x^*$是最优点，存在一个方格包含$x^*$：
 \[x_{(i_1,\dots,i_n)}\leq x^*\leq x_{(i_1+1,\dots,i_n+1)}.\]
-这个方格的长为$1/p$，所以我们可以选取方格的某个顶点$\hat x$，使得它的每一个轴离$x^*$的距离都不超过$1/(2p)$，如\Cref{fig:grid-partition} 所示。
+这个方格的长为$1/p$，所以我们可以选取方格的某个顶点$\hat x$，使得它的每一个轴离$x^*$的距离都不超过$1/(2p)$，如\Cref{fig:grid-partition} 所示. 
 
 \begin{figure}[H]
     \centering
