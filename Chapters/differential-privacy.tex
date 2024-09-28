@@ -397,16 +397,7 @@ RR算法是如何实现差分隐私的呢？最重要的一步是，它把真实
 我们称具有这一密度的分布为\emph{Laplace分布}，记为$\mathsf{Lap}(\mu,\lambda)$.
 \end{definition}
 
-Laplace分布是服从双边指数分布的随机变量进行线性变换后服从的分布. 具体来说，设$X\sim\mathsf{DExp}(1)$，那么$\lambda X+\mu\sim\mathsf{Lap}(\mu,\lambda)$. 在\Cref{fig:Laplace-distribution} 中，我们展示了不同参数的Laplace分布密度函数图像. 更多关于Laplace分布的性质，我们留做习题. \lhysays{习题}
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[scale=0.6]{Figures/differential-privacy/LaplaceDist.pdf}
-    
-    \lhysays{重画}
-    \caption{Laplace分布的密度函数图像}
-    \label{fig:Laplace-distribution}
-\end{figure}
+Laplace分布是服从双边指数分布的随机变量进行线性变换后服从的分布. 具体来说，设$X\sim\mathsf{DExp}(1)$，那么$\lambda X+\mu\sim\mathsf{Lap}(\mu,\lambda)$. 更多关于Laplace分布的性质，我们留做习题. \lhysays{习题}
 
 下面我们来陈述Laplace机制.
 
