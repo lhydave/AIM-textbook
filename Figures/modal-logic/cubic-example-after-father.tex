@@ -21,10 +21,22 @@
 % plots
 \usepackage{tikz}
 \usepackage{tikz-cd}
-\usepackage{pgfplots}
-\pgfplotsset{compat=newest}
 \usetikzlibrary{arrows}
 \usetikzlibrary{arrows.meta,positioning,calc,3d}
+\usepackage{tikz-3dplot}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\tikzset{
+    punkt/.style={
+        rectangle,
+        rounded corners,
+        draw=black, very thick,
+        minimum height=2em,
+        inner sep=6pt,
+        text centered,
+        fill=gray!30
+    }
+}
 
 % math package
 \let\Bbbk\relax
@@ -33,6 +45,7 @@
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{stmaryrd}
+\usepackage{latexsym}
 \usepackage{extarrows}
 \SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
 
@@ -88,18 +101,43 @@
 \DeclareMathSymbol{\strictif}{\mathrel}{symbolsC}{74}
 
 \begin{document}
-\begin{tikzpicture}[node distance=2cm,thick, >=Stealth]
-\node (w1) [circle,draw] {$w_1$};
-\node (w2) [circle,draw,right=of w1] {$w_2$};
-\node (w3) [circle,draw,below=of w1] {$w_3$};
-\node (w4) [circle,draw,right=of w3] {$w_4$};
-\draw[->] (w1) -- (w2);
-\draw[->] (w1) -- (w3);
-\draw[->] (w2) -- (w4);
-\draw[->] (w3) -- (w4);
-\node [above left=1pt of w1] {};
-\node [above right=1pt of w2] {};
-\node [below left=1pt of w3] {};
-\node [below right=1pt of w4] {};
+\begin{tikzpicture}[scale=0.7,very thick]
+% Coordinates of the vertices
+\coordinate (100) at (-4,4);
+\coordinate (010) at (4,4);
+\coordinate (001) at (0,3);
+\coordinate (101) at (-4,7);
+\coordinate (110) at (0,8);
+\coordinate (011) at (4,7);
+\coordinate (111) at (0,11);
+
+% Labels for vertices
+\node[above left] at (100) {$(1,0,0)$};
+\node[below right] at (010) {$(0,1,0)$};
+\node[above right] at (110) {$(1,1,0)$};
+\node[below left] at (001) {$(0,0,1)$};
+\node[above left] at (101) {$(1,0,1)$};
+\node[below right] at (011) {$(0,1,1)$};
+\node[above right] at (111) {$(1,1,1)$};
+
+% Draw edges
+\draw[TealBlue] (100) -- (110) node[midway,right] {2};
+\draw[Salmon] (100) -- (101) node[midway,left] {3};
+
+\draw[Orchid] (010) -- (110) node[midway,left] {1};
+\draw[Salmon] (010) -- (011) node[midway,right] {3};
+
+\draw[Orchid] (001) -- (101) node[midway,left] {1};
+\draw[TealBlue] (001) -- (011) node[midway,below] {2};
+
+\draw[Salmon] (110) -- (111) node[midway,right] {3};
+\draw[TealBlue] (101) -- (111) node[midway,right] {2};
+\draw[Orchid] (011) -- (111) node[midway,right] {1};
+
+% Draw vertices as small circles
+\foreach \point in {(100), (010), (001), (101), (110), (011), (111)}{
+    \fill \point circle (4pt);
+}
+
 \end{tikzpicture}
 \end{document}

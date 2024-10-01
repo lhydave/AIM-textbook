@@ -147,7 +147,7 @@ $\Diamond$读作“diamond”，对应的自然语言可以读为“可能”. �
 
 \begin{figure}[ht]
 \centering
-\input{Figures/modal-logic/Kripke-model-basic}
+\includegraphics[width=0.4\textwidth]{Figures/modal-logic/Kripke-model-basic.pdf}
 \caption{Kripke模型的示例}\label{fig:kripke-model-basic}
 \end{figure}
 
@@ -263,7 +263,7 @@ Kripke模型并没有指定一个真实世界，接下来，我们引入一个�
 考虑\Cref{fig:frame-validity} 中的框架，它是\Cref{fig:kripke-model-basic} 中的Kripke模型去掉了命题字母的结果. 
 \begin{figure}[ht]
 \centering
-\input{Figures/modal-logic/frame-validity}
+\includegraphics[width=0.35\textwidth]{Figures/modal-logic/frame-validity.pdf}
 \caption{框架语义的示例} \label{fig:frame-validity}
 \end{figure}
 
@@ -461,9 +461,16 @@ Kripke模型并没有指定一个真实世界，接下来，我们引入一个�
 
 我们可以从图结构来理解共同知识算子. 把所有边上的标记忽略掉，Kripke模型变成一个有向图，节点上的标记是这个节点上成立的原子命题. 于是，我们有如下解读：
 \begin{itemize}
-    \item $\mathcal M,w\vDash E^k\phi$的含义是，从$w$出发走$k$步可到达的可能世界$v$上都有$\mathcal M,v\vDash \phi$. 见示意图\Cref{???}\lhysays{补图}. 
+    \item $\mathcal M,w\vDash E^k\phi$的含义是，从$w$出发走恰好$k$步可到达的可能世界$v$上都有$\mathcal M,v\vDash \phi$. 这一解读的示意见\Cref{fig:Ek-illustration}，
+    
+    在这个图中，$\mathcal M,w_1\vDash E^3\phi$，因为从$w_1$出发，经过三步可以到达的可能世界上都有$\mathcal M,v\vDash \phi$，我们具体地标出了两条图路径：$w_1\to_1 w_2\to_3 w_3\to_1 w_5$对应$K_1K_3K_1\phi$，$w_1\to_2 w_4\to_2 w_3\to_2 w_6$对应$K_2K_2K_2\phi$.
     \item 因此，$\mathcal M,w\vDash C\phi$的含义便是，从$w$出发经过有限步可到达的可能世界$v$上都有$\mathcal M,v\vDash \phi$.
 \end{itemize}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Figures/modal-logic/Ek-illustration.pdf}
+    \caption{$\mathcal M,w_1\vDash E^3\phi$的示意图，我们标出了其中的两条路径.} \label{fig:Ek-illustration}
+\end{figure}
 
 接下来，我们给出共同知识算子的性质. 实际上，共同知识算子可以充分必要地被下面两个公理所定义（验证见习题\lhysays{出一下}）：
 
@@ -579,7 +586,7 @@ Kripke模型和Aumann结构的一个重要区别在于它们各自的研究偏�
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.4]{Figures/modal-logic/cubic-example.png}
+    \includegraphics[width=0.6\textwidth]{Figures/modal-logic/cubic-example.pdf}
     \caption{“泥泞的孩童”问题的Kripke模型}\label{fig:modal-logic-cubic}
 \end{figure}
 
@@ -595,7 +602,7 @@ Kripke模型和Aumann结构的一个重要区别在于它们各自的研究偏�
 
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.5]{Figures/modal-logic/cubic-example-after-father.png}
+    \includegraphics[width=0.6\textwidth]{Figures/modal-logic/cubic-example-after-father.pdf}
     \caption{父亲宣布$p$之后的Kripke模型}\label{fig:modal-logic-cubic-after-father}
 \end{figure}
 

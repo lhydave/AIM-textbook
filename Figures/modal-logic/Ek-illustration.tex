@@ -21,10 +21,22 @@
 % plots
 \usepackage{tikz}
 \usepackage{tikz-cd}
-\usepackage{pgfplots}
-\pgfplotsset{compat=newest}
 \usetikzlibrary{arrows}
 \usetikzlibrary{arrows.meta,positioning,calc,3d}
+\usepackage{tikz-3dplot}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\tikzset{
+    punkt/.style={
+        rectangle,
+        rounded corners,
+        draw=black, very thick,
+        minimum height=2em,
+        inner sep=6pt,
+        text centered,
+        fill=gray!30
+    }
+}
 
 % math package
 \let\Bbbk\relax
@@ -88,18 +100,31 @@
 \DeclareMathSymbol{\strictif}{\mathrel}{symbolsC}{74}
 
 \begin{document}
-\begin{tikzpicture}[node distance=2cm,thick, >=Stealth]
-\node (w1) [circle,draw] {$w_1$};
-\node (w2) [circle,draw,right=of w1] {$w_2$};
-\node (w3) [circle,draw,below=of w1] {$w_3$};
-\node (w4) [circle,draw,right=of w3] {$w_4$};
-\draw[->] (w1) -- (w2);
-\draw[->] (w1) -- (w3);
-\draw[->] (w2) -- (w4);
-\draw[->] (w3) -- (w4);
-\node [above left=1pt of w1] {};
-\node [above right=1pt of w2] {};
-\node [below left=1pt of w3] {};
-\node [below right=1pt of w4] {};
+\begin{tikzpicture}[>=Stealth, node distance={2cm}, thick, main/.style = {draw, circle}]
+    % Nodes
+    \node[main] (1) {$w_1$};
+    \node[main] (2) [right of=1] {$w_2$};
+    \node[main] (3) [below of=2] {$w_3$};
+    \node[main] (4) [below of=1] {$w_4$};
+    \node[main] (5) [right of=3] {$w_5$};
+    \node[main] (6) [below of=5] {$w_6$};
+
+    % propositions
+    \node[xshift=0.7cm] at (5) {$\phi$};
+    \node[xshift=0.7cm] at (6) {$\phi$};
+
+    % Directed edges
+    \draw[->, color=gray!80,opacity=0.7] (1) -- node[above] {1} (2);
+    \draw[->, color=gray!80,opacity=0.7] (1) -- node[left] {2} (4);
+    \draw[->, color=gray!80,opacity=0.7] (2) -- node[right] {3} (3);
+    \draw[->, color=gray!80,opacity=0.7] (3) -- node[above] {1} (5);
+    \draw[->, color=gray!80,opacity=0.7] (4) -- node[below] {2} (3);
+    \draw[->, color=gray!80,opacity=0.7] (5) -- node[right] {3} (6);
+    \draw[->, color=gray!80,opacity=0.7] (2) -- node[above] {1} (5);
+    \draw[->, color=gray!80,opacity=0.7] (3) -- node[left] {2} (6); 
+
+    % Paths starting from w1 and taking three steps
+    \draw[ultra thick, color=Orchid,opacity=0.6] (1) -- (4) -- (3) -- (6);
+    \draw[ultra thick, color=TealBlue,opacity=0.6] (1) -- (2) -- (3) -- (5);
 \end{tikzpicture}
 \end{document}
