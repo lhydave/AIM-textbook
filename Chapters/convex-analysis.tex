@@ -240,7 +240,7 @@
 
 \begin{figure}[H]
     \centering
-    \lhysays{画个图}
+    \includegraphics[width=0.65\textwidth]{Figures/convex-anlaysis/grid-partition.pdf}
     \caption{网格示意图}
     \label{fig:grid-partition}
 \end{figure}
@@ -282,7 +282,7 @@
 
 \begin{figure}[H]
     \centering
-    \lhysays{画个图}
+    \includegraphics[width=0.6\textwidth]{Figures/convex-anlaysis/grid-func.pdf}
     \caption{函数构造示意图}
     \label{fig:grid-func}
 \end{figure}
@@ -372,11 +372,11 @@
     如果可微函数$f:\R^n\to\R$对任意$x,y\in\R^n$都满足 \eqref{eq:def-convex}，我们称$f$是\textbf{凸函数}. 
 \end{definition}
 
-实际上，这一不等式有很强的几何直观，如\Cref{fig:convex-tangent} 所示，从$x$处做函数$f$的切线，那么切线上的点都在函数下方. 从这个角度来看，凸函数的定义是向下凸的函数. \lhysays{画个图}
+实际上，这一不等式有很强的几何直观，如\Cref{fig:convex-tangent} 所示，从$x$处做函数$f$的切线，那么切线上的点都在函数下方. 从这个角度来看，凸函数的定义是向下凸的函数.
 
 \begin{figure}[ht]
     \centering
-    \lhysays{画个图}
+    \includegraphics[width=0.6\textwidth]{Figures/convex-anlaysis/convex-tangent.pdf}
     \caption{凸函数的切线示意}
     \label{fig:convex-tangent}
 \end{figure}
@@ -442,7 +442,7 @@ Jensen不等式具有很强的几何解释：画一条$f$的割线，那么$f$�
 
 \begin{figure}[ht]
     \centering
-    \lhysays{画个图}
+    \includegraphics[width=0.6\textwidth]{Figures/convex-anlaysis/convex-Jensen.pdf}
     \caption{凸函数的割线示意}
     \label{fig:convex-Jensen}
 \end{figure}
@@ -526,7 +526,7 @@ Jensen不等式具有很强的几何解释：画一条$f$的割线，那么$f$�
 
 \begin{figure}[ht]
     \centering
-    \lhysays{画个图}
+    \includegraphics[width=0.6\textwidth]{Figures/convex-anlaysis/epigraph.pdf}
     \caption{函数$f(x)=x^2$的上图}
     \label{fig:epigraph}
 \end{figure}
@@ -631,11 +631,11 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
 
 \begin{proof}
 
-    我们有一个非常直观的几何证明. 如\Cref{fig:separation-proof}所示，我们可以找到两个凸集离得最近的点，然后作他们连线的中垂面，这条中垂面就是分离超平面. 
+    我们有一个非常直观的几何证明. 如\Cref{fig:separation-proof} 所示，我们可以找到两个凸集离得最近的点，然后作他们连线的中垂面，这条中垂面就是分离超平面. 
     
     \begin{figure}[H]
         \centering
-        \lhysays{画个图}
+        \includegraphics[width=0.9\textwidth]{Figures/convex-anlaysis/separation-proof.pdf}
         \caption{分离超平面定理证明示意}
         \label{fig:separation-proof}
     \end{figure}
@@ -643,33 +643,44 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
     下面我们严格叙述这一过程. 
 
     定义两个集合间的距离为：
-    \[d(C,D)=\inf_{x\in C,y\in D}\norm{x-y}_2.\]
-    我们只证明$C$和$D$都是有界闭集的情况. 此时，存在$c\in C,d\in D$使得$\norm{c-d}_2=d(C,D)$. 这两个点就是$C$和$D$离得最近的点.
-
-    令$a=d-c$，这就是点$c$到$d$的向量. 接下来，我们找中垂面的表达式. 
-
-    中垂面的中点是$(c+d)/2$，而它的法向量是$a$，所以中垂面的表达式是
-    \[\ell:a^\t (x-(c+d)/2)=0\iff a^\t x-b=0,\]
-    其中
-    \[b=(\norm{d}_2^2-\norm{c}_2^2)/2.\]
-
-    为了说明$\ell$是分离超平面，只需证明$f(x)=a^\t x-b$在$C$上非正，在$D$上非负. 对称地，我们只证明在$D$上非负.
-
-    假设对某个$u\in D$，$f(u)<0$，我们证明这将导致$c$和$d$不是离得最近的点. 
-
-    注意到
-    \[f(x)=\inner{a}{x-d}+\frac{1}{2}\norm{a}_2^2.\]
-    如果$f(u)<0$，那么
-    \[\inner{a}{u-d}+\frac{1}{2}\norm{a}_2^2<0\implies\inner{a}{u-d}<0.\]
+    \[
+    d(\light{C}, \contrastlight{D}) = \inf_{\light{x} \in \light{C}, \contrastlight{y} \in \contrastlight{D}} \norm{\light{x} - \contrastlight{y}}_2.
+    \]
+    我们只证明$\light{C}$和$\contrastlight{D}$都是有界闭集的情况. 此时，存在$\light{c} \in \light{C}, \contrastlight{d} \in \contrastlight{D}$使得$\norm{\light{c} - \contrastlight{d}}_2 = d(\light{C}, \contrastlight{D})$. 这两个点就是$\light{C}$和$\contrastlight{D}$离得最近的点.
     
-    接下来我们说明这一不等式的几何意义. 向量$a$和向量$u-d$的夹角大于$90^\circ$，因此，如果沿着向量$u-d$的方向从$d$出发，我们可以得到一个离得更近的点，并且根据凸集的性质，这个点也在$D$中，这与$c$和$d$是离得最近的点矛盾.
-
+    令$\textcolor{Salmon}{a} = \contrastlight{d} - \light{c}$，这就是点$\light{c}$到$\contrastlight{d}$的向量. 接下来，我们找中垂面的表达式. 
+    
+    中垂面的中点是$(\light{c} + \contrastlight{d})/2$，而它的法向量是$\textcolor{Salmon}{a}$，所以中垂面的表达式是
+    \[
+    \ell : \textcolor{Salmon}{a}^\top (x - (\light{c} + \contrastlight{d})/2) = 0 \iff \textcolor{Salmon}{a}^\top x - b = 0,
+    \]
+    其中
+    \[
+    b = (\norm{\contrastlight{d}}_2^2 - \norm{\light{c}}_2^2)/2.
+    \]
+    
+    为了说明$\ell$是分离超平面，只需证明$f(x) = \textcolor{Salmon}{a}^\top x - b$在$\light{C}$上非正，在$\contrastlight{D}$上非负. 对称地，我们只证明在$\contrastlight{D}$上非负.
+    
+    假设对某个$\contrastlight{u} \in \contrastlight{D}$，$f(\contrastlight{u}) < 0$，我们证明这将导致$\light{c}$和$\contrastlight{d}$不是离得最近的点.
+    
+    注意到
+    \[
+    f(x) = \inner{\textcolor{Salmon}{a}}{x - \contrastlight{d}} + \frac{1}{2} \norm{\textcolor{Salmon}{a}}_2^2.
+    \]
+    如果$f(\contrastlight{u}) < 0$，那么
+    \[
+    \inner{\textcolor{Salmon}{a}}{\contrastlight{u} - \contrastlight{d}} + \frac{1}{2} \norm{\textcolor{Salmon}{a}}_2^2 < 0 \implies \inner{\textcolor{Salmon}{a}}{\contrastlight{u} - \contrastlight{d}} < 0.
+    \]
+    
+    接下来我们说明这一不等式的几何意义. 向量$\textcolor{Salmon}{a}$和向量$\contrastlight{u} - \contrastlight{d}$的夹角大于$90^\circ$，因此，如果沿着向量$\contrastlight{u} - \contrastlight{d}$的方向从$\contrastlight{d}$出发，我们可以得到一个离得更近的点，并且根据凸集的性质，这个点也在$\contrastlight{D}$中，这与$\light{c}$和$\contrastlight{d}$是离得最近的点矛盾.
+    
     下面我们来进行具体计算说明这一几何意义. 令
-    \[g(t)=\norm{d+t(u-d)-c}_2^2=\norm{d-c}_2^2+2t\underbrace{\inner{u-d}{a}}_{<0}+t^2\norm{u-d}_2^2.\]
-
-    根据二次函数的性质，对充分小的$t$，$g(t)<g(0)=\norm{d-c}_2^2$. 同时，因为$D$是凸集，$d+t(u-d)\in D$. 以上两点说明说明$d+t(u-d)$是离得更近的点，这与$c$和$d$是离得最近的点矛盾.
+    \[
+    g(t) = \norm{\contrastlight{d} + t (\contrastlight{u} - \contrastlight{d}) - \light{c}}_2^2 = \norm{\contrastlight{d} - \light{c}}_2^2 + 2t \underbrace{\inner{\contrastlight{u} - \contrastlight{d}}{\textcolor{Salmon}{a}}}_{< 0} + t^2 \norm{\contrastlight{u} - \contrastlight{d}}_2^2.
+    \]
+    
+    根据二次函数的性质，对充分小的$t$，$g(t) < g(0) = \norm{\contrastlight{d} - \light{c}}_2^2$. 同时，因为$\contrastlight{D}$是凸集，$\contrastlight{d} + t(\contrastlight{u} - \contrastlight{d}) \in \contrastlight{D}$. 以上两点说明$\contrastlight{d} + t(\contrastlight{u} - \contrastlight{d})$是离得更近的点，这与$\light{c}$和$\contrastlight{d}$是离得最近的点矛盾.
 \end{proof}
-
 \section{习题}
 
 \lhysays{TODO}

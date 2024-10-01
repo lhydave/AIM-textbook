@@ -1,3 +1,4 @@
+
 \documentclass{standalone}
 % font set
 \usepackage{ctex}
@@ -22,7 +23,6 @@
 \usepackage{tikz-cd}
 \usetikzlibrary{arrows}
 \usetikzlibrary{arrows.meta,positioning,calc,3d}
-\usepackage{tikz-3dplot}
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
 \tikzset{
@@ -101,32 +101,57 @@
 
 \begin{document}
 
-% Define the three-dimensional coordinate system and vector
-\tdplotsetmaincoords{60}{100}
+\begin{tikzpicture}[thick,>=stealth]
 
-\begin{tikzpicture}[tdplot_main_coords]
+\draw[gray!60] (0,0) grid (3,3);
+\draw[thick, gray!60] (3,0) -- (3.2,0);
+\draw[thick, gray!60] (3,1) -- (3.2,1);
+\draw[thick, gray!60] (3,2) -- (3.2,2);
+\draw[thick, gray!60] (3,3) -- (3.2,3);
+
+\draw[thick, gray!60] (0,3) -- (0,3.2);
+\draw[thick, gray!60] (1,3) -- (1,3.2);
+\draw[thick, gray!60] (2,3) -- (2,3.2);
+\draw[thick, gray!60] (3,3) -- (3,3.2);
+
+\draw[thick, gray!60] (0,0) -- (-0.2,0);
+\draw[thick, gray!60] (0,1) -- (-0.2,1);
+\draw[thick, gray!60] (0,2) -- (-0.2,2);
+\draw[thick, gray!60] (0,3) -- (-0.2,3);
+
+\draw[thick, gray!60] (0,0) -- (0,-0.2);
+\draw[thick, gray!60] (1,0) -- (1,-0.2);
+\draw[thick, gray!60] (2,0) -- (2,-0.2);
+\draw[thick, gray!60] (3,0) -- (3,-0.2);
+
+\node[scale=1.5, gray!60] at (3.6,1.5) {$\cdots$};
+\node[scale=1.5, gray!60] at (-0.6,1.5) {$\cdots$};
+\node[scale=1.5, rotate=90, gray!60] at (1.5,3.6) {$\cdots$};
+\node[scale=1.5, rotate=90, gray!60] at (1.5,-0.6) {$\cdots$};
+\node[scale=1.5, rotate=45, gray!60] at (3.5,3.5) {$\cdots$};
+\node[scale=1.5, rotate=45, gray!60] at (-0.5,-0.5) {$\cdots$};
+\node[scale=1.5, rotate=-45, gray!60] at (3.5,-0.5) {$\cdots$};
+\node[scale=1.5, rotate=-45, gray!60] at (-0.5,3.5) {$\cdots$};
+
+\filldraw[fill=Salmon,draw=none,opacity=0.6] (1,1) rectangle (1.5,1.5);
+
+\draw[densely dashed, gray!60] (1.5,1) -- (1.5,2);
+\draw[densely dashed, gray!60] (1,1.5) -- (2,1.5);
+
+\draw[very thick] (1,1) -- (2,1) -- (2,2) -- (1,2) -- cycle;
 
 
-    % Define the plane (xy-plane)
-    \draw[Orchid!70,fill=Orchid!70,opacity=0.5] (0,0,0) -- (4,0,0) -- (4,4,0) -- (0,4,0) -- cycle;
-    \node[Orchid] at (2,0.5,0) {$V$} ;
+\node[circle, fill=Orchid, inner sep=1.5pt] (x-star) at (1.2,1.3) {};
+\node[above left=0.1cm and 0.1cm of x-star] (x-star-label) {$x^*$};
+\draw[thin,shorten <= 0.4cm, shorten >=0.1cm] (x-star) -- (x-star-label);
 
-    % Define the vector and its projection on the plane
-    \draw[very thick,-stealth,TealBlue] (1,1,0) -- (3,3,4)  node[anchor=west] {$b$};
-    \draw[very thick,dashed,gray] (3,3,4) -- node[anchor=west] {$\norm{Ax^*-b}_2$} (3,3,0);
-    \draw[very thick,-stealth,Salmon] (1,1,0) -- (3,3,0) node[anchor=south west] {$Ax^*$};
-
-    \draw[thick,gray] (3,3,0.2) -- (2.8,2.8,0.2) -- (2.8,2.8,0);
+\node[circle, fill=TealBlue, inner sep=1.5pt] (x-star) at (1,1) {};
+\node[below right=0.1cm and 0.1cm of x-star] (x-star-label) {$\hat{x}$};
+\draw[thin,shorten <= 0.35cm, shorten >=0.1cm] (x-star) -- (x-star-label);
 
 
-    \draw[very thick,dashed,gray,opacity=0.4] (3,3,4) -- (3,2,0);
-    \draw[very thick,-stealth,Salmon,opacity=0.4] (1,1,0) -- (3,2,0) ;
-
-    \draw[very thick,dashed,gray,opacity=0.4] (3,3,4) -- (1,3,0);
-    \draw[very thick,-stealth,Salmon,opacity=0.4] (1,1,0) -- (1,3,0) ;
-
-    \draw[very thick,dashed,gray,opacity=0.4] (3,3,4) -- (3.5,1,0);
-    \draw[very thick,-stealth,Salmon,opacity=0.4] (1,1,0) -- (3.5,1,0) ;
+\draw[<->,thin] (1,2.1) -- node[above,font=\tiny] {$\frac{1}{2p}$} (1.5,2.1);
+\draw[<->,thin,gray!60] (0,3.1) -- node[above,font=\tiny] {$1/p$} (1,3.1);
 \end{tikzpicture}
 
 \end{document}
