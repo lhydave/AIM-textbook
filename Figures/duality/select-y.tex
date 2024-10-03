@@ -1,5 +1,5 @@
 
-\documentclass[border=3pt]{standalone}
+\documentclass[border=1mm]{standalone}
 % font set
 \usepackage{ctex}
 \usepackage{fontspec}
@@ -101,33 +101,19 @@
 \DeclareMathSymbol{\strictif}{\mathrel}{symbolsC}{74}
 
 \begin{document}
-\begin{tikzpicture}[>=Stealth,thick,rotate=-20]
-
-% Draw convex sets C and D
-\draw[thick, Orchid,fill=Orchid!40] (-3, 0) ellipse (1.5 and 3) node[left] {$C$};
-\draw[thick, TealBlue,fill=TealBlue!40] (3, 0) ellipse (1.5 and 2) node[right] {$D$};
-
-% Points c and d
-\filldraw[Orchid] (-1.5, 0) circle (2pt) node[below,xshift=0.1cm] {$c$};
-\filldraw[TealBlue] (1.5, 0) circle (2pt) node[below left] {$d$};
-
-\draw[gray!60] (-0.2,0) -- (-0.2,0.2) -- (0,0.2);
-
-% Line connecting c and d
-\draw[very thick, ->,Salmon!80] (-1.5, 0) -- (1.5, 0) node[midway, above=0.2cm,xshift=-0.4cm] {$a$};
-
-% Midpoint
-\filldraw[black] (0, 0) circle (2pt) node[below] {};
-
-% Perpendicular bisector (Separating Hyperplane)
-\draw[dashed,very thick] (0, -3) -- (0, 3) node[right] {$\ell$};
-
-% Additional vectors from c and d
-\filldraw[TealBlue] (1.7, 0.9978) circle (2pt) node[above,xshift=-0.1cm] {$u$};
-\draw[->, very thick] (1.5, 0) --  node[right] {$u-d$} (1.7, 0.9978);
-
-\filldraw[TealBlue!40] (0.9, 1.5) circle (2pt) node[above,xshift=-0.1cm] {$u$};
-\draw[->, very thick,gray!40] (1.5, 0) --  node[left] {$u-d$} (0.9, 1.5);
-
+\begin{tikzpicture}[very thick,>=stealth,scale=5]
+    \fill[TealBlue, opacity=0.6, domain=-1:1, variable=\x]
+        (-1,-0.3) -- plot ({\x}, {-0.3*\x*\x}) -- (1,-0.3) -- cycle;
+    \draw[TealBlue, domain=-1:1, samples=100] plot (\x, {-0.3*\x*\x});
+    \node[TealBlue,above=0.3cm] at (-1,-0.3) {$g_k(x)=0$};
+    \node[TealBlue] at (-0.35,-0.2) {$g_k(x)<0$};
+    \draw[TealBlue,->] (0,0) -- (0,0.5) node[above] {$\nabla g_k(x^*)^\t$};
+    \begin{scope}[rotate around={-30:(0,0)}]
+        \draw[Orchid, domain=-0.8:0.8, samples=100] plot (\x, {-0.3*\x*\x}) node[right] {$S$};
+        \draw[Orchid!30,->] (0,0) -- (0,0.5) node[right] {$T_{x^*}(S)^\perp$};
+        \draw[Orchid] (-0.8,0) -- (0.8,0) node[right] {$T_{x^*}(S)$};
+        \draw[Salmon,->] (0,0) -- (0.4,0) node[above] {$y$};
+    \end{scope}
+    \node[circle, fill=black!40!TealBlue, inner sep=2pt, label={below left:\textcolor{black!40!TealBlue}{$x^*$}}] at (0,0) {};
 \end{tikzpicture}
 \end{document}

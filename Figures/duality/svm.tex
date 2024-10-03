@@ -1,5 +1,5 @@
 
-\documentclass[border=3pt]{standalone}
+\documentclass{standalone}
 % font set
 \usepackage{ctex}
 \usepackage{fontspec}
@@ -15,7 +15,7 @@
 \usepackage[dvipsnames]{xcolor}
 \definecolor{pku-red}{RGB}{139,0,18}
 \usepackage{colortbl}
-\newcommand{\light}[1]{\textcolor{Orchid}{#1}}
+\newcommand{\light}[1]{\textcolor{Salmon}{#1}}
 \newcommand{\contrastlight}[1]{\textcolor{TealBlue}{#1}}
 
 % plots
@@ -101,33 +101,41 @@
 \DeclareMathSymbol{\strictif}{\mathrel}{symbolsC}{74}
 
 \begin{document}
-\begin{tikzpicture}[>=Stealth,thick,rotate=-20]
+\begin{tikzpicture}[thick,>=stealth]
+    \draw[-stealth] (-1,0) -- (5,0) node[below] {$x$};
+    \draw[-stealth] (0,-1) -- (0,4.5) node[right] {$y$};
 
-% Draw convex sets C and D
-\draw[thick, Orchid,fill=Orchid!40] (-3, 0) ellipse (1.5 and 3) node[left] {$C$};
-\draw[thick, TealBlue,fill=TealBlue!40] (3, 0) ellipse (1.5 and 2) node[right] {$D$};
-
-% Points c and d
-\filldraw[Orchid] (-1.5, 0) circle (2pt) node[below,xshift=0.1cm] {$c$};
-\filldraw[TealBlue] (1.5, 0) circle (2pt) node[below left] {$d$};
-
-\draw[gray!60] (-0.2,0) -- (-0.2,0.2) -- (0,0.2);
-
-% Line connecting c and d
-\draw[very thick, ->,Salmon!80] (-1.5, 0) -- (1.5, 0) node[midway, above=0.2cm,xshift=-0.4cm] {$a$};
-
-% Midpoint
-\filldraw[black] (0, 0) circle (2pt) node[below] {};
-
-% Perpendicular bisector (Separating Hyperplane)
-\draw[dashed,very thick] (0, -3) -- (0, 3) node[right] {$\ell$};
-
-% Additional vectors from c and d
-\filldraw[TealBlue] (1.7, 0.9978) circle (2pt) node[above,xshift=-0.1cm] {$u$};
-\draw[->, very thick] (1.5, 0) --  node[right] {$u-d$} (1.7, 0.9978);
-
-\filldraw[TealBlue!40] (0.9, 1.5) circle (2pt) node[above,xshift=-0.1cm] {$u$};
-\draw[->, very thick,gray!40] (1.5, 0) --  node[left] {$u-d$} (0.9, 1.5);
-
+    
+    \draw[Orchid,very thick] (-0.5,-1) -- (-0.5+4.5,-1+4.5) node[right=0.1cm] {$w^\t x+b=0$};
+    \draw[dashed, Salmon!40,very thick] (0.8,-1) -- (0.8+3.5,-1+3.5);
+    \draw[dashed, TealBlue!40,very thick] (-1.0,-0.2) -- (-1.0+4,-0.2+4);
+    
+    \draw[Orchid,very thick,->] (1,0.5) -- (1-0.5,0.5+0.5) node[right=0.1cm] {$w$};
+    
+    % Positive samples
+    \fill[Salmon] (1.8, 0.0) circle (2pt);
+    \fill[Salmon] (2.24, 0.20) circle (2pt);
+    \fill[Salmon] (3.63, 0.38) circle (2pt);
+    \fill[Salmon] (3.97, 1.37) circle (2pt);
+    \fill[Salmon] (3.12, 0.92) circle (2pt);
+    \fill[Salmon] (4.29, 0.12) circle (2pt);
+    \fill[Salmon] (3.34, 1.24) circle (2pt);
+    \fill[Salmon] (3.40, -0.81) circle (2pt);
+    \fill[Salmon] (3.85, 0.22) circle (2pt);
+    \fill[Salmon] (3.90, -0.48) circle (2pt);
+    
+    % Negative samples
+    \fill[TealBlue] (0.0, 0.8) circle (2pt);
+    \fill[TealBlue] (0.01, 3.35) circle (2pt);
+    \fill[TealBlue] (1.02, 2.54) circle (2pt);
+    \fill[TealBlue] (1.85, 2.83) circle (2pt);
+    \fill[TealBlue] (-0.73, 0.19) circle (2pt);
+    \fill[TealBlue] (-0.51, 1.78) circle (2pt);
+    \fill[TealBlue] (-0.34, 1.61) circle (2pt);
+    \fill[TealBlue] (-0.10, 1.25) circle (2pt);
+    \fill[TealBlue] (0.14, 2.76) circle (2pt);
+    \fill[TealBlue] (0.70, 2.15) circle (2pt);
+    
+    \draw[<->,gray!80,dashed] (3.34, 1.3) node[below right] {$x_i$} -- node[xshift=0.2cm] {$\gamma_i$} (3.34,3.34-0.5);
 \end{tikzpicture}
 \end{document}

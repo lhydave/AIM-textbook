@@ -1,5 +1,5 @@
 
-\documentclass[border=3pt]{standalone}
+\documentclass[border=1mm]{standalone}
 % font set
 \usepackage{ctex}
 \usepackage{fontspec}
@@ -101,33 +101,19 @@
 \DeclareMathSymbol{\strictif}{\mathrel}{symbolsC}{74}
 
 \begin{document}
-\begin{tikzpicture}[>=Stealth,thick,rotate=-20]
+\begin{tikzpicture}[thick,>=stealth]
+    
+    \foreach \angle in {-20,-9,9,20} {
+        \draw[domain=0:2,thick,gray!40,smooth,->,rotate=\angle] plot (\x,{cos(180/3.1415*\x)});
+        \draw[domain=0:3.3,thick,gray!40,smooth,rotate=\angle] plot (\x,{cos(180/3.1415*\x)});
+    }
+    
+    \draw[Orchid,very thick,->] (0,1) -- (1.8,1) node[right] {$\dot{x}(t)=0$};
+    \draw[domain=-0.5:2,very thick,smooth,->] plot (\x,{cos(180/3.1415*\x)});
+    \draw[domain=-0.5:3.5,very thick,smooth] plot (\x,{cos(180/3.1415*\x)});
+    \draw (3.5,-1) node[right] {$h(x(t))=0$};
 
-% Draw convex sets C and D
-\draw[thick, Orchid,fill=Orchid!40] (-3, 0) ellipse (1.5 and 3) node[left] {$C$};
-\draw[thick, TealBlue,fill=TealBlue!40] (3, 0) ellipse (1.5 and 2) node[right] {$D$};
-
-% Points c and d
-\filldraw[Orchid] (-1.5, 0) circle (2pt) node[below,xshift=0.1cm] {$c$};
-\filldraw[TealBlue] (1.5, 0) circle (2pt) node[below left] {$d$};
-
-\draw[gray!60] (-0.2,0) -- (-0.2,0.2) -- (0,0.2);
-
-% Line connecting c and d
-\draw[very thick, ->,Salmon!80] (-1.5, 0) -- (1.5, 0) node[midway, above=0.2cm,xshift=-0.4cm] {$a$};
-
-% Midpoint
-\filldraw[black] (0, 0) circle (2pt) node[below] {};
-
-% Perpendicular bisector (Separating Hyperplane)
-\draw[dashed,very thick] (0, -3) -- (0, 3) node[right] {$\ell$};
-
-% Additional vectors from c and d
-\filldraw[TealBlue] (1.7, 0.9978) circle (2pt) node[above,xshift=-0.1cm] {$u$};
-\draw[->, very thick] (1.5, 0) --  node[right] {$u-d$} (1.7, 0.9978);
-
-\filldraw[TealBlue!40] (0.9, 1.5) circle (2pt) node[above,xshift=-0.1cm] {$u$};
-\draw[->, very thick,gray!40] (1.5, 0) --  node[left] {$u-d$} (0.9, 1.5);
-
+    \draw[TealBlue,very thick,->] (0,1) -- (0,3) node[below right] {$\nabla h(x(t))$};
+    \node[circle,inner sep=2pt,fill=Salmon,draw=none] at (0,1) {};
 \end{tikzpicture}
 \end{document}

@@ -181,12 +181,10 @@
 
 于是，如果$x(t)$在$h(x)=0$形成的曲面上，那么$x(t)$处的导数$\nabla h(x(t))$是切空间的法向量. 这一数学推导的示意图见\Cref{fig:tangent-space}.
 
-\begin{figure}
+\begin{figure}[ht]
 \centering
-    \includegraphics[scale=0.4]{Figures/duality/tan-1dim.png}
-\centering
-    \includegraphics[scale=0.4]{Figures/duality/tan-2dim.png}\lhysays{这里的图需要重新画}
-\caption{切空间的示意图}
+    \includegraphics[width=0.6\textwidth]{Figures/duality/tan-1dim.pdf}
+\caption{切空间的法向量示意}
 \label{fig:tangent-space}
 \end{figure}
 
@@ -216,10 +214,10 @@
 考虑优化问题 \eqref{eq:eq-constraint-only-differentiable}，当一个点$x^*\in\Omega$满足约束${h(x^*)}=0$，且梯度向量$\nabla h_1(x^*),\nabla h_2(x^*),\dots,\nabla h_m(x^*)$线性无关时，它被称作该约束的\textbf{正规点}. 
 \end{definition}
 
-直观上来说，正规点上每一条约束都起到了实际的作用，因此梯度向量$\nabla h_i(x^*)$形成了一个线性无关的集合，张成了空间$M$. 此时，切空间恰好完全垂直于$M$，即$T_{x^*}(S)=M^\perp$. 这一几何直观见\Cref{fig:tan-2constraint}，点${x^* }$处的两个等式约束共同确定了该点的切空间.
-\begin{figure}
+直观上来说，正规点上每一条约束都起到了实际的作用，因此梯度向量$\nabla h_i(x^*)^\t$形成了一个线性无关的集合，张成了空间$M$. 此时，切空间恰好完全垂直于$M$，即$T_{x^*}(S)=M^\perp$. 这一几何直观见\Cref{fig:tan-2constraint}，点${x^* }$处的两个等式约束共同确定了该点的切空间.
+\begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.17]{Figures/duality/tan-2constraint.png}\lhysays{这里的图需要重新画}
+    \includegraphics[width=0.8\textwidth]{Figures/duality/tan-2constraint.pdf}
     \caption{正规点示意图}
     \label{fig:tan-2constraint}
 \end{figure}
@@ -365,7 +363,14 @@ $$p_i=\exp((\lambda-1)+\mu x_i),\quad i=1,2,\dots, n.$$
 
 下面我们来选取这样的$y$. 考虑如下曲面：
 \[S=\{x\in\R^n:h(x)=0,g_j(x)=0, j\in J\setminus\{k\}\}.\]
-也就是除了$k$之外所有的等式约束形成的曲面. 我们从切空间$T_{x^*}(S)$中选取一个$y$，使得$\nabla g_k(x^*)y<0$，这样，$g_k$会从激活变为非激活，而其他约束依然得到满足. 这一选择的几何示意如\Cref{???} \lhysays{补个图} 所示. 
+也就是除了$k$之外所有的等式约束形成的曲面. 我们从切空间$T_{x^*}(S)$中选取一个$y$，使得$\nabla g_k(x^*)y<0$，这样，$g_k$会从激活变为非激活，而其他约束依然得到满足. 这一选择的几何示意如\Cref{fig:select-y} 所示.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/duality/select-y.pdf}
+    \caption{选择$y$的几何示意}
+    \label{fig:select-y}
+\end{figure}
 
 下面我们说明为什么这样的$y$存在. 因为$x^*$是正规点，所以根据\Cref{thm:tan-space-characterize}，$T_{x^*}(S)=M^\perp$，其中
 
@@ -559,7 +564,14 @@ x_1^2+x_2^2&=5.
 
 接下来，我们要阐述这一几何性质如何与优化问题联系起来. 定义集合
 \[\mathcal{G}=\{(f(x),h(x)^\t,g(x)^\t)^\t:x\in\R^n\},\]
-这是所有可能的$(f,h^\t,g^\t)^\t$形成的集合. 我们可以在一个坐标系中画出这个集合，如\Cref{???} \lhysays{补个图} 所示.
+这是所有可能的$(f,h^\t,g^\t)^\t$形成的集合. 我们可以在一个坐标系中画出这个集合，如\Cref{fig:duality-G-set} 所示，为简化起见，我们总是忽略$h(x)$的影响.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Figures/duality/duality-G-set.pdf}
+    \caption{集合$\mathcal{G}$的示意图}
+    \label{fig:duality-G-set}
+\end{figure}
 
 考虑$(t,u^\t,v^\t)^\t$形成的超平面
 \[\alpha: t+\lambda^\t u+\mu^\t v= L(x,\lambda,\mu).\]
@@ -573,13 +585,27 @@ x_1^2+x_2^2&=5.
 \]
 因此，计算原始函数的过程其实就是，给定一个点$(t,u^\t,v^\t)^\t\in \mathcal{G}$，找到“斜率非负”的超平面，使得截距尽可能大. 
 
-当$h(x)=0$且$g(x)\leq 0$的时候，这一截距一定在$\mu=0$的地方取到，因此，原始函数就是$\mathcal{G}$往$t$轴投影的值. 相应地，原始规划的最优值$p^*$就是$\mathcal{G}$左半区域的最低点的投影，如\Cref{???} \lhysays{补个图} 所示.
+当$h(x)=0$且$g(x)\leq 0$的时候，这一截距一定在$\mu=0$的地方取到，因此，原始函数就是$\mathcal{G}$往$t$轴投影的值. 相应地，原始规划的最优值$p^*$就是$\mathcal{G}$左半区域的最低点的投影，如\Cref{fig:duality-primal-p-star} 所示.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Figures/duality/duality-primal-p-star.pdf}
+    \caption{原始规划的最优值$p^*$}
+    \label{fig:duality-primal-p-star}
+\end{figure}
 
 根据最低点的性质，我们也可以把原始规划的最优值$p^*$看成是$\mathcal{G}$左半区域最低点切平面的截距.
 
 那么，对偶规划是什么呢？回忆对偶函数的定义：
 \[g(\lambda,\mu)=\inf_{x} L(x,\lambda,\mu)=\inf_{(t,u,v)\in\mathcal{G}} t+\lambda^\t u+\mu^\t v.\]
-所以，这就是固定法向量$(1,\lambda^\t,\mu^\t)^\t$，找到过$\mathcal{G}$且截距最小的超平面，几何上看，这一超平面是在$\mathcal{G}$最低边缘的切平面（也就是只有切点而不会“穿过”$\mathcal{G}$）. 相应地，对偶规划的最优值$d^*$就是这些切平面中最高的那个，如\Cref{???} \lhysays{补个图} 所示.
+所以，这就是固定法向量$(1,\lambda^\t,\mu^\t)^\t$，找到过$\mathcal{G}$且截距最小的超平面，几何上看，这一超平面是在$\mathcal{G}$最低边缘的切平面（也就是只有切点而不会“穿过”$\mathcal{G}$）. 相应地，对偶规划的最优值$d^*$就是这些切平面中最高的那个，如\Cref{fig:duality-dual-d-star} 所示.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Figures/duality/duality-dual-d-star.pdf}
+    \caption{对偶规划的最优值$d^*$}
+    \label{fig:duality-dual-d-star}
+\end{figure}
 
 \subsection{弱对偶定理}
 
@@ -591,7 +617,14 @@ x_1^2+x_2^2&=5.
 \end{theorem}
 
 \begin{proof}
-    直观上，$p^*$对应的是左半区域的最低点的切平面截距，它有可能会“穿过”$\mathcal{G}$的右半区域. 为了让这一现象不发生，我们可以把$p^*$对应的切平面进行旋转和下移，直到它只和$\mathcal{G}$下边缘切点接触. 这样，我们就得到了一个新的切平面，它的截距一定不会比$p^*$更大，因此，$d^*\leq p^*$. 这一过程见\Cref{???} \lhysays{补个图}.
+    直观上，$p^*$对应的是左半区域的最低点的切平面截距，它有可能会“穿过”$\mathcal{G}$的右半区域. 为了让这一现象不发生，我们可以把$p^*$对应的切平面进行旋转和下移，直到它只和$\mathcal{G}$下边缘切点接触. 这样，我们就得到了一个新的切平面，它的截距一定不会比$p^*$更大，因此，$d^*\leq p^*$. 这一过程见\Cref{fig:weak-duality}.
+
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.7\textwidth]{Figures/duality/weak-duality.pdf}
+        \caption{弱对偶定理证明图示}
+        \label{fig:weak-duality}    
+    \end{figure}
 
     下面我们来严格叙述这一点. 对$\mu\geq 0$和$\lambda$，我们有
     \begin{align*}
@@ -608,7 +641,7 @@ x_1^2+x_2^2&=5.
 
 设原始规划对应的最低点为
     \[K=(f(x^*),h(x^*)^\t,g(x^*)^\t)^\t=(p^*,u^*,v^*)^\t,\]
-从\Cref{???} 看，如果$\mathcal G$完全位于过$K$的（水平）切平面上方并且$\mathcal G$在$t$轴左侧不为空，那么$p^*$和$d^*$一定是相等的，此时我们称之为\emph{强对偶定理}. 我们可以把这一条件形式化为\emph{凸规划}和\emph{Slater条件}.
+从\Cref{fig:weak-duality} 看，如果$\mathcal G$完全位于过$K$的（水平）切平面上方并且$\mathcal G$在$t$轴左侧不为空，那么$p^*$和$d^*$一定是相等的，此时我们称之为\emph{强对偶定理}. 我们可以把这一条件形式化为\emph{凸规划}和\emph{Slater条件}.
 
 \begin{definition}[凸规划]
     对于优化问题 \eqref{eq:non-differentiable-constraint}，如果$f,g_i\,(i=1,\dots,p)$是凸函数，$h(x)$形如$Ax+b$，那么这个问题被称为\textbf{凸规划}. 这里，$A$是一个$m\times n$的矩阵，$b\in\R^m$.
@@ -622,7 +655,16 @@ x_1^2+x_2^2&=5.
 \[
 \mathcal{G}^*=\{(t,u^\t,v^\t)^\t: \exists x\in\R^n, f(x)\leq t, h(x)=u, g(x)\leq v\}.
 \]
-如\Cref{???} \lhysays{补个图}所示，$\mathcal{G}^*$是$\mathcal G$往右往上包络之后的集合. 我们只要说明，包络之后的集合$\mathcal G^*$也完全位于该切平面上方，就能说明$\mathcal G$完全位于过$K$的该切平面上方. 下面，我们来证明这一点，从而证明强对偶定理.
+如\Cref{fig:duality-G-star} 所示，$\mathcal{G}^*$是$\mathcal G$往右往上包络之后的集合. 
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Figures/duality/duality-G-star.pdf}
+    \caption{集合$\mathcal{G}^*$的示意图}
+    \label{fig:duality-G-star}
+\end{figure}
+
+我们只要说明，包络之后的集合$\mathcal G^*$也完全位于该切平面上方，就能说明$\mathcal G$完全位于过$K$的该切平面上方. 下面，我们来证明这一点，从而证明强对偶定理.
 
 首先我们证明$\mathcal G^*$是凸集.
 
@@ -668,7 +710,14 @@ x_1^2+x_2^2&=5.
 
     根据\cref{lemma:G*-convex}，$\mathcal G^*$是凸集. 我们需要选出来从$K$作出的切平面. 一个自然的选择是使用分离超平面定理（\Cref{thm:separation-hyperplane}）. 定义另一个凸集为
     \[\mathcal{C}=\{(t,0,0)^\t: t<p^*\}.\]
-    也就是一根恰好位于最低点下方的一个“杆”，见\Cref{???} \lhysays{补个图}.
+    也就是一根恰好位于最低点下方的一个“杆”，见\Cref{fig:duality-proof-strong-dual}.
+
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.6\textwidth]{Figures/duality/duality-proof-strong-dual.pdf}
+        \caption{分离超平面的图示}
+        \label{fig:duality-proof-strong-dual}
+    \end{figure}
 
     $K\in\mathcal G^*$，因而不为空，$\mathcal{C}$也不为空. 现在我们说明，$\mathcal G^*$和$\mathcal C$是不相交的. 假设$(t,u^\t,v^\t)^\t\in\mathcal G^*\cap \mathcal C$，那么存在$x$使得
     \[f(x)\leq t<p^*, h(x)=u=0, g(x)\leq v=0,\]
@@ -737,7 +786,7 @@ x_1^2+x_2^2&=5.
 学习问题的首要目标是找到正确的以及最优的$w$和$b$. 本质上说，这就是一个\emph{找分离超平面}的过程. 那么，什么才叫最优呢？从几何视角来看，一个自然的想法是最大化\emph{分离距离}，即训练集中所有点到分离超平面的距离和的最小值，见\Cref{fig:svm}.
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.8]{Figures/duality/svm.png}\lhysays{重画}
+    \includegraphics[width=0.65\textwidth]{Figures/duality/svm.pdf}
     \caption{分离距离示意图.}
     \label{fig:svm}
 \end{figure}

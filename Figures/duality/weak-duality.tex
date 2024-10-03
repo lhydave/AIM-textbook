@@ -1,5 +1,5 @@
 
-\documentclass[border=3pt]{standalone}
+\documentclass[border=1mm]{standalone}
 % font set
 \usepackage{ctex}
 \usepackage{fontspec}
@@ -101,33 +101,26 @@
 \DeclareMathSymbol{\strictif}{\mathrel}{symbolsC}{74}
 
 \begin{document}
-\begin{tikzpicture}[>=Stealth,thick,rotate=-20]
+\begin{tikzpicture}[thick,>=stealth]
+    \draw[->] (-1.5,0) -- (6,0) node[below] {$v$};
+    \draw[->] (0,-1.5) -- (0,5.5) node[right] {$t$};
 
-% Draw convex sets C and D
-\draw[thick, Orchid,fill=Orchid!40] (-3, 0) ellipse (1.5 and 3) node[left] {$C$};
-\draw[thick, TealBlue,fill=TealBlue!40] (3, 0) ellipse (1.5 and 2) node[right] {$D$};
+    \node[Orchid,font=\LARGE] at (3,3) {$\mathcal G$};
 
-% Points c and d
-\filldraw[Orchid] (-1.5, 0) circle (2pt) node[below,xshift=0.1cm] {$c$};
-\filldraw[TealBlue] (1.5, 0) circle (2pt) node[below left] {$d$};
+    \fill[Orchid,opacity=0.6] plot [smooth cycle, tension=0.8] coordinates {
+        (-1,2) (3,5) (5,-1) (2.5,2.5)
+    };
+    \draw[Orchid] plot [smooth cycle, tension=0.8] coordinates {
+        (-1,2) (3,5) (5,-1) (2.5,2.5)
+        };
 
-\draw[gray!60] (-0.2,0) -- (-0.2,0.2) -- (0,0.2);
+    \draw[TealBlue,very thick] (-1.3,2.05) -- (5.4,-1.3);
+    \node at (-0.2,1.2) {$d^*$};
+    \draw[Salmon,very thick] (-1.3,1.88) -- (5.4,1.88);
+    \node at (0.25,2.1) {$p^*$};
 
-% Line connecting c and d
-\draw[very thick, ->,Salmon!80] (-1.5, 0) -- (1.5, 0) node[midway, above=0.2cm,xshift=-0.4cm] {$a$};
-
-% Midpoint
-\filldraw[black] (0, 0) circle (2pt) node[below] {};
-
-% Perpendicular bisector (Separating Hyperplane)
-\draw[dashed,very thick] (0, -3) -- (0, 3) node[right] {$\ell$};
-
-% Additional vectors from c and d
-\filldraw[TealBlue] (1.7, 0.9978) circle (2pt) node[above,xshift=-0.1cm] {$u$};
-\draw[->, very thick] (1.5, 0) --  node[right] {$u-d$} (1.7, 0.9978);
-
-\filldraw[TealBlue!40] (0.9, 1.5) circle (2pt) node[above,xshift=-0.1cm] {$u$};
-\draw[->, very thick,gray!40] (1.5, 0) --  node[left] {$u-d$} (0.9, 1.5);
-
+    \draw[Salmon!50] (-1.3,1.93) -- (5.4,1);
+    \draw[Salmon!40!TealBlue!40] (-1.3,1.98) -- (5.4,0);
+    \draw[TealBlue!50] (-1.3,2.03) -- (5.4,-0.8);
 \end{tikzpicture}
 \end{document}
