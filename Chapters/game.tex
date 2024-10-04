@@ -24,7 +24,14 @@
 
 \section{博弈的基本语言：以井字棋为例}\label{sec:game-basic}
 
-大家都玩过井字棋，这是一个简单的博弈. 如\Cref{???}\lhysays{画个图} 所示，在棋局中，两名玩家轮流在一个$3\times 3$的棋盘上放置自己的标记（X或O），直到有一方连成一条线（横、竖、斜）或者棋盘填满，在前一种情况下，这个玩家获胜，否则平局. 
+大家都玩过井字棋，这是一个简单的博弈. 如\Cref{fig:tic-tac-toe-game} 所示，在棋局中，两名玩家轮流在一个$3\times 3$的棋盘上放置自己的标记（X或O），直到有一方连成一条线（横、竖、斜）或者棋盘填满，在前一种情况下，这个玩家获胜，否则平局. 
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/game/tic-tac-toe-game.pdf}
+    \caption{井字棋示意图}
+    \label{fig:tic-tac-toe-game}
+\end{figure}
 
 上面的描述是自然语言，并不能被计算机直接理解. 我们需要将这个博弈的过程形式化，以便计算机能够理解和处理. 在井字棋中，有如下的基本概念：
 \begin{itemize}
@@ -61,12 +68,14 @@
 \begin{table}[ht]
     \centering
     \begin{tabular}{cc}
+        \toprule
         二人 & 多人 \\
         输赢 & 输赢平\\
         有限深 & 无穷深 \\
         完全信息 & 非完全信息 \\
         确定性 & 非确定性 \\
-        非合作 & 合作
+        非合作 & 合作\\
+        \bottomrule
     \end{tabular}
     \caption{输赢博弈的分类.}
     \label{tab:win-lose-game}
@@ -95,23 +104,24 @@
 我们给一个具体的例子. 
 
 \begin{example}
-    斗地主是一个多人有限轮非完全信息合作输赢博弈. 这个博弈有三个人，两个农民和一个地主，农民和地主是两个阵营. 三个人轮流出牌，如果不能出牌，要摸牌，直到有一个人出完牌. 先出完牌的阵营获胜. 
+    如\Cref{fig:fight-landlord} 所示，斗地主是一个多人有限轮非完全信息合作输赢博弈. 这个博弈有三个人，两个农民和一个地主，农民和地主是两个阵营. 三个人轮流出牌，如果不能出牌，要摸牌，直到有一个人出完牌. 先出完牌的阵营获胜. 
 
-    “多人”是显然的，有限轮是因为牌是有限多的，非完全信息是因为有摸牌，因此每个玩家只知道自己的牌，不知道其他玩家的牌. 合作是因为农民之间可以合作，地主是一个人. 输赢是因为有且只有一个阵营先出完牌.
-\begin{figure}
-    \centering
-    \includegraphics[width=0.75\textwidth]{Figures/game/fight-landlord.jpg}
-    \caption{斗地主.}
-\end{figure}
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.75\textwidth]{Figures/game/fight-landlord.jpg}
+        \caption{斗地主的游戏画面} \label{fig:fight-landlord}
+    \end{figure}
+
+    “多人”是显然的，有限轮是因为牌是有限多的，非完全信息是因为有摸牌，因此每个玩家只知道自己的牌，不知道其他玩家的牌. 合作是因为农民之间可以合作，地主是一个人. 输赢是因为有且只有一个阵营先出完牌. 
 \end{example}
 
-我们在本部分主要关注最简单的一种博弈，即\emph{完全信息确定性回合制博弈}. 这样的博弈可以用博弈树表示出来，例如，井字棋的博弈树可以画作\Cref{fig:gametree}.
+我们在本部分主要关注最简单的一种博弈，即\emph{完全信息确定性回合制博弈}. 这样的博弈可以用博弈树表示出来，例如，井字棋的博弈树可以画作\Cref{fig:game-tree}.
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.4]{Figures/game/gametree.jpg}\lhysays{重画}
+    \includegraphics[width=0.8\textwidth]{Figures/game/game-tree.pdf}
     \caption{井字棋的博弈树}
-    \label{fig:gametree}
+    \label{fig:game-tree}
 \end{figure}
 
 \subsection{Zermelo定理与AlphaGo Zero}
@@ -138,7 +148,7 @@
 \end{proof}
 
 \begin{proof}[证明二：后向归纳法]
-从博弈树的叶节点往根节点推理，见图\Cref{???}\lhysays{画个图}.
+从博弈树的叶节点往根节点推理，见图\Cref{fig:game-tree} 的收益部分。
 
 如果此节点是玩家$i$的回合，那么往后一轮的局面已经完全确定.
 \begin{itemize}
@@ -186,9 +196,12 @@ Zero使用强化学习（自博弈，策略梯度）的方式训练策略网络�
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.7\textwidth]{Figures/game/alphazero.png}\lhysays{重画}
-    \caption{AlphaGo Zero的训练过程}
-    \label{fig:alphago-zero}
+\includegraphics[width=0.9\textwidth]{Figures/game/self-play.pdf}
+\vspace{1.5em}
+
+\includegraphics[width=0.7\textwidth]{Figures/game/network-training.pdf}
+\caption{AlphaGo Zero的训练过程，第一张是自我博弈的过程，第二张是神经网络训练的过程. }
+\label{fig:alphago-zero}
 \end{figure}
 
 在开始细节之前，我们先给一个比喻，看看整个流程是如何模拟人类学习的. 假设Zero是一个人. 
@@ -214,23 +227,23 @@ MTCS的过程较为复杂，我们单独介绍. 树的组成如下：搜索节�
 
 接下来，MTCS要做如下迭代（见\Cref{fig:mcts}）：
 \begin{itemize}
-  \item 从根节点开始，状态$s$固定，选择具有最大的 $Q(s,a) + U(s,a)$的分支. 
+  \item \emph{选择}：从根节点开始，状态$s$固定，选择具有最大的 $Q(s,a) + U(s,a)$的分支. 
   \begin{itemize}
     \item $U$ 是上限置信度，$U(s,a)\propto{P(s,a)}/(1+N(s,a))$.
     \item $Q+U$是置信区间的上界，称为UCB公式. 
   \end{itemize}
   这一过程其实就是在模拟自己和对手的多轮行动，其中选择$Q+U$最大的分支即是启发式搜索的形式. 
 
-  \item 当选到叶节点时，扩展叶节点. 使用神经网络 $f_\theta(s)$ 来计算新的$P(s,a)$和$V(s)$，并把$P$存储到对应的边上. 只要还可以扩展，就说明还有一方玩家可以继续行动，所以这一过程可以持续到有一方获胜或者到达最大深度.
+  \item \emph{扩展与评估}：当选到叶节点时，扩展叶节点. 使用神经网络 $f_\theta(s)$ 来计算新的$P(s,a)$和$V(s)$，并把$P$存储到对应的边上. 只要还可以扩展，就说明还有一方玩家可以继续行动，所以这一过程可以持续到有一方获胜或者到达最大深度.
 
-  \item 根据 $V$ 更新动作价值 $Q$，反映所有该动作的子树的平均值. 这反应了此次模拟的结果如何影响这一动作的评价：输了的话，这一动作的评价会降低，赢了的话，这一动作的评价会提高.
+  \item \emph{更新}：根据 $V$ 更新动作价值 $Q$，反映所有该动作的子树的平均值. 这反应了此次模拟的结果如何影响这一动作的评估：输了的话，这一动作的评估会降低，赢了的话，这一动作的评估会提高.
 
-  \item 一旦搜索结束，返回搜索概率 $\pi$，$\pi(a)$正比于$N(s,a)^{1/\tau}$，$\tau$ 是一个参数，控制着温度. 温度反映了$\pi$允许的随机性程度，当$\tau$趋于正无穷的时候，$\pi$趋于均匀分布，当$\tau$趋于零的时候，$\pi$趋于一个退化分布，以概率$1$取最大$N(s,a)$对应的$a$.
+  \item \emph{计算$\pi$}：一旦搜索结束，返回搜索概率 $\pi$，$\pi(a)$正比于$N(s,a)^{1/\tau}$，$\tau$ 是一个参数，控制着温度. 温度反映了$\pi$允许的随机性程度，当$\tau$趋于正无穷的时候，$\pi$趋于均匀分布，当$\tau$趋于零的时候，$\pi$趋于一个退化分布，以概率$1$取最大$N(s,a)$对应的$a$.
 \end{itemize}
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.7\textwidth]{Figures/game/mcts.png}\lhysays{重画}
+\includegraphics[width=0.95\textwidth]{Figures/game/mcts.pdf}
     \caption{MCTS的过程}
     \label{fig:mcts}
 \end{figure}
@@ -417,7 +430,6 @@ $D$最大化$V$，$G$最小化$V$.
 \begin{theorem}[GAN的Nash均衡存在性]
 在GAN的博弈中，$G$选择$p_{data}$，$D$选择$1/2$是一个Nash均衡.
 \end{theorem}
-这一证明见习题\lhysays{出一下}.
 
 \subsection{混合策略}\label{sec:mixed-strategy}
 我们已经看到，在相当普遍的情况下，纯策略Nash均衡并不存在. 所以我们需要允许玩家进行随机行动，这就是\textbf{混合策略}. 
