@@ -71,10 +71,10 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 \begin{itemize}
     \item 如果$\phi=p\in V$，那么$v(\phi)=v_p$.
     \item 如果$\phi=\neg\psi$，那么$v(\phi)=\begin{cases} \T, & v(\psi)=\F, \\ \F, & v(\psi)=\T. \end{cases}$
-    \item 如果$\phi=\psi\vee\chi$，那么$v(\phi)=\begin{cases} \T, & v(\psi)=\T\text{ 或 }v(\chi)=\T, \\ \F, & v(\psi)=\F\text{ 且 }v(\chi)=\F. \end{cases}$
-    \item 如果$\phi=\psi\wedge\chi$，那么$v(\phi)=\begin{cases} \T, & v(\psi)=\T\text{ 且 }v(\chi)=\T \\ \F, & v(\psi)=\F\text{ 或 }v(\chi)=\F. \end{cases}$
-    \item 如果$\phi=\psi\to\chi$，那么$v(\phi)=\begin{cases} \T, & v(\psi)=\F\text{ 或 }v(\chi)=\T, \\ \F, & v(\psi)=\T\text{ 且 }v(\chi)=\F. \end{cases}$
-    \item 如果$\phi=\psi\leftrightarrow\chi$，那么$v(\phi)=\begin{cases} \T, & v(\psi)=v(\chi) \\ \F & v(\psi)\neq v(\chi) \end{cases}$
+    \item 如果$\phi=\psi\vee\chi$，那么$v(\phi)=\begin{cases} \T, & v(\psi)=\T\text{ 或}~v(\chi)=\T, \\ \F, & v(\psi)=\F\text{ 且}~v(\chi)=\F. \end{cases}$
+    \item 如果$\phi=\psi\wedge\chi$，那么$v(\phi)=\begin{cases} \T, & v(\psi)=\T\text{ 且}~v(\chi)=\T \\ \F, & v(\psi)=\F\text{ 或}~v(\chi)=\F. \end{cases}$
+    \item 如果$\phi=\psi\to\chi$，那么$v(\phi)=\begin{cases} \T, & v(\psi)=\F\text{ 或}~v(\chi)=\T, \\ \F, & v(\psi)=\T\text{ 且}~v(\chi)=\F. \end{cases}$
+    \item 如果$\phi=\psi\leftrightarrow\chi$，那么$v(\phi)=\begin{cases} \T, & v(\psi)=v(\chi), \\ \F, & v(\psi)\neq v(\chi). \end{cases}$
 \end{itemize}
 \end{definition}
 
