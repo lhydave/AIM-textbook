@@ -3,10 +3,18 @@
 \usepackage[T1]{fontenc}
 \usepackage[sc]{mathpazo}
 \usepackage{anyfontsize}
-\setmainfont{Source Serif 4}
-\setsansfont{Source Sans 3}
-\setmonofont{Menlo}
-\setCJKmainfont[BoldFont=黑体-简 中等,ItalicFont=楷体-简 常规体]{宋体-简 常规体}
+
+\setmainfont{SourceSerif4-Regular.ttf}[%
+    Path = ./fonts/,
+    BoldFont = SourceSerif4-Bold.ttf,
+    ItalicFont = SourceSerif4-It.ttf,
+    BoldItalicFont = SourceSerif4-BoldIt.ttf
+]
+\setCJKmainfont[%
+    Path = ./fonts/,
+    BoldFont=SourceHanSansSC-Medium.otf,
+    ItalicFont=gkai00mp-2.ttf%
+]{SourceHanSerifSC-Regular.otf}
 
 % colors
 \usepackage[dvipsnames]{xcolor}
