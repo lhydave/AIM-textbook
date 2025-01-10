@@ -8,6 +8,7 @@
 *.log
 *.out
 *.synctex.gz
+*.synctex.gz(busy)
 *.thm
 *.toc
 *.xdv

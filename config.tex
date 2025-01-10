@@ -1,6 +1,5 @@
 % font set
 \usepackage{fontspec}
-\usepackage[T1]{fontenc}
 \usepackage[sc]{mathpazo}
 \usepackage{anyfontsize}
 
@@ -234,3 +233,12 @@
 
 \DeclareSymbolFont{symbolsC}{U}{txsyc}{m}{n}
 \DeclareMathSymbol{\strictif}{\mathrel}{symbolsC}{74}
+
+% compiling time
+\usepackage{datetime}
+\ctexset{today=small}
+\newcommand{\lastcompiled}{\vspace*{\fill}
+\begin{center}
+最后一次编译的时间：\today\ \currenttime
+\end{center}
+}

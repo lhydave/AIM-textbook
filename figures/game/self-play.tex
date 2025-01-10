@@ -1,0 +1,231 @@
+\documentclass{standalone}
+% font set
+\usepackage{ctex}
+\usepackage{fontspec}
+\usepackage[T1]{fontenc}
+\usepackage[sc]{mathpazo}
+\usepackage{anyfontsize}
+\setmainfont{Source Serif 4}
+\setsansfont{Source Sans 3}
+\setmonofont{Menlo}
+\setCJKmainfont[BoldFont=黑体-简 中等,ItalicFont=楷体-简 常规体]{宋体-简 常规体}
+
+% colors
+\usepackage[dvipsnames]{xcolor}
+\definecolor{pku-red}{RGB}{139,0,18}
+\usepackage{colortbl}
+\newcommand{\light}[1]{\textcolor{Orchid}{#1}}
+\newcommand{\contrastlight}[1]{\textcolor{TealBlue}{#1}}
+
+% plots
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta,positioning,calc,3d}
+\usepackage{tikz-3dplot}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+% math package
+\let\Bbbk\relax
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{stmaryrd}
+\usepackage{latexsym}
+\usepackage{extarrows}
+\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
+
+
+% math notations
+\newcommand{\LHS}{\mathrm{LHS}}
+\newcommand{\RHS}{\mathrm{RHS}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\id}{\mathrm{id}}
+\DeclareMathOperator*{\Span}{Span}
+\DeclareMathOperator*{\im}{Im}
+\DeclareMathOperator*{\rank}{rank}
+\DeclareMathOperator*{\card}{card}
+\DeclareMathOperator*{\grad}{grad}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\epi}{epi}
+\DeclareMathOperator*{\maximize}{maximize}
+\DeclareMathOperator*{\minimize}{minimize}
+\renewcommand{\d}{\mathrm{d}}
+\newcommand{\Pow}{\mathcal{P}}
+\newcommand{\cov}{\mathsf{Cov}}
+\newcommand{\var}{\mathsf{Var}}
+\newcommand{\Nor}{\mathcal{N}}
+\newcommand{\U}{\mathcal{U}}
+\renewcommand{\t}{\mathsf{T}}
+\newcommand{\T}{\top}
+\newcommand{\F}{\bot}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\inner}[2]{\left\langle{#1},{#2}\right\rangle}
+\newcommand{\e}{\mathrm{e}}
+\newcommand{\const}{\mathrm{const}}
+\newcommand{\scB}{\mathscr{B}}
+\newcommand{\scF}{\mathscr{F}}
+\newcommand{\G}{\mathscr{G}}
+\newcommand{\Exp}{\mathsf{Exp}}
+\newcommand{\DExp}{\mathsf{DExp}}
+\newcommand{\Lap}{\mathsf{Lap}}
+\newcommand{\calP}{\mathcal P}
+\newcommand{\calS}{\mathcal S}
+\newcommand{\calF}{\mathcal F}
+\newcommand{\calM}{\mathcal M}
+\newcommand{\KL}{\mathrm{KL}}
+\newcommand{\ReLU}{\mathsf{ReLU}}
+\newcommand{\val}{\mathsf{val}}
+
+\DeclareSymbolFont{symbolsC}{U}{txsyc}{m}{n}
+\DeclareMathSymbol{\strictif}{\mathrel}{symbolsC}{74}
+
+\newcommand{\drawGrid}{
+    \draw[line width=2] (-0.8,0) -- (0.8,0);
+    \draw[line width=2] (-0.8,0.5) -- (0.8,0.5);
+    \draw[line width=2] (-0.8,-0.5) -- (0.8,-0.5);
+    \draw[line width=2] (0,-0.8) -- (0,0.8);
+    \draw[line width=2] (-0.5,-0.8) -- (-0.5,0.8);
+    \draw[line width=2] (0.5,-0.8) -- (0.5,0.8);
+}
+
+\newcommand{\drawW}[2]{\draw[fill=white, draw=black, line width=1] (#1*0.5, #2*0.5) circle(0.15);}
+\newcommand{\drawB}[2]{\draw[fill=black, draw=black, line width=1] (#1*0.5, #2*0.5) circle(0.15);}
+
+\newcommand{\drawTree}{%
+\begin{scope}
+    \draw[line width=2, gray!60,->, >={Latex[length=2mm, width=2mm]}] (0,0) -- (2,-2);
+    \draw[line width=2, gray!60,->, >={Latex[length=2mm, width=2mm]}] (0,0) -- (-2,-2);
+    \draw[line width=2, gray!60,->, >={Latex[length=2mm, width=2mm]}] (2,-2) -- (3,-3);
+    \draw[line width=2, gray!60,->, >={Latex[length=2mm, width=2mm]}] (2,-2) -- (1,-3);
+    \draw[line width=2, gray!60,->, >={Latex[length=2mm, width=2mm]}] (-2,-2) -- (-3,-3);
+    \draw[line width=2, gray!60,->, >={Latex[length=2mm, width=2mm]}] (-2,-2) -- (-1,-3);
+    \draw[line width=2, gray!60,->, >={Latex[length=2mm, width=2mm]}] (3,-3) -- (3.5,-3.5);
+    \draw[line width=2, gray!60,->, >={Latex[length=2mm, width=2mm]}] (3,-3) -- (2.5,-3.5);
+    \draw[line width=2, gray!60,->, >={Latex[length=2mm, width=2mm]}] (1,-3) -- (1.5,-3.5);
+    \draw[line width=2, gray!60,->, >={Latex[length=2mm, width=2mm]}] (1,-3) -- (0.5,-3.5);
+    \draw[line width=2, gray!60,->, >={Latex[length=2mm, width=2mm]}] (-3,-3) -- (-3.5,-3.5);
+    \draw[line width=2, gray!60,->, >={Latex[length=2mm, width=2mm]}] (-3,-3) -- (-2.5,-3.5);
+    \draw[line width=2, gray!60,->, >={Latex[length=2mm, width=2mm]}] (-1,-3) -- (-1.5,-3.5);
+    \draw[line width=2, gray!60,->, >={Latex[length=2mm, width=2mm]}] (-1,-3) -- (-0.5,-3.5);
+    \fill[gray] (-0.15,-0.8) -- (0.15,-0.8) -- (0.15,-3.6) -- (0.4,-3.6) -- (0,-4.2) -- (-0.4,-3.6) -- (-0.15,-3.6) -- cycle;
+\end{scope}
+}
+
+\newcommand{\randDistOne}{%
+     \fill[TealBlue,opacity=0.6] (0,0) rectangle ++(0.9,4);
+        \fill[TealBlue,opacity=0.6] (1,0) rectangle ++(0.9,0.2);
+        \fill[TealBlue,opacity=0.6] (2,0) rectangle ++(0.9,3.6);
+        \fill[TealBlue,opacity=0.6] (3,0) rectangle ++(0.9,5);
+        \fill[TealBlue,opacity=0.6] (4,0) rectangle ++(0.9,3.8);
+        \fill[TealBlue,opacity=0.6] (5,0) rectangle ++(0.9,0.6);
+}
+
+\newcommand{\randDistTwo}{%
+    \fill[TealBlue,opacity=0.6] (0,0) rectangle ++(0.9,2.3);
+    \fill[TealBlue,opacity=0.6] (1,0) rectangle ++(0.9,4.1);
+    \fill[TealBlue,opacity=0.6] (2,0) rectangle ++(0.9,1.7);
+    \fill[TealBlue,opacity=0.6] (3,0) rectangle ++(0.9,3.9);
+    \fill[TealBlue,opacity=0.6] (4,0) rectangle ++(0.9,2.8);
+    \fill[TealBlue,opacity=0.6] (5,0) rectangle ++(0.9,0.5);
+}
+
+\newcommand{\randDistThree}{%
+    \fill[TealBlue,opacity=0.6] (0,0) rectangle ++(0.9,3.2);
+    \fill[TealBlue,opacity=0.6] (1,0) rectangle ++(0.9,1.5);
+    \fill[TealBlue,opacity=0.6] (2,0) rectangle ++(0.9,4.8);
+    \fill[TealBlue,opacity=0.6] (3,0) rectangle ++(0.9,2.7);
+    \fill[TealBlue,opacity=0.6] (4,0) rectangle ++(0.9,4.3);
+    \fill[TealBlue,opacity=0.6] (5,0) rectangle ++(0.9,0.9);
+}
+\begin{document}
+
+\begin{tikzpicture}[>=Latex,font=\LARGE]
+\node[label=above:$s_1$] (s1) at (0,0) {
+\begin{tikzpicture}
+    \drawGrid;
+\end{tikzpicture}
+};
+\node[below=0.1 of s1] (tree1) {
+\begin{tikzpicture}
+\drawTree;
+\end{tikzpicture}
+};
+\node[below=0.1 of tree1, label=below:$\pi_2$] (pi1) {
+\begin{tikzpicture}[scale=0.2]
+    \randDistOne;    
+\end{tikzpicture}
+};
+
+\node[label=above:$s_2$] (s2) at (8,0) {
+\begin{tikzpicture}
+    \drawGrid;
+    \drawB{0}{0};
+\end{tikzpicture}
+};
+\node[below=0.1 of s2] (tree2) {
+\begin{tikzpicture}
+\drawTree;
+\end{tikzpicture}
+};
+\node[below=0.1 of tree2, label=below:$\pi_2$] (pi2) {
+\begin{tikzpicture}[scale=0.2]
+    \randDistTwo;    
+\end{tikzpicture}
+};
+
+\node[label=above:$s_3$] (s3) at (16,0) {
+\begin{tikzpicture}
+    \drawGrid;
+    \drawB{0}{0};
+    \drawW{0}{1};
+\end{tikzpicture}
+};
+\node[below=0.1 of s3] (tree3) {
+\begin{tikzpicture}
+\drawTree;
+\end{tikzpicture}
+};
+\node[below=0.1 of tree3, label=below:$\pi_3$] (pi3) {
+\begin{tikzpicture}[scale=0.2]
+    \randDistThree;    
+\end{tikzpicture}
+};
+
+\draw[->, line width=4] (s1) -- (s2) node[midway, above] {$a_1\sim\pi_1$};
+\draw[->, line width=4] (s2) -- (s3) node[midway, above] {$a_2\sim\pi_2$};
+
+\node[label=above:$s_t$] (st) at (24,0) {
+\begin{tikzpicture}
+    \drawGrid;
+    \drawB{0}{0};
+    \drawB{1}{1};
+    \drawB{-1}{-1};
+    \drawB{-1}{0};
+    \drawW{0}{1};
+    \drawW{1}{0};
+    \drawW{1}{-1};
+    \drawW{0}{-1};
+    \drawW{-1}{1};
+\end{tikzpicture}
+};
+
+\node[scale=2] (dots) at (20,0) {$\cdots$};
+
+\draw[->, line width=4] (s3) -- (dots);
+\draw[->, line width=4] (dots) -- (st);
+
+\node[Orchid, below=5 of st] (z) {$z$};
+
+\draw[->, line width=4] (st) -- (z);
+
+\end{tikzpicture}
+\end{document}

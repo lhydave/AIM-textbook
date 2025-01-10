@@ -1,0 +1,82 @@
+\documentclass{standalone}
+% font set
+\usepackage{ctex}
+\usepackage{fontspec}
+\usepackage[T1]{fontenc}
+\usepackage[sc]{mathpazo}
+\usepackage{anyfontsize}
+\setmainfont{Source Serif 4}
+\setsansfont{Source Sans 3}
+\setmonofont{Menlo}
+\setCJKmainfont[BoldFont=黑体-简 中等,ItalicFont=楷体-简 常规体]{宋体-简 常规体}
+
+% colors
+\usepackage[dvipsnames]{xcolor}
+\definecolor{pku-red}{RGB}{139,0,18}
+\usepackage{colortbl}
+\newcommand{\light}[1]{\textcolor{Orchid}{#1}}
+\newcommand{\contrastlight}[1]{\textcolor{TealBlue}{#1}}
+
+% plots
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta,positioning,calc,3d,backgrounds,fit}
+\usetikzlibrary{automata}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\tikzset{
+    punkt/.style={
+        rectangle,
+        rounded corners,
+        draw=black, very thick,
+        minimum height=2em,
+        inner sep=6pt,
+        text centered,
+        fill=gray!30
+    }
+}
+
+% math package
+\let\Bbbk\relax
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{stmaryrd}
+\usepackage{latexsym}
+\usepackage{extarrows}
+\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
+\newcommand{\ballcolor}{Melon}
+
+\begin{document}
+\begin{tikzpicture}
+
+% Urn A
+\node[draw, very thick, gray, minimum width=3cm, minimum height=4cm, fill=Orchid!40, rounded corners, label=above:箱子A] (a) at (0,0) {};
+% Balls in Urn A
+\fill[\ballcolor] ($(a.south west)!0.3!(a.north east)$) circle (0.2);
+\fill[\ballcolor] ($(a.south west)!0.5!(a.north east) + (0.3,0.5)$) circle (0.2);
+\fill[\ballcolor] ($(a.south west)!0.7!(a.north east) - (0.3,-0.8)$) circle (0.2);
+\fill[\ballcolor] ($(a.south west)!0.6!(a.north east) + (0,-0.6)$) circle (0.2);
+\fill[\ballcolor] ($(a.south west)!0.4!(a.north east) - (-0.2,0.3)$) circle (0.2);
+\fill[\ballcolor] ($(a.south west)!0.8!(a.north east) + (0,0)$) circle (0.2);
+\fill[\ballcolor] ($(a.south west)!0.25!(a.north east) + (0.3,0.7)$) circle (0.2);
+\fill[\ballcolor] ($(a.south west)!0.65!(a.north east) - (0.6,-0.8)$) circle (0.2);
+\fill[\ballcolor] ($(a.south west)!0.5!(a.north east) - (-0.8,1)$) circle (0.2);
+
+% Urn B
+\node[draw, very thick, gray, minimum width=3cm, minimum height=4cm, fill=TealBlue!40, rounded corners, label=above:箱子B] (b) at (3.1,0) {};
+% Balls in Urn B
+\fill[\ballcolor] ($(b.south west)!0.3!(b.north east)$) circle (0.2);
+\fill[\ballcolor] ($(b.south west)!0.5!(b.north east) + (0.2,0.1)$) circle (0.2);
+\fill[\ballcolor] ($(b.south west)!0.7!(b.north east) - (0.2,0.1)$) circle (0.2);
+\fill[\ballcolor] ($(b.south west)!0.6!(b.north east) + (0.5,0.2)$) circle (0.2);
+\fill[\ballcolor] ($(b.south west)!0.4!(b.north east) - (-0.5,0.3)$) circle (0.2);
+\fill[\ballcolor] ($(b.south west)!0.8!(b.north east) + (0.1,-0.2)$) circle (0.2);
+\fill[\ballcolor] ($(b.south west)!0.25!(b.north east) - (0.1,0.4)$) circle (0.2);
+\fill[\ballcolor] ($(b.south west)!0.65!(b.north east) + (0.8,-0.8)$) circle (0.2);
+\fill[\ballcolor] ($(b.south west)!0.5!(b.north east) - (0.3,0)$) circle (0.2);
+
+\end{tikzpicture}
+\end{document}
