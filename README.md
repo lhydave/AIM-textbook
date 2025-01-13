@@ -38,9 +38,9 @@
 
 你也可以使用 Git 命令行工具来克隆本仓库。首先，你需要安装 Git 命令行工具，你可以通过[官网](https://git-scm.com/downloads)下载并安装。安装完成后，打开命令行工具，输入以下命令来克隆本仓库：
 
-    ```bash
-    git clone https://github.com/lhydave/AIM-textbook.git
-    ```
+```bash
+git clone https://github.com/lhydave/AIM-textbook.git
+```
 
 ## 在本地编译本书
 
