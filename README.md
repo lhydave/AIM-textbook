@@ -46,13 +46,13 @@ git clone https://github.com/lhydave/AIM-textbook.git
 
 如果你希望在本地编译本书以生成 PDF 格式的电子书，你需要安装一些必要的工具。以下是详细的步骤：
 
-### 安装 $\LaTeX$
+### 安装 LaTeX
 
-本书使用 $\LaTeX$ 进行排版，因此你需要安装 $\LaTeX$。你可以通过[官网](https://www.latex-project.org/get/#tex-distributions)来安装 $\LaTeX$。
+本书使用 LaTeX 进行排版，因此你需要安装 LaTeX。你可以通过[官网](https://www.latex-project.org/get/#tex-distributions)来安装 LaTeX。
 
 ### 编译本书
 
-有很多方式可以编译本书，你可以使用图形化的 $\LaTeX$ 编辑器，也可以使用命令行工具。因为不同的图形化 $\LaTeX$ 编辑器操作方式不同，这里只介绍命令行工具的使用方法。
+有很多方式可以编译本书，你可以使用图形化的 LaTeX 编辑器，也可以使用命令行工具。因为不同的图形化 LaTeX 编辑器操作方式不同，这里只介绍命令行工具的使用方法。
 
 1. 首先，在命令行中进入本书的根目录。
 
@@ -77,7 +77,7 @@ latexmk main.tex --xelatex
 ![image](readme-img/issue-1.png)
 
 3. 在 `Title` 中输入勘误或修改提议的标题。
-4. 在 `Write` 中输入勘误或修改提议的详细内容，请具体到章节和页码，可以附上图片，数学请使用 $\LaTeX$ 公式。
+4. 在 `Write` 中输入勘误或修改提议的详细内容，请具体到章节和页码，可以附上图片，数学请使用 LaTeX 公式。
 5. 点击 `Submit new issue` 按钮。
 
 ![image](readme-img/issue-2.png)
