@@ -12,35 +12,9 @@
 
 ## 下载本书的源代码
 
-你可以下载本书的源代码，然后自己编译本书。有以下几种方式可以下载本书的源代码。注意，如果你希望修改本书的源代码，并将这一修改重新提交回本仓库，请使用第二种或第三种方式，第一种方式可能无法提交修改。
-
-### 下载压缩包
-
-可以按照下图所示的方法下载本书源代码的压缩包，即在本页面上点击“Code”按钮，然后点击“Download ZIP”按钮。
+你可以下载本书的源代码，然后自己编译本书。本 README 提供最简单的一种方法，即下载压缩包。你可以按照下图所示的方法下载本书源代码的压缩包，即在本页面上点击“Code”按钮，然后点击“Download ZIP”按钮。
 
 ![image](readme-img/download-zip.png)
-
-如果你想下载本书的源代码（例如，你想自己编译本书或者修复错误），可以点击下图中的按钮。
-
-### 使用 GitHub Desktop
-
-你可以使用 GitHub Desktop 来克隆本仓库，从而下载本书的源代码。首先，你可以通过[这个链接](https://github.com/apps/desktop)来下载 GitHub Desktop。然后，在 GitHub Desktop 中，根据提示，登录你的 GitHub 账号（如果没有请先创建账号）。你可以按照下列步骤来克隆本仓库。
-
-1. 在 GitHub 的网页上点击“Code”按钮，然后点击“Open with GitHub Desktop”按钮，如下图所示，GitHub Desktop 会自动打开。
-
-![image](readme-img/download-desktop-1.png)
-
-2. 在 GitHub Desktop 中，选择本仓库的保存路径，然后点击“Clone”按钮。
-
-![image](readme-img/download-desktop-2.png)
-
-### 使用 Git 命令行工具
-
-你也可以使用 Git 命令行工具来克隆本仓库。首先，你需要安装 Git 命令行工具，你可以通过[官网](https://git-scm.com/downloads)下载并安装。安装完成后，打开命令行工具，输入以下命令来克隆本仓库：
-
-```bash
-git clone https://github.com/lhydave/AIM-textbook.git
-```
 
 ## 在本地编译本书
 
