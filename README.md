@@ -4,7 +4,7 @@
 
 ## 查看和下载最新版的 pdf 文件
 
-如果你只是想查看本书的 pdf 文件，可以点击[这里](https://github.com/lhydave/AIM-textbook/blob/master/main.pdf)，你将看到本书的最新版本。
+如果你只是想查看本书的 pdf 文件，可以点击[这里](main.pdf)，你将看到本书的最新版本。
 
 如果你想下载本书的 pdf，在点击之后，点击下图中的按钮即可下载。
 
