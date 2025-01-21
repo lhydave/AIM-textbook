@@ -291,7 +291,7 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 
 我们前面要求，“推理的合理程度不依赖具体的命题形式”，现在，我们将这一要求进一步细化为“推理的合理程度不依赖推理的具体形式”. 因为上面的直接推理和分步推理都是从$\gamma$推出$\alpha\beta$，所以我们要求他们的合理程度相同，即
 
-\begin{hypothesis}
+\begin{hypothesis}\label{hypothesis:form-of-F}
     对任意$f\in\mathcal L$，存在一个$\R\times\R\to\R$的函数$F$，对任意命题公式$\alpha,\beta,\gamma$，
     \[
         f(\alpha\beta|\gamma)=F(f(\alpha|\gamma),f(\beta|\alpha\gamma)).
@@ -303,15 +303,15 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 注意，以上假设不能写成$f(\alpha\beta|\gamma) = F(f(\beta|\gamma), f(\alpha|\gamma))$. 例如，假设$\alpha$是“小明的左眼是蓝色的”，$\beta$是“小明的右眼是棕色的”. $f(\alpha|\gamma)$和$f(\beta|\gamma)$都可以很合理，但$f(\alpha\beta|\gamma)$则非常罕见. 同样的道理，我们可以排除其他形式的假设，比如$f(\alpha\beta|\gamma) = F(f(\gamma|\alpha), f(\beta|\gamma))$.
 
 我们定义的$F$具有如下性质：
-\begin{theorem}
+\begin{theorem}\label{theorem:form-of-F}
     如果$F$是二阶连续可微函数，那么$F$充分必要地满足
         \[cf(F(p,q))=f(p)f(q),\]
         这里，$c$是某个常数，$f$是某个函数.
         因此，对任意命题公式$\alpha,\beta,\gamma$，成立
         \[cf(\alpha\beta|\gamma)=f(\alpha|\gamma)f(\beta|\alpha\gamma).\]
-    \end{theorem}
+\end{theorem}
 
-回忆，我们的目标是找到一个尽可能简单的$f$，它能够描述合情推理的合理程度. 因此，我们可以接受$F$二阶连续可微的假设，然后让$c=1$. 于是，我们得到了合情推理的一个基本原则：
+这一定理的证明见习题 \ref{exercise:derive-F}. 回忆，我们的目标是找到一个尽可能简单的$f$，它能够描述合情推理的合理程度. 因此，我们可以接受$F$二阶连续可微的假设，然后让$c=1$. 于是，我们得到了合情推理的一个基本原则：
 \begin{principle}[与规则]
 对命题$\alpha,\beta,\gamma$，成立
 \[f(\alpha\beta|\gamma)=f(\alpha|\gamma)f(\beta|\alpha\gamma).\]
@@ -325,7 +325,7 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 \end{hypothesis}
 
 在与规则限制之下，我们可以证明$S$具有如下性质：
-\begin{theorem}
+\begin{theorem}\label{theorem:form-of-S}
     如果$S$二阶连续可微，那么$S$充分必要地满足
     \begin{equation*}
         S(x) = (1 - x^m)^{1/m},
@@ -333,7 +333,7 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
     这里的$m$是一个正常数.
 \end{theorem}
 
-由上面的定理，我们可以得到以下性质
+这一定理的证明见习题 \ref{exercise:derive-S}. 由上面的定理，我们可以得到以下性质
 \begin{corollary}
     $f(\alpha|\beta)^m + f(\neg\alpha|\beta)^m = 1$.
 \end{corollary}
@@ -444,7 +444,7 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 
 \section{合情推理的归纳强论证}
 
-\subsection{归纳强论证}
+\subsection{归纳强论证}\label{subsec:inductive-strong-argument}
 
 在基率谬误的例子中，我们看到合情推理必须要完整地考虑先验的影响.另一方面，我们看到最终做出决策的方式是\emph{最大似然}，即似然更高的那个命题更有可能是对的. 这说明合情推理中有很不同于演绎推理的论证方式.
 
@@ -501,11 +501,13 @@ $\Pr(A|C)$是$A$的似然，而$\Pr(A|BC)$是假设$B$为真时，$A$的似然. 
 \begin{example}[奇怪的例子一]
 记 $X$ 为一个北京大学的同学今年2000岁, $Y$ 为一个北京大学的同学今年2000岁,并且有三条胳膊. 直观来讲, 如上 $X\vdash Y$ 不是归纳强论证. 但是， 其等效的公式$\neg X\vee Y$，成立的概率足够大. 
 
-考虑另外一个有效论证中的例子. 记$A_n=\{\text{圆周率}~\pi\text{ 的系数有}~n\text{ 个连续的}~1\}$. 那么，命题$A_{n+1} \rightarrow A_n$ 看起来是显然的，但与之等值的命题$\neg A_{n+1} \vee A_n$却不太容易被一眼接受.
+考虑另外一个有效论证中的例子. 记
+\[A_n=\{\text{圆周率}~\pi\text{ 的系数有}~n\text{ 个连续的}~1\}.\]
+那么，命题$A_{n+1} \rightarrow A_n$ 看起来是显然的，但与之等值的命题$\neg A_{n+1} \vee A_n$却不太容易被一眼接受.
 \end{example}
 这两个例子都说明，判断是否为归纳强论证不能只关注结论成立的概率. 于是，我们得到限制条件：\emph{证据支持}，它的定义如下. 
 \begin{definition}[证据支持]
-    假设 $X$ 和 $Y$ 是命题公式，$t\in [0.5, 1]$. 如果 $\Pr(Y|X)>t$, 我们称\emph{证据$X$支持$Y$的强度大于 $t$}. 
+    假设 $X$ 和 $Y$ 是命题公式，实数$t\in [0.5, 1]$. 如果 $\Pr(Y|X)>t$, 我们称\emph{证据$X$支持$Y$的强度大于 $t$}. 
 \end{definition}
 
 证据支持是比最大似然准则的更进一步的要求. 然而，证据支持并不能解决所有问题. 考虑下面的例子.
@@ -548,7 +550,7 @@ $\Pr(A|C)$是$A$的似然，而$\Pr(A|BC)$是假设$B$为真时，$A$的似然. 
 \end{itemize} 
 \end{definition}
 
-这两个认可度的定义其实相互可以转化（见习题\lhysays{出一下}）. 利用这一转化，认可度和相关性的关系可以表达如下：
+这两个认可度的定义其实相互可以转化（见习题 \ref{exercise:admissible}）. 利用这一转化，认可度和相关性的关系可以表达如下：
 \begin{proposition}
     设 $0< \Pr(X),\Pr(Y) < 1$，下列等价成立：
     \begin{itemize}
@@ -618,7 +620,7 @@ $\Pr(Y|X) = (0.1 + 0.2) / (0.1 + 0.2 + 0.2 + 0) = 0.6 > 0.5$，然而，$\Pr(Y|X
     \[
     Q^+(\cdot)=\frac{\Pr(\cdot\wedge X)}{\Pr(X)},\quad Q^-(\cdot)=\frac{\Pr(\cdot\wedge \neg X)}{\Pr(\neg X)}.
     \]
-    于是，确凿性原则中涉及到了三个正相关：在前提中，我们假设了$Q^+(Y|Z)>Q^+(Y)$和$Q^-(Y|Z)>Q^-(Y)$，而在结论中，我们希望有$\Pr(Y|Z)>\Pr(Y)$. 这三个正相关的表述其实涉及了三个不同的概率. 第一个正相关表述等价于$\Pr(Y|Z\wedge X)>\Pr(Y|X)$，第二个正相关表述等价于$\Pr(Y|Z\wedge\neg X)>\Pr(Y|\neg X)$，因此，他们是完全不同于第三个正相关的.
+    于是，确凿性原则中涉及到了三个正相关：在前提中，我们假设$Q^+(Y|Z)>Q^+(Y)$和$Q^-(Y|Z)>Q^-(Y)$，而在结论中，我们希望有$\Pr(Y|Z)>\Pr(Y)$. 这三个正相关的表述其实涉及了三个不同的概率. 第一个正相关表述等价于$\Pr(Y|Z\wedge X)>\Pr(Y|X)$，第二个正相关表述等价于$\Pr(Y|Z\wedge\neg X)>\Pr(Y|\neg X)$，因此，他们是完全不同于第三个正相关的.
 \end{remark}
 
 实际上，并不一定成立！有反直觉的例子：存在$X, Y, Z$和对应的随机真值表，使得
@@ -651,7 +653,7 @@ $\Pr(Y|X) = (0.1 + 0.2) / (0.1 + 0.2 + 0.2 + 0) = 0.6 > 0.5$，然而，$\Pr(Y|X
          \text{总命中率} & 51/201 & 7/110 \\
     \end{array}
     \]
-$\Pr(Y) = 51/201$，$\Pr(Y|Z) = 7/110$为投篮命中率. $\Pr(Y|X) = 50/100 = 1/2$，$\Pr(Y|Z \wedge X) = 6/10 = 3/5$ 为两分命中率. $\Pr(Y|\neg X) = 1/101$，$\Pr(Y|Z \wedge \neg X) = 1/100$为三分命中率. Simpson悖论在这一实例下表现为：这个班里来自清华大学的学生两分命中率和三分命中率分别都比全班平均水平高，但总体投篮命中率反倒比全班水平低.
+根据表格可以得到，投篮命中率为$\Pr(Y) = 51/201$，$\Pr(Y|Z) = 7/110$. 两分球的命中率为$\Pr(Y|X) = 50/100 = 1/2$，$\Pr(Y|Z \wedge X) = 6/10 = 3/5$. 三分球的命中率为$\Pr(Y|\neg X) = 1/101$，$\Pr(Y|Z \wedge \neg X) = 1/100$. Simpson悖论在这一实例下表现为：这个班里来自清华大学的学生两分命中率和三分命中率分别都比全班平均水平高，但总体投篮命中率反倒比全班水平低.
 
 我们将这两个概率用全概公式展开来寻找原因：
 $$\Pr(Y|Z) = \light{\Pr(Y|Z\land X)}\Pr(X|Z) + \light{\Pr(Y|Z\wedge\neg X)}\Pr(\neg X|Z),$$
@@ -662,7 +664,7 @@ $$\Pr(Y) = \contrastlight{\Pr(Y|X)}\Pr(X) +\contrastlight{ \Pr(Y|\neg X)}\Pr(\ne
 接下来我们考虑合取谬误（见本章开头）. \emph{合取谬误}是一种认知偏差. 我们这里呈现一个简化的例子作为讨论. Linda是一位单身、外向且年龄为31岁的女性.在大学期间，她主修哲学，十分关注种族歧视和社会公正问题，而且曾参加过反核游行.（记为$E$）请问以下哪一件事情更可能发生？
     \begin{enumerate}
         \item Linda是一名银行出纳员（记为 $B$）.
-        \item Linda是一名银行出纳员，同时她还积极参加女权运动（记为 $B\wedge F$）.
+        \item Linda是一名银行出纳员，还积极参加女权运动（记为 $B\wedge F$）.
     \end{enumerate}
 在调查实验中，多数被试选择了2. 但是，我们可以肯定 $\Pr(B \land F|E) \leq \Pr(B|E)$. 如何理解这一现象？
 
@@ -674,7 +676,8 @@ $$\Pr(Y) = \contrastlight{\Pr(Y|X)}\Pr(X) +\contrastlight{ \Pr(Y|\neg X)}\Pr(\ne
 
 \section{先验模型的存在性}
 
-我们现在讨论合情推理的另一个核心：先验的存在性. 事实上，基于先验的推理不仅是Bayes概率论的基础，也是人类认知世界的基础. 我们从出生的第一天就在建立和更新自己的先验模型：我们在蹒跚学步的过程中，逐渐理解了对于空间深度的感知（\lhysays{加一下视觉悬崖实验cite}）；在学习语言的时候，我们通过眼睛观察、耳朵聆听、躯体触碰，不断建立对于物体和动作的概念. 大量发展心理学和认知科学的研究表明，人类通过无数与世界的交互，建立了对于整个世界的先验认知模型.
+%TODO: 加一下视觉悬崖实验cite，science 2024婴儿实验的cite，以及婴儿统计学习的cite
+我们现在讨论合情推理的另一个核心：先验的存在性. 事实上，基于先验的推理不仅是Bayes概率论的基础，也是人类认知世界的基础. 我们从出生的第一天就在建立和更新自己的先验模型：我们在蹒跚学步的过程中，逐渐理解了对于空间深度的感知；在学习语言的时候，我们通过眼睛观察、耳朵聆听、躯体触碰，不断建立对于物体和动作的概念. 大量发展心理学和认知科学的研究表明，人类通过无数与世界的交互，建立了对于整个世界的先验认知模型.
 
 从更宏观的角度来看，历史上，绝大部分成功的科学理论也都是依赖大量实验与观察数据的. 我们就以家喻户晓的Newton万有引力定律为例. 这一定律表明，两个物体之间的引力与他们的质量分别成正比，与他们的距离的平方成反比. 我们总是听到那个美妙的故事，说Newton因为被苹果砸到才发现了这一定律. 然而，这个故事忽略了这一定律背后的伟大科学家，Kepler，他总结老师Tycho的海量肉眼观测数据，提出了行星运动的三定律. 没有这些定律，Newton也不可能准确写出平方反比定律. 
 
@@ -692,7 +695,7 @@ $$\Pr(Y) = \contrastlight{\Pr(Y|X)}\Pr(X) +\contrastlight{ \Pr(Y|\neg X)}\Pr(\ne
 
 接下来的问题是，我们是否可以发现一个理论模型？更直接的问题是，如果给我们足够多的数据，我们是否能够直接形成一个对于$\theta$的先验信念（即概率密度$p_\theta$），而不需要再人为有某种特别的先验信念？这就是de Finetti定理要回答的问题.
 
-现在我们正式陈述这一定理. 首先，让观测次数为无穷，即$X_1,X_2,\dots$. 此时，\emph{可交换性}指的是任意有限个$X_{i_1},X_{i_2},\dots,X_{i_n}$以及任意一个$\{i_1,\dots,i_n\}$上的排列$\pi$都有
+现在我们正式陈述这一定理. 首先，让观测次数为无穷，即一列$X_1,X_2,\dots$. 此时，\emph{可交换性}指的是任意有限个$X_{i_1},X_{i_2},\dots,X_{i_n}$以及任意一个集合$\{i_1,\dots,i_n\}$上的排列$\pi$都有
 \[
     (X_{i_1},X_{i_2},\dots,X_{i_n})\stackrel{d}{=}(X_{\pi(i_1)},X_{\pi(i_2)},\dots,X_{\pi(i_n)}).
 \]
@@ -708,8 +711,88 @@ $$\Pr(Y) = \contrastlight{\Pr(Y|X)}\Pr(X) +\contrastlight{ \Pr(Y|\neg X)}\Pr(\ne
 
 我们来解释这一定理与上面讨论的对应. 如果我们知道了$\theta$，那么$X_1,\dots,X_n$条件在$\theta$上的条件密度是$\prod_{i=1}^n p_{X_i}(x_i|\theta)$，因而是条件独立的，这符合了我们对于理论模型的基本要求. 另外，如果我们不知道$\theta$，只知道无穷多的观测数据，我们并不需要人为再给定一个关于$\theta$的先验，数据本身就已经足够形成先验了，不需要人为的先验. 
 
-\section{章末注记} \lhysays{TODO}
+\section{习题}
 
-Euclid在他伟大的《几何原本》\footnote{实际上，Euclid的书名直译是“原理”，并没有“几何”一词. 这说明Euclid其实在探求某些更加本质的东西，这样的思想后来被发展为了我们今天的\emph{形式推理系统}或\emph{公理系统}.}最早尝试将数学整理为一个完整的\emph{公理系统}. 
+\begin{enumerate}[fullwidth]
+    \item \label{exercise:deduction-rule} 请自己定义命题逻辑的推导规则，并在你的系统中证明以下命题：
+    \begin{enumerate}
+        \item $\phi\to(\psi\to\phi)$.
+        \item $(\phi\to\psi)\to(\neg\psi\to\neg\phi)$.
+        \item $(\neg\psi\to\neg\phi)\to(\phi\to\psi)$.
+    \end{enumerate}
+    上面哪些推理需要使用RAA？
 
-\section{习题} \lhysays{TODO}
+    \item 将习题 \ref{exercise:deduction-rule} 中的命题用真值表的方式证明他们是重言式.
+    
+    \item 考虑两个事实，AI中的数学考试只会做题的人必然考不了70分；潘数同学AI中的数学考了100分。回答以下问题：
+    \begin{enumerate}
+        \item 从中构造出一个强三段论的论证.
+        \item 从中构造出一个弱三段论的论证。
+    \end{enumerate}
+    
+    \item \label{exercise:derive-F} 本题证明\Cref{theorem:form-of-F}. 
+    \begin{enumerate}
+        \item 利用似然的等值原则和\Cref{hypothesis:form-of-F} 证明：$F$满足
+        \begin{equation}
+            F(F(x,y),z)=F(x,F(y,z)). \label{eq:F-associative}
+        \end{equation}
+        \item 证明：当$F$满足$cf(F(p,q))=f(p)f(q)$时，$F$满足 \eqref{eq:F-associative}.
+        \item *假设$F$是连续二阶可微的，证明：如果$F$满足 \eqref{eq:F-associative}，那么存在一个常数$c$和函数$f$，使得$F$满足$cf(F(p,q))=f(p)f(q)$.
+    \end{enumerate}
+    
+    
+    \item \label{exercise:derive-S} 本题证明\Cref{theorem:form-of-S}. 我们在推导否定规则的时候得到了如下的公式
+    \begin{equation}
+        S(x) = (1-x^m)^\frac{1}{m}. \label{eq:S-solution}
+    \end{equation}
+    这个条件实际由下面的关系式联合推出
+    \begin{equation}
+        S[S(x)] = x. \label{eq:S-definition}
+    \end{equation}
+    \begin{equation}
+        x S[S(y)/x] = y S[S(x)/y]. \label{eq:S-identity}
+    \end{equation}
+    \begin{enumerate}
+        \item 利用似然的等值原则，证明：$S$满足 \eqref{eq:S-definition}.
+        \item 利用似然的等值原则以及与规则，证明：$S$满足 \eqref{eq:S-identity}.
+        \item *假设$S$是二阶可微的，证明：$S$满足 \eqref{eq:S-solution}.
+    \end{enumerate}
+    
+    \item 利用似然的三个规则将似然$[(A \vee \neg B) \to (\neg C \wedge D)]  |  E$写为只含$1$和与命题的似然（形如$A|B$, $AB|C$等，但不能是$\bar{A}B|C$这种）的式子.
+
+    \item 甲袋中有$N-1$只白球和$1$只黑球，乙袋中有$N$只白球，每次从甲、乙两袋中分别取出一只球并交换放入另一袋中. 这样经过了$n$次，
+        \begin{enumerate}
+            \item   求黑球出现在甲袋中的概率$p_n$.
+            \item   求$\lim_{n\to\infty}p_n$.
+        \end{enumerate}
+    
+    \item 仿照\Cref{subsec:inductive-strong-argument}，用似然解释另一个弱三段论：
+    \[
+    \begin{array}{c}  
+        A \to B \\ A\text{ 是假的} \\ \hline B\text{ 的合理程度变小}
+    \end{array}
+    \]
+
+    \item 设$I(A)$表示事件$A$的示性函数，对于事件$X$和$Y$，证明：$I(X)$ 与 $I(Y)$ 相关系数为$0$等价于 $X$ 与 $Y$ 互相独立.
+
+    \item 回答以下问题。
+    \begin{enumerate}
+        \item 证明：从正相关性角度，无条件确凿性原则成立，确凿性原则不一定成立.
+        \item 请构造一个“确凿性原则不一定成立”的例子并画出对应的随机真值表.
+        \item Simpson悖论和上述哪一个原则有关？
+    \end{enumerate}
+
+    \item 在合取谬误的部分，我们提到 $E$ 和 $P \wedge Q$ 正相关，并不一定能推导出 $E$ 和 $P$ 正相关. 请构造出一个这样的例子并画出对应的随机真值表.
+
+    \item \label{exercise:admissible} 设 $0< \Pr(X),\Pr(Y) < 1$. 计算认可概率增量
+    \begin{equation}
+        d(X, Y) = \Pr(Y|X) - \Pr(Y)
+    \end{equation}
+    与认可度似然比
+    \begin{equation}
+        \ell(X, Y) = \frac{\Pr(X|Y) - \Pr(X|\lnot Y)}{\Pr(X|Y) + \Pr(X|\lnot Y)}
+    \end{equation}
+    的关系，并证明二者始终同号.
+
+    \item *举一个可交换但是不相互独立的连续型随机变量列的例子，并构造出de Finetti定理中对应的概率密度$p_\theta$.
+\end{enumerate}
