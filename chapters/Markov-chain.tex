@@ -29,9 +29,9 @@
 
 Markov链是一种简化的带时间的概率模型，它最重要的性质是Markov性，即在固定现在的情况下，过去与未来相互独立. 这一性质的数学表述为：
 \begin{proposition}[Markov性]\label{prop:markov}
-条件在$X_n=i$下，$\{Y_m\}_{m=0}^{\infty}:=\{X_{m+n}\}_{m=0}^{\infty}$是一个转移矩阵为$P$的Markov链，并且与$(X_0,\dots,X_{n-1})$相互独立. % HW: 证明这个命题
+条件在$X_n=i$下，$\{Y_m\}_{m=0}^{\infty}:=\{X_{m+n}\}_{m=0}^{\infty}$是一个转移矩阵为$P$的Markov链，并且与$(X_0,\dots,X_{n-1})$相互独立.
 \end{proposition}
-证明留做习题. 
+证明见习题 \ref{exercise:Markov-property}.
 
 我们考虑的Markov链还有时齐性，即状态的转移不依赖当前时间，只和当前的状态有关. 时齐性的数学表述为：
 \begin{proposition}
@@ -174,7 +174,7 @@ Kolmogorov-Chapman方程有两个重要的特例，前向方程：
     \end{equation}
 \end{theorem}
 
-条件 \eqref{eq:reachable} 表明超过某个步数$n_0$之后，从$i$出发到达$j$的概率总是正的，这个条件被称为\emph{遍历}.（见习题\lhysays{出一下}）条件 \eqref{eq:positive-distribution} 表明每一个状态被访问到的概率都是正的，没有``死状态''. 遍历定理表明遍历的Markov链从任何状态出发都是不可逆的，最终会把每个状态都走过一遍（遍历），变成一个混合均匀的状态. 这可以用来解释物理学中的扩散现象，也是扩散模型的基础.
+条件 \eqref{eq:reachable} 表明超过某个步数$n_0$之后，从$i$出发到达$j$的概率总是正的，这个条件被称为\emph{遍历}.（见习题 \ref{exercise:ergodic}）条件 \eqref{eq:positive-distribution} 表明每一个状态被访问到的概率都是正的，没有``死状态''. 遍历定理表明遍历的Markov链从任何状态出发都是不可逆的，最终会把每个状态都走过一遍（遍历），变成一个混合均匀的状态. 这可以用来解释物理学中的扩散现象，也是扩散模型的基础.
 
 下面我们证明遍历定理.
 \begin{proof}
@@ -579,7 +579,7 @@ Bellman方程是\emph{强化学习}、经济学\emph{动态优化}的核心. Bel
 
 在一些深度强化学习模型中（例如AlphaZero），状态空间$\calS$也用一个神经网络表示. 用神经网络来表示状态空间的好处是可以减少人类的特征工程，让神经网络充分发掘状态空间好的表示方法.
 
-在很多深度强化学习模型中（例如AlphaGo），MDP的策略是基于过去$k$期的状态做当前的决策，这样可以更好地利用状态的历史信息. 这样的决策模型等价于一个利用一期信息决策的MDP（见习题\lhysays{出一下}），因此依然可以用同样的深度学习算法来求解. 
+在很多深度强化学习模型中（例如AlphaGo），MDP的策略是基于过去$k$期的状态做当前的决策，这样可以更好地利用状态的历史信息. 这样的决策模型等价于一个利用一期信息决策的MDP（见习题 \ref{exercise:MDP-k-step}），因此依然可以用同样的深度学习算法来求解. 
 
 
 \section{隐Markov模型（HMM）}\label{sec:HMM}
@@ -691,7 +691,7 @@ Bellman方程是\emph{强化学习}、经济学\emph{动态优化}的核心. Bel
 \end{align*}
 我们已经知道如何计算$\alpha_k(s)$，所以这就可以用来计算过滤了.
 
-然后是平滑：$\Pr(Z_k = s|X=x)$，$k < t$.  回顾记号$\alpha_k(s)= \Pr(X_{1:k}=x_{1:k}, Z_k=s)$，以及$\beta_k(s)=\Pr(X_{k+1:t}=x_{k+1:t} |Z_k=s)$. 可以证明（见习题\lhysays{出一下}）：
+然后是平滑：$\Pr(Z_k = s|X=x)$，$k < t$.  回顾记号$\alpha_k(s)= \Pr(X_{1:k}=x_{1:k}, Z_k=s)$，以及$\beta_k(s)=\Pr(X_{k+1:t}=x_{k+1:t} |Z_k=s)$. 可以证明（见习题 \ref{exercise:smooth-HMM}）：
 \begin{equation}
     \Pr(z_k = s|X=x)=\frac{\beta_k(s)\alpha_k(s)}{\sum_{z\in\mathcal Z}\alpha_t(z)}.\label{eq:smooth}
 \end{equation}
@@ -749,9 +749,9 @@ Bellman方程是\emph{强化学习}、经济学\emph{动态优化}的核心. Bel
     \end{cases}
 \]
 
-下面我们来解释为什么墨水最终会均匀分布在水中. 从遍历定理（\Cref{thm:ergodic-theorem}）我们知道，对于一个遍历的Markov链，无论初始分布是什么，Markov链最终都会收敛到唯一平稳分布. 可以证明（见习题\lhysays{出一下}），$\{X_k\}$是一个遍历的Markov链，所以它会收敛到一个平稳分布$\pi\sim B(N,1/2)$. 
+下面我们来解释为什么墨水最终会均匀分布在水中. 从遍历定理（\Cref{thm:ergodic-theorem}）我们知道，对于一个遍历的Markov链，无论初始分布是什么，Markov链最终都会收敛到唯一平稳分布. 可以证明（见习题\ref{exercise:ball-A-num}），$\{X_k\}$是一个遍历的Markov链，所以它会收敛到一个平稳分布$\pi\sim B(N,1/2)$. 
 
-根据二项式的性质，该分布在$N/2$附近取到最大值，因此，这是墨分子最有可能的分布情况. 更精细的结论是（见习题\lhysays{出一下}），对任意$\epsilon>0$，当$N$充分大的时候，
+根据二项式的性质，该分布在$N/2$附近取到最大值，因此，这是墨分子最有可能的分布情况. 更精细的结论是（见习题 \ref{exercise:ball-A-num}），对任意$\epsilon>0$，当$N$充分大的时候，
 \[
     \Pr\left(\limsup_{k\to\infty}\left|\frac{X_k}{N}-\frac{1}{2}\right|<\epsilon\right) \approx 1.
 \]
@@ -769,7 +769,7 @@ Bellman方程是\emph{强化学习}、经济学\emph{动态优化}的核心. Bel
 \end{itemize}
 \end{definition}
 
-注意，扩散过程和逆向过程都是非时齐的Markov链. 假设扩散过程是一个Markov链，那么逆向过程必须是一个Markov链，所以上述定义是良定义的（见习题\lhysays{出一下}）. 
+注意，扩散过程和逆向过程都是非时齐的Markov链. 假设扩散过程是一个Markov链，那么逆向过程必须是一个Markov链，所以上述定义是良定义的（见习题 \ref{exercise:diffusion-well-defined}）. 
 
 除了物理过程，还有很多其他的场景也可以被看成扩散模型. 比如，我们可以将一张图片看成刚滴入墨水的水杯：它有结构，不是混乱无序的. \footnote{有趣的是，古代中国和西方真的有在水面上撒颜料来作画的技法，也就是在水上撒颜料，然后用纸张把颜料印下来. 在中国，这种技法叫\emph{湿拓画}. 在西方，这种技法叫\emph{marbling}或者\emph{ebru}（来自土耳其语）. } 而水则可以看作一张由Gauss噪声生成的图片：它是随机的，缺乏结构. 于是，墨分子扩散就可以被理解为一张有结构的图片逐渐变成噪声的过程. 
 
@@ -837,7 +837,7 @@ DDPM中的Markov核都是Gauss分布，具体如下：
 
 \subsection{训练逆向过程}
 
-接下来我们讨论训练逆向过程的损失函数. 我们需要衡量$p(x_0)$和$q(x_0)$的差异，一个常用的选择是\emph{交叉熵}，我们将会在下一章中详细讨论这一概念. 此时，我们先接受交叉熵的概念，将损失函数写为：
+接下来我们讨论训练逆向过程的损失函数. 我们需要衡量$p(x_0)$和$q(x_0)$的差异，一个常用的选择是\emph{交叉熵}，我们将会在\Cref{chap:information-theory}中详细讨论这一概念. 此时，我们先接受交叉熵的概念，将损失函数写为：
 \[
 \E_q[-\log p_\theta(x_0)]=-\int q(x_0)\log p_\theta(x_0)\d x_0.
 \]
@@ -869,7 +869,7 @@ DDPM中的Markov核都是Gauss分布，具体如下：
 \end{aligned}
 \]
 
-可以证明（留到下章作业），$L$可以被写作：
+可以证明（见\Cref{chap:information-theory}的习题\lhysays{TODO}），$L$可以被写作：
 \[
 \begin{aligned}
     \E_q[&\underbrace{D_{\KL}\left(q\left(x_T | x_0\right) \| p\left(x_T\right)\right)}_{L_T}+\\
@@ -885,10 +885,10 @@ DDPM中的Markov核都是Gauss分布，具体如下：
     \item 唯一需要处理的是$L_1$到$L_{T-1}$的计算. 
 \end{itemize}
 
-由于$p_\theta\left(x_{t-1}|x_t\right)=\mathcal{N}\left(x_{t-1} ; \mu_\theta\left(x_t, t\right), \sigma_t^2 \mathbf{I}\right)$，可以算得（见习题\lhysays{出一下}）：
-\[
-L_{t-1}=\E_q\left[\frac{1}{2 \sigma_t^2}\norm{\tilde{\mu}_t\left(x_t, x_0\right)-\mu_\theta\left(x_t, t\right)}^2\right]+C,
-\]
+由于$p_\theta\left(x_{t-1}|x_t\right)=\mathcal{N}\left(x_{t-1} ; \mu_\theta\left(x_t, t\right), \sigma_t^2 \mathbf{I}\right)$，可以算得（见习题 \ref{exercise:diffusion-L-t-1}）：
+\begin{equation}
+L_{t-1}=\E_q\left[\frac{1}{2 \sigma_t^2}\norm{\tilde{\mu}_t\left(x_t, x_0\right)-\mu_\theta\left(x_t, t\right)}^2\right]+C,\label{eq:diffusion-L-t-1}
+\end{equation}
 其中$C$是一个不含$\theta$的常数，并且
 \[
 \tilde{\mu}_t\left(x_t, x_0\right):=\frac{\sqrt{\bar{\alpha}_{t-1}} \beta_t}{1-\bar{\alpha}_t} x_0+\frac{\sqrt{\alpha_t}\left(1-\bar{\alpha}_{t-1}\right)}{1-\bar{\alpha}_t} x_t.
@@ -922,9 +922,78 @@ L_{t-1}=\E_q\left[\frac{1}{2 \sigma_t^2}\norm{\tilde{\mu}_t\left(x_t, x_0\right)
     \end{itemize}
 \end{itemize}
 
+% TODO
+% \section{章末注记}
 
-\section{章末注记} \lhysays{TODO}
+\section{习题}
 
-Euclid在他伟大的《几何原本》\footnote{实际上，Euclid的书名直译是“原理”，并没有“几何”一词. 这说明Euclid其实在探求某些更加本质的东西，这样的思想后来被发展为了我们今天的\emph{形式推理系统}或\emph{公理系统}.}最早尝试将数学整理为一个完整的\emph{公理系统}. 
+\begin{enumerate}[fullwidth]
 
-\section{习题} \lhysays{TODO}
+    \item \label{exercise:Markov-property} 设$\{X_t\}_{t=0}^{\infty}$是一个时齐Markov链，其转移矩阵为$\mathcal P=(p(i,j))$，初始分布为$\lambda$.
+    \begin{enumerate}
+        \item 证明：
+        \[\Pr(X_0=i_0,X_1=i_1,\dots,X_t=i_t)=\lambda_{i_0}\cdot p(i_0,i_1)\dots p(i_{t-1},i_t).\]
+        \item 反之，证明：如果另外的随机变量$X_0',\dots,X_t'$的联合概率分布满足上式，则$\{X_t'\}$是一个时齐Markov链，转移矩阵为$\mathcal P$，初始分布为$\lambda$.
+        \item 记$\Pr(\cdot|X_n=s)$为$Q(\cdot)$. 设$Y_t=X_{t+n}$. 令$X=(X_0,\dots, X_{n-1})$，$Y=(Y_0,\dots,Y_m)$，$i=(i_0,\dots,i_{n-1})$，$j=(j_0,\dots,j_{m})$. 
+        
+        写出$X$和$Y$的联合概率分布$Q(X=i,Y=j)$，由此证明条件在$X_{n}=s$，$Y$与$X$相互独立，且$\{Y_t\}$是Markov链，转移矩阵为$\mathcal P$，初始状态为$s$.
+    \end{enumerate}
+
+    \item \label{exercise:ergodic} 设Markov链的状态空间为$\calS=\{1,\dots,N\}$，转移矩阵为$\calP=(p_{ij})$. 如果存在某个$n_0$，使得
+    \[
+        \min_{ij}p_{ij}^{(n_0)}>0,
+    \]
+    证明：对任意$i,j\in\calS$，任意$n\geq n_0$，都有$p_{ij}^{(n)}>0$.
+
+    \item \label{exercise:MDP-k-step} 设$\{X_n\}$是一个Markov链，状态空间为$\calS$，设
+    \[R_{n}=(X_n,X_{n+1},\dots,X_{n+k-1}),\]
+    证明$\{R_n\}$是一个$\calS^k$上的Markov链.
+
+    \item 假设甲乙两人参加公平对赌（每局独立以$1/2$概率赢或输），甲最初有$a$元，乙最初有$b$元（$a,b$都是正整数），每局双方各下注$1$元，赢家可以获得本局所有的下注. 当其中一方赌资为$0$时赌博结束. 设随机变量$\tau$表示赌博结束时候经过的局数.
+    \begin{enumerate}
+        \item *证明：$\E[\tau]<\infty$.
+        \item 求$\E[\tau]$.
+    \end{enumerate}
+
+    \item \label{exercise:smooth-HMM} 证明 \eqref{eq:smooth}.
+    
+    \item \label{exercise:ball-A-num} 设$\{X_k\}$是一个Markov链，它的转移核是
+    \[
+        \Pr(X_{k+1}=i|X_k=j) = \begin{cases}
+            \alpha, & 0\leq i = j\leq N,\\
+            (1-\alpha)j/N, & 0\leq i = j-1\leq N-1,\\
+            (1-\alpha)(N-j)/N, & 1\leq i = j+1\leq N,\\
+            0, & \text{其他}.
+        \end{cases}
+    \]
+    其中$0<\alpha<1$，$N$是一个大于$2$的正整数.
+
+    \begin{enumerate}
+        \item 证明：$\{X_k\}$是一个遍历的Markov链.
+        \item 证明：$\{X_k\}$的平稳分布是$\pi\sim B(N,1/2)$.
+        \item 对任意$\epsilon>0$，证明：
+        \[
+            \lim_{N\to+\infty}\Pr\left(\limsup_{k\to\infty}\left|\frac{X_k}{N}-\frac{1}{2}\right|<\epsilon\right)=1.
+        \]
+    \end{enumerate}
+
+    \item \label{exercise:diffusion-well-defined} 证明：假如扩散过程是一个Markov链，那么逆向过程也必为一个Markov链.
+    
+    \item \label{exercise:diffusion-L-t-1} 证明 \eqref{eq:diffusion-L-t-1}.
+    
+    \item 假设一个机器人身处于下图所示的方格环境中，我们为其定义一个MDP $\langle\mathcal S,\mathcal A,\mathcal P,\mathcal R,\gamma\rangle$:
+    \begin{itemize}
+        \item $\mathcal S:$ 每个状态是一个方格.
+        \item $\mathcal A:$ 机器人可以采取的行动包含\emph{向上、向下、向左、向右}.
+        \item $\mathcal P$: 当机器人选择行动$a$时，其按照$a$所预设的行动转移的概率为$1$. 例如：机器人选择$a=\text{向上}$，则机器人从当前方格转移到向上方向的方格概率为$1$，转移到其他位置的概率为$0$.
+        \item $\mathcal R$: 假设机器人进入绿色格点的奖励为$+1000000$，进入其他格点的奖励为$-1$.
+        \item $\gamma$: 假设折扣系数$\gamma=0.99$.
+    \end{itemize}
+    我们额外假设机器人不会超出边界，若其在边界上选择了行动$a$使得下一个状态超出边界，则下一状态位于原地. 假设机器人进入带有颜色的格点后不再运动，状态转移终止.
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.4\textwidth]{figures/Markov-chain/exercise-mdp.pdf}
+    \end{figure}
+    
+    求解该MDP的一个最优决策$\pi_\star$.
+\end{enumerate}
