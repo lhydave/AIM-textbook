@@ -270,7 +270,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
         \item 条件信息量：$I(X:X|Y)=H(X|Y)-H(X|X,Y)=H(X|Y)$.
     \end{enumerate}
 \end{proposition}
-最后一条性质说的其实是，在平均的意义下，给定$Y$的时候，知道$X$所能够得到的额外信息量就是$H(X|Y)$. 这一命题的证明和前面都非常相似，见习题\lhysays{出一下}. 
+最后一条性质说的其实是，在平均的意义下，给定$Y$的时候，知道$X$所能够得到的额外信息量就是$H(X|Y)$. 这一命题的证明和前面都非常相似，见习题 \ref{exercise:conditional-mutual-information}. 
 
 最后，我们将各种熵以及信息量的关系总结为\Cref{fig:entropy-relation}. 在集合论中，这样的图被称为Venn图，所以我们可以用集合论来理解信息与熵. 对应关系可以总结为\Cref{tab:entropy-relation}.
 \begin{table}[ht]
@@ -332,7 +332,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 K-L散度可以看成两个分布之间的区分衡量标准，但他不是度量. 一般来说，甚至连对称性都不成立. 例如，设$p_1$和$p_2$都是定义在$0,1$上的Bernoulli分布，参数分别为$1/2$和$1/4$. 于是
 \[D_\KL(p_1\Vert p_2) = \frac12\log\frac{1/2}{3/4} + \frac12\log\frac{1/2}{1/4} = \frac12\log\frac43.\]
 \[D_\KL(p_2\Vert p_1) = \frac34\log\frac{3/4}{1/2} + \frac14\log\frac{1/4}{1/2} = \frac12\log\frac{3\sqrt3}{4}.\]
-这两个值是不相等的. 进一步，这个差值甚至可以到任意大（见习题\lhysays{出一下}）.
+这两个值是不相等的. 进一步，这个差值甚至可以到任意大（见习题 \ref{exercise:kl-divergence-asymmetry}）.
 
 上面推导K-L散度的过程看起来有些捏造，我们将在\Cref{sec:entropy-and-communication}中给出一个非常直观的理解方式. 现在，我们先接受这个定义，然后看一下K-L散度的一些性质.
 
@@ -443,7 +443,7 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
 \[CH(p_X,p_Y)=-\E_{X\sim p_X}[\log p_Y(X)]=-\sum_ip_X(i)\log p_Y(i).\]
 \end{definition}
 
-在机器学习的分类问题中，我们希望学习到的分布$p_Y$尽可能地接近真实的分布$p_X$，所以我们训练的目标经常是最小化交叉熵$CH(p_X,p_Y)$. 有趣的是，从数理统计的角度来看，最小化交叉熵等价于进行\emph{最大似然估计}（见习题\lhysays{出一下}），因此这为最大似然估计提供了一种信息论意义下的理解.
+在机器学习的分类问题中，我们希望学习到的分布$p_Y$尽可能地接近真实的分布$p_X$，所以我们训练的目标经常是最小化交叉熵$CH(p_X,p_Y)$. 有趣的是，从数理统计的角度来看，最小化交叉熵等价于进行\emph{最大似然估计}（见习题 \ref{exercise:cross-entropy-maximum-likelihood}），因此这为最大似然估计提供了一种信息论意义下的理解.
 
 \begin{remark}
 现代的主流信息论都是从Shannon发展起来的. 然而，这一信息论也有很多问题. 
@@ -567,41 +567,77 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
 
 \section{习题}
 \begin{enumerate}[wide, labelindent=0pt]
-    \item 我们在熵以及K-L散度的定义中，都规定了一些无定义的量的值，这些值并不是随便规定的，他们实际上反映了熵或者K-L散度定义中的连续性.
-    \begin{enumerate}
-        \item 证明：对给定的$a>0$，$\lim_{x\to 0+}x\log (x/a)=0$，因此我们规定了$0\log 0=0$以及$0\log(0/a)=0$.
-        \item 证明：对给定的$a>0$，$\lim_{x\to 0+}x\log (a/x)=+\infty$，因此我们规定了$0\log(a/0)=+\infty$.
-    \end{enumerate}
+    \item \label{exercise:conditional-mutual-information} 证明\Cref{prop:conditional-mutual-information}。
     
-    \item 考虑关于$n$的正实数序列$a_1(n),\dots,a_k(n)$以及$b_1(n),\dots,b_k(n)$，假设对所有$i$，都成立$\lim_{n\to\infty} a_i(n)/b_i(n)=1$，证明：
-    \[\lim_{n\to\infty}\frac{a_1(n)+\dots+a_k(n)}{b_1(n)+\dots+b_k(n)}=1.\]
-    由此证明式 \eqref{eq:logP}.
-    
-    \item 证明\Cref{prop:entropy-2prob}.
-    
-    \item 用Lagrange乘子法重新证明\Cref{prop:entropy-maximum}.
-    \begin{hint}
-        如果你不知道Lagrange乘子法，可以参考 \Cref{???}.
-    \end{hint}
-
-    \item 证明\Cref{prop:conditional-mutual-information}.
-    
-    \item \cite{tingAmountInformation1962a} 仿照集合论的思路，我们可以定义三个随机变量的互信息为：
+    \item 仿照集合论的思路，我们可以定义三个随机变量的互信息为：
     \[I(X;Y;Z)=I(X;Y)-I(X;Y|Z).\]
     \begin{enumerate}
         \item 证明对称性：$I(X;Y;Z)=I(Y;X;Z) = I(X;Z;Y)$.
         \item 举一个例子说明，可能会有$I(X;Y;Z)<0$，所以这样定义的互信息并不一定真的代表“信息量”.
     \end{enumerate}
 
-    \item 举一个例子说明，即便$D_\KL(p_1\Vert p_2)$很接近$0$，$D_\KL(p_2\Vert p_1)$也可能会很大.
-    
-    \item （\emph{单变量数据处理不等式}）对任意离散随机变量$X$和函数$f$，证明：$H(X)\geq H(f(X))$.
+    \item 考虑关于$n$的正实数序列$a_1(n),\dots,a_k(n)$以及$b_1(n),\dots,b_k(n)$，假设对所有$i$，都成立$\lim_{n\to\infty} a_i(n)/b_i(n)=1$，证明：
+    \[\lim_{n\to\infty}\frac{a_1(n)+\dots+a_k(n)}{b_1(n)+\dots+b_k(n)}=1.\]
+    由此证明式 \eqref{eq:logP}.
 
-    \item 考虑二分类的学习问题，此时对单个样本我们观察到的结果要么是$0$或$1$，假设在真实世界中样本总体服从参数为$\theta$的Bernoulli分布，即$\Pr(X=1)=1-\Pr(X=0)=\theta$. 假设我们的数据集是$(x_1,y_1),\dots,(x_N,y_N)$，他们是从总体中独立采样得到的. 
+    \item 我们在熵以及K-L散度的定义中，都规定了一些无定义的量的值，这些值并不是随便规定的，他们实际上反映了熵或者K-L散度定义中的连续性.
     \begin{enumerate}
-        \item 将问题考虑成一个数理统计问题，估计$\theta$. 写出似然函数$L(\theta;y_1,\dots,y_N)$.
-        \item 再将问题考虑为一个信息论问题，写出每个样本的真实分布与估计分布之间的交叉熵之和$CH(\theta;y_1,\dots,y_N)$.
-        \item 证明：$\max_{\theta} L(\theta;y_1,\dots,y_N)=\min_{\theta} CH(\theta;y_1,\dots,y_N)$，也就是说，\emph{最大似然估计等价于最小化交叉熵}.
+        \item 证明：对给定的$a>0$，$\lim_{x\to 0+}x\log (x/a)=0$，因此我们规定了$0\log 0=0$以及$0\log(0/a)=0$.
+        \item 证明：对给定的$a>0$，$\lim_{x\to 0+}x\log (a/x)=+\infty$，因此我们规定了$0\log(a/0)=+\infty$.
+    \end{enumerate}
+    
+    
+    \item \label{exercise:kl-divergence-asymmetry} 证明：对任意$M>0$，存在概率分布$p_1$和$p_2$使得$D_\KL(p_{1}\Vert p_{2})<1$ 但是 $D_\KL(p_{2}\Vert p_{1})>M$.
+    
+    \item 对任意离散随机变量$X$和函数$f$，证明：$H(X)\geq H(f(X))$.
+    
+    \item 设$P$和$Q$是$\Omega$上的两个离散概率分布，证明
+    \[
+        D_\KL(P\Vert Q) \geq \frac{1}{2} \left(\sum_{x\in \Omega} |p(x) - q(x)|\right)^2.
+    \]
+
+    \item \label{exercise:cross-entropy-maximum-likelihood} 考虑二分类的学习问题，此时对单个样本我们观察到的结果是$0$或$1$，样本总体服从服从Bernoulli 分布，假设真实参数为$p$， $\Pr(X=1)=1-\Pr(X=0)=p$，模型参数为 $\theta$，假设数据集是 $x_1,\dots,x_N$, 他们是从总体中独立采样得到的.
+    \begin{enumerate}
+        \item 将问题考虑成一个数理统计问题, 估计 $\theta$. 写出似然函数 $L(\theta ; x_1, \ldots, x_N)$.
+        \item 再将问题考虑为一个信息论问题, 对第$k$个观测样本，它的实际分布是$\Pr(X_k=x_k)=1$，而写出每个样本的真实分布与估计分布之间的交叉嫡的平均值
+        \[\frac{1}{N}S(\theta ; y_1, \ldots, y_N).\]
+        \item 证明：以概率$1$成立
+        \[\lim_{n\to\infty}\frac{1}{N}S(\theta ; y_1, \ldots, y_N)=\mathrm{CH}(B(1,p)\| B(1,\theta)).\]
+        因此，当样本数量足够大的时候，$S$就是真实分布与模型分布的交叉熵.
+        \item 证明: 对任意$N$，$\arg\max_\theta L(\theta ; y_1, \ldots, y_N)=\arg\min _\theta S(\theta ; y_1, \ldots, y_N)$, 也就是说，\textit{最大似然估计等价于最小化交叉嫡}.
+    \end{enumerate}
+
+    \item \label{exercise:diffusion-model-loss}
+    在生成模型中，我们假设数据$x$是由隐变量$z$生成的. 下面我们来推导VAE（Variational Auto-encoder）与扩散模型的损失函数.
+    \begin{enumerate}
+        \item （VAE）设$x$是由$z$生成的：数据的生成分为两个步骤，首先$z$由先验分布$p_{\alpha}(z)$生成，然后$x$由条件分布$p_{\beta}(x|z)$生成. 为了最好的拟合数据，我们希望最大化似然，即$\max p_{\theta}(x)$，其中$\theta = \{\alpha, \beta\}$, $p_{\theta}(x)$可以写成：
+        \[
+            p_{\theta}(x) = \int p_{\alpha}(z)p_{\beta}(x|z)dz.
+        \]
+        然而，这个积分通常是不能直接求解的，因为$z$的分布是未知的. 为了解决这个问题，我们引入一个分布$q_{\phi}(z|x)$来近似后验分布. 证明：
+        \[
+            \log p_{\theta}(x) \geq \E_{z\sim q_{\phi}(z|x)}[\log p_{\beta}(x|z)] - D_\KL(q_{\phi}(z|x)\Vert p_{\alpha}(z)).
+        \]
+        于是，最大化似然可以通过优化上面的ELBO（Evidence Lower Bound）来实现.
+
+        \item （扩散模型）我们假设数据$x=x_{0}$是由$z=(x_{1},\dots,x_{T})$生成的. 生成方式为逐渐对$x_{t}$去噪（逆向过程），去噪的过程是Markov链，起点为$x_{T}$，服从$p(x_{T}) = \mathcal{N}(x_{T};0,I)$：
+        \begin{align*}
+            p_{\theta}(x_{0:T}) &= p_{\theta}(x_{T})\prod_{t=1}^{T}p_{\theta}(x_{t-1}|x_{t}),\\
+            p_{\theta}(x_{t-1}|x_{t}) &= \mathcal{ N}(x_{t-1}; \mu_{\theta}(x_{t}, t), \Sigma_{\theta}(x_{t}, t)).
+        \end{align*}
+        区别于VAE，这里的后验概率$q(x_{1:T}|x_{0})$通过加噪（前向）过程来得到，即
+        \begin{align*}
+            q(x_{1:T}|x_{0}) &= \prod_{t=1}^{T}q(x_{t}|x_{t-1}),\\
+            q(x_{t}|x_{t-1}) &= \mathcal{N}(x_{t}; \sqrt{1-\beta_{t}}x_{t-1}, \beta_{t}I).
+        \end{align*}
+        扩散模型的思想就是学习后验概率中每一步加入的噪声，从而根据逆向过程生成数据.
+        借助上一问的结论，证明损失函数可以写成：
+        \begin{align*}
+            \mathcal{L} = \E_{q} [& D_\KL(q(x_{T}|x_{0}) \Vert p(x_{T})) +
+            \\& \sum_{t>1} D_\KL(q(x_{t-1}|x_{t},x_{0}) \Vert p_{\theta}(x_{t-1}|x_{t})) - \log p_{\theta}(x_{0}|x_{1})
+            ],
+        \end{align*}
+        其中$q(x_{t-1}|x_{t},x_{0})$是前向过程的后验.
     \end{enumerate}
 
     \item 请查找文献回答以下问题：
@@ -612,17 +648,18 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
     \end{enumerate}
     
 \end{enumerate}
-\section{章末注记}
-信息一词的英文是“information”，从动词“inform”来，意思是告知、通知. 早在15世纪中叶，“information”一词的出现了义项“在通信中针对特定主题的知识”.\cite{InformationEtymologyOrigin} 这说明在那个时候人类就已经意识到，通信会产生新的东西，被称为知识或信息. 然而，人类对信息的严谨探索起步晚得多. 关于信息的物理学讨论源自统计力学，Boltzmann提出了著名的熵，证明了H定理，以此给出了热力学第二定律的微观解释. 关于Boltzmann的工作，参见 \cite{uffinkBoltzmannWorkStatistical2022}. 
 
-一般认为，现代信息论的起源是Shannon的论文 \cite{shannonMathematicalTheoryCommunication1948}，他在论文中提出了信息的数学定义，以及信息的基本性质. 但是，Shannon的工作并不是孤立的，他的工作是在统计力学的基础上发展起来的. 事实上，Shannon在论文中也提到了Boltzmann的熵. 这篇工作也被视为通信理论以及编码理论的奠基性工作.  Shannon在这篇论文中还给出了渐近意义下达到理论下界的最优编码，并且独立地被Fano \cite{robertm.fanoTransmissionInformation1949} 以一种不同的形式发现，因此后世称为Shannon-Fano编码. 但是Shannon-Fano编码并不是精确地达到下界，实际上，最优编码是Huffman \cite{huffmanMethodConstructionMinimumRedundancy1952} 给出的. Shannon在这篇论文中还讨论了渐近等分性，后来MciMillan的工作 \cite{mcmillanBasicTheoremsInformation1953} 和 Breiman的工作 \cite{breimanIndividualErgodicTheorem1957} 拓展了这一结果，因此后世称为Shannon-McMillan-Breiman定理. 
+% \section{章末注记}
+% 信息一词的英文是“information”，从动词“inform”来，意思是告知、通知. 早在15世纪中叶，“information”一词的出现了义项“在通信中针对特定主题的知识”.\cite{InformationEtymologyOrigin} 这说明在那个时候人类就已经意识到，通信会产生新的东西，被称为知识或信息. 然而，人类对信息的严谨探索起步晚得多. 关于信息的物理学讨论源自统计力学，Boltzmann提出了著名的熵，证明了H定理，以此给出了热力学第二定律的微观解释. 关于Boltzmann的工作，参见 \cite{uffinkBoltzmannWorkStatistical2022}. 
 
-关于信息论与集合论的关系工作，可以参见Hu Kuo Ting的工作 \cite{tingAmountInformation1962a}. 他的工作还给出了多个随机变量互信息的定义，在这一章习题中有涉及.
+% 一般认为，现代信息论的起源是Shannon的论文 \cite{shannonMathematicalTheoryCommunication1948}，他在论文中提出了信息的数学定义，以及信息的基本性质. 但是，Shannon的工作并不是孤立的，他的工作是在统计力学的基础上发展起来的. 事实上，Shannon在论文中也提到了Boltzmann的熵. 这篇工作也被视为通信理论以及编码理论的奠基性工作.  Shannon在这篇论文中还给出了渐近意义下达到理论下界的最优编码，并且独立地被Fano \cite{robertm.fanoTransmissionInformation1949} 以一种不同的形式发现，因此后世称为Shannon-Fano编码. 但是Shannon-Fano编码并不是精确地达到下界，实际上，最优编码是Huffman \cite{huffmanMethodConstructionMinimumRedundancy1952} 给出的. Shannon在这篇论文中还讨论了渐近等分性，后来MciMillan的工作 \cite{mcmillanBasicTheoremsInformation1953} 和 Breiman的工作 \cite{breimanIndividualErgodicTheorem1957} 拓展了这一结果，因此后世称为Shannon-McMillan-Breiman定理. 
 
-相对熵的概念依然是从Shannon的奠基性论文 \cite{shannonMathematicalTheoryCommunication1948} 中提出的，但他只局限于通信的问题. 更加一般的讨论是由Kullback和Leibler在 \cite{kullbackInformationSufficiency1951} 给出，他们的是一种数理统计的思路，但是他们也具体地讨论了这一概念与信息的关系. 他们的论文中也讨论了交叉熵这一概念. 
+% 关于信息论与集合论的关系工作，可以参见Hu Kuo Ting的工作 \cite{tingAmountInformation1962a}. 他的工作还给出了多个随机变量互信息的定义，在这一章习题中有涉及.
 
-机器学习中编码器和解码器的思路，最早是由Rumelhart，Hinton和Williams在 \cite{rumelhartLearningInternalRepresentations1986} 中提出，他们将编码器和解码器的整体称作\emph{自编码器}. 这篇工作几乎可以被视为深度学习的开山之作，它还提出了训练神经网络最常用的反向传播算法.
+% 相对熵的概念依然是从Shannon的奠基性论文 \cite{shannonMathematicalTheoryCommunication1948} 中提出的，但他只局限于通信的问题. 更加一般的讨论是由Kullback和Leibler在 \cite{kullbackInformationSufficiency1951} 给出，他们的是一种数理统计的思路，但是他们也具体地讨论了这一概念与信息的关系. 他们的论文中也讨论了交叉熵这一概念. 
 
-关于信息论的经典教科书，可以参见 \cite{coverElementsInformationTheory2012} ，此外，概率论的教材中也有很多很好的讨论，比如 \cite{jaynesProbabilityTheoryLogic2002}，\cite{shiryaevProbability1996} 以及\cite{LiXianPingGaiLuLunJiChu2010}.
+% 机器学习中编码器和解码器的思路，最早是由Rumelhart，Hinton和Williams在 \cite{rumelhartLearningInternalRepresentations1986} 中提出，他们将编码器和解码器的整体称作\emph{自编码器}. 这篇工作几乎可以被视为深度学习的开山之作，它还提出了训练神经网络最常用的反向传播算法.
 
-关于Kolmogorov复杂度的讨论，可以参见专著 \cite{???}，这本书对于随机、信息、编码、复杂度，乃至归纳推理等概念都有非常独到的见解，值得一读. 
+% 关于信息论的经典教科书，可以参见 \cite{coverElementsInformationTheory2012} ，此外，概率论的教材中也有很多很好的讨论，比如 \cite{jaynesProbabilityTheoryLogic2002}，\cite{shiryaevProbability1996} 以及\cite{LiXianPingGaiLuLunJiChu2010}.
+
+% 关于Kolmogorov复杂度的讨论，可以参见专著 \cite{???}，这本书对于随机、信息、编码、复杂度，乃至归纳推理等概念都有非常独到的见解，值得一读. 

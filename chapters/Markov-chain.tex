@@ -869,7 +869,7 @@ DDPM中的Markov核都是Gauss分布，具体如下：
 \end{aligned}
 \]
 
-可以证明（见\Cref{chap:information-theory}的习题\lhysays{TODO}），$L$可以被写作：
+可以证明（见\Cref{chap:information-theory}的习题 \ref{exercise:diffusion-model-loss}），$L$可以被写作：
 \[
 \begin{aligned}
     \E_q[&\underbrace{D_{\KL}\left(q\left(x_T | x_0\right) \| p\left(x_T\right)\right)}_{L_T}+\\
@@ -927,7 +927,7 @@ L_{t-1}=\E_q\left[\frac{1}{2 \sigma_t^2}\norm{\tilde{\mu}_t\left(x_t, x_0\right)
 
 \section{习题}
 
-\begin{enumerate}[fullwidth]
+\begin{enumerate}[wide, labelindent=0pt]
 
     \item \label{exercise:Markov-property} 设$\{X_t\}_{t=0}^{\infty}$是一个时齐Markov链，其转移矩阵为$\mathcal P=(p(i,j))$，初始分布为$\lambda$.
     \begin{enumerate}
