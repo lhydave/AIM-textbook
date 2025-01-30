@@ -53,7 +53,7 @@ Netflix 为比赛公开了一份庞大的数据集，包含超过一亿条匿名
 
 除了使用匿名化的手段，还有一种方法可以保护隐私：不再提供单人的数据，而是直接公布将数据集的总体信息，比如平均值. 但这种方法也不一定能保证不泄露单人数据，请看下面的例子. 
 
-在\Cref{sec:language-models} 中我们介绍过，要训练一个生成式语言模型（例如ChatGPT），需要大量的文本数据. 这些文本数据通常都是公司的机密，我们不得而知. 然而，我们可以用很简单的手段来推测这些数据. 
+在\Cref{sec:language-models}中我们介绍过，要训练一个生成式语言模型（例如ChatGPT），需要大量的文本数据. 这些文本数据通常都是公司的机密，我们不得而知. 然而，我们可以用很简单的手段来推测这些数据. 
 
 2023年12月27日，《纽约时报》因版权侵犯问题对OpenAI和微软提起诉讼. 该报指控这两家公司在训练其自动聊天机器人（即ChatGPT）时，未经许可使用了数百万篇《纽约时报》的文章. 这些聊天机器人如今被视为可信的信息来源，并与《纽约时报》等新闻机构展开了直接竞争. 
 
@@ -397,7 +397,7 @@ RR算法是如何实现差分隐私的呢？最重要的一步是，它把真实
 我们称具有这一密度的分布为\emph{Laplace分布}，记为$\mathsf{Lap}(\mu,\lambda)$.
 \end{definition}
 
-Laplace分布是服从双边指数分布的随机变量进行线性变换后服从的分布. 具体来说，设$X\sim\mathsf{DExp}(1)$，那么$\lambda X+\mu\sim\mathsf{Lap}(\mu,\lambda)$. 更多关于Laplace分布的性质，我们留做习题. \lhysays{习题}
+Laplace分布是服从双边指数分布的随机变量进行线性变换后服从的分布. 具体来说，设$X\sim\mathsf{DExp}(1)$，那么$\lambda X+\mu\sim\mathsf{Lap}(\mu,\lambda)$. 更多关于Laplace分布的性质，我们留做习题 \ref{exercise:laplace}.
 
 下面我们来陈述Laplace机制.
 
@@ -480,12 +480,12 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\emph{Lloy
 \end{itemize}
 
 简单来说，我们对原来Llyod算法中产生的中间值都是用Laplace机制来加噪声，最终得到的中心也是加了噪声的. 以下定理表明上面的算法确实是一个$\epsilon$-DP算法. 
-\begin{theorem}
+\begin{theorem}\label{thm:lloyd}
     DP 版本的 Lloyd算法是$\epsilon$-DP算法.
 \end{theorem}
 
 \begin{proof}[证明概要]
-我们只在这里陈述证明的大致想法，将细节留到习题\lhysays{习题}.
+我们只在这里陈述证明的大致想法，将细节留到习题 \ref{exercise:lloyd}.
 
 首先，作为一个迭代算法，我们可以把每轮迭代看成一次算法$A_t$的执行，而整个算法是这些算法的复合，整个算法一共有$T$次复合. 由\Cref{prop:composition-multi}，我们只需要证明每一轮迭代是$(\epsilon/T)$-DP算法，那么整个算法就是$\epsilon$-DP算法.
 
@@ -494,4 +494,68 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\emph{Lloy
 
 \section{习题}
 
-\section{章末注记}
+\begin{enumerate}[wide, labelindent=0pt]
+    \item \label{exercise:laplace} 关于双指数分布和Laplace分布，请完成下面的习题. 
+    \begin{enumerate}
+        \item 设$X\sim\mathrm{DExp(1)}=\mathrm{Lap}(0, 1)$，即它有密度函数$e^{-|x|}/2$. 设$\mu\in\R$，$\lambda>0$.设$Y=\lambda X+\mu$，证明$Y\sim\mathrm{Lap}(\mu,\lambda)$，求$Y$的期望和方差.
+        \item 设$X, Y \text{ i.i.d}\sim U(0, 1)$，证明：$\log(X/Y) \sim \mathrm{DExp}(1)=\mathrm{Lap}(0, 1)$. 如果$X,Y$不独立，结论还成立吗？
+    \end{enumerate}
+
+    \item \label{exercise:lloyd} 证明\Cref{thm:lloyd}.
+    
+    \item 现考虑输出为$d$维的算法$f: \mathcal X^n \to  \R^d$，定义其全局灵敏度为
+    \begin{align*}
+        \mathsf{GS}_f :=& \sup_{ x,  x' \text{ 在 }\mathcal X^n\text{ 中的$1$-相邻}} \norm{f( x) - f( x')}_1\\
+        =& \sup_{ x,  x' \text{ 在 }\mathcal X^n\text{ 中的$1$-相邻}} \sum_{i=1}^d |f_i( x) - f_i( x')|.
+    \end{align*}
+    请写出这种情况下的Laplace机制，使其成为$\epsilon$-DP，并证明.
+
+    \item 设输出为$d$维的算法$f( x) = (\sum_{i=1}^n \Phi_1( x_i), \dots, \sum_{i=1}^n \Phi_d( x_i))$， $x_i\in\mathcal X$，满足$\Phi_j(\mathcal X)=\{0, 1\}$以及$\sum_{j=1}^d \Phi_j( x_i) = 1$. 请计算$\text{GS}_f$.
+    
+    \item 差分隐私和基于信息论的度量有着密切的联系. 对于一个包含$n$个（带随机性的）数据条目$\mathcal X^n = (\mathcal X_1, \cdots, \mathcal X_n)$ 的数据，考虑一个随机算法$M:\mathcal X^n\to \mathcal Y$，输出$Y$的概率分布为$P_{\mathcal Y|\mathcal X^n}$. 我们引入以下概念：
+    \begin{itemize}
+        \item \textbf{互信息差分隐私. }如果算法$M$满足下面的不等式，就称$M$是一个$\epsilon$-MI-DP：
+        \[
+            \sup_{i, P_{\mathcal X^n}} I(\mathcal X_i; \mathcal Y|\mathcal X_{-i}) \leq \epsilon.
+        \]
+        其中 $\mathcal X_{-i} = \{\mathcal X_1, \cdots, \mathcal X_{i-1}, \mathcal X_{i+1}, \cdots, \mathcal X_n\}$ 表示除了 $\mathcal X_i$ 之外的所有数据条目.
+        \item \textbf{KL散度差分隐私. }如果对于所有相邻的数据集 $x$ 和 $\tilde{x}$，算法$M$满足下面的不等式，就称$M$是一个$\epsilon$-KL-DP：
+        \[
+            D_{\KL}(P_{\mathcal Y|\mathcal X^n=x}\| P_{\mathcal Y|\mathcal X^n=\tilde{x}}) \leq e^\epsilon.
+        \]
+    \end{itemize}
+
+    证明下列不等式链:
+    \[
+        \epsilon\text{-DP} \succeq \epsilon\text{-KL-DP} \succeq \epsilon\text{-MI-DP}.
+    \]
+    其中 $\succeq$ 表示"不严格地更强"，即满足左侧的差分隐私机制也满足右侧的差分隐私机制.
+
+    \item 本题讨论差分隐私的其他形式. 差分隐私实际上使用了如下不等式作为定义：
+    \[\Pr(A(x)\in E) \leq e^{\epsilon} \Pr(A(x') \in E).\]
+    即乘性不等式，而不是下面的加性不等式：
+    \[\Pr(A(x)\in E) \leq \Pr(A(x') \in E) + \epsilon.\]
+    除了数学上的简洁优美，我们没有理由说乘性不等式比加性不等式更好. 因此，我们可以定义一种$(\epsilon, \delta)$-DP，它要求
+    \[
+    \Pr(A(x)\in E) \leq e^{\epsilon} \Pr(A(x') \in E) + \delta.
+    \]
+    在这种定义中，乘性和加性都体现了出来. 
+    
+    对于两个$1$-相邻数据集$X$和$X'$，输出$y \in \mathcal Y$和随机算法$A$，我们定义随机算法$A$的\emph{隐私损失}为：
+    \[
+        c_A(y,  X, X') := \log \frac{\Pr(A( X) = y)}{\Pr(A( X') = y)}.
+    \]
+    证明：随机算法$A$是$(\epsilon, \delta)$-DP的一个充分条件是其隐私损失满足：
+    \[
+        \Pr(c_A(y,  X,  X') > \epsilon) \leq \delta.
+    \]
+
+    \item 本题讨论差分隐私对个体效用期望的影响. 设$u_i: \mathcal{Y} \to \R_{\geq 0}$为算法输出对第$i$个个体的非负效用映射（即对任意$y \in \mathcal{Y}$，$u_i(y) \geq 0$）. 假设随机算法$A$满足$\epsilon$-差分隐私. 证明：对于任意相邻数据集$x$和$x'$，有  
+    \[
+    \E_{y \sim A(x)}[u_i(y)] \leq \e^{\epsilon} \E_{y \sim A(x')}[u_i(y)].
+    \]  
+    即，差分隐私算法保证了个体效用的期望变动被限制在$\e^{\epsilon}$倍以内，从而约束了通过操纵数据对自身效用的显著影响. 因此，差分隐私是一个“几乎诚实”的机制. 
+
+\end{enumerate}
+
+% \section{章末注记}
