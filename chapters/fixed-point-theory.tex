@@ -1,23 +1,23 @@
 \chapter{不动点理论}\label{chap:fixed-point-theory}
 
-如果有一个长满毛发的球体，你能够把它所有的毛发都梳理平顺吗？做个实验就会发现，这好像是做不到的，总会有一根毛发直立不倒，或某个地方没有毛发覆盖. 实际上，早在1912年，Brouwer就从数学上严格证明了上述现象，我们现在称之为\emph{毛球定理}.
+如果有一个长满毛发的球体，你能够把它所有的毛发都梳理平顺吗？做个实验就会发现，这好像是做不到的，总会有一根毛发直立不倒，或某个地方没有毛发覆盖. 实际上，早在1912年，Brouwer就从数学上严格证明了上述现象，我们现在称之为\textit{毛球定理}.
 
 你是否在大型商场或者公园里经常看到“您在此处”的地图标识牌？为什么可以有这样的标识，它真的表明了你的位置吗？
 
 你是否相信，地球上有两个地方，它们分别位于地球的对径点，并且温度和湿度完全相同？
 
-这些问题看似毫无关联，但它们都有一个共同的数学背景：\emph{不动点理论}.
+这些问题看似毫无关联，但它们都有一个共同的数学背景：\textit{不动点理论}.
 
 不动点的定义是非常直接的，考虑一个集合$X$以及它到自身的映射$f:X\to X$，元素$a\in X$称为映射$f:X\to X$的\textbf{不动点}，如果$f(a)=a$. 
 
 除了生活中，不动点理论对于优化来说也是非常重要的. 考虑优化算法$A$，它在函数$f$上的的收敛性如何？算法运行所产生的点列记为$\{x_n\}$，它满足
 \[x_{n+1}=A(x_n).\] 
 
-如果关注序列$x_n$本身，要分析收敛性，我们需要通过寻找不同量之间的联系，比如$f(x_n)$和$f(x_{n+1})$之间的关系. 在数学中，这样的思路被归类到了\emph{数学分析}中.  
+如果关注序列$x_n$本身，要分析收敛性，我们需要通过寻找不同量之间的联系，比如$f(x_n)$和$f(x_{n+1})$之间的关系. 在数学中，这样的思路被归类到了\textit{数学分析}中.  
 
-一种更为抽象的做法是，我们直接看算法$A$本身的性质. 此时，要想说明$A$收敛，我们要说明$A$有一个“吸收点”，即不管从何处出发，经过若干次迭代，都会收敛到这个点附近. 这样的思路是更加现代的数学方法，它被归类到了\emph{算子法}和\emph{泛函分析}中. 
+一种更为抽象的做法是，我们直接看算法$A$本身的性质. 此时，要想说明$A$收敛，我们要说明$A$有一个“吸收点”，即不管从何处出发，经过若干次迭代，都会收敛到这个点附近. 这样的思路是更加现代的数学方法，它被归类到了\textit{算子法}和\textit{泛函分析}中. 
 
-我们将看到，从算子的角度来理解收敛性，最终问题就归结到了\emph{不动点理论}. 本章将介绍两种不动点存在性定理，并介绍他们的应用.
+我们将看到，从算子的角度来理解收敛性，最终问题就归结到了\textit{不动点理论}. 本章将介绍两种不动点存在性定理，并介绍他们的应用.
 
 \section{Banach不动点定理}
 
@@ -39,8 +39,8 @@
 
 度量是一个非常直观的概念. 实际上，它就是Euclid空间中“距离”概念的抽象化. 
 
-下面，我们不加证明地给出一些度量的例子，他们的证明见习题\lhysays{出一下}.
-\begin{example}
+下面，我们不加证明地给出一些度量的例子，他们的证明见习题 \ref{exercise:metric}.
+\begin{example}\label{ex:metric}
     考虑实数集$\R$，要成为度量空间，可以装备以下度量：
     \begin{itemize}
             \item 平凡的离散度量：$\forall x_1\neq x_2\ d(x_1,x_2)\equiv 1, d(x,x)=0$. 
@@ -98,8 +98,8 @@
     因此$\{x_n\}$是Cauchy列.
 \end{proof}
 
-下面，我们不加证明地给出一些完备度量空间的例子，证明见习题\lhysays{出一下}.
-\begin{example}
+下面，我们不加证明地给出一些完备度量空间的例子，证明见习题 \ref{exercise:complete-metric-space}.
+\begin{example}\label{ex:complete-metric-space}
 \begin{itemize}
 \item $L^p$度量下下$\R^n$是完备的.
 \item 使用度量$d(x_1,x_2)=|x_1-x_2|$，则$X=\R\setminus\{0\}$不是完备度量空间. 考虑
@@ -112,7 +112,7 @@
 \end{itemize}
 \end{example}
 
-特别注意最后一个例子，我们这里给出了一类抽象的度量空间：它的元素是函数. 这类空间是\emph{泛函分析}中最主要的研究对象，它关注的不再是函数局部的性质，而是整体上研究函数之间的关系.
+特别注意最后一个例子，我们这里给出了一类抽象的度量空间：它的元素是函数. 这类空间是\textit{泛函分析}中最主要的研究对象，它关注的不再是函数局部的性质，而是整体上研究函数之间的关系.
 
 有了度量的概念，我们就可以研究两个度量空间之间映射的性质：连续性. 
 
@@ -191,9 +191,9 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\cdots+d(x_{n+k-1},x_{n+k})\\
 \[d(a,x_n)\leq \frac{q^n}{1-q}d(x_1,x_0).\]
 \end{proof}
 
-在进入应用之前，我们指出压缩映射在\emph{算子法}中的表述，这一部分的系统讨论需要线性代数的知识，请参阅\Cref{chap:linear-algebra}. 我们这里只做一个简单介绍. 
+在进入应用之前，我们指出压缩映射在\textit{算子法}中的表述，这一部分的系统讨论需要线性代数的知识，请参阅\Cref{chap:linear-algebra}. 我们这里只做一个简单介绍. 
 
-首先，如果我们把压缩映射$f$看成一个算子$\mathcal A$，即把$X$中的元素变换到$X$中的元素，那么我们可以定义这一算子的\emph{范数}：
+首先，如果我们把压缩映射$f$看成一个算子$\mathcal A$，即把$X$中的元素变换到$X$中的元素，那么我们可以定义这一算子的\textit{范数}：
 
 \begin{definition}[算子范数]
     设$X=\R^n$，对于算子$\mathcal A:X\to X$，它的\textbf{范数}定义为
@@ -304,7 +304,7 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\cdots+d(x_{n+k-1},x_{n+k})\\
 \end{theorem}
 这里，有界的意思就是，存在一个半径$R$，使得$K$包含在半径为$R$的球内. 
 
-注意，\Cref{thm:compact-set-iff-bounded-closed} 只在$\R^n$中成立，对于一般的度量空间，紧集和有界闭集不一定等价（见习题\lhysays{出一下}）.
+注意，\Cref{thm:compact-set-iff-bounded-closed} 只在$\R^n$中成立，对于一般的度量空间，紧集和有界闭集不一定等价（见习题 \ref{exercise:compact-not-bounded-closed}）。
 
 有了上面的准备，我们就可以叙述Brouwer不动点定理了：
 
@@ -444,8 +444,25 @@ Brouwer不动点定理可以通过该实际的例子来理解：将一张白纸�
 
 \section{习题}
 
-\lhysays{TODO}
+\begin{enumerate}[wide, labelindent=0pt]
+    \item \label{exercise:metric} 验证\Cref{ex:metric} 中的都是度量。
+    \item \label{exercise:complete-metric-space} 验证\Cref{ex:complete-metric-space} 中的都是完备度量空间。
+    \item \label{exercise:compact-not-bounded-closed} 考虑空间
+    \[\ell^2(\R)=\left\{a=(a_1,a_2,\dots)\in\R^{\infty}:\norm{a}_2=\sum_{i}a_i^2<+\infty\right\}.\]
+    定义向量$e_i=(0,\dots,0,1_i,0,\dots)$，即第$i$位为$1$、其他位为$0$的单位向量。考虑集合$C=\{e_1,e_2,\dots\}$是这些单位向量的集合。证明：
+    \begin{enumerate}
+        \item $C$是有界闭集。
+        \item 对任意不同的$x,y\in C$，$\norm{x-y}_2=\sqrt{2}$，因此$C$不存在任何收敛子列。
+        \item 证明：度量空间中，集合$F$是紧集等价于$F$中的任意无穷点列都有收敛子列。由此证明，$C$不是紧集。
+    \end{enumerate}
 
-\section{章末注记}
+    \item \textbf{MDP解的存在性.} 用Banach不动点定理证明MDP解的存在性.
+    \begin{hint}
+    根据Bellman方程
+    \[
+    V(s) = \max_a R(s, a) + \gamma \sum_{s' \in S} \Pr(s' | s, a) V(s')
+    \]
+    构造压缩映射.
+    \end{hint}
 
-\lhysays{TODO}
+\end{enumerate}
