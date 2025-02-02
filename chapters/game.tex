@@ -133,7 +133,7 @@
 \begin{theorem}[Zermelo定理, Von Neumann]\label{thm:zermelo}
 如果一个博弈是双人的、有限深的、确定的、完全信息的、输赢的，那么这个博弈是被决定的.
 \end{theorem}
-以上限定词缺一不可，缺少了任何一个都可能导致结论不成立.
+以上限定词缺一不可，缺少了任何一个都导致结论不成立，见习题 \ref{exercise:zermelo-fail}.
 
 \begin{proof}[证明一：逻辑证明]
 设$W_i$表示“玩家$i$获胜”, $i=1,2$. 于是$x\in W_1\iff x\not\in W_2$.
@@ -170,9 +170,9 @@
     \item 双方都有不败策略.
 \end{itemize}
 \end{theorem}
-证明见习题\lhysays{TODO}. 
+证明见习题 \ref{exercise:zermelo-draw}.
 
-尽管Zermelo定理的第二个证明构造出了必胜策略，但是后向归纳法的搜索空间过于庞大. 例如，充分大但有限的棋盘上，五子棋先手玩家存在不败策略（见习题\lhysays{TODO}），但是没有经过训练的人类或者简单的算法先手不一定会胜利. 
+尽管Zermelo定理的第二个证明构造出了必胜策略，但是后向归纳法的搜索空间过于庞大. 例如，充分大但有限的棋盘上，五子棋先手玩家存在不败策略（见习题 \ref{exercise:gomoku}），但是没有经过训练的人类或者简单的算法先手不一定会胜利. 
 
 究其原因，人的思考以及机器搜索的过程实际上是前向探索的过程. 如何进行（启发式）搜索是取得胜利重要的因素. 在本章开头，我们讲述了AlphaGo的故事，这是正是一个很好的例子. 下面我们就如何对围棋进行建模进行讨论.
 
@@ -376,28 +376,35 @@ s=(s_i)_{i\in I}.
 我们现在验证，这个博弈没有纯策略Nash均衡. 如果行玩家选择第一行，那么列玩家的最优反应是第二列，然而，此时行玩家的最优反应是第二行；而行玩家选择第二行的情况类似. 因此，无论如何选，最优反应都不可能形成一个不动点（即均衡）.
 
 更一般地，二人正则形式输赢博弈中纯策略Nash均衡往往不存在. 我们有如下定理：
-\begin{theorem}
+\begin{theorem}\label{thm:zero-sum-pure-NE}
 设$G=(I,\{A_i\}_{i\in I}, \{u_i\}_{i\in I})$是一个二人正则形式输赢博弈，其中$I=\{1,2\}$. 那么，$G$存在纯策略Nash均衡当且仅当其中一个玩家存在必胜策略. % HW：证明这个定理的矩阵博弈形式
 \end{theorem}
-证明见习题\lhysays{TODO}.
+证明见习题 \ref{exercise:zero-sum-pure-NE}.
 
 对比动态博弈中的Zermelo定理，静态的二人完全信息输赢博弈已经不能够保证必胜策略的存在性. 因此，静态输赢博弈的结局往往比动态输赢博弈更加不确定.
 
 
 \subsection{生成对抗网络}
 
-接下来，我们给一个连续博弈的例子，即\textit{生成对抗网络}（GAN）. 生成对抗网络由两个子模型组成，一个被称为\textit{生成模型}，一个被称为\textit{判别模型}. 生成模型的任务是生成看似真实的数据，而判别模型的任务是识别给定的数据是真实的还是伪造的. 这一过程的示意见图\Cref{???}\lhysays{画一下}.
+接下来，我们给一个连续博弈的例子，即\textit{生成对抗网络}（GAN）. 生成对抗网络由两个子模型组成，一个被称为\textit{生成模型}，一个被称为\textit{判别模型}. 生成模型的任务是生成看似真实的数据，而判别模型的任务是识别给定的数据是真实的还是伪造的. 这一过程的示意见\Cref{fig:GAN}.
 
-假设真实数据的分布为$F_{data}$. 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/game/gan.pdf}
+    \caption{生成对抗网络的示意图}
+\label{fig:GAN}
+\end{figure}
+
+假设真实数据的分布为$F_{\text{data}}$. 
 \begin{itemize}
     \item 生成模型为$G(x;\theta_g)$，参数为$\theta_g$，输入随机向量$x$，输出数据向量$z$. 当$x$服从分布$F_x$，$G$的输出会形成一个分布$F_g$. 
-    \item 判别模型为$D(z;\theta_d)$，参数为$\theta_d$，接受一个数据向量$z$，输出一个$[0,1]$中的实数，表示$z$来自分布$F_{data}$的概率（似然）.
+    \item 判别模型为$D(z;\theta_d)$，参数为$\theta_d$，接受一个数据向量$z$，输出一个$[0,1]$中的实数，表示$z$来自分布$F_{\text{data}}$的概率（似然）.
 \end{itemize}
-我们假设$F_{data}$和$F_x$都是连续型分布，有密度函数$p_{data}$和$p_x$. 我们再假设$D$和$G$都是连续的.
+我们假设$F_{\text{data}}$和$F_x$都是连续型分布，有密度函数$p_{\text{data}}$和$p_x$. 我们再假设$D$和$G$都是连续的.
 
 将$G$和$D$看成两个玩家，于是GAN可以被看成一个二人零和博弈，收益函数为：
     \[
-        V(G,D)=\E_{z\sim F_{data}}(\log D(z))+\E_{x\sim F_x}(\log(1-D(G(x)))).
+        V(G,D)=\E_{z\sim F_{\text{data}}}(\log D(z))+\E_{x\sim F_x}(\log(1-D(G(x)))).
     \]
 $D$最大化$V$，$G$最小化$V$.
 
@@ -422,13 +429,13 @@ $D$最大化$V$，$G$最小化$V$.
 因此，$G$的行动等价于选择$p_g$.
 
 给定$G$的选择$p_g$，我们来求$D$的最优反应$D^*$.
-    \[V(G,D)=\int (p_{data}(x)\log D(x)+p_g(x)\log(1-D(x)))\d x.\]
+    \[V(G,D)=\int (p_{\text{data}}(x)\log D(x)+p_g(x)\log(1-D(x)))\d x.\]
 函数$a\log x+b\log(1-x)$最大值在$x=a/(a+b)$的时候取得. 因此，
-    \[D^*(x)=\frac{p_{data}(x)}{p_{data}(x)+p_g(x)}.\]
+    \[D^*(x)=\frac{p_{\text{data}}(x)}{p_{\text{data}}(x)+p_g(x)}.\]
     
-现在，给定最优反应$D^*=p_{data}(x)/(p_{data}(x)+p_g(x))$，我们来求$G$的最优反应. 直观上，$G$能做到的最好选择就是$p_g=p_{data}$. 此时，$D^*(x)=1/2$，因此对任意$G$，$V(G,D^*)=-\log 4$. $G$选任何策略都是一样的收益，因此这是一个Nash均衡. 我们证明了：
+现在，给定最优反应$D^*=p_{\text{data}}(x)/(p_{\text{data}}(x)+p_g(x))$，我们来求$G$的最优反应. 直观上，$G$能做到的最好选择就是$p_g=p_{\text{data}}$. 此时，$D^*(x)=1/2$，因此对任意$G$，$V(G,D^*)=-\log 4$. $G$选任何策略都是一样的收益，因此这是一个Nash均衡. 我们证明了：
 \begin{theorem}[GAN的Nash均衡存在性]
-在GAN的博弈中，$G$选择$p_{data}$，$D$选择$1/2$是一个Nash均衡.
+在GAN的博弈中，$G$选择$p_{\text{data}}$，$D$选择$1/2$是一个Nash均衡.
 \end{theorem}
 
 \subsection{混合策略}\label{sec:mixed-strategy}
@@ -524,7 +531,7 @@ $D$最大化$V$，$G$最小化$V$.
 如此，我们证明了猜硬币游戏的唯一Nash均衡是双方都选择$(1/2,1/2)^\t$.
 \end{example}
 
-在上面的例子中，我们实际上得到了一个非常重要的结论：Nash均衡具有\textit{无差别原理}，它说明，Nash均衡中出现的那些行动一定都是取到了最大收益的行动. 这一原理可以被用来求解任意二人博弈的Nash均衡（见习题\lhysays{TODO}）.
+在上面的例子中，我们实际上得到了一个非常重要的结论：Nash均衡具有\textit{无差别原理}，它说明，Nash均衡中出现的那些行动一定都是取到了最大收益的行动. 这一原理可以被用来求解任意二人博弈的Nash均衡。这一原理的证明和应用见习题 \ref{exercise:indifference-principle}。
 
 \begin{theorem}[无差别原理]\label{thm:indifference-principle}
 考虑一个正则形式博弈$G=(I,\{A_i\}_{i\in I},\{u_i\}_{i\in I})$，其中$I$是玩家集合，$A_i$是玩家$i$的行动空间，$u_i$是玩家$i$的收益函数. 如果$\sigma^*$是一个Nash均衡，那么对于任意玩家$i$和任意$a_i,a_i'$满足
@@ -636,7 +643,7 @@ MDP的目标是找到一个策略 $\pi$，使得在该策略下可以获得最�
 \[(X_1,X_2,\dots,X_n)\stackrel{d}{=} (X_{k+1},X_{k+2},\dots,X_{k+n}),\]
 这个等号的意思是两边的联合分布相同. 这时我们称$X_1,X_2,\dots$是一个\textit{平稳过程}.
 
-实际上，平稳策略这一词正来源于此. 我们现在说明更强的结论，即平稳策略组合其实诱导了一个Markov链. 假设玩家采用平稳策略$\boldsymbol \pi$，$s^0,s^1,\dots$是一个随机博弈的状态序列，那么容易证明$\{s^t\}_{t=0}^{\infty}$是一个时齐Markov链（见习题\lhysays{TODO}），转移概率可以表示为
+实际上，平稳策略这一词正来源于此. 我们现在说明更强的结论，即平稳策略组合其实诱导了一个Markov链. 假设玩家采用平稳策略$\boldsymbol \pi$，$s^0,s^1,\dots$是一个随机博弈的状态序列，那么容易证明$\{s^t\}_{t=0}^{\infty}$是一个时齐Markov链（见习题 \ref{exercise:state-sequence-Markov}），转移概率可以表示为
 \[\calP^{(\boldsymbol \pi)}(s'|s)=\E_{\boldsymbol a\sim \boldsymbol \pi(s)}[\calP(s'|s,\boldsymbol a)].\]
 因此，从这个视角来看，随机博弈就是在Markov链上进行的博弈，因此有时被称为\textit{Markov博弈}.
 
@@ -657,10 +664,10 @@ MDP的目标是找到一个策略 $\pi$，使得在该策略下可以获得最�
 
 与MDP类似，价值函数也满足Bellman方程：
 
-\begin{theorem}[Bellman方程]
+\begin{theorem}[Bellman方程]\label{thm:stochastic-game-bellman}
         \[V_i^{\boldsymbol \pi}(s) = Q_i(\boldsymbol \pi(s);s) + \gamma \sum_{s'\in \calS} \calP^{\boldsymbol\pi}(s'|s)V_i^{\boldsymbol \pi}(s').\]
 \end{theorem}
-证明见习题\lhysays{TODO}.
+证明见习题 \ref{exercise:stochastic-game-bellman}.
 
 有了理性的定义，我们可以自然地引入最优反应的概念：
 
@@ -678,11 +685,11 @@ MDP的目标是找到一个策略 $\pi$，使得在该策略下可以获得最�
 
 同样，MPE也可以被看作是最优反应的不动点. 类似Nash均衡的存在性定理，我们有如下的定理：
 
-\begin{theorem}
+\begin{theorem}[MPE存在性定理]\label{thm:MPE-existence}
 对于$N$个玩家、有限状态、有限动作空间的随机博弈，MPE存在.
 \end{theorem}
 
-下面我们介绍Shapley关于双人零和随机博弈情形的证明，这一证明基于Banach不动点定理（\Cref{thm:banach-fixed-point}）. 对于一般的情况，可以类似Nash均衡存在性，利用Brouwer不动点定理证明，见习题\lhysays{TODO}.
+下面我们介绍Shapley关于双人零和随机博弈情形的证明，这一证明基于Banach不动点定理（\Cref{thm:banach-fixed-point}）. 对于一般的情况，可以类似Nash均衡存在性，利用Brouwer不动点定理证明，见习题 \ref{exercise:proof-MPE-existence}.
 
 在双人零和的语境下，我们去掉收益函数$Q$的下标$i$，玩家$2$的收益函数是$-Q$. 注意，价值函数满足Bellman方程：
     \[V^{\boldsymbol \pi}(s) = Q(\boldsymbol \pi(s);s) + \gamma \sum_{s'\in \calS} \calP^{\boldsymbol\pi}(s'|s)V^{\boldsymbol \pi}(s').\]
@@ -696,7 +703,7 @@ Bellman方程的左右是同一个$V$，此时是不动点方程，因此，只�
     \[R_s(\alpha)(a_1,a_2) = Q(a_1,a_2;s) + \gamma \sum_{s'\in \calS}\calP(s'|a_1,a_2,s)\alpha(s').\]
     其中$a_1\in \mathcal A_1, a_2\in \mathcal A_2$.
     
-    如此，我们形成了一个矩阵零和博弈，玩家$1$的收益矩阵是$R_s(\alpha)$，玩家$2$的收益矩阵是$-R_s(\alpha)$. 注意，根据习题\lhysays{TODO}，玩家$1$在Nash均衡时候的收益是确定的一个值，记为$\val(R_s(\alpha))$.
+    如此，我们形成了一个矩阵零和博弈，玩家$1$的收益矩阵是$R_s(\alpha)$，玩家$2$的收益矩阵是$-R_s(\alpha)$. 注意，根据minimax定理（见\Cref{chap:duality}习题 \ref{exercise:minimax-theorem}），玩家$1$在Nash均衡时候的收益是确定的一个值，记为$\val(R_s(\alpha))$.
     \item 进行下一步迭代$\alpha_k(s)=\val(R_s(\alpha_{k-1}))$. 
 \end{itemize}
 
@@ -792,131 +799,55 @@ Bellman方程的左右是同一个$V$，此时是不动点方程，因此，只�
 利用多智能体强化学习，我们可以训练出极其强大的人工智能，例如，DeepMind在星际争霸2中训练出的AlphaStar就是一个例子. 通过人类数据与多智能体强化学习的自我训练，AlphaStar在星际争霸2的比赛中击败了世界冠军. 它展示了博弈论如何为人工智能的发展提供语言和训练方法. 
 
 \section{习题}
-\lhysays{TODO}
 \begin{enumerate}[wide, labelindent=0pt]
+    \item \label{exercise:zermelo-fail} Zermelo定理成立的条件是双人的、有限深的、确定的、完全信息的、输赢的博弈. 当破坏其中任何一个条件时，博弈Zermelo定理不再成立. 下面的题目都只破坏一个条件.
+    \begin{enumerate}
+        \item 写出一个非确定的但其他条件没有被破坏的博弈，要求是一个来自现实生活中的例子.
+        \item 写出一个不完全信息但其他条件没有被破坏的博弈，要求是一颗博弈树.
+    \end{enumerate}
+
+    \item \label{exercise:zermelo-draw} 证明\Cref{thm:zermelo-draw}.
+
+    \item \label{exercise:gomoku} 在充分大（但有限）的棋盘上进行五子棋，黑方先手，白方后手，对落子没有限制，只要有空格就可以落子，首先下出连续五个同色子的玩家获胜（横向、纵向或者两个斜对角线向都可以），如果棋盘被下满还没有人获胜，则双方平局. 证明：黑方有不败策略，即黑方有一种策略，不论对手如何行动，都使得要么黑方获胜要么平局.
+    
+    \item 对于一个MDP问题，不同于围棋等游戏，它只有一个玩家，但是我们依然可以利用AlphaGo Zero的架构来解决这个问题，请简要说明如何实现这个方法. 进一步，这种实现和二人输赢博弈有什么异同？
+    
+    \item *请查阅资料，回答以下关于输赢博弈的问题。
+    \begin{enumerate}
+        \item 如何衡量一个输赢博弈比另一个输赢博弈更复杂？
+        \item 在输赢博弈中，表示完整策略需要多少比特？AlphaGo Zero可以衡量多复杂的策略？
+    \end{enumerate}
+    
+    \item *请查阅资料，了解对话逻辑（dialogical logic）的相关内容，回答以下问题。
+    \begin{enumerate}
+        \item 对话逻辑和博弈论有什么联系？Zermelo定理能够得出什么样的结论？
+        \item 对话逻辑与现在的对话型生成式语言模型有什么联系？
+    \end{enumerate}
+    
+    \item \label{exercise:zero-sum-pure-NE} 设$G=(I,\{A_i\}_{i\in I}, \{u_i\}_{i\in I})$是一个二人正则输赢博弈，其中$I=\{1,2\}$，$A_i$是有限集合，$u_i(\cdot)\in\{0,1\}$，$u_1+u_2=1$.
+    \begin{enumerate}
+        \item 写出玩家$i$存在必胜策略的定义.
+        \item 证明：$G$存在纯策略Nash均衡当且仅当其中一个玩家存在必胜策略，从而证明\Cref{thm:zero-sum-pure-NE}.
+    \end{enumerate}
+
     \item \label{exercise:proof-Nash-existence} 使用Brouwer不动点定理证明\Cref{thm:Nash-existence}.
         \begin{hint}
         考虑混合策略空间$S$上的函数$f(\sigma) = \sigma'$的不动点，其中
         \[\sigma'(a_i) = \frac{\sigma(a_i) + \phi_{i,a_i}(\sigma)}{1+\sum_{b_i\in A_i}\phi_{i,b_i}(\sigma)},\]
         这里$\phi_{i,a_i}(\sigma)=\max\{0, u_i(a_i,\sigma_{-i})-u_i(\sigma_i,\sigma_{-i})\}$. 
         \end{hint}
+    
+    \item 考虑$A,B,C$玩家的三人正则形式博弈,每位玩家有两种选择$X,Y$. 构造一个三人博弈的有理收益矩阵，使得它有一个Nash均衡中三人选择$X$的概率都是无理数. 并求出这个均衡.
+
+    \item \label{exercise:indifference-principle} 本题讨论无差别原理。
+    \begin{enumerate}
+        \item 证明\Cref{thm:indifference-principle}.
+        \item 对有限行动空间的二人正则形式博弈，利用无差别原理给出一个求解\textit{所有}Nash均衡的算法。
+    \end{enumerate}
+
+    \item \label{exercise:state-sequence-Markov} 考虑一个随机博弈，有$N$个玩家，状态集合为$\calS$，玩家$i$的行动空间为$\mathcal A_i$，收益函数为$Q_i(\boldsymbol a;s)$，转移概率为$\calP(s'|s,\boldsymbol a)$. 假设玩家采用平稳策略$\boldsymbol \pi$，$s^0,s^1,\dots$是一个随机博弈的状态序列，证明：$\{s^t\}_{t=0}^{\infty}$是一个时齐Markov链。
+    
+    \item \label{exercise:stochastic-game-bellman} 证明\Cref{thm:stochastic-game-bellman}.
+    
+    \item *\label{exercise:proof-MPE-existence} 仿照习题 \ref{exercise:proof-Nash-existence}，使用Brouwer不动点定理证明\Cref{thm:MPE-existence}.
 \end{enumerate}
-
-
-% \lhysays{仔细讨论这部分{关于输赢博弈的讨论}
-% \begin{itemize}
-%     \item 什么叫完全理性的玩家？
-%     \item 表示完整的策略需要多少比特？
-%     \item 是否有高效的算法计算必胜策略？
-%     \item 如果博弈多方不是完全对抗的（即零和），那么是否还有必胜策略？是否有其他合理的解概念？
-% \end{itemize}}
-
-
-% 我们再看一个有趣的例子：\textit{对话博弈}. 在对话博弈中，我们可以把对命题$\phi$的辩论过程形式化为一个博弈. 博弈中有两个玩家，一个需要证明$\phi$是真的，被称为\textit{正方} $P$，一个需要说明$P$的论据是有矛盾的，它被称为\textit{反方} $O$. 两个玩家可以对命题的某个部分发起\textit{质疑}，或者对某个质疑作出\textit{辩护}. 当正方成功辩护了所有的质疑，而反方已经无法再发出新的质疑，正方获胜；否则反方获胜.
-
-% 我们以命题逻辑为例，考虑合取和蕴含. 感叹号$!$表示陈述，问号$?$表示询问. 当一个玩家$X$（$P$或者$O$）说了一个合取式，另一个玩家$Y$如果想质疑，需要询问合取中的某个部分（$L^\wedge$或$R^\wedge$）. $X$需要陈述该部分对应的命题作为辩护. 这一规则可以总结为\Cref{tab:dialogue-game-or}.
-% \begin{table}[ht]
-%     \centering
-%     \begin{tabular}{c|c|c}
-%          陈述&质疑&辩护  \\\hline
-%          $X!\varphi\wedge\psi$&$Y?L^\wedge$或$Y?R^\wedge$& 对应地，$X!\varphi$或$X!\psi$
-%     \end{tabular}
-%     \caption{对话博弈的规则：合取}
-%     \label{tab:dialogue-game-or}
-% \end{table}
-
-% 当一个玩家$X$（$P$或者$O$）说了一个蕴含式，另一个玩家$Y$如果想质疑，需要陈述前提. $X$则需要陈述结论作为辩护. 这一规则可以总结为\Cref{tab:dialogue-game-impl}.
-% \begin{table}[ht]
-%     \centering
-%     \begin{tabular}{c|c|c}
-%          陈述&质疑&辩护  \\\hline
-%          $X!\varphi\to\psi$&$Y!\varphi$&$X!\psi$
-%     \end{tabular}
-%     \caption{对话博弈的规则：蕴含}
-%     \label{tab:dialogue-game-impl}
-% \end{table}
-
-% 我们考虑一个具体的例子$(p\wedge q)\to p$. 用一个表格来表示辩论的过程，这个表格有两列，分别表示玩家$O$和$P$. 每个玩家分别有三列，$A$表示当前操作是第几步（两个玩家统一计数），$B$表示当前操作质疑的是哪一步，中间一列表示当前的操作（陈述或者询问）.
-% \[
-%     \begin{array}{|c|c|c|c|c|c|}
-%     \hline
-%         \multicolumn{3}{|c|}{O} & \multicolumn{3}{|c|}{P} \\\hline
-%         A &  & B & B & & A\\\hline\hline
-%     \end{array}
-% \]
-
-% \newcommand{\gray}{\cellcolor{gray}}
-% 玩家$P$陈述要辩论的命题.
-% \[
-%     \begin{array}{|c|c|c|c|c|c|}
-%     \hline
-%         \multicolumn{3}{|c|}{O} & \multicolumn{3}{|c|}{P} \\\hline
-%         &&&&\gray !p\wedge q\to p&\gray 0\\
-%         \hline
-%     \end{array}
-% \]
-% 玩家$O$质疑这一陈述.
-% \[
-%     \begin{array}{|c|c|c|c|c|c|}
-%     \hline
-%         \multicolumn{3}{|c|}{O} & \multicolumn{3}{|c|}{P} \\\hline
-%         &&&&!p\wedge q\to p&0\\\hline
-%         \gray 1&\gray !p\wedge q&\gray (0)&&&\\\hline
-%     \end{array}
-% \]
-% 现在又一次轮到了玩家$P$，他可以选择为蕴含式辩护，或者质疑这个合取式. 我们假设他这次选择质疑合取式，那么他需要询问左边或者右边，假设他询问了左边：
-% \[
-%     \begin{array}{|c|c|c|c|c|c|}
-%     \hline
-%         \multicolumn{3}{|c|}{O} & \multicolumn{3}{|c|}{P} \\\hline
-%         &&&&!p\wedge q\to p&0\\\hline
-%         1&!p\wedge q& (0)&&&\\\hline
-%         &&&\gray (1)&\gray ? L^\wedge &\gray 2\\\hline
-%     \end{array}
-% \]
-% 现在轮到了玩家$O$. 他已经没有别的可以进行的操作了，只能对操作$2$进行辩护.
-% \[
-%     \begin{array}{|c|c|c|c|c|c|}
-%     \hline
-%         \multicolumn{3}{|c|}{O} & \multicolumn{3}{|c|}{P} \\\hline
-%         &&&&!p\wedge q\to p&0\\\hline
-%         1&!p\wedge q& (0)&&&\\\hline
-%         \gray 3&\gray !p&\gray &(1)&? L^\wedge &2\\\hline
-%     \end{array}
-% \]
-% 现在轮到了玩家$P$. 他已经没有别的可以进行的操作了，只能对操作$1$进行辩护. 因为玩家$O$已经陈述了$p$，所以他可以用这个陈述来辩护.
-% \[
-%     \begin{array}{|c|c|c|c|c|c|}
-%     \hline
-%         \multicolumn{3}{|c|}{O} & \multicolumn{3}{|c|}{P} \\\hline
-%         &&&&!p\wedge q\to p&0\\\hline
-%         1&!p\wedge q& (0)&\gray &\gray !p&\gray 4\\\hline
-%         3&!p&&(1)&? L^\wedge &2\\\hline
-%     \end{array}
-% \]
-% 现在轮到了玩家$O$. 他已经不能操作了（没有可以质疑的，也没有可以辩护的），所以玩家$P$获胜.
-% \[
-%     \begin{array}{|c|c|c|c|c|c|}
-%     \hline
-%         \multicolumn{3}{|c|}{O} & \multicolumn{3}{|c|}{P} \\\hline
-%         &&&&!p\wedge q\to p&0\\\hline
-%         1&!p\wedge q& (0)&&!p&4\\\hline
-%         3&!p&&(1)&? L^\wedge &2\\\hline
-%     \end{array}
-% \]
-
-% 我们还可以定义否定$\neg p$相关的辩论规则，留作练习. 
-
-% 根据Zermelo定理，对话博弈一定有一人有必胜策略，我们还有更精细的定理：
-% \begin{theorem}\label{theorem:dialogue-game}
-% 考虑对命题$\phi$的对话博弈，$\phi$是重言式当且仅当正方玩家$P$有必胜策略.
-% \end{theorem}
-
-% 证明只需要考虑对$\phi$做归纳法. 实际上，我们如此规定对话博弈的规则，就是为了保证这一定理成立. 我们可以将一个命题真值的判定问题转化为玩家$P$博弈必胜策略的存在性问题，这对于一阶逻辑来说非常有用.
-
-% 思考：打破Nash均衡的假设，有没有可能得到更好的结果？
-
-% 我们刚刚的分析过于理想化，需要考虑一些问题. 首先，神经网络的大小是有限的，因此$G$不能选择任何$p_g$. 因此，我们刚刚找到的Nash均衡可能不存在. 其次，$p_{data}$是一个未知的量，我们只有一些样本. 因此，$G$和$D$都需要一个算法来找到它们的最优策略. 这就是训练GAN的过程. 
-
-\section{章末注记}
-\lhysays{TODO}
