@@ -531,7 +531,7 @@ $D$最大化$V$，$G$最小化$V$.
 如此，我们证明了猜硬币游戏的唯一Nash均衡是双方都选择$(1/2,1/2)^\t$.
 \end{example}
 
-在上面的例子中，我们实际上得到了一个非常重要的结论：Nash均衡具有\textit{无差别原理}，它说明，Nash均衡中出现的那些行动一定都是取到了最大收益的行动. 这一原理可以被用来求解任意二人博弈的Nash均衡。这一原理的证明和应用见习题 \ref{exercise:indifference-principle}。
+在上面的例子中，我们实际上得到了一个非常重要的结论：Nash均衡具有\textit{无差别原理}，它说明，Nash均衡中出现的那些行动一定都是取到了最大收益的行动. 这一原理可以被用来求解任意二人博弈的Nash均衡. 这一原理的证明和应用见习题 \ref{exercise:indifference-principle}. 
 
 \begin{theorem}[无差别原理]\label{thm:indifference-principle}
 考虑一个正则形式博弈$G=(I,\{A_i\}_{i\in I},\{u_i\}_{i\in I})$，其中$I$是玩家集合，$A_i$是玩家$i$的行动空间，$u_i$是玩家$i$的收益函数. 如果$\sigma^*$是一个Nash均衡，那么对于任意玩家$i$和任意$a_i,a_i'$满足
@@ -812,13 +812,13 @@ Bellman方程的左右是同一个$V$，此时是不动点方程，因此，只�
     
     \item 对于一个MDP问题，不同于围棋等游戏，它只有一个玩家，但是我们依然可以利用AlphaGo Zero的架构来解决这个问题，请简要说明如何实现这个方法. 进一步，这种实现和二人输赢博弈有什么异同？
     
-    \item *请查阅资料，回答以下关于输赢博弈的问题。
+    \item *请查阅资料，回答以下关于输赢博弈的问题. 
     \begin{enumerate}
         \item 如何衡量一个输赢博弈比另一个输赢博弈更复杂？
         \item 在输赢博弈中，表示完整策略需要多少比特？AlphaGo Zero可以衡量多复杂的策略？
     \end{enumerate}
     
-    \item *请查阅资料，了解对话逻辑（dialogical logic）的相关内容，回答以下问题。
+    \item *请查阅资料，了解对话逻辑（dialogical logic）的相关内容，回答以下问题. 
     \begin{enumerate}
         \item 对话逻辑和博弈论有什么联系？Zermelo定理能够得出什么样的结论？
         \item 对话逻辑与现在的对话型生成式语言模型有什么联系？
@@ -839,13 +839,13 @@ Bellman方程的左右是同一个$V$，此时是不动点方程，因此，只�
     
     \item 考虑$A,B,C$玩家的三人正则形式博弈,每位玩家有两种选择$X,Y$. 构造一个三人博弈的有理收益矩阵，使得它有一个Nash均衡中三人选择$X$的概率都是无理数. 并求出这个均衡.
 
-    \item \label{exercise:indifference-principle} 本题讨论无差别原理。
+    \item \label{exercise:indifference-principle} 本题讨论无差别原理. 
     \begin{enumerate}
         \item 证明\Cref{thm:indifference-principle}.
-        \item 对有限行动空间的二人正则形式博弈，利用无差别原理给出一个求解\textit{所有}Nash均衡的算法。
+        \item 对有限行动空间的二人正则形式博弈，利用无差别原理给出一个求解\textit{所有}Nash均衡的算法. 
     \end{enumerate}
 
-    \item \label{exercise:state-sequence-Markov} 考虑一个随机博弈，有$N$个玩家，状态集合为$\calS$，玩家$i$的行动空间为$\mathcal A_i$，收益函数为$Q_i(\boldsymbol a;s)$，转移概率为$\calP(s'|s,\boldsymbol a)$. 假设玩家采用平稳策略$\boldsymbol \pi$，$s^0,s^1,\dots$是一个随机博弈的状态序列，证明：$\{s^t\}_{t=0}^{\infty}$是一个时齐Markov链。
+    \item \label{exercise:state-sequence-Markov} 考虑一个随机博弈，有$N$个玩家，状态集合为$\calS$，玩家$i$的行动空间为$\mathcal A_i$，收益函数为$Q_i(\boldsymbol a;s)$，转移概率为$\calP(s'|s,\boldsymbol a)$. 假设玩家采用平稳策略$\boldsymbol \pi$，$s^0,s^1,\dots$是一个随机博弈的状态序列，证明：$\{s^t\}_{t=0}^{\infty}$是一个时齐Markov链. 
     
     \item \label{exercise:stochastic-game-bellman} 证明\Cref{thm:stochastic-game-bellman}.
     

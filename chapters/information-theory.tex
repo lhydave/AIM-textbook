@@ -591,7 +591,7 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
     
     \item 对任意离散随机变量$X$和函数$f$，证明：$H(X)\geq H(f(X))$.
     
-    \item \textbf{Pinsker不等式。}设$P$和$Q$是$\Omega$上的两个离散概率分布，证明
+    \item \textbf{Pinsker不等式. }设$P$和$Q$是$\Omega$上的两个离散概率分布，证明
     \[
         D_\KL(P\Vert Q) \geq \frac{1}{2} \left(\sum_{x\in \Omega} |p(x) - q(x)|\right)^2.
     \]
@@ -606,7 +606,7 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
         \]
     \end{hint}
 
-    \item \label{exercise:cross-entropy-maximum-likelihood} \textbf{最大似然估计等价于最小化交叉熵。}考虑二分类的学习问题，此时对单个样本我们观察到的结果是$0$或$1$，样本总体服从服从Bernoulli 分布，假设真实参数为$p$， $\Pr(X=1)=1-\Pr(X=0)=p$，模型参数为 $\theta$，假设数据集是 $x_1,\dots,x_N$, 他们是从总体中独立采样得到的.
+    \item \label{exercise:cross-entropy-maximum-likelihood} \textbf{最大似然估计等价于最小化交叉熵. }考虑二分类的学习问题，此时对单个样本我们观察到的结果是$0$或$1$，样本总体服从服从Bernoulli 分布，假设真实参数为$p$， $\Pr(X=1)=1-\Pr(X=0)=p$，模型参数为 $\theta$，假设数据集是 $x_1,\dots,x_N$, 他们是从总体中独立采样得到的.
     \begin{enumerate}
         \item 将问题考虑成一个数理统计问题, 估计 $\theta$. 写出似然函数 
         \[L(\theta ; x_1, \ldots, x_N).\]
@@ -661,18 +661,3 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
     \end{enumerate}
     
 \end{enumerate}
-
-% \section{章末注记}
-% 信息一词的英文是“information”，从动词“inform”来，意思是告知、通知. 早在15世纪中叶，“information”一词的出现了义项“在通信中针对特定主题的知识”.\cite{InformationEtymologyOrigin} 这说明在那个时候人类就已经意识到，通信会产生新的东西，被称为知识或信息. 然而，人类对信息的严谨探索起步晚得多. 关于信息的物理学讨论源自统计力学，Boltzmann提出了著名的熵，证明了H定理，以此给出了热力学第二定律的微观解释. 关于Boltzmann的工作，参见 \cite{uffinkBoltzmannWorkStatistical2022}. 
-
-% 一般认为，现代信息论的起源是Shannon的论文 \cite{shannonMathematicalTheoryCommunication1948}，他在论文中提出了信息的数学定义，以及信息的基本性质. 但是，Shannon的工作并不是孤立的，他的工作是在统计力学的基础上发展起来的. 事实上，Shannon在论文中也提到了Boltzmann的熵. 这篇工作也被视为通信理论以及编码理论的奠基性工作.  Shannon在这篇论文中还给出了渐近意义下达到理论下界的最优编码，并且独立地被Fano \cite{robertm.fanoTransmissionInformation1949} 以一种不同的形式发现，因此后世称为Shannon-Fano编码. 但是Shannon-Fano编码并不是精确地达到下界，实际上，最优编码是Huffman \cite{huffmanMethodConstructionMinimumRedundancy1952} 给出的. Shannon在这篇论文中还讨论了渐近等分性，后来MciMillan的工作 \cite{mcmillanBasicTheoremsInformation1953} 和 Breiman的工作 \cite{breimanIndividualErgodicTheorem1957} 拓展了这一结果，因此后世称为Shannon-McMillan-Breiman定理. 
-
-% 关于信息论与集合论的关系工作，可以参见Hu Kuo Ting的工作 \cite{tingAmountInformation1962a}. 他的工作还给出了多个随机变量互信息的定义，在这一章习题中有涉及.
-
-% 相对熵的概念依然是从Shannon的奠基性论文 \cite{shannonMathematicalTheoryCommunication1948} 中提出的，但他只局限于通信的问题. 更加一般的讨论是由Kullback和Leibler在 \cite{kullbackInformationSufficiency1951} 给出，他们的是一种数理统计的思路，但是他们也具体地讨论了这一概念与信息的关系. 他们的论文中也讨论了交叉熵这一概念. 
-
-% 机器学习中编码器和解码器的思路，最早是由Rumelhart，Hinton和Williams在 \cite{rumelhartLearningInternalRepresentations1986} 中提出，他们将编码器和解码器的整体称作\textit{自编码器}. 这篇工作几乎可以被视为深度学习的开山之作，它还提出了训练神经网络最常用的反向传播算法.
-
-% 关于信息论的经典教科书，可以参见 \cite{coverElementsInformationTheory2012} ，此外，概率论的教材中也有很多很好的讨论，比如 \cite{jaynesProbabilityTheoryLogic2002}，\cite{shiryaevProbability1996} 以及\cite{LiXianPingGaiLuLunJiChu2010}.
-
-% 关于Kolmogorov复杂度的讨论，可以参见专著 \cite{???}，这本书对于随机、信息、编码、复杂度，乃至归纳推理等概念都有非常独到的见解，值得一读. 

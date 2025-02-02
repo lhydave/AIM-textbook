@@ -705,16 +705,21 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
             其中矩阵$\mathbf W_1=(w_{1,ij})_{ij}$大小为$m\times n$，$\mathbf W_2=(w_{2,i})_i$大小为$1\times m$，$\sigma(\cdot)$是激活函数，本题考虑ReLU函数，即对每一维$i$都有$\sigma_i(\mathbf x)=\max\{0,x_i\}$. 假设训练集$\{(\mathbf{x}_i,y_i)\}_{i=1}^N\subseteq \R_{>0}^n\times \R_{>0}$，其中$\mathbf x_i=(x_{i,k})_k$. 请写出训练该神经网络的均方损失函数$J(\bf W_1,\bf W_2)$.
             \item 使用 (1) 和 (2) 的结论证明，$J(\bf W_1,\bf W_2)$是非凸的. 
             \begin{hint}
-                只需要说明存在一个方向上$J$是非凸的即可。
+                只需要说明存在一个方向上$J$是非凸的即可. 
             \end{hint}
         \end{enumerate}
 
     \item \label{exercise:convex-function-general-property} 对一般定义的凸函数，验证\Cref{prop:nonnegative-combination} 和\Cref{prop:affine-transformation}.
-    \item \label{exercise:convex-level-set} 对下水平集，完成一下习题。
+    
+    \item \label{exercise:convex-level-set} 对下水平集，完成一下习题. 
     \begin{enumerate}
-        \item 证明\Cref{prop:level-set}。
-        \item 对函数$f$，如果对任意$t\in\R$，下水平集$C_t(f)$是凸集，那么$f$依然不一定是凸函数。请给出一个$\R$上定义的反例.
+        \item 证明\Cref{prop:level-set}. 
+        \item 对函数$f$，如果对任意$t\in\R$，下水平集$C_t(f)$是凸集，那么$f$依然不一定是凸函数. 请给出一个$\R$上定义的反例.
     \end{enumerate}
+    
     \item *\label{exercise:Chebyshev-convex} 证明\Cref{thm:Chebyshev-convex}.
+    
     \item *\label{exercise:separation-hyperplane-extension} 设$C,D$是两个非空不交凸集，$C$与$D$只有一个公共点$a$，$C$有内点，即存在一个开球$B(c,r)$包含在$C$中. 证明\Cref{thm:separation-hyperplane} 对这种情况依然成立.
+    
+    \item *\textbf{梯度下降与Bayes信念更新的关系. }考虑机器学习的分类问题，如果我们使用交叉熵作为损失函数，那么，梯度下降的每一步都相当于对目标分布进行的Bayes信念更新. 请严格叙述并证明这一点. 因此，梯度下降相当于在做信念更新. 
 \end{enumerate}

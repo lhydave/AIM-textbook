@@ -247,14 +247,13 @@ Kripke模型并没有指定一个真实世界，接下来，我们引入一个�
 \end{definition}
 
 我们可以看到，模态逻辑的真值有两个维度的粒度：局部-全局，模型-框架. 越靠左边的真值越具体，越靠右边的真值越一般. 我们可以用下面的表格来总结这些概念：
-
-\begin{center}
-\begin{tabular}{c|cc}
- & 模型 & 框架 \\ \hline
-局部 & \light{$\mathcal M,w\vDash \phi$} & $\mathcal F,w\vDash \phi$ \\
-全局 & $\mathcal M\vDash \phi$ & \light{$\mathcal F\vDash \phi$} \\
-\end{tabular}
-\end{center}
+\[\begin{array}{c|cc}
+\toprule
+ & \text{模型} & \text{框架} \\ \midrule
+\text{局部} & \light{\mathcal M,w\vDash \phi} & \mathcal F,w\vDash \phi \\
+\text{全局} & \mathcal M\vDash \phi & \light{\mathcal F\vDash \phi} \\
+\bottomrule
+\end{array}\]
 我们主要讨论高亮的两个部分. 
 
 左上角反映了某个具体可能世界结构中的某个具体世界上的真值. 例如，假设$p$表示“地球是球形的”，那么在我们所生活的这个世界上，$p$是真的，但是，我们的确可以想象出来另一个可能世界，地球是平的，那么在这个可能世界上，$p$是假的. 因此，这是一个只适用于我们所生活的这个可能世界的真值.
@@ -391,13 +390,13 @@ Kripke模型并没有指定一个真实世界，接下来，我们引入一个�
 
 同样，泛化规则也没有使用框架类$H$的性质，所以它也是模态逻辑的普适规则. 
 
-\begin{proposition}[知识公理，真理公理]
+\begin{proposition}[知识公理，真理公理]\label{prop:knowledge-axiom}
 \[\vDash_H K_i\phi\to\phi.\]
 \end{proposition}
 
-注意，从知识公理开始，我们就开始使用了框架类$H$的性质. 从这里开始的性质，和\Cref{chap:bayesian-game}中讨论的知识的性质是一致的，所以这里不再赘述. 他们的证明类似前述性质，这里不再给出，见习题\lhysays{TODO}. 
+注意，从知识公理开始，我们就开始使用了框架类$H$的性质. 从这里开始的性质，和\Cref{chap:bayesian-game}中讨论的知识的性质是一致的，所以这里不再赘述. 他们的证明类似前述性质，这里不再给出，见习题 \ref{exercise:epistemic-logic-axioms}.
 
-\begin{proposition}[内省公理]
+\begin{proposition}[内省公理]\label{prop:knowledge-introspection}
 正内省公理：
 \[\vDash_H K_i\phi\to K_iK_i\phi.\]
 
@@ -409,16 +408,17 @@ Kripke模型并没有指定一个真实世界，接下来，我们引入一个�
 
 从哲学的角度讨论，还有一些别的公理. 
 
-\begin{proposition}[一致性公理]
+\begin{proposition}[一致性公理]\label{prop:knowledge-consistency}
 \[\vDash_H\neg K_i\bot.\]
 \end{proposition}
 
 因此，个体不能够知道假的陈述，以此区别于信念. 
 
-我们基于框架类 $H$ 给出了关于知识的公理. 反过来，公理对应什么样的框架结构呢？我们总结于下表：
+我们基于框架类 $H$ 给出了关于知识的公理. 反过来，公理对应什么样的框架结构呢？我们总结于\Cref{tab:epistemic-axiom-structure}.
 
-\begin{center}
-    \begin{tabular}{cc}
+\begin{table}[ht]
+\centering
+    \begin{tabular}{c|c}
         \toprule 公理 &  $R_i$ 的性质 \\
         \midrule $K_i \varphi \to \varphi$ & 自反性 \\
         $K_i \varphi \to K_i K_i \varphi$ & 传递性 \\
@@ -427,7 +427,8 @@ Kripke模型并没有指定一个真实世界，接下来，我们引入一个�
         $\varphi \to K_i \neg K_i \neg \varphi$ & 对称性 \\
         \bottomrule
     \end{tabular}
-\end{center}
+    \caption{知识公理对应的框架结构} \label{tab:epistemic-axiom-structure}
+\end{table}
 
 表中有两个性质是我们没有讨论过的，这里给一个简短的解释. 
 \begin{itemize}
@@ -435,11 +436,11 @@ Kripke模型并没有指定一个真实世界，接下来，我们引入一个�
     \item 序列性：$\forall x\exists y\, xR_iy$，所有点都有后继. 
 \end{itemize}
 
-以上的模态可定义性和\Cref{sec:modal-definability} 中的例子类似，这里不再给出，请见习题\lhysays{TODO}. 
+以上的模态可定义性和\Cref{sec:modal-definability}中的例子类似，这里不再给出，请见习题 \ref{exercise:epistemic-logic-axioms-structure}.
 
 可以看出来，以上关系其实并不是孤立的，我们有以下引理：
 
-\begin{lemma}
+\begin{lemma}\label{lemma:relation-properties}
 \begin{itemize}
     \item 如果 $R_i$ 是自反和Euclid的，那么 $R_i$ 是对称和传递的.
     \item 如果 $R_i$ 是对称和传递的，那么 $R_i$ 是Euclid的.
@@ -452,7 +453,7 @@ Kripke模型并没有指定一个真实世界，接下来，我们引入一个�
 \end{itemize}
 \end{lemma}
 
-这一性质的验证根据定义即可，见习题\lhysays{TODO}. 
+这一性质的验证根据定义即可，见习题 \ref{exercise:relation-properties}.
 
 下面我们向知识逻辑语言中加入共同知识算子和它的语义. 首先加入“所有人都知道”这个算子：
 \[E\phi\leftrightarrow\bigwedge_i K_i\phi.\]
@@ -478,13 +479,13 @@ Kripke模型并没有指定一个真实世界，接下来，我们引入一个�
     \caption{$\mathcal M,w_1\vDash E^3\phi$的示意图，我们标出了其中的两条路径.} \label{fig:Ek-illustration}
 \end{figure}
 
-接下来，我们给出共同知识算子的性质. 实际上，共同知识算子可以充分必要地被下面两个公理所定义（验证见习题\lhysays{TODO}）：
+接下来，我们给出共同知识算子的性质. 实际上，共同知识算子可以充分必要地被下面两个公理所定义（验证见习题 \ref{exercise:common-knowledge-axioms}）：
 
-\begin{proposition}[不动点公理]
+\begin{proposition}[不动点公理]\label{prop:common-knowledge-fixed-point}
 \[\vDash C\phi\leftrightarrow E(\phi\wedge C\phi).\]
 \end{proposition}
 
-\begin{proposition}[归纳规则]
+\begin{proposition}[归纳规则]\label{prop:common-knowledge-induction}
 如果
 \[\mathcal F\vDash \phi\to E(\phi\wedge\psi),\]
 那么 
@@ -547,7 +548,7 @@ Kripke模型与Aumann结构之间存在着非常本质的对应关系.
 
 \begin{table}[ht]
     \centering
-    \begin{tabular}{cc}
+    \begin{tabular}{c|c}
     \toprule
     Kripke模型 & Aumann结构 \\
     \midrule
@@ -562,7 +563,7 @@ Kripke模型与Aumann结构之间存在着非常本质的对应关系.
     \caption{Kripke模型与Aumann结构的对应关系} \label{tab:Kripke-Aumann}
 \end{table}
 
-实际上，在S5公理系统下，这种对应关系可以被严格地叙述和证明，见习题\lhysays{TODO}. 
+实际上，在S5公理系统下，这种对应关系可以被严格地叙述和证明，见习题 \ref{S5-Aumann-equivalence}.
 
 Kripke模型和Aumann结构的一个重要区别在于它们各自的研究偏好：Kripke语义偏重于逻辑，而Aumann结构则偏重于（Bayes）概率论. 因此，用数学来研究知识论可以呈现出两种风格：一种是计算机科学、逻辑学和哲学的风格，另一种则是经济学和信息论的风格. 
 
@@ -697,7 +698,7 @@ P_i(s_i) = D(IS_i(s_i, \mathcal{R})), \quad \forall s_i \in S_i.
     给定策略组合$P$和上下文$\gamma$，存在一个并-一致的决策函数$D$，使得$P$和$D$相容. 
 \end{proposition}
 
-这一性质的证明并不难，见习题\lhysays{TODO}. 
+这一性质的证明并不难，见习题 \ref{exercise:consistent-decision}.
 
 现在，我们完成了逻辑部分的建模，我们来总结一下. 在这个模型中，两个玩家处于同一系统中. 虽然他们的局部状态和信息集可能不同，但他们的行动集和决策函数相同. 决策函数是并-一致的，并由某个策略组合实现. 通过上下文中的初始状态和转移函数，系统可以产生一系列可能的运行. 
 
@@ -735,9 +736,42 @@ IS_1(s_1', \mathcal{R}) \subseteq S'.
 下面是一些关于这个定理的讨论：
 \begin{itemize}
     \item 我们的定理是对于确定性的策略证明的. 然而，一个策略可能是非确定的，也就是在一个状态可能会有多种行动的选择，比如选择带有随机性. 此时，达成一致定理依然成立，但我们需要恰当地定义Kripke模型和决策函数以适应非确定性的策略. 
-    \item 当策略具有非确定性时，我们可以用这一模型来理解带有先验知识、风险或者不确定性下的达成一致定理. 只要策略能够对应一个并-一致的决策函数，结论都有效. 这实际上是Aumann最初考虑的版本，即共同信念，而不是共同知识. 这个版本的定理见习题\lhysays{TODO}. 
+    \item 当策略具有非确定性时，我们可以用这一模型来理解带有先验知识、风险或者不确定性下的达成一致定理. 只要策略能够对应一个并-一致的决策函数，结论都有效. 这实际上是Aumann最初考虑的版本，即共同信念，而不是共同知识. 这个版本的定理见习题 \ref{exercise:Aumann-agreement}.
 \end{itemize}
 
 \section{习题}
 
-\section{章末注记}
+\begin{enumerate}[wide, labelindent=0pt]
+
+    \item *考虑基础模态逻辑，证明Löb公式：$L=\Box(\Box p\to p)\to\Box p$定义的恰好是关系$R$满足如下条件的框架类：
+    \begin{enumerate}
+        \item 传递，即$\forall x,y,z(xRy\wedge yRz)\to xRz$.
+        \item 不存在$R$-无穷迹，即没有一列$\{x_n\}_n$（允许重复）使得$x_iRx_{i+1}$，$i=0,1,\dots$.
+    \end{enumerate}
+
+    \item \label{exercise:epistemic-logic-axioms} 证明\Cref{prop:knowledge-axiom}、\Cref{prop:knowledge-introspection} 和\Cref{prop:knowledge-consistency}.
+    
+    \item \label{exercise:epistemic-logic-axiom-structure} 形式化叙述并证明\Cref{tab:epistemic-axiom-structure} 中公理和$R_i$性质之间的对应关系. 
+    
+    \item \label{exercise:relation-properties} 证明\Cref{lemma:relation-properties}.
+    
+    \item  给定任意Kripke框架$\mathcal F$，证明：如果$\mathcal F\vDash\phi$，那么$\mathcal F\vDash C\phi$.
+
+    \item \label{exercise:common-knowledge-axioms} 证明\Cref{prop:common-knowledge-fixed-point} 和\Cref{prop:common-knowledge-induction}.
+
+    \item *\label{S5-Aumann-equivalence} \textbf{S5公理系统和Aumann结构的等价性. } 我们将分两个方向证明这一等价性. 考虑可能世界（样本点）的集合$S$. 在Aumann结构$A^M$中，我们定义了玩家$i$的信息集$\mathcal P_i$为$S$的一个划分. 自然，划分本身就定义了$S$上的一个等价关系$R_i$：$\mathcal P_i(s)=\mathcal P_i(s')$当且仅当$sR_is'$. 这一等价关系自然对应了Kripke模型中$K_i$算子的关系. 这样，就自然定义了由可能世界集$S$和等价关系$R_i$组成的Kripke框架$\mathcal F$. 
+    
+    接下来，考虑Kripke模型$M=(\mathcal F, V)$，其中$V$是将原子公式$p,q,\dots$赋值到$S$的赋值函数. 为了说明等价性，我们还需要说明如何构造Kripke模型中逻辑公式和Aumann结构中事件的对应. 我们分两个方向做这件事. 
+    \begin{enumerate}
+        \item 给定一个Kripke模型的公式$\phi$，定义Aumann结构中的事件$\phi^M$为
+        \[\phi^M=\{s\in S:M,s\vDash \phi\}.\]
+        特别地，对原子公式$p$，我们可以对应到基本事件$p^M$. 为了验证对应性，还需要验证这一对应保持逻辑连接词，请完成这一步证明. 
+        \item 反之，Aumann结构中并没有真正意义上的“基本事件”，但是我们关心的问题会对每一个$S$中的状态赋予若干基本事实，例如“孩子$i$脸上没有泥巴”. 这样，我们自然而然定义了赋值函数$V$，它给出了基本事件和原子命题之间的联系. 为了验证对应性，还需要验证这一对应保持逻辑连接词，请完成这一步证明. 
+    \end{enumerate}
+
+    \item  我们使用知识逻辑建模了“泥泞的孩童”谜题. 假设脸上有泥巴的孩子有$k$个. 证明：对任意$l<k$，第$l$轮回答之后，Kripke模型中所有那些恰好有$l$个$1$的可能世界会被消掉.
+
+    \item \label{exercise:consistent-decision} 证明\Cref{prop:consistent-decision}.
+    
+    \item *\label{exercise:Aumann-agreement} 查阅资料，叙述并证明由Aumann结构给出的概率版本的Aumann达成一致定理. 
+\end{enumerate}

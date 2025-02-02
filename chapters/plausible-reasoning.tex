@@ -79,17 +79,17 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 \end{definition}
 
 以上定义看起来比较冗长，但是符合我们的直觉. 一种更为直观的表达方式是\textit{真值表}. 注意，连接词可以被理解为一个真值向量到真值的映射，例如$\wedge$可以被理解为$\{\T,\F\}^2\to\{\T,\F\}$的映射，这一映射可以用真值表表示：
-
-\begin{center}
-\begin{tabular}{cc|c}
-    $p$ & $q$ & $p\wedge q$ \\
-    \hline
-    $\T$ & $\T$ & $\T$ \\
-    $\T$ & $\F$ & $\F$ \\
-    $\F$ & $\T$ & $\F$ \\
-    $\F$ & $\F$ & $\F$ \\
-\end{tabular}
-\end{center}
+\[
+\begin{array}{cc|c}
+    \toprule
+    p & q & p\wedge q \\\midrule
+    \T & \T & \T \\
+    \T & \F & \F \\
+    \F & \T & \F \\
+    \F & \F & \F \\
+    \bottomrule
+\end{array}
+\]
 于是，定义中的递归可以用直接用$\wedge$来表示：如果$\phi=\psi\wedge\chi$，那么$v(\phi)=v(\psi)\wedge v(\chi)$.
 
 我们看一个例子. 
@@ -97,8 +97,10 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 \begin{example}
 考虑公式$(p\wedge q)\to r$，我们来定义赋值$v$. 首先给命题变元赋值：
 \[\begin{array}{c|ccc}
-    &p&q&r\\\hline
+    \toprule
+    &p&q&r\\\midrule
     v&\F&\T&\F\\
+    \bottomrule
 \end{array}\]
 然后递归计算公式的真值. 首先计算$(p\wedge q)$的真值. 根据真值表，我们有
 \[v(p\wedge q)=v(p)\wedge v(q)=\F\wedge\T=\F.\]
@@ -388,13 +390,15 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 
 事件是命题的集合论描述. 具体来说，有如下对应
     \[\begin{array}{c|c}
-         \text{事件}&\text{命题}  \\\hline
+        \toprule
+         \text{事件}&\text{命题}  \\\midrule
          \Omega & \T\\
          \varnothing & \F\\
          A\cap B& A\wedge B\\
          A\cup B& A\vee B\\
          A\subseteq B& A\to B\\
-         A=B&A\leftrightarrow B
+         A=B&A\leftrightarrow B\\
+        \bottomrule
     \end{array}\]
 
 回忆条件概率的定义，我们可以得到链式法则：
@@ -405,11 +409,13 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
     \begin{table}[ht]
         \centering
         \begin{tabular}{c|c}
-        公理化概率论&合情推理  \\\hline
+        \toprule
+        公理化概率论&合情推理  \\\midrule
         事件 & 命题\\
         （条件）概率 & 似然\\
         链式法则 & 与规则\\
-        补事件公式 & 否定规则
+        补事件公式 & 否定规则\\
+        \bottomrule
         \end{tabular}
         \caption{概率论与合情推理的对应}
         \label{tab:prob}
@@ -481,11 +487,13 @@ $\Pr(A|C)$是$A$的似然，而$\Pr(A|BC)$是假设$B$为真时，$A$的似然. 
 回忆，事件是命题的集合论描述. 合情推理中，每个事件被赋予一个概率（似然），对应的命题也会被赋予同样的概率. 于是对应于演绎推理中的语义真值表，合情推理中有\textit{随机真值表}，例如
 \[
 \begin{array}{c|ccc}
-    \Pr & A & B & A\vee B \\ \hline
+    \toprule
+    \Pr & A & B & A\vee B \\ \midrule
     0.4 & \T & \T & \T \\ 
     0.2 & \T & \F & \T \\ 
     0.25 & \F & \T & \T \\
     0.15 & \F & \F & \F \\
+    \bottomrule
 \end{array}
 \]
 
@@ -594,7 +602,8 @@ $\Pr(A|C)$是$A$的似然，而$\Pr(A|BC)$是假设$B$为真时，$A$的似然. 
 \begin{example}[非单调性：例子]
 考虑命题$X, Y, Z$ 和对应的随机真值表.
 \[\begin{array}{c|ccccc}
-        \Pr & X & Y & Z & X \wedge Z \\ \hline
+        \toprule
+        \Pr & X & Y & Z & X \wedge Z \\ \midrule
         0.1 & \T & \T & \T & \T\\
         0.2 & \T & \T & \F & \F\\
         0.2 & \T & \F & \T & \T\\
@@ -603,6 +612,7 @@ $\Pr(A|C)$是$A$的似然，而$\Pr(A|BC)$是假设$B$为真时，$A$的似然. 
         0.1 & \F & \T & \F & \F\\
         0.1 & \F & \F & \T & \F\\
         0.2 & \F & \F & \F & \F\\
+        \bottomrule
 \end{array}\]
 $\Pr(Y|X) = (0.1 + 0.2) / (0.1 + 0.2 + 0.2 + 0) = 0.6 > 0.5$，然而，$\Pr(Y|X \wedge Z) = (0.1) / (0.1 + 0.2) = 1/3 < 0.5$. 因此，$X$证据支持$Y$，但$X\wedge Z$不支持$Y$.
 \end{example}
@@ -647,17 +657,21 @@ $\Pr(Y|X) = (0.1 + 0.2) / (0.1 + 0.2 + 0.2 + 0) = 0.6 > 0.5$，然而，$\Pr(Y|X
 考虑这样一个投篮数据的实例：
     \[
     \begin{array}{c|cc}
-          & \text{全班同学} & \text{来自清华大学} \\ \hline
+        \toprule
+          & \text{全班同学} & \text{来自清华大学} \\ \midrule
          \text{两分球} & 50/100 & 6/10 \\
          \text{三分球} & 1/101 & 1/100 \\
          \text{总命中率} & 51/201 & 7/110 \\
+        \bottomrule
     \end{array}
     \]
 根据表格可以得到，投篮命中率为$\Pr(Y) = 51/201$，$\Pr(Y|Z) = 7/110$. 两分球的命中率为$\Pr(Y|X) = 50/100 = 1/2$，$\Pr(Y|Z \wedge X) = 6/10 = 3/5$. 三分球的命中率为$\Pr(Y|\neg X) = 1/101$，$\Pr(Y|Z \wedge \neg X) = 1/100$. Simpson悖论在这一实例下表现为：这个班里来自清华大学的学生两分命中率和三分命中率分别都比全班平均水平高，但总体投篮命中率反倒比全班水平低.
 
 我们将这两个概率用全概公式展开来寻找原因：
-$$\Pr(Y|Z) = \light{\Pr(Y|Z\land X)}\Pr(X|Z) + \light{\Pr(Y|Z\wedge\neg X)}\Pr(\neg X|Z),$$
-$$\Pr(Y) = \contrastlight{\Pr(Y|X)}\Pr(X) +\contrastlight{ \Pr(Y|\neg X)}\Pr(\neg X).$$
+\begin{align*}
+    \Pr(Y|Z) = \light{\Pr(Y|Z\wedge X)}\Pr(X|Z) + \light{\Pr(Y|Z\wedge\neg X)}\Pr(\neg X|Z),\\
+    \Pr(Y) = \contrastlight{\Pr(Y|X)}\Pr(X) +\contrastlight{ \Pr(Y|\neg X)}\Pr(\neg X).
+\end{align*}
 
 上下两行对应的项，$\light{\Pr}>\contrastlight{\Pr}$. 然而，关键是有可能发生$\Pr(X|Z) \neq \Pr(X)$. 在上面篮球的例子中表现为清华大学的同学选择投两分球和三分球的比例和全班同学不同. 这表明，Simpson悖论发生的核心原因与基率谬误类似，即没有正确区分先验概率和后验概率.
 

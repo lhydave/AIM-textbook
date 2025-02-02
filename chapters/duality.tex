@@ -5,15 +5,15 @@
 甲用三种纸浆混合生产两种抽纸. 甲的目标是让总售价最大. \Cref{tab:cleaner-intro} 描述了公司甲用纸浆生产抽纸的信息表. 
 \begin{table}[ht]
         \centering
-        \begin{tabular}{c|ccc|c}
-        \hline
+        \begin{tabular}{ccccc}
+        \toprule
             & 纸浆1&纸浆2&纸浆3&售价（万元/吨） \\
-            \hline
+            \midrule
              抽纸A  & 0.25&0.50&0.25&12 \\
              抽纸B  & 0.50&0.50& &15\\
-             \hline
+             \midrule
              库存（吨）&120&150&50& \\
-             \hline
+             \bottomrule
         \end{tabular}
         \caption{抽纸和纸浆信息表，其中，数据的第一（二）行表示生产一吨抽纸A（B）需要的纸浆吨数. }
         \label{tab:cleaner-intro}
@@ -249,13 +249,14 @@
 
 设$x^*$ 是一个约束$h(x)=0$一个正规点，同时也是函数$f$的一个在可行域中的极值点. 这一部分的目标是得到条件极值的一阶必要条件：
 \begin{theorem}[条件极值的一阶必要条件]\label{thm:eq-opt-cond-1}
-    令$x^*$是一个$f$的满足约束${h(x)=0}$的正规极值点. 那么存在一个${\lambda}\in \R^m$使得$$\nabla f(x^*)+{\lambda^\t \nabla h(x^*)=0}. $$
+    令$x^*$是一个$f$的满足约束${h(x)=0}$的正规极值点. 那么存在一个${\lambda}\in \R^m$使得
+    \[\nabla f(x^*)+{\lambda^\t \nabla h(x^*)=0}. \]
 \end{theorem}
 
 一阶必要条件$\nabla f(x^*)+{\lambda^\t}\nabla {h(x^*)=0}$以及约束${h(x^*)=0}$给出了$n+m$个等式以及包含${x^*,\lambda}$在内的$n+m$个变量. 因此在非退化的情况下，他们给出了一个唯一解. 
 
 引入与这个约束问题对应的Lagrange函数：
-        $$l({x,\lambda})=f(x)+{\lambda^\t h(x)}.$$
+        \[l({x,\lambda})=f(x)+{\lambda^\t h(x)}.\]
 $\lambda$被称为\textit{Lagrange乘子}. 必要条件可以被写作：
 \begin{align*}
     \nabla_x l({x,\lambda})&=0,\\
@@ -277,7 +278,7 @@ $\lambda$被称为\textit{Lagrange乘子}. 必要条件可以被写作：
 
 \begin{example}[最大熵]\label{ex:max-entropy}
 考虑一个离散的概率分布，其分布列为$p_i=\Pr(X=x_i),i=1,\dots,n$. 该分布的熵为
-$$\epsilon = -\sum_{i=1}^n p_i \log p_i.$$
+\[\epsilon = -\sum_{i=1}^n p_i \log p_i.\]
 该分布的均值为$\sum_{i=1}^n x_i p_i$. 
 
 如果均值固定为$m$，求解使熵最大化的参数可以被转化成以下问题：
@@ -289,9 +290,9 @@ $$\epsilon = -\sum_{i=1}^n p_i \log p_i.$$
 \end{align*}
 
 我们先忽略非负约束，假设这些约束不会被触发. 引入两个Lagrange乘子，$\lambda$和$\mu$，则Lagrange函数为
-$$l=\sum_{i=1}^n (-p_i\log p_i+\lambda p_i+\mu x_ip_i)-\lambda-\mu m.$$
+\[l=\sum_{i=1}^n (-p_i\log p_i+\lambda p_i+\mu x_ip_i)-\lambda-\mu m.\]
 由一阶必要条件，$-\log p_i -1+\lambda+\mu x_i=0$，$i=1,2,\dots,n$. 因此，
-$$p_i=\exp((\lambda-1)+\mu x_i),\quad i=1,2,\dots, n.$$
+\[p_i=\exp((\lambda-1)+\mu x_i),\quad i=1,2,\dots, n.\]
 注意$p_i>0$，所以非负约束确实没有被触发. Lagrange乘子$\lambda$和$\mu$是两个用来保证等式约束被满足的参数. 
 \end{example}
 
@@ -778,10 +779,10 @@ x_1^2+x_2^2&=5.
 作为前面极值必要条件的一个具体应用，我们考虑一个经典的机器学习分类器：\textit{支持向量机}（SVM）. 
 
 考虑二分类问题，输入$x\in \R^n$，函数$f$输出一个$\{-1,1\}$中的值. 二分类问题的学习问题指的是给定训练集$\{(x_i,y_i)\}_{i=1}^N$，找到$f$使得$f(x_i)=y_i$. 假设训练集是线性可分的，例如，存在某个$w\in \R^n$和$b\in \R$使得
-    $$f(x)=\begin{cases}
+    \[f(x)=\begin{cases}
 		1,& w^\t x+b>0,\\
 		-1, &w^\t x+b<0.
-	\end{cases}$$
+	\end{cases}\]
 
 学习问题的首要目标是找到正确的以及最优的$w$和$b$. 本质上说，这就是一个\textit{找分离超平面}的过程. 那么，什么才叫最优呢？从几何视角来看，一个自然的想法是最大化\textit{分离距离}，即训练集中所有点到分离超平面的距离和的最小值，见\Cref{fig:svm}.
 \begin{figure}[ht]
@@ -792,15 +793,17 @@ x_1^2+x_2^2&=5.
 \end{figure}
 
 采样点$x_i$到分离超平面的归一化距离为
-    $$\gamma_i=y_i\left(\left(\frac{w}{\norm{w}_2}\right)^\t x+\frac{b}{\norm{w}_2}\right).$$
+\[\gamma_i=y_i\left(\left(\frac{w}{\norm{w}_2}\right)^\t x+\frac{b}{\norm{w}_2}\right).\]
 $\gamma=\min_i\gamma_i$是最小的归一化距离. 于是我们的任务变成了最大化$\gamma$. 等价地，我们求解如下优化问题
 \begin{align*}
     \maximize_{w,b}\quad&\gamma \\
     \text{s.t.}\quad&\gamma\le\gamma_i,\quad i=1,2,\dots,N.
 \end{align*}
 
-$\gamma\le\gamma_i$等价于$$y_i\left(\left(\frac{w}{\gamma\norm{w}_2}\right)^\t x+\frac{b}{\gamma\norm{w}_2}\right)\geq 1.$$
-简洁起见，把$w$替换成$\frac{w}{\gamma\norm{w}_2}$，把$b$替换成$\frac{b}{\gamma\norm{w}_2}$，我们有$$y_i(w^\t x+b)\geq 1.$$
+$\gamma\le\gamma_i$等价于
+\[y_i\left(\left(\frac{w}{\gamma\norm{w}_2}\right)^\t x+\frac{b}{\gamma\norm{w}_2}\right)\geq 1.\]
+简洁起见，把$w$替换成$\frac{w}{\gamma\norm{w}_2}$，把$b$替换成$\frac{b}{\gamma\norm{w}_2}$，我们有
+\[y_i(w^\t x+b)\geq 1.\]
 那么最大化$\gamma=\frac{1}{\norm{w}_2}$等价于最小化$\norm{w}_2^2$. 
 
 我们得到以下凸规划问题：

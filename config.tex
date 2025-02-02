@@ -112,6 +112,7 @@
 \usepackage{nonumonpart}
 \usepackage{setspace}
 \setstretch{1.5}
+\AtBeginEnvironment{tabular}{\renewcommand{\arraystretch}{1.5}}
 
 % footer and header
 \usepackage{fancyhdr}
@@ -146,7 +147,7 @@
     citecolor=BlueViolet,
     pdffitwindow=true,
 }
-\usepackage[capitalize, nameinlink]{cleveref}
+\usepackage[capitalize]{cleveref}
 
 % customize Chinese cref name
 \Crefformat{construction}{构造\,#2#1#3}
@@ -231,6 +232,6 @@
 \ctexset{today=small}
 \newcommand{\lastcompiled}{\vspace*{\fill}
 \begin{center}
-最后一次编译的时间：\today\ \currenttime
+最后一次编译的时间：\today\ \currenttime~(UTC+8)
 \end{center}
 }
