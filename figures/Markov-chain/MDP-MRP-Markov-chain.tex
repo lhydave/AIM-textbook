@@ -1,28 +1,13 @@
 \documentclass{standalone}
-% font set
-\usepackage{ctex}
-\usepackage{fontspec}
-\usepackage[T1]{fontenc}
-\usepackage[sc]{mathpazo}
-\usepackage{anyfontsize}
-\setmainfont{Source Serif 4}
-\setsansfont{Source Sans 3}
-\setmonofont{Menlo}
-\setCJKmainfont[BoldFont=黑体-简 中等,ItalicFont=楷体-简 常规体]{宋体-简 常规体}
 
-% colors
-\usepackage[dvipsnames]{xcolor}
-\definecolor{pku-red}{RGB}{139,0,18}
-\usepackage{colortbl}
-\newcommand{\light}[1]{\textcolor{Orchid}{#1}}
-\newcommand{\contrastlight}[1]{\textcolor{TealBlue}{#1}}
+\input{../../fig-config.tex}
 
 % plots
 \usepackage{tikz}
-\usepackage{tikz-cd}
 \usetikzlibrary{arrows}
 \usetikzlibrary{arrows.meta,positioning,calc,3d}
 \usetikzlibrary{automata}
+\usepackage{tikz-3dplot}
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
 \tikzset{
@@ -36,17 +21,6 @@
         fill=gray!10
     }
 }
-
-% math package
-\let\Bbbk\relax
-\usepackage{amsmath}
-\usepackage{mathrsfs}
-\usepackage{amssymb}
-\usepackage{amsfonts}
-\usepackage{stmaryrd}
-\usepackage{latexsym}
-\usepackage{extarrows}
-\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
 
 \begin{document}
 \begin{tikzpicture}[node distance=3cm, auto]

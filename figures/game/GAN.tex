@@ -1,0 +1,79 @@
+\documentclass{standalone}
+% font set
+\usepackage{ctex}
+\usepackage{fontspec}
+\usepackage[T1]{fontenc}
+\usepackage[sc]{mathpazo}
+\usepackage{anyfontsize}
+\setmainfont{Source Serif 4}
+\setsansfont{Source Sans 3}
+\setmonofont{Menlo}
+\setCJKmainfont[BoldFont=黑体-简 中等,ItalicFont=楷体-简 常规体]{宋体-简 常规体}
+
+% colors
+\usepackage[dvipsnames]{xcolor}
+\definecolor{pku-red}{RGB}{139,0,18}
+\usepackage{colortbl}
+\newcommand{\light}[1]{\textcolor{Orchid}{#1}}
+\newcommand{\contrastlight}[1]{\textcolor{TealBlue}{#1}}
+
+% plots
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta,positioning,calc,3d}
+\usetikzlibrary{automata}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\tikzset{
+    punkt/.style={
+        rectangle,
+        rounded corners,
+        draw=black, very thick,
+        minimum height=2em,
+        inner sep=6pt,
+        text centered,
+        fill=gray!30
+    }
+}
+\usepackage{graphicx}
+
+% math package
+\let\Bbbk\relax
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{stmaryrd}
+\usepackage{latexsym}
+\usepackage{extarrows}
+\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
+
+
+\begin{document}
+\begin{tikzpicture}[node distance=3cm, every state/.style={minimum size=1.5cm, very thick, fill=gray!10}, auto,font=\Large]
+
+    % States
+    \node[state] (xT) {$x_T$};
+    \node[xshift=0cm,yshift=-2.2cm] at (xT) {\includegraphics[scale=0.05]{figures/Markov-chain/alpaca-1.jpg}};
+    \node (dots) [right of=xT, scale=2] {$\dots$};  % Increased size of dots
+    \node[state] (xt) [right of=dots] {$x_t$};
+    \node[state] (xt-1) [right of=xt, xshift=2.5cm] {$x_{t-1}$};
+    \node[xshift=0cm,yshift=-2.2cm] at (xt-1) {\includegraphics[scale=0.05]{figures/Markov-chain/alpaca-0_7.jpg}};
+    \node (dots2) [right of=xt-1, scale=2] {$\dots$};  % Increased size of dots
+    \node[state] (x0) [right of=dots2] {$x_0$};
+    \node[xshift=0cm,yshift=-2.2cm] at (x0) {\includegraphics[scale=0.05]{figures/Markov-chain/alpaca.jpg}};
+
+    % Transitions
+    \path[->, >={Stealth},very thick] 
+        % From A to A1
+        (xT) edge node {} (dots)
+        (dots) edge node {} (xt)
+        (xt) edge node[above] {$p_\theta(x_t|x_{t-1})$} (xt-1)
+        (xt-1) edge[bend left, dashed] node[below] {$q(x_t|x_{t-1})$} (xt)
+        (xt-1) edge node {} (dots2)
+        (dots2) edge node {} (x0);
+
+
+\end{tikzpicture}
+\end{document}
