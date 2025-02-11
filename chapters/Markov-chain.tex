@@ -643,19 +643,23 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
 \begin{align*}
       &\Pr(X_{1:k+1}=x_{1:k+1}) \\
     = &\sum_{z\in \mathcal Z}\Pr(X_{1:k}=x_{1:k}, Z_k=z)\Pr(X_{k+1}=x_{k+1}|Z_k=z)\\
-    = &\sum_{z\in \mathcal Z}\Pr(X_{1:k}=x_{1:k}, Z_k=z)\sum_{z'\in \mathcal Z}\Pr(Z_{k+1}=z'|Z_k=z)\Pr(X_{k+1}=x_{k+1}|Z_{k+1}=z')\\
+    = &\sum_{z\in \mathcal Z}\Pr(X_{1:k}=x_{1:k}, Z_k=z)\cdot\\
+    &\qquad\sum_{z'\in \mathcal Z}\Pr(Z_{k+1}=z'|Z_k=z)\Pr(X_{k+1}=x_{k+1}|Z_{k+1}=z')\\
     = &\sum_{z\in \mathcal Z}\Pr(X_{1:k}=x_{1:k}, Z_k=z)\sum_{z'\in \mathcal Z}T_{z,z'}M_{z',x_{k+1}}.
 \end{align*}
 如果把左边按照$Z_{k+1}$拆分，我们有
-\[
-    \sum_{z\in\mathcal Z}\light{\Pr(X_{1:k+1}=x_{1:k+1}, Z_{k+1}=z)} = \sum_{z\in \mathcal Z}\light{\Pr(X_{1:k}=x_{1:k}, Z_k=z)}\sum_{z'\in \mathcal Z}T_{z,z'}M_{z',x_{k+1}}.
-\]
+\begin{align*}
+    &\sum_{z\in\mathcal Z}\light{\Pr(X_{1:k+1}=x_{1:k+1}, Z_{k+1}=z)}\\
+    =& \sum_{z\in \mathcal Z}\light{\Pr(X_{1:k}=x_{1:k}, Z_k=z)}\sum_{z'\in \mathcal Z}T_{z,z'}M_{z',x_{k+1}}.
+\end{align*}
 如果令$\light{\alpha_k(z):=\Pr(X_{1:k}=x_{1:k}, Z_k=z)}$，用类似的计算，我们有递推：
 \begin{itemize}
     \item 当$k=1$，$\light{\alpha_k(z)} = \lambda(z)M_{z,x_k}$.
     \item 当$k>1$，$\light{\alpha_{k+1}(z)} = \sum_{z' \in \mathcal Z}\light{\alpha_{k}(z')}T_{z',z}M_{z,x_{k+1}}$.
 \end{itemize}
-最后，$\Pr(X=x) = \sum_{z\in \mathcal Z}\light{\alpha_t(z)}$. 这一方法需要算的乘法次数是$\mathcal O(t|\mathcal Z|^2)$，比前一种计算方法要快很多.
+最后，
+\[\Pr(X=x) = \sum_{z\in \mathcal Z}\light{\alpha_t(z)}.\]
+这一方法需要算的乘法次数是$\O(t|\mathcal Z|^2)$，比前一种计算方法要快很多.
 
 镜像地，我们可以使用后向方程的思路，从前$k+1$步的结果推出前$k$步的结果. 同样可以列出递推方程. 定义$\beta_k(z):=\Pr(X_{k+1:t}=x_{k+1:t} | Z_k=z)$，我们有递推：
 \begin{itemize}
@@ -666,7 +670,9 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
 
 
 \subsection{解释问题}
-接下来我们讨论HMM的\textit{解释问题}. 给定一个 HMM $\calM = (\mathcal Z, \mathcal X, T, M, \lambda)$, 一列观测历史$x = (x_1, x_2, \dots, x_t)$, 解释问题旨在寻找一个状态序列，能最好地解释这些历史观察. 具体来说我们考虑如下四个问题：
+接下来我们讨论HMM的\textit{解释问题}. 
+
+给定一个 HMM $\calM = (\mathcal Z, \mathcal X, T, M, \lambda)$以及一列观测历史$x = (x_1, x_2, \dots, x_t)$, 解释问题旨在寻找一个状态序列，能最好地解释这些历史观察. 具体来说我们考虑如下四个问题：
 \begin{enumerate}
     \item \textit{过滤}：计算$\Pr(Z_k = s|X_{1:k}=x_{1:k})$.
     \item \textit{平滑}：计算$\Pr(Z_k = s|X=x)$，$k < t$.
@@ -674,7 +680,7 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
     \item \textit{解码}：找到最有可能的状态序列 $z = (z_1, z_2, \dots, z_t)$.
 \end{enumerate}
 
-首先考虑过滤：$\Pr(Z_k = s|X_{1:k}=x_{1:k})$. 回顾记号$\alpha_k(s)= \Pr(X_{1:k}=x_{1:k}, Z_k=s)$，这其实已经足够我们计算过滤了. 根据条件概率的定义，我们有
+首先考虑过滤：$\Pr(Z_k = s|X_{1:k}=x_{1:k})$. 回忆，$\alpha_k(s)= \Pr(X_{1:k}=x_{1:k}, Z_k=s)$，这其实已经足够我们计算过滤了. 根据条件概率的定义，我们有
 \begin{align*}
     \Pr(Z_k = s|X_{1:k}=x_{1:k}) & = \frac{\Pr(X_{1:k}=x_{1:k}, Z_k=s)}{\Pr(X_{1:k}=x_{1:k})} \\
     &= \frac{\alpha_k(s)}{\sum_{z\in\mathcal Z}\alpha_k(z)}.
@@ -695,12 +701,16 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
 \begin{align*}
     &\delta_{k+1}(s) \\
     =& \max_{z_{1:k}}\Pr(Z_{1:k+1} = (z_{1:k}, s), X_{1:k+1}=x_{1:k+1})\\
-    =& \max_{z_{1:k}}\{\Pr(Z_{1:k} = z_{1:k}, X_{1:k}=x_{1:k})\Pr(Z_{k+1}=s|Z_k=z_k) \Pr(X_{k+1}=x_{k+1}|Z_{k+1}=s)\}\\
+    =& \max_{z_{1:k}}\{\Pr(Z_{1:k} = z_{1:k}, X_{1:k}=x_{1:k})\cdot\\
+    &\qquad\qquad\Pr(Z_{k+1}=s|Z_k=z_k) \Pr(X_{k+1}=x_{k+1}|Z_{k+1}=s)\}\\
     =& \max_{q}\{\max_{z_{1:k-1}}\Pr(Z_{1:k} = (z_{1:k-1},q), X_{1:k}=x_{1:k})T_{q,s}\}M_{s,x_{k+1}}\\
     =& \max_{q}\{\delta_k(q)T_{q,s}\}M_{s,x_{k+1}}.
 \end{align*}
 这就给出了从$k$推导到$k+1$的递推方程. 这一递推的初始状态是
-\[\delta_1(s) = \Pr(Z_1=s, X_1=x_1) = \Pr(Z_1=s)\Pr(X_1=x_1|Z_1=s) = \lambda(s)M_{s,x_1}.\]
+\begin{align*}
+    \delta_1(s) &= \Pr(Z_1=s, X_1=x_1)\\
+     &= \Pr(Z_1=s)\Pr(X_1=x_1|Z_1=s) = \lambda(s)M_{s,x_1}.
+\end{align*}
 
 利用这一递推，我们就可以解决解码问题了. 具体算法在下面给出.
 \begin{enumerate}
