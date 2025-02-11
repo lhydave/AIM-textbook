@@ -72,7 +72,7 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
     \item 如果$\phi=p\in V$，那么$v(\phi)=v_p$.
     \item 如果$\phi=\neg\psi$，那么$v(\phi)=\begin{cases} \T, & v(\psi)=\F, \\ \F, & v(\psi)=\T. \end{cases}$
     \item 如果$\phi=\psi\vee\chi$，那么$v(\phi)=\begin{cases} \T, & v(\psi)=\T\text{ 或}~v(\chi)=\T, \\ \F, & v(\psi)=\F\text{ 且}~v(\chi)=\F. \end{cases}$
-    \item 如果$\phi=\psi\wedge\chi$，那么$v(\phi)=\begin{cases} \T, & v(\psi)=\T\text{ 且}~v(\chi)=\T \\ \F, & v(\psi)=\F\text{ 或}~v(\chi)=\F. \end{cases}$
+    \item 如果$\phi=\psi\wedge\chi$，那么$v(\phi)=\begin{cases} \T, & v(\psi)=\T\text{ 且}~v(\chi)=\T, \\ \F, & v(\psi)=\F\text{ 或}~v(\chi)=\F. \end{cases}$
     \item 如果$\phi=\psi\to\chi$，那么$v(\phi)=\begin{cases} \T, & v(\psi)=\F\text{ 或}~v(\chi)=\T, \\ \F, & v(\psi)=\T\text{ 且}~v(\chi)=\F. \end{cases}$
     \item 如果$\phi=\psi\leftrightarrow\chi$，那么$v(\phi)=\begin{cases} \T, & v(\psi)=v(\chi), \\ \F, & v(\psi)\neq v(\chi). \end{cases}$
 \end{itemize}
@@ -95,23 +95,13 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 我们看一个例子. 
 
 \begin{example}
-考虑公式$(p\wedge q)\to r$，我们来定义赋值$v$. 首先给命题变元赋值：
-\[\begin{array}{c|ccc}
-    \toprule
-    &p&q&r\\\midrule
-    v&\F&\T&\F\\
-    \bottomrule
-\end{array}\]
-然后递归计算公式的真值. 首先计算$(p\wedge q)$的真值. 根据真值表，我们有
-\[v(p\wedge q)=v(p)\wedge v(q)=\F\wedge\T=\F.\]
-然后计算$(p\wedge q)\to r$的真值：
-\[v((p\wedge q)\to r)=v(p\wedge q)\to v(r)=\F\to\F=\T.\]
+tt
 \end{example}
 
 接下来，我们从赋值到推理. 推理是从\textit{前提}出发，得到\textit{结论}的过程. 和赋值相关的推理概念有如下定义：
 
 \begin{definition}[语义蕴含]
-给定公式集$\Gamma$和公式$\phi$，如果对任意赋值$v$，如果$v(\psi)=\T$对任意$\psi\in\Gamma$都成立，那么$v(\phi)=\T$，则称$\Gamma$\textbf{语义蕴含}$\phi$，记作$\Gamma\vDash\phi$.
+给定公式集$\Gamma$和公式$\phi$，对\textit{任意}赋值$v$，如果$v(\psi)=\T$对任意$\psi\in\Gamma$都成立，那么$v(\phi)=\T$，则称$\Gamma$\textbf{语义蕴含}$\phi$，记作$\Gamma\vDash\phi$.
 \end{definition}
 
 换言之，给定一个真的前提$\Gamma$，我们所关注的公式$\phi$也是真的. 这一概念只关心真值之间的关系，但是至于$\Gamma$如何导致$\phi$为真，不是这一概念可以刻画的. 
@@ -220,7 +210,7 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 
 例如，从科学的角度，触电会疼痛（$\phi\to \psi$），摸插座会触电（$\phi$），所以摸插座会疼痛（$\psi$）. 这是一个演绎推理的例子.
 
-然而，合情推理是完全发过来的，即\textit{弱三段论}，形式上写作 
+然而，合情推理是完全反过来的，即\textit{弱三段论}，形式上写作 
         \[
         \begin{array}{c}
             \begin{array}{c}  
@@ -300,7 +290,7 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
     \]
 \end{hypothesis}
 
-换言之，在考虑我们不关心$\gamma$具体是怎么推出来$\alpha$的，我们只要求$\alpha\beta$的合理程度与$\alpha$和$\beta$的合理程度有关. 
+换言之，我们不关心$\gamma$具体是怎么推出来$\alpha$的，我们只要求$\alpha\beta$的合理程度与$\alpha$和$\beta$的合理程度有关. 
 
 注意，以上假设不能写成$f(\alpha\beta|\gamma) = F(f(\beta|\gamma), f(\alpha|\gamma))$. 例如，假设$\alpha$是“小明的左眼是蓝色的”，$\beta$是“小明的右眼是棕色的”. $f(\alpha|\gamma)$和$f(\beta|\gamma)$都可以很合理，但$f(\alpha\beta|\gamma)$则非常罕见. 同样的道理，我们可以排除其他形式的假设，比如$f(\alpha\beta|\gamma) = F(f(\gamma|\alpha), f(\beta|\gamma))$.
 
@@ -315,7 +305,7 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 
 这一定理的证明见习题 \ref{exercise:derive-F}. 回忆，我们的目标是找到一个尽可能简单的$f$，它能够描述合情推理的合理程度. 因此，我们可以接受$F$二阶连续可微的假设，然后让$c=1$. 于是，我们得到了合情推理的一个基本原则：
 \begin{principle}[与规则]
-对命题$\alpha,\beta,\gamma$，成立
+对命题公式$\alpha,\beta,\gamma$，成立
 \[f(\alpha\beta|\gamma)=f(\alpha|\gamma)f(\beta|\alpha\gamma).\]
 \end{principle}
 
@@ -345,7 +335,7 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 
 同样，从简洁性的角度出发，我们可以接受$S$二阶连续可微的假设，然后让$m=1$. 于是，我们得到了合情推理的另一个基本原则：
 \begin{principle}[否定规则]
-对命题$\alpha,\beta$，成立
+对命题公式$\alpha,\beta$，成立
 \[f(\alpha|\beta) + f(\neg\alpha|\beta) = 1.\]
 \end{principle}
 
@@ -394,6 +384,7 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
          \text{事件}&\text{命题}  \\\midrule
          \Omega & \T\\
          \varnothing & \F\\
+         \overline{A} & \neg A\\
          A\cap B& A\wedge B\\
          A\cup B& A\vee B\\
          A\subseteq B& A\to B\\
@@ -440,11 +431,11 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 \end{theorem}
  Bayes定理表明了两个不同的后验概率如何基于先验概率相互转化. 在合情推理中，这表明了前提推结果的强三段论和结果推前提合理性的弱三段论之间的关系.
 
- 下面我们看一个合情推理的例子. 一辆出租车在夜间发生了一起肇事逃逸事故. 这座城市有两家出租车公司，绿色和蓝色. 这个城市历史上肇事逃逸车辆85\%是绿色的，15\%是蓝色的. 一名目击者指认出租车是蓝色的，这里的指认并不一定正确. 考虑一种理想的假设，法庭知道这位证人80\%的概率能正确识别颜色，20\%的概率会把颜色识别错.问：事故车辆是那种颜色的可能性更大？忽略先验概率会产生答案是蓝车的结论.
+下面我们看一个合情推理的例子. 一辆出租车在夜间发生了一起肇事逃逸事故. 这座城市有两家出租车公司，\light{紫色}和\contrastlight{青色}. 这个城市历史上肇事逃逸车辆85\%是\light{紫色}的，15\%是\contrastlight{青色}的. 一名目击者指认出租车是\contrastlight{青色}的，这里的指认并不一定正确. 考虑一种理想的假设，法庭知道这位证人80\%的概率能正确识别颜色，20\%的概率会把颜色识别错. 问：事故车辆是那种颜色的可能性更大？忽略先验概率会产生答案是\contrastlight{青色}车的结论. 
 
-下面我们考虑先验概率再次做计算. 记 $B$ 为肇事逃逸的出租车为蓝色，$G$ 为肇事逃逸的出租车为绿色，$R$为目击者指认出租车是蓝色. 先验概率为$\Pr(B) = 0.15$，$\Pr(G) = 0.85$. 似然为$\Pr(R|B) = 0.8$， $\Pr(R|G) = 0.2$. 利用全概率公式，$\Pr(R) = \Pr(B)\Pr(R|B) + \Pr(G)\Pr(R|G)  =0.29$. 
-
-利用Bayes定理，$\Pr(B|R) = \Pr(R|B){\Pr(B)}/{\Pr(R)}\approx 0.41$. 然而，$\Pr(G|R) = \Pr(R|G){\Pr(G)}/{\Pr(R)}\approx 0.59$. 因此我们更应该倾向于认为肇事逃逸的出租车是绿色的！
+下面我们考虑先验概率再次做计算. 记 \contrastlight{$C$} 为肇事逃逸的出租车为\contrastlight{青色}，\light{$P$} 为肇事逃逸的出租车为\light{紫色}，\contrastlight{$R$} 为目击者指认出租车是\contrastlight{青色}. 先验概率为$\Pr(\contrastlight{C}) = 0.15$，$\Pr(\light{P}) = 0.85$. 似然为$\Pr(\contrastlight{R}|\contrastlight{C}) = 0.8$，$\Pr(\contrastlight{R}|\light{P}) = 0.2$. 利用全概率公式，$\Pr(\contrastlight{R}) = \Pr(\contrastlight{C})\Pr(\contrastlight{R}|\contrastlight{C}) + \Pr(\light{P})\Pr(\contrastlight{R}|\light{P}) = 0.29$. 
+ 
+利用Bayes定理，$\Pr(\contrastlight{C}|\contrastlight{R}) = \Pr(\contrastlight{R}|\contrastlight{C}){\Pr(\contrastlight{C})}/{\Pr(\contrastlight{R})} \approx 0.41$. 然而，$\Pr(\light{P}|\contrastlight{R}) = \Pr(\contrastlight{R}|\light{P}){\Pr(\light{P})}/{\Pr(\contrastlight{R})} \approx 0.59$. 因此我们更应该倾向于认为肇事逃逸的出租车是\light{紫色}的！
 
 上面的例子表明人类决策有一种忽略先验概率的倾向，这种倾向被称为\textit{基率谬误}. 为了研究这种谬误，我们将先验概率也纳入合情推理的模型之中. 这样，Kolmogorov的概率论和合情推理就完全一致了. 反过来说，如果我们将概率论理解为如上合情推理的数学模型，我们就得到了\textit{Bayes概率论}.
 
@@ -476,13 +467,13 @@ $\Pr(A|C)$是$A$的似然，而$\Pr(A|BC)$是假设$B$为真时，$A$的似然. 
 
 仿照三段论，现在我们将演绎推理中的若干概念推广到合情推理中. 
 
-回忆记号$X\vdash Y$表示从前提为 $X$出发可以跟据推导规则得到结论$Y$. 此时，我们说从$X$到$Y$的过程是一个\textit{有效论证}，或者说$Y$是$X$的\textit{逻辑结论}. 它与以下三个表述等价：
+回忆记号$X\vdash Y$表示从前提为 $X$出发可以根据推导规则得到结论$Y$. 此时，我们说从$X$到$Y$的过程是一个\textit{有效论证}，或者说$Y$是$X$的\textit{逻辑结论}. 它与以下三个表述等价：
     \begin{itemize}
         \item $X\vDash Y$.
         \item  $X\to Y$是重言式.
         \item $X\wedge \neg Y$ 是矛盾式.
     \end{itemize}
-等价性证明由蕴含的推导法则（或演绎定理）和完备性定理得出. 那么，如何在合情推理中定义类似的概念呢？为此，我们引入\textit{随机真值表}. 
+等价性证明由蕴含的推导法则和完备性定理得出. 那么，如何在合情推理中定义类似的概念呢？为此，我们引入\textit{随机真值表}. 
 
 回忆，事件是命题的集合论描述. 合情推理中，每个事件被赋予一个概率（似然），对应的命题也会被赋予同样的概率. 于是对应于演绎推理中的语义真值表，合情推理中有\textit{随机真值表}，例如
 \[
@@ -497,21 +488,16 @@ $\Pr(A|C)$是$A$的似然，而$\Pr(A|BC)$是假设$B$为真时，$A$的似然. 
 \end{array}
 \]
 
-在合情推理中，我们也有和有效论证对应的\textit{归纳强论证}. 考虑如下推理：
-	\[\begin{array}{c}
-	     X\\\hline
-	     Y
-	\end{array}\]
-利用随机真值表，我们可以尝试定义\textit{归纳强论证}为$X\wedge\neg Y$的\textbf{不太可能}为真（或$\neg X\vee Y$\textbf{很可能}为真）. 然而我们会看到，仅仅用随机真值表得到的概念是不符合合情推理的直觉的. 我们通过两类例子来引入归纳强论证的限制条件.
+在合情推理中，我们也有和有效论证对应的\textit{归纳强论证}. 考虑推理$X\implies Y$，即从$X$出发推出$Y$，我们希望描绘这一推理是归纳强论证的条件. 利用随机真值表，我们可以尝试定义\textit{归纳强论证}为$X\wedge\neg Y$的\textbf{不太可能}为真（或$\neg X\vee Y$\textbf{很可能}为真）. 然而我们会看到，仅仅用随机真值表得到的概念是不符合合情推理的直觉的. 我们通过两类例子来引入归纳强论证的限制条件.
 
 
 
 \begin{example}[奇怪的例子一]
-记 $X$ 为一个北京大学的同学今年2000岁, $Y$ 为一个北京大学的同学今年2000岁,并且有三条胳膊. 直观来讲, 如上 $X\vdash Y$ 不是归纳强论证. 但是， 其等效的公式$\neg X\vee Y$，成立的概率足够大. 
+记 $X$ 为一个北京大学的同学今年2000岁, $Y$ 为一个北京大学的同学今年2000岁,并且有三条胳膊. 直观来讲, 如上 $X\implies Y$ 不是归纳强论证. 但是，等效的$\neg X\vee Y$，成立的概率足够大.
 
 考虑另外一个有效论证中的例子. 记
 \[A_n=\{\text{圆周率}~\pi\text{ 的系数有}~n\text{ 个连续的}~1\}.\]
-那么，命题$A_{n+1} \rightarrow A_n$ 看起来是显然的，但与之等值的命题$\neg A_{n+1} \vee A_n$却不太容易被一眼接受.
+那么，推理$A_{n+1} \implies A_n$ 看起来是显然的，但等效的$\neg A_{n+1} \vee A_n$却不太容易被一眼接受.
 \end{example}
 这两个例子都说明，判断是否为归纳强论证不能只关注结论成立的概率. 于是，我们得到限制条件：\textit{证据支持}，它的定义如下. 
 \begin{definition}[证据支持]
@@ -521,19 +507,19 @@ $\Pr(A|C)$是$A$的似然，而$\Pr(A|BC)$是假设$B$为真时，$A$的似然. 
 证据支持是比最大似然准则的更进一步的要求. 然而，证据支持并不能解决所有问题. 考虑下面的例子.
 
 \begin{example}[奇怪的例子二]
-记 $X$ 为小明是一位北京大学的学生, $Y$ 为小明不会飞. 表面看来, $\Pr(Y|X)=1$，但我们知道 $X\vdash Y$ 并不应该是归纳强论证. 问题出在了$\Pr(Y)$本身就等于$1$，所以$\Pr(Y|X)=1$并没有什么实际意义.
+记 $X$ 为小明是一位北京大学的学生, $Y$ 为小明不会飞. 表面看来, $\Pr(Y|X)=1$，但直觉上，$X\implies Y$ 并不应该是归纳强论证. 问题出在了$\Pr(Y)$本身就等于$1$，所以$\Pr(Y|X)=1$并没有什么实际意义.
 \end{example}
 
 从这个例子出发，我们得到另一个限制条件：\textit{正相关性}，它的定义如下. 
 
 \begin{definition}[相关性]
-    我们称$X$ 与 $Y$ \textit{正相关}，如果$\Pr(Y|X) > \Pr(Y)$. 等价地，示性函数$I(X)$和$I(Y)$相关系数大于$0$. 类似地，如果$\Pr(Y|X) < \Pr(Y)$（或$I(X)$和$I(Y)$的相关系数小于$0$），那么$X$和$Y$\textit{负相关}. 如果$\Pr(Y|X) = \Pr(Y)$（或$I(X)$和$I(Y)$的相关系数等于$0$），那么$X$和$Y$\textit{不相关}. 在归纳强论证中，我们要求$X$和$Y$正相关.
+    对随机变量$X$ 和 $Y$，如果$\Pr(Y|X) > \Pr(Y)$，我们称$X$ 与 $Y$ \textit{正相关}. 等价地，示性函数$I(X)$和$I(Y)$相关系数大于$0$. 类似地，如果$\Pr(Y|X) < \Pr(Y)$（或$I(X)$和$I(Y)$的相关系数小于$0$），那么$X$和$Y$\textit{负相关}. 如果$\Pr(Y|X) = \Pr(Y)$（或$I(X)$和$I(Y)$的相关系数等于$0$），那么$X$和$Y$\textit{不相关}. 在归纳强论证中，我们要求$X$和$Y$正相关.
 \end{definition}
 
 加上以上两个限制条件，我们可以得到归纳强论证的严格定义.
 
 \begin{definition}[归纳强论证]
-    如果论证$X \Rightarrow Y$ 满足以下三个条件，我们称之为\textit{归纳强论证}：
+    如果推理$X \implies Y$ 满足以下三个条件，我们称之为\textit{归纳强论证}：
 	\begin{itemize}
 	\item $X$ 证据支持 $Y$：$\Pr(Y|X)>0.5$.
 	\item $X$ 与 $Y$ 正相关： $\Pr(Y|X) > \Pr(Y)$. 
@@ -589,11 +575,11 @@ $\Pr(A|C)$是$A$的似然，而$\Pr(A|BC)$是假设$B$为真时，$A$的似然. 
 
 \subsection{有效论证和归纳强论证的比较}
 
-考虑一个论证$X\Rightarrow Y$，我们已经有三种方式评估$X$如何支持$Y$：
+考虑一个论证$X\implies Y$，我们已经有三种方式评估$X$如何支持$Y$：
     \begin{enumerate}
-        \item $X\Rightarrow Y$是一个演绎推理：$X\vdash Y$.
-        \item 基于随机真值表，$X$证据支持$Y$：$\Pr(Y|X) > 0.5$.
-        \item 基于随机真值表，$X$正相关于$Y$：$\Pr(Y|X) > \Pr(Y)$.
+        \item $X\implies Y$是一个演绎推理：$X\vdash Y$.
+        \item $X\implies Y$是一个合情推理，$X$证据支持$Y$：$\Pr(Y|X) > 0.5$.
+        \item $X\implies Y$是一个合情推理，$X$正相关于$Y$：$\Pr(Y|X) > \Pr(Y)$.
     \end{enumerate}
 其中，1对应有效论证，2和3都是合情推理中的归纳强论证的必要条件.我们将进一步讨论有效论证和归纳强论证的一些不同之处.
 
@@ -658,19 +644,21 @@ $\Pr(Y|X) = (0.1 + 0.2) / (0.1 + 0.2 + 0.2 + 0) = 0.6 > 0.5$，然而，$\Pr(Y|X
     \[
     \begin{array}{c|cc}
         \toprule
-          & \text{全班同学} & \text{来自清华大学} \\ \midrule
-         \text{两分球} & 50/100 & 6/10 \\
-         \text{三分球} & 1/101 & 1/100 \\
+          & \text{全班同学} & \text{来自清华大学~} Z\\ \midrule
+         \text{两分球~}X& 50/100 & 6/10 \\
+         \text{三分球~}\neg X& 1/101 & 1/100 \\
          \text{总命中率} & 51/201 & 7/110 \\
         \bottomrule
     \end{array}
     \]
-根据表格可以得到，投篮命中率为$\Pr(Y) = 51/201$，$\Pr(Y|Z) = 7/110$. 两分球的命中率为$\Pr(Y|X) = 50/100 = 1/2$，$\Pr(Y|Z \wedge X) = 6/10 = 3/5$. 三分球的命中率为$\Pr(Y|\neg X) = 1/101$，$\Pr(Y|Z \wedge \neg X) = 1/100$. Simpson悖论在这一实例下表现为：这个班里来自清华大学的学生两分命中率和三分命中率分别都比全班平均水平高，但总体投篮命中率反倒比全班水平低.
+根据表格可以得到，投篮命中率为$\Pr(Y) = 51/201$，$\Pr(Y|Z) = 7/110$. 两分球的命中率为$\Pr(Y|X) = 50/100 = 1/2$，$\Pr(Y|Z \wedge X) = 6/10 = 3/5$. 三分球的命中率为$\Pr(Y|\neg X) = 1/101$，$\Pr(Y|Z \wedge \neg X) = 1/100$. 
+
+Simpson悖论在这一实例下表现为：来自清华大学的学生两分命中率和三分命中率分别都比全班平均水平高，但总体投篮命中率反倒比全班水平低.
 
 我们将这两个概率用全概公式展开来寻找原因：
 \begin{align*}
-    \Pr(Y|Z) = \light{\Pr(Y|Z\wedge X)}\Pr(X|Z) + \light{\Pr(Y|Z\wedge\neg X)}\Pr(\neg X|Z),\\
-    \Pr(Y) = \contrastlight{\Pr(Y|X)}\Pr(X) +\contrastlight{ \Pr(Y|\neg X)}\Pr(\neg X).
+    \Pr(Y|Z) &= \light{\Pr(Y|Z\wedge X)}\Pr(X|Z) + \light{\Pr(Y|Z\wedge\neg X)}\Pr(\neg X|Z),\\
+    \Pr(Y) &= \contrastlight{\Pr(Y|X)}\Pr(X) +\contrastlight{ \Pr(Y|\neg X)}\Pr(\neg X).
 \end{align*}
 
 上下两行对应的项，$\light{\Pr}>\contrastlight{\Pr}$. 然而，关键是有可能发生$\Pr(X|Z) \neq \Pr(X)$. 在上面篮球的例子中表现为清华大学的同学选择投两分球和三分球的比例和全班同学不同. 这表明，Simpson悖论发生的核心原因与基率谬误类似，即没有正确区分先验概率和后验概率.
@@ -688,6 +676,22 @@ $\Pr(Y|X) = (0.1 + 0.2) / (0.1 + 0.2 + 0.2 + 0) = 0.6 > 0.5$，然而，$\Pr(Y|X
 
 然而，从正相关性的角度，合取原则未必成立. 也就是说，假设$\Pr(P\wedge Q|E)>\Pr(P\wedge Q)$，不一定能推出$\Pr(P|E)>\Pr(P)$. 当人们给定对Linda的描述$E$的时候，很容易建立起$E$和$B\wedge F$的正相关性. 然而这并不意味着$E$和$B$是正相关的！因此发生了合取谬误. 从Simpson悖论和合取谬误可以看出，只依靠正相关性进行推理很容易犯错误，因此证据支持（极大似然）是归纳强论证不可缺少的要素.
 
+总结一下，我们讨论了单调性、确凿性原则和合取原则，他们是演绎推理中有效论证成立的性质. 但是，在合情推理中，归纳强论证并不一定有这些性质. 具体结论总结如\Cref{tab:reasoning-comparison} 所示.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{c|c|c}
+        \toprule
+        性质 & 证据支持 & 正相关 \\ \midrule
+        单调性 & 无 & 习题 \ref{exercise:monotone-positive-related} \\
+        无条件确凿性原则 & 有 & 有 \\
+        确凿性原则 & 有 & 无 \\
+        合取原则 & 有 & 无 \\
+        \bottomrule
+    \end{tabular}
+    \caption{有效论证和归纳强论证的比较}
+    \label{tab:reasoning-comparison}
+\end{table}
 \section{先验模型的存在性}
 
 %TODO: 加一下视觉悬崖实验cite，science 2024婴儿实验的cite，以及婴儿统计学习的cite
@@ -789,6 +793,8 @@ $\Pr(Y|X) = (0.1 + 0.2) / (0.1 + 0.2 + 0.2 + 0) = 0.6 > 0.5$，然而，$\Pr(Y|X
 
     \item 设$I(A)$表示事件$A$的示性函数，对于事件$X$和$Y$，证明：$I(X)$ 与 $I(Y)$ 相关系数为$0$等价于 $X$ 与 $Y$ 互相独立.
 
+    \item \label{exercise:monotone-positive-related} 从正相关的角度，归纳强论证有单调性吗？证明你的结论.
+    
     \item 回答以下问题. 
     \begin{enumerate}
         \item 证明：从正相关性角度，无条件确凿性原则成立，确凿性原则不一定成立.

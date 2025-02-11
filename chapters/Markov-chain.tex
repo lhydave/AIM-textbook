@@ -17,7 +17,7 @@
 \begin{itemize}
 	\item \textit{状态空间} $\calS$：$X_t$所有可能值构成的集合，有限或者可数.
 	\item \textit{转移矩阵} $\calP$（\textit{转移核}）：下一时刻系统状态之间转移的概率. $\calP=(p_{ij})_{i,j\in \calS}$，$p_{ij}$是从$i$状态转移到$j$状态的概率.
-	\item \textit{Markov性}: 对任意时刻$t=1,\dots,n$和任意状态$j,k,j_0,\dots,j_{t-1}\in \calS$，如下等式成立
+	\item \textit{Markov性}: 对任意时刻$t=0,1,\dots$和任意状态$j,k,j_0,\dots,j_{t-1}\in \calS$，如下等式成立
 		\begin{align*}
 		   &\Pr(X_{t+1}=j| X_t=k,X_{t-1}=j_{t-1},\dots,X_0=j_0)\\
            =&\Pr(X_{t+1}=j| X_{t}=k)=p_{kj}.
@@ -125,7 +125,7 @@ Kolmogorov-Chapman方程有两个重要的特例，前向方程：
     $\calP^{(k)}=\calP^k$.    
 \end{corollary}
 
-若已知初始分布向量为$\lambda$，利用这一推论，我们可以计算它随时间的演化：
+若已知初始分布向量为$\lambda$，利用这一推论，我们可以计算Markov链分布随时间的演化：
 	\[\lambda^\t,\lambda^\t \calP,\dots,\lambda^\t \calP^n,\dots\] %HW: 证明这个演化
 
 回到赌徒模型，如何计算公平对赌中$X_n$的概率分布？我们先来看一个简化的例子. 考虑只有两个状态$0,1$，转移矩阵为
@@ -151,7 +151,7 @@ Kolmogorov-Chapman方程有两个重要的特例，前向方程：
     \end{itemize}
 因此，无论初始分布是什么，随着时间的推移，Markov链的分布会收敛到一个同一个稳定的分布. 这个例子是否具有普遍性？
 
-我们再考虑一个例子. 一个四元环$\Z_6=\{0,1,2,3\}$上的Markov链$X_k$，转移矩阵为$p(i,i+1)=p(i,i-1)=1/2$，这里的表达式将$-1$和$4$等同，$4$和$0$等同. 如果初始分布集中在$0$上，那么我们会发现以概率$1$有$X_{2k}\in\{0,2\}$，$X_{2k+1}\in\{1,3\}$. 这种情况下，最终不会趋于一个稳定的分布！如果初始分布等概率地分布在$\{0,1\}$上，最终会趋于一个$\Z_4$上的均匀分布. 因此，并不是所有Markov链都具有这样的性质. 然而， 对于相当广泛的一类Markov链，这一结论成立，这就是\textit{遍历定理}.
+我们再考虑一个例子. 一个四元环$\Z_4=\{0,1,2,3\}$上的Markov链$X_k$，转移矩阵为$p(i,i+1)=p(i,i-1)=1/2$，这里的表达式将$-1$和$4$等同，$4$和$0$等同. 如果初始分布集中在$0$上，那么我们会发现以概率$1$有$X_{2k}\in\{0,2\}$，$X_{2k+1}\in\{1,3\}$. 这种情况下，最终不会趋于一个稳定的分布！如果初始分布等概率地分布在$\{0,1\}$上，最终会趋于一个$\Z_4$上的均匀分布. 因此，并不是所有Markov链都具有这样的性质. 然而， 对于相当广泛的一类Markov链，这一结论成立，这就是\textit{遍历定理}.
 
 \begin{theorem}[遍历定理]\label{thm:ergodic-theorem}
     设Markov链的状态空间为$\calS=\{1,\dots,N\}$，转移矩阵为$\calP=(p_{ij})$. 如果存在某个$n_0$，使得
@@ -287,7 +287,7 @@ p_{i j}^{(n)} \geq \pi_j - \varepsilon > 0, n \geq n_0.
     \label{fig:student-MRP}
 \end{figure}
 
-李二除了会获得即时奖励，他还会对未来有预期. 例如，尽管李二不愿意学习，但是考试通过的奖励是$+10$，为了这么大的奖励，现在遭罪一些是值得的，所以他会愿意坐在教室1里自习. 假如下一刻李二就要考试，这一刻他开始在教室1中自习，他对于下一刻考试通过的奖励预期是$+9$. 也就是说，李二对未来的奖励会有一个折扣，这个折扣因子就是$\gamma=9/10=0.9$.
+李二除了会获得即时奖励，他还会对未来有预期. 例如，尽管李二不愿意学习，但是考试通过的奖励是$+10$，为了这么大的奖励，现在遭罪一些是值得的，所以他会愿意坐在教室1里自习. 假如下一刻李二就要到教室1考试，这一刻他开始在教室1中自习，他对于下一刻考试通过的奖励预期是$+9$. 也就是说，李二对未来的奖励会有一个折扣，这个折扣因子就是$\gamma=9/10=0.9$.
 \end{example}
 
 更一般地，我们可以形式上定义MRP.
@@ -329,11 +329,11 @@ MRP中，$t$时刻以后的总\textbf{回报}$G_t$定义为
     &= \E\left[\sum_{k=0}^\infty \gamma^k R(S_{t+k+1})\middle|S_t=s\right]\\
     &= \sum_{k=0}^\infty \gamma^k \E[R(S_{t+k+1})|S_t=s].
 \end{align*}
-注意，项$\E[R(S_{t+k+1})|S_t=s]$的定义满足Markov性，即
+注意，项$\E[R(S_{t+k+1})|S_t=s]$满足时齐性，即
 \[\E[R(S_{t+k+1})|S_t=s]=\E[R(S_{t+k+2})|S_{t+1}=s].\]
 因而对于任意的$t$，$t+1$和$t$定义了同一个$v(s)$.
 
-因此，这一定义蕴含了Markov性：只从当前起考虑未来收益，不考虑历史收益（沉没成本）的影响；也蕴含了时齐性：价值函数的定义不依赖于时刻$t$（无穷阶段情形）. 我们在后面要各种相关概念的定义都需要用到这个性质，证明都是类似的，不再赘述.
+因此，这一定义蕴含了Markov性：只从当前起考虑未来收益，不考虑历史收益（沉没成本）的影响；也蕴含了时齐性：价值函数的定义不依赖于时刻$t$. 我们在后面要各种相关概念的定义都需要用到这个性质，证明都是类似的，不再赘述.
 
 接下来我们展示价值函数的计算方法. 直观上说，回报应该被被分解为两部分：\contrastlight{即时回报$R_{t+1}$}以及\light{未来的回报$\gamma v(S_{t+1})$}，也就是下一个状态期望回报再做折扣. 具体来说，我们有
 \begin{align*}
@@ -371,13 +371,7 @@ Bellman方程可以用矩阵形式表达：
 \[v=f(v).\]
 因此，$v$是$f$的\textit{不动点}. 在\Cref{chap:fixed-point-theory}，我们将系统地讨论不动点的性质以及它对于Markov链相关模型的重要性.
 
-回到解Bellman方程，对于$n$个状态的Markov链，用线性方程组法的计算复杂度为$\O(n^3)$. 对于较小的MRP可以直接解，太大的MRP开销太大. 对于大型MRP，可以采用迭代算法，例如：
-\begin{itemize}
-    \item 动态规划
-    \item Monte-Carlo评估
-    \item 时序差分学习
-\end{itemize}
-动态规划法的思路我们将在\Cref{sec:HMM}中介绍.
+回到解Bellman方程，对于$n$个状态的Markov链，用线性方程组法的计算复杂度为$\O(n^3)$. 对于较小的MRP可以直接解，太大的MRP开销太大. 对于大型MRP，可以采用迭代算法，例如：动态规划、Monte-Carlo法、时序差分学习等. 动态规划法的思路我们将在\Cref{sec:HMM}中介绍.
 
 \section{Markov决策过程（MDP）}\label{sec:MDP}
 
@@ -389,7 +383,7 @@ Bellman方程可以用矩阵形式表达：
 
 \begin{example}[李二MDP]
 李二的MDP见\Cref{fig:studentMDP}. 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\textwidth]{figures/Markov-chain/STD.pdf}   
     \caption{学生MDP}
@@ -409,9 +403,9 @@ Bellman方程可以用矩阵形式表达：
 \begin{itemize}
     \item $\calS$是一个有限的状态集合.
     \item $\light{\mathcal A}$是一个有限的\textit{行动}（action）集合.
-    \item $\calP$是状态转移概率矩阵，
+    \item $\calP$是状态-行动转移概率矩阵，
     \[\calP_{ss'}^{\light{a}} = \Pr(S_{t+1} = s' | S_t = s, A_t = \light{a}).\]
-    \item $\mathcal R$是一个奖励函数，$\mathcal R_s^{\light{a}} = \E(\contrastlight{R_{t+1}} | S_t = s, A_t = \light{a})$，随机变量$\contrastlight{R_{t+1}}$是进行某一行动到达某一状态后的奖励.
+    \item $\mathcal R$是一个期望奖励函数，$\mathcal R_s^{\light{a}} = \E(\contrastlight{R_{t+1}} | S_t = s, A_t = \light{a})$，随机变量$\contrastlight{R_{t+1}}$是进行某一行动到达某一状态后的奖励.
     \item $\gamma$是一个折扣因子$\gamma\in[0,1]$.
 \end{itemize}
 \end{definition}
@@ -458,7 +452,7 @@ MDP与MDP的关系由策略给出.
 \textbf{行动-价值函数} $q_\pi(s,a)$ 是从状态$s$出发，采取行动$a$，遵从策略$\pi$的期望回报
     \[q_\pi(s,a) = \E_\pi(G_t|S_t=s,A_t=a).\]
 \end{definition}
-注意，类似MRP中的价值函数，MDP中的价值函数定义也不依赖$t$的选择，这是因为MDP的Markov性和时齐性. 
+注意，类似MRP中的价值函数，MDP中的价值函数定义也不依赖$t$的选择，这是因为MDP以及其策略的Markov性和时齐性. 
 
 行动-价值函数比起状态-价值函数更加具体，它可以帮助李二评判在当前选择每一个行动的回报，从而选择最优的行动. 而状态-价值函数则是对行动-价值函数的一个期望，因而是李二预期他从这个状态出发的回报. 具体来说，这两个价值函数有如下关系：
 
@@ -481,9 +475,9 @@ MDP与MDP的关系由策略给出.
 \[q_\pi(s,a) = \E_\pi[\contrastlight{R_{t+1}} + \light{\gamma q_\pi(S_{t+1},A_{t+1})}|S_t=s,A_t=a].\]
 \end{itemize}
 
-他们的计算方法和\Cref{thm:MRP-Bellman} 中的方法类似. 继续仿照\Cref{thm:MRP-Bellman} 的证明，我们可以得到MDP的Bellman方程：
+他们的计算方法和\Cref{thm:MRP-Bellman} 中的方法类似. 继续仿照\Cref{thm:MRP-Bellman} 的证明，我们可以得到MDP的Bellman方程（见习题 \ref{exercise:MDP-Bellman}）.
 
-\begin{theorem}[Bellman方程]
+\begin{theorem}[Bellman方程]\label{thm:MDP-Bellman}
 \[v_\pi(s) = \sum_{a\in \mathcal A}\pi(a|s)\left(\mathcal R_s^a + \gamma \sum_{s'\in \calS}\calP_{s,s'}^av_\pi(s')\right),\]
 \[q_\pi(s,a) = \mathcal R_s^a + \gamma \sum_{s'\in \calS}\calP_{s,s'}^a \sum_{a'\in \mathcal A}\pi(a'|s')q_\pi(s',a').\]
 \end{theorem}
@@ -503,7 +497,7 @@ MDP与MDP的关系由策略给出.
 
 相应地，最优价值函数确定了智能体在MDP中的最佳收益，解MDP即确定达到最优价值函数的策略. 
 
-在以上定义中可能会遇到这样的问题：对两个状态$s_1$和$s_2$，存在两个不同的策略$\pi_1$和$\pi_2$，使得$v_\star(s_1)=v_{\pi_1}(s_1)$，$v_\star(s_2)=v_{\pi_2}(s_2)$. 此时，每个状态取到最大价值的策略$\pi$可能并不是同一个，因此$v_\star$并不是某个特定策略可以实现的值. 所以，我们需要证明，存在一个策略$\pi_\star$，使得对于任意的策略$\pi$，$\pi_\star$都取得最大价值函数. 
+在以上定义中可能会遇到这样的问题：对两个状态$s_1$和$s_2$，存在两个不同的策略$\pi_1$和$\pi_2$，使得$v_\star(s_1)=v_{\pi_1}(s_1)$，$v_\star(s_2)=v_{\pi_2}(s_2)$. 此时，每个状态取到最大价值的策略$\pi$可能并不是同一个，因此$v_\star$并不是某个特定策略可以实现的值. 所以，我们需要证明，存在一个策略$\pi_\star$，$\pi_\star$都取得最大价值函数. 
 
 我们有如下定理，说明了这样策略的存在性，因而也证明了MDP解的存在性. 
 \begin{theorem}[MDP解的存在性]\label{thm:MDP-existence}
@@ -538,6 +532,7 @@ MDP与MDP的关系由策略给出.
 
 两个最优价值函数之间有如下关系：
 \begin{proposition}\label{prop:state-action-value-optimal}
+以下等式成立：
 \[v_\star(s) = \max_a q_\star(s,a),\]
 \[q_\star(s,a) = \mathcal R_s^a + \gamma \sum_{s'\in \calS}\calP_{s,s'}^av_\star(s').\]
 \end{proposition}
@@ -561,15 +556,11 @@ MDP与MDP的关系由策略给出.
     对于第二个方程，将\Cref{prop:state-action-value-optimal} 中第一个等式代入第二个等式即可得到. 
 \end{proof}
 
-Bellman不是线性的. 因此很难有解析形式的解. 但是MDP的数值解是可以多项式时间求出来的. 我们一般采用迭代算法求解：
-\begin{itemize}
-    \item 价值迭代
-    \item 策略迭代
-    \item Q-learning
-    \item Sarsa
-\end{itemize}
+Bellman方程不是线性的. 因此很难有解析形式的解. 但是MDP的数值解是有（多项式时间）算法可以求出来的. 我们一般采用迭代算法求解，例如价值迭代、策略迭代等.
 
-求解MDP的过程实际上就是人工智能中\textit{强化学习}的核心步骤. 在本节的开头，我们说过人脑运动控制机制. 实际上，绝大部分的哺乳动物都具备类似这样的学习机制：通过奖励的反馈，动物可以学会如何行动，从而获得最大的奖励. 这样的学习机制被称为\textit{强化学习}. 强化学习在很多复杂交互的环境中都有广泛的应用，例如围棋的AlphaGo、星际争霸的AlphaStar 等.
+求解MDP的过程实际上就是人工智能中\textit{强化学习}的核心步骤. 在本节的开头，我们说过人脑运动控制机制. 实际上，绝大部分的哺乳动物都具备类似这样的学习机制：通过奖励的反馈，动物可以学会如何行动，从而获得最大的奖励. 这样的学习机制被称为\textit{强化学习}. 
+
+1989年，Christopher Watkins在攻读他的心理学博士学位时，首次将基于动态规划的MDP作为强化学习的数学模型. 之后，强化学习在很多复杂交互的环境中都有广泛的应用，例如围棋的AlphaGo、星际争霸的AlphaStar 等.
 
 \begin{remark}
 Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心. Bellman方程的推导是Markov链中最为常用的技巧：考虑从当前状态转移到下一状态，利用全概率公式，一步转移会将两个状态之间的概率（期望）用递推公式联系起来. 在随机过程中，有大量这样的例子：\textit{前向方程}、\textit{Wald等式}、\textit{调和函数}. 后面的\textit{HMM}也是类似的例子.    
@@ -577,10 +568,9 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
 
 最后，我们谈谈深度强化学习. 在一些非常复杂的情况下（例如下围棋），使用经典的迭代算法并不容易求解MDP. \textit{深度强化学习}是一种结合了深度学习和强化学习的方法. 在深度强化学习中，用神经网络来表示$\pi$和$v$，之后，用某种学习算法训练神经网络. 
 
-在一些深度强化学习模型中（例如AlphaZero），状态空间$\calS$也用一个神经网络表示. 用神经网络来表示状态空间的好处是可以减少人类的特征工程，让神经网络充分发掘状态空间好的表示方法.
-
 在很多深度强化学习模型中（例如AlphaGo），MDP的策略是基于过去$k$期的状态做当前的决策，这样可以更好地利用状态的历史信息. 这样的决策模型等价于一个利用一期信息决策的MDP（见习题 \ref{exercise:MDP-k-step}），因此依然可以用同样的深度学习算法来求解. 
 
+在一些深度强化学习模型中（例如MuZero），状态空间$\calS$也用一个神经网络表示. 用神经网络来表示状态空间的好处是可以减少人类的特征工程，让神经网络充分发掘状态空间好的表示方法.
 
 \section{隐Markov模型（HMM）}\label{sec:HMM}
 
@@ -771,11 +761,11 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
 
 注意，扩散过程和逆向过程都是非时齐的Markov链. 假设扩散过程是一个Markov链，那么逆向过程必须是一个Markov链，所以上述定义是良定义的（见习题 \ref{exercise:diffusion-well-defined}）. 
 
-除了物理过程，还有很多其他的场景也可以被看成扩散模型. 比如，我们可以将一张图片看成刚滴入墨水的水杯：它有结构，不是混乱无序的. \footnote{有趣的是，古代中国和西方真的有在水面上撒颜料来作画的技法，也就是在水上撒颜料，然后用纸张把颜料印下来. 在中国，这种技法叫\textit{湿拓画}. 在西方，这种技法叫\textit{marbling}或者\textit{ebru}（来自土耳其语）. } 而水则可以看作一张由Gauss噪声生成的图片：它是随机的，缺乏结构. 于是，墨分子扩散就可以被理解为一张有结构的图片逐渐变成噪声的过程. 
+除了物理过程，还有很多其他的场景也可以被看成扩散模型. 比如，我们可以将一张图片看成刚滴了墨的水：它有结构，不是混乱无序的. \footnote{有趣的是，古代中国和西方真的有在水面上撒颜料来作画的技法，也就是在水上撒颜料，然后用纸张把颜料印下来. 在中国，这种技法叫\textit{湿拓画}. 在西方，这种技法叫\textit{marbling}或者\textit{ebru}（来自土耳其语）. } 而水则可以看作一张由Gauss噪声生成的图片：它是随机的，缺乏结构. 于是，墨分子扩散就可以被理解为一张有结构的图片逐渐变成噪声的过程. 
 
 在这种理解下，扩散过程就是图片加噪声的过程，逆向过程就是去噪的过程. 尽管通过加噪，所有的图片都会变成噪声，然而，噪声与噪声之间细微的区别仍然是可以被区分的. 于是，我们可以通过逆向过程，从噪声中恢复出原始的图片. 
 
-如果我们通过大量的图片训练了一个扩散模型，那么我们就可以用它来凭空生成图片. 首先，我们随机生成一个噪声图片$x_T$，然后通过逆向过程，我们就可以回到有结构的原始图片$x_0$. 因此，扩散模型可以被用作\textit{生成模型}. 
+如果我们通过大量图片“图片加噪声”的过程得到一个扩散过程，那么我们可以反向学习“噪声去除”的过程，得到一个逆向过程，那么我们就可以用它来凭空生成图片. 首先，我们随机生成一个噪声图片$x_T$，然后通过逆向过程，我们就可以回到有结构的原始图片$x_0$. 因此，扩散模型可以被用作\textit{生成模型}. 
 
 我们接下来都会以\textit{去噪扩散概率模型}（\textit{DDPM}）为例来讨论扩散模型，它是一个用来生成图片的神经网络模型. DDPM的过程如\Cref{fig:DDPM} 所示. 
 
@@ -963,13 +953,15 @@ L_{t-1}=\E_q\left[\frac{1}{2 \sigma_t^2}\norm{\tilde{\mu}_t\left(x_t, x_0\right)
         \end{hint}
     \end{enumerate}
 
+    \item \label{exercise:MDP-Bellman} 证明\Cref{thm:MDP-Bellman}.
+
     \item 假设一个机器人身处于下图所示的方格环境中，我们为其定义一个MDP $\langle\mathcal S,\mathcal A,\mathcal P,\mathcal R,\gamma\rangle$:
     \begin{itemize}
         \item $\mathcal S:$ 每个状态是一个方格.
         \item $\mathcal A:$ 机器人可以采取的行动包含\textit{向上、向下、向左、向右}.
         \item $\mathcal P$: 当机器人选择行动$a$时，其按照$a$所预设的行动转移的概率为$1$. 例如：机器人选择$a=\text{向上}$，则机器人从当前方格转移到向上方向的方格概率为$1$，转移到其他位置的概率为$0$.
         \item $\mathcal R$: 假设机器人进入绿色格点的奖励为$+1000000$，进入其他格点的奖励为$-1$.
-        \item $\gamma$: 假设折扣系数$\gamma=0.99$.
+        \item $\gamma$: 假设折扣因子$\gamma=0.99$.
     \end{itemize}
     我们额外假设机器人不会超出边界，若其在边界上选择了行动$a$使得下一个状态超出边界，则下一状态位于原地. 假设机器人进入带有颜色的格点后不再运动，状态转移终止.
     \begin{figure}[h]
