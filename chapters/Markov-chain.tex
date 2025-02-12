@@ -418,7 +418,7 @@ Bellman方程可以用矩阵形式表达：
 \end{definition}
 一个策略完全决定了一个智能体在MDP环境中的行为. 它的定义蕴含着Markov性：MDP的策略取决于当前状态，而非历史状态；也蕴含着时齐性：MDP的策略不依赖于时刻$t$. 这样的定义会方便我们讨论价值函数以及决策的问题.
 
-MDP与MDP的关系由策略给出. 
+MDP与MRP的关系由策略给出. 
 \begin{proposition}
 给定一个MDP $\calM=\langle\calS,\mathcal A,\calP,\mathcal R, \gamma\rangle$和一个策略$\pi$，$\langle \calS, \calP^{\pi}\rangle$是一个Markov链，$\langle\calS,\calP^{\pi}, \mathcal R^{\pi}, \gamma\rangle$是一个MRP，其中
 \[\calP_{s,s'}^{\pi} = \E_{a\sim\pi(\cdot|s)}(\calP^a_{s,s'})=\sum_{a\in \mathcal A}\pi(a|s)\mathcal P_{s,s'}^{a},\]
