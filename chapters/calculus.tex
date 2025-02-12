@@ -591,7 +591,7 @@ $\delta$-$\epsilon$语言的定义是从\textit{映射的极限}这一概念出�
 \end{definition}
 在Leibniz的记号下，$n$阶导数可以写作
 \[
-    \frac{\d^n y}{\d x^n}=\underbrace{\frac{\d}{\d x}\cdots\frac{\d}{\d x}}_{n\text{个}}y.
+    \frac{\d^n y}{\d x^n}=\underbrace{\frac{\d}{\d x}\dots\frac{\d}{\d x}}_{n\text{个}}y.
 \]
 
 从这里我们可以看出，$\d/\d x$这个记号又仿佛是一个算子，它作用在函数上，得到一个新的函数. 这个视角在谱理论中得到发扬，继而成为了量子力学的数学基础，用它可以证明矩阵力学和波动力学的等价性. 当然，这也不在本书的讨论范围之内了.
@@ -643,9 +643,9 @@ $\delta$-$\epsilon$语言的定义是从\textit{映射的极限}这一概念出�
 接下来我们讨论高阶导数与极值的关系. 这样的关系是由Taylor公式给出的. 我们说过，微分是用线性函数去近似函数的过程，而Taylor公式则是用多项式去近似函数的过程. 考虑函数$f:\R\to\R$，如果$f$在$x_0$处$n$次可微，我们尝试用一个$n$次多项式去近似$f$，即
 
 \[
-    f(x)=a_0+a_1(x-x_0)+\cdots+a_n(x-x_0)^n+o((x-x_0)^n).
+    f(x)=a_0+a_1(x-x_0)+\dots+a_n(x-x_0)^n+o((x-x_0)^n).
 \]
-容易求出，$a_0=f(x_0)$，$a_1=f'(x_0)$，$a_2=\frac{f''(x_0)}{2}$，$a_3=\frac{f'''(x_0)}{6}$，$\cdots$，$a_k=\frac{f^{(k)}(x_0)}{k!}$，因此我们得到了Taylor公式：
+容易求出，$a_0=f(x_0)$，$a_1=f'(x_0)$，$a_2=\frac{f''(x_0)}{2}$，$a_3=\frac{f'''(x_0)}{6}$，$\dots$，$a_k=\frac{f^{(k)}(x_0)}{k!}$，因此我们得到了Taylor公式：
 
 \begin{theorem}
     设$f:\R\to\R$在$x_0$处$n$次可微，则
@@ -659,7 +659,7 @@ $\delta$-$\epsilon$语言的定义是从\textit{映射的极限}这一概念出�
 利用Taylor展开，我们可以得到通过高阶导数判定极值的充分条件：
 
 \begin{theorem}\label{thm:extreme}
-    设$f:(a,b)\to\R$在$x_0$处$n$次可微，且$f'(x_0)=f''(x_0)=\cdots=f^{(n-1)}(x_0)=0$，$f^{(n)}(x_0)\neq 0$，则
+    设$f:(a,b)\to\R$在$x_0$处$n$次可微，且$f'(x_0)=f''(x_0)=\dots=f^{(n-1)}(x_0)=0$，$f^{(n)}(x_0)\neq 0$，则
     \begin{itemize}
         \item 如果$n$为奇数，$f$在$x_0$处没有极值；
         \item 如果$n$为偶数，$f$在$x_0$处有极值，且当$f^{(n)}(x_0)>0$时，$f$在$x_0$处有严格极小值，当$f^{(n)}(x_0)<0$时，$f$在$x_0$处有严格极大值.
@@ -716,7 +716,7 @@ $h$被称为\textbf{切向量}（回忆一维的情况），所有允许$h$的�
 \end{proposition}
 
 在微积分中，我们总是假设在标准正交基下进行计算，在这种情况下，我们有更简便的表示方式. 形式上，记
-\[\nabla =e_1\frac{\partial }{\partial x_1}+\cdots+e_n\frac{\partial }{\partial x_n},\]
+\[\nabla =e_1\frac{\partial }{\partial x_1}+\dots+e_n\frac{\partial }{\partial x_n},\]
 则
 \[\grad f(x)=\nabla f(x).\]
 符号$\nabla$被称为\textbf{nabla算子}，它就是标准正交基下梯度的具体表示. 通常，我们会更简单地将$\nabla $记为$(\partial_1 ,\dots,\partial_n)^\t$. 
@@ -735,9 +735,9 @@ $h$被称为\textbf{切向量}（回忆一维的情况），所有允许$h$的�
     \sum_{i=1}^n\partial_i f_m(x)h_i
 \end{pmatrix}=
 \begin{pmatrix}
-    \partial_1 f_1(x) & \cdots & \partial_n f_1(x) \\
+    \partial_1 f_1(x) & \dots & \partial_n f_1(x) \\
     \vdots & \ddots & \vdots \\
-    \partial_1 f_m(x) & \cdots & \partial_n f_m(x)
+    \partial_1 f_m(x) & \dots & \partial_n f_m(x)
 \end{pmatrix}
 \begin{pmatrix}
     h_1 \\
@@ -746,9 +746,9 @@ $h$被称为\textbf{切向量}（回忆一维的情况），所有允许$h$的�
 \end{pmatrix}.\]
 因此，我们得到了Jacobi矩阵：
 \[J_f(x)=(\partial_j f_i)=\begin{pmatrix}
-    \partial_1 f_1(x) & \cdots & \partial_n f_1(x) \\
+    \partial_1 f_1(x) & \dots & \partial_n f_1(x) \\
     \vdots & \ddots & \vdots \\
-    \partial_1 f_m(x) & \cdots & \partial_n f_m(x)
+    \partial_1 f_m(x) & \dots & \partial_n f_m(x)
 \end{pmatrix}.\]
 
 在$m=n$的特殊情况下，$J_f(x)$的行列式被称为$f$在$x$处的\textbf{Jacobi行列式}，记作
@@ -859,14 +859,14 @@ $h$被称为\textbf{切向量}（回忆一维的情况），所有允许$h$的�
 再求二阶导数，根据\Cref{prop:partial-commute} 和链式法则，
 \[g''(t)=\sum_{i=1}^nh_i\frac{\d}{\d t}(\partial_i f(x+th))=\sum_{i=1}^nh_i\sum_{j=1}^n\partial_j(\partial_i f(x+th))h_j=\sum_{i,j=1}^nh_ih_j\partial_{j,i}f(x+th).\]
 用nabla算子，我们可以写作$g''(t)=(h^\t\nabla)^2f(x+th)$. 一般地，我们有
-\[g^{(m)}(t)=\sum_{i_1,\dots,i_m}\partial_{i_m,\dots,i_1}f(x+th)h_{i_1}\cdots h_{i_m}=(h^\t\nabla)^mf(x+th).\]
+\[g^{(m)}(t)=\sum_{i_1,\dots,i_m}\partial_{i_m,\dots,i_1}f(x+th)h_{i_1}\dots h_{i_m}=(h^\t\nabla)^mf(x+th).\]
 \end{example}
 
 接下来，我们定义二阶导数\footnote{更高阶的导数定义需要更加复杂的线性代数概念，我们这里就不引入了. }. 注意到，一个实值函数的一阶导数可以表示成一个向量值函数，即$\grad f$，因此，这个向量值函数的导数就是一个矩阵. 我们将这个矩阵称为$f$的\textbf{Hessian矩阵}，记作$H_f(x)$. 很容易算出，Hessian矩阵为
 \[H_f(x)=\begin{pmatrix}
-    \partial_{1,1}f(x) & \cdots & \partial_{1,n}f(x) \\
+    \partial_{1,1}f(x) & \dots & \partial_{1,n}f(x) \\
     \vdots & \ddots & \vdots \\
-    \partial_{n,1}f(x) & \cdots & \partial_{n,n}f(x)
+    \partial_{n,1}f(x) & \dots & \partial_{n,n}f(x)
 \end{pmatrix}.\]
 
 显然，Hessian矩阵是一个对称矩阵，因而可以构成某个二次型. \Cref{ex:multi-taylor} 中二阶导数其实已经暗示了这一点，我们可以将二阶导数写成一个二次型的形式：
@@ -961,9 +961,9 @@ $h$被称为\textbf{切向量}（回忆一维的情况），所有允许$h$的�
 首先我们指出，在一般情况下，$k=m$的时候讨论才有意义，这可以从线性方程组的理论看出，相关的线性代数理论可以参见\Cref{chap:linear-algebra}. 假如说$F(x,y)=0$就是一个线性方程组：
 \begin{equation}
     \begin{gathered}
-        a_{11}x_1+\cdots+a_{1n}x_n+b_{11}y_1+\cdots+b_{1m}y_m-c_1=0, \\
+        a_{11}x_1+\dots+a_{1n}x_n+b_{11}y_1+\dots+b_{1m}y_m-c_1=0, \\
         \dots \\
-        a_{k1}x_1+\cdots+a_{kn}x_n+b_{k1}y_1+\cdots+b_{km}y_m-c_k=0.
+        a_{k1}x_1+\dots+a_{kn}x_n+b_{k1}y_1+\dots+b_{km}y_m-c_k=0.
     \end{gathered}
     \label{eq:linear-equation}
 \end{equation}

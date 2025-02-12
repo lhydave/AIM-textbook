@@ -82,7 +82,7 @@ Netflix 为比赛公开了一份庞大的数据集，包含超过一亿条匿名
 这一思想引出了\textit{差分隐私}的概念，我们将在下面给出数学形式的定义.
 
 考虑数据的空间$\mathcal X$，其中的每一个元素都包含了个体的所有可能数据例如姓名、性别、年龄、国籍等. 考虑$n$个人的数据，形成了有序的数据集
-\[x = (x_1, \cdots, x_n) \in \mathcal X^n.\]  
+\[x = (x_1, \dots, x_n) \in \mathcal X^n.\]  
 
 我们希望对这些数据进行一定的加工，例如用这些数据来训练一个机器学习模型. 抽象来说，加工的过程可以被看成一个随机算法$A$：在固定输入数据集 $x \in \mathcal X^n$下，$A(x)$ 是输出空间 $\mathcal Y$ 上的一个随机变量. 
 
@@ -215,14 +215,14 @@ $\impliedby$：依然根据概率密度函数的定义，考虑$x,x'\in\mathcal 
 现在，我们已经看到为什么差分隐私的定义是用比值来衡量的：比值陈述的差分隐私，这一命题的结论和证明都非常干净. 利用数学归纳法，很容易推广到多个随机算法的复合性：
 
 \begin{proposition}[复合性，多个算法的情形]\label{prop:composition-multi}
-    设 $A_1, A_2, \cdots , A_k$ 为一列相互独立的随机算法， 
+    设 $A_1, A_2, \dots , A_k$ 为一列相互独立的随机算法， 
     \begin{align*}
         A_1&: \mathcal X^n \to \mathcal Y_1,\\
-        A_i&: \mathcal Y_1 \times \cdots \times \mathcal Y_{i-1} \times \mathcal X^n \to \mathcal Y_i,\quad i = 2, 3, \cdots, k.
+        A_i&: \mathcal Y_1 \times \dots \times \mathcal Y_{i-1} \times \mathcal X^n \to \mathcal Y_i,\quad i = 2, 3, \dots, k.
     \end{align*}
-    也就是 $A_i$ 将 $A_1, \cdots, A_{i-1}$ 的输出和 $\mathcal X^n$ 中的一个数据集作为输入元素. 对$i=1,\dots,k$, $A_i$是 $\epsilon_i$-DP算法. 
+    也就是 $A_i$ 将 $A_1, \dots, A_{i-1}$ 的输出和 $\mathcal X^n$ 中的一个数据集作为输入元素. 对$i=1,\dots,k$, $A_i$是 $\epsilon_i$-DP算法. 
         
-    依次运行算法 $A_i$ 得到算法$A : \mathcal X^n \to \mathcal Y_1 \times \cdots \times \mathcal Y_k$，那么$A$是$\epsilon$-DP，其中$\epsilon = \sum_{i=1}^n \epsilon_i$.
+    依次运行算法 $A_i$ 得到算法$A : \mathcal X^n \to \mathcal Y_1 \times \dots \times \mathcal Y_k$，那么$A$是$\epsilon$-DP，其中$\epsilon = \sum_{i=1}^n \epsilon_i$.
 \end{proposition}
 \begin{proof}
     对$n$用数学归纳法. 
@@ -231,7 +231,7 @@ $\impliedby$：依然根据概率密度函数的定义，考虑$x,x'\in\mathcal 
         \item 假设结论对$n$成立，我们要证明对$n+1$结论成立.
         
         考虑前$n$个算法的复合算法
-        \[A'(x) = (A_1(x), A_2(A_1(x), x), \cdots, A_n(A_{n-1}(\cdots A_1(x), \cdots), x)).\]
+        \[A'(x) = (A_1(x), A_2(A_1(x), x), \dots, A_n(A_{n-1}(\dots A_1(x), \dots), x)).\]
         由归纳假设，$A'$是$\sum_{i=1}^n\epsilon_i$-DP算法. 
         
         由于$A_{n+1}$是$\epsilon_{n+1}$-DP算法，$A'$与$A_{n+1}$的复合算法是$A$，所以利用\Cref{prop:composition}，$A$是$\sum_{i=1}^{n+1}\epsilon_i$-DP算法.
@@ -263,11 +263,11 @@ $\impliedby$：依然根据概率密度函数的定义，考虑$x,x'\in\mathcal 
     \]
 \end{proposition}
 \begin{proof}
-    考虑数据集 $x_0, x_1, \cdots , x_k$，其中 $x_0 = x$, $x_k = x'$，且 $x_i$ 和 $x_{i+1}$ 是$1$-相邻数据集，$i = 0, \cdots, k-1$. 那么
+    考虑数据集 $x_0, x_1, \dots , x_k$，其中 $x_0 = x$, $x_k = x'$，且 $x_i$ 和 $x_{i+1}$ 是$1$-相邻数据集，$i = 0, \dots, k-1$. 那么
     \[
     \begin{aligned}
     \Pr(A(x) \in E) &\leq \e^{\epsilon}\Pr(A(x_1) \in E) \leq \e^{2\epsilon}\Pr(A(x_2) \in E)\\
-    &\leq \cdots \leq \e^{k\epsilon}\Pr(A(x') \in E).
+    &\leq \dots \leq \e^{k\epsilon}\Pr(A(x') \in E).
     \end{aligned}
     \]
 \end{proof}
@@ -434,7 +434,7 @@ Laplace分布是服从双边指数分布的随机变量进行线性变换后服�
 $k$-均值问题最常见的解决方法是使用迭代的启发式的\textit{Lloyd算法}，其表述为下：
 \begin{itemize}
     \item 输入：数据集$x \in \mathcal X^n$，这里$\mathcal X = \{x \in \R^d : \norm{x}_1 \leq 1 \}$，参数$k$，最大迭代次数$T$.
-    \item 随机初始化$c_1^{(0)}$, $c_2^{(0)}$, $\cdots$, $c_k^{(0)} \in \mathcal X$.
+    \item 随机初始化$c_1^{(0)}$, $c_2^{(0)}$, $\dots$, $c_k^{(0)} \in \mathcal X$.
     \item for $t=1$ to $T$
     \begin{itemize}
         \item for $j=1$ to $k$
@@ -445,7 +445,7 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\textit{Ll
             \item 更新$c_j^{(t)} = a_j/n_j$.
         \end{itemize}
     \end{itemize}
-    \item 输出：$c_1^{(T)}$, $c_2^{(T)}$, $\cdots$, $c_k^{(T)}$.
+    \item 输出：$c_1^{(T)}$, $c_2^{(T)}$, $\dots$, $c_k^{(T)}$.
 \end{itemize}
 
 这一算法的思路大致是：首先随机初始化$k$个中心$c_i$，然后，对每一个$c_i$，找到离它最近的那些点，以这些点的平均值（也就是质心）作为新的$c_i$，重复这一过程直到收敛.
@@ -456,7 +456,7 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\textit{Ll
 
 \begin{itemize}
     \item 输入：数据集$x \in \mathcal X^n$，这里$\mathcal X = \{x \in \R^d : \norm{x}_1 \leq 1 \}$，参数$k$，最大迭代次数$T$，\light{参数$\epsilon$}.
-    \item \light{$\epsilon' = \frac{\epsilon}{2 T}$}，随机初始化$c_1^{(0)}$, $c_2^{(0)}$, $\cdots$, $c_k^{(0)} \in \mathcal X$.
+    \item \light{$\epsilon' = \frac{\epsilon}{2 T}$}，随机初始化$c_1^{(0)}$, $c_2^{(0)}$, $\dots$, $c_k^{(0)} \in \mathcal X$.
     \item for $t=1$ to $T$
     \begin{itemize}
         \item for $j=1$ to $k$
@@ -465,7 +465,7 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\textit{Ll
             \item $n_j = |S_j|$.
             \item $a_j = \sum_{i\in S_j} x_i$.
             \item \light{计算 $\hat{n_j} = n_j + Y$，$Y \sim \mathsf{Lap}(0, 2/\epsilon')$.}
-            \item \light{计算 $\hat{a_j} = a_j + (Z_1, \cdots, Z_d)$，$Z_i \text{ i.i.d.}\sim \mathsf{Lap}(0, 2/\epsilon')$.}
+            \item \light{计算 $\hat{a_j} = a_j + (Z_1, \dots, Z_d)$，$Z_i \text{ i.i.d.}\sim \mathsf{Lap}(0, 2/\epsilon')$.}
             \item 更新
             $\begin{aligned}
             c_j^{(t)} =
@@ -476,7 +476,7 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\textit{Ll
             \end{aligned}$
         \end{itemize}
     \end{itemize}
-    \item 输出：$c_1^{(T)}$, $c_2^{(T)}$, $\cdots$, $c_k^{(T)}$.
+    \item 输出：$c_1^{(T)}$, $c_2^{(T)}$, $\dots$, $c_k^{(T)}$.
 \end{itemize}
 
 简单来说，我们对原来Llyod算法中产生的中间值都是用Laplace机制来加噪声，最终得到的中心也是加了噪声的. 以下定理表明上面的算法确实是一个$\epsilon$-DP算法. 
@@ -512,13 +512,13 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\textit{Ll
 
     \item 设输出为$d$维的算法$f( x) = (\sum_{i=1}^n \Phi_1( x_i), \dots, \sum_{i=1}^n \Phi_d( x_i))$， $x_i\in\mathcal X$，满足$\Phi_j(\mathcal X)=\{0, 1\}$以及$\sum_{j=1}^d \Phi_j( x_i) = 1$. 请计算$\text{GS}_f$.
     
-    \item 差分隐私和基于信息论的度量有着密切的联系. 对于一个包含$n$个（带随机性的）数据条目$\mathcal X^n = (\mathcal X_1, \cdots, \mathcal X_n)$ 的数据，考虑一个随机算法$M:\mathcal X^n\to \mathcal Y$，输出$Y$的概率分布为$P_{\mathcal Y|\mathcal X^n}$. 我们引入以下概念：
+    \item 差分隐私和基于信息论的度量有着密切的联系. 对于一个包含$n$个（带随机性的）数据条目$\mathcal X^n = (\mathcal X_1, \dots, \mathcal X_n)$ 的数据，考虑一个随机算法$M:\mathcal X^n\to \mathcal Y$，输出$Y$的概率分布为$P_{\mathcal Y|\mathcal X^n}$. 我们引入以下概念：
     \begin{itemize}
         \item \textbf{互信息差分隐私. }如果算法$M$满足下面的不等式，就称$M$是一个$\epsilon$-MI-DP：
         \[
             \sup_{i, P_{\mathcal X^n}} I(\mathcal X_i; \mathcal Y|\mathcal X_{-i}) \leq \epsilon.
         \]
-        其中 $\mathcal X_{-i} = \{\mathcal X_1, \cdots, \mathcal X_{i-1}, \mathcal X_{i+1}, \cdots, \mathcal X_n\}$ 表示除了 $\mathcal X_i$ 之外的所有数据条目.
+        其中 $\mathcal X_{-i} = \{\mathcal X_1, \dots, \mathcal X_{i-1}, \mathcal X_{i+1}, \dots, \mathcal X_n\}$ 表示除了 $\mathcal X_i$ 之外的所有数据条目.
         \item \textbf{K-L散度差分隐私. }如果对于所有相邻的数据集 $x$ 和 $\tilde{x}$，算法$M$满足下面的不等式，就称$M$是一个$\epsilon$-KL-DP：
         \[
             D_{\KL}(P_{\mathcal Y|\mathcal X^n=x}\| P_{\mathcal Y|\mathcal X^n=\tilde{x}}) \leq e^\epsilon.

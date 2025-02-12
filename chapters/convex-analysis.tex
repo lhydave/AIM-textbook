@@ -39,8 +39,11 @@
 \end{remark}
 
 决策$T$的一种量化指标是最小化期望意义下的损失函数：
-    \[\min_{T}\E_{X\sim P}[L(P,T(X))].\]
+    \[\minimize_{T}\E_{X\sim P}[L(P,T(X))].\]
 在经济学中，这一量化指标实际上是von Neumann和Morgenstern \textit{期望效用理论}的具体体现，我们会在\Cref{sec:mixed-strategy}中详细讨论. 这一理论认为，个体在面对不确定的环境时，会选择最大化期望效用的决策；在这里，就是最小化期望损失的决策.
+
+通常，我们不能知道总体$P$的分布是什么，只知道样本$X_1,\dots,X_n$，此时我们用平均损失来代替期望损失：
+    \[\minimize_{T}\frac{1}{n}\sum_{i=1}^n L(P,T(X_i)).\]
 
 现在我们考虑一个非常一般的决策任务. 假设我们的任务是估计函数$f$，但是我们只知道观测到的自变量$X$（来自总体$P$）以及它的函数值$Y=f(X)$，我们的决策是函数的估计值$\hat f$. 在机器学习中，$f$通常是需要训练的模型. 我们可以写出若干种损失函数：
 \begin{itemize}
@@ -50,27 +53,24 @@
     \item 交叉熵损失函数：$L(P,T(X))=CH(\hat f(X),Y)$. 在二分类问题中，我们假设$Y$的取值为$0$或$1$，分别代表负类和正类. 函数的估计值$\hat f (X)$输出的是样本$X$属于正类的概率，而我们把$Y$看成退化分布，此时交叉熵损失函数衡量的是$\hat f(X)$和$Y$之间的差距.
 \end{itemize}
 
-通常，我们不能知道总体$P$的分布是什么，只知道样本$X_1,\dots,X_n$，此时我们用平均损失来代替期望损失：
-    \[\min_{T}\frac{1}{n}\sum_{i=1}^n L(P,T(X_i)).\]
-
 这些损失函数会用在不同的场景之中. 通常来说，机器学习中有两类问题：\textit{回归问题}和\textit{分类问题}. 他们两个的区别主要在于：
 \begin{itemize}
     \item 回归问题中，$f$取值为实数，而且通常随自变量连续变化；而分类问题中，$f$只取有限多个值，他们通常被作为标签（比如这张图片是人还是青蛙）使用.
     \item 在回归问题中，我们通常使用平方损失函数或者$L^1$损失函数；在分类问题中，我们通常使用SVM损失函数或者交叉熵损失函数.
 \end{itemize}
 
-\subsection{优化问题}
+\subsection{优化问题与算法}
 现在我们从决策过渡到优化. 在最简单的决策问题中，我们的目标就是找到某个$x$使得（期望）损失函数$f$最小. 此时，问题的一般形式为：
 \begin{equation}
 \begin{alignedat}{2}
-\min_{x}&\quad f(x)\\
+\minimize_{x}&\quad f(x)\\
 \text{s.t.}&\quad f_i(x)=0,&\quad i=1,\dots,m,\\
 &\quad g_j(x)\leq 0,&\quad j=1,\dots,n,\\
 &\quad x\in\Omega.
 \end{alignedat}
 \label{eq:opt-general}
 \end{equation}
-这里，s.t（subject to）之后的内容表明了$x$取值的限制，因此被称为\textit{约束}. 其中$f_i(x)=0$和$g_j(x)\leq 0$被称为\textit{函数约束}，而$x\in\Omega$被称为\textit{集合约束}.
+这里，s.t.（subject to）之后的内容表明了$x$取值的限制，因此被称为\textit{约束}. 其中$f_i(x)=0$和$g_j(x)\leq 0$被称为\textit{函数约束}，而$x\in\Omega$被称为\textit{集合约束}.
 
 通常，为了简化记号，我们会把函数约束用向量的形式表示，比如，用
 \begin{align*}
@@ -93,7 +93,7 @@
 \begin{example}[最小二乘法]\label{ex:least-square}
     给定矩阵$A\in\R^{m\times n}$和向量$b\in\R^m$，考虑如下优化问题：
     \begin{alignat*}{2}
-    \min_{x}&\quad \norm{Ax-b}_2^2\\
+    \minimize_{x}&\quad \norm{Ax-b}_2^2\\
     \text{s.t.}&\quad x\in\R^n.
     \end{alignat*}
     这个问题被称为\textbf{最小二乘法}. 目标函数可以被写为$(Ax-b)^\t(Ax-b)$，因此最小二乘法是一种典型的无约束光滑优化问题. 
@@ -129,7 +129,7 @@
 \begin{example}[线性规划]\label{ex:linear-programming}
     给定矩阵$A\in\R^{m\times n}$和向量$b\in\R^m$，考虑如下优化问题：
     \begin{alignat*}{2}
-    \min_{x}&\quad c^\t x\\
+    \minimize_{x}&\quad c^\t x\\
     \text{s.t.}&\quad Ax\leq b,\\
     &\quad x\geq 0.
     \end{alignat*}
@@ -203,7 +203,7 @@
 前面对于概念的讨论可能比较抽象，所以下面我们看一个具体的例子，这个例子将会展示从算法分析的角度，优化所关注的主要问题. 考虑如下优化问题：
 \begin{equation}
     \begin{aligned}
-    \min_{x}&\quad f(x)\\
+    \minimize_{x}&\quad f(x)\\
     \text{s.t.}&\quad x\in[0,1]^n.
 \end{aligned}\label{opt:grid-search}
 \end{equation}
@@ -263,9 +263,8 @@
 自然地，我们会问，\eqref{opt:grid-search} 会有更好的算法吗？ 这就是\textbf{下界问题}. 令人惊讶的是，对于这一个问题，我们可以证明网格搜索法是渐近意义下最优的！
 
 \begin{theorem}\label{thm:grid-search-lower-bound}
-    设$\epsilon<L/2$，要想对任意$f$都能找到 \eqref{opt:grid-search} 的 $\epsilon$-近似解，访问$\O$的算法（零阶算法）找到至少需要调用$\O$
-    \[\left\lfloor\frac{L}{2\epsilon}\right\rfloor^n\]
-    次.
+    设$\epsilon<L/2$，要想对任意$f$都能找到 \eqref{opt:grid-search} 的 $\epsilon$-近似解，访问$\O$的算法（零阶算法）调用$\O$的次数至少为
+    \[\left\lfloor\frac{L}{2\epsilon}\right\rfloor^n.\]
 \end{theorem}
 \begin{proof}
 设$p=\lfloor L/(2\epsilon)\rfloor$，对任意算法$A$，我们尝试构造一个函数，使得$A$调用$\O$的次数小于$p^n$时最多找到一个$\epsilon$-近似解.
@@ -425,7 +424,8 @@
 \begin{proof}
     $g'(x)=A^\t f'(Ax+b)$，因此
     \begin{align*}
-        g(y)=f(Ay+b)&\geq f(Ax+b)+\inner{f'(Ax+b)}{(Ay+b)-(Ax+b)}\\
+        g(y)&=f(Ay+b)\\
+        &\geq f(Ax+b)+\inner{f'(Ax+b)}{(Ay+b)-(Ax+b)}\\
         &=f(Ax+b)+\inner{f'(Ax+b)}{A(y-x)}\\
         &=g(x)+\inner{A^\t f'(Ax+b)}{y-x}\\
         &=g(x)+\inner{g'(x)}{y-x}.
@@ -450,19 +450,22 @@ Jensen不等式具有很强的几何解释：画一条$f$的割线，那么$f$�
 实际上，Jensen不等式给了凸函数一种等价的定义：
 
 \begin{theorem}\label{thm:convex-equivalence}
-    设$f$是连续可微的函数，那么$f$满足 \eqref{eq:def-convex} 当且仅当$f$满足 \eqref{eq:Jensen}.
+    设$f$是可微的函数，那么$f$满足 \eqref{eq:def-convex} 当且仅当$f$满足 \eqref{eq:Jensen}.
 \end{theorem}
 \begin{proof}
     $\implies$：我们需要在 \eqref{eq:def-convex} 中取恰当的$x,y$，然后试图把含梯度的项消掉. 为了消掉梯度，$x$必须是固定值，而$y$可以改变. 于是，我们自然取$x$为$\alpha x+(1-\alpha) y$. 为了让$f(x)$和$f(y)$出现，$y$的取值有如下两个考虑
     \begin{itemize}
         \item $y$取为$x$，如此得到不等式
-        \[
-            f(x)\geq f(\alpha x+(1-\alpha) y) + \inner{f'(\alpha x+(1-\alpha) y)}{(\alpha x+(1-\alpha) y)-x}.
-        \]
+        \begin{align*}
+            f(x)&\geq f(\alpha x+(1-\alpha) y) + \\
+            &\qquad\inner{f'(\alpha x+(1-\alpha) y)}{(\alpha x+(1-\alpha) y)-x}.
+        \end{align*}
+
         \item $y$取为$y$，如此得到不等式
-        \[
-            f(y)\geq f(\alpha x+(1-\alpha) y) + \inner{f'(\alpha x+(1-\alpha) y)}{(\alpha x+(1-\alpha) y)-y}.
-        \]
+        \begin{align*}
+            f(y)&\geq f(\alpha x+(1-\alpha) y) + \\
+            &\qquad\inner{f'(\alpha x+(1-\alpha) y)}{(\alpha x+(1-\alpha) y)-y}.
+        \end{align*}
     \end{itemize}
 
     第一个不等式内积第二项为$(1-\alpha)(y-x)$，第二个不等式内积第二项为$\alpha(x-y)$. 为把梯度消去，把第一个不等式乘以$\alpha$，第二个不等式乘以$1-\alpha$，然后相加，即得 \eqref{eq:Jensen}.
@@ -489,7 +492,7 @@ Jensen不等式具有很强的几何解释：画一条$f$的割线，那么$f$�
 \section{凸集}
 接下来我们考虑约束优化问题：
 \begin{align*}
-    \min_x &\quad f(x)\\
+    \minimize_x &\quad f(x)\\
     \text{s.t.}&\quad x\in \Omega.
 \end{align*}
 一个自然的问题是，什么样$\Omega$会存在快速收敛的算法？我们将看到，凸集将会是这个问题的答案.
@@ -621,7 +624,7 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
 由$a^\t x=b$定义的超平面被称为\textbf{分离超平面}.
 \end{theorem}
 
-如果两个凸集只有一个公共点，并且其中一个凸集有内点，分离超平面定理依然成立，见习题 \ref{exercise:separation-hyperplane-extension}.
+如果两个凸集只有一个公共点，并且这个公共点是边界点，分离超平面定理依然成立，见习题 \ref{exercise:separation-hyperplane-extension}.
 
 \begin{remark}
     分离超平面定理是如此直观，以至于我们觉得他是一个显然的结论. 但是，这一定理的成立并不平凡. 比如说，如果不是在$\R^n$中，而是在更一般的实线性空间中，这一定理依然成立，我们称之为\textit{Hahn-Banach定理}. 然而，Hahn-Banach定理的证明需要使用选择公理（更准确说，Zorn引理），这一公理的合理性至今依然是有争议的！
@@ -675,16 +678,17 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
     接下来我们说明这一不等式的几何意义. 向量$\textcolor{Salmon}{a}$和向量$\contrastlight{u} - \contrastlight{d}$的夹角大于$90^\circ$，因此，如果沿着向量$\contrastlight{u} - \contrastlight{d}$的方向从$\contrastlight{d}$出发，我们可以得到一个离得更近的点，并且根据凸集的性质，这个点也在$\contrastlight{D}$中，这与$\light{c}$和$\contrastlight{d}$是离得最近的点矛盾.
     
     下面我们来进行具体计算说明这一几何意义. 令
-    \[
-    g(t) = \norm{\contrastlight{d} + t (\contrastlight{u} - \contrastlight{d}) - \light{c}}_2^2 = \norm{\contrastlight{d} - \light{c}}_2^2 + 2t \underbrace{\inner{\contrastlight{u} - \contrastlight{d}}{\textcolor{Salmon}{a}}}_{< 0} + t^2 \norm{\contrastlight{u} - \contrastlight{d}}_2^2.
-    \]
+    \begin{align*}
+        g(t) &= \norm{\contrastlight{d} + t (\contrastlight{u} - \contrastlight{d}) - \light{c}}_2^2\\
+        &= \norm{\contrastlight{d} - \light{c}}_2^2 + 2t \underbrace{\inner{\contrastlight{u} - \contrastlight{d}}{\textcolor{Salmon}{a}}}_{< 0} + t^2 \norm{\contrastlight{u} - \contrastlight{d}}_2^2.
+    \end{align*}
     
     根据二次函数的性质，对充分小的$t$，$g(t) < g(0) = \norm{\contrastlight{d} - \light{c}}_2^2$. 同时，因为$\contrastlight{D}$是凸集，$\contrastlight{d} + t(\contrastlight{u} - \contrastlight{d}) \in \contrastlight{D}$. 以上两点说明$\contrastlight{d} + t(\contrastlight{u} - \contrastlight{d})$是离得更近的点，这与$\light{c}$和$\contrastlight{d}$是离得最近的点矛盾.
 \end{proof}
 \section{习题}
 
 \begin{enumerate}[wide, labelindent=0pt]
-    \item \textbf{GPT的损失函数}. 设$T$是所有词元的集合，GPT的预训练过程本质上是$n$分类问题中($n = |T|$)，模型的输入空间是$T^\ast=T\cup T^2 \cup \cdots \cup T^K$，$K$是模型允许的最长的输入长度. 输出（标签）空间则是所有可能的$T$上的概率分布，记为$\Delta(T)$. 分类器$f:T^\ast \to \Delta(T)$是一个输入到输出空间概率分布的映射，参数空间为$\mathcal W$，参数为$w$，输入为$x$的输出记为$f(x;w)$. 
+    \item \textbf{GPT的损失函数}. 设$T$是所有词元的集合，GPT的预训练过程本质上是$n$分类问题中($n = |T|$)，模型的输入空间是$T^\ast=T\cup T^2 \cup \dots \cup T^K$，$K$是模型允许的最长的输入长度. 输出（标签）空间则是所有可能的$T$上的概率分布，记为$\Delta(T)$. 分类器$f:T^\ast \to \Delta(T)$是一个输入到输出空间概率分布的映射，参数空间为$\mathcal W$，参数为$w$，输入为$x$的输出记为$f(x;w)$. 
     
     与带有监督信号的分类任务不同，预训练过程是自监督训练：给定语料库中的一个词元序列$x \in T^\ast$，模型会依次基于序列中的前$t$个词元来预测第$t+1$个词元, 并用\textit{交叉熵}损失函数
     \[CH(p,q) = -\sum_{x} p(x)\log q(x)\]
@@ -701,12 +705,9 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
         \begin{enumerate}
             \item 证明：如果$f:\R^n\to \R$是凸的，那么对任意$\mathbf v\in\R^n$，$g(t) = f(\mathbf x+t\mathbf v)$关于$t$是凸的. 也就是说，凸函数的任意方向上的截面函数依然是凸的.
             \item 考虑只有一个隐层$\mathbf W_1$和输出层$\mathbf W_2$的神经网络$NN(\cdot)$：
-            \[NN(\bf x)= W_2\sigma(\bf W_1\bf x),\]
-            其中矩阵$\mathbf W_1=(w_{1,ij})_{ij}$大小为$m\times n$，$\mathbf W_2=(w_{2,i})_i$大小为$1\times m$，$\sigma(\cdot)$是激活函数，本题考虑ReLU函数，即对每一维$i$都有$\sigma_i(\mathbf x)=\max\{0,x_i\}$. 假设训练集$\{(\mathbf{x}_i,y_i)\}_{i=1}^N\subseteq \R_{>0}^n\times \R_{>0}$，其中$\mathbf x_i=(x_{i,k})_k$. 请写出训练该神经网络的均方损失函数$J(\bf W_1,\bf W_2)$.
-            \item 使用 (1) 和 (2) 的结论证明，$J(\bf W_1,\bf W_2)$是非凸的. 
-            \begin{hint}
-                只需要说明存在一个方向上$J$是非凸的即可. 
-            \end{hint}
+            \[NN(\mathbf{x})= W_2\sigma(\mathbf W_1\mathbf{x}),\]
+            其中矩阵$\mathbf W_1=(w_{1,ij})_{ij}$大小为$m\times n$，$\mathbf W_2=(w_{2,i})_i$大小为$1\times m$，$\sigma(\cdot)$是激活函数，本题考虑ReLU函数，即对每一维$i$都有$\sigma_i(\mathbf x)=\max\{0,x_i\}$. 假设训练集$\{(\mathbf{x}_i,y_i)\}_{i=1}^N\subseteq \R_{>0}^n\times \R_{>0}$，其中$\mathbf x_i=(x_{i,k})_k$. 请写出训练该神经网络的均方损失函数$J(\mathbf W_1,\mathbf W_2)$.
+            \item 使用 (1) 和 (2) 的结论证明，$J(\mathbf W_1,\mathbf W_2)$是非凸的.
         \end{enumerate}
 
     \item \label{exercise:convex-function-general-property} 对一般定义的凸函数，验证\Cref{prop:nonnegative-combination} 和\Cref{prop:affine-transformation}.
@@ -717,9 +718,17 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
         \item 对函数$f$，如果对任意$t\in\R$，下水平集$C_t(f)$是凸集，那么$f$依然不一定是凸函数. 请给出一个$\R$上定义的反例.
     \end{enumerate}
     
+    \item *我们在凸函数与凸集的关系中已经看到，通过上图，任何凸函数都可以用凸集来给出定义，即“凸函数是上图是凸集的函数”. 那么反过来，能否用凸函数给出凸集的定义？
+    \begin{hint}
+        这一问题比反问题要复杂得多，例如，圆是一个凸集，但是它不是任何凸函数的上图. 因此，上图并不是这一问题的答案.
+    \end{hint}
+    
     \item *\label{exercise:Chebyshev-convex} 证明\Cref{thm:Chebyshev-convex}.
     
-    \item *\label{exercise:separation-hyperplane-extension} 设$C,D$是两个非空不交凸集，$C$与$D$只有一个公共点$a$，$C$有内点，即存在一个开球$B(c,r)$包含在$C$中. 证明\Cref{thm:separation-hyperplane} 对这种情况依然成立.
+    \item \label{exercise:separation-hyperplane-extension} 设$C,D$是两个非空不交凸集，$C$与$D$只有一个公共点$a$，且$a$是$C$和$D$的边界点. 证明\Cref{thm:separation-hyperplane} 对这种情况依然成立.
+    \begin{hint}
+        为了严格证明这一点，请首先给出边界点的定义.
+    \end{hint}
     
     \item *\textbf{梯度下降与Bayes信念更新的关系. }考虑机器学习的分类问题，如果我们使用交叉熵作为损失函数，那么，梯度下降的每一步都相当于对目标分布进行的Bayes信念更新. 请严格叙述并证明这一点. 因此，梯度下降相当于在做信念更新. 
 \end{enumerate}

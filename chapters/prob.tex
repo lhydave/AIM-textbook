@@ -252,10 +252,10 @@
 一个特别重要的推论被称为\textit{链式法则}，它是\textit{Bayes网络}的基础. 
 
 \begin{corollary}[链式法则]\label{cor:chain-rule}
-设$(\Omega,\scF,\Pr)$是一个概率空间，$A_1,A_2,\ldots,A_n\in\scF$，且$\Pr(A_1\cap A_2\cap\cdots\cap A_n)>0$，则
+设$(\Omega,\scF,\Pr)$是一个概率空间，$A_1,A_2,\ldots,A_n\in\scF$，且$\Pr(A_1\cap A_2\cap\dots\cap A_n)>0$，则
 \begin{align*}
-    &\Pr(A_1\cap A_2\cap\cdots\cap A_n)\\
-    = &\Pr(A_1)\Pr(A_2|A_1)\Pr(A_3|A_1\cap A_2)\cdots\Pr(A_n|A_1\cap A_2\cap\cdots\cap A_{n-1}).
+    &\Pr(A_1\cap A_2\cap\dots\cap A_n)\\
+    = &\Pr(A_1)\Pr(A_2|A_1)\Pr(A_3|A_1\cap A_2)\dots\Pr(A_n|A_1\cap A_2\cap\dots\cap A_{n-1}).
 \end{align*}
 \end{corollary}
 
@@ -269,12 +269,12 @@
     \Pr(A_1)&=\frac{w}{w+b},\\
     \Pr(A_2|A_1)&=\frac{w+c}{w+b+c},\\
     \Pr(A_3|A_1\cap A_2)&=\frac{w+2c}{w+b+2c},\\
-    &\cdots\\
-    \Pr(A_n|A_1\cap A_2\cap\cdots\cap A_{n-1})&=\frac{w+nc}{w+b+nc}.
+    &\dots\\
+    \Pr(A_n|A_1\cap A_2\cap\dots\cap A_{n-1})&=\frac{w+nc}{w+b+nc}.
 \end{align*}
     所以
 \[
-    \Pr(A_1\cap A_2\cap\cdots\cap A_n) = \frac{w}{w+b}\cdot\frac{w+c}{w+b+c}\cdots\frac{w+nc}{w+b+nc}.
+    \Pr(A_1\cap A_2\cap\dots\cap A_n) = \frac{w}{w+b}\cdot\frac{w+c}{w+b+c}\dots\frac{w+nc}{w+b+nc}.
 \]
 \end{example}
 
@@ -390,7 +390,7 @@
 \end{align*}
 例如，对于区间$(a,b]=\{(x_1,x_2,\ldots,x_n)\in\R^n:a_i<x_i\leq b_i\}$，我们有
 \[
-    \Pr(X\in(a,b]) = \Delta_{a_1b_1}\Delta_{a_2b_2}\cdots\Delta_{a_nb_n}F_X(x_1,x_2,\ldots,x_n).
+    \Pr(X\in(a,b]) = \Delta_{a_1b_1}\Delta_{a_2b_2}\dots\Delta_{a_nb_n}F_X(x_1,x_2,\ldots,x_n).
 \]
 
 容易证明，分布函数具有如下的性质：
@@ -425,7 +425,7 @@
 \begin{theorem}\label{thm:uniqueness-of-distribution-function}
 设$F:\R^n\to\R$是一个分布函数，则在可测空间$(\R^n,\scB(\R^n))$上，存在唯一的概率测度$\Pr$，使得对任意$a_i\leq b_i$，
 \[
-    \Pr\left(\prod_{i=1}^n(a_i,b_i]\right) = \Delta_{a_1b_1}\Delta_{a_2b_2}\cdots\Delta_{a_nb_n}F(x_1,x_2,\ldots,x_n).
+    \Pr\left(\prod_{i=1}^n(a_i,b_i]\right) = \Delta_{a_1b_1}\Delta_{a_2b_2}\dots\Delta_{a_nb_n}F(x_1,x_2,\ldots,x_n).
 \]
 \end{theorem}
 
@@ -582,14 +582,14 @@ Laplace & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}\e^{-\lambda|x-\mu|}$，$
 离散型随机向量指的是它对应的概率测度集中在有限或可数个点上. 这样的分布依然可以用分布列给出：$\Pr(X_1=x_1,\dots,X_n=x_n)=p_{x_1,\dots,x_n}$，其中$x_i$取遍所有可能的值. 
 
 本书中使用的离散型随机向量只有多项分布，符号为$PN(n,p_1,\dots,p_k)$，分布列为
-\[\Pr(X_1=i_1,\dots,X_n=i_n)=\frac{n!}{i_1!\cdots i_k!}p_1^{i_1}\cdots p_k^{i_k},\]
+\[\Pr(X_1=i_1,\dots,X_n=i_n)=\frac{n!}{i_1!\dots i_k!}p_1^{i_1}\dots p_k^{i_k},\]
 其中$n\in\N$，$p_i\geq 0$，$\sum_{i=1}^k p_i=1$. 
 
 连续型随机向量指的是它对应的概率测度是绝对连续的. 连续型随机向量的分布函数依然由绝对连续函数刻画：
 
 \begin{theorem}\label{thm:continuous-vector}
 设$F:\R^n\to\R$是绝对连续测度对应的分布函数，那么存在一个非负可积函数$f:\R^n\to\R$，使得对任意的$(x_1,\dots,x_n)\in\R^n$，都有
-\[F(x_1,\dots,x_n)=\int_{-\infty}^{x_1}\cdots\int_{-\infty}^{x_n}f(y_1,\dots,y_n)\d y_1\cdots\d y_n.\]
+\[F(x_1,\dots,x_n)=\int_{-\infty}^{x_1}\dots\int_{-\infty}^{x_n}f(y_1,\dots,y_n)\d y_1\dots\d y_n.\]
 \end{theorem}
 
 此时，$f$称为$X$的\textbf{概率密度函数}，或者简称\textbf{密度}. 通常，$X$的密度记作$p_X$.
@@ -608,7 +608,7 @@ Laplace & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}\e^{-\lambda|x-\mu|}$，$
 利用联合密度，可以计算边缘密度：
 \begin{theorem}\label{thm:continuous-marginal}
     设$X=(X_1,\dots,X_n)$是一个$n$维连续型随机向量，，则对任意的$1\leq i\leq n$，都有
-    \[p_{X_i}(x_i)=\int_{(x_1,\dots,x_{i-1},x_{i+1},\dots,x_n)\in\R^{n-1}}p_X(x_1,\dots,x_n)\d x_1\cdots\d x_{i-1}\d x_{i+1}\cdots\d x_n.\]
+    \[p_{X_i}(x_i)=\int_{(x_1,\dots,x_{i-1},x_{i+1},\dots,x_n)\in\R^{n-1}}p_X(x_1,\dots,x_n)\d x_1\dots\d x_{i-1}\d x_{i+1}\dots\d x_n.\]
 \end{theorem}
 
 这一命题当然也可以自然推广到求随机向量的边缘密度，例如利用$X=(X_1,X_2,X_3)$的联合密度计算$(X_1,X_2)$的边缘密度：
@@ -655,7 +655,7 @@ Laplace & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}\e^{-\lambda|x-\mu|}$，$
 
 \begin{definition}[随机向量的独立性]
 设$X_1,\dots,X_n$是$n$个随机向量，第$i$个的维数是$n_i$. 如果对任意的$1\leq i_1,\dots,i_k\leq n$，以及任意的$B_{i_1}\in\scB(\R^{n_{i_1}}),\dots,B_{i_k}\in\scB(\R^{n_{i_k}})$，都有
-\[\Pr(X_{i_1}\in B_{i_1},\dots,X_{i_k}\in B_{i_k})=\Pr(X_{i_1}\in B_{i_1})\cdots\Pr(X_{i_k}\in B_{i_k}),\]
+\[\Pr(X_{i_1}\in B_{i_1},\dots,X_{i_k}\in B_{i_k})=\Pr(X_{i_1}\in B_{i_1})\dots\Pr(X_{i_k}\in B_{i_k}),\]
 则称$X_1,\dots,X_n$是\textbf{独立的}. 
 
 特别地，如果$X_1,\dots,X_n$是一维的，那么这定义了随机变量之间的独立性. 
@@ -665,7 +665,7 @@ Laplace & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}\e^{-\lambda|x-\mu|}$，$
 
 \begin{theorem}\label{thm:independence}
 设$X_1,\dots,X_n$是$n$个随机向量，第$i$个的维数是$n_i$，$F_i$是$X_i$的分布函数，$F$是$(X_1,\dots,X_n)$的联合分布函数. $X_1,\dots,X_n$独立的充分必要条件是
-\[F(x_1,\dots,x_n)=F_1(x_1)\cdots F_n(x_n),\]
+\[F(x_1,\dots,x_n)=F_1(x_1)\dots F_n(x_n),\]
 其中$x_i\in\R^{n_i}$.
 \end{theorem}
 
@@ -673,7 +673,7 @@ Laplace & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}\e^{-\lambda|x-\mu|}$，$
 
 \begin{proposition}\label{prop:independence-discrete}
 设$X_1,\dots,X_n$是$n$个离散型随机向量，第$i$个的维数是$n_i$，$p_i$是$X_i$的分布列，$p$是$(X_1,\dots,X_n)$的联合分布列. $X_1,\dots,X_n$独立的充分必要条件是
-\[p(x_1,\dots,x_n)=p_1(x_1)\cdots p_n(x_n),\]
+\[p(x_1,\dots,x_n)=p_1(x_1)\dots p_n(x_n),\]
 其中$x_i\in\R^{n_i}$.
 \end{proposition}
 
@@ -681,7 +681,7 @@ Laplace & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}\e^{-\lambda|x-\mu|}$，$
 
 \begin{proposition}\label{prop:independence-continuous}
 设$X_1,\dots,X_n$是$n$个连续型随机向量，第$i$个的维数是$n_i$，$p_i$是$X_i$的密度函数. 假设他们的联合分布具有密度函数$p$. $X_1,\dots,X_n$独立的充分必要条件是
-\[p(x_1,\dots,x_n)=p_1(x_1)\cdots p_n(x_n),\]
+\[p(x_1,\dots,x_n)=p_1(x_1)\dots p_n(x_n),\]
 其中$x_i\in\R^{n_i}$.
 \end{proposition}
 
@@ -689,7 +689,7 @@ Laplace & $\Lap(\mu,\lambda)$ & $p(x)=\frac{\lambda}{2}\e^{-\lambda|x-\mu|}$，$
 
 \begin{corollary}\label{cor:independence-continuous}
 设$X_1,\dots,X_n$是$n$个连续型（离散型）随机向量，第$i$个的维数是$n_i$，假设他们的联合分布具有密度函数（分布列）$p$. $X_1,\dots,X_n$独立的充分必要条件存在函数$f_1,\dots,f_n$使得
-\[p(x_1,\dots,x_n)=f_1(x_1)\cdots f_n(x_n),\]
+\[p(x_1,\dots,x_n)=f_1(x_1)\dots f_n(x_n),\]
 其中$x_i\in\R^{n_i}$.
 \end{corollary}
 
@@ -1125,7 +1125,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
     其中$c_i\in\{a_i,b_i\}$，我们有
     \begin{align*}
         &F_X(b)-F_X(a)\\
-        =&\lim_{T_1,\dots,T_n\to\infty}\frac{1}{(2\pi)^n}\int_{-T_1}^{T_1}\cdots\int_{-T_n}^{T_n}\prod_{k=1}^n\frac{\exp(-it_ka_k)-\exp(-it_kb_k)}{it_k}f_X(t)\d t.
+        =&\lim_{T_1,\dots,T_n\to\infty}\frac{1}{(2\pi)^n}\int_{-T_1}^{T_1}\dots\int_{-T_n}^{T_n}\prod_{k=1}^n\frac{\exp(-it_ka_k)-\exp(-it_kb_k)}{it_k}f_X(t)\d t.
     \end{align*}
     \item 如果$\int_{\R^n}|f_X(t)|\d t<+\infty$，那么$X$具有密度$p_X$，且
     \[p_X(x)=\frac{1}{(2\pi)^n}\int_{\R^n}\e^{-it^\t x}f_X(t)\d t.\]
@@ -1144,7 +1144,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 \begin{theorem}\label{thm:characteristic-function-independence}
 设$X_1,\dots,X_n$是$n$个随机变量，它们的特征函数分别为$f_1,\dots,f_n$，随机向量$X=(X_1,\dots,X_n)^\t$，它的特征函数为$f$，那么$X_1,\dots,X_n$相互独立的充分必要条件是
-\[f(t_1,\dots,t_n)=f_1(t_1)\cdots f_n(t_n).\]
+\[f(t_1,\dots,t_n)=f_1(t_1)\dots f_n(t_n).\]
 \end{theorem}
 
 特征函数的导数可以用来计算随机变量的矩：
@@ -1343,9 +1343,9 @@ Gauss向量可以完全由它的期望和协方差矩阵刻画. 首先，Gauss�
     我们计算$S_n$的特征函数：
     \begin{align*}
         f_{S_n}(t)&=\E[\e^{itS_n}]\\
-        &=\E[\e^{it/n(X_1+\cdots+X_n)}]\\
-        &=\E[\e^{it/nX_1}\cdots\e^{it/nX_n}]\\
-        &=\E[\e^{it/nX_1}]\cdots\E[\e^{it/nX_n}]\\
+        &=\E[\e^{it/n(X_1+\dots+X_n)}]\\
+        &=\E[\e^{it/nX_1}\dots\e^{it/nX_n}]\\
+        &=\E[\e^{it/nX_1}]\dots\E[\e^{it/nX_n}]\\
         &=\left(\E[\e^{it/nX_1}]\right)^n\\
         &=\left(f_{X_1}\left(\frac{t}{n}\right)\right)^n.
     \end{align*}

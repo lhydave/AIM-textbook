@@ -3,7 +3,7 @@
 \section{线性空间}
 
 从动机上说，线性空间试图将$\R^n$或者$\C^n$这样的集合连同他们上面的代数结构抽象出来. 除此之外，函数和无穷数列的集合也是非常重要的对象，比如说$\R$上的连续函数组成的集合$C(\R)$，或者具有“模长”的无穷复数列（$\ell^2$空间）：
-\[\ell^2=\left\{(x_1,x_2,\cdots)\in\C^\infty:\sum_{i=1}^\infty x_i^2<\infty\right\}.\]
+\[\ell^2=\left\{(x_1,x_2,\dots)\in\C^\infty:\sum_{i=1}^\infty x_i^2<\infty\right\}.\]
 
 我们将这些对象的共性抽象出来，得到线性空间的概念. 线性空间都是基于某个域定义的，我们先给出域的定义. 
 
@@ -58,7 +58,7 @@
 我们给$ax+by$这样的对象一个正式的定义. 
 
 \begin{definition}[线性组合]
-设$V$是$F$-线性空间，$x_1,\cdots,x_n\in V$，$a_1,\cdots,a_n\in F$，则称$a_1x_1+\cdots+a_nx_n$是$x_1,\cdots,x_n$的一个\textbf{线性组合}. 
+设$V$是$F$-线性空间，$x_1,\dots,x_n\in V$，$a_1,\dots,a_n\in F$，则称$a_1x_1+\dots+a_nx_n$是$x_1,\dots,x_n$的一个\textbf{线性组合}. 
 \end{definition}
 
 接下来，基于某些特定的线性空间，我们构造各种新的线性空间. 
@@ -70,10 +70,10 @@
 例如，$\Q$是$\R$的一个线性子空间，但$\Z$不是$\R$的一个线性子空间. 再比如，当$k<l$，$C^k(\R)$是$C^l(\R)$的一个线性子空间. 
 
 \begin{definition}[乘积空间]
-设$V_1,\cdots,V_n$是$F$-线性空间，则$V_1\times\cdots\times V_n$是一个$F$-线性空间，其中加法和数乘分别定义为
+设$V_1,\dots,V_n$是$F$-线性空间，则$V_1\times\dots\times V_n$是一个$F$-线性空间，其中加法和数乘分别定义为
 \begin{align*}
-    &(x_1,\cdots,x_n)+(y_1,\cdots,y_n)=(x_1+y_1,\cdots,x_n+y_n),\\
-    &a(x_1,\cdots,x_n)=(ax_1,\cdots,ax_n).
+    &(x_1,\dots,x_n)+(y_1,\dots,y_n)=(x_1+y_1,\dots,x_n+y_n),\\
+    &a(x_1,\dots,x_n)=(ax_1,\dots,ax_n).
 \end{align*}
 \end{definition}
 
@@ -90,7 +90,7 @@
 我们希望用尽可能少的元素来表示整个线性空间，为此，我们需要把“可表示”这样的概念严格化. 
 
 \begin{definition}[线性相关]
-设$V$是$F$-线性空间，$S\subseteq V$，如果存在$x_1,\cdots,x_n\in S$，$a_1,\cdots,a_n\in F$，使得$a_1x_1+\cdots+a_nx_n=0$，且至少有一个$a_i\neq 0$，则称$S$是\textbf{线性相关}的，否则称$S$是\textbf{线性无关}的. 
+设$V$是$F$-线性空间，$S\subseteq V$，如果存在$x_1,\dots,x_n\in S$，$a_1,\dots,a_n\in F$，使得$a_1x_1+\dots+a_nx_n=0$，且至少有一个$a_i\neq 0$，则称$S$是\textbf{线性相关}的，否则称$S$是\textbf{线性无关}的. 
 \end{definition}
 
 $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性组合表示出来，因而$S$中有一些冗余. 线性无关意味着$S$中的元素都是必要的，没有冗余. 由此，我们可以给出基的定义. 
@@ -109,12 +109,12 @@ $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性�
 
 基的典型例子包括：
 \begin{itemize}
-    \item $\R^n$的标准基是$\{e_1,\cdots,e_n\}$，其中$e_i$是第$i$个分量为$1$，其余分量为$0$的向量. 
+    \item $\R^n$的标准基是$\{e_1,\dots,e_n\}$，其中$e_i$是第$i$个分量为$1$，其余分量为$0$的向量. 
     \item 特别地，$\R$的基就是$\{1\}$，一般地，域$F$作为线性空间的时候，其基就是$\{1\}$. 但如果我们把$\C$看成$\R$的线性空间，那么$\C$的基就是$\{1,i\}$.
     \item $M_{m\times n}(F)$的标准基是$\{E_{ij}:1\leq i\leq m,1\leq j\leq n\}$，其中$E_{ij}$是第$i$行第$j$列为$1$，其余元素为$0$的矩阵. 
 \end{itemize}
 
-特别注意，无穷维空间经常违背直觉. 例如，考虑$\ell^2$空间和向量组$\{e_1,e_2,\cdots\}$，其中$e_i$是第$i$个分量为$1$，其余分量为$0$的实数列. 这个向量组看上去非常像一个基，然而并非如此！比如说，$(1/n)_{n=1}^\infty\in\ell^2$，但是它不能写成有限个$e_i$的线性组合. 实际上，$\ell^2$空间的基一定是不可数的. 
+特别注意，无穷维空间经常违背直觉. 例如，考虑$\ell^2$空间和向量组$\{e_1,e_2,\dots\}$，其中$e_i$是第$i$个分量为$1$，其余分量为$0$的实数列. 这个向量组看上去非常像一个基，然而并非如此！比如说，$(1/n)_{n=1}^\infty\in\ell^2$，但是它不能写成有限个$e_i$的线性组合. 实际上，$\ell^2$空间的基一定是不可数的. 
 
 给定一个基，我们可以用基来表示线性空间中的元素，容易证明，这一表示是唯一的. 因此，我们可以把线性空间中的元素看成基的线性组合，因而有了下面的定义. 
 
@@ -198,7 +198,7 @@ $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性�
     按照定义验证即可. 
 \end{proof}
 
-为了简化记号，我们会将线性映射$f$的作用$f(x)$简记为$fx$，线性映射的复合$g\circ f$简记为$gf$，同一线性映射$f$的$n$次复合简记为$f^n$. 对于多项式函数$G(x)=a_0+a_1x+\cdots+a_nx^n$，我们可以定义一个新的线性映射$G(f)=a_0\id+a_1f+\cdots+a_nf^n$. 
+为了简化记号，我们会将线性映射$f$的作用$f(x)$简记为$fx$，线性映射的复合$g\circ f$简记为$gf$，同一线性映射$f$的$n$次复合简记为$f^n$. 对于多项式函数$G(x)=a_0+a_1x+\dots+a_nx^n$，我们可以定义一个新的线性映射$G(f)=a_0\id+a_1f+\dots+a_nf^n$. 
 
 线性映射可以被看成一种滤镜，它可以将原始的空间进行变形，变成一个新的空间. 比如说，海上的月亮，就是将三维空间的太阳与空间映到了海面上. 而线性算子则是一种特殊的线性映射，它将原始空间变形成自身. 如果我们把线性空间看成一块橡皮泥，那么线性算子可以被看成某种拉伸，橡皮泥这个整体没有变多或者变少，但是橡皮泥的形状发生了改变. 
 
@@ -313,26 +313,26 @@ $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性�
 \section{矩阵}\label{sec:matrix}
 
 我们已经用用基与坐标表示了线性空间，接下来，我们引入\textit{矩阵}的概念来表示线性映射，我们这一节考虑的线性空间都是有限维的. 考虑一个线性映射$f:V\to W$，如果$V$的基是$\{v_1,\dots,v_n\}$，$W$的基是$\{w_1,\dots,w_m\}$，那么$f(v_i)$可以用$w_1,\dots,w_m$的线性组合表示出来，即
-\[f(v_i)=a_{1i}w_1+\cdots+a_{mi}w_m.\]
+\[f(v_i)=a_{1i}w_1+\dots+a_{mi}w_m.\]
 我们把这些系数$a_{ji}$排成如下形状
 \[A=\begin{pmatrix}
-a_{11}&a_{12}&\cdots&a_{1n}\\
-a_{21}&a_{22}&\cdots&a_{2n}\\
+a_{11}&a_{12}&\dots&a_{1n}\\
+a_{21}&a_{22}&\dots&a_{2n}\\
 \vdots&\vdots&\ddots&\vdots\\
-a_{m1}&a_{m2}&\cdots&a_{mn}
+a_{m1}&a_{m2}&\dots&a_{mn}
 \end{pmatrix}.\]
 
 此时$A$被称为\textit{矩阵}. $m=n$的矩阵被称为\textit{方阵}. $A_i=(a_{i1},\dots,a_{in})$被称为矩阵$A$的第$i$行，$A^j=\begin{pmatrix}a_{1j}\\\vdots\\a_{mj}\end{pmatrix}$被称为矩阵$A$的第$j$列. 他们分别被叫做\textit{行向量}与\textit{列向量}. 第$i$行第$j$列的元素，也就是$a_{ij}$，记为$A_{ij}$. 为了节约空间，列向量通常被写成转置的形式，即$(a_{1j},\dots,a_{mj})^\t$. 注意，坐标向量都被视作列向量. 
 
-假设在基$v_i$下$x\in V$的坐标是$X=(x_1,\dots,x_n)^\t$. 我们现在来计算$f(x)$在基$w_i$下的坐标$Y=(y_1,\dots,y_m)^\t$. 因为$x=x_1v_1+\cdots+x_nv_n$，所以
+假设在基$v_i$下$x\in V$的坐标是$X=(x_1,\dots,x_n)^\t$. 我们现在来计算$f(x)$在基$w_i$下的坐标$Y=(y_1,\dots,y_m)^\t$. 因为$x=x_1v_1+\dots+x_nv_n$，所以
 \begin{align*}
-    f(x)&=f(x_1v_1+\cdots+x_nv_n)\\
-    &=x_1f(v_1)+\cdots+x_nf(v_n)\\
-    &=x_1(a_{11}w_1+\cdots+a_{m1}w_m)+\cdots+x_n(a_{1n}w_1+\cdots+a_{mn}w_m)\\
-    &=(a_{11}x_1+\cdots+a_{1n}x_n)w_1+\cdots+(a_{m1}x_1+\cdots+a_{mn}x_n)w_m.
+    f(x)&=f(x_1v_1+\dots+x_nv_n)\\
+    &=x_1f(v_1)+\dots+x_nf(v_n)\\
+    &=x_1(a_{11}w_1+\dots+a_{m1}w_m)+\dots+x_n(a_{1n}w_1+\dots+a_{mn}w_m)\\
+    &=(a_{11}x_1+\dots+a_{1n}x_n)w_1+\dots+(a_{m1}x_1+\dots+a_{mn}x_n)w_m.
 \end{align*}
 
-因此，$f(x)$在基$w_i$下的坐标是$(a_{11}x_1+\cdots+a_{1n}x_n,\dots,a_{m1}x_1+\cdots+a_{mn}x_n)^\t$，$y_i=a_{i1}x_1+\cdots+a_{in}x_n$. 我们将这一计算结果写作
+因此，$f(x)$在基$w_i$下的坐标是$(a_{11}x_1+\dots+a_{1n}x_n,\dots,a_{m1}x_1+\dots+a_{mn}x_n)^\t$，$y_i=a_{i1}x_1+\dots+a_{in}x_n$. 我们将这一计算结果写作
 \[Y=AX.\]
 这就是矩阵与向量的乘法.
 
@@ -348,7 +348,7 @@ a_{m1}&a_{m2}&\cdots&a_{mn}
 
 我们再看一个的例子，这个例子说明利用矩阵如何给出不同基之下的坐标变换公式. 设$V$是一个$n$维线性空间，$f:V\to V$是一个线性算子. $V$的一组基是$\{v_1,\dots,v_n\}$，另一组基是$\{v_1',\dots,v_n'\}$. 定义一个$V$的自同构满足$f(v_i)=v_i'$. 假设$f$在基$\{v_i\}$下的矩阵是$A$，这被称为基$\{v_i\}$到基$\{v_i'\}$的\textit{过渡矩阵}.
 
-考虑一个点$x\in V$，它在基$\{v_i\}$下的坐标是$X=(x_1,\dots,x_n)^\t$，在基$\{v_i'\}$下的坐标是$X'=(x_1',\dots,x_n')^\t$. 我们来计算$x$在基$\{v_i'\}$下的坐标. 因为$f(x)=f(x_1v_1+\cdots+x_nv_n)=x_1f(v_1)+\cdots+x_nf(v_n)$，而
+考虑一个点$x\in V$，它在基$\{v_i\}$下的坐标是$X=(x_1,\dots,x_n)^\t$，在基$\{v_i'\}$下的坐标是$X'=(x_1',\dots,x_n')^\t$. 我们来计算$x$在基$\{v_i'\}$下的坐标. 因为$f(x)=f(x_1v_1+\dots+x_nv_n)=x_1f(v_1)+\dots+x_nf(v_n)$，而
 \[f(v_i)=v_i'=\sum_{j=1}^n a_{ji}v_j,\]
 所以
 \begin{gather*}
@@ -366,29 +366,29 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 然后再考虑映射的复合. 设$V$是$F$-线性空间，$f:V\to W$和$g:W\to U$是两个线性映射. 如果$V$的基是$\{v_1,\dots,v_n\}$，$W$的基是$\{w_1,\dots,w_m\}$，$U$的基是$\{u_1,\dots,u_l\}$. 假设在这些基下，$g$和$f$的矩阵分别是$A$和$B$，那么复合$gf$的矩阵可以很自然地记作$AB$. 我们来计算$AB$的第$i$行第$j$列的元素. 因为$gf(v_i)=g(f(v_i))$，所以
 \begin{align*}
     gf(v_i)&=g(f(v_i))\\
-    &=g(a_{1i}w_1+\cdots+a_{mi}w_m)\\
-    &=a_{1i}g(w_1)+\cdots+a_{mi}g(w_m)\\
-    &=a_{1i}(b_{11}u_1+\cdots+b_{l1}u_l)+\cdots+a_{mi}(b_{1m}u_1+\cdots+b_{lm}u_l)\\
-    &=(a_{1i}b_{11}+\cdots+a_{mi}b_{1m})u_1+\cdots+(a_{1i}b_{l1}+\cdots+a_{mi}b_{lm})u_l.
+    &=g(a_{1i}w_1+\dots+a_{mi}w_m)\\
+    &=a_{1i}g(w_1)+\dots+a_{mi}g(w_m)\\
+    &=a_{1i}(b_{11}u_1+\dots+b_{l1}u_l)+\dots+a_{mi}(b_{1m}u_1+\dots+b_{lm}u_l)\\
+    &=(a_{1i}b_{11}+\dots+a_{mi}b_{1m})u_1+\dots+(a_{1i}b_{l1}+\dots+a_{mi}b_{lm})u_l.
 \end{align*}
-因此，$AB$的第$i$行第$j$列的元素是$a_{1i}b_{j1}+\cdots+a_{mi}b_{jm}$. 这就是矩阵乘法的定义. 当有多个相同矩阵相乘时，我们可以写成幂的形式. 比如，$A^2=AA$，$A^3=AAA$等等. 
+因此，$AB$的第$i$行第$j$列的元素是$a_{1i}b_{j1}+\dots+a_{mi}b_{jm}$. 这就是矩阵乘法的定义. 当有多个相同矩阵相乘时，我们可以写成幂的形式. 比如，$A^2=AA$，$A^3=AAA$等等. 
 
 接下来，我们考虑同构对应的矩阵. 最简单的同构是恒等映射$\id:V\to V$，它的矩阵是\textit{单位矩阵} $I_n$. 容易看出，无论在什么基下，$I_n$都等于
 \[\begin{pmatrix}
-1&0&\cdots&0\\
-0&1&\cdots&0\\
+1&0&\dots&0\\
+0&1&\dots&0\\
 \vdots&\vdots&\ddots&\vdots\\
-0&0&\cdots&1
+0&0&\dots&1
 \end{pmatrix}.\]
 
-有了单位矩阵，类似算子的多项式，给定多项式$G(x)=a_0+a_1x+\cdots+a_nx^n$，我们可以定义矩阵$G(A)=a_0I_n+a_1A+\cdots+a_nA^n$. 
+有了单位矩阵，类似算子的多项式，给定多项式$G(x)=a_0+a_1x+\dots+a_nx^n$，我们可以定义矩阵$G(A)=a_0I_n+a_1A+\dots+a_nA^n$. 
 
 在更一般的情况下，考虑$V$和$W$是$n$维的$F$-线性空间，基分别是$\{v_1,\dots,v_n\}$和$\{w_1,\dots,w_n\}$. 如果线性映射$f:V\to W$将$v_i$映到$\lambda_i w_i$，那么$f$的矩阵就是
 \[\begin{pmatrix}
-\lambda_1&0&\cdots&0\\
-0&\lambda_2&\cdots&0\\
+\lambda_1&0&\dots&0\\
+0&\lambda_2&\dots&0\\
 \vdots&\vdots&\ddots&\vdots\\
-0&0&\cdots&\lambda_n
+0&0&\dots&\lambda_n
 \end{pmatrix}.\]
 我们将这样的矩阵称为\textit{对角矩阵}. 
 
@@ -725,10 +725,10 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 接下来，我们继续表示论的观点，讨论内积空间中的基与坐标. 首先是正交与线性无关的关系. 
 
 \begin{proposition}\label{prop:orthogonal}
-设$V$是一个内积空间，两两正交的非零向量$v_1,\cdots,v_n\in V$是线性无关的. 
+设$V$是一个内积空间，两两正交的非零向量$v_1,\dots,v_n\in V$是线性无关的. 
 \end{proposition}
 \begin{proof}
-设$\lambda_1,\cdots,\lambda_n\in\R$满足$\sum_{i=1}^n\lambda_iv_i=0$，那么
+设$\lambda_1,\dots,\lambda_n\in\R$满足$\sum_{i=1}^n\lambda_iv_i=0$，那么
 \[
     0=\inner{\sum_{i=1}^n\lambda_iv_i}{v_j}=\sum_{i=1}^n\lambda_i\inner{v_i}{v_j}=\lambda_j\norm{v_j}^2.
 \]
@@ -746,7 +746,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 我们来看看这一定理的用处. 首先，它给出了计算坐标的简易方式. 
 
 \begin{proposition}\label{prop:projection}
-设$V$是一个内积空间，它的标准正交基是$e_1,\cdots,e_n$，$v\in V$，那么
+设$V$是一个内积空间，它的标准正交基是$e_1,\dots,e_n$，$v\in V$，那么
 \[
     v=\sum_{i=1}^n\inner{v}{e_i}e_i.
 \]
@@ -840,10 +840,10 @@ Gram矩阵的基本性质是：
 
 这一定理的证明思路类似\Cref{thm:kernel-image-property} 的证明，区别是这里需要扩充标准正交基. 这里不再给出具体证明. 
 
-最后，我们考虑标准正交基之间的过渡矩阵. 设$V$是一个内积空间，$e_1,\cdots,e_n$和$e_1',\cdots,e_n'$都是$V$的标准正交基. 设$e_j'=a_{1j}e_1+\cdots+a_{nj}e_n$，如此就得到了过渡矩阵$A$. 我们来看看$A$的性质. 
+最后，我们考虑标准正交基之间的过渡矩阵. 设$V$是一个内积空间，$e_1,\dots,e_n$和$e_1',\dots,e_n'$都是$V$的标准正交基. 设$e_j'=a_{1j}e_1+\dots+a_{nj}e_n$，如此就得到了过渡矩阵$A$. 我们来看看$A$的性质. 
 
 \begin{proposition}
-设$V$是一个内积空间，$e_1,\cdots,e_n$和$e_1',\cdots,e_n'$都是$V$的标准正交基. 设$e_i$到$e_i'$的过渡矩阵是$A$，那么$AA^\t=A^\t A=I_n$.
+设$V$是一个内积空间，$e_1,\dots,e_n$和$e_1',\dots,e_n'$都是$V$的标准正交基. 设$e_i$到$e_i'$的过渡矩阵是$A$，那么$AA^\t=A^\t A=I_n$.
 \end{proposition}
 \begin{proof}
 设$A=(a_{ij})$，那么
@@ -911,7 +911,7 @@ Gram矩阵的基本性质是：
 \begin{proof}
     后半部分（“反之”之后）由\Cref{thm:orthogonal-matrix} 的第二点直接得出. 我们来证明前半部分. 
     
-    设$v_1,\cdots,v_n$是$V$的标准正交基，$w_1,\cdots,w_n$是$W$的标准正交基，$A$是$f$在这两组基下的矩阵. 考虑任意一个点$x\in V$，它的坐标是$X$. 那么$f(x)$的坐标是$AX$. 由于$f$是等距同构，所以$\norm{f(x)}=\norm{x}$，根据\Cref{prop:projection}，这等价于$\norm{AX}=\norm{X}$，由\Cref{thm:orthogonal-matrix} 的第二点，$A$是一个正交矩阵. 
+    设$v_1,\dots,v_n$是$V$的标准正交基，$w_1,\dots,w_n$是$W$的标准正交基，$A$是$f$在这两组基下的矩阵. 考虑任意一个点$x\in V$，它的坐标是$X$. 那么$f(x)$的坐标是$AX$. 由于$f$是等距同构，所以$\norm{f(x)}=\norm{x}$，根据\Cref{prop:projection}，这等价于$\norm{AX}=\norm{X}$，由\Cref{thm:orthogonal-matrix} 的第二点，$A$是一个正交矩阵. 
 \end{proof}
 
 \section{行列式}\label{sec:determinant}
@@ -934,20 +934,20 @@ Gram矩阵的基本性质是：
     \alpha & \beta
 \end{vmatrix}.\]
 
-我们可以把这个面积的计算推广到$n$维空间中去. 设$A$是一个$n$阶方阵，它的列向量是$A^1,\cdots,A^n$，我们考虑这些列向量张成的$n$维平行体：
-\[\Pi(A)=\left\{x_1A^1+\cdots+x_nA^n:0\leq x_i\leq 1\right\}.\]
+我们可以把这个面积的计算推广到$n$维空间中去. 设$A$是一个$n$阶方阵，它的列向量是$A^1,\dots,A^n$，我们考虑这些列向量张成的$n$维平行体：
+\[\Pi(A)=\left\{x_1A^1+\dots+x_nA^n:0\leq x_i\leq 1\right\}.\]
 
 平行体的体积可以归纳定义. 一维的情况下，向量就是实数，这个实数的绝对值就作为体积. 假设已经定义了$n-1$维平行体的体积，那么$n$维平行体的体积就是它的底的体积乘以高. 我们需要定义什么是底什么是高. 底是$n-1$维平行体$\Pi(A^1,\dots,A^{n-1})$. 为定义高，先将$A^n$投影到$\Span(A^1,\dots,A^{n-1})$，投影$A^n_*$就是垂足，高就是$A^n-A^n_*$的长度. 这样，我们就得到了$n$维平行体的体积的定义. 
 
 行列式与有向体积有关. 我们这里不会专门定义有向体积的概念，只给出一个二维情况下的直观. 通常$\R^2$的标准正交基$e_1,e_2$，从$e_1$到$e_2$是逆时针的. 我们之前定义有向面积的时候也遵循了这样的原则：与$e_1,e_2$形成相同\textit{定向}（即顺逆时针）的面积是正的，与$e_1,e_2$形成相反\textit{定向}的面积是负的. 定向这一概念本质地反映了一组向量的顺序. 
 
-对于一般情况，向量$A^1,\cdots,A^n$和$\R^n$的标准正交基$e_1,\cdots,e_n$之间同定向时$\Pi(A)$的体积是正的，否则就是负的. 这样，我们就定义了有向体积. 我们指出，行列式的定义恰好就给出了有向体积的计算公式. 下面我们给出行列式的定义. 
+对于一般情况，向量$A^1,\dots,A^n$和$\R^n$的标准正交基$e_1,\dots,e_n$之间同定向时$\Pi(A)$的体积是正的，否则就是负的. 这样，我们就定义了有向体积. 我们指出，行列式的定义恰好就给出了有向体积的计算公式. 下面我们给出行列式的定义. 
 
 \begin{definition}[行列式]
     设$A$是一个$n$阶方阵，$A$的行列式$\det A$归纳定义为
 \begin{enumerate}
     \item $n=1$时，$\det A=A_{11}$；
-    \item $\det A=A_{11}\det R_{11}-A_{12}\det R_{12}+\cdots+(-1)^{1+n}A_{1n}\det R_{1n}$，其中$R_{ij}$是$A$是$A$去掉第$i$行第$j$列以后得到的矩阵. 
+    \item $\det A=A_{11}\det R_{11}-A_{12}\det R_{12}+\dots+(-1)^{1+n}A_{1n}\det R_{1n}$，其中$R_{ij}$是$A$是$A$去掉第$i$行第$j$列以后得到的矩阵. 
 \end{enumerate}
 \end{definition}
 
@@ -1141,7 +1141,7 @@ Gram矩阵的基本性质是：
 \[
     \norm{f(x)}^2=\norm{AX}^2=\sum_{i=1}^n\lambda_i^2x_i^2.
 \]
-假设$|\lambda_1|\geq|\lambda_2|\geq\cdots\geq|\lambda_n|$，那么
+假设$|\lambda_1|\geq|\lambda_2|\geq\dots\geq|\lambda_n|$，那么
 \[
     |\lambda_n|^2\sum_{i=1}^n x_i^2\leq \sum_{i=1}^n\lambda_i^2x_i^2\leq |\lambda_1|^2\sum_{i=1}^n x_i^2.
 \]

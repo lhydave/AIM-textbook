@@ -386,11 +386,11 @@ $B$ & $(1, -10)$ & $(0, 0)$ \\
 
 我们可以算出来，当真实矩阵为左边矩阵时，每个类型出现的概率. 首先，以概率$p$选择左边的矩阵，而且没有人发送消息. 因此，$(\theta_1^0,\theta_2^0)$的概率是$p$，其他项概率都是$0$. 我们得到如下的概率表：
 \[\begin{array}{c|cccc}
-\text{左}& \theta_2^0 & \theta_2^1 & \theta_2^2 & \cdots \\
+\text{左}& \theta_2^0 & \theta_2^1 & \theta_2^2 & \dots \\
 \hline
-\theta_1^0 & p & 0 & 0 & \cdots \\
-\theta_1^1 & 0 & 0 & 0 & \cdots \\
-\theta_1^2 & 0 & 0 & 0 & \cdots \\
+\theta_1^0 & p & 0 & 0 & \dots \\
+\theta_1^1 & 0 & 0 & 0 & \dots \\
+\theta_1^2 & 0 & 0 & 0 & \dots \\
 \vdots & \vdots & \vdots & \vdots & \ddots
 \end{array}
 \]
@@ -398,12 +398,12 @@ $B$ & $(1, -10)$ & $(0, 0)$ \\
 同样可以算出来，当真实矩阵为右边矩阵时，每个类型出现的概率. 首先，以概率$1 - p$选择右边的矩阵，玩家$1$发送一条消息，它会以概率$\epsilon$丢失. 因此，$(\theta_1^1,\theta_2^0)$的概率是$\epsilon(1 - p)$. 以此类推，可以得到计算. 我们得到如下的概率表：
 \[
 \begin{array}{c|cccc}
-\text{右} & \theta_2^0 & \theta_2^1 & \theta_2^2 & \cdots \\
+\text{右} & \theta_2^0 & \theta_2^1 & \theta_2^2 & \dots \\
 \hline
-\theta_1^0 & 0 & 0 & 0 & \cdots \\
-\theta_1^1 & \epsilon(1 - p) & \epsilon(1 - \epsilon)(1 - p) & 0 & \cdots \\
-\theta_1^2 & 0 & \epsilon(1 - \epsilon)^2(1 - p) & \epsilon(1 - \epsilon)^3(1 - p) & \cdots \\
-\theta_1^3 & 0 & 0 & \epsilon(1 - \epsilon)^4(1 - p) & \cdots \\
+\theta_1^0 & 0 & 0 & 0 & \dots \\
+\theta_1^1 & \epsilon(1 - p) & \epsilon(1 - \epsilon)(1 - p) & 0 & \dots \\
+\theta_1^2 & 0 & \epsilon(1 - \epsilon)^2(1 - p) & \epsilon(1 - \epsilon)^3(1 - p) & \dots \\
+\theta_1^3 & 0 & 0 & \epsilon(1 - \epsilon)^4(1 - p) & \dots \\
 \vdots & \vdots & \vdots & \vdots & \ddots
 \end{array}
 \]
