@@ -1,6 +1,6 @@
 \chapter{熵与Kullback-Leibler散度}\label{chap:information-theory}
 
-人脑和机器的区别是什么？我们有可能模拟人脑的功能吗？这些问题根植于认知科学和人工智能领域. 在20世纪50年代，计算机科学、认知科学和人工智能仍然处于萌芽状态. 就是在这个时候，基于对人类如何解决问题和决策的研究，Herbert A. Simon提出，人脑其实是一个“信息处理器”，也就是输入信息（视觉、听觉等），进行处理，然后输出信息（动作、语言等）. 从这个观点上，人脑和机器并无区别. 
+人脑和机器的区别是什么？我们有可能模拟人脑的功能吗？这些问题根植于认知科学和人工智能领域. 在20世纪50年代，计算机科学、认知科学和人工智能仍然处于萌芽状态. 就是在这个时候，基于对人类如何解决问题和决策的研究，Herbert A. Simon提出，人脑其实是一个“信息处理器”，也就是输入信息（视觉、听觉等），进行处理，然后输出信息（动作、语言等）~\cite{simonInformationprocessingModelsCognition1981}. 从这个观点上，人脑和机器并无区别. 
 
 基于这样的观点，Simon和Allen Newell、 J. C. Shaw一起合作，制造了逻辑理论家（Logic Theorist）、通用问题求解器（General Problem Solver，GPS）等计算机程序. 逻辑理论家可以证明《数学原理》（作者是Whitehead和Russell）第二章前52个定理中的38个，而GPS则可以解决汉诺塔问题. 这展现出“信息处理器”观点的巨大潜力. 
 
@@ -29,7 +29,7 @@
 \end{itemize}
 我们对试验结果的预期与试验结果的概率分布有密切联系. 因此概率分布给我们带来了\textit{信息}，使得我们能够产生不同的判断. 另一方面，概率分布带来了\textit{不确定性}，使我们不能总是确信预言会成真. 
 
-我们遵循“信息论之父”Shannon的思路，为信息提供一个严格的数学模型：\textit{熵}. 假设随机变量$X$表示了所有可能的结果（编号为$1$到$n$），$\Pr(X=i)=p_i$，$p=(p_1,\dots,p_n)$，有时候也把$p_i$写作$p(i)$. 我们把不确定性度量记为$H(p)$. Shannon假设$H$满足以下三个性质：
+我们遵循“信息论之父”Shannon的思路~\cite{shannonMathematicalTheoryCommunication1948}，为信息提供一个严格的数学模型：\textit{熵}. 假设随机变量$X$表示了所有可能的结果（编号为$1$到$n$），$\Pr(X=i)=p_i$，$p=(p_1,\dots,p_n)$，有时候也把$p_i$写作$p(i)$. 我们把不确定性度量记为$H(p)$. Shannon假设$H$满足以下三个性质：
 \begin{enumerate}
     \item $H$是一个连续函数.
     \item 事件结局可能数变多则不确定性增大：$p_i=1/n$时，$H(p)$随$n$单调递增，$n$是正整数.
@@ -85,7 +85,7 @@ H\left(\frac{1}{2},\frac{1}{3},\frac{1}{6}\right)=H\left(\frac{1}{2},\frac{1}{2}
     其中$p_X$是$X$的分布列，$0\log 0=0$.
 \end{definition}
 
-尽管从信息论的角度我们可以唯一确定熵的定义，但是熵的概念在物理学上早就已经存在. 下面我们给出统计力学中熵的推导过程. 
+尽管从信息论的角度我们可以唯一确定熵的定义，但是熵的概念在物理学上早就已经存在. 下面我们给出统计力学中熵的推导过程，更详细的讨论请参见统计物理教科书，例如~\cite{tolmanPrinciplesStatisticalMechanics2010}.
 
 在经典力学中，物理系统的状态由粒子的位置和动量（也就是速度）完全确定，将粒子位置和动量可能的值集合称为\textit{相空间}，于是物理系统的演化就是相空间中的粒子状态的变化. 
 
@@ -108,7 +108,7 @@ H\left(\frac{1}{2},\frac{1}{3},\frac{1}{6}\right)=H\left(\frac{1}{2},\frac{1}{2}
     \end{align*}
  $\log P\sim -N\sum_i p_i\log p_i$. 于是我们证明了：
     \[\frac1N\log P\to H(p_1,\dots,p_m),\quad N\to\infty.\]
-因此，熵刻画了充分多粒子的物理系统某种特定状态出现概率！熵越大的系统越有可能达到. 更进一步，在统计力学中有Boltzmann $H$-定理：孤立的粒子系统会向着熵（$H$）增加的方向演化，并最终达到熵最大的状态. $H$-定理是热力学第二定律的微观解释，熵越大的系统出现概率越大、越混乱、越接近均衡.
+因此，熵刻画了充分多粒子的物理系统某种特定状态出现概率！熵越大的系统越有可能达到. 更进一步，在统计力学中有Boltzmann $H$-定理：孤立的粒子系统会向着熵（$H$）增加的方向演化，并最终达到熵最大的状态~\cite{uffinkBoltzmannWorkStatistical2022}. $H$-定理是热力学第二定律的微观解释，熵越大的系统出现概率越大、越混乱、越接近均衡.
 
 \subsection{概念与性质}
 现在，我们将进一步探讨熵的若干拓展定义，并讨论他们的性质. 
@@ -307,7 +307,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 \end{align*}
 根据\Cref{prop:information-doesnt-hurt}，$I(X;Y)\geq 0$，等号成立当且仅当$X,Y$相互独立，即$p(x,y)=p_X(x)p_Y(y)$. $X,Y$之间的互信息越大，说明他们之间的关联越强，分布越不独立，$p(x,y)$越不接近$p_X(x)p_Y(y)$. 
 
-上面的推导说明，互信息其实在用分布列的比值比较两个分布的接近程度，这样的想法可以被推广到一般分布上. 考虑两个概率分布的似然函数$p_1$和$p_2$（也就是他们的分布列）. 抽取一个样本$X$，考虑如下两个假设：
+上面的推导说明，互信息其实在用分布列的比值比较两个分布的接近程度，这样的想法被Kullback和Leibler~\cite{kullbackInformationSufficiency1951} 推广到了一般分布上. 考虑两个概率分布的似然函数$p_1$和$p_2$（也就是他们的分布列）. 抽取一个样本$X$，考虑如下两个假设：
 \begin{center}
     $H_1$：样本$X$来自$p_1$的分布\quad vs.\quad $H_2$：样本$X$来自$p_2$的分布
 \end{center}
@@ -373,6 +373,10 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
 
 另一种带来额外信息的方式是，我们引入了一系列规则来计算$Z$的奖励，然后利用强化学习的方法来训练$Y$，这样的数据处理也是有意义的. 例如，DeepSeek R1模型训练的过程中，对于编程题和数学题有关的训练数据，都知道正确答案，因此可以直接通过大模型有没有输出正确答案来计算奖励，进行强化学习. 通过这样的办法，DeepSeek R1可以超越没有做强化学习的基础模型. 
 
+\begin{remark}
+    关于信息论的经典教科书，可以参见 \cite{coverElementsInformationTheory2012} ，此外，概率论的教材中也有很多很好的讨论，比如 \cite{jaynesProbabilityTheoryLogic2002}，\cite{shiryaevProbability1996} 以及中文教科书\cite{LiXianPingGaiLuLunJiChu2010}.
+\end{remark}
+
 \section{编码理论}\label{sec:entropy-and-communication}
 最早的时候，Shannon建立信息论，就是为了给通信和编码理论一个数学基础. 从编码的角度出发，我们可以更本质地理解信息和熵. 
 
@@ -404,9 +408,9 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
 \[\log_2\frac{k!}{k_1!\cdot\dots\cdot k_s!}\leq h(m)\leq s\log_2k+\log\frac{k!}{k_1!\cdot\dots\cdot k_s!}.\]
 这刚好和我们在统计力学中推导熵的过程是一致的！假设消息足够的长，$x_i$出现的频率逐渐接近$p_i$，那么同样的推理我们可以知道，
 \[h(m)\sim -k\sum_i p_i\log_2 p_i=kH_2(p_1,\dots,p_s).\]
-因此，如果知道字母的出现频率，我们传递单位长度的消息至少需要$H(p_1,\dots,p_s)$比特，这完全给出了熵的具体含义，而且，我们现在也不难理解熵的形式为何会出现$\log$了：熵就是期望上编码一个字母需要的比特数（即$\log(1/p(X))$）.
+因此，如果知道字母的出现频率，我们传递单位长度的消息至少需要$H(p_1,\dots,p_s)$比特，这完全给出了熵的具体含义，而且，我们现在也不难理解熵的形式为何会出现$\log$了：熵就是期望上编码一个字母需要的比特数（即$\log(1/p(X))$）. Shannon给出了一种渐进意义上的最优编码，它的编码长度达到了这个下界，后来独立地被Fano \cite{robertm.fanoTransmissionInformation1949} 以一种不同的形式发现，这种编码被称为\textit{Shannon-Fano编码}.
 
-那么，是否有一种编码确实达到了这个理论上的编码长度下界呢？答案是肯定的，它被称为\textit{Huffmann编码}. 它的核心思想在于把出现频率高的字母用更短的编码表示. 类似的思想被用在了机器学习的\textit{决策树}中，作为选择节点非常常用的一种依据.
+那么，是否有一种编码确实达到了这个理论上的编码长度（非渐进）下界呢？答案是肯定的，它被称为\textit{Huffmann编码}. 它的核心思想在于把出现频率高的字母用更短的编码表示. 类似的思想被用在了机器学习的\textit{决策树}中，作为选择节点非常常用的一种依据.
 \begin{remark}
     \textit{决策树}是一种常用的机器学习分类模型. 假设数据有很多属性$P_1,\dots,P_k$，这些属性共同决定了某一条数据的类别. 比如，在银行的信用系统中，给定了一个人的性别、是否已婚、是否负债等信息，我们希望给他评估一个信用评级. 
     
@@ -425,7 +429,7 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
 \[s^k=\e^{k\log s}.\]
 根据\Cref{prop:entropy-maximum}，只有当所有$p_i$相等的时候$N(k)$才会达到这一量级. 从这个意义上说，\textit{熵所刻画的信息量定量刻画了数据压缩可能的极限.}
 
-以上关于信息编码下界以及数据压缩的讨论，再更一般的情况下也成立，此时这样的性质被称为\textit{渐近等分性}. 而这一性质成立对应的结果被称为\textit{Shannon–McMillan–Breiman定理}，它的陈述以及证明都需要用到更多随机过程的知识，这里就不再给出了.
+以上关于信息编码下界以及数据压缩的讨论，再更一般的情况下也成立，此时这样的性质被称为\textit{渐近等分性}. 而这一性质成立对应的结果被称为\textit{Shannon-McMillan-Breiman定理}，它的陈述以及证明都需要用到更多随机过程的知识，这里就不再给出了，感兴趣的读者请参阅Shannon的工作~\cite{shannonMathematicalTheoryCommunication1948}、MciMillan的工作 \cite{mcmillanBasicTheoremsInformation1953} 和Breiman的工作 \cite{breimanIndividualErgodicTheorem1957}。
 
 \subsection{K-L散度、交叉熵与编码}
 
@@ -457,10 +461,13 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
 例如，尽管字符串$x=0101010101$看起来非常长，但是我们可以用一个很短的程序来描述它：输出5次“$01$”. 然而，尽管字符串$y=011001$比$x$短得多，我们却很难找到一个简短的程序来描述它. 因此，$y$的Kolmogorov复杂度要比$x$大，因而看起来更像是随机的.
 
 利用这一概念，我们可以将信息的概念变成一个对象自己的属性，而不再需要把对象放在可能的一堆对象中去考虑. 这是信息论的另一种构建思路. 
+
+
+关于Kolmogorov复杂度的讨论，可以参见专著 \cite{liIntroductionKolmogorovComplexity2019}，这本书对于随机、信息、编码、复杂度，乃至归纳推理等概念都有非常独到的见解，值得一读. 
 \end{remark}
 
 \section{在机器学习中的应用：语言生成模型}\label{sec:language-models}
-现如今，机器学习中最为瞩目的成果之一就是\textit{大语言模型}（LLM），它通过学习人类海量的高质量语料库来形成一个生成式的模型，其中最为典型的例子是ChatGPT.
+现如今，机器学习中最为瞩目的成果之一就是\textit{大语言模型}（LLM），它通过学习人类海量的高质量语料库来形成一个生成式的模型，其中最为典型的例子是ChatGPT~\cite{ChatGPTOpenAI}.
 
 从思路上来说，大语言模型的核心思想非常简单：给一段话，将其中一些词掩盖掉，让模型填出这些词来. 例如，给出
 \begin{quotation}
@@ -471,7 +478,7 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
     “我在\light{吃}面条，它真好吃. ”
 \end{quotation}
 
-对于GPT模型来说，这一思想更加简单：永远只预测下一个词. 它的哲学是“通过预测下一个词，可以理解世界.”
+对于GPT模型~\cite{radfordImprovingLanguageUnderstanding} 来说，这一思想更加简单：永远只预测下一个词. 它的哲学是“通过预测下一个词，可以理解世界.”
 
 这样的思想，对于更一般的数据也是成立的：用（修改过的）数据本身作为输入，训练一个\textit{编码器}，然后将编码器的输出送入\textit{解码器}，而解码器的输出具有原始数据的格式，我们希望这一输出能够尽量匹配原始的输入. 这正是本章开头Simon所说的“信息处理器”的具体实现. 
 
@@ -569,7 +576,7 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
 \begin{enumerate}[wide, labelindent=0pt]
     \item \label{exercise:conditional-mutual-information} 证明\Cref{prop:conditional-mutual-information}. 
     
-    \item 仿照集合论的思路，我们可以定义三个随机变量的互信息为：
+    \item \cite{tingAmountInformation1962} 仿照集合论的思路，我们可以定义三个随机变量的互信息为：
     \[I(X;Y;Z)=I(X;Y)-I(X;Y|Z).\]
     \begin{enumerate}
         \item 证明对称性：$I(X;Y;Z)=I(Y;X;Z) = I(X;Z;Y)$.
@@ -623,7 +630,7 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
     \item \label{exercise:diffusion-model-loss}
     在生成模型中，我们假设数据$x$是由隐变量$z$生成的. 下面我们来推导VAE（Variational Auto-encoder）与扩散模型的损失函数.
     \begin{enumerate}
-        \item （VAE）设$x$是由$z$生成的：数据的生成分为两个步骤，首先$z$由先验分布$p_{\alpha}(z)$生成，然后$x$由条件分布$p_{\beta}(x|z)$生成. 为了最好的拟合数据，我们希望最大化似然，即$\max p_{\theta}(x)$，其中$\theta = \{\alpha, \beta\}$, $p_{\theta}(x)$可以写成：
+        \item （VAE，\cite{kingmaAutoEncodingVariationalBayes2022}）设$x$是由$z$生成的：数据的生成分为两个步骤，首先$z$由先验分布$p_{\alpha}(z)$生成，然后$x$由条件分布$p_{\beta}(x|z)$生成. 为了最好的拟合数据，我们希望最大化似然，即$\max p_{\theta}(x)$，其中$\theta = \{\alpha, \beta\}$, $p_{\theta}(x)$可以写成：
         \[
             p_{\theta}(x) = \int p_{\alpha}(z)p_{\beta}(x|z)dz.
         \]
@@ -633,7 +640,7 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
         \]
         于是，最大化似然可以通过优化上面的ELBO（Evidence Lower Bound）来实现.
 
-        \item （扩散模型）我们假设数据$x=x_{0}$是由$z=(x_{1},\dots,x_{T})$生成的. 生成方式为逐渐对$x_{t}$去噪（逆向过程），去噪的过程是Markov链，起点为$x_{T}$，服从$p(x_{T}) = \mathcal{N}(x_{T};0,I)$：
+        \item （扩散模型，\cite{hoDenoisingDiffusionProbabilistic2020}）我们假设数据$x=x_{0}$是由$z=(x_{1},\dots,x_{T})$生成的. 生成方式为逐渐对$x_{t}$去噪（逆向过程），去噪的过程是Markov链，起点为$x_{T}$，服从$p(x_{T}) = \mathcal{N}(x_{T};0,I)$：
         \begin{align*}
             p_{\theta}(x_{0:T}) &= p_{\theta}(x_{T})\prod_{t=1}^{T}p_{\theta}(x_{t-1}|x_{t}),\\
             p_{\theta}(x_{t-1}|x_{t}) &= \mathcal{ N}(x_{t-1}; \mu_{\theta}(x_{t}, t), \Sigma_{\theta}(x_{t}, t)).

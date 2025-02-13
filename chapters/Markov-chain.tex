@@ -1,6 +1,6 @@
 \chapter{Markov链与模型}\label{chap:markov-chain}
 
-我们都知道，人的推理和决策会受到时间的影响：我们宁愿要现在的十块钱也不要十年后的二十块钱. 然而，人和人的耐心程度是不一样的. 2010年，来自意大利博洛尼亚大学Manuela Sellitto和她的同事进行了一项实验. 他们的实验对象是一组大脑正常的人（对照组）、一组非眶额叶区受损的病人（实验组1）和一组眶额叶周围受损的病人（实验组2）. 实验人员对被试进行提问，典型的问题如下：“你想要现在拿到10美元还是一个月后拿到12美元？”. 他们对食物和货币形式的奖励都进行了测试. 
+我们都知道，人的推理和决策会受到时间的影响：我们宁愿要现在的十块钱也不要十年后的二十块钱. 然而，人和人的耐心程度是不一样的. 2010年，来自意大利博洛尼亚大学Manuela Sellitto和她的同事进行了一项实验~\cite{sellittoMyopicDiscountingFuture2010}. 他们的实验对象是一组大脑正常的人（对照组）、一组非眶额叶区受损的病人（实验组1）和一组眶额叶周围受损的病人（实验组2）. 实验人员对被试进行提问，典型的问题如下：“你想要现在拿到10美元还是一个月后拿到12美元？”. 他们对食物和货币形式的奖励都进行了测试. 
 
 结果显示，眶额叶周围受损的病人更倾向于选择即时的奖励，而其他组的人更倾向于选择未来的奖励. 如果货币奖励翻倍（例如，从50美元变为100美元），对照组和实验组1的人愿意等待4到6个月，而眶额叶周围受损的人（实验组2）甚至不愿意等待3周. 换句话说，人的耐心程度是大脑结构决定的，而不是自己可以轻易改变的！
 
@@ -11,6 +11,10 @@
 在\Cref{chap:plausible-reasoning}中，我们说明了合情推理是人和AI非常重要的推理方式，这一推理模式基于Bayes概率论和似然. 然而，这一模型对推理的假设是逻辑的、静态的，时间的概念并不出现在似然里面. 例如，考虑一个罐子，里面有除颜色之外不可区分的$N$个球，有$n$个白球，剩下的是黑球. 顺序从中拿出$N$个球，第$k$次拿出的球颜色是$W_k$或$B_k$.
 
 用Bayes定理很容易证明，对任意$i\neq j$，$\Pr(W_i|W_j)=\Pr(W_j|W_i)$. 也就是说，$\Pr(W_i|W_j)$和$\Pr(W_j|W_i)$不仅是可计算的，而且是相等的. 然而，如果从推理的角度来说，我们基于时间更晚的状态推理时间更早的状态，这样的推理需要我们能够有对未来的模型. 因此，我们需要引入一个带有时间的推理模型，这就是Markov链.
+
+\begin{remark}
+    从主观概率角度理解Markov链的这种方式，本书采纳了Jaynes著作\cite{jaynesProbabilityTheoryLogic2002} 中的观点。
+\end{remark}
 
 \begin{definition}[Markov链]
 \textbf{Markov链}（\textbf{马氏链}）是一列随机变量$\{X_t\}_{t=0}^{\infty}$，包含如下概念：
@@ -70,9 +74,10 @@ Markov链是一种简化的带时间的概率模型，它最重要的性质是Ma
 
 这个性质可以通过对$t$进行归纳证明，即$X_t$是$\{1,\dots,t+1\}$上的均匀分布. $t=0$时，$X_0=1$，显然成立. 假设对$t$成立，即$X_t$是$\{1,\dots,t+1\}$上的均匀分布. 那么对$t+1$以及$1\leq j\leq t+2$，根据全概率公式，我们有
 \begin{align*}
-    \Pr(X_{t+1}=j)&=\sum_{k=1}^{t+1}\Pr(X_{t+1}=j|X_t=k)\Pr(X_t=k)\\
-    &=\frac{1}{t+1}(\Pr(X_{t+1}=j|X_t=j-1)+\Pr(X_{t+1}=j|X_t=j))\\
-    &=\frac{1}{t+1}\left(\frac{j-1}{t+2}+\frac{t+2-j}{t+2}\right)=\frac{1}{t+2}.
+    \Pr(X_{t+1}=j)\\
+    =&\sum_{k=1}^{t+1}\Pr(X_{t+1}=j|X_t=k)\Pr(X_t=k)\\
+    =&\frac{1}{t+1}(\Pr(X_{t+1}=j|X_t=j-1)+\Pr(X_{t+1}=j|X_t=j))\\
+    =&\frac{1}{t+1}\left(\frac{j-1}{t+2}+\frac{t+2-j}{t+2}\right)=\frac{1}{t+2}.
 \end{align*}
 于是，归纳成立.
 
@@ -250,7 +255,7 @@ p_{i j}^{(n)} \geq \pi_j - \varepsilon > 0, n \geq n_0.
 
 满足条件 \eqref{eq:stationary} 的分布被称为\textit{平稳分布}. 用性质$\lambda^\t \calP = \lambda^\t$很容易说明，平稳分布为初始状态时，Markov链的演化与时间无关：
 \begin{proposition}\label{prop:stationary-distribution}
-设$\{X_n\}$是Markov链，如果$X_0$是平稳分布，那么$(X_k,\dots,X_{k+l})$的联合分布不依赖于$k$.
+设$\{X_n\}$是Markov链，如果$X_0$是平稳分布，那么随机变量列$(X_k,\dots,X_{k+l})$的联合分布不依赖于$k$.
 \end{proposition}
 
 如果Markov链是遍历的，那么平稳分布是唯一的：
@@ -265,10 +270,13 @@ p_{i j}^{(n)} \geq \pi_j - \varepsilon > 0, n \geq n_0.
 \[\calP=\begin{pmatrix}0&1\\1&0\end{pmatrix},\]
 它有唯一平稳分布$\lambda=(1/2,1/2)^\t$.
 
+\begin{remark}
+    关于Markov链，有很多非常好的教材可以作为参考。例如，本节的组织思路大量参考了Shiryaev的概率论教材~\cite{shiryaevProbability1996}. 此外，Norris的Markov链教材~\cite{norrisMarkovChains1997} 以及Durrett的概率论教材~\cite{durrettProbabilityTheoryExamples2019} 都是非常好的参考书.
+\end{remark}
 
 \section{Markov奖励过程（MRP）}
 
-我们接下来的目标就是在Markov链上建立决策理论. 很多认知科学的研究证明，人和动物在做决策的时候，脑中会有一个\textit{价值系统}，用来评估每一个行动的可能产生的价值/奖励. 俗话说，最美味的食物是饿了一整天之后的白米饭；然而，如果我们每一顿饭都是山珍海味，就算是龙虾也会变得索然无味. 这说明，我们的价值系统会随着时间和自身的状态而发生改变. 另一方面，本章开篇所讲的故事表明，我们的价值系统会对不同时期的奖励产生不同的反应，一般来说，我们会对即时奖励更加敏感.
+我们接下来的目标就是在Markov链上建立决策理论. 很多认知科学的研究证明~\cite{gazzanigaCognitiveNeuroscienceBiology2018a}，人和动物在做决策的时候，脑中会有一个\textit{价值系统}，用来评估每一个行动的可能产生的价值/奖励. 俗话说，最美味的食物是饿了一整天之后的白米饭；然而，如果我们每一顿饭都是山珍海味，就算是龙虾也会变得索然无味. 这说明，我们的价值系统会随着时间和自身的状态而发生改变. 另一方面，本章开篇所讲的故事表明，我们的价值系统会对不同时期的奖励产生不同的反应，一般来说，我们会对即时奖励更加敏感.
 
 总结上面的观察，我们可以在Markov链上引入类似的价值系统，这就是Markov奖励过程（MRP）. 在进入正式定义之前，我们先来看一个例子.
 
@@ -352,7 +360,7 @@ v(s) &= \E(G_t|S_t=s) \\
     &= \sum_{s'\in \calS}v(s')\Pr(S_{t+1}=s'|S_t=s)\\
     &=\E[v(S_{t+1})|S_t=s].
 \end{align*}
-我们因此得到了\textbf{Bellman方程}：
+我们因此得到了\textbf{Bellman方程}~\cite{bellmanTheoryDynamicProgramming1952}：
 \begin{theorem}[Bellman方程]\label{thm:MRP-Bellman}
     $v(s)=\mathcal R_s + \gamma \sum_{s'\in \calS}\calP_{s,s'}v(s')$.
 \end{theorem}
@@ -371,13 +379,13 @@ Bellman方程可以用矩阵形式表达：
 \[v=f(v).\]
 因此，$v$是$f$的\textit{不动点}. 在\Cref{chap:fixed-point-theory}，我们将系统地讨论不动点的性质以及它对于Markov链相关模型的重要性.
 
-回到解Bellman方程，对于$n$个状态的Markov链，用线性方程组法的计算复杂度为$\O(n^3)$. 对于较小的MRP可以直接解，太大的MRP开销太大. 对于大型MRP，可以采用迭代算法，例如：动态规划、Monte-Carlo法、时序差分学习等. 动态规划法的思路我们将在\Cref{sec:HMM}中介绍.
+回到解Bellman方程，对于$n$个状态的Markov链，用线性方程组法的计算复杂度为$\O(n^3)$. 对于较小的MRP可以直接解，太大的MRP开销太大. 对于大型MRP，可以采用迭代算法，例如：动态规划、Monte-Carlo法、时序差分学习等~\cite{watkinsLearningDelayedRewards1989}. 动态规划法的思路我们将在\Cref{sec:HMM}中介绍.
 
 \section{Markov决策过程（MDP）}\label{sec:MDP}
 
 上一节中我们建模了Markov链上的价值系统，即MRP，接下来我们进入建模决策的环节. 回顾李二的例子（\Cref{ex:lier-MRP}），我们在MRP中忽略了一个非常重要的考虑：当李二坐在教室1中的时候，李二不是随机地开始刷手机的，他需要\textit{选择}开始刷手机. 换言之，在MRP中，在当前状态可以做什么\textit{行动}是缺失的. 
 
-此外，李二的奖励其实不是由状态决定的，而是由他做了什么行动决定的，这样，李二才能评估做什么行动可以最大化自己的奖励，然后选择奖励高的那个行动. 实际上，认知神经科学的研究表明，人体的运动控制就是由类似的机制完成的：首先，大脑皮层会提出若干不同的运动计划，这些运动计划对应了不同的奖励（由多巴胺浓度来表征），人脑中有一个被称作基底神经节的结构，它负责“放行”奖励高于某个阈值的运动计划，于是人就可以产生这个动作了. 
+此外，李二的奖励其实不是由状态决定的，而是由他做了什么行动决定的，这样，李二才能评估做什么行动可以最大化自己的奖励，然后选择奖励高的那个行动. 实际上，认知神经科学的研究表明，人体的运动控制就是由类似的机制完成的：首先，大脑皮层会提出若干不同的运动计划，这些运动计划对应了不同的奖励（由多巴胺浓度来表征），人脑中有一个被称作基底神经节的结构，它负责“放行”奖励高于某个阈值的运动计划，于是人就可以产生这个动作了~\cite{cisekCorticalMechanismsAction2007,delongPrimateModelsMovement1990}.
 
 综合以上这些思考，我们就可以给出\textit{Markov决策过程}（MDP）的模型. 我们还是先看李二的例子，然后再推广到一般的情况. 
 
@@ -556,11 +564,9 @@ MDP与MRP的关系由策略给出.
     对于第二个方程，将\Cref{prop:state-action-value-optimal} 中第一个等式代入第二个等式即可得到. 
 \end{proof}
 
-Bellman方程不是线性的. 因此很难有解析形式的解. 但是MDP的数值解是有（多项式时间）算法可以求出来的. 我们一般采用迭代算法求解，例如价值迭代、策略迭代等.
+Bellman方程不是线性的. 因此很难有解析形式的解. 但是MDP的数值解是有（多项式时间）算法可以求出来的~\cite{littmanComplexitySolvingMarkov1995}. 我们一般采用迭代算法求解，例如价值迭代、策略迭代等.
 
 求解MDP的过程实际上就是人工智能中\textit{强化学习}的核心步骤. 在本节的开头，我们说过人脑运动控制机制. 实际上，绝大部分的哺乳动物都具备类似这样的学习机制：通过奖励的反馈，动物可以学会如何行动，从而获得最大的奖励. 这样的学习机制被称为\textit{强化学习}. 
-
-1989年，Christopher Watkins在攻读他的心理学博士学位时，首次将基于动态规划的MDP作为强化学习的数学模型. 之后，强化学习在很多复杂交互的环境中都有广泛的应用，例如围棋的AlphaGo、星际争霸的AlphaStar 等.
 
 \begin{remark}
 Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心. Bellman方程的推导是Markov链中最为常用的技巧：考虑从当前状态转移到下一状态，利用全概率公式，一步转移会将两个状态之间的概率（期望）用递推公式联系起来. 在随机过程中，有大量这样的例子：\textit{前向方程}、\textit{Wald等式}、\textit{调和函数}. 后面的\textit{HMM}也是类似的例子.    
@@ -568,9 +574,13 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
 
 最后，我们谈谈深度强化学习. 在一些非常复杂的情况下（例如下围棋），使用经典的迭代算法并不容易求解MDP. \textit{深度强化学习}是一种结合了深度学习和强化学习的方法. 在深度强化学习中，用神经网络来表示$\pi$和$v$，之后，用某种学习算法训练神经网络. 
 
-在很多深度强化学习模型中（例如AlphaGo），MDP的策略是基于过去$k$期的状态做当前的决策，这样可以更好地利用状态的历史信息. 这样的决策模型等价于一个利用一期信息决策的MDP（见习题 \ref{exercise:MDP-k-step}），因此依然可以用同样的深度学习算法来求解. 
+在很多深度强化学习模型中（例如AlphaGo~\cite{silverMasteringGameGo2016a}），MDP的策略是基于过去$k$期的状态做当前的决策，这样可以更好地利用状态的历史信息. 这样的决策模型等价于一个利用一期信息决策的MDP（见习题 \ref{exercise:MDP-k-step}），因此依然可以用同样的深度学习算法来求解. 
 
-在一些深度强化学习模型中（例如MuZero），状态空间$\calS$也用一个神经网络表示. 用神经网络来表示状态空间的好处是可以减少人类的特征工程，让神经网络充分发掘状态空间好的表示方法.
+在一些深度强化学习模型中（例如MuZero~\cite{schrittwieserMasteringAtariGo2020}），状态空间$\calS$也用一个神经网络表示. 用神经网络来表示状态空间的好处是可以减少人类的特征工程，让神经网络充分发掘状态空间好的表示方法.
+
+\begin{remark}
+    1989年，Christopher Watkins在攻读他的心理学博士学位时，首次将基于动态规划的MDP作为强化学习的数学模型~\cite{watkinsLearningDelayedRewards1989}. 之后，强化学习在很多复杂交互的环境中都有广泛的应用，例如用于围棋的AlphaGo~\cite{silverMasteringGameGo2016a}、星际争霸的AlphaStar~\cite{vinyalsGrandmasterLevelStarCraft2019a} 等. 关于强化学习的详细讨论，可以参考Richard Sutton和Andrew Barto的经典教材\cite{suttonReinforcementLearningIntroduction2018}. 
+\end{remark}
 
 \section{隐Markov模型（HMM）}\label{sec:HMM}
 
@@ -721,7 +731,11 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
     从中找到一个$q$使得$\delta_k(q)T_{q,z_{k+1}^*}$最大，记此时的$\delta_k(q)$为$\delta_k^*$，$z_k^*=q$.
     \item 最后，我们就得到了最优的状态序列$z=(z_1^*,z_2^*,\dots,z_t^*)$，使得$\Pr(Z=z,X=x)$最大.
 \end{enumerate}
-以上算法被称为\textit{Viterbi算法}，是解码问题的一个高效算法，它需要计算的乘法次数是$\O(t|\mathcal Z|^2)$. 这一算法采用了\textit{动态规划}的思想，实际上大部分和Bellman方程有关的问题（特别是最优化的问题）都可以用这一方法解决.
+以上算法被称为\textit{Viterbi算法}~\cite{viterbiErrorBoundsConvolutional1967}，是解码问题的一个高效算法，它需要计算的乘法次数是$\O(t|\mathcal Z|^2)$. 这一算法采用了\textit{动态规划}的思想，实际上大部分和Bellman方程有关的问题（特别是最优化的问题）都可以用这一方法解决.
+
+\begin{remark}
+    HMM 在诸多领域都有应用。最早是作为一个统计学模型出现~\cite{baumStatisticalInferenceProbabilistic1966}，后来用来做语音识别~\cite{jelinekDesignLinguisticStatistical1975,huangHiddenMarkovModels1990}，也被用来做DNA序列分析~\cite{bishopMaximumLikelihoodAlignment1986}。
+\end{remark}
 
 \section{扩散模型}
 
@@ -749,7 +763,7 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
     \end{cases}
 \]
 
-下面我们来解释为什么墨水最终会均匀分布在水中. 从遍历定理（\Cref{thm:ergodic-theorem}）我们知道，对于一个遍历的Markov链，无论初始分布是什么，Markov链最终都会收敛到唯一平稳分布. 可以证明（见习题\ref{exercise:ball-A-num}），$\{X_k\}$是一个遍历的Markov链，所以它会收敛到一个平稳分布$\pi\sim B(N,1/2)$. 
+下面我们来解释为什么墨水最终会均匀分布在水中. 从遍历定理（\Cref{thm:ergodic-theorem}）我们知道，对于一个遍历的Markov链，无论初始分布是什么，Markov链最终都会收敛到唯一平稳分布. 可以证明（见习题 \ref{exercise:ball-A-num}），$\{X_k\}$是一个遍历的Markov链，所以它会收敛到一个平稳分布$\pi\sim B(N,1/2)$. 
 
 根据二项式的性质，该分布在$N/2$附近取到最大值，因此，这是墨分子最有可能的分布情况. 更精细的结论是（见习题 \ref{exercise:ball-A-num}），对任意$\epsilon>0$，当$N$充分大的时候，
 \[
@@ -771,13 +785,13 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
 
 注意，扩散过程和逆向过程都是非时齐的Markov链. 假设扩散过程是一个Markov链，那么逆向过程必须是一个Markov链，所以上述定义是良定义的（见习题 \ref{exercise:diffusion-well-defined}）. 
 
-除了物理过程，还有很多其他的场景也可以被看成扩散模型. 比如，我们可以将一张图片看成刚滴了墨的水：它有结构，不是混乱无序的. \footnote{有趣的是，古代中国和西方真的有在水面上撒颜料来作画的技法，也就是在水上撒颜料，然后用纸张把颜料印下来. 在中国，这种技法叫\textit{湿拓画}. 在西方，这种技法叫\textit{marbling}或者\textit{ebru}（来自土耳其语）. } 而水则可以看作一张由Gauss噪声生成的图片：它是随机的，缺乏结构. 于是，墨分子扩散就可以被理解为一张有结构的图片逐渐变成噪声的过程. 
+除了物理过程，还有很多其他的场景也可以被看成扩散模型. 比如，我们可以将一张图片看成刚滴了墨的水：它有结构，不是混乱无序的.\footnote{有趣的是，古代中国和西方真的有在水面上撒颜料来作画的技法，也就是在水上撒颜料，然后用纸张把颜料印下来. 在中国，这种技法叫\textit{湿拓画}. 在西方，这种技法叫\textit{marbling}或者\textit{ebru}（来自土耳其语）. } 而水则可以看作一张由Gauss噪声生成的图片：它是随机的，缺乏结构. 于是，墨分子扩散就可以被理解为一张有结构的图片逐渐变成噪声的过程. 
 
 在这种理解下，扩散过程就是图片加噪声的过程，逆向过程就是去噪的过程. 尽管通过加噪，所有的图片都会变成噪声，然而，噪声与噪声之间细微的区别仍然是可以被区分的. 于是，我们可以通过逆向过程，从噪声中恢复出原始的图片. 
 
 如果我们通过大量图片“图片加噪声”的过程得到一个扩散过程，那么我们可以反向学习“噪声去除”的过程，得到一个逆向过程，那么我们就可以用它来凭空生成图片. 首先，我们随机生成一个噪声图片$x_T$，然后通过逆向过程，我们就可以回到有结构的原始图片$x_0$. 因此，扩散模型可以被用作\textit{生成模型}. 
 
-我们接下来都会以\textit{去噪扩散概率模型}（\textit{DDPM}）为例来讨论扩散模型，它是一个用来生成图片的神经网络模型. DDPM的过程如\Cref{fig:DDPM} 所示. 
+我们接下来都会以\textit{去噪扩散概率模型}（\textit{DDPM}）~\cite{hoDenoisingDiffusionProbabilistic2020}为例来讨论扩散模型，它是一个用来生成图片的神经网络模型. DDPM的过程如\Cref{fig:DDPM} 所示. 
 
 \begin{figure}[ht]
     \centering
@@ -921,6 +935,12 @@ L_{t-1}=\E_q\left[\frac{1}{2 \sigma_t^2}\norm{\tilde{\mu}_t\left(x_t, x_0\right)
         \]
     \end{itemize}
 \end{itemize}
+
+\begin{remark}
+    最早将扩散模型应用于生成模型的工作是\cite{sohl-dicksteinDeepUnsupervisedLearning2015}。后来，\cite{hoDenoisingDiffusionProbabilistic2020} 将损失函数重新写为类似噪声得分匹配模型的形式~\cite{songGenerativeModelingEstimating2019}，并提出了DDPM. 这一模型在图像生成模型领域取得了很好的效果，一举超越了GAN~\cite{goodfellowGenerativeAdversarialNets2014a}，成为了图像生成领域的新宠. 
+    
+    另外，关于Markov链收敛到平稳分布的一些性质，比如\textit{混合时间}，可以参考教科书 \cite{levinMarkovChainsMixing2008}.
+\end{remark}
 
 \section{习题}
 

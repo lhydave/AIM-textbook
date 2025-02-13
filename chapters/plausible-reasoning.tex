@@ -1,6 +1,6 @@
 \chapter{合情推理}\label{chap:plausible-reasoning}
 
-1983年，心理学家Amos Tversky和Daniel Kahneman进行了一个著名的实验，他们向一组被试提出了如下问题：Linda是一位单身、外向且年龄为31岁的女性. 在大学期间，她主修哲学，十分关注种族歧视和社会公正问题，而且曾参加过反核游行. 请给下面几个选项发生的可能性排序，1代表最可能，8代表最不可能：
+1983年，心理学家Amos Tversky和Daniel Kahneman进行了一个著名的实验~\cite{tverskyExtensionalIntuitiveReasoning1983}，他们向一组被试提出了如下问题：Linda是一位单身、外向且年龄为31岁的女性. 在大学期间，她主修哲学，十分关注种族歧视和社会公正问题，而且曾参加过反核游行. 请给下面几个选项发生的可能性排序，1代表最可能，8代表最不可能：
 \begin{enumerate}
     \item Linda是一个小学老师.
     \item Linda在书店工作，并且参加瑜伽课程.
@@ -188,6 +188,9 @@ tt
 
 如果$\varnothing\vDash \phi$，那么称$\phi$为\textit{重言式}. 重言式是不需要加任何假设也一定成立的公式，是这一推理系统所包含的“正确的废话”. 如果$\psi\leftrightarrow\phi$是重言式，我们就说$\psi,\phi$是\textit{等值}的. 等值的公式在演绎推理中可以互相替代使用. 例如：$p\to q$与$\neg q\to\neg p$是等值的，所以证明一个命题也可以去证明它的逆否命题.
 
+\begin{remark}
+    对本节内容感兴趣的读者，有很多很好的教材可以参考。\cite{vandalenLogicStructure2013a} 提供了全面但是简洁明了的讲述，\cite{hamiltonLogicMathematicians1988} 从数学家的角度讲述了数理逻辑的基本观点，\cite{nerodeLogicApplications1997} 则从应用、特别是计算机的角度来讲述数理逻辑。
+\end{remark}
 
 \section{合情推理的数学模型}
 
@@ -437,7 +440,11 @@ tt
  
 利用Bayes定理，$\Pr(\contrastlight{C}|\contrastlight{R}) = \Pr(\contrastlight{R}|\contrastlight{C}){\Pr(\contrastlight{C})}/{\Pr(\contrastlight{R})} \approx 0.41$. 然而，$\Pr(\light{P}|\contrastlight{R}) = \Pr(\contrastlight{R}|\light{P}){\Pr(\light{P})}/{\Pr(\contrastlight{R})} \approx 0.59$. 因此我们更应该倾向于认为肇事逃逸的出租车是\light{紫色}的！
 
-上面的例子表明人类决策有一种忽略先验概率的倾向，这种倾向被称为\textit{基率谬误}. 为了研究这种谬误，我们将先验概率也纳入合情推理的模型之中. 这样，Kolmogorov的概率论和合情推理就完全一致了. 反过来说，如果我们将概率论理解为如上合情推理的数学模型，我们就得到了\textit{Bayes概率论}.
+上面的例子表明人类决策有一种忽略先验概率的倾向，这种倾向被称为\textit{基率谬误}，已被大量心理学研究所证实\cite{kahnemanPsychologyPrediction1973,tverskyJudgmentUncertaintyHeuristics1974,bar-hillelBaserateFallacyProbability1980}. 为了研究这种谬误，我们将先验概率也纳入合情推理的模型之中. 这样，Kolmogorov的概率论和合情推理就完全一致了. 反之，如果我们将概率论理解为如上合情推理的数学模型，我们就得到了\textit{Bayes概率论}.
+
+\begin{remark}
+    本节主要讨论了概率论的“信念”和“主观”解释，这是Bayes学派的基本观点。这一观点有很多经典的论述，例如de Finetti所著 \cite{definettiTheoryProbabilityCritical2017}，此外，Cox也有文章 \cite{coxProbabilityFrequencyReasonable1946} 建立了似然的推理法则，这正是本节的主要内容。将这些观点集大成者则是Jaynes所著的教材 \cite{jaynesProbabilityTheoryLogic2002}，他详细讨论了以似然为基础的概率论，以及它是如何作为科学的逻辑基础的。概率论还有其他很多解释~\cite{hajekInterpretationsProbability2023}，例如频率学派，它认为概率是事件发生的频率，这一观点在统计学中有很多应用.
+\end{remark}
 
 \section{合情推理的归纳强论证}
 
@@ -600,6 +607,7 @@ $\Pr(A|C)$是$A$的似然，而$\Pr(A|BC)$是假设$B$为真时，$A$的似然. 
         0.2 & \F & \F & \F & \F\\
         \bottomrule
 \end{array}\]
+
 $\Pr(Y|X) = (0.1 + 0.2) / (0.1 + 0.2 + 0.2 + 0) = 0.6 > 0.5$，然而，$\Pr(Y|X \wedge Z) = (0.1) / (0.1 + 0.2) = 1/3 < 0.5$. 因此，$X$证据支持$Y$，但$X\wedge Z$不支持$Y$.
 \end{example}
 
@@ -625,7 +633,7 @@ $\Pr(Y|X) = (0.1 + 0.2) / (0.1 + 0.2 + 0.2 + 0) = 0.6 > 0.5$，然而，$\Pr(Y|X
         \item $\Pr(Y| Z \wedge \neg X)>\Pr(Y|\neg X)$.
         \item 然而，$\Pr(Y|Z)\leq \Pr(Y)$.
     \end{itemize}
-这样的现象和\textit{Simpson悖论}有关. 
+这样的现象和\textit{Simpson悖论}~\cite{simpsonInterpretationInteractionContingency1951,bickelSexBiasGraduate1975} 有关. 
 
 举个例子，球员甲的两分球和三分球命中率均高于球员乙，但是球员甲的总投篮命中率却可能低于乙. 具体来说，有一个班中一半同学来自北京大学，另一半来自清华大学，我们抽出一名同学Bob，估计Bob投篮命中的概率. 我们给如下记号：
 
@@ -692,16 +700,20 @@ Simpson悖论在这一实例下表现为：来自清华大学的学生两分命�
     \caption{有效论证和归纳强论证的比较}
     \label{tab:reasoning-comparison}
 \end{table}
+
+\begin{remark}
+    本节的内容主要讨论了归纳强论证，对本节感兴趣的读者，可以进一步参考教材 \cite{skyrmsChoiceChanceIntroduction1975} 以及课程讲义 \cite{pacuitReasoningHumansClear}，了解更多这方面的内容。
+\end{remark}
+
 \section{先验模型的存在性}
 
-%TODO: 加一下视觉悬崖实验cite，science 2024婴儿实验的cite，以及婴儿统计学习的cite
-我们现在讨论合情推理的另一个核心：先验的存在性. 事实上，基于先验的推理不仅是Bayes概率论的基础，也是人类认知世界的基础. 我们从出生的第一天就在建立和更新自己的先验模型：我们在蹒跚学步的过程中，逐渐理解了对于空间深度的感知；在学习语言的时候，我们通过眼睛观察、耳朵聆听、躯体触碰，不断建立对于物体和动作的概念. 大量发展心理学和认知科学的研究表明，人类通过无数与世界的交互，建立了对于整个世界的先验认知模型.
+我们现在讨论合情推理的另一个核心：先验的存在性. 事实上，基于先验的推理不仅是Bayes概率论的基础，也是人类认知世界的基础. 我们从出生的第一天就在建立和更新自己的先验模型：我们在蹒跚学步的过程中，逐渐理解了对于空间深度的感知~\cite{walkComparativeAnalyticalStudy1961}；在学习语言的时候，我们通过眼睛观察、耳朵聆听、躯体触碰，不断建立对于物体和动作的概念~\cite{vongGroundedLanguageAcquisition2024,saffranStatisticalLearning8MonthOld1996}. 大量发展心理学和认知科学的研究表明，人类通过无数与世界的交互，建立了对于整个世界的先验认知模型.
 
 从更宏观的角度来看，历史上，绝大部分成功的科学理论也都是依赖大量实验与观察数据的. 我们就以家喻户晓的Newton万有引力定律为例. 这一定律表明，两个物体之间的引力与他们的质量分别成正比，与他们的距离的平方成反比. 我们总是听到那个美妙的故事，说Newton因为被苹果砸到才发现了这一定律. 然而，这个故事忽略了这一定律背后的伟大科学家，Kepler，他总结老师Tycho的海量肉眼观测数据，提出了行星运动的三定律. 没有这些定律，Newton也不可能准确写出平方反比定律. 
 
 总的来说，数据驱动产生理论和先验模型的过程在人类个人和整体的发展上都至关重要. 几乎同样的技术和想法被广泛应用在深度学习中，最大的区别是，人类，或者科学家，被复杂的人工神经网络代替. 
 
-不论是人的认知过程、科学理论还是深度学习，数据驱动方式的核心假设是，确实存在一个世界的先验模型，我们通过数据来逼近这个模型. 本节将要给出一个重要的定理，\textit{de Finetti定理}，它表明在一定合理的条件下，无限多的数据本身一定蕴含了一个先验模型. 因此，数据驱动的模式是合理的，这也成为了Bayes概率论的基石之一.
+不论是人的认知过程、科学理论还是深度学习，数据驱动方式的核心假设是，确实存在一个世界的先验模型，我们通过数据来逼近这个模型. 本节将要给出一个重要的定理，\textit{de Finetti定理}~\cite{diaconisFiniteExchangeableSequences1980,kernsDefinettisTheoremAbstract2006,durrettProbabilityTheoryExamples2019}，它表明在一定合理的条件下，无限多的数据本身一定蕴含了一个先验模型. 因此，数据驱动的模式是合理的，这也成为了Bayes概率论的基石之一.
 
 接下来，我们建模这一问题. 首先是数据，观测数据需要遵循\textit{可重复性原则}. 假如我们观察到了数据$x_1,x_2,\dots,x_n$，由于观测有不可控因素，观测结果会有随机性，所以我们假设$X_1,\dots,X_n$是观测结果$x_1,\dots,x_n$所对应的随机变量. 从合情推理的角度来说，随机性更像是人对于观测不确定性的一种认识或信念. 所谓的可重复就是指，这些实验不管以什么样的顺序完成，他们都应该产生相同的结果. 假设$\pi$是一个$\{1,2,\dots,n\}$的排列，我们要求
 \[
@@ -729,6 +741,10 @@ Simpson悖论在这一实例下表现为：来自清华大学的学生两分命�
 
 我们来解释这一定理与上面讨论的对应. 如果我们知道了$\theta$，那么$X_1,\dots,X_n$条件在$\theta$上的条件密度是$\prod_{i=1}^n p_{X_i}(x_i|\theta)$，因而是条件独立的，这符合了我们对于理论模型的基本要求. 另外，如果我们不知道$\theta$，只知道无穷多的观测数据，我们并不需要人为再给定一个关于$\theta$的先验，数据本身就已经足够形成先验了，不需要人为的先验. 
 
+\begin{remark}
+    如果我们把观测数据这件事看成人的主观概率（即似然），那么，de Finetti定理说明，如果我们主观上认为一系列事件是可交换的（即事件的顺序不影响我们的似然判断），那么这等同于假设这些事件是独立的，并且存在一个客观的概率。我们对这个客观概率的不确定性可以通过主观的概率分布来描述。这意味着，即使概率是主观的，我们也可以像它们是由客观概率驱动的那样行动。这一理解为de Finetti著名的格言“概率是不存在的”\cite{spiegelhalterWhyProbabilityProbably2024} 提供了实用的理解.
+\end{remark}
+
 \section{习题}
 
 \begin{enumerate}[wide, labelindent=0pt]
@@ -748,7 +764,7 @@ Simpson悖论在这一实例下表现为：来自清华大学的学生两分命�
         \item 从中构造出一个弱三段论的论证. 
     \end{enumerate}
     
-    \item \label{exercise:derive-F} 本题证明\Cref{theorem:form-of-F}. 
+    \item \label{exercise:derive-F} \cite{coxProbabilityFrequencyReasonable1946} 本题证明\Cref{theorem:form-of-F}. 
     \begin{enumerate}
         \item 利用似然的等值原则和\Cref{hypothesis:form-of-F} 证明：$F$满足
         \begin{equation}
@@ -759,7 +775,7 @@ Simpson悖论在这一实例下表现为：来自清华大学的学生两分命�
     \end{enumerate}
     
     
-    \item \label{exercise:derive-S} 本题证明\Cref{theorem:form-of-S}. 我们在推导否定规则的时候得到了如下的公式
+    \item \label{exercise:derive-S} \cite{coxProbabilityFrequencyReasonable1946} 本题证明\Cref{theorem:form-of-S}. 我们在推导否定规则的时候得到了如下的公式
     \begin{equation}
         S(x) = (1-x^m)^\frac{1}{m}. \label{eq:S-solution}
     \end{equation}
