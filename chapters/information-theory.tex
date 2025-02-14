@@ -108,7 +108,7 @@ H\left(\frac{1}{2},\frac{1}{3},\frac{1}{6}\right)=H\left(\frac{1}{2},\frac{1}{2}
     \end{align*}
  $\log P\sim -N\sum_i p_i\log p_i$. 于是我们证明了：
     \[\frac1N\log P\to H(p_1,\dots,p_m),\quad N\to\infty.\]
-因此，熵刻画了充分多粒子的物理系统某种特定状态出现概率！熵越大的系统越有可能达到. 更进一步，在统计力学中有Boltzmann $H$-定理：孤立的粒子系统会向着熵（$H$）增加的方向演化，并最终达到熵最大的状态~\cite{uffinkBoltzmannWorkStatistical2022}. $H$-定理是热力学第二定律的微观解释，熵越大的系统出现概率越大、越混乱、越接近均衡.
+因此，熵刻画了充分多粒子的物理系统某种特定状态出现概率！熵越大的系统越有可能达到. 更进一步，在统计力学中有Boltzmann $H$-定理：孤立的粒子系统会向着熵（$H$）增加的方向演化，并最终达到熵最大的状态~\cite{uffinkBoltzmannsWorkStatistical2022}. $H$-定理是热力学第二定律的微观解释，熵越大的系统出现概率越大、越混乱、越接近均衡.
 
 \subsection{概念与性质}
 现在，我们将进一步探讨熵的若干拓展定义，并讨论他们的性质. 
@@ -166,7 +166,8 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
     \begin{align*}
         &H(p_1,p_2,\dots)\\
         =&H(p_1+p_2,p_3,\dots)+(p_1+p_2)H\left(\frac{p_1}{p_1+p_2},\frac{p_2}{p_1+p_2}\right)\quad(\text{假设三})\\
-       \leq &H(p_1+p_2,p_3,\dots)+(p_1+p_2)<H\left(\frac{p_1'}{p_1'+p_2'},\frac{p_2'}{p_1'+p_2'}\right)\quad(\text{\Cref{prop:entropy-2prob}})\\
+       \leq &H(p_1+p_2,p_3,\dots)+(p_1+p_2)\\
+       <&H\left(\frac{p_1'}{p_1'+p_2'},\frac{p_2'}{p_1'+p_2'}\right)\quad(\text{\Cref{prop:entropy-2prob}})\\
        =&H(p_1',p_2',p_3,\dots).\quad(\text{假设三})
     \end{align*}
 \end{proof}
@@ -179,7 +180,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
     \[p_i<1/n<p_j.\]
     根据\Cref{prop:entropy-adjust}，我们可以将$p_i$和$p_j$替换为$1/n$和$p_i+p_j-1/n$，而$H$增大，这与假设矛盾. 因此，$p_1=\dots=p_n=1/n$是$H$取得最大值的必要条件. 
 
-    另一方面，因为$H$连续，所以根据Weierstrass最值定理（\Cref{ thm:weierstrass}），$H$一定有最大值，所以$p_1=\dots=p_n=1/n$也是$H$取得最大值的充分条件.
+    另一方面，因为$H$连续，所以根据Weierstrass最值定理（\Cref{thm:weierstrass}），$H$一定有最大值，所以$p_1=\dots=p_n=1/n$也是$H$取得最大值的充分条件.
 \end{proof}
 
 至此，\Cref{prop:entropy-nonnegative} 和\Cref{prop:entropy-maximum} 证明了一般情形的\Cref{prop:entropy-2prob}. 在等可能的时候不确定性最大，熵最大；在确定事件的时候不确定性最小，熵最小. 所以熵是符合直观的定义. 
@@ -195,7 +196,10 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 \[H(Y)=-\E[\log p_Y(Y)]=-\sum_j \sum_i p(i,j)\log \sum_i p(i,j).\]
 
 有了两个随机变量，我们就可以讨论“条件”的概念. 具体来说，我们可以把试验分为两步，第一步观测$X$，第二步观测$Y$，那么，第二步所产生的熵就是已经知道第一步结果之后的熵，即：
-\[H(Y| X=x)=-\E[\log p_{Y| X=x}(Y)| X=x]=-\sum_{j}p_{Y|X=x}(j)\log p_{Y|X=x}(j),\]
+\begin{align*}
+    H(Y| X=x)&=-\E[\log p_{Y| X=x}(Y)| X=x]\\
+    &=-\sum_{j}p_{Y|X=x}(j)\log p_{Y|X=x}(j),
+\end{align*}
 其中$p_{Y|X=x}(j)=p(x,j)/p_X(x)$. 当我们知道了$X=x$之后，对$Y$的观测就消除了部分的不确定性，因此根据我们对于不确定性和信息关系的讨论，从$X=x$中获得的关于$Y$的信息是
 \[I(X=x:Y)=H(Y)-H(Y|X=x).\]
 考虑一个特殊情况，$Y=X$，那么刚刚的讨论就变成了自己从自己身上获得的信息，或者说知道$X=x$带来的信息量. 首先有
@@ -320,7 +324,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
     \[\E_{X\sim p_1}(\log(p_1(X)/p_2(X)))=\sum_ip_1(i)\log\frac{p_1(i)}{p_2(i)}.\]
 期望越大，说明$H_1$越有可能成立. 实际上，上面的期望就是K-L散度的定义.
 \begin{definition}[Kullback-Leibler散度，相对熵]
-    对于两个概率分布$p_1,p_2$，他们的\textbf{Kullback-Leibler散度}（\textbf{相对熵}）定义为
+    对于概率分布$p_1,p_2$，他们的\textbf{Kullback-Leibler散度}（\textbf{相对熵}）定义为
     \[D_\KL(p_1\| p_2)=\E_{X\sim p_1}(\log(p_1(X)/p_2(X)))=\sum_ip_1(i)\log\frac{p_1(i)}{p_2(i)}.\]
 其中规定$0\log(0/0)=0$，$0\log(0/a)=0$，$a\log(a/0)=+\infty$.
 \end{definition}
@@ -344,7 +348,11 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
 \end{theorem}
 \begin{proof}
     由于$\log x$是凸函数，所以由Jensen不等式，我们有
-    \[D_\KL(p\Vert q)=-\E_{X\sim p}\left[\log\frac{q(X)}{p(X)}\right]\geq-\log \E_{X\sim p}\left[\frac{q(X)}{p(X)}\right]=-\log\sum_ip(i)\cdot\frac{q(i)}{p(i)}=0.\]
+    \begin{align*}
+        D_\KL(p\Vert q)&=-\E_{X\sim p}\left[\log\frac{q(X)}{p(X)}\right]\\
+        &\geq-\log \E_{X\sim p}\left[\frac{q(X)}{p(X)}\right]\\
+        &=-\log\sum_ip(i)\cdot\frac{q(i)}{p(i)}=0.
+    \end{align*}
     因此，$D_\KL(p\Vert q)\geq0$，当且仅当$p=q$时取等号.
 \end{proof}
 
@@ -352,7 +360,8 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
 
 接下来我们叙述并证明数据处理不等式.
 \begin{theorem}[数据处理不等式]\label{thm:data-processing-inequality}
-    假设随机变量$X,Y,Z$形成了Markov链，那么$I(X;Y)\geq I(X;Z)$. 特别地，对任意函数$f$，成立$I(X;Y)\geq I(X;f(Y))$.
+    假设随机变量$X,Y,Z$形成了Markov链，那么$I(X;Y)\geq I(X;Z)$. 特别地，对任意函数$f$，成立
+    \[I(X;Y)\geq I(X;f(Y)).\]
 \end{theorem}
 \begin{proof}
 根据互信息链式法则，
@@ -374,7 +383,7 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
 另一种带来额外信息的方式是，我们引入了一系列规则来计算$Z$的奖励，然后利用强化学习的方法来训练$Y$，这样的数据处理也是有意义的. 例如，DeepSeek R1模型训练的过程中，对于编程题和数学题有关的训练数据，都知道正确答案，因此可以直接通过大模型有没有输出正确答案来计算奖励，进行强化学习. 通过这样的办法，DeepSeek R1可以超越没有做强化学习的基础模型. 
 
 \begin{remark}
-    关于信息论的经典教科书，可以参见 \cite{coverElementsInformationTheory2012} ，此外，概率论的教材中也有很多很好的讨论，比如 \cite{jaynesProbabilityTheoryLogic2002}，\cite{shiryaevProbability1996} 以及中文教科书\cite{LiXianPingGaiLuLunJiChu2010}.
+    关于信息论的经典教科书，可以参见 \cite{coverElementsInformationTheory2012} ，此外，概率论的教材中也有很多很好的讨论，比如 \cite{durrettProbabilityTheoryExamples2019}，\cite{shiryaevProbability1996} 以及中文教科书\cite{LiXianPingGaiLuLunJiChu2010}.
 \end{remark}
 
 \section{编码理论}\label{sec:entropy-and-communication}
@@ -412,7 +421,7 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
 
 那么，是否有一种编码确实达到了这个理论上的编码长度（非渐进）下界呢？答案是肯定的，它被称为\textit{Huffmann编码}. 它的核心思想在于把出现频率高的字母用更短的编码表示. 类似的思想被用在了机器学习的\textit{决策树}中，作为选择节点非常常用的一种依据.
 \begin{remark}
-    \textit{决策树}是一种常用的机器学习分类模型. 假设数据有很多属性$P_1,\dots,P_k$，这些属性共同决定了某一条数据的类别. 比如，在银行的信用系统中，给定了一个人的性别、是否已婚、是否负债等信息，我们希望给他评估一个信用评级. 
+    \textit{决策树}是一种常用的机器学习分类模型. 假设数据有很多属性，记为$P_1,\dots,P_k$，这些属性共同决定了某一条数据的类别. 比如，在银行的信用系统中，给定了一个人的性别、是否已婚、是否负债等信息，我们希望给他评估一个信用评级. 
     
     决策树的做法是，将决策过程写成一棵树，然后叶节点是决策类别的结果. 比如说，我们会先看这个人是否负债，如果不负债，那么看是否已婚，如果已婚，那么我们信用评级就给A. 但如果负债，那么我们信用评级就给B. 
     
@@ -447,7 +456,7 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
 \[CH(p_X,p_Y)=-\E_{X\sim p_X}[\log p_Y(X)]=-\sum_ip_X(i)\log p_Y(i).\]
 \end{definition}
 
-在机器学习的分类问题中，我们希望学习到的分布$p_Y$尽可能地接近真实的分布$p_X$，所以我们训练的目标经常是最小化交叉熵$CH(p_X,p_Y)$. 有趣的是，从数理统计的角度来看，最小化交叉熵等价于进行\textit{最大似然估计}（见习题 \ref{exercise:cross-entropy-maximum-likelihood}），因此这为最大似然估计提供了一种信息论意义下的理解.
+在机器学习的分类问题中，我们希望学习到的分布$p_Y$尽可能地接近真实的分布$p_X$，所以训练的目标经常是最小化交叉熵$CH(p_X,p_Y)$. 有趣的是，从数理统计的角度来看，最小化交叉熵等价于进行\textit{最大似然估计}（见习题 \ref{exercise:cross-entropy-maximum-likelihood}），因此这为最大似然估计提供了一种信息论意义下的理解.
 
 \begin{remark}
 现代的主流信息论都是从Shannon发展起来的. 然而，这一信息论也有很多问题. 

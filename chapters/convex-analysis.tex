@@ -696,7 +696,15 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
     
     请将该分类器监督学习的过程写成优化问题.
     \item *\label{exercise:no-free-lunch} 证明\Cref{thm:no-free-lunch}.
+    
+    \item *强化学习利用 MDP 框架来描述问题，这其中最重要的一步就是定义奖励函数。在最特殊的一种强化学习中，智能体只有在最后一轮才会获得奖励。此时，智能体最大化奖励就仿佛是在做一个优化问题。
+    
+    反之，如果我们把一个离散空间中的优化问题想象成一个游戏，退出游戏时的函数值就是智能体所获得的奖励，最大化目标函数就是在最大化最终奖励。因此，智能体可以通过强化学习的方法来解决这个优化问题. 
+    
+    基于以上观察，建模并证明强化学习和离散优化问题的等价性.
+    
     \item \label{exercise:convex-function} 验证\Cref{ex:convex-function} 中的函数是凸函数.
+    
     \item \label{exercise:convex-operation} 当$h(\cdot):\R\to\R$是凸函数，$g(\cdot):\R\to\R$是不减的凸函数，证明：复合函数$f(x) = g(h(x))$为凸函数.
     
     \item 如果$f$是二次可微的，那么它的二阶导数（Hessian矩阵）$f''(x)$和凸函数有何关系？
