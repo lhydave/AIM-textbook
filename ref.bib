@@ -186,6 +186,23 @@
   author = {Cox, R. T.}
 }
 
+@inproceedings{cuffDifferentialPrivacyMutual2016,
+  title = {Differential {{Privacy}} as a {{Mutual Information Constraint}}},
+  booktitle = {Proceedings of the 2016 {{ACM SIGSAC Conference}} on {{Computer}} and {{Communications Security}}},
+  year = {2016},
+  month = oct,
+  pages = {43--54},
+  publisher = {ACM},
+  address = {Vienna Austria},
+  doi = {10.1145/2976749.2978308},
+  url = {https://dl.acm.org/doi/10.1145/2976749.2978308},
+  urldate = {2025-02-14},
+  isbn = {978-1-4503-4139-4},
+  langid = {english},
+  file = {/Users/lhydave/Zotero/storage/LFDB9HBK/Cuff和Yu - 2016 - Differential Privacy as a Mutual Information Constraint.pdf},
+  author = {Cuff, Paul and Yu, Lanqing}
+}
+
 @book{definettiTheoryProbabilityCritical2017,
   title = {Theory of {{Probability}}: {{A Critical Introductory Treatment}}},
   shorttitle = {Theory of {{Probability}}},
@@ -258,6 +275,41 @@
   author = {Durrett, Rick}
 }
 
+@article{dworkAlgorithmicFoundationsDifferential2013,
+  title = {The {{Algorithmic Foundations}} of {{Differential Privacy}}},
+  year = {2013},
+  journal = {Foundations and Trends® in Theoretical Computer Science},
+  volume = {9},
+  number = {3-4},
+  pages = {211--407},
+  issn = {1551-305X, 1551-3068},
+  doi = {10.1561/0400000042},
+  url = {http://www.nowpublishers.com/articles/foundations-and-trends-in-theoretical-computer-science/TCS-042},
+  urldate = {2025-02-14},
+  langid = {english},
+  file = {/Users/lhydave/Zotero/storage/ZCD5FCNG/Dwork和Roth - 2013 - The Algorithmic Foundations of Differential Privacy.pdf},
+  author = {Dwork, Cynthia and Roth, Aaron}
+}
+
+@article{dworkCalibratingNoiseSensitivity2016,
+  title = {Calibrating {{Noise}} to {{Sensitivity}} in {{Private Data Analysis}}},
+  year = {2016},
+  journal = {Journal of Privacy and Confidentiality},
+  volume = {7},
+  number = {3},
+  pages = {17--51},
+  issn = {2575-8527},
+  doi = {10.29012/jpc.v7i3.405},
+  url = {https://journalprivacyconfidentiality.org/index.php/jpc/article/view/405},
+  urldate = {2025-02-14},
+  abstract = {We continue a line of research initiated in Dinur and Nissim (2003); Dwork and Nissim (2004); and Blum et al. (2005) on privacy-preserving statistical databases. Consider a trusted server that holds a database of sensitive information. Given a query function \$f\$ mapping databases to reals, the so-called \{\textbackslash em true answer\} is the result of applying \$f\$ to the database. To protect privacy, the true answer is perturbed by the addition of random noise generated according to a carefully chosen distribution, and this response, the true answer plus noise, is returned to the user. Previous work focused on the case of noisy sums, in which \$f = \textbackslash sum\_i g(x\_i)\$, where \$x\_i\$ denotes the \$i\$th row of the database and \$g\$ maps database rows to \$[0,1]\$. We extend the study to general functions \$f\$, proving that privacy can be preserved by calibrating the standard deviation of the noise according to the \{\textbackslash em sensitivity\} of the function \$f\$. Roughly speaking, this is the amount that any single argument to \$f\$ can change its output. The new analysis shows that for several particular applications substantially less noise is needed than was previously understood to be the case. The first step is a very clean definition of privacy---now known as differential privacy---and measure of its loss. We also provide a set of tools for designing and combining differentially private algorithms, permitting the construction of complex differentially private analytical tools from simple differentially private primitives. Finally, we obtain separation results showing the increased value of interactive statistical release mechanisms over non-interactive ones.},
+  copyright = {Copyright (c) 2016 the authors},
+  langid = {english},
+  keywords = {differential privacy,noise addition,private data analysis,statistical data privacy},
+  file = {/Users/lhydave/Zotero/storage/9FBDE2XM/Dwork 等 - 2016 - Calibrating Noise to Sensitivity in Private Data Analysis.pdf},
+  author = {Dwork, Cynthia and McSherry, Frank and Nissim, Kobbi and Smith, Adam}
+}
+
 @book{gazzanigaCognitiveNeuroscienceBiology2018a,
   title = {Cognitive {{Neuroscience}}: {{The Biology}} of the {{Mind}}},
   shorttitle = {Cognitive {{Neuroscience}}},
@@ -283,6 +335,24 @@
   urldate = {2025-02-13},
   abstract = {We propose a new framework for estimating generative models via an adversarial process, in which we simultaneously train two models: a generative model G that captures the data distribution, and a discriminative model D that estimates the probability that a sample came from the training data rather than G. The training procedure for G is to maximize the probability of D making a mistake. This framework corresponds to a minimax two-player game. In the space of arbitrary functions G and D, a unique solution exists, with G recovering the training data distribution and D equal to ½ everywhere. In the case where G and D are defined by multilayer perceptrons, the entire system can be trained with backpropagation. There is no need for any Markov chains or unrolled approximate inference networks during either training or generation of samples. Experiments demonstrate the potential of the framework through qualitative and quantitative evaluation of the generated samples.},
   author = {Goodfellow, Ian J. and {Pouget-Abadie}, Jean and Mirza, Mehdi and Xu, Bing and {Warde-Farley}, David and Ozair, Sherjil and Courville, Aaron and Bengio, Yoshua}
+}
+
+@article{greenbergUnrelatedQuestionRandomized1969,
+  title = {The {{Unrelated Question Randomized Response Model}}: {{Theoretical Framework}}},
+  shorttitle = {The {{Unrelated Question Randomized Response Model}}},
+  year = {1969},
+  month = jun,
+  journal = {Journal of the American Statistical Association},
+  volume = {64},
+  number = {326},
+  pages = {520--539},
+  publisher = {ASA Website},
+  issn = {0162-1459},
+  doi = {10.1080/01621459.1969.10500991},
+  url = {https://www.tandfonline.com/doi/abs/10.1080/01621459.1969.10500991},
+  urldate = {2025-02-14},
+  abstract = {This paper develops a theoretical framework for the unrelated question randomized response technique suggested by Walt R. Simmons. The statistical efficiency of this technique is compared with the Warner technique under situations of both truthful and untruthful responses. Methods of allocating the total sample to each of two subsamples required by the unrelated question approach are developed. Recommendations are made concerning choices of values for those parameters which can be assigned at the discretion of the investigator.},
+  author = {Greenberg, Bernard G. and {Abul-Ela}, Abdel-Latif A. and Simmons, Walt R. and Horvitz, Daniel G.}
 }
 
 @incollection{hajekInterpretationsProbability2023,
@@ -427,6 +497,18 @@
   author = {Kahneman, Daniel and Tversky, Amos}
 }
 
+@book{kearnsEthicalAlgorithmScience2019,
+  title = {The {{Ethical Algorithm}}: {{The Science}} of {{Socially Aware Algorithm Design}}},
+  shorttitle = {The {{Ethical Algorithm}}},
+  year = {2019},
+  month = oct,
+  publisher = {Oxford University Press, Inc.},
+  address = {USA},
+  abstract = {Over the course of a generation, algorithms have gone from mathematical abstractions to powerful mediators of daily life. Algorithms have made our lives more efficient, more entertaining, and, sometimes, better informed. At the same time, complex algorithms are increasingly violating the basic rights of individual citizens. Allegedly anonymized datasets routinely leak our most sensitive personal information; statistical models for everything from mortgages to college admissions reflect racial and gender bias. Meanwhile, users manipulate algorithms to "game" search engines, spam filters, online reviewing services, and navigation apps. Understanding and improving the science behind the algorithms that run our lives is rapidly becoming one of the most pressing issues of this century. Traditional fixes, such as laws, regulations and watchdog groups, have proven woefully inadequate. Reporting from the cutting edge of scientific research, The Ethical Algorithm offers a new approach: a set of principled solutions based on the emerging and exciting science of socially aware algorithm design. Michael Kearns and Aaron Roth explain how we can better embed human principles into machine code - without halting the advance of data-driven scientific exploration. Weaving together innovative research with stories of citizens, scientists, and activists on the front lines, The Ethical Algorithm offers a compelling vision for a future, one in which we can better protect humans from the unintended impacts of algorithms while continuing to inspire wondrous advances in technology.},
+  isbn = {978-0-19-094820-7},
+  author = {Kearns, Michael and Roth, Aaron}
+}
+
 @article{kernsDefinettisTheoremAbstract2006,
   title = {Definetti’s {{Theorem}} for {{Abstract Finite Exchangeable Sequences}}},
   year = {2006},
@@ -462,6 +544,19 @@
   keywords = {Computer Science - Machine Learning,Statistics - Machine Learning},
   file = {/Users/lhydave/Zotero/storage/7HX99FIA/Kingma和Welling - 2022 - Auto-Encoding Variational Bayes.pdf;/Users/lhydave/Zotero/storage/HKSPUKSJ/1312.html},
   author = {Kingma, Diederik P. and Welling, Max}
+}
+
+@inproceedings{kingmaSemisupervisedLearningDeep2014,
+  title = {Semi-Supervised {{Learning}} with {{Deep Generative Models}}},
+  booktitle = {Advances in {{Neural Information Processing Systems}}},
+  year = {2014},
+  volume = {27},
+  publisher = {Curran Associates, Inc.},
+  url = {https://papers.nips.cc/paper_files/paper/2014/hash/d523773c6b194f37b938d340d5d02232-Abstract.html},
+  urldate = {2025-02-14},
+  abstract = {The ever-increasing size of modern data sets combined with the difficulty of obtaining label information has made semi-supervised learning one of the problems of significant practical importance in modern data analysis. We revisit the approach to semi-supervised learning with generative models and develop new models that allow for effective generalisation from small labelled data sets to large unlabelled ones. Generative approaches have thus far been either inflexible, inefficient or non-scalable. We show that deep generative models and approximate Bayesian inference exploiting recent advances in variational methods can be used to provide significant improvements, making generative approaches highly competitive for semi-supervised learning.},
+  file = {/Users/lhydave/Zotero/storage/USEHLKES/Kingma 等 - 2014 - Semi-supervised Learning with Deep Generative Models.pdf},
+  author = {Kingma, Durk P and Mohamed, Shakir and Jimenez Rezende, Danilo and Welling, Max}
 }
 
 @article{kullbackInformationSufficiency1951,
@@ -566,6 +661,23 @@
   urldate = {2023-07-10},
   abstract = {This paper describes briefly the current mathematical models upon which communication theory is based, and presents in some detail an exposition and partial critique of C. E. Shannon's treatment of one such model. It then presents a general limit theorem in the theory of discrete stochastic processes, suggested by a result of Shannon's.},
   author = {McMillan, Brockway}
+}
+
+@inproceedings{mirInformationTheoreticFoundationsDifferential2012,
+  title = {Information-{{Theoretic}} Foundations of Differential Privacy},
+  booktitle = {Proceedings of the 5th International Conference on {{Foundations}} and {{Practice}} of {{Security}}},
+  year = {2012},
+  month = oct,
+  series = {{{FPS}}'12},
+  pages = {374--381},
+  publisher = {Springer-Verlag},
+  address = {Berlin, Heidelberg},
+  doi = {10.1007/978-3-642-37119-6_25},
+  url = {https://doi.org/10.1007/978-3-642-37119-6_25},
+  urldate = {2025-02-13},
+  abstract = {We examine the information-theoretic foundations of the increasingly popular notion of differential privacy. We establish a connection between differential private mechanisms and the rate-distortion framework. Additionally, we also show how differentially private distributions arise out of the application of the Maximum Entropy Principle. This helps us locate differential privacy within the wider framework of information-theory and helps formalize some intuitive aspects of our understanding of differential privacy.},
+  isbn = {978-3-642-37118-9},
+  author = {Mir, Darakhshan J.}
 }
 
 @book{nerodeLogicApplications1997,
@@ -869,6 +981,23 @@ Subject\_term: Mathematics and computing, History, Society},
   author = {Stein, Charles}
 }
 
+@inproceedings{suDifferentiallyPrivateKMeans2016,
+  title = {Differentially {{Private K-Means Clustering}}},
+  booktitle = {Proceedings of the {{Sixth ACM Conference}} on {{Data}} and {{Application Security}} and {{Privacy}}},
+  year = {2016},
+  month = mar,
+  pages = {26--37},
+  publisher = {ACM},
+  address = {New Orleans Louisiana USA},
+  doi = {10.1145/2857705.2857708},
+  url = {https://dl.acm.org/doi/10.1145/2857705.2857708},
+  urldate = {2025-02-14},
+  isbn = {978-1-4503-3935-3},
+  langid = {english},
+  file = {/Users/lhydave/Zotero/storage/TMIGDYZM/Su 等 - 2016 - Differentially Private K-Means Clustering.pdf},
+  author = {Su, Dong and Cao, Jianneng and Li, Ninghui and Bertino, Elisa and Jin, Hongxia}
+}
+
 @misc{SuRangRenLiangTanDeJohnsonLindenstraussYinLiLiLunPian,
   title = {{让人惊叹的Johnson-Lindenstrauss引理：理论篇}},
   url = {https://kexue.fm/archives/8679},
@@ -1114,6 +1243,25 @@ Subject\_term: Mathematics and computing, History, Society},
   keywords = {Animals,Depth Perception,Stimulus Variability,Visual Perception},
   file = {/Users/lhydave/Zotero/storage/7J2XZ9B7/2011-17803-001.html},
   author = {Walk, Richard D. and Gibson, Eleanor J.}
+}
+
+@article{warnerRandomizedResponseSurvey1965,
+  title = {Randomized {{Response}}: {{A Survey Technique}} for {{Eliminating Evasive Answer Bias}}},
+  shorttitle = {Randomized {{Response}}},
+  year = {1965},
+  month = mar,
+  journal = {Journal of the American Statistical Association},
+  volume = {60},
+  number = {309},
+  pages = {63--69},
+  publisher = {ASA Website},
+  issn = {0162-1459},
+  doi = {10.1080/01621459.1965.10480775},
+  url = {https://www.tandfonline.com/doi/abs/10.1080/01621459.1965.10480775},
+  urldate = {2025-02-14},
+  abstract = {For various reasons individuals in a sample survey may prefer not to confide to the interviewer the correct answers to certain questions. In such cases the individuals may elect not to reply at all or to reply with incorrect answers. The resulting evasive answer bias is ordinarily difficult to assess. In this paper it is argued that such bias is potentially removable through allowing the interviewee to maintain privacy through the device of randomizing his response. A randomized response method for estimating a population proportion is presented as an example. Unbiased maximum likelihood estimates are obtained and their mean square errors are compared with the mean square errors of conventional estimates under various assumptions about the underlying population.},
+  pmid = {12261830},
+  author = {Warner, Stanley L.}
 }
 
 @phdthesis{watkinsLearningDelayedRewards1989,

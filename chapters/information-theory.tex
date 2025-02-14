@@ -639,7 +639,7 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
     \item \label{exercise:diffusion-model-loss}
     在生成模型中，我们假设数据$x$是由隐变量$z$生成的. 下面我们来推导VAE（Variational Auto-encoder）与扩散模型的损失函数.
     \begin{enumerate}
-        \item （VAE，\cite{kingmaAutoEncodingVariationalBayes2022}）设$x$是由$z$生成的：数据的生成分为两个步骤，首先$z$由先验分布$p_{\alpha}(z)$生成，然后$x$由条件分布$p_{\beta}(x|z)$生成. 为了最好的拟合数据，我们希望最大化似然，即$\max p_{\theta}(x)$，其中$\theta = \{\alpha, \beta\}$, $p_{\theta}(x)$可以写成：
+        \item （VAE，\cite{kingmaAutoEncodingVariationalBayes2022,kingmaSemisupervisedLearningDeep2014}）设$x$是由$z$生成的：数据的生成分为两个步骤，首先$z$由先验分布$p_{\alpha}(z)$生成，然后$x$由条件分布$p_{\beta}(x|z)$生成. 为了最好的拟合数据，我们希望最大化似然，即$\max p_{\theta}(x)$，其中$\theta = \{\alpha, \beta\}$, $p_{\theta}(x)$可以写成：
         \[
             p_{\theta}(x) = \int p_{\alpha}(z)p_{\beta}(x|z)dz.
         \]

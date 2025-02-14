@@ -65,6 +65,8 @@ Netflix 为比赛公开了一份庞大的数据集，包含超过一亿条匿名
 以上这些内容都说明\textit{匿名化}很难保护个人隐私. 那么，密码学\textit{加密}的手段是否能够保护隐私？比如说，为什么我们的所有数据不能需要账号密码才能被访问？其实，加密和隐私在出发点上完全不同. 
 
 加密的目的是为了不让别人获取到真实数据. 而隐私不是简单地保护数据，它涉及更微妙的问题——我们希望利用这些数据，但是又不希望泄露某个个体的信息. 因此我们这里讨论的其实是隐私保护问题而不是加密问题，密码学的方案并不适用于这里.
+
+关于差分隐私的更多社会学讨论，请参见~\cite{kearnsEthicalAlgorithmScience2019}.
 \end{remark}
 
 \section{差分隐私的定义与性质}
@@ -280,6 +282,10 @@ $\impliedby$：依然根据概率密度函数的定义，考虑$x,x'\in\mathcal 
         \]
 如果$\epsilon$太小，这一算法对任何输入都有相似的输出. 换句话说，算法压根没有输出任何有意义的内容. 于是，我们定量说明了，$\epsilon$还代表信息的泄露量. 因此，一个实用的DP算法不能让$\epsilon$太小，否则输出没有意义；也不能让$\epsilon$太大，否则隐私保护效果不好.
 
+\begin{remark}
+    $\epsilon$-DP的概念最早由论文\cite{dworkCalibratingNoiseSensitivity2016}提出，这一概念的提出是隐私保护领域的一个重要里程碑，带来了深远的影响，因此获得了2017年的Gödel奖. 关于差分隐私的更多性质，请参见专著~\cite{dworkAlgorithmicFoundationsDifferential2013}.
+\end{remark}
+
 \section{差分隐私的应用}
 在这一部分，我们将会具体讨论三个差分隐私的算法或机制. 
 
@@ -298,7 +304,7 @@ $\impliedby$：依然根据概率密度函数的定义，考虑$x,x'\in\mathcal 
 
 这的确可以保护隐私：当$y_i = 1$时，学生$i$可以声称这是由于算法的随机机制造成的，而并非自己真的作弊过，因而他愿意诚实回答. 
 
-我们称这一算法为\textit{随机反应}（RR）算法，它是S. L. Warner在1965年提出的（远远早于差分隐私概念的提出！），被广泛用于调查敏感问题.
+我们称这一算法为\textit{随机反应}（RR）算法，它是S. L. Warner在1965年提出~\cite{warnerRandomizedResponseSurvey1965}、后在1969年被Greenberg与他的合作者改造~\cite{greenbergUnrelatedQuestionRandomized1969}（远远早于差分隐私概念的提出！），被广泛用于调查敏感问题.
 
 以下结论说明了RR算法的确是差分隐私算法.
 
@@ -425,7 +431,7 @@ Laplace分布是服从双边指数分布的随机变量进行线性变换后服�
 \end{proof}
 
 \subsection{DP版本Llyod算法}
-作为一个Laplace机制的具体实例，我们将$k$-均值聚类问题的经典算法Llyod算法改造成一个差分隐私算法.
+作为一个Laplace机制的具体实例，我们将$k$-均值聚类问题的经典算法Llyod算法改造成一个差分隐私算法，这一算法首先是由 \cite{suDifferentiallyPrivateKMeans2016} 提出的.
 
 \textit{$k$-均值}聚类问题指的是给定一个数据集$x$，找到$k$个点（中心）$\{c_i\} \subseteq \R^d$，使得$\sum_{i \in [n]} \min_{j\in[k]} \norm{x_i - c_j}^2$最小. 通俗来说，就是找到$k$个中心，使得数据集中每个点到最近的中心的距离之和最小. 
 
@@ -512,7 +518,7 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\textit{Ll
 
     \item 设输出为$d$维的算法$f( x) = (\sum_{i=1}^n \Phi_1( x_i), \dots, \sum_{i=1}^n \Phi_d( x_i))$， $x_i\in\mathcal X$，满足$\Phi_j(\mathcal X)=\{0, 1\}$以及$\sum_{j=1}^d \Phi_j( x_i) = 1$. 请计算$\text{GS}_f$.
     
-    \item 差分隐私和基于信息论的度量有着密切的联系. 对于一个包含$n$个（带随机性的）数据条目$\mathcal X^n = (\mathcal X_1, \dots, \mathcal X_n)$ 的数据，考虑一个随机算法$M:\mathcal X^n\to \mathcal Y$，输出$Y$的概率分布为$P_{\mathcal Y|\mathcal X^n}$. 我们引入以下概念：
+    \item \textbf{信息论与差分隐私关系。}\cite{cuffDifferentialPrivacyMutual2016,mirInformationTheoreticFoundationsDifferential2012} 差分隐私和基于信息论的度量有着密切的联系. 对于一个包含$n$个（带随机性的）数据条目$\mathcal X^n = (\mathcal X_1, \dots, \mathcal X_n)$ 的数据，考虑一个随机算法$M:\mathcal X^n\to \mathcal Y$，输出$Y$的概率分布为$P_{\mathcal Y|\mathcal X^n}$. 我们引入以下概念：
     \begin{itemize}
         \item \textbf{互信息差分隐私. }如果算法$M$满足下面的不等式，就称$M$是一个$\epsilon$-MI-DP：
         \[
@@ -538,7 +544,7 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\textit{Ll
             其中$\bar{x}^n \sim P_{\mathcal X^n}$.
     \end{hint}
 
-    \item 本题讨论差分隐私的其他形式. 差分隐私实际上使用了如下不等式作为定义：
+    \item \textbf{$(\epsilon,\delta)$-差分隐私。}差分隐私实际上使用了如下不等式作为定义：
     \[\Pr(A(x)\in E) \leq e^{\epsilon} \Pr(A(x') \in E).\]
     即乘性不等式，而不是下面的加性不等式：
     \[\Pr(A(x)\in E) \leq \Pr(A(x') \in E) + \epsilon.\]
@@ -557,7 +563,7 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\textit{Ll
         \Pr(c_A(y,  X,  X') > \epsilon) \leq \delta.
     \]
 
-    \item 本题讨论差分隐私对个体效用期望的影响. 设$u_i: \mathcal{Y} \to \R_{\geq 0}$为算法输出对第$i$个个体的非负效用映射（即对任意$y \in \mathcal{Y}$，$u_i(y) \geq 0$）. 假设随机算法$A$满足$\epsilon$-差分隐私. 证明：对于任意相邻数据集$x$和$x'$，有  
+    \item \textbf{差分隐私对个体效用期望的影响. }设$u_i: \mathcal{Y} \to \R_{\geq 0}$为算法输出对第$i$个个体的非负效用映射（即对任意$y \in \mathcal{Y}$，$u_i(y) \geq 0$）. 假设随机算法$A$满足$\epsilon$-差分隐私. 证明：对于任意相邻数据集$x$和$x'$，有  
     \[
     \E_{y \sim A(x)}[u_i(y)] \leq \e^{\epsilon} \E_{y \sim A(x')}[u_i(y)].
     \]  
