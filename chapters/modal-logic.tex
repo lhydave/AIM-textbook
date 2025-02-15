@@ -344,6 +344,10 @@ Kripke模型并没有指定一个真实世界，接下来，我们引入一个�
 如果$\Sigma = \{\phi\}$，我们就说\textbf{$\mathcal{K}$可以由公式$\phi$定义}. 
 \end{definition}
 
+\begin{remark}
+    关于模态逻辑更系统性的论述，请参见教材~\cite{blackburnModalLogic2001}、Stanford哲学百科~\cite{garsonModalLogic2024}，此外，课程~\cite{WangYanJingAdvancedModalLogic} 也是一个很好的资源. 关于模态逻辑在更广泛领域中的应用，可以参考van Benthem的著作~\cite{benthemModalLogicOpen2010}.
+\end{remark}
+
 \section{知识逻辑的基本模型与性质}\label{sec:epistemic-logic-basic-model}
 
 接下来，我们将注意力放在知识逻辑上，将前面若干小节讨论的概念应用到知识逻辑中. 
@@ -364,7 +368,7 @@ Kripke模型并没有指定一个真实世界，接下来，我们引入一个�
 接下来，我们给出知识逻辑的基本性质，即公理. 
 
 \begin{proposition}[分配公理]
-\[\vDash (K_i(\phi\to\psi)\wedge K_i\phi)\to K_i\psi.\]
+$\vDash (K_i(\phi\to\psi)\wedge K_i\phi)\to K_i\psi$.
 \end{proposition}
 
 \begin{proof}
@@ -391,7 +395,7 @@ Kripke模型并没有指定一个真实世界，接下来，我们引入一个�
 同样，泛化规则也没有使用框架类$H$的性质，所以它也是模态逻辑的普适规则. 
 
 \begin{proposition}[知识公理，真理公理]\label{prop:knowledge-axiom}
-\[\vDash_H K_i\phi\to\phi.\]
+$\vDash_H K_i\phi\to\phi$.
 \end{proposition}
 
 注意，从知识公理开始，我们就开始使用了框架类$H$的性质. 从这里开始的性质，和\Cref{chap:bayesian-game}中讨论的知识的性质是一致的，所以这里不再赘述. 他们的证明类似前述性质，这里不再给出，见习题 \ref{exercise:epistemic-logic-axioms}.
@@ -409,7 +413,7 @@ Kripke模型并没有指定一个真实世界，接下来，我们引入一个�
 从哲学的角度讨论，还有一些别的公理. 
 
 \begin{proposition}[一致性公理]\label{prop:knowledge-consistency}
-\[\vDash_H\neg K_i\bot.\]
+$\vDash_H\neg K_i\bot$.
 \end{proposition}
 
 因此，个体不能够知道假的陈述，以此区别于信念. 
@@ -436,7 +440,7 @@ Kripke模型并没有指定一个真实世界，接下来，我们引入一个�
     \item 序列性：$\forall x\exists y\, xR_iy$，所有点都有后继. 
 \end{itemize}
 
-以上的模态可定义性和\Cref{sec:modal-definability}中的例子类似，这里不再给出，请见习题 \ref{exercise:epistemic-logic-axioms-structure}.
+以上的模态可定义性和\Cref{sec:modal-definability}中的例子类似，这里不再给出，请见习题 \ref{exercise:epistemic-logic-axiom-structure}.
 
 可以看出来，以上关系其实并不是孤立的，我们有以下引理：
 
@@ -532,6 +536,10 @@ Kripke模型并没有指定一个真实世界，接下来，我们引入一个�
 
 所以，上面的类比说明了归纳规则的含义：它确保了$C$算子是递归方程的最小解，也就是那个逐层叠加$E$所定义的算子. 
 
+\begin{remark}
+    关于不动点的这种理解，实际上源自对归纳法和余归纳法的研究，这是类型论和模态逻辑中的一个重要思路。关于这一点，可以参见类型论和编程语言相关的教材，例如~\cite{pierceTypesProgrammingLanguages2002,pierceSoftwareFoundationsVolume,avigadTheoremProvingLean}。此外，在模态逻辑社区也有所谓\textit{$\mu$-演算}的研究，这是一个专门研究递归方程的形式化方法~\cite{kozenResultsPropositionalMcalculus1982}。还有一些数学中的例子~\cite{abdelgawadInductionCoinductionFixed2019}、哲学中的例子~\cite{linneboPredicativeImpredicativeDefinitions} 可以参考。
+\end{remark}
+
 最后，将 S5 公理系统中加入关于 $E$ 和 $C$ 的公理，我们就扩展了知识逻辑. 因为 $E$ 和 $C$ 是用 $K_i$ 定义的，因此它们本身并不会带来 Kripke 模型新的结构性质. 
 
 \subsection{Kripke模型与Aumann结构}
@@ -625,7 +633,7 @@ Kripke模型和Aumann结构的一个重要区别在于它们各自的研究偏�
 
 \section{对不一致达成一致}
 
-作为一个更正式的（也更更复杂！）例子，本节将用模态逻辑的方式来探讨达成一致与共同知识的关系，这个问题最早由Aumann提出. 现代版本的问题是：两个拥有相同决策规则的AI是否会进行交易？如果交易发生，这意味着买家和卖家采取了不同的决策（一个购买，一个出售）；否则，他们将不会达成交易. 
+作为一个更正式的（也更更复杂！）例子，本节将用模态逻辑的方式来探讨达成一致与共同知识的关系，这个问题最早由Aumann提出~\cite{aumannAgreeingDisagree1976}. 在AI时代的版本是：两个拥有相同决策规则的AI是否会进行交易？如果交易发生，这意味着买家和卖家采取了不同的决策（一个购买，一个出售）；否则，他们将不会达成交易. 
 
 我们将证明，对于有相同决策方式的两个个体，他们不可能对采取不同行动这件事具有共同知识. 因此，如果两个AI按照相同的规则行事，交易便不会发生. 一句话概括，\
 \begin{quotation}
@@ -739,6 +747,10 @@ IS_1(s_1', \mathcal{R}) \subseteq S'.
     \item 当策略具有非确定性时，我们可以用这一模型来理解带有先验知识、风险或者不确定性下的达成一致定理. 只要策略能够对应一个并-一致的决策函数，结论都有效. 这实际上是Aumann最初考虑的版本，即共同信念，而不是共同知识. 这个版本的定理见习题 \ref{exercise:Aumann-agreement}.
 \end{itemize}
 
+\begin{remark}
+    关于知识逻辑，可以参见教材~\cite{faginReasoningKnowledge2003}，此外，课程~\cite{WangYanJingEpistemicLogic,WangYanJingKnowingThat}、Stanford哲学百科~\cite{rendsvigEpistemicLogic2024} 也是非常好的参考. 在知识逻辑领域，哲学家兼逻辑学家Hintikka的工作影响非常深远，他做了很多极有启发性的工作，可以参考~\cite{hintikkaREASONINGKNOWLEDGEPHILOSOPHY1986,hendricksHintikkaEpistemologicalAxiomatizations2004,sanduShortOverviewDevelopment2018} 等. 在计算机领域，知识逻辑可以用来实现含时（异步/分布式）系统的\textit{形式化验证}~\cite{lamportTLAHomePage,queilleSpecificationVerificationConcurrent1982,emersonCharacterizingCorrectnessProperties1980,clarkeDesignSynthesisSynchronization1981} 和\textit{符号主义}人工智能，用来做知识的表示和规划~\cite{halpernKnowledgeCommonKnowledge1990,liDynamicEpistemicFramework2019,liMoreFreeDynamic2017,liPlanningbasedKnowingHow2021}.
+\end{remark}
+
 \section{习题}
 
 \begin{enumerate}[wide, labelindent=0pt]
@@ -759,7 +771,7 @@ IS_1(s_1', \mathcal{R}) \subseteq S'.
 
     \item \label{exercise:common-knowledge-axioms} 证明\Cref{prop:common-knowledge-fixed-point} 和\Cref{prop:common-knowledge-induction}.
 
-    \item *\label{S5-Aumann-equivalence} \textbf{S5公理系统和Aumann结构的等价性. } 我们将分两个方向证明这一等价性. 考虑可能世界（样本点）的集合$S$. 在Aumann结构$A^M$中，我们定义了玩家$i$的信息集$\mathcal P_i$为$S$的一个划分. 自然，划分本身就定义了$S$上的一个等价关系$R_i$：$\mathcal P_i(s)=\mathcal P_i(s')$当且仅当$sR_is'$. 这一等价关系自然对应了Kripke模型中$K_i$算子的关系. 这样，就自然定义了由可能世界集$S$和等价关系$R_i$组成的Kripke框架$\mathcal F$. 
+    \item \label{S5-Aumann-equivalence} \textbf{S5公理系统和Aumann结构的等价性. } 我们将分两个方向证明这一等价性. 考虑可能世界（样本点）的集合$S$. 在Aumann结构$A^M$中，我们定义了玩家$i$的信息集$\mathcal P_i$为$S$的一个划分. 自然，划分本身就定义了$S$上的一个等价关系$R_i$：$\mathcal P_i(s)=\mathcal P_i(s')$当且仅当$sR_is'$. 这一等价关系自然对应了Kripke模型中$K_i$算子的关系. 这样，就自然定义了由可能世界集$S$和等价关系$R_i$组成的Kripke框架$\mathcal F$. 
     
     接下来，考虑Kripke模型$M=(\mathcal F, V)$，其中$V$是将原子公式$p,q,\dots$赋值到$S$的赋值函数. 为了说明等价性，我们还需要说明如何构造Kripke模型中逻辑公式和Aumann结构中事件的对应. 我们分两个方向做这件事. 
     \begin{enumerate}
@@ -773,5 +785,5 @@ IS_1(s_1', \mathcal{R}) \subseteq S'.
 
     \item \label{exercise:consistent-decision} 证明\Cref{prop:consistent-decision}.
     
-    \item *\label{exercise:Aumann-agreement} 查阅资料，叙述并证明由Aumann结构给出的概率版本的Aumann达成一致定理. 
+    \item *\label{exercise:Aumann-agreement} 阅读文献~\cite{aumannAgreeingDisagree1976}，叙述并证明原始的Aumann达成一致定理. 
 \end{enumerate}
