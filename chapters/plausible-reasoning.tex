@@ -95,7 +95,17 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 我们看一个例子. 
 
 \begin{example}
-tt
+    考虑公式$(p\wedge q)\to r$，我们来定义赋值$v$. 首先给命题变元赋值：
+    \[\begin{array}{c|ccc}
+        \toprule
+        &p&q&r\\\midrule
+        v&\F&\T&\F\\
+        \bottomrule
+    \end{array}\]
+    然后递归计算公式的真值. 首先计算$(p\wedge q)$的真值. 根据真值表，我们有
+    \[v(p\wedge q)=v(p)\wedge v(q)=\F\wedge\T=\F.\]
+    然后计算$(p\wedge q)\to r$的真值：
+    \[v((p\wedge q)\to r)=v(p\wedge q)\to v(r)=\F\to\F=\T.\]    
 \end{example}
 
 接下来，我们从赋值到推理. 推理是从\textit{前提}出发，得到\textit{结论}的过程. 和赋值相关的推理概念有如下定义：
