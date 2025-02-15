@@ -518,7 +518,7 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\textit{Ll
 
     \item 设输出为$d$维的算法$f( x) = (\sum_{i=1}^n \Phi_1( x_i), \dots, \sum_{i=1}^n \Phi_d( x_i))$， $x_i\in\mathcal X$，满足$\Phi_j(\mathcal X)=\{0, 1\}$以及$\sum_{j=1}^d \Phi_j( x_i) = 1$. 请计算$\text{GS}_f$.
     
-    \item \textbf{信息论与差分隐私关系。}\cite{cuffDifferentialPrivacyMutual2016,mirInformationTheoreticFoundationsDifferential2012} 差分隐私和基于信息论的度量有着密切的联系. 对于一个包含$n$个（带随机性的）数据条目$\mathcal X^n = (\mathcal X_1, \dots, \mathcal X_n)$ 的数据，考虑一个随机算法$M:\mathcal X^n\to \mathcal Y$，输出$Y$的概率分布为$P_{\mathcal Y|\mathcal X^n}$. 我们引入以下概念：
+    \item \textbf{信息论与差分隐私关系. }（\cite{cuffDifferentialPrivacyMutual2016,mirInformationTheoreticFoundationsDifferential2012}） 差分隐私和基于信息论的度量有着密切的联系. 对于一个包含$n$个（带随机性的）数据条目$\mathcal X^n = (\mathcal X_1, \dots, \mathcal X_n)$ 的数据，考虑一个随机算法$M:\mathcal X^n\to \mathcal Y$，输出$Y$的概率分布为$P_{\mathcal Y|\mathcal X^n}$. 我们引入以下概念：
     \begin{itemize}
         \item \textbf{互信息差分隐私. }如果算法$M$满足下面的不等式，就称$M$是一个$\epsilon$-MI-DP：
         \[
@@ -544,7 +544,7 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\textit{Ll
             其中$\bar{x}^n \sim P_{\mathcal X^n}$.
     \end{hint}
 
-    \item \textbf{$(\epsilon,\delta)$-差分隐私。}差分隐私实际上使用了如下不等式作为定义：
+    \item \textbf{$(\epsilon,\delta)$-差分隐私. }差分隐私实际上使用了如下不等式作为定义：
     \[\Pr(A(x)\in E) \leq e^{\epsilon} \Pr(A(x') \in E).\]
     即乘性不等式，而不是下面的加性不等式：
     \[\Pr(A(x)\in E) \leq \Pr(A(x') \in E) + \epsilon.\]

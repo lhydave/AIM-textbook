@@ -59,6 +59,10 @@
     \item 在回归问题中，我们通常使用平方损失函数或者$L^1$损失函数；在分类问题中，我们通常使用SVM损失函数或者交叉熵损失函数.
 \end{itemize}
 
+\begin{remark}
+    关于统计决策理论的更多内容，可以参考数理统计的教科书~\cite{shaoMathematicalStatistics2003}，统计学习的经典教材~\cite{hastieElementsStatisticalLearning2009} 则更加偏向机器学习的应用场景. 
+\end{remark}
+
 \subsection{优化问题与算法}
 现在我们从决策过渡到优化. 在最简单的决策问题中，我们的目标就是找到某个$x$使得（期望）损失函数$f$最小. 此时，问题的一般形式为：
 \begin{equation}
@@ -179,7 +183,7 @@
 
 有了上面这些记号，我们就可以将“没有万能算法”这一陈述写成定理了. 
 
-\begin{theorem}[没有免费午餐定理]\label{thm:no-free-lunch}
+\begin{theorem}[没有免费午餐定理，\cite{wolpertNoFreeLunch1997}]\label{thm:no-free-lunch}
 对任意优化算法$A_1,A_2$，
     \[\sum_{f\in F} P(d_t|f,t,A_1)=\sum_{f\in F} P(d_t|f,t,A_2).\]
 \end{theorem}
@@ -212,8 +216,7 @@
 关于优化算法的假设如下. 首先，我们可以访问\textbf{零阶先知}，即$\O(x)=f(x)$. 其次，优化算法需要去找到\textbf{$\epsilon$-近似解}，即函数值至多比最小值大$\epsilon$的解.
 
 \begin{remark}
-
-        在优化中，我们会经常使用词语“零阶”“一阶”等等，所谓的“阶”指的是函数导数阶数，零阶先知指的是我们可以访问函数值，一阶先知指的是我们可以访问一阶导数，以此类推. 后面还会有零阶条件、一阶条件等等，他们的含义类似. 
+    在优化中，我们会经常使用词语“零阶”“一阶”等等，所谓的“阶”指的是函数导数阶数，零阶先知指的是我们可以访问函数值，一阶先知指的是我们可以访问一阶导数，以此类推. 后面还会有零阶条件、一阶条件等等，他们的含义类似. 
 \end{remark}
 
 我们考虑一个非常简单的算法，它被称为\textit{网格搜索}：
@@ -489,6 +492,11 @@ Jensen不等式具有很强的几何解释：画一条$f$的割线，那么$f$�
 
 扩展定义之后的凸函数包括了我们之前讲的$L^p$（$p=1,2$）损失和SVM损失，以及机器学习中用到的大部分损失函数. 在实际情况中，凸函数是一类存在快速收敛算法的函数，例如梯度下降和Netwon迭代法. 因此，我们可以说，凸函数类划定了优化问题中可以快速求解的函数类. 自此，凸性成为了优化中的核心概念. 
 
+
+\begin{remark}
+    这两节的主要思路参考优化理论大师Nesterov的著作~\cite{nesterovIntroductoryLecturesConvex2004}，此书精炼而深刻，非常值得一读. 被誉为“凸分析之父”的Rockafellar的著作~\cite{rockafellarConvexAnalysis1970} 也是学习凸分析的好书. 对于一般的非线性优化理论，Nocedal和Wright的著作~\cite{NumericalOptimization2006} 是非常好的参考书.
+\end{remark}
+
 \section{凸集}
 接下来我们考虑约束优化问题：
 \begin{align*}
@@ -621,13 +629,14 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
     \item 任意$x\in C$，$a^\t x\leq b$.
     \item 任意$x\in D$，$a^\t x\geq b$.
 \end{itemize}
-由$a^\t x=b$定义的超平面被称为\textbf{分离超平面}.
 \end{theorem}
+
+在定理中，由$a^\t x=b$定义的超平面被称为\textit{分离超平面}.
 
 如果两个凸集只有一个公共点，并且这个公共点是边界点，分离超平面定理依然成立，见习题 \ref{exercise:separation-hyperplane-extension}.
 
 \begin{remark}
-    分离超平面定理是如此直观，以至于我们觉得他是一个显然的结论. 但是，这一定理的成立并不平凡. 比如说，如果不是在$\R^n$中，而是在更一般的实线性空间中，这一定理依然成立，我们称之为\textit{Hahn-Banach定理}. 然而，Hahn-Banach定理的证明需要使用选择公理（更准确说，Zorn引理），这一公理的合理性至今依然是有争议的！
+    分离超平面定理是如此直观，以至于我们觉得他是一个显然的结论. 但是，这一定理的成立并不平凡. 比如说，如果不是在$\R^n$中，而是在更一般的实线性空间中，这一定理依然成立，我们称之为\textit{Hahn-Banach定理}~\cite{taoHahnBanachTheoremMengers2007}. 然而，Hahn-Banach定理的证明需要使用选择公理（更准确说，Zorn引理），这一公理的合理性至今依然是有争议的！
 \end{remark}
 
 下面我们来证明\Cref{thm:separation-hyperplane}.
@@ -685,23 +694,32 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
     
     根据二次函数的性质，对充分小的$t$，$g(t) < g(0) = \norm{\contrastlight{d} - \light{c}}_2^2$. 同时，因为$\contrastlight{D}$是凸集，$\contrastlight{d} + t(\contrastlight{u} - \contrastlight{d}) \in \contrastlight{D}$. 以上两点说明$\contrastlight{d} + t(\contrastlight{u} - \contrastlight{d})$是离得更近的点，这与$\light{c}$和$\contrastlight{d}$是离得最近的点矛盾.
 \end{proof}
+
+\begin{remark}
+    本节的内容参考了优化领域的经典著作~\cite{boydConvexOptimization2004}，这本书详细介绍了凸集和凸函数的性质，以及它们在优化问题中的应用，适合进行查阅. Chebyshev集最早是Chebychev在多项式逼近中提出的概念~\cite{chebyshevQuestionsSmallestQuantities1947}，关于这类集合性质，请参考专著~\cite{bauschkeConvexAnalysisMonotone2017}.
+\end{remark}
+
 \section{习题}
 
 \begin{enumerate}[wide, labelindent=0pt]
-    \item \textbf{GPT的损失函数}. 设$T$是所有词元的集合，GPT的预训练过程本质上是$n$分类问题中($n = |T|$)，模型的输入空间是$T^\ast=T\cup T^2 \cup \dots \cup T^K$，$K$是模型允许的最长的输入长度. 输出（标签）空间则是所有可能的$T$上的概率分布，记为$\Delta(T)$. 分类器$f:T^\ast \to \Delta(T)$是一个输入到输出空间概率分布的映射，参数空间为$\mathcal W$，参数为$w$，输入为$x$的输出记为$f(x;w)$. 
+    \item \textbf{GPT的损失函数}.（\cite{radfordImprovingLanguageUnderstanding}）设$T$是所有词元的集合，GPT的预训练过程本质上是$n$分类问题中($n = |T|$)，模型的输入空间是$T^\ast=T\cup T^2 \cup \dots \cup T^K$，$K$是模型允许的最长的输入长度. 输出（标签）空间则是所有可能的$T$上的概率分布，记为$\Delta(T)$. 分类器$f:T^\ast \to \Delta(T)$是一个输入到输出空间概率分布的映射，参数空间为$\mathcal W$，参数为$w$，输入为$x$的输出记为$f(x;w)$. 
     
     与带有监督信号的分类任务不同，预训练过程是自监督训练：给定语料库中的一个词元序列$x \in T^\ast$，模型会依次基于序列中的前$t$个词元来预测第$t+1$个词元, 并用\textit{交叉熵}损失函数
     \[CH(p,q) = -\sum_{x} p(x)\log q(x)\]
     来衡量分类器的性能，其中$p$是真实标签的分布（一个以概率$1$取单点值的退化分布），$q$是分类器$f$输出的预测标签分布. 假设训练集为$\{x^i\}_{i=1}^N\subseteq T^\ast$. 
     
     请将该分类器监督学习的过程写成优化问题.
-    \item *\label{exercise:no-free-lunch} 证明\Cref{thm:no-free-lunch}.
+    \item *\label{exercise:no-free-lunch}（\cite{wolpertNoFreeLunch1997}）证明\Cref{thm:no-free-lunch}.
     
-    \item *强化学习利用 MDP 框架来描述问题，这其中最重要的一步就是定义奖励函数。在最特殊的一种强化学习中，智能体只有在最后一轮才会获得奖励。此时，智能体最大化奖励就仿佛是在做一个优化问题。
+    \item *强化学习利用 MDP 框架来描述问题，这其中最重要的一步就是定义奖励函数. 在最特殊的一种强化学习中，智能体只有在最后一轮才会获得奖励. 此时，智能体最大化奖励就仿佛是在做一个优化问题. 
     
-    反之，如果我们把一个离散空间中的优化问题想象成一个游戏，退出游戏时的函数值就是智能体所获得的奖励，最大化目标函数就是在最大化最终奖励。因此，智能体可以通过强化学习的方法来解决这个优化问题. 
+    反之，如果我们把一个离散空间中的优化问题想象成一个游戏，退出游戏时的函数值就是智能体所获得的奖励，最大化目标函数就是在最大化最终奖励. 因此，智能体可以通过强化学习的方法来解决这个优化问题. 
     
-    基于以上观察，建模并证明强化学习和离散优化问题的等价性.
+    \begin{enumerate}
+        \item 基于以上观察，建模并证明强化学习和离散优化问题的等价性.
+        \item 已知解MDP存在多项式时间算法~\cite{littmanComplexitySolvingMarkov1995}，然而，通常的离散优化问题是$\mathsf{NP}$-难的，这似乎意味着上一问证明的等价性存在问题. 请解释这一矛盾.
+    \end{enumerate}
+    
     
     \item \label{exercise:convex-function} 验证\Cref{ex:convex-function} 中的函数是凸函数.
     

@@ -157,7 +157,7 @@ $\mu$未知. 随机采样得到样本$x_1,x_2,\dots,x_n$，怎样对$\mu$进行�
 我们就称$A$方法是\textbf{不可接受的}. 否则，我们称$A$方法是\textbf{可接受的}. 
 \end{definition}
 
-有了评判估计量好坏的标准，我们就可以来看Stein悖论了。首先，对朴素估计来说，我们可以计算它的均方误差：
+有了评判估计量好坏的标准，我们就可以来看Stein悖论了. 首先，对朴素估计来说，我们可以计算它的均方误差：
 
 \begin{lemma}\label{lemma:naive-estimation}
     对于$n\geq 3$，朴素估计 \eqref{eq:naive-estimation} 的均方误差为
@@ -184,7 +184,7 @@ $\mu$未知. 随机采样得到样本$x_1,x_2,\dots,x_n$，怎样对$\mu$进行�
 \begin{theorem}[Stein悖论]\label{thm:stein-paradox}
     对于$n\geq 3$，朴素估计 \eqref{eq:naive-estimation} 是不可接受的，具体来说，James-Stein估计量 \eqref{eq:James-Stein-estimation} 的均方误差为
     \[\E\left[\norm{\hat{\mu}-\mu}^2\right] = n-\E\left[\frac{(n-2)^2}{n-2+2K}\right],\]
-    其中$K$服从参数为$\norm{mu}^2/2$的Poisson分布。因此，在任意$\mu$下，James-Stein估计量都比朴素估计更好. 
+    其中$K$服从参数为$\norm{mu}^2/2$的Poisson分布. 因此，在任意$\mu$下，James-Stein估计量都比朴素估计更好. 
 \end{theorem}
 
 这一定理的证明十分具有技巧性，我们这里不给出证明，感兴趣的读者见习题 \ref{exercise:stein-paradox}.
@@ -285,7 +285,7 @@ $\mu$未知. 随机采样得到样本$x_1,x_2,\dots,x_n$，怎样对$\mu$进行�
 \end{quotation}
 
 \begin{remark}
-    Stein悖论的原始论文是\cite{steinInadmissibilityUsualEstimator1956}，后来，James和Stein对估计量进行了简化~\cite{jamesEstimationQuadraticLoss1961}，也就是本书中所讲的这个。然而，关于Stein悖论的讨论在各种领域都有，比如统计学和机器学习等。本文采取的几何视角，思路来自论文~\cite{brownGeometricalExplanationStein2012}，与正则化的关系则来自博客~\cite{UnderstandingSteinsParadox}。
+    Stein悖论的原始论文是\cite{steinInadmissibilityUsualEstimator1956}，后来，James和Stein对估计量进行了简化~\cite{jamesEstimationQuadraticLoss1961}，也就是本书中所讲的这个. 然而，关于Stein悖论的讨论在各种领域都有，比如统计学和机器学习等. 本文采取的几何视角，思路来自论文~\cite{brownGeometricalExplanationStein2012}，与正则化的关系则来自博客~\cite{UnderstandingSteinsParadox}. 
 \end{remark}
 
 \section{集中不等式}
@@ -669,24 +669,24 @@ v(\text{男人}) - v(\text{女人}) \approx v(\text{国王}) - v(\text{女王}).
 \end{example}
 
 \begin{remark}
-    J-L 引理最早出现在论文~\cite{johnsonExtensionsLipschitzMappings1984} 中，最早考虑的是Euclid空间中点的嵌入问题。后来，这一引理为数据压缩提供很强的理论依据，也被广泛应用在深度学习中. 关于J-L引理的应用，可以参见苏剑林的博客~\cite{SuZuiXiaoShangYuanLiLiuCiXiangLiangDeWeiDuYingGaiZenMeXuanZe,SuRangRenLiangTanDeJohnsonLindenstraussYinLiYingYongPian,SuRangRenLiangTanDeJohnsonLindenstraussYinLiLiLunPian}.
+    J-L 引理最早出现在论文~\cite{johnsonExtensionsLipschitzMappings1984} 中，最早考虑的是Euclid空间中点的嵌入问题. 后来，这一引理为数据压缩提供很强的理论依据，也被广泛应用在深度学习中. 关于J-L引理的应用，可以参见苏剑林的博客~\cite{SuZuiXiaoShangYuanLiLiuCiXiangLiangDeWeiDuYingGaiZenMeXuanZe,SuRangRenLiangTanDeJohnsonLindenstraussYinLiYingYongPian,SuRangRenLiangTanDeJohnsonLindenstraussYinLiLiLunPian}.
 \end{remark}
 
 \section{习题}
 
 \begin{enumerate}[wide,labelindent=0pt]
     \item \label{exercise:volume-surface-area} 证明\Cref{thm:volume-surface-area}. 
-    \item *\label{exercise:stein-paradox} 本题证明\Cref{thm:stein-paradox}. 首先，定义$X=(x_1,\dots,x_n)^\t$，然后定义
+    \item *\label{exercise:stein-paradox}（\cite{jamesEstimationQuadraticLoss1961}）本题证明\Cref{thm:stein-paradox}. 首先，定义$X=(x_1,\dots,x_n)^\t$，然后定义
     \[\phi(X)=\left(1-\frac{b}{\norm{X}^2}\right)X.\]
     \begin{enumerate}
         \item 证明，均方误差具有如下分解：
         \[\E\left[\norm{\phi(X)-n}^2\right]=n-2b\E\left[\frac{(X-\mu)^\t X}{\norm{X}^2}\right]+b^2\E\left[\frac{1}{\norm{X}^2}\right].\]
-        \item 注意到，$\norm{X}^2$是一个自由度为$n$、非中心参数为$\norm{\mu}^2$的$\chi^2$分布。本问将它转化为中心$\chi^2$分布。按如下方式定义随机变量$W$：首先，生成一个随机变量$K$，服从参数为$\norm{\mu}^2/2$的Poisson分布，然后，条件在$K=k$，$W$服从自由度为为$n+2k$的中心$\chi^2$分布. 证明：$W$和$\norm{X}^2$有相同的分布。
+        \item 注意到，$\norm{X}^2$是一个自由度为$n$、非中心参数为$\norm{\mu}^2$的$\chi^2$分布. 本问将它转化为中心$\chi^2$分布. 按如下方式定义随机变量$W$：首先，生成一个随机变量$K$，服从参数为$\norm{\mu}^2/2$的Poisson分布，然后，条件在$K=k$，$W$服从自由度为为$n+2k$的中心$\chi^2$分布. 证明：$W$和$\norm{X}^2$有相同的分布. 
         \item 证明：
         \[\E\left[\frac{1}{\norm{X}^2}\right]=\E\left[\frac{1}{n-2+2K}\right].\]
-        \item 最后，我们计算第二项期望。令
+        \item 最后，我们计算第二项期望. 令
         \[U=\frac{\mu^\t X}{\norm{X}},\quad V=\norm{X-\frac{\mu^t X}{\norm{X}^2}X}^2.\]
-        证明：$U$和$V$相互独立，且$U\sim\Nor(0,1)$，$V\sim\chi_{n-1}^2$，并且$W$与$U^2+V$同分布。
+        证明：$U$和$V$相互独立，且$U\sim\Nor(0,1)$，$V\sim\chi_{n-1}^2$，并且$W$与$U^2+V$同分布. 
         \item 证明：
         \[\E\left[\frac{U}{W}\right]=\frac{\e^{-\norm{\mu}^2/2}}{\sqrt{\pi}}\cdot\sum_{j=0}^\infty\frac{\Gamma(1/2)\norm{\mu}^{2j+1}}{2^{j+1}\Gamma(j+1)\Gamma(n/2+j)}.\]
         \item 最后证明：

@@ -438,7 +438,7 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
 \[s^k=\e^{k\log s}.\]
 根据\Cref{prop:entropy-maximum}，只有当所有$p_i$相等的时候$N(k)$才会达到这一量级. 从这个意义上说，\textit{熵所刻画的信息量定量刻画了数据压缩可能的极限.}
 
-以上关于信息编码下界以及数据压缩的讨论，再更一般的情况下也成立，此时这样的性质被称为\textit{渐近等分性}. 而这一性质成立对应的结果被称为\textit{Shannon-McMillan-Breiman定理}，它的陈述以及证明都需要用到更多随机过程的知识，这里就不再给出了，感兴趣的读者请参阅Shannon的工作~\cite{shannonMathematicalTheoryCommunication1948}、MciMillan的工作 \cite{mcmillanBasicTheoremsInformation1953} 和Breiman的工作 \cite{breimanIndividualErgodicTheorem1957}。
+以上关于信息编码下界以及数据压缩的讨论，再更一般的情况下也成立，此时这样的性质被称为\textit{渐近等分性}. 而这一性质成立对应的结果被称为\textit{Shannon-McMillan-Breiman定理}，它的陈述以及证明都需要用到更多随机过程的知识，这里就不再给出了，感兴趣的读者请参阅Shannon的工作~\cite{shannonMathematicalTheoryCommunication1948}、MciMillan的工作 \cite{mcmillanBasicTheoremsInformation1953} 和Breiman的工作 \cite{breimanIndividualErgodicTheorem1957}. 
 
 \subsection{K-L散度、交叉熵与编码}
 
@@ -585,7 +585,7 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
 \begin{enumerate}[wide, labelindent=0pt]
     \item \label{exercise:conditional-mutual-information} 证明\Cref{prop:conditional-mutual-information}. 
     
-    \item \cite{tingAmountInformation1962} 仿照集合论的思路，我们可以定义三个随机变量的互信息为：
+    \item （\cite{tingAmountInformation1962}）仿照集合论的思路，我们可以定义三个随机变量的互信息为：
     \[I(X;Y;Z)=I(X;Y)-I(X;Y|Z).\]
     \begin{enumerate}
         \item 证明对称性：$I(X;Y;Z)=I(Y;X;Z) = I(X;Z;Y)$.

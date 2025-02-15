@@ -1,6 +1,6 @@
 \chapter{博弈与逻辑}\label{chap:game}
 
-2016年3月，围棋界迎来了一场前所未有的挑战——谷歌DeepMind团队开发的人工智能 \textit{AlphaGo} 挑战韩国围棋九段世界冠军李世乭. 这场比赛不仅引发了全球的关注，更成为了人工智能领域的里程碑. 
+2016年3月，围棋界迎来了一场前所未有的挑战——谷歌DeepMind团队开发的人工智能 \textit{AlphaGo}~\cite{silverMasteringGameGo2016} 挑战韩国围棋九段世界冠军李世乭. 这场比赛不仅引发了全球的关注，更成为了人工智能领域里程碑式的事件. 
 
 围棋被认为是极其复杂的游戏，其复杂性远远超越国际象棋，因此，许多人曾认为围棋是人工智能无法攻克的“堡垒”. 然而，AlphaGo改变了这一看法. 
 
@@ -18,7 +18,7 @@
 
 李世乭与AlphaGo的第四局对决，不仅是那一次比赛的唯一一次胜利，也是此后人类与顶尖围棋人工智能较量中的最后一次胜利. 而第二局AlphaGo的神之一手，人类至今不能理解，只能效仿. AlphaGo通过学习人类棋谱，再通过自我对弈，最终超越了人类的认知，成为了围棋的新王者. 
 
-毫无疑问，这一比赛彻底的改写了围棋的历史. 过去，围棋被视为一种具有智慧和创造力的艺术；但现在，围棋选手获胜唯一的出路是模仿人工智能的策略. 后来，\textit{AlphaGo Zero} 横空出世，它完全不依赖人类知识，但是完胜AlphaGo. 人类积累了几千年的围棋经验，在人工智能面前显得如此渺小. 
+毫无疑问，这一比赛彻底的改写了围棋的历史. 过去，围棋被视为一种具有智慧和创造力的艺术；但现在，围棋选手获胜唯一的出路是模仿人工智能的策略. 后来，\textit{AlphaGo Zero}~\cite{silverMasteringGameGo2017} 横空出世，它完全不依赖人类知识，但是完胜AlphaGo. 人类积累了几千年的围棋经验，在人工智能面前显得如此渺小. 
 
 围棋代表了一种特别的决策与优化问题：我们的决策依赖于对手，而对手的决策又依赖于我们. 这样的决策问题形成了\textit{博弈论}的研究对象. 博弈是如此复杂，以至于如何恰当地描述博弈的过程都是一个巨大的挑战. 本章的目标是给出博弈论的通用语言和基本概念，以及一些经典的博弈模型和他们在人工智能中的应用.
 
@@ -94,7 +94,7 @@
 \end{itemize}
 
 \begin{remark}
-    我们这里给出的关于完全信息的定义其实借鉴了密码学中的\textit{零知识证明}的概念. 我们这里只给一个例子说明这个概念. 假设有甲乙两人，甲宣称自己是一个硬币鉴定大师，给任意两个硬币，他可以判断出这两个硬币是不是一样的. 乙不确定甲是不是骗子，所以想要验证这一能力. 而甲并不希望乙通过验证的过程学到他的鉴定方法. 
+    我们这里给出的关于完全信息的定义其实借鉴了密码学中的\textit{零知识证明}的概念~\cite{goldwasserKnowledgeComplexityInteractive1985}. 我们这里只给一个例子说明这个概念. 假设有甲乙两人，甲宣称自己是一个硬币鉴定大师，给任意两个硬币，他可以判断出这两个硬币是不是一样的. 乙不确定甲是不是骗子，所以想要验证这一能力. 而甲并不希望乙通过验证的过程学到他的鉴定方法. 
     
     于是，我们可以这样做：乙秘密随机准备两枚硬币，一样或者不一样，然后把这两枚硬币交给甲，甲进行鉴定，然后把硬币还给乙. 如此进行多次，如果甲能够正确判断每一次，那么乙就可以相信甲的能力. 
 
@@ -130,8 +130,8 @@
 
 什么博弈是被决定的？这一问题的答案由Zermelo定理给出.
 
-\begin{theorem}[Zermelo定理, Von Neumann]\label{thm:zermelo}
-如果一个博弈是双人的、有限深的、确定的、完全信息的、输赢的，那么这个博弈是被决定的.
+\begin{theorem}[Zermelo定理]\label{thm:zermelo}
+如果博弈是双人的、有限深的、确定的、完全信息的、输赢的，那么这个博弈是被决定的.
 \end{theorem}
 以上限定词缺一不可，缺少了任何一个都导致结论不成立，见习题 \ref{exercise:zermelo-fail}.
 
@@ -172,11 +172,15 @@
 \end{theorem}
 证明见习题 \ref{exercise:zermelo-draw}.
 
+\begin{remark}
+    关于Zermelo定理的更多讨论，可以参考Aumann的教材~\cite{aumannLecturesGameTheory1989}。
+\end{remark}
+
 尽管Zermelo定理的第二个证明构造出了必胜策略，但是后向归纳法的搜索空间过于庞大. 例如，充分大但有限的棋盘上，五子棋先手玩家存在不败策略（见习题 \ref{exercise:gomoku}），但是没有经过训练的人类或者简单的算法先手不一定会胜利. 
 
 究其原因，人的思考以及机器搜索的过程实际上是前向探索的过程. 如何进行（启发式）搜索是取得胜利重要的因素. 在本章开头，我们讲述了AlphaGo的故事，这是正是一个很好的例子. 下面我们就如何对围棋进行建模进行讨论.
 
-由Zermelo定理可知，围棋也存在必胜策略. 然而标准围棋棋盘大小为$19\times 19$，状态空间量级为$10^{170}$，过大的状态空间使得我们无法使用后向归纳法求解出必胜策略. 以下我们探讨AlphaGo Zero（下面简称Zero）如何通过神经网络建模博弈的过程.
+由Zermelo定理可知，围棋也存在必胜策略. 然而标准围棋棋盘大小为$19\times 19$，状态空间量级为$10^{170}$，过大的状态空间使得我们无法使用后向归纳法求解出必胜策略. 以下我们探讨AlphaGo Zero~\cite{silverMasteringGameGo2017}（下面简称Zero）如何通过神经网络建模博弈的过程.
 
 首先，我们假定Zero可以记住的是从当前局开始往前$k$步的棋局信息（即落子方式）. 我们假定这样的$k$步棋形成的棋局序列集合为$C$. 于是，Zero的策略是一个随机映射
 \[\pi: C\to \Delta(\mathcal A),\]
@@ -186,7 +190,8 @@
 
 对于人类来说，我们的任务是让Zero的策略$\pi$尽可能地接近必胜策略，为此，我们需要用一个神经网络来拟合这个策略. 此外，我们通常需要告诉Zero每一步棋获胜的概率（或者说期望收益），这也需要一个神经网络. 具体来说，AlphaGo Zero算法包含\textit{策略网络}，\textit{价值网络}和\textit{Monte-Carlo树搜索}（MCTS）.
 \begin{itemize}
-    \item 策略网络$p$和价值网络$v$的输入为当前状态$s\in C$，即$(P(s,\cdot),V(s))=f_\theta(s)$.
+    \item 策略网络$p$和价值网络$v$的输入为当前状态$s\in C$，即
+    \[(P(s,\cdot),V(s))=f_\theta(s).\]
     \item 策略网络$P(s,\cdot)$的输出为下一步落子位置$a\in\mathcal A$的概率分布.
     \item 价值网络$V(s)$的输出为该状态的价值评估（期望收益、胜率）.
     \item MCTS利用策略网络进行\textit{扩展}，使用价值网络进行\textit{评估}，利用UCB公式返回最优的搜索结果作为落子决策.
@@ -247,6 +252,7 @@ MTCS的过程较为复杂，我们单独介绍. 树的组成如下：搜索节�
     \caption{MCTS的过程}
     \label{fig:mcts}
 \end{figure}
+
 
 \section{正则形式博弈}
 输赢博弈被建模为\textit{扩展形式博弈}，它代表了多轮博弈的过程. 与之相对的是\textit{正则形式博弈}，即玩家只有一次行动的机会，所有玩家同时操作. 正则形式博弈通常要求信息是完全的. 那么，如何定义正则形式博弈和对应的解概念呢？
@@ -383,10 +389,13 @@ s=(s_i)_{i\in I}.
 
 对比动态博弈中的Zermelo定理，静态的二人完全信息输赢博弈已经不能够保证必胜策略的存在性. 因此，静态输赢博弈的结局往往比动态输赢博弈更加不确定.
 
+\begin{remark}
+    本节中关于理性和均衡的观点受到很多参考文献的启发。其中，最为重要的来自Aumann的一系列工作~\cite{aumannCorrelatedEquilibriumExpression1987,aumannEpistemicConditionsNash1995,aumannRationalityBoundedRationality1997,aumannWhatGameTheory1985}，此外，\cite{pavlovicSemanticalApproachEquilibria2009}也对本节的观点有很大的启发，这篇文章从计算机和程序的角度，理解均衡作为反映函数不动点是如何进行实现的。
+\end{remark}
 
 \subsection{生成对抗网络}
 
-接下来，我们给一个连续博弈的例子，即\textit{生成对抗网络}（GAN）. 生成对抗网络由两个子模型组成，一个被称为\textit{生成模型}，一个被称为\textit{判别模型}. 生成模型的任务是生成看似真实的数据，而判别模型的任务是识别给定的数据是真实的还是伪造的. 这一过程的示意见\Cref{fig:GAN}.
+接下来，我们给一个连续博弈的例子，即\textit{生成对抗网络}（GAN）~\cite{goodfellowGenerativeAdversarialNets2014}. 生成对抗网络由两个子模型组成，一个被称为\textit{生成模型}，一个被称为\textit{判别模型}. 生成模型的任务是生成看似真实的数据，而判别模型的任务是识别给定的数据是真实的还是伪造的. \Cref{fig:GAN} 给出了上述过程的一个示意。
 
 \begin{figure}[ht]
 \centering
@@ -450,8 +459,7 @@ $D$最大化$V$，$G$最小化$V$.
 
 特别地，纯策略可以被看成是一个特殊的混合策略，即退化的概率分布.
 
-有了混合策略，我们还需要重新定义玩家的理性. 一个非常标准的回答是\textit{期望效用理论}，它由Von Neumann和Morgenstern提出. 该理论认为，在面对不确定性时，人按照期望效用进行决策. 
-
+有了混合策略，我们还需要重新定义玩家的理性. 一个非常标准的回答是\textit{期望效用理论}，它由Von Neumann和Morgenstern~\cite{vonneumannTheoryGamesEconomic2007} 提出. 该理论认为，在面对不确定性时，人按照期望效用进行决策. 
 
 因此，我们需要计算玩家的期望效用. 为此，引入混合\textit{策略组合}：$\sigma=(\sigma_i)_{i\in I}$，其中$\sigma_i\in\Delta(A_i)$. $\sigma$是一个$(A_i)_{i\in I}$上的概率分布，每一维相互独立. 当所有玩家选定策略之后，玩家$i$的期望收益是：
     \[u_i(\sigma)=\E_{a\sim\sigma} u_i(a).\]
@@ -473,7 +481,7 @@ $D$最大化$V$，$G$最小化$V$.
 \end{definition}
 
 同样，Nash均衡也可以理解为最优反应的不动点. 利用这一观点，Nash得以使用不动点定理（见习题\ref{exercise:proof-Nash-existence}）证明了Nash均衡的存在性：
-\begin{theorem}[Nash均衡存在性定理]\label{thm:Nash-existence}
+\begin{theorem}[Nash均衡存在性定理，\cite{nashEquilibriumPointsNperson1950,nashNonCooperativeGames1951}]\label{thm:Nash-existence}
 任意有限正则形式博弈都存在一个Nash均衡.
 \end{theorem}
 
@@ -528,30 +536,34 @@ $D$最大化$V$，$G$最小化$V$.
     \end{align*}
     同理，我们有$p=1/2$. 因此，双方都选择$(1/2,1/2)^\t$是唯一的Nash均衡.
 \end{itemize}
-如此，我们证明了猜硬币游戏的唯一Nash均衡是双方都选择$(1/2,1/2)^\t$.
+如此，我们就完成了证明.
 \end{example}
 
 在上面的例子中，我们实际上得到了一个非常重要的结论：Nash均衡具有\textit{无差别原理}，它说明，Nash均衡中出现的那些行动一定都是取到了最大收益的行动. 这一原理可以被用来求解任意二人博弈的Nash均衡. 这一原理的证明和应用见习题 \ref{exercise:indifference-principle}. 
 
 \begin{theorem}[无差别原理]\label{thm:indifference-principle}
-考虑一个正则形式博弈$G=(I,\{A_i\}_{i\in I},\{u_i\}_{i\in I})$，其中$I$是玩家集合，$A_i$是玩家$i$的行动空间，$u_i$是玩家$i$的收益函数. 如果$\sigma^*$是一个Nash均衡，那么对于任意玩家$i$和任意$a_i,a_i'$满足
+考虑正则形式博弈$G=(I,\{A_i\}_{i\in I},\{u_i\}_{i\in I})$，其中$I$是玩家集合，$A_i$是玩家$i$的行动空间，$u_i$是玩家$i$的收益函数. 如果$\sigma^*$是一个Nash均衡，那么对于任意玩家$i$和任意$a_i,a_i'$满足
 \[\sigma^*_i(a_i)>0,\quad \sigma^*_i(a_i')>0,\]
 有
 \[u_i(a_i,\sigma^*_{-i})=u_i(a_i',\sigma^*_{-i})=u_i(\sigma^*)=\max_{\sigma_i\in\Delta(A_i)}u_i(\sigma_i,\sigma^*_{-i}).\]
 \end{theorem}
 
+\begin{remark}
+    无差别原理给了二人博弈Nash均衡的求解方法，然而对更多人一般的情况，Nash均衡的求解是否（Turing）可计算仍然是不知道的。关于Nash均衡求解算法的问题，请参见综述~\cite{liSurveyAlgorithmsNash2024}.
+\end{remark}
+
 上面我们说明，\textit{有限}正则形式博弈一定有Nash均衡，实际上，类似的不动点技术可以被用来证明更一般的均衡存在定理：
 
-\begin{theorem}[Debreu-Glicksberg-Fan定理]
-    一个正则形式博弈满足如下所有条件，就会存在一个纯策略Nash均衡： 
+\begin{theorem}[\cite{debreuSocialEquilibriumExistence1952,glicksbergFurtherGeneralizationKakutani1952,fanFixedPointMinimaxTheorems1952}]
+    一个正则形式博弈如果满足如下所有条件，就会存在一个纯策略Nash均衡： 
     \begin{itemize}
         \item 对任意玩家$i$，行动空间$A_i$是Euclid空间中的非空紧凸子集，
         \item 对任意玩家$i$，收益函数$u_i$连续，对第$i$个分量上凹. 
     \end{itemize}
 \end{theorem}
 
-\begin{theorem}[Glicksberg定理]
-    一个正则形式博弈满足如下所有条件，就会存在一个Nash均衡：
+\begin{theorem}[\cite{glicksbergFurtherGeneralizationKakutani1952}]
+    一个正则形式博弈如果满足如下所有条件，就会存在一个Nash均衡：
     \begin{itemize}
         \item 对任意玩家$i$，行动空间$A_i$是度量空间中的非空紧子集，
         \item 对任意玩家$i$，收益函数$u_i$连续. 
@@ -567,7 +579,7 @@ $D$最大化$V$，$G$最小化$V$.
 
 此外，从某种角度来看，价值也是相对的. 如果我们有 50\% 的机会赢 100 块钱或 10 块钱，拿到 10 块钱时可能会感到失望. 但如果改成我们只能赢得 10 块钱或 1 块钱，那得到 10 块钱时我们就会感到更开心. 因此，即便效用理论是对的，在现实中我们完全不能知道真正的效用函数是什么，也无法在现实中真的用来建模.
 
-那么，为什么我们还要研究（期望）效用理论，甚至整个经济学和博弈论的体系都是基于（期望）效用理论的？它之所以如此重要，就是因为它很好地平衡了“可以写理论结果”和“可以解释现实现象”之间的关系. 正如Robert Aumann所说，
+那么，为什么我们还要研究（期望）效用理论，甚至整个经济学和博弈论的体系都是基于（期望）效用理论的？它之所以如此重要，就是因为它很好地平衡了“可以写理论结果”和“可以解释现实现象”之间的关系. 正如Aumann~\cite{aumannWhatGameTheory1985} 所说，
 
 \begin{quotation}
     “另一种强调这一点的原因——即理论不应简单地被视为真或假——是为了避免过分抠字眼带来的问题……有人反对效用最大化的概念，认为人并不真的在最大化效用. 对此，有人提出了诸如‘满意准则’这样的替代方案……然而，\textit{效用最大化的有效性并不在于它能否精确描述个体行为，而在于它作为经济理论的基础假设，能够整合大量经济学理论}……
@@ -594,7 +606,7 @@ $D$最大化$V$，$G$最小化$V$.
 \end{itemize}
 MDP的目标是找到一个策略 $\pi$，使得在该策略下可以获得最大的期望累积奖励. 
 
-随机博弈可以看做MDP的多人扩展. 
+随机博弈可以看做MDP的多人扩展，它是由Shapley在1953年引入的~\cite{shapleyStochasticGames1953}.
 
 \begin{definition}[随机博弈，Markov博弈]
 \textbf{随机博弈}（又称为\textbf{Markov博弈}）有如下组成：
@@ -636,10 +648,12 @@ MDP的目标是找到一个策略 $\pi$，使得在该策略下可以获得最�
     
     在每个状态 $s$ 下，玩家 $i$ 选择每个可能行动 $a \in \mathcal{A}_i(s)$ 的概率由 $\pi_i(s,a)$ 给出. 
     
-    假设每个玩家$i$都采用平稳策略 $\pi_i$，那么整个策略组合$\boldsymbol \pi=(\pi_1,\dots, \pi_N)$也被称为\textbf{平稳策略组合}.
+    假设每个玩家$i$都采用平稳策略 $\pi_i$，那么整个策略组合
+    \[\boldsymbol \pi=(\pi_1,\dots, \pi_N)\]
+    也被称为\textbf{平稳策略组合}.
 \end{definition}
 
-平稳这一词在概率论中有明确的含义. 考虑一列随机变量$X_1,X_2,\dots$，如果对于任意$n$和$k$，
+平稳这一词在概率论中有明确的含义. 考虑随机变量$X_1,X_2,\dots$，如果对于任意$n$和$k$，
 \[(X_1,X_2,\dots,X_n)\stackrel{d}{=} (X_{k+1},X_{k+2},\dots,X_{k+n}),\]
 这个等号的意思是两边的联合分布相同. 这时我们称$X_1,X_2,\dots$是一个\textit{平稳过程}.
 
@@ -680,7 +694,7 @@ MDP的目标是找到一个策略 $\pi$，使得在该策略下可以获得最�
 最后，我们可以用最优反应来定义均衡：
 
 \begin{definition}[Markov完美均衡，MPE]
-    在所有玩家的平稳策略组合中，每一个玩家的策略都是 Markov最优反应，那么这个策略组合被称为\textbf{Markov完美均衡}（MPE）.
+    如果在所有玩家的平稳策略组合中，每一个玩家的策略都是Markov最优反应，那么这个策略组合被称为\textbf{Markov完美均衡}（MPE）.
 \end{definition}
 
 同样，MPE也可以被看作是最优反应的不动点. 类似Nash均衡的存在性定理，我们有如下的定理：
@@ -689,7 +703,7 @@ MDP的目标是找到一个策略 $\pi$，使得在该策略下可以获得最�
 对于$N$个玩家、有限状态、有限动作空间的随机博弈，MPE存在.
 \end{theorem}
 
-下面我们介绍Shapley关于双人零和随机博弈情形的证明，这一证明基于Banach不动点定理（\Cref{thm:banach-fixed-point}）. 对于一般的情况，可以类似Nash均衡存在性，利用Brouwer不动点定理证明，见习题 \ref{exercise:proof-MPE-existence}.
+下面我们介绍Shapley~\cite{shapleyStochasticGames1953} 关于双人零和随机博弈情形的证明，这一证明基于Banach不动点定理（\Cref{thm:banach-fixed-point}）. 对于一般的情况，可以类似Nash均衡存在性，利用Brouwer不动点定理证明，见习题 \ref{exercise:proof-MPE-existence}.
 
 在双人零和的语境下，我们去掉收益函数$Q$的下标$i$，玩家$2$的收益函数是$-Q$. 注意，价值函数满足Bellman方程：
     \[V^{\boldsymbol \pi}(s) = Q(\boldsymbol \pi(s);s) + \gamma \sum_{s'\in \calS} \calP^{\boldsymbol\pi}(s'|s)V^{\boldsymbol \pi}(s').\]
@@ -796,7 +810,11 @@ Bellman方程的左右是同一个$V$，此时是不动点方程，因此，只�
 
 最后，我们指出随机博弈和人工智能的关系. 正如MDP是强化学习的基础，随机博弈是多智能体强化学习的基础. 在多智能体强化学习中，每个智能体都是一个独立的决策者，按照一个MDP来决策. 但是，由于环境中有多个智能体，每个智能体的奖励函数都会受到其他智能体的影响，这正是随机博弈的情形. 
 
-利用多智能体强化学习，我们可以训练出极其强大的人工智能，例如，DeepMind在星际争霸2中训练出的AlphaStar就是一个例子. 通过人类数据与多智能体强化学习的自我训练，AlphaStar在星际争霸2的比赛中击败了世界冠军. 它展示了博弈论如何为人工智能的发展提供语言和训练方法. 
+利用多智能体强化学习，我们可以训练出极其强大的人工智能，例如，DeepMind在星际争霸2中训练出的AlphaStar~\cite{vinyalsGrandmasterLevelStarCraft2019} 就是一个例子. 通过人类数据与多智能体强化学习的自我训练，AlphaStar在星际争霸2的比赛中击败了世界冠军. 它展示了博弈论如何为人工智能的发展提供语言和训练方法. 
+
+\begin{remark}
+    博弈论有很多很好的参考教材，例如Aumann写的~\cite{aumannLecturesGameTheory1989}、Tirole和Fudenberg写的~\cite{fudenbergGameTheory1991}、Osborne和Rubinstein写的~\cite{osborneCourseGameTheory1994} 等.
+\end{remark}
 
 \section{习题}
 \begin{enumerate}[wide, labelindent=0pt]
@@ -838,16 +856,20 @@ Bellman方程的左右是同一个$V$，此时是不动点方程，因此，只�
         \end{hint}
     
     \item 考虑$A,B,C$玩家的三人正则形式博弈,每位玩家有两种选择$X,Y$. 构造一个三人博弈的有理收益矩阵，使得它有一个Nash均衡中三人选择$X$的概率都是无理数. 并求出这个均衡.
+    \begin{hint}
+        实际上，在Nash证明均衡存在性的原始论文~\cite{nashNonCooperativeGames1951} 中，Nash就给过这样的例子.
+    \end{hint}
 
     \item \label{exercise:indifference-principle} 本题讨论无差别原理. 
     \begin{enumerate}
         \item 证明\Cref{thm:indifference-principle}.
         \item 对有限行动空间的二人正则形式博弈，利用无差别原理给出一个求解\textit{所有}Nash均衡的算法. 
+        \item 分析这一算法的时间复杂度.
     \end{enumerate}
 
     \item \label{exercise:state-sequence-Markov} 考虑一个随机博弈，有$N$个玩家，状态集合为$\calS$，玩家$i$的行动空间为$\mathcal A_i$，收益函数为$Q_i(\boldsymbol a;s)$，转移概率为$\calP(s'|s,\boldsymbol a)$. 假设玩家采用平稳策略$\boldsymbol \pi$，$s^0,s^1,\dots$是一个随机博弈的状态序列，证明：$\{s^t\}_{t=0}^{\infty}$是一个时齐Markov链. 
     
     \item \label{exercise:stochastic-game-bellman} 证明\Cref{thm:stochastic-game-bellman}.
     
-    \item *\label{exercise:proof-MPE-existence} 仿照习题 \ref{exercise:proof-Nash-existence}，使用Brouwer不动点定理证明\Cref{thm:MPE-existence}.
+    \item *\label{exercise:proof-MPE-existence} （\cite{dengComplexityComputingMarkov2023}）仿照习题 \ref{exercise:proof-Nash-existence}，使用Brouwer不动点定理证明\Cref{thm:MPE-existence}.
 \end{enumerate}

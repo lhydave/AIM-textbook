@@ -49,7 +49,7 @@
 
 在上个世纪，苏联完全实行计划经济，一个东西的售价是多少，由国家计划决定，而不是由市场决定. 我们上面的小例子就是计划经济的一个缩影：如果没有合理的定价，社会资源的配置就会出现问题，想买的买不到，想卖的卖不出去.
 
-1959年，苏联经济学家Kantorovich出版了著作《经济资源的最佳利用》，第一次将上面线性规划的这种思路引入到资源配置中. 对于一个资源配置高效的经济社会，每一个产品的定价都应该接近于它对应优化问题的最优解，这样的定价被称为\textit{影子价格}. 
+1959年，苏联经济学家Kantorovich出版了著作《经济资源的最佳利用》~\cite{kantorovichBestUseEconomic1965}，第一次将上面线性规划的这种思路引入到资源配置中. 对于一个资源配置高效的经济社会，每一个产品的定价都应该接近于它对应优化问题的最优解，这样的定价被称为\textit{影子价格}. 
 
 1965年，因Kantorovich因为这一工作而获列宁奖金. 1975年，Kantorovich因此获得了诺贝尔经济学奖，成为第一个获得这一奖项的前苏联经济学家. 
 
@@ -71,7 +71,7 @@
 
 \section{约束的几何意义}\label{sec:constraint-geometry}
 
-我们首先指出，优化问题的函数约束其实有很强的几何意义，更偏微积分的讨论请参见\Cref{chap:calculus}. 我们先只关注 \eqref{eq:general-constraint} 中的等式约束$h(x)=0$，考虑如下例子. 
+我们首先指出，优化问题的函数约束其实有很强的几何意义，更偏微积分的讨论请参见\Cref{chap:calculus}，更为详细的论述可以参见数学分析教材~\cite{zorichMathematicalAnalysis2015} 和微分流形的教材~\cite{leeIntroductionSmoothManifolds2012}. 我们先只关注 \eqref{eq:general-constraint} 中的等式约束$h(x)=0$，考虑如下例子. 
 
 \begin{example}[二维空间中的约束]\label{ex:2d-constraint}
 考虑二维空间中的如下约束：
@@ -339,7 +339,7 @@ $\lambda$被称为\textit{Lagrange乘子}. 必要条件可以被写作：
 
 换言之，此时的正规点不仅考虑等式约束，还要考虑起作用的（被激活的）不等式约束，这些不等式约束相当于等式约束. 类似Lagrange乘子法，此时的一阶必要条件为：
 
-\begin{theorem}[Karush-Kuhn-Tucker条件]\label{thm:KKT}
+\begin{theorem}[Karush-Kuhn-Tucker条件，\cite{karushMinimaFunctionsSeveral1939,kuhnNonlinearProgramming1951}]\label{thm:KKT}
 令$x^*$为优化问题 \eqref{eq:ineq-constraint-inequality-differentiable} 的正规极小值点，那么，存在向量$\lambda\in\R^m$和向量$\mu\in \R^p$且$\mu\geq 0$使得
 \begin{align}
     \nabla f(x^*)+\lambda^\t \nabla {h(x^*)}+\mu^\t \nabla g(x^*)&=0,\label{eq:KKT-1}\\
@@ -786,9 +786,13 @@ x_1^2+x_2^2&=5.
     \item \textbf{强对偶定理}（\Cref{thm:strong-duality}）：对于满足 Slater 条件的凸优化问题（或线性规划问题），原始问题的最优值等于对偶问题的最优值. 
 \end{itemize}
 
+\begin{remark}
+    以上讨论主要基于优化的几何直观，这种直观在凸优化中特别有用. 有兴趣的读者可以阅读Luenberger和叶荫宇的著作~\cite{luenbergerLinearNonlinearProgramming2021}，此外，Boyd和Vandenberghe的书~\cite{boydConvexOptimization2004} 也非常值得参考. 
+\end{remark}
+
 \section{应用：支持向量机（SVM）}
 
-作为前面极值必要条件的一个具体应用，我们考虑一个经典的机器学习分类器：\textit{支持向量机}（SVM）. 
+作为前面极值必要条件的一个具体应用，我们考虑一个经典的机器学习分类器：\textit{支持向量机}（SVM）~\cite{cortesSupportvectorNetworks1995,vapnikSupportVectorMethod1997}. 
 
 考虑二分类问题，输入$x\in \R^n$，函数$f$输出一个$\{-1,1\}$中的值. 二分类问题的学习问题指的是给定训练集$\{(x_i,y_i)\}_{i=1}^N$，找到$f$使得$f(x_i)=y_i$. 假设训练集是线性可分的，例如，存在某个$w\in \R^n$和$b\in \R$使得
     \[f(x)=\begin{cases}
@@ -875,7 +879,7 @@ $\gamma\le\gamma_i$等价于
         \end{hint}
     \end{enumerate}
     
-    \item \label{exercise:minimax-theorem}\textbf{双人零和博弈的Nash均衡}. 考虑一个双人零和博弈，玩家1可选择$n$种行动，玩家2可选择$m$种行动. 矩阵$A$中的元素$a_{ij}$表示玩家1选择行动$i$，玩家2选择行动$j$时，玩家1的收益$u_1(i,j)$. 对玩家2来说，他的收益$u_2(i,j)=-u_1(i,j)$. 玩家的混合策略是玩家行动的一个概率分布. 当玩家1和2分别采取行动$x$和$y$时，他们的期望收益分别是$x^\t Ay$和$-x^\t Ay$. 两个玩家的目标是最大化自己的期望收益.
+    \item \label{exercise:minimax-theorem}\textbf{双人零和博弈的Nash均衡. }（\cite{vonneumannTheoryGamesEconomic2007} 考虑一个双人零和博弈，玩家1可选择$n$种行动，玩家2可选择$m$种行动. 矩阵$A$中的元素$a_{ij}$表示玩家1选择行动$i$，玩家2选择行动$j$时，玩家1的收益$u_1(i,j)$. 对玩家2来说，他的收益$u_2(i,j)=-u_1(i,j)$. 玩家的混合策略是玩家行动的一个概率分布. 当玩家1和2分别采取行动$x$和$y$时，他们的期望收益分别是$x^\t Ay$和$-x^\t Ay$. 两个玩家的目标是最大化自己的期望收益.
     \begin{enumerate}
         \item 玩家1选取策略的方式是最大化自己的最小收益，即求$x^\star$达到$\max_x\min_y x^\t Ay$. 将该问题写为线性规划$P$.
         \item 玩家2选取策略的方式是最小化化对方的最大收益，即求$y^\star$达到$\min_y\max_x x^\t Ay$. 将该问题写为线性规划$P'$. 证明$P'$是$P$的对偶问题.

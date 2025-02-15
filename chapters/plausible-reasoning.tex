@@ -189,7 +189,7 @@ tt
 如果$\varnothing\vDash \phi$，那么称$\phi$为\textit{重言式}. 重言式是不需要加任何假设也一定成立的公式，是这一推理系统所包含的“正确的废话”. 如果$\psi\leftrightarrow\phi$是重言式，我们就说$\psi,\phi$是\textit{等值}的. 等值的公式在演绎推理中可以互相替代使用. 例如：$p\to q$与$\neg q\to\neg p$是等值的，所以证明一个命题也可以去证明它的逆否命题.
 
 \begin{remark}
-    对本节内容感兴趣的读者，有很多很好的教材可以参考。\cite{vandalenLogicStructure2013a} 提供了全面但是简洁明了的讲述，\cite{hamiltonLogicMathematicians1988} 从数学家的角度讲述了数理逻辑的基本观点，\cite{nerodeLogicApplications1997} 则从应用、特别是计算机的角度来讲述数理逻辑。
+    对本节内容感兴趣的读者，有很多很好的教材可以参考. \cite{vandalenLogicStructure2013} 提供了全面但是简洁明了的讲述，\cite{hamiltonLogicMathematicians1988} 从数学家的角度讲述了数理逻辑的基本观点，\cite{nerodeLogicApplications1997} 则从应用、特别是计算机的角度来讲述数理逻辑. 
 \end{remark}
 
 \section{合情推理的数学模型}
@@ -443,7 +443,7 @@ tt
 上面的例子表明人类决策有一种忽略先验概率的倾向，这种倾向被称为\textit{基率谬误}，已被大量心理学研究所证实\cite{kahnemanPsychologyPrediction1973,tverskyJudgmentUncertaintyHeuristics1974,bar-hillelBaserateFallacyProbability1980}. 为了研究这种谬误，我们将先验概率也纳入合情推理的模型之中. 这样，Kolmogorov的概率论和合情推理就完全一致了. 反之，如果我们将概率论理解为如上合情推理的数学模型，我们就得到了\textit{Bayes概率论}.
 
 \begin{remark}
-    本节主要讨论了概率论的“信念”和“主观”解释，这是Bayes学派的基本观点。这一观点有很多经典的论述，例如de Finetti所著 \cite{definettiTheoryProbabilityCritical2017}，此外，Cox也有文章 \cite{coxProbabilityFrequencyReasonable1946} 建立了似然的推理法则，这正是本节的主要内容。将这些观点集大成者则是Jaynes所著的教材 \cite{jaynesProbabilityTheoryLogic2002}，他详细讨论了以似然为基础的概率论，以及它是如何作为科学的逻辑基础的。概率论还有其他很多解释~\cite{hajekInterpretationsProbability2023}，例如频率学派，它认为概率是事件发生的频率，这一观点在统计学中有很多应用.
+    本节主要讨论了概率论的“信念”和“主观”解释，这是Bayes学派的基本观点. 这一观点有很多经典的论述，例如de Finetti所著 \cite{definettiTheoryProbabilityCritical2017}、Anscombe和Aumann所著 \cite{anscombeDefinitionSubjectiveProbability1963}，此外，Cox也有文章 \cite{coxProbabilityFrequencyReasonable1946} 建立了似然的推理法则，这正是本节的主要内容. 将这些观点集大成者则是Jaynes所著的教材 \cite{jaynesProbabilityTheoryLogic2002}，他详细讨论了以似然为基础的概率论，以及它是如何作为科学的逻辑基础的. 概率论还有其他解释~\cite{hajekInterpretationsProbability2023}，例如频率学派，它认为概率是事件发生的频率，这一观点在统计学中有很多应用.
 \end{remark}
 
 \section{合情推理的归纳强论证}
@@ -702,7 +702,7 @@ Simpson悖论在这一实例下表现为：来自清华大学的学生两分命�
 \end{table}
 
 \begin{remark}
-    本节的内容主要讨论了归纳强论证，对本节感兴趣的读者，可以进一步参考教材 \cite{skyrmsChoiceChanceIntroduction1975} 以及课程讲义 \cite{pacuitReasoningHumansClear}，了解更多这方面的内容。
+    本节的内容主要讨论了归纳强论证，对本节感兴趣的读者，可以进一步参考教材 \cite{skyrmsChoiceChanceIntroduction1975} 以及课程讲义 \cite{pacuitReasoningHumansClear}，了解更多这方面的内容. 
 \end{remark}
 
 \section{先验模型的存在性}
@@ -742,7 +742,7 @@ Simpson悖论在这一实例下表现为：来自清华大学的学生两分命�
 我们来解释这一定理与上面讨论的对应. 如果我们知道了$\theta$，那么$X_1,\dots,X_n$条件在$\theta$上的条件密度是$\prod_{i=1}^n p_{X_i}(x_i|\theta)$，因而是条件独立的，这符合了我们对于理论模型的基本要求. 另外，如果我们不知道$\theta$，只知道无穷多的观测数据，我们并不需要人为再给定一个关于$\theta$的先验，数据本身就已经足够形成先验了，不需要人为的先验. 
 
 \begin{remark}
-    如果我们把观测数据这件事看成人的主观概率（即似然），那么，de Finetti定理说明，如果我们主观上认为一系列事件是可交换的（即事件的顺序不影响我们的似然判断），那么这等同于假设这些事件是独立的，并且存在一个客观的概率。我们对这个客观概率的不确定性可以通过主观的概率分布来描述。这意味着，即使概率是主观的，我们也可以像它们是由客观概率驱动的那样行动。这一理解为de Finetti著名的格言“概率是不存在的”\cite{spiegelhalterWhyProbabilityProbably2024} 提供了实用的理解.
+    如果我们把观测数据这件事看成人的主观概率（即似然），那么，de Finetti定理说明，如果我们主观上认为一系列事件是可交换的（即事件的顺序不影响我们的似然判断），那么这等同于假设这些事件是独立的，并且存在一个客观的概率. 我们对这个客观概率的不确定性可以通过主观的概率分布来描述. 这意味着，即使概率是主观的，我们也可以像它们是由客观概率驱动的那样行动. 这一理解为de Finetti著名的格言“概率是不存在的”\cite{spiegelhalterWhyProbabilityProbably2024} 提供了实用的理解.
 \end{remark}
 
 \section{习题}
@@ -764,7 +764,7 @@ Simpson悖论在这一实例下表现为：来自清华大学的学生两分命�
         \item 从中构造出一个弱三段论的论证. 
     \end{enumerate}
     
-    \item \label{exercise:derive-F} \cite{coxProbabilityFrequencyReasonable1946} 本题证明\Cref{theorem:form-of-F}. 
+    \item \label{exercise:derive-F} （\cite{coxProbabilityFrequencyReasonable1946}）本题证明\Cref{theorem:form-of-F}. 
     \begin{enumerate}
         \item 利用似然的等值原则和\Cref{hypothesis:form-of-F} 证明：$F$满足
         \begin{equation}
@@ -775,7 +775,7 @@ Simpson悖论在这一实例下表现为：来自清华大学的学生两分命�
     \end{enumerate}
     
     
-    \item \label{exercise:derive-S} \cite{coxProbabilityFrequencyReasonable1946} 本题证明\Cref{theorem:form-of-S}. 我们在推导否定规则的时候得到了如下的公式
+    \item \label{exercise:derive-S} （\cite{coxProbabilityFrequencyReasonable1946}）本题证明\Cref{theorem:form-of-S}. 我们在推导否定规则的时候得到了如下的公式
     \begin{equation}
         S(x) = (1-x^m)^\frac{1}{m}. \label{eq:S-solution}
     \end{equation}

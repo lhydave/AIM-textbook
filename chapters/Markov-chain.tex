@@ -13,7 +13,7 @@
 用Bayes定理很容易证明，对任意$i\neq j$，$\Pr(W_i|W_j)=\Pr(W_j|W_i)$. 也就是说，$\Pr(W_i|W_j)$和$\Pr(W_j|W_i)$不仅是可计算的，而且是相等的. 然而，如果从推理的角度来说，我们基于时间更晚的状态推理时间更早的状态，这样的推理需要我们能够有对未来的模型. 因此，我们需要引入一个带有时间的推理模型，这就是Markov链.
 
 \begin{remark}
-    从主观概率角度理解Markov链的这种方式，本书采纳了Jaynes著作\cite{jaynesProbabilityTheoryLogic2002} 中的观点。
+    从主观概率角度理解Markov链的这种方式，本书采纳了Jaynes著作\cite{jaynesProbabilityTheoryLogic2002} 中的观点. 
 \end{remark}
 
 \begin{definition}[Markov链]
@@ -271,12 +271,12 @@ p_{i j}^{(n)} \geq \pi_j - \varepsilon > 0, n \geq n_0.
 它有唯一平稳分布$\lambda=(1/2,1/2)^\t$.
 
 \begin{remark}
-    关于Markov链，有很多非常好的教材可以作为参考。例如，本节的组织思路大量参考了Shiryaev的概率论教材~\cite{shiryaevProbability1996}. 此外，Norris的Markov链教材~\cite{norrisMarkovChains1997} 以及Durrett的概率论教材~\cite{durrettProbabilityTheoryExamples2019} 都是非常好的参考书.
+    关于Markov链，有很多非常好的教材可以作为参考. 例如，本节的组织思路大量参考了Shiryaev的概率论教材~\cite{shiryaevProbability1996}. 此外，Norris的Markov链教材~\cite{norrisMarkovChains1997} 以及Durrett的概率论教材~\cite{durrettProbabilityTheoryExamples2019} 都是非常好的参考书.
 \end{remark}
 
 \section{Markov奖励过程（MRP）}
 
-我们接下来的目标就是在Markov链上建立决策理论. 很多认知科学的研究证明~\cite{gazzanigaCognitiveNeuroscienceBiology2018a}，人和动物在做决策的时候，脑中会有一个\textit{价值系统}，用来评估每一个行动的可能产生的价值/奖励. 俗话说，最美味的食物是饿了一整天之后的白米饭；然而，如果我们每一顿饭都是山珍海味，就算是龙虾也会变得索然无味. 这说明，我们的价值系统会随着时间和自身的状态而发生改变. 另一方面，本章开篇所讲的故事表明，我们的价值系统会对不同时期的奖励产生不同的反应，一般来说，我们会对即时奖励更加敏感.
+我们接下来的目标就是在Markov链上建立决策理论. 很多认知科学的研究证明~\cite{gazzanigaCognitiveNeuroscienceBiology2018}，人和动物在做决策的时候，脑中会有一个\textit{价值系统}，用来评估每一个行动的可能产生的价值/奖励. 俗话说，最美味的食物是饿了一整天之后的白米饭；然而，如果我们每一顿饭都是山珍海味，就算是龙虾也会变得索然无味. 这说明，我们的价值系统会随着时间和自身的状态而发生改变. 另一方面，本章开篇所讲的故事表明，我们的价值系统会对不同时期的奖励产生不同的反应，一般来说，我们会对即时奖励更加敏感.
 
 总结上面的观察，我们可以在Markov链上引入类似的价值系统，这就是Markov奖励过程（MRP）. 在进入正式定义之前，我们先来看一个例子.
 
@@ -574,12 +574,12 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
 
 最后，我们谈谈深度强化学习. 在一些非常复杂的情况下（例如下围棋），使用经典的迭代算法并不容易求解MDP. \textit{深度强化学习}是一种结合了深度学习和强化学习的方法. 在深度强化学习中，用神经网络来表示$\pi$和$v$，之后，用某种学习算法训练神经网络. 
 
-在很多深度强化学习模型中（例如AlphaGo~\cite{silverMasteringGameGo2016a}），MDP的策略是基于过去$k$期的状态做当前的决策，这样可以更好地利用状态的历史信息. 这样的决策模型等价于一个利用一期信息决策的MDP（见习题 \ref{exercise:MDP-k-step}），因此依然可以用同样的深度学习算法来求解. 
+在很多深度强化学习模型中（例如AlphaGo~\cite{silverMasteringGameGo2016}），MDP的策略是基于过去$k$期的状态做当前的决策，这样可以更好地利用状态的历史信息. 这样的决策模型等价于一个利用一期信息决策的MDP（见习题 \ref{exercise:MDP-k-step}），因此依然可以用同样的深度学习算法来求解. 
 
 在一些深度强化学习模型中（例如MuZero~\cite{schrittwieserMasteringAtariGo2020}），状态空间$\calS$也用一个神经网络表示. 用神经网络来表示状态空间的好处是可以减少人类的特征工程，让神经网络充分发掘状态空间好的表示方法.
 
 \begin{remark}
-    1989年，Christopher Watkins在攻读他的心理学博士学位时，首次将基于动态规划的MDP作为强化学习的数学模型~\cite{watkinsLearningDelayedRewards1989}. 之后，强化学习在很多复杂交互的环境中都有广泛的应用，例如用于围棋的AlphaGo~\cite{silverMasteringGameGo2016a}、星际争霸的AlphaStar~\cite{vinyalsGrandmasterLevelStarCraft2019a} 等. 关于强化学习的详细讨论，可以参考Richard Sutton和Andrew Barto的经典教材\cite{suttonReinforcementLearningIntroduction2018}. 
+    1989年，Christopher Watkins在攻读他的心理学博士学位时，首次将基于动态规划的MDP作为强化学习的数学模型~\cite{watkinsLearningDelayedRewards1989}. 之后，强化学习在很多复杂交互的环境中都有广泛的应用，例如用于围棋的AlphaGo~\cite{silverMasteringGameGo2016}、星际争霸的AlphaStar~\cite{vinyalsGrandmasterLevelStarCraft2019} 等. 关于强化学习的详细讨论，可以参考Richard Sutton和Andrew Barto的经典教材\cite{suttonReinforcementLearningIntroduction2018}. 
 \end{remark}
 
 \section{隐Markov模型（HMM）}\label{sec:HMM}
@@ -734,7 +734,7 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
 以上算法被称为\textit{Viterbi算法}~\cite{viterbiErrorBoundsConvolutional1967}，是解码问题的一个高效算法，它需要计算的乘法次数是$\O(t|\mathcal Z|^2)$. 这一算法采用了\textit{动态规划}的思想，实际上大部分和Bellman方程有关的问题（特别是最优化的问题）都可以用这一方法解决.
 
 \begin{remark}
-    HMM 在诸多领域都有应用。最早是作为一个统计学模型出现~\cite{baumStatisticalInferenceProbabilistic1966}，后来用来做语音识别~\cite{jelinekDesignLinguisticStatistical1975,huangHiddenMarkovModels1990}，也被用来做DNA序列分析~\cite{bishopMaximumLikelihoodAlignment1986}。
+    HMM 在诸多领域都有应用. 最早是作为一个统计学模型出现~\cite{baumStatisticalInferenceProbabilistic1966}，后来用来做语音识别~\cite{jelinekDesignLinguisticStatistical1975,huangHiddenMarkovModels1990}，也被用来做DNA序列分析~\cite{bishopMaximumLikelihoodAlignment1986}. 
 \end{remark}
 
 \section{扩散模型}
@@ -937,7 +937,7 @@ L_{t-1}=\E_q\left[\frac{1}{2 \sigma_t^2}\norm{\tilde{\mu}_t\left(x_t, x_0\right)
 \end{itemize}
 
 \begin{remark}
-    最早将扩散模型应用于生成模型的工作是\cite{sohl-dicksteinDeepUnsupervisedLearning2015}。后来，\cite{hoDenoisingDiffusionProbabilistic2020} 将损失函数重新写为类似噪声得分匹配模型的形式~\cite{songGenerativeModelingEstimating2019}，并提出了DDPM. 这一模型在图像生成模型领域取得了很好的效果，一举超越了GAN~\cite{goodfellowGenerativeAdversarialNets2014a}，成为了图像生成领域的新宠. 
+    最早将扩散模型应用于生成模型的工作是\cite{sohl-dicksteinDeepUnsupervisedLearning2015}. 后来，\cite{hoDenoisingDiffusionProbabilistic2020} 将损失函数重新写为类似噪声得分匹配模型的形式~\cite{songGenerativeModelingEstimating2019}，并提出了DDPM. 这一模型在图像生成模型领域取得了很好的效果，一举超越了GAN~\cite{goodfellowGenerativeAdversarialNets2014}，成为了图像生成领域的新宠. 
     
     另外，关于Markov链收敛到平稳分布的一些性质，比如\textit{混合时间}，可以参考教科书 \cite{levinMarkovChainsMixing2008}.
 \end{remark}
