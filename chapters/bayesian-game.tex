@@ -4,7 +4,7 @@
 
 我们可以考虑一个看似非常疯狂的想法：既然有丛林法则，何不把“一次抢劫最多二十美元”写入法律，这会有什么区别呢？抛开道德和法律的问题，这样做似乎不无道理. 
 
-1982年，经济学家Alvin E. Roth和J. Keith Murnighan对讨价还价这一经典的市场博弈现象进行了同样的实验. 实验中，有两个玩家，他们可能会收到特定价值的奖品，每个玩家的奖品价值可以不同. 然而玩家并不总是能获得奖品，他有一个概率获得这一奖品. 他们需要在规定的时间内就他们各自获得奖品的概率进行讨价还价. 
+1982年，经济学家Alvin E. Roth和J. Keith Murnighan对讨价还价这一经典的市场博弈现象进行了同样的实验~\cite{rothRoleInformationBargaining1982}. 实验中，有两个玩家，他们可能会收到特定价值的奖品，每个玩家的奖品价值可以不同. 然而玩家并不总是能获得奖品，他有一个概率获得这一奖品. 他们需要在规定的时间内就他们各自获得奖品的概率进行讨价还价. 
 
 具体来说，玩家其实在商讨如何分配一张100\%概率的“彩票券”，这个券决定了每个玩家赢得奖品的概率. 例如，甲如果获得40\%的彩票券，就有40\%的概率赢得奖品，60\%的概率一无所获；而乙则完全相反，有60\%的概率赢得奖品，40\%的概率一无所获. 
 
@@ -35,7 +35,7 @@
 
 \section{“泥泞的孩童”谜题}
 
-我们先从一个经典的谜题开始. 有$n$个孩子在玩泥巴，他们互相泼泥巴. 母亲告诉孩子们，如果他们脸上沾上了泥巴，会受到严厉的惩罚. 孩子们不能看到自己的脸，但是可以看到其他所有人的脸. 所有孩子都希望保持自己的脸干净，但是弄脏别人的脸. 
+我们先从一个经典的谜题开始，这一谜题至少可以追溯到~\cite{gamowPuzzlemath1958}. 有$n$个孩子在玩泥巴，他们互相泼泥巴. 母亲告诉孩子们，如果他们脸上沾上了泥巴，会受到严厉的惩罚. 孩子们不能看到自己的脸，但是可以看到其他所有人的脸. 所有孩子都希望保持自己的脸干净，但是弄脏别人的脸. 
 
 此时，孩子的父亲出现了，于是，孩子们停止泼泥巴. 孩子们互相不说话. 父亲看到了$k$（$k\geq 1$）个人脸上有泥巴，于是宣布：“\textit{你们至少有一个人脸上沾了泥巴.}” 之后，父亲会公开地问若干轮如下问题： “\textit{你们知道自己脸上有泥巴了吗？}” 孩子们回答“知道”或者“不知道”. 
 
@@ -140,7 +140,7 @@
 
 因此，一种Nash均衡的修正概念被提出：\textit{颤抖的手完美化}，它指的是，$s$是一个纯策略Nash均衡，并且当对手玩家的策略有任何微小不确定性的时候，$s$中的策略依然是最优反应.
 
-“颤抖的手”给了我们一个例子，说明对对手的不确定性会影响玩家的决策. 因此，进一步的问题是，如何量化对对手的不确定性？Harsanyi给出了一个现在已经是“标准答案”的解决方案：引入玩家的“类型”（可能世界）以及其他玩家的对此的先验的\textit{信念}. 他的采用了Bayes解释的概率论，信念在数学上被建模为对可能世界的概率分布.
+“颤抖的手”给了我们一个例子，说明对对手的不确定性会影响玩家的决策. 因此，进一步的问题是，如何量化对对手的不确定性？Harsanyi~\cite{harsanyiGamesIncompleteInformation1967,harsanyiGamesIncompleteInformation1968,harsanyiGamesIncompleteInformation1968a} 给出了一个现在已经是“标准答案”的解决方案：引入玩家的“类型”（可能世界）以及其他玩家的对此的先验的\textit{信念}. 他的采用了Bayes解释的概率论，信念在数学上被建模为对可能世界的概率分布.
 
 我们先给出不完全信息博弈的定义：
 
@@ -175,9 +175,9 @@ $P_i\in\Delta(\Theta_i)$是玩家$i$类型的概率分布. 比较不直观的一
 \end{itemize}
 在一个真实的博弈中，以上信息都会是不确定的：对手可以藏在暗处，我们会不知道自己本来拥有的选择，我们可以不了解自己的性格，我们甚至也不知道自己究竟在追求什么. 尽管有很多的不确定性最终都可以归结为“类型”（见后面正文的若干例子和习题），Bayes博弈依然是一个高度理想化的模型. 
 
-然而，Bayes博弈的成功，正如Aumann所说，不在于多么贴合实践，而是给了一种系统的方法，让我们可以建模不确定性和信念，从而理解这些概念在博弈中的作用：
+然而，Bayes博弈的成功，正如Aumann~\cite{aumannWhatGameTheory1985} 所说，不在于多么贴合实践，而是给了一种系统的方法，让我们可以建模不确定性和信念，从而理解这些概念在博弈中的作用：
 \begin{quotation}
-    “一个典型的例子是 Roth 和 Murnighan（1982）在完全信息和不完全信息讨价还价方面的实验工作\footnote{也就是本章开头讲的故事. }……他们将这些结果与早期 Fouraker 和 Siegel（1960）的实验进行了比较. 
+    “一个典型的例子是 Roth 和 Murnighan（1982）在完全信息和不完全信息讨价还价方面的实验工作\footnote{也就是本章开头讲的故事. }……他们将这些结果与早期 Fouraker 和 Siegel（1960）~\cite{siegelBargainingGroupDecision1960} 的实验进行了比较. 
 
     “Fouraker 和 Siegel 进行了类似的实验，但由于缺乏 Harsanyi 的模型，只能将不完全信息的情况描述为双方都没有被告知对方的收益. 
     
@@ -304,7 +304,7 @@ $P_i\in\Delta(\Theta_i)$是玩家$i$类型的概率分布. 比较不直观的一
 
 接下来，我们可以正式给出纯化定理的表述：
 
-\begin{theorem}[Harsanyi纯化定理]
+\begin{theorem}[Harsanyi纯化定理，\cite{harsanyiGamesRandomlyDisturbed1973}]
 给定玩家集$I$和行动空间$A$. 对于一般的收益函数$u$和连续分布族$\{F_i\}_{i\in I}$，对任意完全信息正则形式博弈$(I,A,u)$的混合策略Nash均衡$\sigma$，存在一列扰动博弈纯策略BNE $s_\epsilon$，当扰动参数$\epsilon\to 0$，$\phi(s_\epsilon)\to \sigma$.
 \end{theorem}
 这一定理的证明比较长，并且需要用到较为复杂的数学技巧. 由于证明本身与本章的讨论无关，所以这里略去.
@@ -350,7 +350,7 @@ $P_i\in\Delta(\Theta_i)$是玩家$i$类型的概率分布. 比较不直观的一
 
 \section{电子邮件博弈}\label{sec:emailing-game}
 
-作为一个例子，接下来我们使用Bayes博弈来研究知识的性质. 这个例子由Ariel Rubinstein给出，它说明在二人正则形式博弈中，共同知识对到底实现哪一个Nash均衡非常关键.
+作为一个例子，接下来我们使用Bayes博弈来研究知识的性质. 这个例子由Ariel Rubinstein~\cite{rubinsteinElectronicMailGame1989} 给出，它说明在二人正则形式博弈中，共同知识对到底实现哪一个Nash均衡非常关键.
 
 考虑两个玩家和两个可能的收益矩阵：
 \begin{table}[ht]
@@ -470,7 +470,7 @@ $B$ & $(1, -10)$ & $(0, 0)$ \\
 
 在上一节中，我们给了一个非常具体的例子探讨共同知识和Nash均衡的关系. 上面的例子看起来太特定，那是不是说明，用Bayes博弈研究知识，就是得具体问题具体建模呢？这个问题的答案，是也不是. 一方面，用具体的Bayes博弈去说明具体的道理往往简洁且富有内涵；另一方面，我们也可以用更加抽象的方式去研究知识. 这一节，我们将介绍Aumann的知识算子，它是一种抽象的方式去研究知识.
 
-首先，我们需要\Cref{chap:plausible-reasoning}的观点：概率论（或者似然）理解世界的方式基于“事件”. 我们只能感知事件的发生与否，而不能具体知道是哪个样本点. 用事件的方式理解认知，得到的结构被称为\textit{Aumann结构}. 下面，我们具体介绍这一数学模型. 
+首先，我们需要\Cref{chap:plausible-reasoning}的观点：概率论（或者似然）理解世界的方式基于“事件”. 我们只能感知事件的发生与否，而不能具体知道是哪个样本点. 用事件的方式理解认知，得到的结构被称为\textit{Aumann结构}. 它是Aumann在著名的论文《Agreeing to Disagree》\cite{aumannAgreeingDisagree1976} 中提出的. 下面，我们具体介绍这一数学模型. 
 
 考虑全集$\Omega$，它的含义有多种多样，比如可以理解为样本空间（概率论视角）、状态空间（动态博弈视角）或者可能世界（信念的视角出发）的全体. 我们就具体考虑为，从一个罐子里抽球，$\Omega$是这次抽到球的颜色. 
 
@@ -603,14 +603,14 @@ Aumann知识算子的想法很清晰，它把所有关于知识的讨论转化�
 
 这两条内省公理意味着，个体会通过内省来知道自己的处境，特别是“我知道什么”和“我不知道什么”，通过内省，个体可以产生更高层级的知识：“我知道自己知道什么”或者“我知道自己不知道什么”. 
 
-值得注意的是，内省这样的能力是灵长类动物区别于其他动物的重要特征. 例如，实验人员给黑猩猩若干工具，只有其中一种工具可以解决问题. 黑猩猩在没有任何提示的情况下，第一次就能够选出正确的工具. 科学家认为，这表明黑猩猩有能力内省，即知道自己知道什么（特别是物理世界的因果关系），并且利用这些知识来解决问题. 然而，诸如松鼠这样的哺乳动物，就没有这样的能力.
+值得注意的是，内省这样的能力是灵长类动物区别于其他动物的重要特征. 例如，实验人员给黑猩猩若干工具，只有其中一种工具可以解决问题. 黑猩猩在没有任何提示的情况下，第一次就能够选出正确的工具.~\cite{hanusChimpanzeeProblemsolvingContrasting2011} 科学家认为，这表明黑猩猩有能力内省，即知道自己知道什么（特别是物理世界的因果关系），并且利用这些知识来解决问题. 然而，诸如松鼠这样的哺乳动物，就没有这样的能力.~\cite{tomaselloEvolutionAgency2022}
 
-相比正内省公理，负内省公理可能会引起一些争议. 例如，在数学界有一个“著名”的猜想，叫\textit{几何Langlands猜想}. 这个猜想是一个非常复杂的数学问题，最近，一个由 9 位数学家组成的团队成功证明了这个猜想. 这样专门的数学猜想，对于非数学爱好者来说，确实是不知道的. 然而，如果负内省公理是成立的，那么他们就应该\textit{知道自己不知道}这个猜想. 这显然是不合理的.
+相比正内省公理，负内省公理可能会引起一些争议. 例如，在数学界有一个“著名”的猜想，叫\textit{几何Langlands猜想}. 这个猜想是一个非常复杂的数学问题，最近，一个由 9 位数学家组成的团队宣布成功证明了这个猜想~\cite{ProofGeometricLanglands}. 这样专门的数学猜想，对于非数学爱好者来说，确实是不知道的. 然而，如果负内省公理是成立的，那么他们就应该\textit{知道自己不知道}这个猜想. 这显然是不合理的.
 
 上面的很多命题我们都会称呼为“公理”，这是因为他们反映了知识的基本性质，是我们对知识的直觉认识. 实际上，我们可以反过来，从这些公理出发，推导出Aumann知识算子的定义. 
 于知识的逻辑推理！
 
-\begin{theorem}\label{thm:Aumann-operator-iff}
+\begin{theorem}[\cite{bacharachExtensionsClaimAumann1985}]\label{thm:Aumann-operator-iff}
 考虑一个映射$K:2^\Omega\to 2^\Omega$，那么，以下两条等价：
 \begin{itemize}
     \item $K$满足 \eqref{eq:K0-awareness}--\eqref{eq:K4-negative-introspection}.
@@ -638,6 +638,10 @@ Aumann知识算子的想法很清晰，它把所有关于知识的讨论转化�
 最后，这个定义与Aumann知识算子是相容的. 事实上，我们可以定义“知道”是“具有必然的信念”：
 \[K_i(e)=\{\omega\in\Omega:\rho_i(e|\omega) = 1\}.\]
 
+\begin{remark}
+    关于Aumann知识算子的更多性质和讨论，参见Samuelson的文章~\cite{samuelsonModelingKnowledgeEconomic2004}。
+\end{remark}
+
 \section{习题}
 
 \begin{enumerate}[wide, labelindent=0pt]
@@ -661,7 +665,7 @@ Aumann知识算子的想法很清晰，它把所有关于知识的讨论转化�
 
     \item \label{exercise:exante-expost-equivalence} 仿照正则形式博弈无差别原理（\Cref{thm:indifference-principle}）的证明，证明\Cref{thm:exante-expost-equivalence}.
 
-    \item *\label{exercise:Aumann-NE-common-knowledge} \textbf{达成Nash均衡的知识条件. }请查阅资料，形式化建模并证明下面的事实：
+    \item *\label{exercise:Aumann-NE-common-knowledge} \textbf{达成Nash均衡的知识条件. }（\cite{aumannEpistemicConditionsNash1995}）形式化建模并证明下面的事实：
     \begin{enumerate}
         \item 在二人博弈中，假设所进行的博弈（即双方的收益函数）、玩家的理性以及他们对别人策略的信念都是\textit{相互知识}，那么这些信念就构成了一个Nash均衡. 
         \item 在多人博弈中，假设所进行的博弈（即所有玩家的收益函数）、玩家的理性以及他们对别人策略的信念都是\textit{共同知识}，那么这些信念就构成了一个Nash均衡. 
@@ -669,18 +673,18 @@ Aumann知识算子的想法很清晰，它把所有关于知识的讨论转化�
     \end{enumerate}
     因此，二人博弈和多人博弈达成Nash均衡的知识条件是本质不同的.
 
-    \item \label{exercise:awareness-axiom} 如果我们写一个算子$U(e)$表示“个体意识不到事件$e$”，它应该有性质如下两个性质. 
+    \item \label{exercise:awareness-axiom} （\cite{dekelStandardStateSpaceModels1998}）如果我们写一个算子$U(e)$表示“个体意识不到事件$e$”，它应该有性质如下两个性质. 
     \begin{itemize}
         \item $\sim KU(e)=\Omega$：他不知道他不能意识到他不能意识到的事件.
         \item $U(e)\subseteq \sim K(\sim K(U(e)))$：如果他不能意识到事件$e$，那么他不知道他不知道他不能意识到事件$e$.
     \end{itemize}
     这样的算子$U$存在吗？
 
-    \item *\label{exercise:Aumann-operator-iff} 证明\Cref{thm:Aumann-operator-iff}.
+    \item *\label{exercise:Aumann-operator-iff}（\cite{bacharachExtensionsClaimAumann1985}）证明\Cref{thm:Aumann-operator-iff}.
     
     \item *请查阅资料，回答以下关于Nash均衡的问题：
     \begin{enumerate}
-        \item 用$\mathsf{Nash}(x)$表示“$x$是Nash均衡”，那么公式$\exists x C(\mathsf{Nash}(x))$和公式$C(\exists x \mathsf{Nash}(x))$的含义是否一样？
+        \item （\cite{kanekoGameLogicIts1996,kanekoGameLogicIts1997}）用$\mathsf{Nash}(x)$表示“$x$是Nash均衡”，那么公式$\exists x C(\mathsf{Nash}(x))$和公式$C(\exists x \mathsf{Nash}(x))$的含义是否一样？
         \item 如果玩家不是逻辑全知的，或者说他的推理、计算能力是有限的，那么Nash均衡还是否会达到？是否可接近？
     \end{enumerate}
 \end{enumerate}
