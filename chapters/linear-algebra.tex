@@ -249,7 +249,7 @@ $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性�
     
     再说明$f(v_i)$线性无关. 假设$\sum_{i=1}^n a_if(v_i)=0$，那么$f(\sum_{i=1}^n a_iv_i)=0$，由于$f$是单射，所以$\sum_{i=1}^n a_iv_i=0$，由于$v_i$线性无关，所以$a_i=0$，所以$f(v_i)$线性无关. 
     
-    以上两点证明了$W$的基是$\{f(v_1),\dots,f(v_n)\}$，所以$\dim V=\dim W$. 
+    以上两点证明了$W$的基是$\{f(v_1),\dots,f(v_n)\}$，这就说明，$\dim V=\dim W$. 
 \end{proof}
 
 此外，同构还有一个重要性质：
@@ -303,7 +303,9 @@ $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性�
 设$V$、$W$和$U$是$F$-线性空间，$f:V\to W$和$g:W\to U$是两个线性映射，则$\rank (g\circ f)\leq \rank f$，等号成立当且仅当$\im f\cap \ker g=\{0\}$. 特别地，如果$f,g$都是满射，那么等号成立当且仅当$g$是同构. 此外，$\rank (g\circ f)\leq \rank g$，如果$f$是满射，那么等号成立. 
 \end{corollary}
 \begin{proof}
-    根据\Cref{cor:kernel-image-isomorphism}，我们有$\rank (g\circ f)=\dim\im (g\circ f)\leq \dim \im f=\rank f$. 等号成立当且仅当在空间$\im f$中$g$的核是$\{0\}$，换言之，$\im f\cap \ker g=\{0\}$. 特别地，如果$f$是满射，那么这一条件变为$\ker g=\{0\}$，如果$g$也是满射，那么$g$是同构. 
+    根据\Cref{cor:kernel-image-isomorphism}，我们有
+    \[\rank (g\circ f)=\dim\im (g\circ f)\leq \dim \im f=\rank f.\]
+    等号成立当且仅当在空间$\im f$中，$g$的核是$\{0\}$，换言之，$\im f\cap \ker g=\{0\}$. 特别地，如果$f$是满射，那么这一条件变为$\ker g=\{0\}$，如果$g$也是满射，那么$g$是同构. 
     
     此外，因为$\im f\subseteq W$，所以$\im (g\circ f)\subseteq \im g$，因此$\rank (g\circ f)=\dim\im (g\circ f)\leq \dim \im g=\rank g$. 如果$f$是满射，那么$\im f=W$，所以$\im (g\circ f)=\im g$，因此等号成立. 
 \end{proof}
@@ -619,10 +621,10 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 \begin{proposition}\label{prop:positive-definite}
     设$V$是$\R$上的$n$维线性空间，$q$是$V$上的一个二次型. 
     \begin{itemize}
-        \item $q$是\textbf{正定}的当且仅当对任意的非零向量$x\in V$，都有$q(x)>0$. 
-        \item $q$是\textbf{半正定}的当且仅当对任意的非零向量$x\in V$，都有$q(x)\geq 0$. 
-        \item $q$是\textbf{负定}的当且仅当对任意的非零向量$x\in V$，都有$q(x)<0$. 
-        \item $q$是\textbf{半负定}的当且仅当对任意的非零向量$x\in V$，都有$q(x)\leq 0$. 
+        \item $q$是正定的当且仅当对任意的非零向量$x\in V$，都有$q(x)>0$. 
+        \item $q$是半正定的当且仅当对任意的非零向量$x\in V$，都有$q(x)\geq 0$. 
+        \item $q$是负定的当且仅当对任意的非零向量$x\in V$，都有$q(x)<0$. 
+        \item $q$是半负定的当且仅当对任意的非零向量$x\in V$，都有$q(x)\leq 0$. 
     \end{itemize}
 \end{proposition}
 \begin{proof}
@@ -719,7 +721,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 内积还给出了\textit{投影}的概念：
 
 \begin{definition}[投影]
-设$V$是一个内积空间，$v,w\in V$，如果$\lambda\in\R$满足$\inner{v-\lambda w}{w}=0$，那么称$\lambda w$是$v$在$w$上的\textbf{投影}，其中$\lambda=\inner{v}{w}/\norm{w}^2$.
+设$V$是一个内积空间，$v,w\in V$，若$\lambda\in\R$满足$\inner{v-\lambda w}{w}=0$，$\lambda=\inner{v}{w}/\norm{w}^2$，则称$\lambda w$是$v$在$w$上的\textbf{投影}. 
 \end{definition}
 
 接下来，我们继续表示论的观点，讨论内积空间中的基与坐标. 首先是正交与线性无关的关系. 
@@ -762,7 +764,9 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 \[f(v)=\sum_{i=1}^nv_if(e_i).\]
 考虑向量$e_f=\sum_{i=1}^nf(e_i)e_i$，容易验证$f(v)=\inner{e_f}{v}$. 
 
-另一方面，这样的$e_f$必定是唯一的. 如果有两个$e_f,e_f'$使得$\inner{e_f}{v}=\inner{e_f'}{v}=f(v)$对任意的$v$都成立，那么取$v=e_f-e_f'$得
+另一方面，这样的$e_f$必定是唯一的. 如果有两个$e_f,e_f'$使得
+\[\inner{e_f}{v}=\inner{e_f'}{v}=f(v)\]
+对任意的$v$都成立，那么取$v=e_f-e_f'$得
 \[\inner{e_f-e_f'}{e_f-e_f'}=0\iff e_f-e_f'=0.\]
 
 综上，我们可以用一个向量的内积来表示线性函数：
@@ -795,11 +799,11 @@ Gram矩阵的基本性质是：
 \begin{enumerate}
     \item 显然.
     \item 考虑$\R^k$上的二次型$f(x)=x^\t Gx$. 对任意的$x\in\R^k$，有
-    \[
-        x^\t G x=\sum_{i,j=1}^kx_ix_j\inner{v_i}{v_j}
-        =\inner{\sum_{i=1}^kx_iv_i}{\sum_{j=1}^kx_jv_j}
-        =\norm{\sum_{i=1}^kx_iv_i}^2\geq 0.
-    \]
+    \begin{align*}
+        x^\t G x&=\sum_{i,j=1}^kx_ix_j\inner{v_i}{v_j}\\
+        &=\inner{\sum_{i=1}^kx_iv_i}{\sum_{j=1}^kx_jv_j}\\
+        &=\norm{\sum_{i=1}^kx_iv_i}^2\geq 0.
+    \end{align*}
     因此$G$是半正定的.
     \item 我们已经证明$f(x)\geq 0$. 由\Cref{prop:positive-definite}，$G$是正定的当且仅当等价式$f(x)=0\iff x=0$成立. 而$f(x)=\norm{\sum_{i=1}^kx_iv_i}^2$，因此$f(x)=0\iff \sum_{i=1}^kx_iv_i=0$，所以$x=0\iff v_1,\dots,v_k$线性无关.
 \end{enumerate}
@@ -966,7 +970,12 @@ Gram矩阵的基本性质是：
 \end{proposition}
 
 矩阵的行列式自然地定义了线性算子的行列式. 这一定义是良定义的，因为根据\Cref{thm:base-change}，如果$A$和$A'$是同一个线性算子在不同基下的矩阵，由过渡矩阵$B$给出，那么$A'=B^{-1}AB$，因此根据\Cref{prop:determinant}，
-\[\det A'=\det(B^{-1}AB)=(\det B^{-1})(\det A)(\det B)=(\det B^{-1})(\det B)(\det A)=\det A.\]
+\begin{align*}
+    \det A'&=\det(B^{-1}AB)\\
+    &=(\det B^{-1})(\det A)(\det B)\\
+    &=(\det B^{-1})(\det B)(\det A)\\
+    &=\det A.
+\end{align*}
 因而行列式也是刻画线性算子的一个不变量. 
 
 \begin{definition}[线性算子的行列式]
@@ -1154,7 +1163,8 @@ Gram矩阵的基本性质是：
 \begin{theorem}\label{thm:symmetric-operator-norm}
     设$V$是一个$n$维内积空间，$f$是$V$上的一个自伴算子，那么
     \[\norm{f}=\max_{\lambda\in\sigma(f)}|\lambda|.\]
-    如果最大值在特征值$\lambda_0$取到，其对应单位特征向量是$e_0$，那么$\norm{f(e_0)}=\norm{f}=|\lambda_0|$.
+    如果最大值在特征值$\lambda_0$取到，其对应单位特征向量是$e_0$，那么
+    \[\norm{f(e_0)}=\norm{f}=|\lambda_0|.\]
 \end{theorem}
 
 最大的特征值模称为算子的\textit{谱半径}. 从几何意义来说，谱半径就是算子对应的线性变换对应的线性变换对向量的最大拉伸率. 一个更直观的理解方式是，将这些基向量画一个球包起来，算子会将这个球映射到一个椭球，这个椭球的最长轴就是谱半径. 例如，对于\Cref{fig:symmetric-operator} 中的算子，谱半径就是$1.5$. 
