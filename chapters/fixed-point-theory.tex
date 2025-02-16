@@ -475,11 +475,11 @@ Brouwer不动点定理可以通过该实际的例子来理解：将一张白纸�
         \item 证明：度量空间中，集合$F$是紧集等价于$F$中的任意无穷点列都有收敛子列. 由此证明，$C$不是紧集. 
     \end{enumerate}
 
-    \item \textbf{MDP解的存在性. }用Banach不动点定理证明MDP解的存在性.
+    \item \label{exercise:MDP-fixed-point} \textbf{MDP解的存在性. }用Banach不动点定理证明MDP解的存在性.
     \begin{hint}
     根据Bellman方程
     \[
-    V(s) = \max_a R(s, a) + \gamma \sum_{s' \in S} \Pr(s' | s, a) V(s')
+        v_\star(s) = \max_a\left\{\mathcal R_s^a + \gamma \sum_{s'\in \calS}\calP_{s,s'}^av_\star(s')\right\}
     \]
     构造压缩映射.
     \end{hint}

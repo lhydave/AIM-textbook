@@ -564,7 +564,10 @@ MDP与MRP的关系由策略给出.
     对于第二个方程，将\Cref{prop:state-action-value-optimal} 中第一个等式代入第二个等式即可得到. 
 \end{proof}
 
-Bellman方程不是线性的. 因此很难有解析形式的解. 但是MDP的数值解是有（多项式时间）算法可以求出来的~\cite{littmanComplexitySolvingMarkov1995}. 我们一般采用迭代算法求解，例如价值迭代、策略迭代等.
+同样，Bellman方程也可以被理解为不动点方程。利用这一事实，我们可以用Banach不动点定理证明MDP解的存在性，见\Cref{chap:fixed-point-theory}的习题 \ref{exercise:MDP-fixed-point}.
+
+Bellman方程不是线性的. 因此很难有解析形式的解. 但是MDP的数值解是有（多项式时间）算法可以求出来的~\cite{papadimitriouComplexityMarkovDecision1987,littmanComplexitySolvingMarkov1995}，然而，如果状态集仅仅是部分可观测的，那么多项式时间算法很可能不存在~\cite{papadimitriouComplexityMarkovDecision1987}. 我们一般采用迭代算法求解MDP，例如价值迭代、策略迭代等.
+
 
 求解MDP的过程实际上就是人工智能中\textit{强化学习}的核心步骤. 在本节的开头，我们说过人脑运动控制机制. 实际上，绝大部分的哺乳动物都具备类似这样的学习机制：通过奖励的反馈，动物可以学会如何行动，从而获得最大的奖励. 这样的学习机制被称为\textit{强化学习}. 
 
