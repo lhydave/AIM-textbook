@@ -243,7 +243,25 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
         \item 选项2：摸的插座上面有微小不可见的细针，细针扎了他/她的手指. 
     \end{itemize}
 \end{example}
-虽然选项1和选项2都是可能的，但是他们的合理程度并不同：选项1明显比选项2要合理得多. 这里产生了一个自然的问题：如何刻画不同推理的合理程度？
+虽然选项1和选项2都是可能的，但是他们的合理程度并不同：选项1明显比选项2要合理得多. 
+
+至此，我们总结一下合情推理和演绎推理的区别，见\Cref{tab:deductive-vs-plausible}.
+
+\begin{table}[htbp]
+    \centering
+    \caption{演绎推理和合情推理的区别}
+    \label{tab:deductive-vs-plausible}
+    \begin{tabular}{c|c}
+        \toprule
+        演绎推理 & 合情推理 \\\midrule
+        从真前提出发，得到真结论 & 从合理前提出发，得到合理结论 \\
+        有严格的真假概念 & 有多种合理程度 \\
+        从一般到特殊 & 从特殊到一般 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+我们前面已经看到，演绎推理的数学模型是形式推理系统，因而自然产生了一个的问题：我们如何用数学来建模合情推理？这就是我们接下来要讨论的内容.
 
 \subsection{合情推理的基本假设，似然}
 
@@ -456,9 +474,9 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
     本节主要讨论了概率论的“信念”和“主观”解释，这是Bayes学派的基本观点. 这一观点有很多经典的论述，例如de Finetti所著 \cite{definettiTheoryProbabilityCritical2017}、Anscombe和Aumann所著 \cite{anscombeDefinitionSubjectiveProbability1963}，此外，Cox也有文章 \cite{coxProbabilityFrequencyReasonable1946} 建立了似然的推理法则，这正是本节的主要内容. 将这些观点集大成者则是Jaynes所著的教材 \cite{jaynesProbabilityTheoryLogic2002}，他详细讨论了以似然为基础的概率论，以及它是如何作为科学的逻辑基础的. 概率论还有其他解释~\cite{hajekInterpretationsProbability2023}，例如频率学派，它认为概率是事件发生的频率，这一观点在统计学中有很多应用.
 \end{remark}
 
-\section{合情推理的归纳强论证}
+\section{合情推理的论证方式}
 
-\subsection{归纳强论证}\label{subsec:inductive-strong-argument}
+\subsection{合情论证}\label{subsec:inductive-strong-argument}
 
 在基率谬误的例子中，我们看到合情推理必须要完整地考虑先验的影响.另一方面，我们看到最终做出决策的方式是\textit{最大似然}，即似然更高的那个命题更有可能是对的. 这说明合情推理中有很不同于演绎推理的论证方式.
 
@@ -480,11 +498,11 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
     \[\begin{array}{c}  
             A \to B \\ B\text{ 是真的} \\ \hline A\text{ 变得更合理}
         \end{array}\]
-$\Pr(A|C)$是$A$的似然，而$\Pr(A|BC)$是假设$B$为真时，$A$的似然. 由链式法则，$\Pr(A|BC) = \Pr(A|C)\Pr(B|AC)/\Pr(B|C)$. 因为$\Pr(B|AC) = 1$且$\Pr(B|C)\leq 1$，所以$\Pr(A|BC) \geq \Pr(A|C)$. 也就是当$B$为真时，$A$的合理程度会变大.
+$\Pr(A|\cdot)$是$A$的似然，而$\Pr(A|B\cdot)$是假设$B$为真时，$A$的似然. 由链式法则，$\Pr(A|B\cdot) = \Pr(A|\cdot)\Pr(B|A\cdot)/\Pr(B|\cdot)$. 因为$\Pr(B|A\cdot) = 1$且$\Pr(B|\cdot)\leq 1$，所以$\Pr(A|B\cdot) \geq \Pr(A|\cdot)$. 也就是当$B$为真时，$A$的合理程度会变大.
 
 仿照三段论，现在我们将演绎推理中的若干概念推广到合情推理中. 
 
-回忆记号$X\vdash Y$表示从前提为 $X$出发可以根据推导规则得到结论$Y$. 此时，我们说从$X$到$Y$的过程是一个\textit{有效论证}，或者说$Y$是$X$的\textit{逻辑结论}. 它与以下三个表述等价：
+回忆记号$X\vdash Y$表示从前提为 $X$出发可以根据推导规则得到结论$Y$. 此时，我们说从$X$到$Y$的过程是一个\textit{演绎论证}，或者说$Y$是$X$的\textit{逻辑结论}. 它与以下三个表述等价：
     \begin{itemize}
         \item $X\vDash Y$.
         \item  $X\to Y$是重言式.
@@ -505,18 +523,18 @@ $\Pr(A|C)$是$A$的似然，而$\Pr(A|BC)$是假设$B$为真时，$A$的似然. 
 \end{array}
 \]
 
-在合情推理中，我们也有和有效论证对应的\textit{归纳强论证}. 考虑推理$X\implies Y$，即从$X$出发推出$Y$，我们希望描绘这一推理是归纳强论证的条件. 利用随机真值表，我们可以尝试定义\textit{归纳强论证}为$X\wedge\neg Y$的\textbf{不太可能}为真（或$\neg X\vee Y$\textbf{很可能}为真）. 然而我们会看到，仅仅用随机真值表得到的概念是不符合合情推理的直觉的. 我们通过两类例子来引入归纳强论证的限制条件.
+在合情推理中，我们也有和演绎论证对应的\textit{合情论证}. 考虑推理$X\implies Y$，即从$X$出发推出$Y$，我们希望描绘这一推理是合情论证的条件. 利用随机真值表，我们可以尝试定义\textit{合情论证}为$X\wedge\neg Y$的\textbf{不太可能}为真（或$\neg X\vee Y$\textbf{很可能}为真）. 然而我们会看到，仅仅用随机真值表得到的概念是不符合合情推理的直觉的. 我们通过两类例子来引入合情论证的限制条件.
 
 
 
 \begin{example}[奇怪的例子一]
-记 $X$ 为一个北京大学的同学今年2000岁, $Y$ 为一个北京大学的同学今年2000岁,并且有三条胳膊. 直观来讲, 如上 $X\implies Y$ 不是归纳强论证. 但是，等效的$\neg X\vee Y$，成立的概率足够大.
+记 $X$ 为一个北京大学的同学今年2000岁, $Y$ 为一个北京大学的同学今年2000岁,并且有三条胳膊. 直观来讲, 如上 $X\implies Y$ 不是合情论证. 但是，等效的$\neg X\vee Y$，成立的概率足够大.
 
-考虑另外一个有效论证中的例子. 记
+考虑另外一个演绎论证中的例子. 记
 \[A_n=\{\text{圆周率}~\pi\text{ 的系数有}~n\text{ 个连续的}~1\}.\]
 那么，推理$A_{n+1} \implies A_n$ 看起来是显然的，但等效的$\neg A_{n+1} \vee A_n$却不太容易被一眼接受.
 \end{example}
-这两个例子都说明，判断是否为归纳强论证不能只关注结论成立的概率. 于是，我们得到限制条件：\textit{证据支持}，它的定义如下. 
+这两个例子都说明，判断是否为合情论证不能只关注结论成立的概率. 于是，我们得到限制条件：\textit{证据支持}，它的定义如下. 
 \begin{definition}[证据支持]
     假设 $X$ 和 $Y$ 是命题公式，实数$t\in [0.5, 1]$. 如果 $\Pr(Y|X)>t$, 我们称\textit{证据$X$支持$Y$的强度大于 $t$}. 
 \end{definition}
@@ -524,27 +542,27 @@ $\Pr(A|C)$是$A$的似然，而$\Pr(A|BC)$是假设$B$为真时，$A$的似然. 
 证据支持是比最大似然准则的更进一步的要求. 然而，证据支持并不能解决所有问题. 考虑下面的例子.
 
 \begin{example}[奇怪的例子二]
-记 $X$ 为小明是一位北京大学的学生, $Y$ 为小明不会飞. 表面看来, $\Pr(Y|X)=1$，但直觉上，$X\implies Y$ 并不应该是归纳强论证. 问题出在了$\Pr(Y)$本身就等于$1$，所以$\Pr(Y|X)=1$并没有什么实际意义.
+记 $X$ 为小明是一位北京大学的学生, $Y$ 为小明不会飞. 表面看来, $\Pr(Y|X)=1$，但直觉上，$X\implies Y$ 并不应该是合情论证. 问题出在了$\Pr(Y)$本身就等于$1$，所以$\Pr(Y|X)=1$并没有什么实际意义.
 \end{example}
 
 从这个例子出发，我们得到另一个限制条件：\textit{正相关性}，它的定义如下. 
 
 \begin{definition}[相关性]
-    对随机变量$X$ 和 $Y$，如果$\Pr(Y|X) > \Pr(Y)$，我们称$X$ 与 $Y$ \textit{正相关}. 等价地，示性函数$I(X)$和$I(Y)$相关系数大于$0$. 类似地，如果$\Pr(Y|X) < \Pr(Y)$（或$I(X)$和$I(Y)$的相关系数小于$0$），那么$X$和$Y$\textit{负相关}. 如果$\Pr(Y|X) = \Pr(Y)$（或$I(X)$和$I(Y)$的相关系数等于$0$），那么$X$和$Y$\textit{不相关}. 在归纳强论证中，我们要求$X$和$Y$正相关.
+    对随机变量$X$ 和 $Y$，如果$\Pr(Y|X) > \Pr(Y)$，我们称$X$ 与 $Y$ \textit{正相关}. 等价地，示性函数$I(X)$和$I(Y)$相关系数大于$0$. 类似地，如果$\Pr(Y|X) < \Pr(Y)$（或$I(X)$和$I(Y)$的相关系数小于$0$），那么$X$和$Y$\textit{负相关}. 如果$\Pr(Y|X) = \Pr(Y)$（或$I(X)$和$I(Y)$的相关系数等于$0$），那么$X$和$Y$\textit{不相关}. 在合情论证中，我们要求$X$和$Y$正相关.
 \end{definition}
 
-加上以上两个限制条件，我们可以得到归纳强论证的严格定义.
+加上以上两个限制条件，我们可以得到合情论证的严格定义.
 
-\begin{definition}[归纳强论证]
-    如果推理$X \implies Y$ 满足以下三个条件，我们称之为\textit{归纳强论证}：
+\begin{definition}[合情论证]
+    如果推理$X \implies Y$ 满足以下三个条件，我们称之为\textit{合情论证}：
 	\begin{itemize}
 	\item $X$ 证据支持 $Y$：$\Pr(Y|X)>0.5$.
 	\item $X$ 与 $Y$ 正相关： $\Pr(Y|X) > \Pr(Y)$. 
-	\item $X\rightarrow Y$ 不是有效论证.
+	\item $X\rightarrow Y$ 不是演绎论证.
 	\end{itemize}
 \end{definition}
 
-不将有效论证定义为归纳强论证得原因之一是：一个论证可以在前提$X$是矛盾式时有效. 例如：$P \wedge \neg P \vdash Q$ 是有效论证. 但是，由于$\Pr(P \wedge \neg P) = 0$，$\Pr(Q | P \wedge \neg P)$是无定义的，所以$P \wedge \neg P$并不证据支持$Q$，也不和$Q$正相关.
+不将演绎论证定义为合情论证得原因之一是：一个论证可以在前提$X$是矛盾式时有效. 例如：$P \wedge \neg P \vdash Q$ 是演绎论证. 但是，由于$\Pr(P \wedge \neg P) = 0$，$\Pr(Q | P \wedge \neg P)$是无定义的，所以$P \wedge \neg P$并不证据支持$Q$，也不和$Q$正相关.
 
 进一步，我们还希望能够衡量前提$X$在多大程度上确认结论$Y$成立，我们可以通过如下两个量来衡量：
 \begin{definition}[认可度]
@@ -571,7 +589,7 @@ $\Pr(A|C)$是$A$的似然，而$\Pr(A|BC)$是假设$B$为真时，$A$的似然. 
     \end{itemize}    
 \end{proposition}
 
-认可度与有效论证的关系可以表达如下：
+认可度与演绎论证的关系可以表达如下：
 \begin{proposition}
     设$0< \Pr(X),\Pr(Y) < 1$，那么
     \[
@@ -590,7 +608,7 @@ $\Pr(A|C)$是$A$的似然，而$\Pr(A|BC)$是假设$B$为真时，$A$的似然. 
 \end{proposition}
 
 
-\subsection{有效论证和归纳强论证的比较}
+\subsection{演绎论证和合情论证的比较}
 
 考虑一个论证$X\implies Y$，我们已经有三种方式评估$X$如何支持$Y$：
     \begin{enumerate}
@@ -598,9 +616,9 @@ $\Pr(A|C)$是$A$的似然，而$\Pr(A|BC)$是假设$B$为真时，$A$的似然. 
         \item $X\implies Y$是一个合情推理，$X$证据支持$Y$：$\Pr(Y|X) > 0.5$.
         \item $X\implies Y$是一个合情推理，$X$正相关于$Y$：$\Pr(Y|X) > \Pr(Y)$.
     \end{enumerate}
-其中，1对应有效论证，2和3都是合情推理中的归纳强论证的必要条件.我们将进一步讨论有效论证和归纳强论证的一些不同之处.
+其中，1对应演绎论证，2和3都是合情推理中的合情论证的必要条件.我们将进一步讨论演绎论证和合情论证的一些不同之处.
 
-首先，有效论证具有单调性：论证的有效性随着前提的增加不会下降. 即：对于任意 $X, Y, Z$, 若 $X\vdash Y$, 则 $X,Z\vdash Y$. 然而合情推理中，\textit{单调性不再存在}. 请看下面的例子.
+首先，演绎论证具有单调性：论证的有效性随着前提的增加不会下降. 即：对于任意 $X, Y, Z$, 若 $X\vdash Y$, 则 $X,Z\vdash Y$. 然而合情推理中，\textit{单调性不再存在}. 请看下面的例子.
 
 \begin{example}[非单调性：例子]
 考虑命题$X, Y, Z$ 和对应的随机真值表.
@@ -692,9 +710,9 @@ Simpson悖论在这一实例下表现为：来自清华大学的学生两分命�
 
 类似确凿性原则，在合情推理中，合取原则也可以从证据支持和正相关性两方面考虑. 从证据支持的角度，合取原则成立，这是因为，如果$\Pr(P\wedge Q|E)>0.5$，那么$\Pr(P|E)\geq \Pr(P\wedge Q|E)>0.5$.
 
-然而，从正相关性的角度，合取原则未必成立. 也就是说，假设$\Pr(P\wedge Q|E)>\Pr(P\wedge Q)$，不一定能推出$\Pr(P|E)>\Pr(P)$. 当人们给定对Linda的描述$E$的时候，很容易建立起$E$和$B\wedge F$的正相关性. 然而这并不意味着$E$和$B$是正相关的！因此发生了合取谬误. 从Simpson悖论和合取谬误可以看出，只依靠正相关性进行推理很容易犯错误，因此证据支持（极大似然）是归纳强论证不可缺少的要素.
+然而，从正相关性的角度，合取原则未必成立. 也就是说，假设$\Pr(P\wedge Q|E)>\Pr(P\wedge Q)$，不一定能推出$\Pr(P|E)>\Pr(P)$. 当人们给定对Linda的描述$E$的时候，很容易建立起$E$和$B\wedge F$的正相关性. 然而这并不意味着$E$和$B$是正相关的！因此发生了合取谬误. 从Simpson悖论和合取谬误可以看出，只依靠正相关性进行推理很容易犯错误，因此证据支持（极大似然）是合情论证不可缺少的要素.
 
-总结一下，我们讨论了单调性、确凿性原则和合取原则，他们是演绎推理中有效论证成立的性质. 但是，在合情推理中，归纳强论证并不一定有这些性质. 具体结论总结如\Cref{tab:reasoning-comparison} 所示.
+总结一下，我们讨论了单调性、确凿性原则和合取原则，他们是演绎推理中演绎论证成立的性质. 但是，在合情推理中，合情论证并不一定有这些性质. 具体结论总结如\Cref{tab:reasoning-comparison} 所示.
 
 \begin{table}[htbp]
     \centering
@@ -707,12 +725,12 @@ Simpson悖论在这一实例下表现为：来自清华大学的学生两分命�
         合取原则 & 有 & 无 \\
         \bottomrule
     \end{tabular}
-    \caption{有效论证和归纳强论证的比较}
+    \caption{演绎论证和合情论证的比较}
     \label{tab:reasoning-comparison}
 \end{table}
 
 \begin{remark}
-    本节的内容主要讨论了归纳强论证，对本节感兴趣的读者，可以进一步参考教材 \cite{skyrmsChoiceChanceIntroduction1975} 以及课程讲义 \cite{pacuitReasoningHumansClear}，了解更多这方面的内容. 
+    本节的内容主要讨论了合情论证，对本节感兴趣的读者，可以进一步参考教材 \cite{skyrmsChoiceChanceIntroduction1975} 以及课程讲义 \cite{pacuitReasoningHumansClear}，了解更多这方面的内容. 
 \end{remark}
 
 \section{先验模型的存在性}
@@ -773,6 +791,8 @@ Simpson悖论在这一实例下表现为：来自清华大学的学生两分命�
         \item 从中构造出一个强三段论的论证.
         \item 从中构造出一个弱三段论的论证. 
     \end{enumerate}
+
+    \item 数学归纳法是一种常见的证明方法，它自然属于演绎推理，那么为什么数学归纳法的名字里有“归纳”这个词呢？归纳本身是一个合情推理的方法，那么数学归纳法是演绎还是归纳呢？请解释你的答案.
     
     \item \label{exercise:derive-F} （\cite{coxProbabilityFrequencyReasonable1946}）本题证明\Cref{theorem:form-of-F}. 
     \begin{enumerate}
@@ -819,7 +839,7 @@ Simpson悖论在这一实例下表现为：来自清华大学的学生两分命�
 
     \item 设$I(A)$表示事件$A$的示性函数，对于事件$X$和$Y$，证明：$I(X)$ 与 $I(Y)$ 相关系数为$0$等价于 $X$ 与 $Y$ 互相独立.
 
-    \item \label{exercise:monotone-positive-related} 从正相关的角度，归纳强论证有单调性吗？证明你的结论.
+    \item \label{exercise:monotone-positive-related} 从正相关的角度，合情论证有单调性吗？证明你的结论.
     
     \item 回答以下问题. 
     \begin{enumerate}

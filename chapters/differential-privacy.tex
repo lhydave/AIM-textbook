@@ -528,6 +528,8 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\textit{Ll
     \end{align*}
     请写出这种情况下的Laplace机制，使其成为$\epsilon$-DP，并证明.
 
+    \item 设$A(x)$表示实现了$\epsilon$-DP的Laplace机制. 假设我们使用该机制向整数查询（例如，一个人的年龄）添加噪声. 我们希望输出在整数范围内，因此对$A(x)$的输出进行四舍五入. 整个机制是否仍然是差分隐私的？如果是，参数是什么？为什么？
+
     \item 设输出为$d$维的算法$f( x) = (\sum_{i=1}^n \Phi_1( x_i), \dots, \sum_{i=1}^n \Phi_d( x_i))$， $x_i\in\mathcal X$，满足$\Phi_j(\mathcal X)=\{0, 1\}$以及$\sum_{j=1}^d \Phi_j( x_i) = 1$. 请计算$\text{GS}_f$.
     
     \item \textbf{信息论与差分隐私关系. }（\cite{cuffDifferentialPrivacyMutual2016,mirInformationTheoreticFoundationsDifferential2012}） 差分隐私和基于信息论的度量有着密切的联系. 对于一个包含$n$个（带随机性的）数据条目$\mathcal X^n = (\mathcal X_1, \dots, \mathcal X_n)$ 的数据，考虑一个随机算法$M:\mathcal X^n\to \mathcal Y$，输出$Y$的概率分布为$P_{\mathcal Y|\mathcal X^n}$. 我们引入以下概念：
