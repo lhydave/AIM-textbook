@@ -711,7 +711,7 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
     请将该分类器监督学习的过程写成优化问题.
     \item *\label{exercise:no-free-lunch}（\cite{wolpertNoFreeLunch1997}）证明\Cref{thm:no-free-lunch}.
     
-    \item *强化学习利用 MDP 框架来描述问题，这其中最重要的一步就是定义奖励函数. 在最特殊的一种强化学习中，智能体只有在最后一轮才会获得奖励. 此时，智能体最大化奖励就仿佛是在做一个优化问题. 
+    \item *\textbf{强化学习与优化的关系. }强化学习利用 MDP 框架来描述问题，这其中最重要的一步就是定义奖励函数. 在最特殊的一种强化学习中，智能体只有在最后一轮才会获得奖励. 此时，智能体最大化奖励就仿佛是在做一个优化问题. 
     
     反之，如果我们把一个离散空间中的优化问题想象成一个游戏，退出游戏时的函数值就是智能体所获得的奖励，最大化目标函数就是在最大化最终奖励. 因此，智能体可以通过强化学习的方法来解决这个优化问题. 
     
@@ -720,6 +720,33 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
         \item 已知解MDP存在多项式时间算法~\cite{littmanComplexitySolvingMarkov1995}，然而，通常的离散优化问题是$\mathsf{NP}$-难的，这似乎意味着上一问证明的等价性存在问题. 请解释这一矛盾.
     \end{enumerate}
     
+    \item *\textbf{差分隐私随机梯度下降. }（\cite{abadiDeepLearningDifferential2016}）随机梯度下降是深度学习中一种常用的优化算法，它在每一步都使用一个小批量的数据来估计梯度，然后更新参数. 在差分隐私的背景下，我们希望保护用户的隐私，因此，我们不能直接使用真实的数据来计算梯度，而是要对数据进行一些扰动. 本题将给出一种差分隐私的随机梯度下降算法. 具体来说，给定样本集$\{x_1,\dots,x_N\}$，我们优化的损失函数为
+    \[L(w) = \frac{1}{N}\sum_{i=1}^N L(w,x_i),\]
+    其中$L(w,x)$是每个样本的损失函数，$w$是待优化的参数. 
+    我们采用的差分隐私概念为$(\epsilon,\delta)$-DP（见\Cref{chap:differential-privacy}的习题 \ref{exercise:eps-delta-DP}），这是一种现实里面更加常用的差分隐私定义. 差分隐私随机梯度下降算法（DP-SGD）如下：
+    \begin{itemize}
+        \item 参数：学习率（步长）$\eta_t$，噪声尺度$\sigma$，群组大小$M$，梯度范数上界$C$.
+        \item 随机初始化$w_0$.
+        \item 对于$t=1,\dots,T$：
+        \begin{itemize}
+            \item 以$q=M/N$随机选取的样本组成的小批量$M_t$.
+            \item 对每一个样本$x_i\in M_t$，计算梯度
+            \[g_t(x_i) = \nabla L(w_{t-1},x_i).\]
+            \item 截断梯度：
+            \[\bar{g}_t(x_i) = g_t(x_i)/\max\{1,\norm{g_t(x_i)}_2/C\}.\]
+            \item 对每一个样本$x_i\in M_t$，添加独立噪声：
+            \[\tilde{g}_t(x_i) = \bar{g}_t(x_i) + z_t(x_i),\]
+            其中$z_t(x_i)\sim \Nor(0,\sigma^2C^2I)$.
+            \item 计算平均梯度：
+            \[\tilde{g}_t = \frac{1}{M}\sum_{x_i\in M_t} \tilde{g}_t(x_i).\]
+            \item 更新参数：
+            \[w_t = w_{t-1} - \eta_t \tilde{g}_t.\]
+        \end{itemize}
+        \item 输出$w_T$.
+    \end{itemize}
+    请证明：存在常数$c_1$和$c_2$，对任意正数$\epsilon<c_1q^2T$和任意$\delta>0$，如果我们设置
+    \[\sigma \geq c_2\frac{q\sqrt{T\log(1/\delta)}}{\epsilon},\]
+    那么DP-SGD是$(\epsilon,\delta)$-DP的.
     
     \item \label{exercise:convex-function} 验证\Cref{ex:convex-function} 中的函数是凸函数.
     

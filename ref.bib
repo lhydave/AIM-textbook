@@ -1,3 +1,21 @@
+@inproceedings{abadiDeepLearningDifferential2016,
+  title = {Deep {{Learning}} with {{Differential Privacy}}},
+  booktitle = {Proceedings of the 2016 {{ACM SIGSAC Conference}} on {{Computer}} and {{Communications Security}}},
+  year = {2016},
+  month = oct,
+  series = {{{CCS}} '16},
+  pages = {308--318},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  doi = {10.1145/2976749.2978318},
+  url = {https://dl.acm.org/doi/10.1145/2976749.2978318},
+  urldate = {2025-02-17},
+  abstract = {Machine learning techniques based on neural networks are achieving remarkable results in a wide variety of domains. Often, the training of models requires large, representative datasets, which may be crowdsourced and contain sensitive information. The models should not expose private information in these datasets. Addressing this goal, we develop new algorithmic techniques for learning and a refined analysis of privacy costs within the framework of differential privacy. Our implementation and experiments demonstrate that we can train deep neural networks with non-convex objectives, under a modest privacy budget, and at a manageable cost in software complexity, training efficiency, and model quality.},
+  isbn = {978-1-4503-4139-4},
+  file = {/Users/lhydave/Zotero/storage/F5JEGT5X/Abadi 等 - 2016 - Deep Learning with Differential Privacy.pdf},
+  author = {Abadi, Martin and Chu, Andy and Goodfellow, Ian and McMahan, H. Brendan and Mironov, Ilya and Talwar, Kunal and Zhang, Li}
+}
+
 @misc{abdelgawadInductionCoinductionFixed2019,
   title = {Induction, {{Coinduction}}, and {{Fixed Points}}: {{Intuitions}} and {{Tutorial}}},
   shorttitle = {Induction, {{Coinduction}}, and {{Fixed Points}}},
@@ -659,23 +677,21 @@
   author = {Dwork, Cynthia and Roth, Aaron}
 }
 
-@article{dworkCalibratingNoiseSensitivity2016,
+@inproceedings{dworkCalibratingNoiseSensitivity2006,
   title = {Calibrating {{Noise}} to {{Sensitivity}} in {{Private Data Analysis}}},
-  year = {2016},
-  journal = {Journal of Privacy and Confidentiality},
-  volume = {7},
-  number = {3},
-  pages = {17--51},
-  issn = {2575-8527},
-  doi = {10.29012/jpc.v7i3.405},
-  url = {https://journalprivacyconfidentiality.org/index.php/jpc/article/view/405},
-  urldate = {2025-02-14},
-  abstract = {We continue a line of research initiated in Dinur and Nissim (2003); Dwork and Nissim (2004); and Blum et al. (2005) on privacy-preserving statistical databases. Consider a trusted server that holds a database of sensitive information. Given a query function \$f\$ mapping databases to reals, the so-called \{\textbackslash em true answer\} is the result of applying \$f\$ to the database. To protect privacy, the true answer is perturbed by the addition of random noise generated according to a carefully chosen distribution, and this response, the true answer plus noise, is returned to the user. Previous work focused on the case of noisy sums, in which \$f = \textbackslash sum\_i g(x\_i)\$, where \$x\_i\$ denotes the \$i\$th row of the database and \$g\$ maps database rows to \$[0,1]\$. We extend the study to general functions \$f\$, proving that privacy can be preserved by calibrating the standard deviation of the noise according to the \{\textbackslash em sensitivity\} of the function \$f\$. Roughly speaking, this is the amount that any single argument to \$f\$ can change its output. The new analysis shows that for several particular applications substantially less noise is needed than was previously understood to be the case. The first step is a very clean definition of privacy---now known as differential privacy---and measure of its loss. We also provide a set of tools for designing and combining differentially private algorithms, permitting the construction of complex differentially private analytical tools from simple differentially private primitives. Finally, we obtain separation results showing the increased value of interactive statistical release mechanisms over non-interactive ones.},
-  copyright = {Copyright (c) 2016 the authors},
+  booktitle = {Theory of {{Cryptography}}},
+  year = {2006},
+  pages = {265--284},
+  publisher = {Springer},
+  address = {Berlin, Heidelberg},
+  doi = {10.1007/11681878_14},
+  abstract = {We continue a line of research initiated in [10,11]on privacy-preserving statistical databases. Consider a trusted server that holds a database of sensitive information. Given a query function f mapping databases to reals, the so-called true answer is the result of applying f to the database. To protect privacy, the true answer is perturbed by the addition of random noise generated according to a carefully chosen distribution, and this response, the true answer plus noise, is returned to the user.},
+  isbn = {978-3-540-32732-5},
   langid = {english},
-  keywords = {differential privacy,noise addition,private data analysis,statistical data privacy},
-  file = {/Users/lhydave/Zotero/storage/9FBDE2XM/Dwork 等 - 2016 - Calibrating Noise to Sensitivity in Private Data Analysis.pdf},
-  author = {Dwork, Cynthia and McSherry, Frank and Nissim, Kobbi and Smith, Adam}
+  keywords = {Laplace Distribution,Privacy Breach,Query Function,Semantic Security,True Answer},
+  file = {/Users/lhydave/Zotero/storage/N4A4YVR4/Dwork 等 - 2006 - Calibrating Noise to Sensitivity in Private Data Analysis.pdf},
+  author = {Dwork, Cynthia and McSherry, Frank and Nissim, Kobbi and Smith, Adam},
+  editor = {Halevi, Shai and Rabin, Tal}
 }
 
 @inproceedings{emersonCharacterizingCorrectnessProperties1980,
