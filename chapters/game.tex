@@ -797,22 +797,22 @@ Bellman方程的左右是同一个$V^{\boldsymbol \pi^*}$，此时是不动点�
 因此，令$k$趋于无穷，我们得到玩家$1$的收益至少是$\alpha^*(s)$. 另一方面，根据同样的论证，玩家$2$也可以确保自己的收益至少是$-\alpha^*(s)$. 由零和的定义，均衡时玩家$1$的收益必定是$\alpha^*(s)$. 
 \end{proof}
 
-最后，我们说明存在一个策略组合达到均衡. 如果让$R_s$作用在不动点$\alpha^*$上，玩家$1$最大化$V$就是在选择$R_s(\alpha^*)$的Nash均衡. 设$R_s(\alpha^*)$的Nash均衡为$(\pi_1(s),\pi_2(s))$，我们证明$(\pi_1,\pi_2)$是一个MPE. 
+最后，我们说明存在一个策略组合达到均衡. 如果让$R_s$作用在不动点$\alpha^*$上，玩家$1$最大化$V$就是在选择$R_s(\alpha^*)$的Nash均衡. 设$R_s(\alpha^*)$的Nash均衡为$(\pi_1^*(s),\pi_2^*(s))$，我们证明$(\pi_1^*,\pi_2^*)$是一个MPE. 
 
 \begin{lemma}
-    设$R_s(\alpha^*)$的Nash均衡为$(\pi_1(s),\pi_2(s))$，则$(\pi_1,\pi_2)$是一个MPE.
+    设$R_s(\alpha^*)$的Nash均衡为$(\pi_1^*(s),\pi_2^*(s))$，则$(\pi_1^*,\pi_2^*)$是一个MPE.
 \end{lemma}
 
 \begin{proof}
-固定玩家$2$的一个任意策略$\hat{\pi}_2$（不一定是平稳策略）. 玩家$1$在前$k$步选择$\pi_1$，因为$\pi_1$是$R_s(\alpha^*)$的Nash均衡，它也是前$k$步截断随机博弈的最优策略. 因此，根据之前的论证，无论玩家$2$选择何种行动，玩家$1$都能够至少拿到$\alpha^*$的收益，即
-\[\E\left[\sum_{t=0}^{k-1}\gamma^tQ(\pi_1(s^t),\hat{\pi}_2(s^t);s^t)+\gamma^k\alpha^*(s^k)\middle|s^0=s\right]\ge \alpha^*(s).\]
+固定玩家$2$的一个任意策略$\hat{\pi}_2$（不一定是平稳策略）. 玩家$1$在前$k$步选择$\pi_1^*$，因为$\pi_1^*$是$R_s(\alpha^*)$的Nash均衡，它也是前$k$步截断随机博弈的最优策略. 因此，根据之前的论证，无论玩家$2$选择何种行动，玩家$1$都能够至少拿到$\alpha^*$的收益，即
+\[\E\left[\sum_{t=0}^{k-1}\gamma^tQ(\pi_1^*(s^t),\hat{\pi}_2(s^t);s^t)+\gamma^k\alpha^*(s^k)\middle|s^0=s\right]\ge \alpha^*(s).\]
 整理得
-\[\E\left[\sum_{t=0}^{k-1}\gamma^tQ(\pi_1(s^t),\hat{\pi}_2(s^t);s^t)\middle|s^0=s\right]\ge \alpha^*(s)-\gamma^k\norm{\alpha^*}_\infty.\]
+\[\E\left[\sum_{t=0}^{k-1}\gamma^tQ(\pi_1^*(s^t),\hat{\pi}_2(s^t);s^t)\middle|s^0=s\right]\ge \alpha^*(s)-\gamma^k\norm{\alpha^*}_\infty.\]
 因此，
-\[V^{\pi_1,\hat{\pi}_2}(s)\ge \alpha^*(s) - \gamma^k\norm{\alpha^*}_\infty - \frac{\gamma^k}{1-\gamma}\sup|Q|.\]
+\[V^{\pi_1^*,\hat{\pi}_2}(s)\ge \alpha^*(s) - \gamma^k\norm{\alpha^*}_\infty - \frac{\gamma^k}{1-\gamma}\sup|Q|.\]
 令$k\to\infty$可得，上式右边趋于$\alpha^*(s)$，因此我们为玩家$1$选择的策略达到了$\alpha^*$的收益. 
 
-玩家$2$的$\pi_2$证明对称，因此$(\pi_1,\pi_2)$是一个MPE.
+玩家$2$的$\pi_2^*$证明对称，因此$(\pi_1^*,\pi_2^*)$是一个MPE.
 \end{proof}
 
 最后，我们指出随机博弈和人工智能的关系. 正如MDP是强化学习的基础，随机博弈是多智能体强化学习的基础. 在多智能体强化学习中，每个智能体都是一个独立的决策者，按照一个MDP来决策. 但是，由于环境中有多个智能体，每个智能体的奖励函数都会受到其他智能体的影响，这正是随机博弈的情形. 
