@@ -196,7 +196,7 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 \[p\to q,q\to r\vdash p\to r,\]
 即便我们完全不知道这一推理是如何进行的，我们依然知道这一推理是可行的！
 
-如果$\varnothing\vDash \phi$，那么称$\phi$为\textit{重言式}. 重言式是不需要加任何假设也一定成立的公式，是这一推理系统所包含的“正确的废话”. 如果$\psi\leftrightarrow\phi$是重言式，我们就说$\psi,\phi$是\textit{等值}的. 等值的公式在演绎推理中可以互相替代使用. 例如：$p\to q$与$\neg q\to\neg p$是等值的，所以证明一个命题也可以去证明它的逆否命题.
+如果$\varnothing\vDash \phi$（简记为$\vDash\phi$），那么称$\phi$为\textit{重言式}. 重言式是不需要加任何假设也一定成立的公式，是这一推理系统所包含的“正确的废话”. 如果$\psi\leftrightarrow\phi$是重言式，我们就说$\psi,\phi$是\textit{等值}的. 等值的公式在演绎推理中可以互相替代使用. 例如：$p\to q$与$\neg q\to\neg p$是等值的，所以证明一个命题也可以去证明它的逆否命题.
 
 \begin{remark}
     对本节内容感兴趣的读者，有很多很好的教材可以参考. \cite{vandalenLogicStructure2013} 提供了全面但是简洁明了的讲述，\cite{hamiltonLogicMathematicians1988} 从数学家的角度讲述了数理逻辑的基本观点，\cite{nerodeLogicApplications1997} 则从应用、特别是计算机的角度来讲述数理逻辑. 
@@ -285,19 +285,21 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 
 \begin{principle}[等值原则]
     对任意$f\in\mathcal L$，任意命题公式$\phi_1,\phi_2,\psi\in L$，如果$\phi_1$和$\phi_2$等值（即$\phi_1\leftrightarrow\phi_2$是重言式），那么
-    \[
-        f(\phi_1|\psi)=f(\phi_2|\psi).
-    \]
+    \begin{gather*}
+        f(\phi_1|\psi) = f(\phi_2|\psi),\\
+        f(\psi|\phi_1) = f(\psi|\phi_2).
+        \end{gather*}
 \end{principle}
 
 例如，$\phi\to \psi$和$\neg \phi\vee \psi$的具体含义是不同的：一个是蕴含式（即$\phi$推出$\psi$），一个是两个命题（$\neg \phi$和$\psi$）的或；但是他们等值，所以$f(\phi\to \psi | \xi)=f(\neg \phi\vee \psi|\xi)$. 更多的例子如下：
 
 \begin{example}
-    对任意$f\in\mathcal L$以及公式$\alpha,\beta,\gamma$，成立
+    对任意$f\in\mathcal L$以及公式$\alpha,\beta,\gamma,\delta$，成立
     \begin{itemize}
         \item $f(\alpha\vee \beta | \gamma)=f((\beta\vee \alpha) | \gamma)$.
         \item $f((\alpha\beta)\gamma|\delta)=f(\alpha(\beta\gamma)|\delta)$.
         \item $f(\neg\neg \alpha|\beta)=f(\alpha|\beta)$.
+        \item $f(\alpha| (\beta \vee \gamma)) = f(\alpha | (\gamma \vee \beta))$.
     \end{itemize}
 \end{example}
 
