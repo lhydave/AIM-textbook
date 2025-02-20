@@ -330,13 +330,13 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 我们定义的$F$具有如下性质：
 \begin{theorem}\label{theorem:form-of-F}
     如果$F$是二阶连续可微函数，那么$F$充分必要地满足
-        \[cf(F(p,q))=f(p)f(q),\]
-        这里，$c$是某个常数，$f$是某个函数.
+        \[cg(F(p,q))=g(p)g(q),\]
+        这里，$c$是某个常数，$g$是某个$\R\to\R$的函数.
         因此，对任意命题公式$\alpha,\beta,\gamma$，成立
-        \[cf(\alpha\beta|\gamma)=f(\alpha|\gamma)f(\beta|\alpha\gamma).\]
+        \[cg(f(\alpha\beta|\gamma))=g(f(\alpha|\gamma))g(f(\beta|\alpha\gamma)).\]
 \end{theorem}
 
-这一定理的证明见习题 \ref{exercise:derive-F}. 回忆，我们的目标是找到一个尽可能简单的$f$，它能够描述合情推理的合理程度. 因此，我们可以接受$F$二阶连续可微的假设，然后让$c=1$. 于是，我们得到了合情推理的一个基本原则：
+这一定理的证明见习题 \ref{exercise:derive-F}. 回忆，我们的目标是找到一个尽可能简单的$f$，它能够描述合情推理的合理程度. 因此，我们可以接受$F$二阶连续可微的假设，然后让$g(x)=x$，即恒等映射，让$c=1$. 于是，我们得到了合情推理的一个基本原则：
 \begin{principle}[与规则]
 对命题公式$\alpha,\beta,\gamma$，成立
 \[f(\alpha\beta|\gamma)=f(\alpha|\gamma)f(\beta|\alpha\gamma).\]
@@ -802,8 +802,8 @@ Simpson悖论在这一实例下表现为：来自清华大学的学生两分命�
         \begin{equation}
             F(F(x,y),z)=F(x,F(y,z)). \label{eq:F-associative}
         \end{equation}
-        \item 证明：当$F$满足$cf(F(p,q))=f(p)f(q)$时，$F$满足 \eqref{eq:F-associative}.
-        \item *假设$F$是连续二阶可微的，证明：如果$F$满足 \eqref{eq:F-associative}，那么存在一个常数$c$和函数$f$，使得$F$满足$cf(F(p,q))=f(p)f(q)$.
+        \item 证明：当$F$满足$cg(F(p,q))=g(p)g(q)$时，$F$满足 \eqref{eq:F-associative}.
+        \item *假设$F$是连续二阶可微的，证明：如果$F$满足 \eqref{eq:F-associative}，那么存在一个常数$c$和函数$g$，使得$F$满足$cg(F(p,q))=g(p)g(q)$.
     \end{enumerate}
     
     
