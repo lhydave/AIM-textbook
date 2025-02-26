@@ -12,7 +12,7 @@
 
 在计算机的世界中，世界的一切都被表示为了数据，而且往往是高维数据. 因此，如何理解和处理高维数据已经成为人工智能领域的一个重要问题. 
 
-本章将说明，高维空间有着令人着迷却看似矛盾的两种性质. 首先，与我们生活的三维空间相比，高维空间是极其反直觉的，这带来了望而生畏的复杂性，似乎“维数灾难”难以逾越. 然而，硬币的另一面是，高维空间中的随机数据几乎都是高度集中，因而他们其实可以被压缩到更低维度的空间中进行处理. 这一原理被广泛应用在机器学习中. 
+本章将说明，高维空间有着令人着迷却看似矛盾的两种性质. 首先，与我们生活的三维空间相比，高维空间是极其反直觉的，这带来了望而生畏的复杂性，似乎“维数灾难”难以逾越，我们需要正则化的技术来避免这种复杂性. 然而，硬币的另一面是，高维空间中的随机数据几乎都是高度集中，因而他们其实可以被压缩到更低维度的空间中进行处理. 这一原理被广泛应用在机器学习中. 
 
 从技术上看，我们要证明Johnson-Lindenstrauss引理，它表明了高维随机变量的集中性. 证明这一引理所用到的概率论技术是\textbf{矩法}，这是\textit{机器学习理论}中最为核心的几个技术之一. 因此本章也可以看做机器学习理论的一个引论. 
 
@@ -222,7 +222,7 @@ $\mu$未知. 随机采样得到样本$x_1,x_2,\dots,x_n$，怎样对$\mu$进行�
 假设样本点恰好满足$x_1=\norm{\mu}$，而$x_i$以概率$1$都不为$0$，可以画出\Cref{fig:triangle}. 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/J-L-lemma/triangle.pdf}
+    \includegraphics[width=0.4\textwidth]{figures/J-L-lemma/triangle.pdf}
     \caption{$x$与$\mu$形成的直角三角形}
     \label{fig:triangle}
 \end{figure}
@@ -347,7 +347,7 @@ $\mu$未知. 随机采样得到样本$x_1,x_2,\dots,x_n$，怎样对$\mu$进行�
     &= \Pr(A) + \Pr(B) - \Pr(AB).
 \end{align*}
 
-对于概率论以及机器学习理论来说，下面的这个不等式非常重要：
+对于概率论以及机器学习理论来说，下面的这个不等式非常重要，它说明随机变量采样到较大值的概率存在一个上界.
 
 \begin{theorem}[Markov不等式]\label{thm:markov-inequality}
     如果$X$是非负有期望的随机变量，$a>0$，那么
@@ -499,7 +499,7 @@ X\geq a \iff \lambda X \geq \lambda a \iff \e^{\lambda X} \geq \e^{\lambda a}.
 
 我们可以把$n$理解成降维后的维度，$Av_i$是降维后的向量. 这个引理告诉我们只要$n > 24\log N/\epsilon^2$，我们就可以用变换$A$把原本$m$维的向量映射到$n$维空间，并且保证它们相对距离的偏离不超过$\epsilon$.
 
-通常来说，相对距离编码了很多重要的信息. 例如，如果两个人的年龄、身高、体重等属性相差很小，那么他们也应该更相似. 在这种观点下，我们可以把$A$看成一个损失率很低的压缩变换. 不严格地说，
+通常来说，相对距离编码了很多重要的信息. 例如，如果两个人的年龄、身高、体重等属性的距离相差很小，那么他们也应该更相似. 在这种观点下，我们可以把$A$看成一个损失率很低的压缩变换. 不严格地说，
 \begin{quotation}
     \textit{塞下$N$个向量，只需要$\O(\log N)$维空间.}
 \end{quotation}
@@ -538,7 +538,7 @@ J-L引理实际上在说，$\norm{Au}_2$偏离$1$的一定程度的概率是非�
         \Pr(|\norm{u}_2^2 - 1| \geq \epsilon) \leq 2\exp \left(-\frac{\epsilon^2 n}{8}\right).
     \]
 \end{lemma}
-注意到$\E[\norm{u}_2^2]=n\cdot(1/n)=1$，所以这个引理在说高维空间中，如果正态向量具有单位模长平方期望，那么它的模长就会集中在单位长度附近，因此称为单位模引理.
+注意到$\E\left[\norm{u}_2^2\right]=n\cdot(1/n)=1$，所以这个引理在说高维空间中，如果正态向量具有单位模长平方期望，那么它的模长就会集中在单位长度附近，因此称为单位模引理.
 
 \begin{proof}
 $|\norm{u}_2^2 - 1| \geq \epsilon$发生有两种可能，$ \norm{u}_2^2 - 1 \geq \epsilon$和$ 1 - \norm{u}_2^2 \geq \epsilon$. 我们先来计算$ \norm{u}_2^2 - 1 \geq \epsilon$的概率，根据指数矩，
@@ -590,7 +590,7 @@ $|\norm{u}_2^2 - 1| \geq \epsilon$发生有两种可能，$ \norm{u}_2^2 - 1 \ge
 1 - N(N-1)\exp \left(-\frac{\epsilon^2 n}{8}\right) \geq 1 - N(N-1)N^{-3}\geq 1 - N^{-1} = \frac{N-1}{N}. 
 \]
 
-很多时候，我们关心的并不是向量间的距离，而是向量的内积（比如使用\textit{余弦度量}的时候），这时候我们可以使用内积版本的J-L的引理：
+很多时候，我们关心的并不是向量间的距离，而是向量的内积（比如使用\textit{余弦相似度}的时候），这时候我们可以使用内积版本的J-L的引理：
 \begin{theorem}[J-L引理，内积形式]\label{thm:johnson-lindenstrauss-lemma-inner-product}
     给定$N$个单位向量$v_1,\dots,v_N\in\R^m$和$n > 24\log N/\epsilon^2$，随机矩阵$A\in \R^{n\times m}$每一个元素都独立重复采样自$\Nor(0,1/n)$，$\epsilon \in (0,1)$是给定常数，那么至少有$(N-1)/N$的概率，使得对所有的$i\neq j$，都成立
     \[
@@ -606,15 +606,15 @@ $|\norm{u}_2^2 - 1| \geq \epsilon$发生有两种可能，$ \norm{u}_2^2 - 1 \ge
     \end{aligned}
     \]
 我们将第一行乘$-1$加到第二行可以得到
-    \[
-        4\inner{v_i}{v_j} - 2 \epsilon (\norm{v_i}_2^2 + \norm{v_j}_2^2) <4\langle Av_i, Av_j\rangle < 4\inner{v_i}{v_j} + 2 \epsilon (\norm{v_i}_2^2 + \norm{v_j}_2^2).
-    \]
+\begin{align*}
+    &4\inner{v_i}{v_j} - 2 \epsilon (\norm{v_i}_2^2 + \norm{v_j}_2^2) <4\langle Av_i, Av_j\rangle\\
+    &\qquad< 4\inner{v_i}{v_j} + 2 \epsilon (\norm{v_i}_2^2 + \norm{v_j}_2^2).
+\end{align*}
 因为$v_i,v_j$是单位向量，所以上式等价于$|\langle Av_i, Av_j\rangle - \inner{v_i}{v_j}|<\epsilon$. 
 \end{proof}
 
 \section{J-L引理的应用}\label{sec:J-L-applications}
-J-L引理描述的是对于$N$个向量，我们可以将它们降到$\O(\log N)$维空间，并将相对距离（或内积）的误差控制在一定范围内. 
-它的内容本身就和降维相关，所以最基本的应用就是直接作为降维方法. 下面我们将介绍两个具体的应用案例说明J-L引理如何指导我们在深度学习中选择合适的维度.
+J-L引理描述的是对于$N$个向量，我们可以将它们降到$\O(\log N)$维空间，并将相对距离（或内积）的误差控制在一定范围内. 它的内容本身就和降维相关，所以最基本的应用就是直接作为降维方法. 下面我们将介绍两个具体的应用案例说明J-L引理如何指导我们在深度学习中选择合适的维度.
 
 \begin{example}[词向量维度]\label{ex:word-vector-dimension}
 在为自然语言建立深度学习模型的时候，我们面对的首要问题就是如何在计算机中表示语言. 我们以中文为例. 如果我们看一句话，中文组成的基本单元是词. 比如，这句话就可以被分解为如下成分：
@@ -629,7 +629,7 @@ J-L引理描述的是对于$N$个向量，我们可以将它们降到$\O(\log N)
 \[
 v(\text{男人}) - v(\text{女人}) \approx v(\text{国王}) - v(\text{女王}).
 \]
-这里，$\approx$表示两个向量之间比较相似. 具体来说，我们通常会用向量的内积来衡量相似度. 也就是说，给定一个词$w$，我们希望
+这里，$\approx$表示两个向量之间比较相似. 具体来说，我们通常会用向量的内积来衡量相似度. 也就是说，给定一个词$w$，我们希望\footnote{严格来说，要使用J-L引理，我们需要词向量是单位向量. 一种可行的做法是，把下面的内积换成余弦相似度. }
 \[
 \inner{v(w)}{v(\text{男人}) - v(\text{女人})} \approx \inner{v(w)}{v(\text{国王}) - v(\text{女王})}.
 \]
@@ -669,7 +669,7 @@ v(\text{男人}) - v(\text{女人}) \approx v(\text{国王}) - v(\text{女王}).
 \end{example}
 
 \begin{remark}
-    J-L 引理最早出现在论文~\cite{johnsonExtensionsLipschitzMappings1984} 中，最早考虑的是Euclid空间中点的嵌入问题. 后来，这一引理为数据压缩提供很强的理论依据，也被广泛应用在深度学习中. 关于J-L引理的应用，可以参见苏剑林的博客~\cite{SuZuiXiaoShangYuanLiLiuCiXiangLiangDeWeiDuYingGaiZenMeXuanZe,SuRangRenLiangTanDeJohnsonLindenstraussYinLiYingYongPian,SuRangRenLiangTanDeJohnsonLindenstraussYinLiLiLunPian}.
+    J-L 引理最早出现在论文~\cite{johnsonExtensionsLipschitzMappings1984} 中，最早考虑的是Euclid空间中点的嵌入问题. 后来，这一引理为数据压缩提供很强的理论依据，也被广泛应用在深度学习中. 关于J-L引理的应用，可以参见苏剑林的博客~\cite{SuJianLinZuiXiaoShangYuanLiLiuCiXiangLiangDeWeiDuYingGaiZenMeXuanZe,SuJianLinRangRenLiangTanDeJohnsonLindenstraussYinLiYingYongPian,SuJianLinRangRenLiangTanDeJohnsonLindenstraussYinLiLiLunPian}.
 \end{remark}
 
 \section{习题}

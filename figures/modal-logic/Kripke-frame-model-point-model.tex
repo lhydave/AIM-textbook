@@ -1,0 +1,33 @@
+\documentclass{standalone}
+
+\input{../../fig-config.tex}
+
+% plots
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta,positioning,calc,3d}
+\usetikzlibrary{automata}
+\usepackage{tikz-3dplot}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\tikzset{
+    punkt/.style={
+        rectangle,
+        rounded corners,
+        draw=black, very thick,
+        minimum height=2em,
+        inner sep=6pt,
+        text centered,
+        fill=gray!10
+    }
+}
+
+\begin{document}
+\begin{tikzpicture}[node distance=3cm, auto]
+    \node[punkt] (frame) {Kripke框架};
+        \node[punkt, right=of frame] (model) {Kripke模型};
+        \node[punkt, right=of model] (point) {Kripke点模型};
+        \draw[->, -stealth, very thick] (frame) to node {\makecell{每个世界\\标上命题字母}} (model);
+        \draw[->, -stealth, very thick] (model) to node {\makecell{指定一个\\真实世界}} (point);
+\end{tikzpicture}
+\end{document}

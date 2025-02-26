@@ -129,7 +129,7 @@ $\Diamond$读作“diamond”，对应的自然语言可以读为“可能”. �
 \end{itemize}
 \end{example}
 
-\section{Kripke语义}\label{sec:kripke-semantics}
+\section{Kripke模型与语义}\label{sec:kripke-semantics}
 
 接下来我们讨论模态语言对应的模型，以及模态逻辑语言在这一模型上的语义. 从本节开始，我们将模态算子限制为\textit{一元}算子，即它只能修饰一个公式. 
 
@@ -137,7 +137,7 @@ $\Diamond$读作“diamond”，对应的自然语言可以读为“可能”. �
 \begin{itemize}
 \item 节点表示可能世界，上面用命题字母标记，表示这个可能世界上成立的原子命题；
 \item 边表示节点之间的关系，用模态算子标记，表示这两个可能世界之间的关系. 如果只有一个模态算子，我们省略模态算子标记，只写箭头. 
-\item 我们有一个指定的节点，作为真实世界. 
+\item 在点模型中，我们有一个指定的节点，作为真实世界. 
 \end{itemize}
 
 我们来看一个例子. 
@@ -165,7 +165,7 @@ $\Diamond$读作“diamond”，对应的自然语言可以读为“可能”. �
 我们再来看一个例子. 
 
 \begin{example}\label{ex:kripke-model-basic}
-考虑\Cref{fig:kripke-model-basic} 中的Kripke模型. 对哪些$i$来说，下式成立？
+考虑\Cref{fig:kripke-model-basic} 中的Kripke模型. 对哪些$w_i$来说，下式成立？
 \[\Box (p\to\Box q).\]
 我们以$w_1$为例进行讨论. 其他情况非常类似，读者可以自行验证. 如果$w_1$是真实世界，上要成立上式，必须要所有后继节点上成立
     \[p\to\Box q.\]
@@ -202,6 +202,14 @@ Kripke模型并没有指定一个真实世界，接下来，我们引入一个�
 \begin{definition}[Kripke点模型]
 一个\textbf{Kripke点模型}$(\mathcal{M},w)$是Kripke模型$\mathcal M$加上一个指定的点$w\in W$. 
 \end{definition}
+
+以上三个概念的关系如\Cref{fig:kripke-frame-model-point-model} 所示.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/modal-logic/Kripke-frame-model-point-model.pdf}
+\caption{Kripke框架、模型和点模型的关系}\label{fig:kripke-frame-model-point-model}
+\end{figure}
 
 现在，我们可以定义模态逻辑的语义，即\textit{Kripke语义}. 
 
@@ -507,7 +515,7 @@ $\vDash_H\neg K_i\bot$.
     &\dots
 \end{align*}
 因为逻辑公式不允许写无穷长的公式，所以，不动点公理就是在用一个算子的\textit{递归方程}来定义共同知识：
-\[\forall\phi,C(\phi)\leftrightarrow E(\phi\wedge C(\phi)). \]
+\[\forall\phi,C\phi\leftrightarrow E(\phi\wedge C\phi). \]
 
 然而，一个递归方程可能会有无穷多个解，并不是所有的解都是我们要的那个. 所以，归纳规则给出了共同知识算子的另一个性质：这是这个递归方程的\textit{最小解}. 下面我们来说明这一点. 
 

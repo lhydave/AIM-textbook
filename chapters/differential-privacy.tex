@@ -113,7 +113,7 @@ Netflix 为比赛公开了一份庞大的数据集，包含超过一亿条匿名
 \begin{proposition}
     设$A:\mathcal X^n\to\mathcal Y$是一个$\epsilon$-DP算法，那么对于任意的$1$-相邻数据集$x, x'$和任意（可测）值集 $E \subseteq \mathcal Y$，有
     \[
-    e^{-\epsilon}\leq \frac{\Pr(A(x)\in E)}{\Pr(A(x')\in E)}\leq \e^{\epsilon}.
+    \e^{-\epsilon}\leq \frac{\Pr(A(x)\in E)}{\Pr(A(x')\in E)}\leq \e^{\epsilon}.
     \]
 \end{proposition}
 \begin{proof}
@@ -262,7 +262,7 @@ $\impliedby$：依然根据概率密度函数的定义，考虑$x,x'\in\mathcal 
 
 复合性和后处理性质是差分隐私的两个最重要的性质，但这两个性质容易混淆. 接下来，我们举两个例子来对比这两个性质. 
 
-假设医院想要对外公布某些疾病的相关数据，但是又不想泄露病人的隐私. 比如，医院希望公布不同年龄段的心血管病患病患病率，又希望公布不同年龄段糖尿病患病率. 这两组数据分别用了$\epsilon_1$-DP算法$A_1$和$\epsilon_2$-DP算法$A_2$处理. 一个病人既可能得心血管病又可能得糖尿病，因此这两组数据背后的原始数据其实是有交集的，所以当我们将处理后的两组数据发布出去时，我们实际上实现了一个$\epsilon_1+\epsilon_2$-DP算法，这就是复合性.
+假设医院想要对外公布某些疾病的相关数据，但是又不想泄露病人的隐私. 比如，医院希望公布不同年龄段的心血管病患病患病率，又希望公布不同年龄段糖尿病患病率. 这两组数据分别用了$\epsilon_1$-DP算法$A_1$和$\epsilon_2$-DP算法$A_2$处理. 一个病人既可能得心血管病又可能得糖尿病，因此这两组数据背后的原始数据其实是有交集的，所以当我们将处理后的两组数据发布出去时，我们实际上实现了一个$(\epsilon_1+\epsilon_2)$-DP算法，这就是复合性.
 
 再看后处理. 现在，医院给技术人员公布了差分隐私处理后的数据，还是心血管病和糖尿病的数据，使用$\epsilon$-DP算法. 技术人员想要进一步处理这些数据，比如用这些数据来绘制图表、研究统计规律或者训练机器学习模型. 无论技术人员如何处理这些数据，只要他们不再使用原始数据，那么他们的处理之后的数据仍然是$\epsilon$-DP的.
 
@@ -379,7 +379,7 @@ RR算法是如何实现差分隐私的呢？最重要的一步是，它把真实
 \begin{align*}
     \mathsf{GS}_f&=\sup_{x, x' \text{ 在 }\mathcal X^n\text{ $1$-相邻}} |f(x) - f(x')|\\
     &= \sup_{x, x' \text{ 在 }\mathcal X^n\text{ $1$-相邻}} \frac1n \left|\sum_{i=1}^n \phi(x_i) - \sum_{i=1}^n \phi(x'_i)\right|\\
-    &= \sup_{x, x' \text{ 在 }\mathcal X^n\text{ 只在 } j\text{ 不同}} \frac1n \left|\phi(x_j) - \phi(x'_j)\right| = \frac1n.
+    &= \sup_{x, x' \text{ 在 }\mathcal X^n\text{ 只在\,} j\text{\,不同}} \frac1n \left|\phi(x_j) - \phi(x'_j)\right| = \frac1n.
 \end{align*}
 \end{example}
 
