@@ -523,7 +523,7 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\textit{Ll
     
     \item 现考虑输出为$d$维的算法$f: \mathcal X^n \to  \R^d$，定义其全局灵敏度为
     \begin{align*}
-        \mathsf{GS}_f :=& \sup_{ x,  x' \text{ 在 }\mathcal X^n\text{ 中的$1$-相邻}} \norm{f( x) - f( x')}_1\\
+        \mathsf{GS}_f =& \sup_{ x,  x' \text{ 在 }\mathcal X^n\text{ 中的$1$-相邻}} \norm{f( x) - f( x')}_1\\
         =& \sup_{ x,  x' \text{ 在 }\mathcal X^n\text{ 中的$1$-相邻}} \sum_{i=1}^d |f_i( x) - f_i( x')|.
     \end{align*}
     请写出这种情况下的Laplace机制，使其成为$\epsilon$-DP，并证明.
@@ -570,7 +570,7 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\textit{Ll
     
     对于两个$1$-相邻数据集$X$和$X'$，输出$y \in \mathcal Y$和随机算法$A$，我们定义随机算法$A$的\textit{隐私损失}为：
     \[
-        c_A(y,  X, X') := \log \frac{\Pr(A( X) = y)}{\Pr(A( X') = y)}.
+        c_A(y,  X, X') = \log \frac{\Pr(A( X) = y)}{\Pr(A( X') = y)}.
     \]
     证明：随机算法$A$是$(\epsilon, \delta)$-DP的一个充分条件是其隐私损失满足：
     \[

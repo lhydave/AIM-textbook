@@ -33,7 +33,7 @@
 
 Markov链是一种简化的带时间的概率模型，它最重要的性质是Markov性，即在固定现在的情况下，过去与未来相互独立. 这一性质的数学表述为：
 \begin{proposition}[Markov性]\label{prop:markov}
-条件在$X_n=i$下，$\{Y_m\}_{m=0}^{\infty}:=\{X_{m+n}\}_{m=0}^{\infty}$是一个转移矩阵为$P$的Markov链，并且与$(X_0,\dots,X_{n-1})$相互独立.
+条件在$X_n=i$下，$\{Y_m\}_{m=0}^{\infty}=\{X_{m+n}\}_{m=0}^{\infty}$是一个转移矩阵为$P$的Markov链，并且与$(X_0,\dots,X_{n-1})$相互独立.
 \end{proposition}
 证明见习题 \ref{exercise:Markov-property}.
 
@@ -665,7 +665,7 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
     &\sum_{z\in\mathcal Z}\light{\Pr(X_{1:k+1}=x_{1:k+1}, Z_{k+1}=z)}\\
     =& \sum_{z\in \mathcal Z}\light{\Pr(X_{1:k}=x_{1:k}, Z_k=z)}\sum_{z'\in \mathcal Z}T_{z,z'}M_{z',x_{k+1}}.
 \end{align*}
-如果令$\light{\alpha_k(z):=\Pr(X_{1:k}=x_{1:k}, Z_k=z)}$，用类似的计算，我们有递推：
+如果令$\light{\alpha_k(z)=\Pr(X_{1:k}=x_{1:k}, Z_k=z)}$，用类似的计算，我们有递推：
 \begin{itemize}
     \item 当$k=1$，$\light{\alpha_k(z)} = \lambda(z)M_{z,x_k}$.
     \item 当$k>1$，$\light{\alpha_{k+1}(z)} = \sum_{z' \in \mathcal Z}\light{\alpha_{k}(z')}T_{z',z}M_{z,x_{k+1}}$.
@@ -674,7 +674,7 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
 \[\Pr(X=x) = \sum_{z\in \mathcal Z}\light{\alpha_t(z)}.\]
 这一方法需要算的乘法次数是$\O(t|\mathcal Z|^2)$，比前一种计算方法要快很多.
 
-镜像地，我们可以使用后向方程的思路，从前$k+1$步的结果推出前$k$步的结果. 同样可以列出递推方程. 定义$\beta_k(z):=\Pr(X_{k+1:t}=x_{k+1:t} | Z_k=z)$，我们有递推：
+镜像地，我们可以使用后向方程的思路，从前$k+1$步的结果推出前$k$步的结果. 同样可以列出递推方程. 定义$\beta_k(z)=\Pr(X_{k+1:t}=x_{k+1:t} | Z_k=z)$，我们有递推：
 \begin{itemize}
     \item 当$k = t$，$\beta_k(z) = 1$.
     \item 当$1 \leq k < t$，$\beta_{k}(z) = \sum_{z' \in \mathcal Z}T_{z,z'}M_{z',x_{k+1}}\beta_{k+1}(z')$.
@@ -805,11 +805,11 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
 DDPM中的Markov核都是Gauss分布，具体如下：
 \begin{itemize}
     \item 扩散过程：假设真实图片的分布是$q(x_0)$，这就应该$x_0$的初始分布. 扩散过程从$x_{t-1}$到$x_t$就是在$x_{t-1}$上加上一个小的Gauss噪声扰动，因此我们可以写出它的转移核和初始分布：
-    \[q(x_t|x_{t-1}) := \mathcal{N}(x_t; \sqrt{1 - \beta_t x_{t-1}}, \beta_t \mathbf{I}),\quad x_0\sim q(x_0).\]
+    \[q(x_t|x_{t-1}) = \mathcal{N}(x_t; \sqrt{1 - \beta_t x_{t-1}}, \beta_t \mathbf{I}),\quad x_0\sim q(x_0).\]
     这里$\beta_t$是一个超参数，$\mathcal{N}(x;\mu,\Sigma)$是Gauss分布$\mathcal{N}(\mu,\Sigma)$在点$x$的概率密度. 
     \item 逆向过程：扩散的末端$x_T$是一个完全的Gauss噪声，我们不妨设它是标准Gauss分布，即$x_T\sim\mathcal{N}(0,\mathbf{I})$. 逆向过程希望从$x_t$恢复到$x_{t-1}$，因此我们应该用$x_t$和$t$来预测$x_{t-1}$的期望，我们用一个神经网络$\mu_\theta(x_t,t)$来表示这个期望. 于是，逆向过程的转移核和初始分布为：
     \[
-    p_{\theta}(x_{t-1}|x_t) := \mathcal{N}(x_{t-1}; \mu_{\theta}(x_t, t), \sigma_t^2\mathbf{I}),\quad p(x_T)=\mathcal{N}(x_T;\mathbf{0},\mathbf{I}).
+    p_{\theta}(x_{t-1}|x_t) = \mathcal{N}(x_{t-1}; \mu_{\theta}(x_t, t), \sigma_t^2\mathbf{I}),\quad p(x_T)=\mathcal{N}(x_T;\mathbf{0},\mathbf{I}).
     \]  
     这里$\sigma_t$是一个超参数. 
 \end{itemize}
@@ -882,7 +882,7 @@ DDPM中的Markov核都是Gauss分布，具体如下：
 利用Jensen不等式（\Cref{thm:jensen}），$\log(\int q f\d x)\geq\int q\log(f)\d x$，这可以被放缩为：
 \[
 \begin{aligned}
-    K \leq & -\int q\left(x_{0:T}\right) \log \left[p\left(x_{T}\right) \prod_{t=1}^T \frac{p\left(x_{t-1} | x_{t}\right)}{q\left(x_{t} | x_{t-1}\right)}\right] \d x_{0:T}:=L.
+    K \leq & -\int q\left(x_{0:T}\right) \log \left[p\left(x_{T}\right) \prod_{t=1}^T \frac{p\left(x_{t-1} | x_{t}\right)}{q\left(x_{t} | x_{t-1}\right)}\right] \d x_{0:T}=L.
 \end{aligned}
 \]
 
@@ -908,7 +908,7 @@ L_{t-1}=\E_q\left[\frac{1}{2 \sigma_t^2}\norm{\tilde{\mu}_t\left(x_t, x_0\right)
 \end{equation}
 其中$C$是一个不含$\theta$的常数，并且
 \[
-\tilde{\mu}_t\left(x_t, x_0\right):=\frac{\sqrt{\bar{\alpha}_{t-1}} \beta_t}{1-\bar{\alpha}_t} x_0+\frac{\sqrt{\alpha_t}\left(1-\bar{\alpha}_{t-1}\right)}{1-\bar{\alpha}_t} x_t.
+\tilde{\mu}_t\left(x_t, x_0\right)=\frac{\sqrt{\bar{\alpha}_{t-1}} \beta_t}{1-\bar{\alpha}_t} x_0+\frac{\sqrt{\alpha_t}\left(1-\bar{\alpha}_{t-1}\right)}{1-\bar{\alpha}_t} x_t.
 \]
 
 因为$C$是一个常数，我们可以丢弃它而不影响最优值. 接着，利用重参数化

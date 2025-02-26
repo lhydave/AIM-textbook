@@ -45,9 +45,10 @@
 自指为讨论命题的概念带来了非常大的麻烦. 为了避免这些麻烦，我们回避命题到底是什么这一哲学问题，而是把他们抽象为一些字符串，这就是\textit{命题公式}：
 
 \begin{definition}[命题公式]
-\textbf{命题公式}（或简称\textbf{公式}）是由一些\textbf{命题变元}和\textbf{连接词}组成的字符串，它们满足以下递归定义：
+\textbf{命题公式}（或简称\textbf{公式}）是由一些\textbf{命题变元}和\textbf{连接词}组成的字符串，它可以被归纳定义如下：
 \begin{itemize}
     \item 命题变元$p,q,r,\dots$是命题公式. 
+    \item 命题常元$\T$和$\F$是命题公式，分别表示\textit{永真}和\textit{永假}.
     \item 如果$\phi$和$\psi$是命题公式，那么$(\neg\phi)$，$(\phi\vee\psi)$，$(\phi\wedge\psi)$，$(\phi\leftrightarrow\psi)$和$(\phi\to\psi)$都是命题公式. 
 \end{itemize}
 
@@ -64,10 +65,10 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
     \item \textit{语形}：$\Gamma\vdash \phi$.
 \end{itemize}
 
-首先看语义. 所谓语义，就是“句子的含义”. 在命题逻辑中，句子就是命题公式，而含义就是真假. 既然命题公式是递归定义的，命题公式的真假我们也应该递归定义. 
+首先看语义. 所谓语义，就是“句子的含义”. 在命题逻辑中，句子就是命题公式，而含义就是真假. 既然命题公式是归纳定义的，命题公式的真假我们也应该归纳定义. 
 
 \begin{definition}[赋值]
-给定命题变元集合$V$，它形成的命题公式的集合是$L$，一个\textbf{赋值}是一个从$L$到$\{\T,\F\}$的映射$v$，递归定义如下：
+给定命题变元集合$V$，它形成的命题公式的集合是$L$，一个\textbf{赋值}是一个从$L$到$\{\T,\F\}$的映射$v$，归纳定义如下：
 \begin{itemize}
     \item 如果$\phi=p\in V$，那么$v(\phi)=v_p$.
     \item 如果$\phi=\neg\psi$，那么$v(\phi)=\begin{cases} \T, & v(\psi)=\F, \\ \F, & v(\psi)=\T. \end{cases}$
@@ -90,7 +91,7 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
     \bottomrule
 \end{array}
 \]
-于是，定义中的递归可以用直接用$\wedge$来表示：如果$\phi=\psi\wedge\chi$，那么$v(\phi)=v(\psi)\wedge v(\chi)$.
+于是，定义中的归纳可以用直接用$\wedge$来表示：如果$\phi=\psi\wedge\chi$，那么$v(\phi)=v(\psi)\wedge v(\chi)$.
 
 我们看一个例子. 
 
@@ -102,7 +103,7 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
         v&\F&\T&\F\\
         \bottomrule
     \end{array}\]
-    然后递归计算公式的真值. 首先计算$(p\wedge q)$的真值. 根据真值表，我们有
+    然后归纳计算公式的真值. 首先计算$(p\wedge q)$的真值. 根据真值表，我们有
     \[v(p\wedge q)=v(p)\wedge v(q)=\F\wedge\T=\F.\]
     然后计算$(p\wedge q)\to r$的真值：
     \[v((p\wedge q)\to r)=v(p\wedge q)\to v(r)=\F\to\F=\T.\]    
@@ -196,7 +197,9 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 \[p\to q,q\to r\vdash p\to r,\]
 即便我们完全不知道这一推理是如何进行的，我们依然知道这一推理是可行的！
 
-如果$\varnothing\vDash \phi$（简记为$\vDash\phi$），那么称$\phi$为\textit{重言式}. 重言式是不需要加任何假设也一定成立的公式，是这一推理系统所包含的“正确的废话”. 如果$\psi\leftrightarrow\phi$是重言式，我们就说$\psi,\phi$是\textit{等值}的. 等值的公式在演绎推理中可以互相替代使用. 例如：$p\to q$与$\neg q\to\neg p$是等值的，所以证明一个命题也可以去证明它的逆否命题.
+如果$\varnothing\vDash \phi$（简记为$\vDash\phi$），那么称$\phi$为\textit{重言式}. 重言式是不需要加任何假设也一定成立的公式，是推理系统所包含的“正确的废话”. 如果$\psi\leftrightarrow\phi$是重言式，我们就说$\psi,\phi$是\textit{等值}的. 等值的公式在演绎推理中可以互相替代使用. 例如：$p\to q$与$\neg q\to\neg p$是等值的，所以证明一个命题也可以去证明它的逆否命题.
+
+相反地，如果$\varnothing\nvDash \phi$（简记为$\nvDash\phi$），那么称$\phi$为\textit{矛盾式}. 矛盾式是推理系统中永远不可能成立的公式. 例如，$p\wedge\neg p$是矛盾式，表明在命题逻辑中，一个命题和它的否定是不可能同时成立的（矛盾律）.
 
 \begin{remark}
     对本节内容感兴趣的读者，有很多很好的教材可以参考. \cite{vandalenLogicStructure2013} 提供了全面但是简洁明了的讲述，\cite{hamiltonLogicMathematicians1988} 从数学家的角度讲述了数理逻辑的基本观点，\cite{nerodeLogicApplications1997} 则从应用、特别是计算机的角度来讲述数理逻辑. 
@@ -267,7 +270,7 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 
 接下来，我们给合情推理建立一个数学模型. 合情推理的基本方式是给定已知的命题$B$，推出命题$A$的\textit{合理程度}，比如“非常可能是真的”“可能是真的”“可能是假的”“非常可能是假的”等，我们用符号$A|B$表示这一合理程度. 
 
-在写出符号的时候，我们已经假设了合理程度所对应的数学对象：$A|B$应该是$L\times L\to\R$的函数，这里$L$是命题公式的集合. 但是，这一表述是有瑕疵的，因为不是所有的前提到结论的推理都可以用合理程度来描述. 比如，$B$是“太阳从西边升起“，前提根本就是一个假命题，从假命题出发，何谈“合情”？所以，符号$A|B$应该只对一些特定的$A,B$有意义，我们称之为$L\times L\to\R$的\textit{偏函数}，并将这一函数写为$f(A|B)$，称作\textit{似然}.
+在写出符号的时候，我们已经假设了合理程度所对应的数学对象：$A|B$应该是$L\times L\to\R$的函数，这里$L$是命题公式的集合. 但是，这一表述是有瑕疵的，因为不是所有的前提到结论的推理都可以用合理程度来描述. 比如，$B$是“太阳从西边升起”，前提根本就是一个假命题，从假命题出发，何谈“合情”？所以，符号$A|B$应该只对一些特定的$A,B$有意义，我们称之为$L\times L\to\R$的\textit{偏函数}，并将这一函数写为$f(A|B)$，称作\textit{似然}.
 
 我们还没有确定这一映射的具体形式. 但是，这样的映射要满足两个原则：
 \begin{enumerate*}
@@ -329,7 +332,7 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 
 我们定义的$F$具有如下性质：
 \begin{theorem}\label{theorem:form-of-F}
-    如果$F$是二阶连续可微函数，那么$F$充分必要地满足
+    如果$F$是二阶连续可微函数，那么$F$充分必要地满足，对任意是似然的实数$p$，$q$\footnote{由于似然函数是偏函数，因此，我们并不能保证对所有的实数都能满足这一点，因此，这里必须要求$p$，$q$是某个合情推理的似然。类似的要求在后面也会出现，为了简便起见，我们将省略所有量词，但请务必小心这一表述. }，
         \[cg(F(p,q))=g(p)g(q),\]
         这里，$c$是某个常数，$g$是某个$\R\to\R$的函数.
         因此，对任意命题公式$\alpha,\beta,\gamma$，成立
@@ -351,7 +354,7 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 
 在与规则限制之下，我们可以证明$S$具有如下性质：
 \begin{theorem}\label{theorem:form-of-S}
-    如果$S$二阶连续可微，那么$S$充分必要地满足
+    如果$S$二阶连续可微，那么$S$充分必要地具有如下形式：
     \begin{equation*}
         S(x) = (1 - x^m)^{1/m},
     \end{equation*}
@@ -374,7 +377,7 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 
 由上，我们得到了合情推理的三个基本原则：等值原则、与规则和否定规则. 这三个原则构成了合情推理的基本框架.
 
-接下来，我们说明，这三个原则就已经足够用来计算任意的合情推理. 首先，连接词$\{\wedge,\neg\}$组成了演绎逻辑的完备集：所有真值函数都可以用这个集合的词来表示，因此，根据等值规则，只要可以计算包含$\wedge$和$\neg$的合情推理，就可以计算任意合情推理. 其次，我们可以用与规则来计算$\wedge$，否定规则计算$\neg$，因此，任何命题都可以通过这三个原则来计算.
+接下来，我们说明，这三个原则就已经足够用来计算任意的合情推理. 首先，连接词$\{\wedge,\neg\}$组成了演绎推理的完备集：所有真值函数都可以用这个集合的词来表示，因此，根据等值规则，只要可以计算包含$\wedge$和$\neg$的合情推理，就可以计算任意合情推理. 其次，我们可以用与规则来计算$\wedge$，否定规则计算$\neg$，因此，任何命题都可以通过这三个原则来计算.
 
 \begin{example}
     例如，计算$f(A\vee B|C)$,
@@ -406,7 +409,7 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
     \begin{itemize}
         \item 规范性：$\Pr(\Omega)=1$.
         \item 非负性：对任意$A\in\mathscr{F}$，$\Pr(A)\in[0,1]$.
-        \item 可列可加性：对$A_1,A_2,\dots$满足$A_i\cap A_j=\varnothing,i\neq j$，有
+        \item 可列可加性：对$A_1,A_2,\dots\in\mathscr{F}$满足$A_i\cap A_j=\varnothing,i\neq j$，有
         \[\Pr\left(\bigcup_i A_i\right)=\sum_i \Pr(A_i).\]
     \end{itemize}
 \end{definition}
@@ -478,9 +481,16 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 
 \section{合情推理的论证方式}
 
+我们首先说明本节讨论的对象，即\textit{论证}. 论证与推理是两个密切相关的概念，在本书中，他们的主要区别在于：推理通常强调从已知前提得出结论的过程，强调的是过程本身如何\textit{一步一步}进行. 而论证更侧重于强调前提和结论之间的关系，例如，对于命题$X$和$Y$，论证十分关注从$X$出发推出$Y$的过程是否站得住脚，是否能够说$X$可以支持$Y$. 因而，我们可以说，推理是论证的一种手段. 
+
+本节主要关心的对象可以被记为$X\implies Y$，即从$X$出发可以推出$Y$，或者说$X$支持$Y$，这是一个演绎推理或者合情推理. 本节的目标是研究这一推理过程什么时候会是合情推理的论证方式，我们称之为\textit{合情论证}，并且将其与演绎论证进行比较.
+
 \subsection{合情论证}\label{subsec:inductive-strong-argument}
 
 在基率谬误的例子中，我们看到合情推理必须要完整地考虑先验的影响.另一方面，我们看到最终做出决策的方式是\textit{最大似然}，即似然更高的那个命题更有可能是对的. 这说明合情推理中有很不同于演绎推理的论证方式.
+
+
+
 
 我们首先指出合情推理包含了命题逻辑中的两个强三段论：
         \[
@@ -494,9 +504,9 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
             \end{array}
         \end{array} 
     \]
-我们以第一个三段论为例，记$C \equiv A \to B$. 由链式法则，$\Pr(B|AC) = \Pr(AB|C) / \Pr(A|C)$. $A \to B$意味着作为事件$A\subseteq B$，即$AB=A$，$\Pr(AB|C) = \Pr(A|C)$. 代入上式得到 $\Pr(B|AC) = 1$，这就是说，当$A$为真时，$B$也为真.
+我们以第一个三段论为例，用$C$表示$A \to B$. 由链式法则，$\Pr(B|AC) = \Pr(AB|C) / \Pr(A|C)$. $A \to B$意味着作为事件$A\subseteq B$，即$AB=A$，$\Pr(AB|C) = \Pr(A|C)$. 代入上式得到 $\Pr(B|AC) = 1$，这就是说，当$A$为真时，$B$也为真.
 
-除了演绎逻辑中的强三段论，合情推理还包含了弱三段论的定量形式：
+除了演绎推理中的强三段论，合情推理还包含了弱三段论的定量形式：
     \[\begin{array}{c}  
             A \to B \\ B\text{ 是真的} \\ \hline A\text{ 变得更合理}
         \end{array}\]
@@ -504,13 +514,15 @@ $\Pr(A|\cdot)$是$A$的似然，而$\Pr(A|B\cdot)$是假设$B$为真时，$A$的
 
 仿照三段论，现在我们将演绎推理中的若干概念推广到合情推理中. 
 
-回忆记号$X\vdash Y$表示从前提为 $X$出发可以根据推导规则得到结论$Y$. 此时，我们说从$X$到$Y$的过程是一个\textit{演绎论证}，或者说$Y$是$X$的\textit{逻辑结论}. 它与以下三个表述等价：
+回忆记号$X\vdash Y$表示从前提为 $X$出发可以根据推导规则得到结论$Y$. 此时，我们说从$X\implies Y$是一个\textit{演绎论证}. 它与以下三个表述等价：
     \begin{itemize}
         \item $X\vDash Y$.
         \item  $X\to Y$是重言式.
         \item $X\wedge \neg Y$ 是矛盾式.
     \end{itemize}
-等价性证明由蕴含的推导法则和完备性定理得出. 那么，如何在合情推理中定义类似的概念呢？为此，我们引入\textit{随机真值表}. 
+等价性证明由蕴含的推导法则和完备性定理得出. 
+
+那么，如何在合情推理中定义类似的概念呢？为此，我们引入\textit{随机真值表}. 
 
 回忆，事件是命题的集合论描述. 合情推理中，每个事件被赋予一个概率（似然），对应的命题也会被赋予同样的概率. 于是对应于演绎推理中的语义真值表，合情推理中有\textit{随机真值表}，例如
 \[
@@ -550,21 +562,47 @@ $\Pr(A|\cdot)$是$A$的似然，而$\Pr(A|B\cdot)$是假设$B$为真时，$A$的
 从这个例子出发，我们得到另一个限制条件：\textit{正相关性}，它的定义如下. 
 
 \begin{definition}[相关性]
-    对随机变量$X$ 和 $Y$，如果$\Pr(Y|X) > \Pr(Y)$，我们称$X$ 与 $Y$ \textit{正相关}. 等价地，示性函数$I(X)$和$I(Y)$相关系数大于$0$. 类似地，如果$\Pr(Y|X) < \Pr(Y)$（或$I(X)$和$I(Y)$的相关系数小于$0$），那么$X$和$Y$\textit{负相关}. 如果$\Pr(Y|X) = \Pr(Y)$（或$I(X)$和$I(Y)$的相关系数等于$0$），那么$X$和$Y$\textit{不相关}. 在合情论证中，我们要求$X$和$Y$正相关.
+    对命题$X$ 和 $Y$，如果$\Pr(Y|X) > \Pr(Y)$，我们称$X$ 与 $Y$ \textit{正相关}. 
+    
+    类似地，如果$\Pr(Y|X) < \Pr(Y)$，那么$X$和$Y$\textit{负相关}.
+    
+    如果$\Pr(Y|X) = \Pr(Y)$（或$I(X)$和$I(Y)$的相关系数等于$0$），那么$X$和$Y$\textit{不相关}. 
+    
+    在合情论证中，我们要求$X$和$Y$正相关.
 \end{definition}
+
+相关性还有另一种等价的定义方式，这一定义给出了“相关性”这一名称的由来，我们叙述如下. 对命题（也就是事件）$X$，定义\textit{示性函数}$I(X)$为一个随机变量，它的取值为
+    \[
+        I(X) = \begin{cases}
+            1, & X \text{\,为真}, \\
+            0, & X \text{\,为假}.
+        \end{cases}
+    \]
+那么，$\Pr(X) = \E[I(X)]$. 从定义就可以看出，$X$和$Y$正相关等价为示性函数$I(X)$和$I(Y)$相关系数大于$0$. 同理，$X$和$Y$负相关等价为示性函数$I(X)$和$I(Y)$相关系数小于$0$，$X$和$Y$不相关等价为相关系数等于$0$. 我们将这一命题总结如下.
+
+\begin{proposition}
+    对命题$X,Y$，下列等价成立：
+    \begin{itemize}
+        \item $X$ 和 $Y$ 正相关当且仅当$I(X)$和$I(Y)$的相关系数大于$0$.
+        \item $X$ 和 $Y$ 负相关当且仅当$I(X)$和$I(Y)$的相关系数小于$0$.
+        \item $X$ 和 $Y$ 不相关当且仅当$I(X)$和$I(Y)$的相关系数等于$0$.
+    \end{itemize}
+\end{proposition}
+
+进一步，$X$和$Y$的相关系数等于$0$等价于$X$和$Y$相互独立，这是少数相关性和独立性重合的场景之一，证明见习题 \ref{exercise:correlation-independence}.
 
 加上以上两个限制条件，我们可以得到合情论证的严格定义.
 
 \begin{definition}[合情论证]
-    如果推理$X \implies Y$ 满足以下三个条件，我们称之为\textit{合情论证}：
+    考虑命题$X$和$Y$，如果推理$X \implies Y$ 满足以下三个条件，我们称之为\textit{合情论证}：
 	\begin{itemize}
 	\item $X$ 证据支持 $Y$：$\Pr(Y|X)>0.5$.
 	\item $X$ 与 $Y$ 正相关： $\Pr(Y|X) > \Pr(Y)$. 
-	\item $X\rightarrow Y$ 不是演绎论证.
+	\item $X\implies Y$ 不是演绎论证.
 	\end{itemize}
 \end{definition}
 
-不将演绎论证定义为合情论证得原因之一是：一个论证可以在前提$X$是矛盾式时有效. 例如：$P \wedge \neg P \vdash Q$ 是演绎论证. 但是，由于$\Pr(P \wedge \neg P) = 0$，$\Pr(Q | P \wedge \neg P)$是无定义的，所以$P \wedge \neg P$并不证据支持$Q$，也不和$Q$正相关.
+不将演绎论证包含在合情论证的原因之一是：一个论证可以在前提$X$是矛盾式时有效. 例如：$P \wedge \neg P \vdash Q$，因而是一个演绎论证. 但是，由于$\Pr(P \wedge \neg P) = 0$，$\Pr(Q | P \wedge \neg P)$是无定义的，所以$P \wedge \neg P$并不证据支持$Q$，也不和$Q$正相关.
 
 进一步，我们还希望能够衡量前提$X$在多大程度上确认结论$Y$成立，我们可以通过如下两个量来衡量：
 \begin{definition}[认可度]
@@ -583,7 +621,7 @@ $\Pr(A|\cdot)$是$A$的似然，而$\Pr(A|B\cdot)$是假设$B$为真时，$A$的
 
 这两个认可度的定义其实相互可以转化（见习题 \ref{exercise:admissible}）. 利用这一转化，认可度和相关性的关系可以表达如下：
 \begin{proposition}
-    设 $0< \Pr(X),\Pr(Y) < 1$，下列等价成立：
+    考虑命题$X,Y$，设 $0< \Pr(X),\Pr(Y) < 1$，下列等价成立：
     \begin{itemize}
         \item $X$ 和 $Y$ 正相关$\iff d(X,Y) > 0\iff \ell(X, Y) > 0$.
         \item $X$ 和 $Y$ 不相关$\iff d(X, Y) = 0\iff \ell(X, Y) = 0$. 
@@ -593,7 +631,7 @@ $\Pr(A|\cdot)$是$A$的似然，而$\Pr(A|B\cdot)$是假设$B$为真时，$A$的
 
 认可度与演绎论证的关系可以表达如下：
 \begin{proposition}
-    设$0< \Pr(X),\Pr(Y) < 1$，那么
+    考虑命题$X,Y$，设$0< \Pr(X),\Pr(Y) < 1$，那么
     \[
         d(X, Y) =
         \begin{cases}
@@ -641,7 +679,7 @@ $\Pr(A|\cdot)$是$A$的似然，而$\Pr(A|B\cdot)$是假设$B$为真时，$A$的
 $\Pr(Y|X) = (0.1 + 0.2) / (0.1 + 0.2 + 0.2 + 0) = 0.6 > 0.5$，然而，$\Pr(Y|X \wedge Z) = (0.1) / (0.1 + 0.2) = 1/3 < 0.5$. 因此，$X$证据支持$Y$，但$X\wedge Z$不支持$Y$.
 \end{example}
 
-接下来，我们用$Z$论证$Y$，将$X$看作某种附加的条件，我们考虑$X$对$Y$这一论据的影响. 在演绎推理中，若 $Z,X\vdash Y$ 和 $Z,\neg X\vdash Y$ 都满足，则 $Z\vdash Y$. 换言之，不论补充论据$X$还是$\neg X$，从$Z$出发都可以论证出$Y$. 
+接下来，我们用$Z$论证$Y$，将$X$看作某种附加的条件，我们考虑$X$对这一论证的影响. 在演绎推理中，若 $Z,X\vdash Y$ 和 $Z,\neg X\vdash Y$ 都满足，则 $Z\vdash Y$. 换言之，不论补充论据$X$还是$\neg X$，从$Z$出发都可以论证出$Y$. 
 
 如果类比到合情推理中呢？这就涉及到\textit{确凿性原则}：如果不论条件在$X$还是$\neg X$，$Z$都是$Y$的一个“好的论据”，那么$Z$就是$Y$的一个“好的论据”. 与之相对应的是\textit{无条件确凿性原则}：如果$Z\wedge\neg X$和$Z\wedge X$都是$Y$的一个“好的论据”，那么$Z$就是$Y$的一个“好的论据”. “好的论据”可以从证据支持和正相关性两方面考虑.
 
@@ -693,7 +731,7 @@ $\Pr(Y|X) = (0.1 + 0.2) / (0.1 + 0.2 + 0.2 + 0) = 0.6 > 0.5$，然而，$\Pr(Y|X
 
 Simpson悖论在这一实例下表现为：来自清华大学的学生两分命中率和三分命中率分别都比全班平均水平高，但总体投篮命中率反倒比全班水平低.
 
-我们将这两个概率用全概公式展开来寻找原因：
+我们将这两个概率用全概率公式展开来寻找原因：
 \begin{align*}
     \Pr(Y|Z) &= \light{\Pr(Y|Z\wedge X)}\Pr(X|Z) + \light{\Pr(Y|Z\wedge\neg X)}\Pr(\neg X|Z),\\
     \Pr(Y) &= \contrastlight{\Pr(Y|X)}\Pr(X) +\contrastlight{ \Pr(Y|\neg X)}\Pr(\neg X).
@@ -718,13 +756,13 @@ Simpson悖论在这一实例下表现为：来自清华大学的学生两分命�
 
 \begin{table}[htbp]
     \centering
-    \begin{tabular}{c|c|c}
+    \begin{tabular}{c|ccc}
         \toprule
-        性质 & 证据支持 & 正相关 \\ \midrule
-        单调性 & 无 & 习题 \ref{exercise:monotone-positive-related} \\
-        无条件确凿性原则 & 有 & 有 \\
-        确凿性原则 & 有 & 无 \\
-        合取原则 & 有 & 无 \\
+        性质 & 证据支持 & 正相关& 演绎论证\\ \midrule
+        单调性 & 无 & 习题 \ref{exercise:monotone-positive-related} & 有 \\
+        无条件确凿性原则 & 有 & 有 & 有 \\
+        确凿性原则 & 有 & 无 & 有 \\
+        合取原则 & 有 & 无 & 有 \\
         \bottomrule
     \end{tabular}
     \caption{演绎论证和合情论证的比较}
@@ -788,7 +826,7 @@ Simpson悖论在这一实例下表现为：来自清华大学的学生两分命�
 
     \item 将习题 \ref{exercise:deduction-rule} 中的命题用真值表的方式证明他们是重言式.
     
-    \item 考虑两个事实，AI中的数学考试只会做题的人必然考不了70分；潘数同学AI中的数学考了100分. 回答以下问题：
+    \item 考虑两个事实，AI中的数学考试只会做题的人必然考不到70分；潘数同学AI中的数学考了100分. 回答以下问题：
     \begin{enumerate}
         \item 从中构造出一个强三段论的论证.
         \item 从中构造出一个弱三段论的论证. 
@@ -839,7 +877,7 @@ Simpson悖论在这一实例下表现为：来自清华大学的学生两分命�
     \end{array}
     \]
 
-    \item 设$I(A)$表示事件$A$的示性函数，对于事件$X$和$Y$，证明：$I(X)$ 与 $I(Y)$ 相关系数为$0$等价于 $X$ 与 $Y$ 互相独立.
+    \item \label{exercise:correlation-independence} 设$I(A)$表示事件$A$的示性函数，对于事件$X$和$Y$，证明：$I(X)$ 与 $I(Y)$ 相关系数为$0$等价于 $X$ 与 $Y$ 互相独立.
 
     \item \label{exercise:monotone-positive-related} 从正相关的角度，合情论证有单调性吗？证明你的结论.
     

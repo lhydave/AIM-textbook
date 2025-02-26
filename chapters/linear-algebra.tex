@@ -67,7 +67,7 @@
 设$V$是$F$-线性空间，$W$是$V$的一个子集. 如果$W$是一个线性空间，则称$W$是$V$的一个\textbf{线性子空间}. 
 \end{definition}
 
-例如，$\Q$是$\R$的一个线性子空间，但$\Z$不是$\R$的一个线性子空间. 再比如，当$k<l$，$C^k(\R)$是$C^l(\R)$的一个线性子空间. 
+例如，$\Q$是$\R$的一个线性子空间，但$\Z$不是$\R$的一个线性子空间. 再比如，当$k>l$，$C^k(\R)$是$C^l(\R)$的一个线性子空间. 
 
 \begin{definition}[乘积空间]
 设$V_1,\dots,V_n$是$F$-线性空间，则$V_1\times\dots\times V_n$是一个$F$-线性空间，其中加法和数乘分别定义为
@@ -516,9 +516,9 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 \]
 根据坐标的基变换公式，$X=PX'$，$Y=PY'$，所以
 \[
-    X^\t AY=(AX')^\t P(AY')=X'^\t (A^\t P A)Y'.
+    X^\t AY=(PX')^\t A(PY')=X'^\t (P^\t A P)Y'.
 \]
-由于$x,y$是任意的，$X,Y$也是任意的，联立上面两式，$A'=A^\t P A$，这就是基变换公式. 对应到矩阵中，这被称为\textit{合同变换}. 
+由于$x,y$是任意的，$X,Y$也是任意的，联立上面两式，$A'=P^\t A P$，这就是基变换公式. 对应到矩阵中，这被称为\textit{合同变换}. 
 
 \begin{definition}[合同矩阵]\label{def:congruent-matrix}
     设$A,B$都是$n$阶方阵，如果存在一个可逆方阵$P$，使得$B=P^\t A P$，那么称$A$和$B$是\textbf{合同的}. 

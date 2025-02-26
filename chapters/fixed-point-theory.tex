@@ -230,7 +230,7 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\dots+d(x_{n+k-1},x_{n+k})\\
 将一座公园的地图铺开在公园地面上，则地面上恰有唯一一点与地图上对应的点重合. 
 
 设公园可以用有界的面闭区域$\Omega$表示. 设地图的压缩比是$\lambda\in(0,1)$. 现在固定一个平面直角坐标系，把地图铺在区域$\Omega$内，则从$\Omega$内的点$x$（公园中的地点）到地图上对应点$x'$的变换由下面的公式给出：
-\[x' = f(x) := \lambda Rx + b.\]
+\[x' = f(x) = \lambda Rx + b.\]
 其中$R$和$b$分别为旋转和平移变换. 
 
 根据旋转的定义，容易看出$\norm{Rx}=\norm{x}$，因此
@@ -289,7 +289,7 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\dots+d(x_{n+k-1},x_{n+k})\\
 
 \begin{definition}[开集、闭集和紧集]
     考虑度量空间$(X,d)$，定义$a\in X$的邻域为
-    \[B(a,\delta):=\{x\in X|d(a,x)<\delta\}.\]
+    \[B(a,\delta)=\{x\in X|d(a,x)<\delta\}.\]
     考虑一个集合$K\subseteq X$，
 \begin{itemize}
     \item 如果对任意$x\in G$，都存在邻域$B(x,\delta)\subseteq G$，那么$G$是\textbf{开集}.
@@ -387,7 +387,7 @@ Brouwer不动点定理可以通过该实际的例子来理解：将一张白纸�
 \end{lemma}
 \begin{proof}
 考虑单纯形
-\[S:=\left\{x\in\R^n|x\geq 0,\sum_i x_i=1\right\}.\]
+\[S=\left\{x\in\R^n|x\geq 0,\sum_i x_i=1\right\}.\]
 任意$x\in S$，有$Ax\geq 0$. 
 
 我们断言$Ax>0$. 若不然，$A$存在某一列全$0$（由$x\geq 0$和$A$非负可得）. 此时可将该$0$列交换到第一列，对应的行也交换，得到的矩阵为分块上三角，与不可约性矛盾.

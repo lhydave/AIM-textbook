@@ -49,7 +49,7 @@
 首先，我们只考虑最简单的情况，基础语言是命题逻辑，然后在其中加入一个\textit{模态算子}. 
 
 \begin{definition}[基本模态语言]
-给定命题字母表$\mathbf P$，我们定义它的\textbf{基本模态语言} $L$，按照如下方式递归生成：
+给定命题字母表$\mathbf P$，我们定义它的\textbf{基本模态语言} $L$，按照如下方式归纳生成：
 \begin{itemize}
     \item 命题字母$p\in \mathbf P$属于$L$，$\top$属于$L$. 
     \item 如果$\phi$属于$L$，那么$\neg\phi$ 和$\Box\phi$也属于$L$. 
@@ -214,7 +214,7 @@ Kripke模型并没有指定一个真实世界，接下来，我们引入一个�
 现在，我们可以定义模态逻辑的语义，即\textit{Kripke语义}. 
 
 \begin{definition}[Kripke语义]
-考虑基本命题模态逻辑$L$. 符号$\mathcal M,w\vDash\phi$表示$\phi$在点模型$\mathcal M,w$是\textbf{可满足的}. 这一概念可以递归定义如下：
+考虑基本命题模态逻辑$L$. 符号$\mathcal M,w\vDash\phi$表示$\phi$在点模型$\mathcal M,w$是\textbf{可满足的}. 这一概念可以归纳定义如下：
 \begin{itemize}
 \item $\mathcal M, w\vDash\top$永远成立. 
 \item $\mathcal M, w\vDash p$当且仅当$p\in V(w)$. 

@@ -416,7 +416,7 @@ $B$ & $(1, -10)$ & $(0, 0)$ \\
 假设玩家$2$的类型为$\theta_2^0$. 我们对玩家$1$的所有可能类型分类讨论：
 \begin{itemize}
     \item 如果玩家$1$的类型为$\theta_1^0$，那么左边的矩阵被选择，对于玩家$2$来说，这种情况的概率为
-    \[\Pr(\theta_1^0|\theta_2^0) = \frac{p}{p+\epsilon(1-p)} := \mu_2^0.\] 
+    \[\Pr(\theta_1^0|\theta_2^0) = \frac{p}{p+\epsilon(1-p)} = \mu_2^0.\] 
     \item 如果玩家$1$的类型为$\theta_1^1$，那么右边的矩阵被选择，对于玩家$2$来说，这种情况的概率为
     \[\Pr(\theta_1^1|\theta_2^0) = 1 - \mu_2^0.\]
 \end{itemize}
@@ -450,7 +450,7 @@ $B$ & $(1, -10)$ & $(0, 0)$ \\
 假设玩家$1$的类型为$\theta_1^1$，于是，右边的矩阵被选择. 同样，对玩家$2$的类型分类：
 \begin{itemize}
     \item 如果玩家$2$的类型为$\theta_2^0$，对于玩家$1$来说，这种情况的概率为
-    \[\Pr(\theta_2^0|\theta_1^1) = \frac{\epsilon(1-p)}{\epsilon(1-p)+\epsilon(1-\epsilon)(1-p)} := \mu_2^1.\]
+    \[\Pr(\theta_2^0|\theta_1^1) = \frac{\epsilon(1-p)}{\epsilon(1-p)+\epsilon(1-\epsilon)(1-p)} = \mu_2^1.\]
     \item 如果玩家$2$的类型为$\theta_2^1$，对于玩家$1$来说，这种情况的概率为
     \[\Pr(\theta_2^1|\theta_1^1) = 1 - \mu_2^1.\]
 \end{itemize}
@@ -507,7 +507,7 @@ $B$ & $(1, -10)$ & $(0, 0)$ \\
 
 \begin{definition}[Aumann知识算子]
     对于每一个玩家$i$，我们定义\textbf{Aumann知识算子}$K_i:2^\Omega\to 2^\Omega$为
-    \[K_i(e):=\{\omega\in\Omega:\mathcal P_i(\omega)\subseteq e\}.\]
+    \[K_i(e)=\{\omega\in\Omega:\mathcal P_i(\omega)\subseteq e\}.\]
     因此$K_i(e)$是一个事件，表示“个体$i$知道事件$e$”. 不引起混乱的时候我们也省略括号，写作$K_ie$.
 \end{definition}
 
