@@ -805,7 +805,7 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
 DDPM中的Markov核都是Gauss分布，具体如下：
 \begin{itemize}
     \item 扩散过程：假设真实图片的分布是$q(x_0)$，这就应该$x_0$的初始分布. 扩散过程从$x_{t-1}$到$x_t$就是在$x_{t-1}$上加上一个小的Gauss噪声扰动，因此我们可以写出它的转移核和初始分布：
-    \[q(x_t|x_{t-1}) = \mathcal{N}(x_t; \sqrt{1 - \beta_t x_{t-1}}, \beta_t \mathbf{I}),\quad x_0\sim q(x_0).\]
+    \[q(x_t|x_{t-1}) = \mathcal{N}(x_t; \sqrt{1 - \beta_t} x_{t-1}, \beta_t \mathbf{I}),\quad x_0\sim q(x_0).\]
     这里$\beta_t$是一个超参数，$\mathcal{N}(x;\mu,\Sigma)$是Gauss分布$\mathcal{N}(\mu,\Sigma)$在点$x$的概率密度. 
     \item 逆向过程：扩散的末端$x_T$是一个完全的Gauss噪声，我们不妨设它是标准Gauss分布，即$x_T\sim\mathcal{N}(0,\mathbf{I})$. 逆向过程希望从$x_t$恢复到$x_{t-1}$，因此我们应该用$x_t$和$t$来预测$x_{t-1}$的期望，我们用一个神经网络$\mu_\theta(x_t,t)$来表示这个期望. 于是，逆向过程的转移核和初始分布为：
     \[
