@@ -163,7 +163,7 @@ Kolmogorov-Chapman方程有两个重要的特例，前向方程：
     \begin{equation}
         \min_{ij}p_{ij}^{(n_0)}>0,\label{eq:reachable}
     \end{equation}
-    那么存在分布$\lambda=(\lambda_1,\dots,\lambda_N)$使得
+    那么存在分布$\lambda=(\lambda_1,\dots,\lambda_N)^\t$使得
     \begin{equation}
         \lambda_i>0,\quad\sum_i\lambda_i=1,\label{eq:positive-distribution}
     \end{equation}
@@ -226,16 +226,29 @@ M_j^{\left(n_0+n\right)} \leq M_j^{(n)} (1-\varepsilon) + \varepsilon p_{j j}^{(
 \[
 M_j^{\left(n_0+n\right)} - m_j^{\left(n_0+n\right)} \leq \left(M_j^{(n)} - m_j^{(n)}\right)(1-\varepsilon),
 \]
-说明当 $n \rightarrow \infty$，$M_j^{(n)} - m_j^{(n)} \to 0$，$M^{(n)}$和$m^{(n)}$趋于同一个极限. 
+重复这一过程：
+\begin{align*}
+M_j^{\left(n_0+n\right)} - m_j^{\left(n_0+n\right)} &\leq \left(M_j^{(n)} - m_j^{(n)}\right)(1-\varepsilon) \\
+&\leq \left(M_j^{(n-n_0)} - m_j^{(n-n_0)}\right)(1-\varepsilon)^2 \\
+&\leq \cdots \\
+&\leq \left(M_j^{(n-n_0\cdot[n/n_0])} - m_j^{(n-n_0\cdot[n/n_0])}\right)(1-\varepsilon)^{\left[n/n_0\right]} \\
+&\leq (1-\varepsilon)^{\left[n/n_0\right]}.
+\end{align*}
+因此，$M_j^{(n)} - m_j^{(n)}$以指数速度收敛于$0$.
 
-% 结论
-若记 $\lambda_j = \lim _n m_j^{(n)}$，则
+由于 $m_j^{(n)}$有界且单调递增，因此存在极限 $\lambda_j = \lim _n m_j^{(n)}$，这也是$M_j^{(n)}$的极限. 进一步，我们有
 \[
-\left|p_{i j}^{(n)} - \lambda_j\right| \leq M_j^{(n)} - m_j^{(n)} \leq (1-\varepsilon)^{\left[n / n_0\right] - 1},
+    \left|p_{i j}^{(n)} - \lambda_j\right| \leq M_j^{(n)} - m_j^{(n)} \leq (1-\varepsilon)^{\left[n / n_0\right] - 1},
 \]
-即 $p_{i j}^{(n)}$ 以指数速度收敛于极限值 $\lambda_j$. 
+即 $p_{i j}^{(n)}$ 以指数速度收敛于极限值 $\lambda_j$，这就推出了 \eqref{eq:converge-to-limit}.
 
-因为$m_j^{(n)} \geqslant m_j^{\left(n_0\right)} \geqslant \varepsilon > 0, n \geqslant n_0$，所以$\lambda_j > 0$. 这就推出了 \eqref{eq:positive-distribution} 和 \eqref{eq:converge-to-limit}. 
+上述不等式对$j$求和，有
+\begin{align*}
+    \left|1-\sum_{j} \lambda_j\right|&=\left|\sum_{j}\left(p_{i j}^{(n)} - \lambda_j\right)\right|\\
+    &\leq \sum_{j}\left|p_{i j}^{(n)} - \lambda_j\right|\\
+    &\leq N(1-\varepsilon)^{\left[n / n_0\right] - 1}\to 0.
+\end{align*}
+又因为$m_j^{(n)} \geqslant m_j^{\left(n_0\right)} \geqslant \varepsilon > 0, n \geqslant n_0$，所以$\lambda_j > 0$. 这就推出了 \eqref{eq:positive-distribution}.
 
 接下来，我们说明 \eqref{eq:positive-distribution} 和 \eqref{eq:converge-to-limit} 可以推出 \eqref{eq:reachable}.  因为状态数有限，所以对任意充分小的$\varepsilon > 0$，存在$n_0$使得对任意$i,j$，
 \[
@@ -247,9 +260,10 @@ p_{i j}^{(n)} \geq \lambda_j - \varepsilon > 0, n \geq n_0.
 \]
 
 最后我们说明 \eqref{eq:converge-to-limit} 可以推出 \eqref{eq:stationary}. 注意到
-\[
-\lim_{n \to \infty} \lambda^\t \calP^n = \left(\sum_i \lambda_i \lambda_1, \sum_i \lambda_i \lambda_2, \ldots, \sum_i \lambda_i \lambda_N\right)=\lambda^\t.
-\]
+\begin{align*}
+    \lim_{n \to \infty} \lambda^\t \calP^n &=\lim_{n \to \infty} \left(\sum_i \lambda_i p_{i1}^{(n)}, \sum_i \lambda_i p_{i2}^{(n)}, \ldots, \sum_i \lambda_i p_{iN}^{(n)}\right)\\
+    &=\left(\sum_i \lambda_i \lambda_1, \sum_i \lambda_i \lambda_2, \ldots, \sum_i \lambda_i \lambda_N\right)=\lambda^\t.
+\end{align*}
 等式两边同时右乘$\calP$，左边的极限不变，右边变成$\lambda^\t \calP$，所以$\lambda^\t \calP = \lambda^\t$.
 \end{proof}
 
