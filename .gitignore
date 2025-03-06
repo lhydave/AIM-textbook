@@ -9,6 +9,7 @@
 *.out
 *.synctex.gz
 *.synctex.gz(busy)
+*.synctex(busy)
 *.thm
 *.toc
 *.xdv

@@ -27,19 +27,19 @@
            =&\Pr(X_{t+1}=j| X_{t}=k)=p_{kj}.
 		\end{align*}
     \end{itemize}
-    有时候也考虑带初态的Markov链，此时$X_0$服从分布$\lambda=(\lambda_s)_{s\in \calS}$.
+    有时也考虑带初始分布的Markov链，$X_0$服从某一分布$\lambda=(\lambda_s)_{s\in \calS}$，即$\Pr(X_0=s)=\lambda_s$，是初始状态的概率分布.
 \end{definition}
-我们给出的定义是简化的Markov链，每个时刻之间的转移都是一样的转移矩阵，这样的Markov链被称为\textit{时齐的}. 有时候也会考虑非时齐的Markov链（例如扩散模型），即每个时刻之间的转移矩阵不一样，这样的Markov链被称为\textit{非时齐的}，此时$t$时刻的转移矩阵是$\calP^{(t)}$，定义中Markov性的转移概率是$p_{kj}^{(t)}$.
+我们给出的定义是简化的Markov链，每个时刻之间的转移都是一样的转移矩阵，这样的Markov链被称为\textit{时齐的}. 有时候也会考虑非时齐的Markov链（例如扩散模型），即每个时刻之间的转移矩阵不一样，这样的Markov链被称为\textit{非时齐的}，此时$t$时刻的转移矩阵是$\calP(t)$，定义中Markov性的转移概率是$p_{kj}(t)$.
 
 Markov链是一种简化的带时间的概率模型，它最重要的性质是Markov性，即在固定现在的情况下，过去与未来相互独立. 这一性质的数学表述为：
 \begin{proposition}[Markov性]\label{prop:markov}
-给定Markov链$\{X_t\}_{t=0}^{\infty}$，定义$Y_m=X_{n+m}$，$m\geq 0$，那么，条件在$X_n=i$下，$\{Y_m\}_{m=0}^{\infty}$是一个转移矩阵为$P$的Markov链，并且与$(X_0,\dots,X_{n-1})$相互独立.
+给定Markov链$\{X_t\}_{t=0}^{\infty}$，转移矩阵为$\calP$，定义$Y_m=X_{n+m}$，$m\geq 0$，那么，条件在$X_n=i$下，$\{Y_m\}_{m=0}^{\infty}$是一个转移矩阵为$\calP$的Markov链，并且与$(X_0,\dots,X_{n-1})$相互独立.
 \end{proposition}
 证明见习题 \ref{exercise:Markov-property}.
 
 我们考虑的Markov链还有时齐性，即状态的转移不依赖当前时间，只和当前的状态有关. 时齐性的数学表述为：
 \begin{proposition}
-    设$\{X_t\}_{t=0}^{\infty}$是一个Markov链，那么对任意的$t,m,n\in \N$和$i,j,k\in \calS$，有
+    设$\{X_t\}_{t=0}^{\infty}$是一个Markov链，那么对任意的$m,n\in \N$和$j,k\in \calS$，有
     $\Pr(X_{m+n}=j| X_{n}=k)=\Pr(X_{m}=j| X_{0}=k)$.
 \end{proposition}
 
@@ -54,7 +54,7 @@ Markov链是一种简化的带时间的概率模型，它最重要的性质是Ma
     \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{figures/Markov-chain/gampling.pdf}
-    \caption{赌徒模型的转移矩阵}\label{fig:gambling}
+    \caption{赌徒模型的转移概率图}\label{fig:gambling}
     \end{figure}
     一般地，任何时齐可数状态的Markov链都可以用图表示.
 \end{example}
@@ -91,7 +91,7 @@ Pólya的坛子还有一种有趣的解读：如果我们把人生的每一次�
 因此，我们需要能够计算多步转移的概率. 设$p_{ij}^{(k)}$表示从状态$i$用$k$步转移到状态$j$的概率. $k$步转移概率形成了一个矩阵$\calP^{(k)}$. 下面的定理给出了计算\textit{多步转移概率}的方法.
 
 \begin{theorem}[Kolmogorov-Chapman方程]\label{thm:kolmogorov-chapman}
-    $P^{(k+l)}=\calP^{(k)}\calP^{(l)}$.
+    $\calP^{(k+l)}=\calP^{(k)}\calP^{(l)}$.
 \end{theorem}
 
 \begin{proof}
@@ -154,7 +154,7 @@ Kolmogorov-Chapman方程有两个重要的特例，前向方程：
         \item $\lim_{n\to\infty}p_{i0}^{(n)}=(1-p_{11})/(2-p_{00}-p_{11})$，
         \item $\lim_{n\to\infty}p_{i1}^{(n)}=(1-p_{00})/(2-p_{00}-p_{11})$.
     \end{itemize}
-因此，无论初始分布是什么，随着时间的推移，Markov链的分布会收敛到一个同一个稳定的分布. 这个例子是否具有普遍性？
+因此，无论初始分布是什么，随着时间的推移，Markov链的分布会收敛到同一个稳定的分布. 这个例子是否具有普遍性？
 
 我们再考虑一个例子. 一个四元环$\Z_4=\{0,1,2,3\}$上的Markov链$X_k$，转移矩阵为$p(i,i+1)=p(i,i-1)=1/2$，这里的表达式将$-1$和$4$等同，$4$和$0$等同. 如果初始分布集中在$0$上，那么我们会发现以概率$1$有$X_{2k}\in\{0,2\}$，$X_{2k+1}\in\{1,3\}$. 这种情况下，最终不会趋于一个稳定的分布！如果初始分布等概率地分布在$\{0,1\}$上，最终会趋于一个$\Z_4$上的均匀分布. 因此，并不是所有Markov链都具有这样的性质. 然而， 对于相当广泛的一类Markov链，这一结论成立，这就是\textit{遍历定理}.
 
@@ -229,26 +229,26 @@ M_j^{\left(n_0+n\right)} - m_j^{\left(n_0+n\right)} \leq \left(M_j^{(n)} - m_j^{
 说明当 $n \rightarrow \infty$，$M_j^{(n)} - m_j^{(n)} \to 0$，$M^{(n)}$和$m^{(n)}$趋于同一个极限. 
 
 % 结论
-若记 $\pi_j = \lim _n m_j^{(n)}$，则
+若记 $\lambda_j = \lim _n m_j^{(n)}$，则
 \[
-\left|p_{i j}^{(n)} - \pi_j\right| \leq M_j^{(n)} - m_j^{(n)} \leq (1-\varepsilon)^{\left[n / n_0\right] - 1},
+\left|p_{i j}^{(n)} - \lambda_j\right| \leq M_j^{(n)} - m_j^{(n)} \leq (1-\varepsilon)^{\left[n / n_0\right] - 1},
 \]
-即 $p_{i j}^{(n)}$ 以几何速度收敛于极限值 $\pi_j$. 
+即 $p_{i j}^{(n)}$ 以指数速度收敛于极限值 $\lambda_j$. 
 
-因为$m_j^{(n)} \geqslant m_j^{\left(n_0\right)} \geqslant \varepsilon > 0, n \geqslant n_0$，所以$\pi_j > 0$. 这就推出了 \eqref{eq:positive-distribution} 和 \eqref{eq:converge-to-limit}. 
+因为$m_j^{(n)} \geqslant m_j^{\left(n_0\right)} \geqslant \varepsilon > 0, n \geqslant n_0$，所以$\lambda_j > 0$. 这就推出了 \eqref{eq:positive-distribution} 和 \eqref{eq:converge-to-limit}. 
 
 接下来，我们说明 \eqref{eq:positive-distribution} 和 \eqref{eq:converge-to-limit} 可以推出 \eqref{eq:reachable}.  因为状态数有限，所以对任意充分小的$\varepsilon > 0$，存在$n_0$使得对任意$i,j$，
 \[
-\left|p_{i j}^{(n)} - \pi_j\right| \leq \varepsilon, n \geq n_0.
+\left|p_{i j}^{(n)} - \lambda_j\right| \leq \varepsilon, n \geq n_0.
 \]
 因此
 \[
-p_{i j}^{(n)} \geq \pi_j - \varepsilon > 0, n \geq n_0.
+p_{i j}^{(n)} \geq \lambda_j - \varepsilon > 0, n \geq n_0.
 \]
 
 最后我们说明 \eqref{eq:converge-to-limit} 可以推出 \eqref{eq:stationary}. 注意到
 \[
-\lim_{n \to \infty} \lambda^\t \calP^n = \left(\sum_i \lambda_i \pi_1, \sum_i \lambda_i \pi_2, \ldots, \sum_i \lambda_i \pi_N\right)=\lambda^\t.
+\lim_{n \to \infty} \lambda^\t \calP^n = \left(\sum_i \lambda_i \lambda_1, \sum_i \lambda_i \lambda_2, \ldots, \sum_i \lambda_i \lambda_N\right)=\lambda^\t.
 \]
 等式两边同时右乘$\calP$，左边的极限不变，右边变成$\lambda^\t \calP$，所以$\lambda^\t \calP = \lambda^\t$.
 \end{proof}
@@ -260,7 +260,7 @@ p_{i j}^{(n)} \geq \pi_j - \varepsilon > 0, n \geq n_0.
 
 如果Markov链是遍历的，那么平稳分布是唯一的：
 \begin{proposition}\label{prop:unique-stationary-distribution}
-设$\{X_n\}$是遍历的Markov链，那么它有唯一平稳分布$\mu$. 
+设$\{X_n\}$是遍历的Markov链，那么它有唯一平稳分布$\lambda$. 
 \end{proposition}
     \begin{proof}
         假设$\mu$是另外一个平稳分布，那么$\mu_j=\sum_\alpha\mu_\alpha p_{\alpha j}=\dots=\sum_{\alpha}\mu_\alpha p_{\alpha j}^{(n)}$. 因为$p_{\alpha j}^{(n)}\to \lambda_j$，所以$\mu_j=\sum_{\alpha} (\mu_\alpha\lambda_j)=\lambda_j$.
@@ -343,7 +343,7 @@ MRP中，$t$时刻以后的总\textbf{回报}$G_t$定义为
 
 因此，这一定义蕴含了Markov性：只从当前起考虑未来收益，不考虑历史收益（沉没成本）的影响；也蕴含了时齐性：价值函数的定义不依赖于时刻$t$. 我们在后面要各种相关概念的定义都需要用到这个性质，证明都是类似的，不再赘述.
 
-接下来我们展示价值函数的计算方法. 直观上说，回报应该被被分解为两部分：\contrastlight{即时回报$R_{t+1}$}以及\light{未来的回报$\gamma v(S_{t+1})$}，也就是下一个状态期望回报再做折扣. 具体来说，我们有
+接下来我们展示价值函数的计算方法. 直观上说，回报应该被分解为两部分：\contrastlight{即时回报$R_{t+1}$}以及\light{未来的回报$\gamma v(S_{t+1})$}，也就是下一个状态期望回报再做折扣. 具体来说，我们有
 \begin{align*}
 v(s) &= \E(G_t|S_t=s) \\
     &= \E(R_{t+1}+ \gamma R_{t+2} + \gamma^2 R_{t+3}+\dots | S_t= s) \\
@@ -582,7 +582,7 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
 在一些深度强化学习模型中（例如MuZero~\cite{schrittwieserMasteringAtariGo2020}），状态空间$\calS$也用一个神经网络表示. 用神经网络来表示状态空间的好处是可以减少人类的特征工程，让神经网络充分发掘状态空间好的表示方法.
 
 \begin{remark}
-    1989年，Christopher Watkins在攻读他的心理学博士学位时，首次将基于动态规划的MDP作为强化学习的数学模型~\cite{watkinsLearningDelayedRewards1989}. 之后，强化学习在很多复杂交互的环境中都有广泛的应用，例如用于围棋的AlphaGo~\cite{silverMasteringGameGo2016}、星际争霸的AlphaStar~\cite{vinyalsGrandmasterLevelStarCraft2019} 等. 关于强化学习的详细讨论，可以参考Richard Sutton和Andrew Barto的经典教材\cite{suttonReinforcementLearningIntroduction2018}. 
+    将MDP作为强化学习的数学模型是在20世纪80年代由Richard Sutton和Andrew Barto提出的. 在同一时期，这一模型的很多算法都被提出，例如时序差分学习~\cite{suttonLearningPredictMethods1988}、Q学习~\cite{watkinsLearningDelayedRewards1989}. 之后，强化学习在很多复杂交互的环境中都有广泛的应用，例如用于围棋的AlphaGo~\cite{silverMasteringGameGo2016}、星际争霸的AlphaStar~\cite{vinyalsGrandmasterLevelStarCraft2019} 等. 关于强化学习的详细讨论，可以参考Richard Sutton和Andrew Barto的经典教材\cite{suttonReinforcementLearningIntroduction2018}，他们也因为强化学习的贡献获得了2024年的图灵奖.
 \end{remark}
 
 \section{隐Markov模型（HMM）}\label{sec:HMM}
@@ -654,16 +654,16 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
 
 接下来，我们采用前向方程（见\Cref{thm:kolmogorov-chapman}）的思路，从前$k$步的结果推出前$k+1$步的结果，然后据此列出递推方程. 在第$k+1$步，Markov链的状态发生了转移，按照从哪个状态转移到了哪个状态，我们可以拆分概率：
 \begin{align*}
-      &\Pr(X_{1:k+1}=x_{1:k+1}) \\
-    = &\sum_{z\in \mathcal Z}\Pr(X_{1:k}=x_{1:k}, Z_k=z)\Pr(X_{k+1}=x_{k+1}|Z_k=z)\\
-    = &\sum_{z\in \mathcal Z}\Pr(X_{1:k}=x_{1:k}, Z_k=z)\cdot\\
-    &\qquad\sum_{z'\in \mathcal Z}\Pr(Z_{k+1}=z'|Z_k=z)\Pr(X_{k+1}=x_{k+1}|Z_{k+1}=z')\\
-    = &\sum_{z\in \mathcal Z}\Pr(X_{1:k}=x_{1:k}, Z_k=z)\sum_{z'\in \mathcal Z}T_{z,z'}M_{z',x_{k+1}}.
+&\Pr(X_{1:k+1}=x_{1:k+1}) \\
+    = &\sum_{z'\in \mathcal Z}\Pr(X_{1:k}=x_{1:k}, Z_k=z')\Pr(X_{k+1}=x_{k+1}|Z_k=z')\\
+    = &\sum_{z'\in \mathcal Z}\Pr(X_{1:k}=x_{1:k}, Z_k=z')\cdot\\
+    &\qquad\sum_{z\in \mathcal Z}\Pr(Z_{k+1}=z|Z_k=z')\Pr(X_{k+1}=x_{k+1}|Z_{k+1}=z)\\
+    = &\sum_{z'\in \mathcal Z}\light{\Pr(X_{1:k}=x_{1:k}, Z_k=z')}\sum_{z\in \mathcal Z}T_{z',z}M_{z,x_{k+1}}\\
+    = &\sum_{z'\in \mathcal Z}\sum_{z\in \mathcal Z}\light{\Pr(X_{1:k}=x_{1:k}, Z_k=z')}T_{z',z}M_{z,x_{k+1}}.
 \end{align*}
-如果把左边按照$Z_{k+1}$拆分，我们有
+另一方面，如果把左边按照$Z_{k+1}$的取值拆分，这一式子可以写成
 \begin{align*}
-    &\sum_{z\in\mathcal Z}\light{\Pr(X_{1:k+1}=x_{1:k+1}, Z_{k+1}=z)}\\
-    =& \sum_{z\in \mathcal Z}\light{\Pr(X_{1:k}=x_{1:k}, Z_k=z)}\sum_{z'\in \mathcal Z}T_{z,z'}M_{z',x_{k+1}}.
+    \sum_{z\in\mathcal Z}\light{\Pr(X_{1:k+1}=x_{1:k+1}, Z_{k+1}=z)}.
 \end{align*}
 如果令$\light{\alpha_k(z)=\Pr(X_{1:k}=x_{1:k}, Z_k=z)}$，用类似的计算，我们有递推：
 \begin{itemize}
@@ -838,7 +838,7 @@ DDPM中的Markov核都是Gauss分布，具体如下：
     \item $x_T \sim \mathcal{N}(0, \mathbf{I})$
     \item 对 $t = T, \ldots, 1$，重复以下步骤采样$x_{t-1}$：
     \begin{enumerate}
-        \item 如果 $t\geq 1$，采样$z \sim \mathcal{N}(0, \mathbf{I})$；否则，$z = 0$.
+        \item 如果 $t>1$，采样$z \sim \mathcal{N}(0, \mathbf{I})$；否则，$z = 0$.
         \item $x_{t-1} = \mu_\theta(x_t,t) + \sigma_t z$.
     \end{enumerate}
     \item 输出$x_0$.
@@ -993,11 +993,11 @@ L_{t-1}=\E_q\left[\frac{1}{2 \sigma_t^2}\norm{\tilde{\mu}_t\left(x_t, x_0\right)
         \item $\mathcal S:$ 每个状态是一个方格.
         \item $\mathcal A:$ 机器人可以采取的行动包含\textit{向上、向下、向左、向右}.
         \item $\mathcal P$: 当机器人选择行动$a$时，其按照$a$所预设的行动转移的概率为$1$. 例如：机器人选择$a=\text{向上}$，则机器人从当前方格转移到向上方向的方格概率为$1$，转移到其他位置的概率为$0$.
-        \item $\mathcal R$: 假设机器人进入绿色格点的奖励为$+1000000$，进入其他格点的奖励为$-1$.
+        \item $\mathcal R$: 假设机器人进入绿色格子的奖励为$+1000000$，进入其他格子的奖励为$-1$.
         \item $\gamma$: 假设折扣因子$\gamma=0.99$.
     \end{itemize}
-    我们额外假设机器人不会超出边界，若其在边界上选择了行动$a$使得下一个状态超出边界，则下一状态位于原地. 假设机器人进入带有颜色的格点后不再运动，状态转移终止.
-    \begin{figure}[h]
+    我们额外假设机器人不会超出边界，若其在边界上选择了行动$a$使得下一个状态超出边界，则下一状态位于原地. 假设机器人进入非白色的格子后不再运动，状态转移终止.
+    \begin{figure}[ht]
         \centering
         \includegraphics[width=0.4\textwidth]{figures/Markov-chain/exercise-mdp.pdf}
     \end{figure}
