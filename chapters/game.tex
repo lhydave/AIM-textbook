@@ -414,7 +414,7 @@ s=(s_i)_{i\in I}.
 
 将$G$和$D$看成两个玩家，于是GAN可以被看成一个二人零和博弈，收益函数为：
     \[
-        V(G,D)=\E_{z\sim F_{\text{data}}}(\log D(z))+\E_{x\sim F_x}(\log(1-D(G(x)))).
+        V(G,D)=\E_{z\sim F_{\text{data}}}(\log D(z))+\E_{x\sim F_x}[\log(1-D(G(x)))].
     \]
 $D$最大化$V$，$G$最小化$V$.
 
@@ -463,7 +463,7 @@ $D$最大化$V$，$G$最小化$V$.
 有了混合策略，我们还需要重新定义玩家的理性. 一个非常标准的回答是\textit{期望效用理论}，它由Von Neumann和Morgenstern~\cite{vonneumannTheoryGamesEconomic2007} 提出. 该理论认为，在面对不确定性时，人按照期望效用进行决策. 
 
 因此，我们需要计算玩家的期望效用. 为此，引入混合\textit{策略组合}：$\sigma=(\sigma_i)_{i\in I}$，其中$\sigma_i\in\Delta(A_i)$. $\sigma$是一个$(A_i)_{i\in I}$上的概率分布，每一维相互独立. 当所有玩家选定策略之后，玩家$i$的期望收益是：
-    \[u_i(\sigma)=\E_{a\sim\sigma} u_i(a).\]
+    \[u_i(\sigma)=\E_{a\sim\sigma}[u_i(a)].\]
 
 有了期望效用，我们可以重新定义最优反应：
 

@@ -323,11 +323,11 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 从上述讨论出发，我们定义区分$H_1$和$H_2$的检验量为\textit{对数似然比}：
 \[\log(p_1(x)/p_2(x)).\]
 假设$H_1$是真的，那么在$H_1$成立的世界里，这个检验量的期望为
-    \[\E_{X\sim p_1}(\log(p_1(X)/p_2(X)))=\sum_ip_1(i)\log\frac{p_1(i)}{p_2(i)}.\]
+    \[\E_{X\sim p_1}[\log(p_1(X)/p_2(X))]=\sum_ip_1(i)\log\frac{p_1(i)}{p_2(i)}.\]
 期望越大，说明$H_1$越有可能成立. 实际上，上面的期望就是K-L散度的定义.
 \begin{definition}[Kullback-Leibler散度，相对熵]
     对于概率分布$p_1,p_2$，他们的\textbf{Kullback-Leibler散度}（\textbf{相对熵}）定义为
-    \[D_\KL(p_1\| p_2)=\E_{X\sim p_1}(\log(p_1(X)/p_2(X)))=\sum_ip_1(i)\log\frac{p_1(i)}{p_2(i)}.\]
+    \[D_\KL(p_1\| p_2)=\E_{X\sim p_1}[\log(p_1(X)/p_2(X))]=\sum_ip_1(i)\log\frac{p_1(i)}{p_2(i)}.\]
 其中规定$0\log(0/0)=0$，$0\log(0/a)=0$，$a\log(a/0)=+\infty$.
 \end{definition}
 我们马上知道，互信息是K-L散度的一种特殊情况：
@@ -628,7 +628,7 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
         \]
         对于随机变量$X,Y$，成立Cauchy不等式：
         \[
-            |\E(XY)|^2 \leq \E(X^2)E(Y^2).
+            |\E[XY]|^2 \leq \E[X^2]E[Y^2].
         \]
     \end{hint}
 

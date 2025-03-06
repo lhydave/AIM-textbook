@@ -345,18 +345,18 @@ MRP中，$t$时刻以后的总\textbf{回报}$G_t$定义为
 
 接下来我们展示价值函数的计算方法. 直观上说，回报应该被分解为两部分：\contrastlight{即时回报$R_{t+1}$}以及\light{未来的回报$\gamma v(S_{t+1})$}，也就是下一个状态期望回报再做折扣. 具体来说，我们有
 \begin{align*}
-v(s) &= \E(G_t|S_t=s) \\
-    &= \E(R_{t+1}+ \gamma R_{t+2} + \gamma^2 R_{t+3}+\dots | S_t= s) \\
-    &= \E(R_{t+1} + \gamma (R_{t+2}+\gamma R_{t+3}+\dots) | S_t = s) \\
-    &= \E(R_{t+1} + \gamma G_{t+1} | S_t = s) \\
-    &= \E(R_{t+1} | S_t = s) + \gamma \E(G_{t+1} | S_t = s) \\
-    &= \E(\contrastlight{R_{t+1}}|S_t=s) + \E[\light{\gamma v(S_{t+1})}|S_t=s]\\
+v(s) &= \E[G_t|S_t=s] \\
+    &= \E[R_{t+1}+ \gamma R_{t+2} + \gamma^2 R_{t+3}+\dots | S_t= s] \\
+    &= \E[R_{t+1} + \gamma (R_{t+2}+\gamma R_{t+3}+\dots) | S_t = s] \\
+    &= \E[R_{t+1} + \gamma G_{t+1} | S_t = s] \\
+    &= \E[R_{t+1} | S_t = s] + \gamma \E[G_{t+1} | S_t = s] \\
+    &= \E[\contrastlight{R_{t+1}}|S_t=s] + \E[\light{\gamma v(S_{t+1})}|S_t=s]\\
     &= \contrastlight{\mathcal R_s} + \light{\gamma \sum_{s'\in \calS}\calP_{s,s'}v(s')}.
 \end{align*}
 其中倒数第二行是因为
 \begin{align*}
-    \E(G_{t+1}|S_t=s) &= \sum_{s'\in \calS}\E(G_{t+1}|S_{t+1}=s',S_t=s)\Pr(S_{t+1}=s'|S_t=s)\\
-    &= \sum_{s'\in \calS}\E(G_{t+1}|S_{t+1}=s')\Pr(S_{t+1}=s'|S_t=s)\\
+    \E[G_{t+1}|S_t=s] &= \sum_{s'\in \calS}\E[G_{t+1}|S_{t+1}=s',S_t=s]\Pr(S_{t+1}=s'|S_t=s)\\
+    &= \sum_{s'\in \calS}\E[G_{t+1}|S_{t+1}=s']\Pr(S_{t+1}=s'|S_t=s)\\
     &= \sum_{s'\in \calS}v(s')\Pr(S_{t+1}=s'|S_t=s)\\
     &=\E[v(S_{t+1})|S_t=s].
 \end{align*}
@@ -413,7 +413,7 @@ Bellman方程可以用矩阵形式表达：
     \item $\light{\mathcal A}$是一个有限的\textit{行动}（action）集合.
     \item $\calP$是状态-行动转移概率矩阵，
     \[\calP_{ss'}^{\light{a}} = \Pr(S_{t+1} = s' | S_t = s, A_t = \light{a}).\]
-    \item $\mathcal R$是一个期望奖励函数，$\mathcal R_s^{\light{a}} = \E(\contrastlight{R_{t+1}} | S_t = s, A_t = \light{a})$，随机变量$\contrastlight{R_{t+1}}$是进行某一行动到达某一状态后的奖励.
+    \item $\mathcal R$是一个期望奖励函数，$\mathcal R_s^{\light{a}} = \E[\contrastlight{R_{t+1}} | S_t = s, A_t = \light{a}]$，随机变量$\contrastlight{R_{t+1}}$是进行某一行动到达某一状态后的奖励.
     \item $\gamma$是一个折扣因子$\gamma\in[0,1]$.
 \end{itemize}
 \end{definition}
@@ -455,10 +455,10 @@ MDP与MRP的关系由策略给出.
 
 \begin{definition}[价值函数]
 \textbf{状态-价值函数} $v_\pi(s)$ 是从状态$s$出发，遵从策略$\pi$的期望回报
-    \[v_\pi(s) = \E_\pi(G_t|S_t=s).\]
+    \[v_\pi(s) = \E_\pi[G_t|S_t=s].\]
 
 \textbf{行动-价值函数} $q_\pi(s,a)$ 是从状态$s$出发，采取行动$a$，遵从策略$\pi$的期望回报
-    \[q_\pi(s,a) = \E_\pi(G_t|S_t=s,A_t=a).\]
+    \[q_\pi(s,a) = \E_\pi[G_t|S_t=s,A_t=a].\]
 \end{definition}
 注意，类似MRP中的价值函数，MDP中的价值函数定义也不依赖$t$的选择，这是因为MDP以及其策略的Markov性和时齐性. 
 
