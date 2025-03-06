@@ -640,7 +640,7 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
         \[\frac{1}{N}S(\theta ; y_1, \ldots, y_N).\]
         \item 证明：以概率$1$成立
         \[\lim_{n\to\infty}\frac{1}{N}S(\theta ; y_1, \ldots, y_N)=CH(B(1,p)\| B(1,\theta)).\]
-        因此，当样本数量足够大的时候，$S$就是真实分布与模型分布的交叉熵.
+        因此，当样本数量足够大的时候，$S/N$就是真实分布与模型分布的交叉熵.
         \item 证明: 对任意$N$，
         \[\arg\max_\theta L(\theta ; y_1, \ldots, y_N)=\arg\min _\theta S(\theta ; y_1, \ldots, y_N),\]
         也就是说，\textit{最大似然估计等价于最小化交叉嫡}.

@@ -44,7 +44,7 @@ Markov链是一种简化的带时间的概率模型，它最重要的性质是Ma
 \end{proposition}
 
 我们来看一个Markov链的例子. 
-\begin{example}[赌徒模型]
+\begin{example}[赌徒模型]\label{ex:gambling}
     考虑公平对赌. 玩家$A$和$B$抛硬币来赌钱，$A$赌正面，$B$赌反面. 每一轮独立地抛硬币，正面朝上的概率和反面朝上的概率相等，都是$1/2$. 赢的一方给输的一方一块钱. $A$输$a$块钱破产，$B$输$b$块钱破产，$Z_i$是第$i$轮$A$的收入. $Z_0=X_0=0$是$A$初始的收入. $X_n=Z_0+\dots+Z_n$是$A$的累计收入. 那么，$\{X_n\}_{n\geq 0}$是一个Markov链.
     \begin{itemize}
         \item 状态空间：$\calS=\{-a,-a+1,\dots,0,1,\dots,b\}$，为$A$的累计收入可能取值.
@@ -84,7 +84,7 @@ Markov链是一种简化的带时间的概率模型，它最重要的性质是Ma
 Pólya的坛子还有一种有趣的解读：如果我们把人生的每一次选择都看成放球，我们经常会基于现在看到的东西（看到的黑球还是白球）投资自己的人生（放一个黑球还是白球），这样的结果是我们的人生会多姿多彩，百花齐放. 
 \end{example}
 
-我们回到赌徒模型. $A$的累计收入$\{X_n\}_{n\geq 0}$形成了Markov链. 根据Markov性，未来双方的收入变化只取决于现在，而和过去运气无关. 与之相关的一个现象是赌徒谬误，即认为过去的运气会影响未来的运气. 例如，如果一个人连续输了很多次，那么他会认为自己未来运气会变好，赢的概率更大. 但是，根据Markov性，过去的运气不会影响未来的运气，因此这种想法是错误的.“风水轮流转”在一场公平对赌中是不正确的认知. 那么，如何评估赌局的公平性？
+我们回到赌徒模型（\Cref{ex:gambling}）. $A$的累计收入$\{X_n\}_{n\geq 0}$形成了Markov链. 根据Markov性，未来双方的收入变化只取决于现在，而和过去运气无关. 与之相关的一个现象是赌徒谬误，即认为过去的运气会影响未来的运气. 例如，如果一个人连续输了很多次，那么他会认为自己未来运气会变好，赢的概率更大. 但是，根据Markov性，过去的运气不会影响未来的运气，因此这种想法是错误的.“风水轮流转”在一场公平对赌中是不正确的认知. 那么，如何评估赌局的公平性？
 
 如果对赌是公平的，那么我们应该认为两个人每一轮的累计收入分布都是一样的，即
     \[\Pr(X_n=i|X_0=0)=\Pr(X_n=-i|X_0=0).\]
@@ -429,8 +429,8 @@ Bellman方程可以用矩阵形式表达：
 MDP与MRP的关系由策略给出. 
 \begin{proposition}
 给定一个MDP $\calM=\langle\calS,\mathcal A,\calP,\mathcal R, \gamma\rangle$和一个策略$\pi$，$\langle \calS, \calP^{\pi}\rangle$是一个Markov链，$\langle\calS,\calP^{\pi}, \mathcal R^{\pi}, \gamma\rangle$是一个MRP，其中
-\[\calP_{s,s'}^{\pi} = \E_{a\sim\pi(\cdot|s)}(\calP^a_{s,s'})=\sum_{a\in \mathcal A}\pi(a|s)\mathcal P_{s,s'}^{a},\]
-    \[\mathcal R_s^{\pi} =\E_{a\sim\pi(\cdot|s)}(\mathcal R^a_s)=\sum_{a\in\mathcal A}\pi(a|s)\mathcal R_s^a.\]
+\[\calP_{s,s'}^{\pi} = \E_{a\sim\pi(\cdot|s)}[\calP^a_{s,s'}]=\sum_{a\in \mathcal A}\pi(a|s)\mathcal P_{s,s'}^{a},\]
+    \[\mathcal R_s^{\pi} =\E_{a\sim\pi(\cdot|s)}[\mathcal R^a_s]=\sum_{a\in\mathcal A}\pi(a|s)\mathcal R_s^a.\]
 \end{proposition}
 \begin{proof}
 对行动利用全概率公式. 
@@ -466,7 +466,7 @@ MDP与MRP的关系由策略给出.
 
 \begin{proposition}\label{prop:state-action-value}
 状态-价值函数$v_\pi(s)$和行动-价值函数$q_\pi(s,a)$之间有如下关系：
-    \[v_\pi(s) = \E_{a\sim\pi(\cdot|s)}(q_\pi(s,a))=\sum_{a\in\mathcal A}\pi(a|s)q_\pi(s,a),\]
+    \[v_\pi(s) = \E_{a\sim\pi(\cdot|s)}[q_\pi(s,a)]=\sum_{a\in\mathcal A}\pi(a|s)q_\pi(s,a),\]
     \[q_\pi(s,a) =\mathcal R_s^a + \gamma \sum_{s'\in \calS}P_{s,s'}^a v_\pi(s').\]
 \end{proposition}
 \begin{proof}
