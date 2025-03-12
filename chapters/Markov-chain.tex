@@ -53,7 +53,7 @@ Markov链是一种简化的带时间的概率模型，它最重要的性质是Ma
     转移矩阵可以画成\Cref{fig:gambling} 所示的形式.
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{figures/Markov-chain/gampling.pdf}
+    \includegraphics[width=0.9\textwidth]{figures/Markov-chain/gambling.pdf}
     \caption{赌徒模型的转移概率图}\label{fig:gambling}
     \end{figure}
     一般地，任何时齐可数状态的Markov链都可以用图表示.
@@ -236,7 +236,7 @@ M_j^{\left(n_0+n\right)} - m_j^{\left(n_0+n\right)} &\leq \left(M_j^{(n)} - m_j^
 \end{align*}
 因此，$M_j^{(n)} - m_j^{(n)}$以指数速度收敛于$0$.
 
-由于 $m_j^{(n)}$有界且单调递增，因此存在极限 $\lambda_j = \lim _n m_j^{(n)}$，这也是$M_j^{(n)}$的极限. 进一步，我们有
+由于 $m_j^{(n)}$有界且单调递增，因此存在极限 $\lambda_j = \lim _n m_j^{(n)}$（\Cref{prop:monotone-bounded}），这也是$M_j^{(n)}$的极限. 进一步，我们有
 \[
     \left|p_{i j}^{(n)} - \lambda_j\right| \leq M_j^{(n)} - m_j^{(n)} \leq (1-\varepsilon)^{\left[n / n_0\right] - 1},
 \]
@@ -682,7 +682,7 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
 如果令$\light{\alpha_k(z)=\Pr(X_{1:k}=x_{1:k}, Z_k=z)}$，用类似的计算，我们有递推：
 \begin{itemize}
     \item 当$k=1$，$\light{\alpha_k(z)} = \lambda(z)M_{z,x_k}$.
-    \item 当$k>1$，$\light{\alpha_{k+1}(z)} = \sum_{z' \in \mathcal Z}\light{\alpha_{k}(z')}T_{z',z}M_{z,x_{k+1}}$.
+    \item 当$k>1$，$\light{\alpha_k(z)} = \sum_{z' \in \mathcal Z}\light{\alpha_{k-1}(z')}T_{z',z}M_{z,x_k}$.
 \end{itemize}
 最后，
 \[\Pr(X=x) = \sum_{z\in \mathcal Z}\light{\alpha_t(z)}.\]

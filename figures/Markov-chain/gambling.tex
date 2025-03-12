@@ -26,7 +26,6 @@
         % From A to A1
         (A1) edge[bend left] node[below] {1/2} (A)
         (A) edge[loop above] node {1} (A)
-        (A) edge[bend left] node[above] {1/2} (A1)
         
         % From A1 to dots
         (A1) edge[bend left] node[above] {1/2} (dots)
@@ -38,8 +37,7 @@
         
         % From B1 to B
         (B1) edge[bend left] node[above] {1/2} (B)
-        (B) edge[loop above] node {1} (B)
-        (B) edge[bend left] node[below] {1/2} (B1);
+        (B) edge[loop above] node {1} (B);
 
 \end{tikzpicture}
 \end{document}
