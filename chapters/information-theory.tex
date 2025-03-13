@@ -209,9 +209,23 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
     \[H(X,Y)=-\E[\log p(X,Y)].\]
 对应地，我们也可以写成和的形式：
     \[H(p)=-\sum_{i,j}p(i,j)\log p(i,j).\]
-自然，联合分布也可以引出\textbf{边缘分布的熵}：
-\[H(X)=-\E[\log p_X(X)]=-\sum_i \sum_j p(i,j)\log \sum_j p(i,j).\]
-\[H(Y)=-\E[\log p_Y(Y)]=-\sum_j \sum_i p(i,j)\log \sum_i p(i,j).\]
+自然，联合分布的熵可以自然导出\textbf{边缘分布的熵}
+\[H(X)=-\E[\log p_X(X)]=-\sum_x p_X(x)\log p_X(x).\]
+\[H(Y)=-\E[\log p_Y(Y)]=-\sum_y p_Y(y)\log p_Y(y).\]
+这里，边缘分布通过对联合分布求和得到：
+    \[
+    p_X(x) = \sum_{y} p(x, y), \quad p_Y(y) = \sum_{x} p(x, y).
+    \]
+
+联合分布熵和边缘分布熵之间的关系如下：
+
+\begin{proposition}\label{prop:entropy-joint-marginal}
+    对任意随机变量$X,Y$，$H(X,Y)\geq H(X)$，等号成立当且仅当$X$和$Y$独立.
+\end{proposition}
+
+这一性质的证明等价于证明后面定义的条件熵的\Cref{prop:conditional-entropy-nonnegative}，这里就不给出了.
+
+这一关系的解读如下：$H(X,Y)$是$X$和$Y$的联合不确定性，$H(X)$是$X$的不确定性. 因此，两个不同来源的不确定性一定不小于单个来源的不确定性. 等号成立当且仅当$X$和$Y$是独立的，也就是说，$X$的取值不会对$Y$的取值产生影响，反之亦然.
 
 有了两个随机变量，我们就可以讨论“条件”的概念. 具体来说，我们可以把试验分为两步，第一步观测$X$，第二步观测$Y$，那么，第二步所产生的熵就是已经知道第一步结果之后的熵，即：
 \begin{align*}
@@ -219,7 +233,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
     &=-\sum_{j}p_{Y|X=x}(j)\log p_{Y|X=x}(j),
 \end{align*}
 其中$p_{Y|X=x}(j)=p(x,j)/p_X(x)$. 当我们知道了$X=x$之后，对$Y$的观测就消除了部分的不确定性，因此根据我们对于不确定性和信息关系的讨论，从$X=x$中获得的关于$Y$的信息是
-\[I(X=x:Y)=H(Y)-H(Y|X=x).\]
+\[I(X=x;Y)=H(Y)-H(Y|X=x).\]
 考虑一个特殊情况，$Y=X$，那么刚刚的讨论就变成了自己从自己身上获得的信息，或者说知道$X=x$带来的信息量. 首先有
 \[p_{X|X=x}(i)=\begin{cases}
     1,&i=x\\
@@ -228,7 +242,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 因此，
 \[H(X| X=x)=-\sum_{j}p_{X|X=x}(j)\log p_{X|X=x}(j)=-1\log 1=0.\]
 于是，
-\[I(X=x:X)=H(X)-H(X|X=x)=H(X).\]
+\[I(X=x;X)=H(X)-H(X|X=x)=H(X).\]
 这正是定量版本的“消除不确定性的东西被称之为信息”！此外，我们之前说过，熵刻画的是一族可能对象的信息，而不是某个具体对象的信息，这一点也反映在了这一公式中：只要知道了$X$的值，无论它具体是多少，取得概率如何，我们得到的信息量是一样的！
 
 再回到一般情况，还是同样的两步试验，我们定义给定$X$时$Y$的\textbf{条件熵}为
@@ -248,9 +262,9 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
     仿照\Cref{prop:entropy-nonnegative} 的证明即可.
 \end{proof}
 类似地，我们可以考虑平均上$Y$中包含的关于$X$的信息量：
-\[\E[I(X=x:Y)]=H(Y)-H(Y|X).\]
+\[\E[I(X=x;Y)]=H(Y)-\E_{x\sim X}[H(Y|X=x)]=H(Y)-H(Y|X).\]
 与之相对应地，平均上$X$中包含的关于$Y$的信息量为
-\[\E[I(Y=y:X)]=H(X)-H(X|Y).\]
+\[\E[I(Y=y;X)] = H(X) - \E_{y\sim Y}[H(X|Y=y)] = H(X) - H(X|Y).\]
 一个自然的问题是，二者相互包含的信息量是什么关系？根据概率的链式法则，$p(x,y)=p_{X|Y}(x|y)p_Y(y)$，带入$H(X,Y)$的定义得熵的链式法则：
 
 \begin{proposition}\label{prop:entropy-chain-rule}
@@ -274,7 +288,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 我们将在\Cref{sec:kl-divergence}看到，\Cref{prop:information-doesnt-hurt} 就是K-L散度信息不等式的一个特例，所以我们就不在这里给出证明了. \Cref{prop:information-doesnt-hurt} 表明知道任何信息都不会增加不确定性，这个原理被称为“Information doesn't hurt.”
 
 根据以上讨论，我们可以自然地定义$X$和$Y$的\textbf{互信息}为
-\[I(X;Y)=I(Y;X)=\E[I(X=x:Y)]=\E[I(Y=y:X)].\]
+\[I(X;Y)=I(Y;X)=\E[I(X=x;Y)]=\E[I(Y=y;X)].\]
 
 类似联合分布的熵，条件熵和互信息的概念也可以推广到多元情形. 对于三个随机变量$X,Y,Z$，我们可以定义条件熵为
 \[H(X,Y|Z)=H(X,Y,Z)-H(Z).\]
@@ -291,7 +305,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
         \item 非负性：$I(X;Y|Z)\geq 0$，等号成立当且仅当$X$和$Y$在给定$Z$的条件下相互独立.
         \item 对称性：$I(X;Y|Z)=I(Y;X|Z)$.
         \item 链式法则：$I(X,Y;Z)=I(X;Z|Y)+I(Y;Z)$.
-        \item 条件信息量：$I(X:X|Y)=H(X|Y)-H(X|X,Y)=H(X|Y)$.
+        \item 条件信息量：$I(X;X|Y)=H(X|Y)-H(X|X,Y)=H(X|Y)$.
     \end{enumerate}
 \end{proposition}
 最后一条性质说的其实是，在平均的意义下，给定$Y$的时候，知道$X$所能够得到的额外信息量就是$H(X|Y)$. 这一命题的证明和前面都非常相似，见习题 \ref{exercise:conditional-mutual-information}. 
