@@ -862,6 +862,8 @@ DDPM中的Markov核都是Gauss分布，具体如下：
 \[
 \mu_{\theta}(x_t, t) =  \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{1-\alpha_t}{\sqrt{1 - \bar{\alpha}_t}}\epsilon_{\theta}(x_t, t) \right).
 \]
+所谓重参数化，就是将参数的表示方式改变，已达成某种目的. 在这里，原本的参数$\theta$是用$\mu_\theta(x_t,t)$来表示的，但是这样的参数化不利于训练，所以我们用更适合的$\epsilon_\theta(x_t,t)$来表示这个参数.
+
 于是，我们可以将2.(2)重写为：
 \[x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{1-\alpha_t}{\sqrt{1-\bar\alpha_t}} \epsilon_\theta(x_t, t) \right) + \sigma_t z.\]
 
@@ -907,7 +909,7 @@ DDPM中的Markov核都是Gauss分布，具体如下：
     &\sum_{t>1} \underbrace{D_{\KL}\left(q\left(x_{t-1} | x_t, x_0\right) \| p_\theta\left(x_{t-1} | x_t\right)\right)}_{L_{t-1}} \underbrace{-\log p_\theta\left(x_0 | x_1\right)}_{L_0}],
 \end{aligned}
 \]
-其中$D_{\mathrm{KL}}(f\|g)=\int f\log(f/g)\d x$是K-L散度. 
+其中$D_{\KL}(f(x)\|g(x))=\int f(x)\log(f(x)/g(x))\d x$.\footnote{实际上，$D_{\KL}(f(x)\|g(x))$是$f(x)$和$g(x)$的相对熵，也叫K-L散度. 这里并不需要对这一概念有深入的了解，只需要知道它的定义即可. 我们在\Cref{chap:information-theory}中会详细讨论这一概念. }
 
 接下来我们分别讨论每一部分的计算. 
 \begin{itemize}

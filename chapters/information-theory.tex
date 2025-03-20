@@ -147,7 +147,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 \end{proposition}
 \begin{proof}
     我们有
-    \[H'(p)=-\log p-1-\log(1-p)+1=\log(p^{-1}-1),\]
+    \[H'(p)=-\log p-1+\log(1-p)+1=\log(p^{-1}-1),\]
     $H'(p)$是一个关于$p$单调递减的函数. 我们有如下分类讨论：
     \begin{itemize}
         \item 当$p\in (0,1/2)$时，$p^{-1}-1>1$，所以$H'(p)>0$，$H(p)$是单调递增的；
@@ -208,7 +208,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
     \[H(X,Y)=-\E[\log p(X,Y)].\]
 对应地，我们也可以写成和的形式：
     \[H(p)=-\sum_{i,j}p(i,j)\log p(i,j).\]
-自然，联合分布的熵可以自然导出\textbf{边缘分布的熵}
+对于联合分布，我们自然可以讨论它\textbf{边缘分布的熵}
 \[H(X)=-\E[\log p_X(X)]=-\sum_x p_X(x)\log p_X(x).\]
 \[H(Y)=-\E[\log p_Y(Y)]=-\sum_y p_Y(y)\log p_Y(y).\]
 这里，边缘分布通过对联合分布求和得到：
@@ -219,27 +219,34 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 联合分布熵和边缘分布熵之间的关系如下：
 
 \begin{proposition}\label{prop:entropy-joint-marginal}
-    对任意随机变量$X,Y$，$H(X,Y)\geq H(X)$，等号成立当且仅当$X$和$Y$独立.
+    对任意随机变量$X,Y$，$H(X)\leq H(X,Y)\leq H(X)+H(Y)$. 第一个等号成立当且仅当以概率$1$，$Y$被$X$完全决定，也就是$Y$是$X$的函数；第二个等号成立当且仅当$X$和$Y$是独立的.
 \end{proposition}
 
-这一性质的证明等价于证明后面定义的条件熵的\Cref{prop:conditional-entropy-nonnegative}，这里就不给出了.
+第一个不等号的证明等价于证明后面定义的条件熵的\Cref{prop:conditional-entropy-nonnegative}，而第二个不等式等价于信息不等式（\Cref{thm:information-inequality}），这里就都不给出证明了.
 
-这一关系的解读如下：$H(X,Y)$是$X$和$Y$的联合不确定性，$H(X)$是$X$的不确定性. 因此，两个不同来源的不确定性一定不小于单个来源的不确定性. 等号成立当且仅当$X$和$Y$是独立的，也就是说，$X$的取值不会对$Y$的取值产生影响，反之亦然.
+这两个不等式实际上非常符合我们对信息的直观. $H(X,Y)$是$X$和$Y$的联合不确定性，$H(X)$是$X$的不确定性，$H(Y)$是$Y$的不确定性. 
+\begin{itemize}
+    \item 因此，两个不同来源$X$和$Y$的不确定性一定不小于单个来源$X$的不确定性，除非$Y$完全被$X$决定. 
+    \item 另一方面，两个不同来源$X$个$Y$的不确定性可能会有一些共有的部分，所以联合的不确定性一定不大于两个单独的不确定性之和，除非两个来源是独立的.
+\end{itemize}
 
 有了两个随机变量，我们就可以讨论“条件”的概念. 具体来说，我们可以把试验分为两步，第一步观测$X$，第二步观测$Y$，那么，第二步所产生的熵就是已经知道第一步结果之后的熵，即：
 \begin{align*}
-    H(Y| X=x)&=-\E[\log p_{Y| X=x}(Y)| X=x]\\
-    &=-\sum_{j}p_{Y|X=x}(j)\log p_{Y|X=x}(j),
+    H(Y| X=x)&=-\E[\log p_{Y| X}(Y|x)]\\
+    &=-\sum_{j}p_{Y|X}(j)\log p_{Y|X}(j|x),
 \end{align*}
-其中$p_{Y|X=x}(j)=p(x,j)/p_X(x)$. 当我们知道了$X=x$之后，对$Y$的观测就消除了部分的不确定性，因此根据我们对于不确定性和信息关系的讨论，从$X=x$中获得的关于$Y$的信息是
+其中$p_{Y|X}(j|x)=p(x,j)/p_X(x)$. 当我们知道了$X=x$之后，对$Y$的观测就消除了部分的不确定性，因此根据我们对于不确定性和信息关系的讨论，从$X=x$中获得的关于$Y$的信息是
 \[I(X=x;Y)=H(Y)-H(Y|X=x).\]
 考虑一个特殊情况，$Y=X$，那么刚刚的讨论就变成了自己从自己身上获得的信息，或者说知道$X=x$带来的信息量. 首先有
-\[p_{X|X=x}(i)=\begin{cases}
+\[p_{X|X}(i|x)=\begin{cases}
     1,&i=x\\
     0,&i\ne x.
 \end{cases}\]
 因此，
-\[H(X| X=x)=-\sum_{j}p_{X|X=x}(j)\log p_{X|X=x}(j)=-1\log 1=0.\]
+\begin{align*}
+    H(X| X=x)&=-\sum_{j}p_{X|X}(j|x)\log p_{X|X}(j|x)\\
+    &=-1\log 1=0.
+\end{align*}
 于是，
 \[I(X=x;X)=H(X)-H(X|X=x)=H(X).\]
 这正是定量版本的“消除不确定性的东西被称之为信息”！此外，我们之前说过，熵刻画的是一族可能对象的信息，而不是某个具体对象的信息，这一点也反映在了这一公式中：只要知道了$X$的值，无论它具体是多少，取得概率如何，我们得到的信息量是一样的！
@@ -247,22 +254,24 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 再回到一般情况，还是同样的两步试验，我们定义给定$X$时$Y$的\textbf{条件熵}为
 \begin{align*}
     H(Y| X)=&\E_{x\sim X}[H(Y|X=x)]\\
-    =&-\sum_x p_{X}(x)\sum_{j}p_{Y|X=x}(j)\log p_{Y|X=x}(j)\\
-    =&-\sum_{x,j}p(x,j)\log p_{Y|X=x}(j)\\
-    =&-\E[\log p_{Y| X}(Y)].
+    =&-\sum_x p_{X}(x)\sum_{j}p_{Y|X}(j|x)\log p_{Y|X}(j|x)\\
+    =&-\sum_{x,j}p(x,j)\log p_{Y|X}(j|x)\\
+    =&-\E[\log p_{Y| X}(Y|X)].
 \end{align*}
 换言之，我们现在进一步假定$X$也是不知道的，于是$H(Y|X)$就是平均上来说第二步中$Y$的不确定性. 
 
 条件熵和熵有着类似的性质：
 \begin{proposition}\label{prop:conditional-entropy-nonnegative}
-    $H(Y|X)\geq 0$，等号成立当且仅当$Y$是退化的，即$Y$概率$1$只取一个值.
+    $H(Y|X)\geq 0$，等号成立当且仅当以概率$1$，$Y$被$X$完全决定，也就是$Y$是$X$的函数.
 \end{proposition}
 \begin{proof}
-    仿照\Cref{prop:entropy-nonnegative} 的证明即可.
+    仿照\Cref{prop:entropy-nonnegative} 的证明. 因为$-\log(\cdot)$是严格凸函数，所以根据Jensen不等式
+    \[H(Y|X)=\E[-\log p(Y|X)]\geq-\log\E[p(Y|X)]\geq -\log 1=0.\]
+    等号成立当且仅当$p(Y|X)$以概率$1$取$1$，即$Y$被$X$完全决定，也就是$Y$是$X$的函数.
 \end{proof}
-类似地，我们可以考虑平均上$Y$中包含的关于$X$的信息量：
+类似地，我们可以考虑平均上$X$中包含的关于$Y$的信息量：
 \[\E[I(X=x;Y)]=H(Y)-\E_{x\sim X}[H(Y|X=x)]=H(Y)-H(Y|X).\]
-与之相对应地，平均上$X$中包含的关于$Y$的信息量为
+与之相对应地，平均上$Y$中包含的关于$X$的信息量为
 \[\E[I(Y=y;X)] = H(X) - \E_{y\sim Y}[H(X|Y=y)] = H(X) - H(X|Y).\]
 一个自然的问题是，二者相互包含的信息量是什么关系？根据概率的链式法则，$p(x,y)=p_{X|Y}(x|y)p_Y(y)$，带入$H(X,Y)$的定义得熵的链式法则：
 
@@ -297,7 +306,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 
 同样，我们可以定义\textbf{条件互信息}为
 \[I(X;Y|Z)=H(X|Z)-H(X|Y,Z),\]
-表明$Z$已知时候$Y$给$X$带来的平均信息增益. 类似互信息，我们如下性质：
+表明$Z$已知时候$Y$给$X$带来的平均信息增益. 类似互信息，条件互信息有如下性质：
 \begin{proposition}\label{prop:conditional-mutual-information}
     条件互信息满足以下性质：
     \begin{enumerate}
@@ -380,7 +389,7 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
     对于两个概率分布列$p,q$，成立$D_\KL(p\Vert q)\geq0$，当且仅当$p=q$时取等号.
 \end{theorem}
 \begin{proof}
-    由于$\log x$是凸函数，所以由Jensen不等式，我们有
+    由于$-\log x$是凸函数，所以由Jensen不等式，我们有
     \begin{align*}
         D_\KL(p\Vert q)&=-\E_{X\sim p}\left[\log\frac{q(X)}{p(X)}\right]\\
         &\geq-\log \E_{X\sim p}\left[\frac{q(X)}{p(X)}\right]\\
@@ -473,7 +482,7 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
 \[s^k=\e^{k\log s}.\]
 根据\Cref{prop:entropy-maximum}，只有当所有$p_i$相等的时候$N(k)$才会达到这一量级. 从这个意义上说，\textit{熵所刻画的信息量定量刻画了数据压缩可能的极限.}
 
-以上关于信息编码下界以及数据压缩的讨论，再更一般的情况下也成立，此时这样的性质被称为\textit{渐近等分性}. 而这一性质成立对应的结果被称为\textit{Shannon-McMillan-Breiman定理}，它的陈述以及证明都需要用到更多随机过程的知识，这里就不再给出了，感兴趣的读者请参阅Shannon的工作~\cite{shannonMathematicalTheoryCommunication1948}、MciMillan的工作 \cite{mcmillanBasicTheoremsInformation1953} 和Breiman的工作 \cite{breimanIndividualErgodicTheorem1957}. 
+以上关于信息编码下界以及数据压缩的讨论，在更一般的情况下也成立，此时这样的性质被称为\textit{渐近等分性}. 而这一性质成立对应的结果被称为\textit{Shannon-McMillan-Breiman定理}，它的陈述以及证明都需要用到更多随机过程的知识，这里就不再给出了，感兴趣的读者请参阅Shannon的工作~\cite{shannonMathematicalTheoryCommunication1948}、MciMillan的工作 \cite{mcmillanBasicTheoremsInformation1953} 和Breiman的工作 \cite{breimanIndividualErgodicTheorem1957}. 
 
 \subsection{K-L散度、交叉熵与编码}
 
@@ -592,7 +601,7 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
 \]
 其中$n_i$是非负整数. 我们考虑$\sum_j n_j$个等可能试验，这个试验可以被看成两步的试验，第一步有$n$种可能的结果，第$i$种结果出现的概率是$p_i$，而在第$i$种结果之下，第二步有$n_i$种等可能的结果. 根据假设三，和证明的第三步，我们有
 \[
-   C\log\sum_{j=1}^nn_j=H(p_1+\dots+p_n)+\sum_{i=1}^n p_i\cdot C\log n_i.
+   C\log\sum_{j=1}^nn_j=H(p_1,\dots,p_n)+\sum_{i=1}^n p_i\cdot C\log n_i.
 \]
 因此，
 \begin{align*}
@@ -621,7 +630,7 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
     \item 我们在熵以及K-L散度的定义中，都规定了一些无定义的量的值，这些值并不是随便规定的，他们实际上反映了熵或者K-L散度定义中的连续性.
     \begin{enumerate}
         \item 证明：对给定的$a>0$，$\lim_{x\to 0+}x\log (x/a)=0$，因此我们规定了$0\log 0=0$以及$0\log(0/a)=0$.
-        \item 证明：对给定的$a>0$，$\lim_{x\to 0+}x\log (a/x)=+\infty$，因此我们规定了$0\log(a/0)=+\infty$.
+        \item 证明：对给定的$a>0$，$\lim_{x\to 0+}a\log (a/x)=+\infty$，因此我们规定了$a\log(a/0)=+\infty$.
     \end{enumerate}
 
     \item 给出条件熵的K-L散度表示方式.
@@ -657,7 +666,7 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
         因此，当样本数量足够大的时候，$S/N$就是真实分布与模型分布的交叉熵.
         \item 证明: 对任意$N$，
         \[\arg\max_\theta L(\theta ; y_1, \ldots, y_N)=\arg\min _\theta S(\theta ; y_1, \ldots, y_N),\]
-        也就是说，\textit{最大似然估计等价于最小化交叉嫡}.
+        也就是说，\textit{最大似然估计等价于最小化交叉熵}.
     \end{enumerate}
 
     \item \label{exercise:diffusion-model-loss}
@@ -665,7 +674,7 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
     \begin{enumerate}
         \item （VAE，\cite{kingmaAutoEncodingVariationalBayes2022,kingmaSemisupervisedLearningDeep2014}）设考虑数据$x$，它是通过如下两步生成的：首先从先验分布$p_{\theta^*}(z)$中采样$z$，然后从条件分布$p_{\theta^*}(x|z)$中采样$x$. 我们可以把$z$理解成$x$的某种编码或者压缩的表示方式. 
         
-        假设$p_{\theta^*}(z)$和$p_{\theta^*}(z|x)$分别来自分布族$\{p_{\theta}(z)\}_\theta$和$\{p_\theta(x|z)\}_\theta$，其中$\theta$是参数。比如，我们可以把$\theta$想像成神经网络的参数，而神经网络在拟合上述真实参数. 真实参数$\theta^*$和中间隐变量$z$是未知的. 
+        假设$p_{\theta^*}(z)$和$p_{\theta^*}(z|x)$分别来自分布族$\{p_{\theta}(z)\}_\theta$和$\{p_\theta(x|z)\}_\theta$，其中$\theta$是参数. 比如，我们可以把$\theta$想像成神经网络的参数，而神经网络在拟合上述真实参数. 真实参数$\theta^*$和中间隐变量$z$是未知的. 
         
         VAE有若干可能的任务，例如，通过最大化似然$p_{\theta}(x)$来近似$\theta^*$，或者近似估计真实的后验分布$p(z|x)$用来做编码，或者直接近似分布$p(x)$用来做数据生成. 对于最大似然的任务，我们可以将似然$p_{\theta}(x)$写成：
         \[

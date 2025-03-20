@@ -184,7 +184,7 @@ $\mu$未知. 随机采样得到样本$x_1,x_2,\dots,x_n$，怎样对$\mu$进行�
 \begin{theorem}[Stein悖论]\label{thm:stein-paradox}
     对于$n\geq 3$，朴素估计 \eqref{eq:naive-estimation} 是不可接受的，具体来说，James-Stein估计量 \eqref{eq:James-Stein-estimation} 的均方误差为
     \[\E\left[\norm{\hat{\mu}-\mu}^2\right] = n-\E\left[\frac{(n-2)^2}{n-2+2K}\right],\]
-    其中$K$服从参数为$\norm{mu}^2/2$的Poisson分布. 因此，在任意$\mu$下，James-Stein估计量都比朴素估计更好. 
+    其中$K$服从参数为$\norm{\mu}^2/2$的Poisson分布. 因此，在任意$\mu$下，James-Stein估计量都比朴素估计更好. 
 \end{theorem}
 
 这一定理的证明十分具有技巧性，我们这里不给出证明，感兴趣的读者见习题 \ref{exercise:stein-paradox}.
@@ -531,7 +531,7 @@ X\geq a \iff \lambda X \geq \lambda a \iff \e^{\lambda X} \geq \e^{\lambda a}.
     向量$u=\frac{v_i-v_j}{\norm{v_i-v_j}_2}$是一个单位向量，因此$Au\sim \Nor(0,n^{-1}I_n)$.
 \end{lemma}
 
-J-L引理实际上在说，$\norm{Au}_2$偏离$1$的一定程度的概率是非常小的. 于是，为了证明J-L引理，我们最重要的任务是给出$Au$这样向量模长的集中不等式：
+J-L引理实际上在说，$\norm{Au}_2$与$1$的偏差超过某个$\epsilon$的概率是非常小的. 于是，为了证明J-L引理，我们最重要的任务是给出$Au$这样向量模长的集中不等式：
 \begin{lemma}[单位模引理]\label{lemma:unit-mod-lemma}
     设 $u\sim \Nor(0,n^{-1}I_n)$，$\epsilon \in (0,1 )$是给定的常数，那么我们有
     \[
