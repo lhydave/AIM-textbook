@@ -102,14 +102,21 @@ $Y_i=X_i^2$也是i.i.d.的，并且有\[\E[Y_i] = \int_{-1}^1 \frac{1}{2}\cdot x
 
 由弱大数定律（\Cref{thm:khinchin}），$\sum_{i=1}^n X_i^2/n$偏离期望$1/3$某个值的概率会随着$n$趋于无穷而趋于零. 更精确来说，当$n\to \infty$时，
 \[
-\Pr\left[\left|\frac{\sum_{i=1}^n X_i^2}{n}-\frac{1}{3}\right|>\epsilon\right]\to 0.
+\Pr\left[\left|\frac{\sum_{i=1}^n X_i^2}{n}-\frac{1}{3}\right|>\epsilon'\right]\to 0.
 \]
 变形得
 \[
+\Pr\left[\sqrt{\left(\frac{1}{3}-\epsilon'\right)n}\leq \sqrt{\sum_{i=1}^nX_i^2}\leq\sqrt{\left(\frac{1}{3}+\epsilon'\right)n}\right]\to 1.
+\]
+对任意$\epsilon>0$，可以取恰当的$\epsilon'$使得
+\[
+(1-\epsilon)\sqrt{\frac{n}{3}}\leq \sqrt{\left(\frac{1}{3}-\epsilon'\right)n},\quad (1+\epsilon)\sqrt{\frac{n}{3}}\geq \sqrt{\left(\frac{1}{3}+\epsilon'\right)n}.
+\]
+于是，
+\[
 \underbrace{\Pr\left[(1-\epsilon)\sqrt{\frac{n}{3}}\leq \sqrt{\sum_{i=1}^nX_i^2}\leq (1+\epsilon)\sqrt{\frac{n}{3}}\right]}_{=\Pr\left[Z_n \in A_{n,\epsilon}\right]}\to 1.
 \]
-
-于是，
+这就是说，
 \[
 \frac{\lambda (A_{n,\epsilon}\cap (-1,1)^n)}{\lambda((-1,1)^n)}=\Pr\left[Z_n \in A_{n,\epsilon}\right]\to 1.
 \]
