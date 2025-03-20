@@ -2,7 +2,7 @@
 name: Suggestion
 about: 对内容的建议或意见
 title: 'suggest: （第 X.X 节）建议简述'
-labels: suggestion
+labels: suggest
 assignees: ''
 
 ---
