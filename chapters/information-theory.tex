@@ -623,9 +623,12 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
         \item 举一个例子说明，可能会有$I(X;Y;Z)<0$，所以这样定义的互信息并不一定真的代表“信息量”.
     \end{enumerate}
 
-    \item 考虑关于$n$的正实数序列$a_1(n),\dots,a_k(n)$以及$b_1(n),\dots,b_k(n)$，假设对所有$i$，都成立$\lim_{n\to\infty} a_i(n)/b_i(n)=1$，且$\lim_{n\to\infty}a_i=+\infty$，$a_1(n)-a_2(n)-\dots-a_k(n)>0$. 证明：
-    \[\lim_{n\to\infty}\frac{a_1(n)-a_2(n)-\dots-a_k(n)}{b_1(n)-b_2(n)-\dots- b_k(n)}=1.\]
-    由此证明式 \eqref{eq:logP}.
+    \item 本题证明 \eqref{eq:logP}.
+    \begin{enumerate}
+        \item 考虑两个数列$a_n$和$b_n$，他们都趋于正无穷，并且$\lim_{n\to\infty}a_n/b_n=1$，证明$\lim_{n\to\infty}\log a_n/\log b_n=1$. 这就是说，两个等价的无穷大，取对数之后依然是等价无穷大.
+        \item 证明：$\sim$关系对乘法和除法是封闭的，即如果$a_n\sim b_n$，那么$a_n\cdot c_n\sim b_n\cdot c_n$以及$a_n/c_n\sim b_n/c_n$. 这里，记号$a_n\sim b_n$表示$\lim_{n\to\infty}a_n/b_n=1$.
+        \item 利用前两问，证明 \eqref{eq:logP}.
+    \end{enumerate}
 
     \item 我们在熵以及K-L散度的定义中，都规定了一些无定义的量的值，这些值并不是随便规定的，他们实际上反映了熵或者K-L散度定义中的连续性.
     \begin{enumerate}
