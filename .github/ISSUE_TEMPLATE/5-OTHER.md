@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-checklist:
+checklist
 - [ ] 我已经阅读并遵守了 [Issue 规范](../../../issue-format.md)
 - [ ] 我确认这是最新版本 [PDF](../../main.pdf) 中的问题
 - [ ] 我已经搜索过之前的 Issue，确保这个问题没有被提出过

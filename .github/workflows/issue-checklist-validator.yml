@@ -1,0 +1,95 @@
+name: Issue Checklist Validator
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  validate-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for required information
+        id: check_issue_format
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const body = issue.body || '';
+            
+            // Check for all required information from issue-format.md
+            const missingItems = [];
+            
+            // 1. Check checklist section and checkboxes
+            const hasChecklistSection = body.toLowerCase().includes('checklist');
+            const hasCheckboxes = body.match(/[-*]\s*\[\s*[x\s]\s*\]/i);
+            
+            if (!hasChecklistSection || !hasCheckboxes) {
+              missingItems.push("checklist");
+            }
+            
+            // 2. Check location information
+            const hasPosition = body.match(/位置[\s\S]*[:：]/);
+            if (!hasPosition) {
+              missingItems.push("位置信息");
+            }
+            
+            // 3. Check original content
+            const hasOriginalContent = body.match(/(原文|原始内容)[\s\S]*[:：]/);
+            if (!hasOriginalContent) {
+              missingItems.push("原文/原始内容");
+            }
+            
+            // 4. Check problem description
+            const hasProblemDescription = body.match(/问题[\s\S]*[:：]/);
+            if (!hasProblemDescription) {
+              missingItems.push("问题描述");
+            }
+            
+            // If any required information is missing, close the issue
+            if (missingItems.length > 0) {
+              const missingItemsStr = missingItems.join("、");
+              
+              let commentBody = `⚠️ 此 Issue 已被自动关闭，因为缺少以下必要信息：${missingItemsStr}。\n\n`;
+              commentBody += `请参照 [Issue 规范](https://github.com/${context.repo.owner}/${context.repo.repo}/blob/main/issue-format.md) 补充必要信息。必要信息包括：\n\n`;
+              commentBody += `1. **checklist**\n`;
+              commentBody += `2. **位置**：PDF页码、节号、段落信息等\n`;
+              commentBody += `3. **原始内容**：引用相关文本\n`;
+              commentBody += `4. **问题描述**：清晰说明问题和修改建议\n\n`;
+              
+              if (missingItems.includes("checklist")) {
+                commentBody += `checklist 格式示例：\n\`\`\`\nchecklist\n- [ ] 我已经阅读并遵守了 Issue 规范\n- [ ] 我确认这是最新版本中的错误\n- [ ] 我已经搜索过之前的 Issue，确保这个问题没有被提出过\n\`\`\`\n\n`;
+              }
+              
+              commentBody += `补充完整信息后请重新打开 Issue。`;
+              
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: commentBody
+              });
+              
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'closed',
+                state_reason: 'not_planned'
+              });
+              
+              core.setOutput('issue_format_valid', 'false');
+              return;
+            }
+            
+            // Check if all checkboxes are checked (which might indicate the user forgot to review them)
+            const hasEmptyCheckbox = body.match(/[-*]\s*\[\s*\]\s*/);
+            if (!hasEmptyCheckbox && hasCheckboxes) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: '⚠️ 提醒：您的 Issue 中所有的 checklist 项都被标记为已完成。请确认您已经阅读并完成了所有的检查项目。如果您只是不小心全部勾选，请取消勾选相应的项目。'
+              });
+            }
+            
+            core.setOutput('issue_format_valid', 'true');
