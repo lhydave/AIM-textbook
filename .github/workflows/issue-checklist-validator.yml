@@ -26,11 +26,15 @@ jobs:
             // 1. Check checklist section and checkboxes
             const hasChecklistSection = body.toLowerCase().includes('checklist');
             const hasCheckboxes = body.includes('[ ]') || body.includes('[x]'); // Check for checkbox markers
+            const hasEmptyCheckbox = body.includes('[ ]'); // Look for unchecked boxes
             
             console.log(`Check 1 - Checklist section: ${hasChecklistSection}, Checkboxes: ${hasCheckboxes}`);
+            console.log(`Empty checkbox check: ${hasEmptyCheckbox}`);
             
             if (!hasChecklistSection || !hasCheckboxes) {
               missingItems.push("checklist");
+            } else if (hasEmptyCheckbox) {
+              missingItems.push("未完成的 checklist");
             }
             
             // 2. Check title format
@@ -87,6 +91,10 @@ jobs:
                 commentBody += `checklist 格式示例：\n\`\`\`\nchecklist\n- [ ] 我已经阅读并遵守了 Issue 规范\n- [ ] 我确认这是最新版本中的错误\n- [ ] 我已经搜索过之前的 Issue，确保这个问题没有被提出过\n\`\`\`\n\n`;
               }
               
+              if (missingItems.includes("未完成的 checklist")) {
+                commentBody += `请确保您已经阅读并完成了所有的检查项目，并将所有检查项目标记为已完成 [x]。\n\n`;
+              }
+              
               if (missingItems.includes("标题格式")) {
                 commentBody += `标题格式示例：\n\`\`\`\ntypo:（第 1.1 节）拼写错误\nformat:（第 2.2 节）方程溢出页面边距\nenhance:（第 3.3 节）补充证明\nsuggest:（第 3.4 节）定义难以理解\nother:（第 x.x 节）问题简述\n\`\`\`\n\n`;
               }
@@ -110,19 +118,6 @@ jobs:
               
               core.setOutput('issue_format_valid', 'false');
               return;
-            }
-            
-            // Check if there are unchecked boxes which might indicate the user hasn't completed the checklist
-            const hasEmptyCheckbox = body.includes('[ ]'); // Look for unchecked boxes
-            console.log(`Empty checkbox check: ${hasEmptyCheckbox}`);
-            
-            if (hasEmptyCheckbox) {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue.number,
-                body: '⚠️ 提醒：您的 Issue 中有未勾选的 checklist 项。请确认您已经阅读并完成了所有的检查项目，并在确认完成后将其标记为已完成。'
-              });
             }
             
             // Check if the issue has the correct label based on the title prefix
