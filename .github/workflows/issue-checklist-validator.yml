@@ -112,16 +112,16 @@ jobs:
               return;
             }
             
-            // Check if all checkboxes are checked (which might indicate the user forgot to review them)
+            // Check if there are unchecked boxes which might indicate the user hasn't completed the checklist
             const hasEmptyCheckbox = body.includes('[ ]'); // Look for unchecked boxes
             console.log(`Empty checkbox check: ${hasEmptyCheckbox}`);
             
-            if (!hasEmptyCheckbox && hasCheckboxes) {
+            if (hasEmptyCheckbox) {
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: issue.number,
-                body: '⚠️ 提醒：您的 Issue 中所有的 checklist 项都被标记为已完成。请确认您已经阅读并完成了所有的检查项目。如果您只是不小心全部勾选，请取消勾选相应的项目。'
+                body: '⚠️ 提醒：您的 Issue 中有未勾选的 checklist 项。请确认您已经阅读并完成了所有的检查项目，并在确认完成后将其标记为已完成。'
               });
             }
             
