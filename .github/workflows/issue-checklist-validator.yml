@@ -142,17 +142,38 @@ jobs:
             if (matchedPrefix) {
               const correctLabel = labelMapping[matchedPrefix];
               const issueLabels = issue.labels.map(label => label.name);
+              const categoryLabels = Object.values(labelMapping);
               
-              // If the issue doesn't have the correct label, add it
-              if (!issueLabels.includes(correctLabel)) {
-                await github.rest.issues.addLabels({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  issue_number: issue.number,
-                  labels: [correctLabel]
-                });
+              // Check if the issue has any category labels that don't match the correct one
+              const hasIncorrectLabel = categoryLabels.some(label => 
+                label !== correctLabel && issueLabels.includes(label)
+              );
+              
+              // If the issue has incorrect labels or is missing the correct label
+              if (hasIncorrectLabel || !issueLabels.includes(correctLabel)) {
+                // First, remove any existing category labels
+                for (const labelToRemove of categoryLabels) {
+                  if (issueLabels.includes(labelToRemove) && labelToRemove !== correctLabel) {
+                    await github.rest.issues.removeLabel({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      issue_number: issue.number,
+                      name: labelToRemove
+                    });
+                    console.log(`Removed incorrect label '${labelToRemove}' from issue #${issue.number}`);
+                  }
+                }
                 
-                console.log(`Added missing label '${correctLabel}' to issue #${issue.number}`);
+                // Then add the correct label if it's not already present
+                if (!issueLabels.includes(correctLabel)) {
+                  await github.rest.issues.addLabels({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: issue.number,
+                    labels: [correctLabel]
+                  });
+                  console.log(`Added correct label '${correctLabel}' to issue #${issue.number}`);
+                }
               }
             }
             
