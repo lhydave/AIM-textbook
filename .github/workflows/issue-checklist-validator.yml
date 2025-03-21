@@ -31,19 +31,29 @@ jobs:
               missingItems.push("checklist");
             }
             
-            // 2. Check location information
+            // 2. Check title format
+            const title = issue.title || '';
+            const validPrefixes = ['typo:', 'format:', 'enhance:', 'suggest:', 'other:'];
+            const hasSectionReference = title.match(/（第\s*[\d\.]+\s*节）/);
+            const hasValidPrefix = validPrefixes.some(prefix => title.toLowerCase().startsWith(prefix));
+            
+            if (!hasValidPrefix || !hasSectionReference) {
+              missingItems.push("标题格式");
+            }
+            
+            // 3. Check location information
             const hasPosition = body.match(/位置[\s\S]*[:：]/);
             if (!hasPosition) {
               missingItems.push("位置信息");
             }
             
-            // 3. Check original content
+            // 4. Check original content
             const hasOriginalContent = body.match(/(原文|原始内容)[\s\S]*[:：]/);
             if (!hasOriginalContent) {
               missingItems.push("原文/原始内容");
             }
             
-            // 4. Check problem description
+            // 5. Check problem description
             const hasProblemDescription = body.match(/问题[\s\S]*[:：]/);
             if (!hasProblemDescription) {
               missingItems.push("问题描述");
@@ -55,13 +65,18 @@ jobs:
               
               let commentBody = `⚠️ 此 Issue 已被自动关闭，因为缺少以下必要信息：${missingItemsStr}。\n\n`;
               commentBody += `请参照 [Issue 规范](https://github.com/${context.repo.owner}/${context.repo.repo}/blob/main/issue-format.md) 补充必要信息。必要信息包括：\n\n`;
-              commentBody += `1. **checklist**\n`;
-              commentBody += `2. **位置**：PDF页码、节号、段落信息等\n`;
-              commentBody += `3. **原始内容**：引用相关文本\n`;
-              commentBody += `4. **问题描述**：清晰说明问题和修改建议\n\n`;
+              commentBody += `1. **标题格式**：类型（章节）问题简要描述\n`;
+              commentBody += `2. **checklist**\n`;
+              commentBody += `3. **位置**：PDF页码、节号、段落信息等\n`;
+              commentBody += `4. **原始内容**：引用相关文本\n`;
+              commentBody += `5. **问题描述**：清晰说明问题和修改建议\n\n`;
               
               if (missingItems.includes("checklist")) {
                 commentBody += `checklist 格式示例：\n\`\`\`\nchecklist\n- [ ] 我已经阅读并遵守了 Issue 规范\n- [ ] 我确认这是最新版本中的错误\n- [ ] 我已经搜索过之前的 Issue，确保这个问题没有被提出过\n\`\`\`\n\n`;
+              }
+              
+              if (missingItems.includes("标题格式")) {
+                commentBody += `标题格式示例：\n\`\`\`\ntypo:（第 1.1 节）拼写错误\nformat:（第 2.2 节）方程溢出页面边距\nenhance:（第 3.3 节）补充证明\nsuggest:（第 3.4 节）定义难以理解\nother:（第 x.x 节）问题简述\n\`\`\`\n\n`;
               }
               
               commentBody += `补充完整信息后请重新打开 Issue。`;
@@ -94,6 +109,40 @@ jobs:
                 issue_number: issue.number,
                 body: '⚠️ 提醒：您的 Issue 中所有的 checklist 项都被标记为已完成。请确认您已经阅读并完成了所有的检查项目。如果您只是不小心全部勾选，请取消勾选相应的项目。'
               });
+            }
+            
+            // Check if the issue has the correct label based on the title prefix
+            const labelMapping = {
+              'typo:': 'typo',
+              'format:': 'format',
+              'enhance:': 'enhance',
+              'suggest:': 'suggest',
+              'other:': 'other'
+            };
+            
+            let matchedPrefix = null;
+            for (const prefix of Object.keys(labelMapping)) {
+              if (title.toLowerCase().startsWith(prefix)) {
+                matchedPrefix = prefix;
+                break;
+              }
+            }
+            
+            if (matchedPrefix) {
+              const correctLabel = labelMapping[matchedPrefix];
+              const issueLabels = issue.labels.map(label => label.name);
+              
+              // If the issue doesn't have the correct label, add it
+              if (!issueLabels.includes(correctLabel)) {
+                await github.rest.issues.addLabels({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  labels: [correctLabel]
+                });
+                
+                console.log(`Added missing label '${correctLabel}' to issue #${issue.number}`);
+              }
             }
             
             core.setOutput('issue_format_valid', 'true');
