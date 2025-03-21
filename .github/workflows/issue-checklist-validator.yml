@@ -25,7 +25,9 @@ jobs:
             
             // 1. Check checklist section and checkboxes
             const hasChecklistSection = body.toLowerCase().includes('checklist');
-            const hasCheckboxes = body.match(/[-*]\s*\[\s*[x\s]\s*\]/i);
+            const hasCheckboxes = body.includes('[ ]') || body.includes('[x]'); // Check for checkbox markers
+            
+            console.log(`Check 1 - Checklist section: ${hasChecklistSection}, Checkboxes: ${hasCheckboxes}`);
             
             if (!hasChecklistSection || !hasCheckboxes) {
               missingItems.push("checklist");
@@ -34,30 +36,40 @@ jobs:
             // 2. Check title format
             const title = issue.title || '';
             const validPrefixes = ['typo:', 'format:', 'enhance:', 'suggest:', 'other:'];
-            const hasSectionReference = title.match(/（第\s*[\d\.]+\s*节）/);
+            const hasSectionReference = title.includes('第') && title.includes('节');
             const hasValidPrefix = validPrefixes.some(prefix => title.toLowerCase().startsWith(prefix));
+            
+            console.log(`Check 2 - Valid prefix: ${hasValidPrefix}, Section reference: ${hasSectionReference}`);
             
             if (!hasValidPrefix || !hasSectionReference) {
               missingItems.push("标题格式");
             }
             
             // 3. Check location information
-            const hasPosition = body.match(/位置[\s\S]*[:：]/);
+            const hasPosition = body.toLowerCase().includes('位置：') || body.toLowerCase().includes('位置:');
+            console.log(`Check 3 - Position information: ${hasPosition}`);
+            
             if (!hasPosition) {
               missingItems.push("位置信息");
             }
             
             // 4. Check original content
-            const hasOriginalContent = body.match(/(原文|原始内容)[\s\S]*[:：]/);
+            const hasOriginalContent = body.toLowerCase().includes('原文：') || body.toLowerCase().includes('原文:');
+            console.log(`Check 4 - Original content: ${hasOriginalContent}`);
+            
             if (!hasOriginalContent) {
-              missingItems.push("原文/原始内容");
+              missingItems.push("原文");
             }
             
             // 5. Check problem description
-            const hasProblemDescription = body.match(/问题[\s\S]*[:：]/);
+            const hasProblemDescription = body.toLowerCase().includes('问题:') || body.toLowerCase().includes('问题：');
+            console.log(`Check 5 - Problem description: ${hasProblemDescription}`);
+            
             if (!hasProblemDescription) {
               missingItems.push("问题描述");
             }
+            
+            console.log(`Missing items: ${missingItems.length > 0 ? missingItems.join(', ') : 'None'}`);
             
             // If any required information is missing, close the issue
             if (missingItems.length > 0) {
@@ -101,7 +113,9 @@ jobs:
             }
             
             // Check if all checkboxes are checked (which might indicate the user forgot to review them)
-            const hasEmptyCheckbox = body.match(/[-*]\s*\[\s*\]\s*/);
+            const hasEmptyCheckbox = body.includes('[ ]'); // Look for unchecked boxes
+            console.log(`Empty checkbox check: ${hasEmptyCheckbox}`);
+            
             if (!hasEmptyCheckbox && hasCheckboxes) {
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
@@ -127,6 +141,8 @@ jobs:
                 break;
               }
             }
+            
+            console.log(`Title prefix check - Matched prefix: ${matchedPrefix || 'None'}`);
             
             if (matchedPrefix) {
               const correctLabel = labelMapping[matchedPrefix];
