@@ -2,7 +2,7 @@ name: Issue Checklist Validator
 
 on:
   issues:
-    types: [opened]
+    types: [opened, edited]
 
 jobs:
   validate-issue:
