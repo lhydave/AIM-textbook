@@ -51,7 +51,7 @@
     \item  当第一步试验出现上面的结果时，第二步试验以概率$1$产生结果$1$；
     \item  当第二步试验出现下面的结果时，第二步试验以概率$2/3$产生结果$2$，以概率$1/3$产生结果$3$.
 \end{itemize}
-我们可以看到，分成两步之后，第一步试验的不确定性是$H(1/2,1/2)$，第二步试验的不确定性有一半概率是$H(1)$（上面的分支），有一半概率是$H(2/3,1/3)$（下面的分支），因而加权的不确定性是$1/2\cdot 0+1/2\cdot H(2/3,1/3)$. 因此第三个假设可以具体表述为
+我们可以看到，分成两步之后，第一步试验的不确定性是$H(1/2,1/2)$，第二步试验的不确定性有一半概率是$H(1)$（上面的分支），有一半概率是$H(2/3,1/3)$（下面的分支），因而加权的不确定性是$1/2\cdot H(1)+1/2\cdot H(2/3,1/3)$. 因此第三个假设可以具体表述为
 \[
 H\left(\frac{1}{2},\frac{1}{3},\frac{1}{6}\right)=H\left(\frac{1}{2},\frac{1}{2}\right)+\left[\frac{1}{2}\cdot H(1)+\frac{1}{2}\cdot H\left(\frac{2}{3},\frac{1}{3}\right)\right].
 \]
@@ -116,15 +116,17 @@ H\left(\frac{1}{2},\frac{1}{3},\frac{1}{6}\right)=H\left(\frac{1}{2},\frac{1}{2}
 \end{align*}
 因此，
 \begin{equation}
-    \log P\sim N\log N-\sum_i N_i\log N_i- N\log m\sim N\log N-\sum_i N_i\log N_i.\label{eq:logP}
+    \log P\sim N\log N-\sum_i N_i\log N_i- N\log m.\label{eq:logP}
 \end{equation}
 假设$N_i$充分大的时候，$N_i/N$呈现固定的比例$p_i$，那么
     \begin{align*}
         N\log N-\sum_i N_i\log N_i&\sim N\log N-\sum_i Np_i\log(Np_i)\\
         &=-N\sum_i p_i\log p_i.
     \end{align*}
- $\log P\sim -N\sum_i p_i\log p_i$. 于是我们证明了：
-    \[\frac1N\log P\to H(p_1,\dots,p_m),\quad N\to\infty.\]
+ $\log P\sim -N\sum_i p_i\log p_i-N\log m$. 回到物理意义，真正决定系统状态的量是$p_i$，而$N$和$m$只是用来描述系统的粒子数和单元数，可以被看作是一个常数. 真正决定系统状态的概率分布的量是
+ \[
+    H(p_1,\dots,p_m)=-\sum_i p_i\log p_i.
+\]
 因此，熵刻画了充分多粒子的物理系统某种特定状态出现概率！熵越大的系统越有可能达到. 更进一步，在统计力学中有Boltzmann $H$-定理：孤立的粒子系统会向着熵（$H$）增加的方向演化，并最终达到熵最大的状态~\cite{uffinkBoltzmannsWorkStatistical2022}. $H$-定理是热力学第二定律的微观解释，熵越大的系统出现概率越大、越混乱、越接近均衡.
 
 
@@ -232,8 +234,8 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 
 有了两个随机变量，我们就可以讨论“条件”的概念. 具体来说，我们可以把试验分为两步，第一步观测$X$，第二步观测$Y$，那么，第二步所产生的熵就是已经知道第一步结果之后的熵，即：
 \begin{align*}
-    H(Y| X=x)&=-\E[\log p_{Y| X}(Y|x)]\\
-    &=-\sum_{j}p_{Y|X}(j)\log p_{Y|X}(j|x),
+    H(Y| X=x)&=-\E_Y[\log p_{Y| X}(Y|x)]\\
+    &=-\sum_{j}p_{Y|X}(j|x)\log p_{Y|X}(j|x),
 \end{align*}
 其中$p_{Y|X}(j|x)=p(x,j)/p_X(x)$. 当我们知道了$X=x$之后，对$Y$的观测就消除了部分的不确定性，因此根据我们对于不确定性和信息关系的讨论，从$X=x$中获得的关于$Y$的信息是
 \[I(X=x;Y)=H(Y)-H(Y|X=x).\]
@@ -256,7 +258,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
     H(Y| X)=&\E_{x\sim X}[H(Y|X=x)]\\
     =&-\sum_x p_{X}(x)\sum_{j}p_{Y|X}(j|x)\log p_{Y|X}(j|x)\\
     =&-\sum_{x,j}p(x,j)\log p_{Y|X}(j|x)\\
-    =&-\E[\log p_{Y| X}(Y|X)].
+    =&-\E_{X,Y}[\log p_{Y| X}(Y|X)].
 \end{align*}
 换言之，我们现在进一步假定$X$也是不知道的，于是$H(Y|X)$就是平均上来说第二步中$Y$的不确定性. 
 
@@ -266,7 +268,11 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 \end{proposition}
 \begin{proof}
     仿照\Cref{prop:entropy-nonnegative} 的证明. 因为$-\log(\cdot)$是严格凸函数，所以根据Jensen不等式
-    \[H(Y|X)=\E[-\log p(Y|X)]\geq-\log\E[p(Y|X)]\geq -\log 1=0.\]
+    \begin{align*}
+        H(Y|X)=&\E_{X,Y}[-\log p_{Y| X}(Y|X)]\\
+        \geq&-\log\E_{Y|X}[p_{Y|X}(Y|X)]\\
+        \geq& -\log 1=0.
+    \end{align*}
     等号成立当且仅当$p(Y|X)$以概率$1$取$1$，即$Y$被$X$完全决定，也就是$Y$是$X$的函数.
 \end{proof}
 类似地，我们可以考虑平均上$X$中包含的关于$Y$的信息量：
@@ -299,9 +305,9 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 \[I(X;Y)=I(Y;X)=\E[I(X=x;Y)]=\E[I(Y=y;X)].\]
 
 类似联合分布的熵，条件熵和互信息的概念也可以推广到多元情形. 对于三个随机变量$X,Y,Z$，我们可以定义条件熵为
-\[H(X,Y|Z)=H(X,Y,Z)-H(Z).\]
+\[H(X,Y|Z)=H(X,Y,Z)-H(Z).\footnote{严格上说，应该写成$H((X,Y)|Z)$. 为简便起见，我们规定表示条件的竖线“$|$”具有最低的优先级，这样就可以省略括号了。}\]
 类似地，我们可以定义互信息为
-\[I(X,Y;Z)=H(X,Y)-H(X,Y|Z).\]
+\[I(X,Y;Z)=H(X,Y)-H(X,Y|Z).\footnote{同理，严格的写法应该是$I((X,Y);Z)$，我们规定表示互信息的分号“$;$”具有高于竖线“$|$”但低于其他一切的优先级，这样我们就把括号去掉了。}\]
 他们的含义以及性质和二元情形类似.
 
 同样，我们可以定义\textbf{条件互信息}为
@@ -316,7 +322,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
         \item 条件信息量：$I(X;X|Y)=H(X|Y)-H(X|X,Y)=H(X|Y)$.
     \end{enumerate}
 \end{proposition}
-最后一条性质说的其实是，在平均的意义下，给定$Y$的时候，知道$X$所能够得到的额外信息量就是$H(X|Y)$. 这一命题的证明和前面都非常相似，见习题 \ref{exercise:conditional-mutual-information}. 
+前两条性质说明，条件在$Z$上，$X$和$Y$的互信息同样是非负的、对称的. 第三条性质是链式法则对联合分布的推广。最后一条性质说的其实是，在平均的意义下，给定$Y$的时候，知道$X$所能够得到的额外信息量就是$H(X|Y)$. 这一命题的证明和前面都非常相似，见习题 \ref{exercise:conditional-mutual-information}. 
 
 最后，我们将各种熵以及信息量的关系总结为\Cref{fig:entropy-relation}. 在集合论中，这样的图被称为Venn图，所以我们可以用集合论来理解信息与熵. 对应关系可以总结为\Cref{tab:entropy-relation}.
 \begin{table}[ht]
@@ -452,14 +458,14 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
 
 假定我们需要$h(\omega)$比特来具体确定发的消息是$\omega$，我们来推导$h(\omega)$的上下界. 
 \begin{itemize}
-    \item 无论如何编码，我们需要能区分$\Omega$中的不同元素，这本身需要$\log_2\Omega$比特来表示. 
-    \item 在一些编码中，我们还需要确定$(k_1,\dots,k_s)$. 确定它的一种方式是按照顺序给出每一个$k_i$. 因为$k_i\leq k$，每个$k_i$最多需要$\log_2 k$比特来表示，所以按顺序表示所有的$k_i$至多需要$s\log_2 k$比特.
+    \item 无论如何编码，我们需要能区分$\Omega$中的不同元素，这本身需要$\log_2|\Omega|$比特来表示. 
+    \item 为了给出上界，我们需要给一种特定的编码方式，然后$h(\omega)$自然不会超过它。例如，我们可以用二进制按顺序编码每一个$k_i$，然后再给定$\Omega$的一个特定顺序（例如字典序）编码每一条$\omega$. 因为$k_i\leq k$，每个$k_i$最多需要$\log_2 k$比特来表示，所以按顺序表示所有的$k_i$至多需要$s\log_2 k$比特；给定特定$k_i$之后，每个$\omega$至多需要$\log_2|\Omega|$比特来表示是第几个$\omega$. 
 \end{itemize}
 于是，我们需要的比特数为
-\[\log_2\frac{k!}{k_1!\cdot\dots\cdot k_s!}\leq h(m)\leq s\log_2k+\log\frac{k!}{k_1!\cdot\dots\cdot k_s!}.\]
+\[\log_2\frac{k!}{k_1!\cdot\dots\cdot k_s!}\leq h(\omega)\leq s\log_2k+\log_2\frac{k!}{k_1!\cdot\dots\cdot k_s!}.\]
 这刚好和我们在统计力学中推导熵的过程是一致的！
 
-假设消息足够的长，$x_i$出现的频率逐渐接近$p_i$，那么同样的推理我们可以知道，
+假设消息足够的长，$x_i$出现的频率逐渐接近$p_i$，那么，类似统计力学推理熵的过程，我们可以知道，
 \[h(m)\sim -k\sum_i p_i\log_2 p_i=kH_2(p_1,\dots,p_s).\]
 因此，如果知道字母的出现频率，我们传递单位长度的消息至少需要$H(p_1,\dots,p_s)$比特，这完全给出了熵的具体含义，而且，我们现在也不难理解熵的形式为何会出现$\log$了：熵就是期望上编码一个字母需要的比特数（即$\log(1/p(X))$）. Shannon给出了一种渐进意义上的最优编码，它的编码长度达到了这个下界，后来独立地被Fano \cite{robertm.fanoTransmissionInformation1949} 以一种不同的形式发现，这种编码被称为\textit{Shannon-Fano编码}.
 
@@ -482,7 +488,7 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
 \[s^k=\e^{k\log s}.\]
 根据\Cref{prop:entropy-maximum}，只有当所有$p_i$相等的时候$N(k)$才会达到这一量级. 从这个意义上说，\textit{熵所刻画的信息量定量刻画了数据压缩可能的极限.}
 
-以上关于信息编码下界以及数据压缩的讨论，在更一般的情况下也成立，此时这样的性质被称为\textit{渐近等分性}. 而这一性质成立对应的结果被称为\textit{Shannon-McMillan-Breiman定理}，它的陈述以及证明都需要用到更多随机过程的知识，这里就不再给出了，感兴趣的读者请参阅Shannon的工作~\cite{shannonMathematicalTheoryCommunication1948}、MciMillan的工作 \cite{mcmillanBasicTheoremsInformation1953} 和Breiman的工作 \cite{breimanIndividualErgodicTheorem1957}. 
+以上关于信息编码下界以及数据压缩的讨论，在更一般的情况下也成立，此时这样的性质被称为\textit{渐近等分性}. 而这一性质成立对应的结果被称为\textit{Shannon-McMillan-Breiman定理}，它的陈述以及证明都需要用到更多随机过程的知识，这里就不再给出了，感兴趣的读者请参阅Shannon的工作~\cite{shannonMathematicalTheoryCommunication1948}、McMillan的工作 \cite{mcmillanBasicTheoremsInformation1953} 和Breiman的工作 \cite{breimanIndividualErgodicTheorem1957}. 
 
 \subsection{K-L散度、交叉熵与编码}
 
@@ -589,7 +595,7 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
 \]
 由$m,n$的任意性，取$m=2$，我们就得到了$f(n)=(f(2)/\log 2)\cdot \log n= C\log n$. 容易检验，$f(1)=0=C\log 1$，因此这一等式对所有正整数$n$都成立.
 
-对第二步，我们需要求出$f(n)=H(1/n,\dots,1/n)$的表达式. 我们要利用第一步的结果，首先，根据假设二，$f(n)$是单调递增的函数. 然后，考虑$mn$个等可能试验，我们可以将它分成两步试验，第一步有$m$中等可能的结果，而在每一种结果之下，第二步有$n$种等可能结果. 根据假设三，
+对第二步，我们需要求出$f(n)=H(1/n,\dots,1/n)$的表达式. 我们要利用第一步的结果，首先，根据假设二，$f(n)$是单调递增的函数. 然后，考虑$mn$个等可能试验，我们可以将它分成两步试验，第一步有$m$种等可能的结果，而在每一种结果之下，第二步有$n$种等可能结果. 根据假设三，
 \[
 f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).    
 \]
@@ -654,7 +660,7 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
         \]
         对于随机变量$X,Y$，成立Cauchy不等式：
         \[
-            |\E[XY]|^2 \leq \E[X^2]E[Y^2].
+            |\E[XY]|^2 \leq \E[X^2]\cdot\E[Y^2].
         \]
     \end{hint}
 

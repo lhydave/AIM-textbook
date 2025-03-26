@@ -8,9 +8,9 @@ assignees: ''
 ---
 
 checklist
-- [ ] 我已经阅读并遵守了 [Issue 规范](../../../issue-format.md)
-- [ ] 我确认这是最新版本 [PDF](../../main.pdf) 中的内容
-- [ ] 我已经搜索过之前的 Issue，确保这个建议没有被提出过
+- [ ] 我已经阅读并遵守了 [Issue 规范](https://github.com/lhydave/AIM-textbook/blob/master/issue-format.md)
+- [ ] 我确认这是最新版本 [PDF](https://github.com/lhydave/AIM-textbook/blob/master/main.pdf) 中的错误
+- [ ] 我已经搜索过之前的 Issue，确保这个问题没有被提出过
 
 位置：第 30 页，第 3.4 节
 

@@ -211,16 +211,16 @@
 接下来我们给两个在Bayes概率论以及随机过程中很重要的性质. 
 
 \begin{theorem}[全概率公式]\label{thm:total-probability}
-设$(\Omega,\scF,\Pr)$是一个概率空间，$A_1,A_2,\ldots\in\scF$是一列两两不相交的事件，且$\Pr(A_i)>0$，$\bigcup_{i=1}^\infty A_i=B$，则对任意的$C\in\scF$，有
+设$(\Omega,\scF,\Pr)$是一个概率空间，$A_1,A_2,\ldots\in\scF$是一列两两不相交的事件，且$\Pr(A_i)>0$，$\bigcup_{i=1}^\infty A_i=\Omega$，则对任意的$C\in\scF$，有
 \[
-    \Pr(C|B) = \sum_{i=1}^\infty \Pr(C|A_i)\Pr(A_i).
+    \Pr(C) = \sum_{i=1}^\infty \Pr(C|A_i)\Pr(A_i).
 \]
 特别地，对于有限个$A_i$，这一定理也成立. 
 \end{theorem}
 \begin{proof}
 注意到
 \begin{align*}
-    \Pr(C) = \Pr(C\cap B) &= \Pr\left(C\cap\bigcup_{i=1}^\infty A_i\right)\\
+    \Pr(C) = \Pr(C\cap \Omega) &= \Pr\left(C\cap\bigcup_{i=1}^\infty A_i\right)\\
     &= \Pr\left(\bigcup_{i=1}^\infty (C\cap A_i)\right)\\
     &= \sum_{i=1}^\infty \Pr(C\cap A_i).
 \end{align*}
@@ -316,7 +316,7 @@
 上面例子中的$S$和$X$都是\textit{随机变量}的例子. 我们给出随机变量的定义. 
 
 \begin{definition}[随机变量（向量），Borel函数]
-设$(\Omega,\scF,\Pr)$是一个概率空间，$X:\Omega\to\R$是一个函数. 如果对任意的$x\in\R$，都有$\{X\in\scB(\R)\}\in\scF$，则称$X$是一个\textbf{随机变量}. 
+设$(\Omega,\scF,\Pr)$是一个概率空间，$X:\Omega\to\R$是一个函数. 如果对任意的$A\in\scB(\R)$，都有$\{X\in A\}\in\scF$，则称$X$是一个\textbf{随机变量}. 
 
 一般地，考虑一个集合$\R^n$以及其上的Borel代数$\scB(\R^n)$，$X:\Omega\to \R^n$是一个映射. 如果对任意的$A\in\scB(\R^n)$，集合$\{X\in A\}$ $\scF$-可测，即$\{X\in A\}\in\scF$，则称$X$是一个\textbf{$n$维随机向量}，简称\textbf{随机向量}. 如果$(\Omega,\scF)=(\R^m,\scB(\R^m))$，则称$X$是一个\textbf{Borel函数}.
 \end{definition}
@@ -429,13 +429,14 @@
 
 如果我们就限制在空间$([0,1]^n,\scB([0,1]^n),\lambda)$上，随机向量几乎就等同于分布函数. 在更一般的情况下，两个随机向量$X,Y$的分布函数相同时，我们称$X,Y$ \textit{同分布}，记为$X \stackrel{d}{=} Y$.
 
-现在，我们将分布函数与概率测度联系在一起：
+现在，我们将分布函数与概率测度联系在一起. 下面的定理说明，分布函数$F$可以自然诱导出来一个概率测度$P$，在这个测度空间上，可以定义一个随机变量$X$，使得$F_X=F$.
 
 \begin{theorem}\label{thm:uniqueness-of-distribution-function}
-设$F:\R^n\to\R$是一个分布函数，则在可测空间$(\R^n,\scB(\R^n))$上，存在唯一的概率测度$\Pr$，使得对任意$a_i\leq b_i$，
+设$F:\R^n\to\R$是一个分布函数，则在可测空间$(\R^n,\scB(\R^n))$上，存在唯一的概率测度$P$，使得对任意$a_i\leq b_i$，
 \[
-    \Pr\left(\prod_{i=1}^n(a_i,b_i]\right) = \Delta_{a_1b_1}\Delta_{a_2b_2}\dots\Delta_{a_nb_n}F(x_1,x_2,\ldots,x_n).
+    P\left(\prod_{i=1}^n(a_i,b_i]\right) = \Delta_{a_1b_1}\Delta_{a_2b_2}\dots\Delta_{a_nb_n}F(x_1,x_2,\ldots,x_n).
 \]
+此外，在概率空间$(\R^n,\scB(\R^n),Pﬁ)$上，随机向量$X(\omega)=\omega$的分布函数是$F$.
 \end{theorem}
 
 特别地，分布函数
@@ -451,9 +452,14 @@
 \includegraphics[width=0.8\textwidth]{figures/prob/prob-relations.pdf}
 \end{center}
 
-这张图的每一个箭头都可以反过来，但是反过来的这些关系都比较不直观，所以我们不再讨论. 
+这张图的每一个箭头都可以反过来，从分布函数$F$出发，可以定义出一个概率测度$P$，以及一个随机变量$X$.
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/prob/prob-relations-reverse.pdf}
+\end{center}
 
 根据上面的讨论，分布函数的特性决定了随机变量的特性. 根据分布函数的不同性质，我们可以将随机变量分为不同的类型. 下面我们将讨论一些重要的类别. 
+
+注意，有了这两个对应关系，我们不再需要讨论抽象的可测空间$(\Omega,\scF)$，我们总是把注意力放在具体的可测空间$(\R^n,\scB(\R^n))$上，此时，分布函数$F$诱导了概率测度$\Pr$，而随机变量$X(\omega)=\omega$具有分布函数$F$，因而我们可以把样本点和随机变量等同起来.
 
 \subsection{离散型随机变量}
 

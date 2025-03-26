@@ -91,7 +91,7 @@ Netflix 为比赛公开了一份庞大的数据集，包含超过一亿条匿名
 当我们替换一个人的数据时，我们希望结果分布的变化可以控制在一定范围内. 为此，我们引入相邻数据集的概念：
 
 \begin{definition}[$k$-相邻数据集]
-    设 $x, x' \in \mathcal X^n$，如果 $x$ 和 $x'$ 最多有$k$条数据不同，即至多存在$k$个不同的$i_1,\dots,i_k \in [n]$ 使得 $x_{i_j}=x_{i_j}'$对$j\in[k]$成立，那么称 $x$ 和 $x'$ 是 \textbf{$k$-相邻的}. 
+    设 $x, x' \in \mathcal X^n$，如果 $x$ 和 $x'$ 最多有$k$条数据不同，即至多存在$k$个不同的$i_1,\dots,i_k \in [n]$ 使得 $x_{i_j}\neq x_{i_j}'$对$j\in[k]$成立，那么称 $x$ 和 $x'$ 是 \textbf{$k$-相邻的}. 
     
     特别地，如果$k=1$，我们称$x$和$x'$是\textbf{相邻的}.
 \end{definition}
@@ -541,7 +541,7 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\textit{Ll
         其中 $\mathcal X_{-i} = \{\mathcal X_1, \dots, \mathcal X_{i-1}, \mathcal X_{i+1}, \dots, \mathcal X_n\}$ 表示除了 $\mathcal X_i$ 之外的所有数据条目.
         \item \textbf{K-L散度差分隐私. }如果对于所有相邻的数据集 $x$ 和 $\tilde{x}$，算法$M$满足下面的不等式，就称$M$是一个$\epsilon$-KL-DP：
         \[
-            D_{\KL}(P_{\mathcal Y|\mathcal X^n=x}\| P_{\mathcal Y|\mathcal X^n=\tilde{x}}) \leq e^\epsilon.
+            D_{\KL}(P_{\mathcal Y|\mathcal X^n=x}\| P_{\mathcal Y|\mathcal X^n=\tilde{x}}) \leq \epsilon.
         \]
     \end{itemize}
 
