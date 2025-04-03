@@ -348,7 +348,7 @@ $\lambda$被称为\textit{Lagrange乘子}. 必要条件可以被写作：
 \end{theorem}
 
 \begin{proof}
-考虑$x^*$的邻域$U$，在这个邻域内，我们可以将问题 \eqref{eq:ineq-constraint-inequality-differentiable} 写作 \eqref{eq:ineq-constraint-inequality-differentiable-active}，即只考虑激活的约束. 由于$x^*$是一个极小值点，根据\Cref{thm:eq-opt-cond-1}，存在$\lambda\in\R^m,\mu\in\R^p$使得
+考虑$x^*$的邻域$U$，在这个邻域内，我们可以将问题 \eqref{eq:ineq-constraint-inequality-differentiable} 写作 \eqref{eq:ineq-constraint-inequality-differentiable-active}，即只考虑激活的约束. 由于$x^*$是一个极小值点，根据\Cref{thm:eq-opt-cond-1}，存在$\lambda\in\R^m,\mu\in\R^{|J|}$使得
 \[
 \nabla f(x^*)+\lambda^\t \nabla {h(x^*)}+\mu_J^\t \nabla g_J(x^*)=0.
 \]
@@ -790,7 +790,7 @@ x_1^2+x_2^2&=5.
     以上讨论主要基于优化的几何直观，这种直观在凸优化中特别有用. 有兴趣的读者可以阅读Luenberger和叶荫宇的著作~\cite{luenbergerLinearNonlinearProgramming2021}，此外，Boyd和Vandenberghe的书~\cite{boydConvexOptimization2004} 也非常值得参考. 
 \end{remark}
 
-\section{应用：支持向量机（SVM）}
+\section{应用：支持向量机（SVM）}\label{sec:svm}
 
 作为前面极值必要条件的一个具体应用，我们考虑一个经典的机器学习分类器：\textit{支持向量机}（SVM）~\cite{cortesSupportvectorNetworks1995,vapnikSupportVectorMethod1997}. 
 

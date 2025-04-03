@@ -905,8 +905,9 @@ DDPM中的Markov核都是Gauss分布，具体如下：
 可以证明（见\Cref{chap:information-theory}的习题 \ref{exercise:diffusion-model-loss}），$L$可以被写作：
 \[
 \begin{aligned}
-    \E_q[&\underbrace{D_{\KL}\left(q\left(x_T | x_0\right) \| p\left(x_T\right)\right)}_{L_T}+\\
-    &\sum_{t>1} \underbrace{D_{\KL}\left(q\left(x_{t-1} | x_t, x_0\right) \| p_\theta\left(x_{t-1} | x_t\right)\right)}_{L_{t-1}} \underbrace{-\log p_\theta\left(x_0 | x_1\right)}_{L_0}],
+    &\underbrace{\E_{x_0\sim q(x_0)}[D_{\KL}\left(q\left(x_T | x_0\right) \| p\left(x_T\right)\right)]}_{L_T}+\\
+    &\qquad\sum_{t>1} \underbrace{\E_{x_0,x_t\sim q(x_0,x_t)}[D_{\KL}\left(q\left(x_{t-1} | x_t, x_0\right) \| p_\theta\left(x_{t-1} | x_t\right)\right)]}_{L_{t-1}}+\\
+    &\qquad\underbrace{\E_{x_0,x_1\sim q(x_0,x_1)}[-\log p_\theta\left(x_0 | x_1\right)]}_{L_0},
 \end{aligned}
 \]
 其中$D_{\KL}(f(x)\|g(x))=\int f(x)\log(f(x)/g(x))\d x$.\footnote{实际上，$D_{\KL}(f(x)\|g(x))$是$f(x)$和$g(x)$的相对熵，也叫K-L散度. 这里并不需要对这一概念有深入的了解，只需要知道它的定义即可. 我们在\Cref{chap:information-theory}中会详细讨论这一概念. }

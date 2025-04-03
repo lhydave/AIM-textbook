@@ -8,13 +8,13 @@ Netflix 为比赛公开了一份庞大的数据集，包含超过一亿条匿名
 
 这个隐私问题导致了一起重要的诉讼案件. 一位未公开其性取向的同性恋母亲认为，Netflix 数据集的去匿名化可能会使她的性取向曝光，进而影响她的职业生涯和家庭生活. 她对 Netflix 提起了诉讼，要求 Netflix 根据《视频隐私保护法案》赔偿每位用户 2,500 美元，总计超过 5 亿美元. 最终，Netflix 与她达成了和解，并决定取消计划中的第二届 Netflix Prize 竞赛. 
 
-直到2024年，Netflix也在也没有举办过第二届 Netflix Prize 竞赛，它的服务也已经转变到互联网上的在线视频为主. 然而，在当今世界，数据隐私的问题反而变得愈发严重. 我们每天看的在线视频、购物、社交网络等行为都会产生大量的数据，根据Statista在2020年的一项估计，2024年每人每天产生的数据量会达到63.5GB!然而，这些数据都被私人公司所掌握！
+直到2024年，Netflix也再也没有举办过第二届 Netflix Prize 竞赛，它的服务也已经转变到互联网上的在线视频为主. 然而，在当今世界，数据隐私的问题反而变得愈发严重. 我们每天看的在线视频、购物、社交网络等行为都会产生大量的数据，根据Statista在2020年的一项估计，2024年每人每天产生的数据量会达到63.5GB!然而，这些数据都被私人公司所掌握！
 
 本章我们关心数据的另一个维度：社会属性. 尽管基于大数据和机器学习的技术的确改善了我们的生活，但是对数据的滥用也会带来严重的社会问题. 如何保护个体的隐私，同时又能够让机器学习得到足够的数据？\textbf{差分隐私}就是解决这个问题的一个方法，本章将更详细地介绍差分隐私的概念和应用. 
 
 \section{数据隐私问题}
 
-本章开篇的Netflix Price案例展示了一个典型的数据隐私问题. 实际上，不仅资本需要数据，科研也极其需要数据. 以医学为例，我们需要大量真实的病人提供病情数据. 但这些数据可能都涉及到病人的隐私信息，例如一些\textit{敏感数据}. 因此，我们必须找到一种方法，既可以收集到这些数据，又保护病人的隐私信息.
+本章开篇的Netflix Prize案例展示了一个典型的数据隐私问题. 实际上，不仅资本需要数据，科研也极其需要数据. 以医学为例，我们需要大量真实的病人提供病情数据. 但这些数据可能都涉及到病人的隐私信息，例如一些\textit{敏感数据}. 因此，我们必须找到一种方法，既可以收集到这些数据，又保护病人的隐私信息.
 
 保护病人的隐私信息的一种理解是不会让数据获得者将数据和人对应起来. 那么最直观的想法就是将每条\textit{数据匿名化}. 比如，每条数据只包含患者的生日、性别、邮政编号（代表位置\footnote{如果研究的是传染病，那么位置的意义也是很大的. }）和病情.
 
@@ -83,10 +83,15 @@ Netflix 为比赛公开了一份庞大的数据集，包含超过一亿条匿名
 \end{quotation}
 这一思想引出了\textit{差分隐私}的概念，我们将在下面给出数学形式的定义.
 
-考虑数据的空间$\mathcal X$，其中的每一个元素都包含了个体的所有可能数据例如姓名、性别、年龄、国籍等. 考虑$n$个人的数据，形成了有序的数据集
+考虑数据的空间$\mathcal X$，其中的每一个元素都包含了个体所有可能的属性，例如姓名、性别、年龄、国籍等. 考虑$n$个人的数据，形成了有序的数据集
 \[x = (x_1, \dots, x_n) \in \mathcal X^n.\]  
 
-我们希望对这些数据进行一定的加工，例如用这些数据来训练一个机器学习模型. 抽象来说，加工的过程可以被看成一个随机算法$A$：在固定输入数据集 $x \in \mathcal X^n$下，$A(x)$ 是输出空间 $\mathcal Y$ 上的一个随机变量. 
+我们希望对这些数据进行一定的加工，例如用这些数据来训练一个机器学习模型. 抽象来说，加工的过程可以被看成一个随机算法$A$，其定义如下：
+\begin{definition}[随机算法]
+    考虑输入空间$\mathcal X$和输出空间$\mathcal Y$，\textbf{随机算法}$A$被定义为随机映射 $A : \mathcal X \to \mathcal Y$，即固定输入 $x \in \mathcal X$下，$A(x)$ 是输出空间 $\mathcal Y$ 上的一个随机变量. 等价地，我们可以把 $A(x)$ 看成是输出空间$\mathcal Y$上的一个概率分布 $P_x$. 
+\end{definition}
+
+例如，大语言模型本身就是一个随机算法，模型输入是一系列的文本，模型输出是下一个词元的概率分布（见\Cref{sec:language-models}），如果对这一分布采样，我们就得到了下一个词元.
 
 当我们替换一个人的数据时，我们希望结果分布的变化可以控制在一定范围内. 为此，我们引入相邻数据集的概念：
 
@@ -101,7 +106,7 @@ Netflix 为比赛公开了一份庞大的数据集，包含超过一亿条匿名
 接下来我们给出差分隐私的定义. 直观上，不论数据集中是否包含某个人的数据，算法的输出分布不会有太大的变化，因而我们有：
 
 \begin{definition}[差分隐私，$\epsilon$-DP]
-考虑随机算法 $A : \mathcal X^n \to \mathcal Y$，如果对于任意一对$1$-相邻数据集$x, x'$，对任意（可测）值集 $E \subseteq \mathcal Y$，有
+考虑非负实数$\epsilon$和随机算法 $A : \mathcal X^n \to \mathcal Y$，如果对于任意一对$1$-相邻数据集$x, x'$，对任意（可测）值集 $E \subseteq \mathcal Y$，有
 \[
 \Pr(A(x)\in E) \leq \e^{\epsilon} \cdot \Pr(A(x')\in E),
 \]
@@ -442,8 +447,8 @@ Laplace分布是服从双边指数分布的随机变量进行线性变换后服�
 根据\Cref{prop:continuous-dp}，命题得证. 
 \end{proof}
 
-\subsection{DP版本Llyod算法}
-作为一个Laplace机制的具体实例，我们将$k$-均值聚类问题的经典算法Llyod算法改造成一个差分隐私算法，这一算法首先是由 \cite{suDifferentiallyPrivateKMeans2016} 提出的.
+\subsection{DP版本Lloyd算法}
+作为一个Laplace机制的具体实例，我们将$k$-均值聚类问题的经典算法Lloyd算法改造成一个差分隐私算法，这一算法首先是由 \cite{suDifferentiallyPrivateKMeans2016} 提出的.
 
 \textit{$k$-均值}聚类问题指的是给定一个数据集$x$，找到$k$个点（中心）$\{c_i\} \subseteq \R^d$，使得$\sum_{i \in [n]} \min_{j\in[k]} \norm{x_i - c_j}^2$最小. 通俗来说，就是找到$k$个中心，使得数据集中每个点到最近的中心的距离之和最小. 
 
@@ -468,9 +473,9 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\textit{Ll
 
 这一算法的思路大致是：首先随机初始化$k$个中心$c_i$，然后，对每一个$c_i$，找到离它最近的那些点，以这些点的平均值（也就是质心）作为新的$c_i$，重复这一过程直到收敛.
 
-注意，如果初始化的中心就是各个质心，那么Llyod算法就已经找到最优解了. 事实上，可以证明，Llyod算法最终会收敛到最优解. 
+注意，如果初始化的中心就是各个质心，那么Lloyd算法就已经找到最优解了. 事实上，可以证明，Lloyd算法最终会收敛到最优解. 
 
-尽管Llyod算法可以达到很好的效果，但它并不能保证DP性质. 我们希望对这一算法进行小规模的修改，让它具有$\epsilon$-DP的性质. 我们给出如下的DP版本Llyod算法.
+尽管Lloyd算法可以达到很好的效果，但它并不能保证DP性质. 我们希望对这一算法进行小规模的修改，让它具有$\epsilon$-DP的性质. 我们给出如下的DP版本Lloyd算法.
 
 \begin{itemize}
     \item 输入：数据集$x \in \mathcal X^n$，这里$\mathcal X = \{x \in \R^d : \norm{x}_1 \leq 1 \}$，参数$k$，最大迭代次数$T$，\light{参数$\epsilon$}.
@@ -497,7 +502,7 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\textit{Ll
     \item 输出：$c_1^{(T)}$, $c_2^{(T)}$, $\dots$, $c_k^{(T)}$.
 \end{itemize}
 
-简单来说，我们对原来Llyod算法中产生的中间值都是用Laplace机制来加噪声，最终得到的中心也是加了噪声的. 以下定理表明上面的算法确实是一个$\epsilon$-DP算法. 
+简单来说，我们对原来Lloyd算法中产生的中间值都是用Laplace机制来加噪声，最终得到的中心也是加了噪声的. 以下定理表明上面的算法确实是一个$\epsilon$-DP算法. 
 \begin{theorem}\label{thm:lloyd}
     DP 版本的 Lloyd算法是$\epsilon$-DP算法.
 \end{theorem}
@@ -519,18 +524,22 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\textit{Ll
         \item 设$X, Y \text{ i.i.d}\sim U(0, 1)$，证明：$\log(X/Y) \sim \mathrm{DExp}(1)=\mathrm{Lap}(0, 1)$. 如果$X,Y$不独立，结论还成立吗？
     \end{enumerate}
 
-    \item \label{exercise:lloyd} 证明\Cref{thm:lloyd}.
-    
-    \item 现考虑输出为$d$维的算法$f: \mathcal X^n \to  \R^d$，定义其全局灵敏度为
+    \item 设随机算法$A(x)$实现了$\epsilon$-DP的Laplace机制. 假设我们使用该算法向整数数据（例如一个人的年龄）添加噪声. 我们希望输出在整数范围内，因此对$A(x)$的输出进行四舍五入. 整个机制是否仍然是差分隐私的？如果是，参数是什么？为什么？
+
+    \item \label{exercise:laplace-mechanism-multidimensional} 现考虑输出为$d$维的算法$f: \mathcal X^n \to  \R^d$，定义其全局灵敏度为
     \begin{align*}
         \mathsf{GS}_f =& \sup_{ x,  x' \text{ 在 }\mathcal X^n\text{ 中的$1$-相邻}} \norm{f( x) - f( x')}_1\\
         =& \sup_{ x,  x' \text{ 在 }\mathcal X^n\text{ 中的$1$-相邻}} \sum_{i=1}^d |f_i( x) - f_i( x')|.
     \end{align*}
     请写出这种情况下的Laplace机制，使其成为$\epsilon$-DP，并证明.
 
-    \item 设随机算法$A(x)$实现了$\epsilon$-DP的Laplace机制. 假设我们使用该算法向整数数据（例如一个人的年龄）添加噪声. 我们希望输出在整数范围内，因此对$A(x)$的输出进行四舍五入. 整个机制是否仍然是差分隐私的？如果是，参数是什么？为什么？
+    \item \label{exercise:gs-multidimensional} 设输出为$d$维的算法$f( x) = (\sum_{i=1}^n \Phi_1( x_i), \dots, \sum_{i=1}^n \Phi_d( x_i))$， $x_i\in\mathcal X$，满足$\Phi_j(\mathcal X)=\{0, 1\}$以及$\sum_{j=1}^d \Phi_j( x_i) = 1$. 请计算$\text{GS}_f$. 
 
-    \item 设输出为$d$维的算法$f( x) = (\sum_{i=1}^n \Phi_1( x_i), \dots, \sum_{i=1}^n \Phi_d( x_i))$， $x_i\in\mathcal X$，满足$\Phi_j(\mathcal X)=\{0, 1\}$以及$\sum_{j=1}^d \Phi_j( x_i) = 1$. 请计算$\text{GS}_f$.
+    \item \label{exercise:lloyd} 证明\Cref{thm:lloyd}.
+    \begin{hint}
+        利用第 \ref{exercise:laplace-mechanism-multidimensional} 题和第 \ref{exercise:gs-multidimensional} 题的结果.
+    \end{hint}
+
     
     \item \textbf{信息论与差分隐私关系. }（\cite{cuffDifferentialPrivacyMutual2016,mirInformationTheoreticFoundationsDifferential2012}） 差分隐私和基于信息论的度量有着密切的联系. 对于一个包含$n$个（带随机性的）数据条目$\mathcal X^n = (\mathcal X_1, \dots, \mathcal X_n)$ 的数据，考虑一个随机算法$M:\mathcal X^n\to \mathcal Y$，输出$Y$的概率分布为$P_{\mathcal Y|\mathcal X^n}$. 我们引入以下概念：
     \begin{itemize}
@@ -553,7 +562,7 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\textit{Ll
     \begin{hint}
         条件互信息可以写成K-L散度的形式：
             \[
-                I(\mathcal X_{i};\mathcal Y|\mathcal X_{-i}) = \E \left[D_{\KL}\left(P(\mathcal Y|\mathcal X^{n}=\bar{x}^n)\Vert P(\mathcal Y|\mathcal X^{-i}=\bar{x}^{-i})\right)\right],
+                I(\mathcal X_{i};\mathcal Y|\mathcal X_{-i}) = \E \left[D_{\KL}\left(P(\mathcal Y|\mathcal X^{n}=\bar{x}^n)\Vert P(\mathcal Y|\mathcal X_{-i}=\bar{x}_{-i})\right)\right],
             \]
             其中$\bar{x}^n \sim P_{\mathcal X^n}$.
     \end{hint}
@@ -576,6 +585,7 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\textit{Ll
     \[
         \Pr(c_A(y,  X,  X') > \epsilon) \leq \delta.
     \]
+    这里的随机性来自随机算法输出$y=A(X)$. 
 
     \item \textbf{差分隐私对个体效用期望的影响. }设$u_i: \mathcal{Y} \to \R_{\geq 0}$为算法输出对第$i$个个体的非负效用映射（即对任意$y \in \mathcal{Y}$，$u_i(y) \geq 0$）. 假设随机算法$A$满足$\epsilon$-差分隐私. 证明：对于任意相邻数据集$x$和$x'$，有  
     \[

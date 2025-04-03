@@ -108,21 +108,24 @@ H\left(\frac{1}{2},\frac{1}{3},\frac{1}{6}\right)=H\left(\frac{1}{2},\frac{1}{2}
 
 将相空间等分成$m$个单元，编号$1$到$m$. 假设相空间中有$N$个可区分的粒子，相互独立，没有相互作用，每个粒子等可能出现在每一个单元中. 如果单元$i$中有$N_i$个粒子，那么按照粒子在单元中的分布来看，系统处于某个特定状态的概率为
     \[P=\frac{N!}{N_1!\dots N_m!}\left(\frac1m\right)^N.\]
-这是一个多项分布. 两边取对数，得
-    \[\log P=\log(N!)-\sum_i\log(N_i!)-N\log m.\]
-考虑充分大的$N_i$，由Stirling公式，有
+这是一个多项分布. 假设$N_i$充分大的时候，$N_i/N$呈现固定的比例$p_i$，因此，$p_i$差不多代表的是单元$i$中出现粒子的概率. 于是我们可以把$N_i$用$p_i$来表示：
+    \[N_i=Np_i.\]
+考虑充分大的$n$，由Stirling公式，有
 \begin{align*}
-    \log(N_i!)\sim\log\left(\sqrt{2\pi N_i}\left(\frac{N_i}{\e}\right)^{N_i}\right)\sim N_i\log N_i.    
+    n! &= \sqrt{2\pi n}\left(\frac{n}{\e}\right)^n\left(1+O\left(\frac{1}{n}\right)\right)\\
+    \implies\log n! &= \frac{1}{2}\log(2\pi n)+n\log n-n+O\left(\frac{1}{n}\right)\\
+                    &= \frac{1}{2}\log n + n \log n - n + O(1).
 \end{align*}
-因此，
-\begin{equation}
-    \log P\sim N\log N-\sum_i N_i\log N_i- N\log m.\label{eq:logP}
-\end{equation}
-假设$N_i$充分大的时候，$N_i/N$呈现固定的比例$p_i$，那么
-    \begin{align*}
-        N\log N-\sum_i N_i\log N_i&\sim N\log N-\sum_i Np_i\log(Np_i)\\
-        &=-N\sum_i p_i\log p_i.
-    \end{align*}
+这里用了性质$\log(1+O(1/n))=O(1/n)$. 于是，
+\begin{align*}
+    \log P =&\log N!-\sum_i \log N_i! -N\log m\\
+    =&\frac{1}{2}\log N + N\log N -N + O(1) - \\
+    &\quad \sum_i\left(\frac{1}{2}\log N_i + N_i\log N_i -N_i + O(1)\right) -N\log m\\
+    =&\frac{1}{2}\log N + N\log N -N - \\
+    &\quad \sum_i\left(\frac{1}{2}\log(Np_i) + Np_i\log(Np_i) -Np_i\right) -N\log m + O(1)\\
+    =&\frac{1-m}{2}\log N-N\sum_i p_i\log p_i -N\log m+O(1).
+\end{align*}
+
  $\log P\sim -N\sum_i p_i\log p_i-N\log m$. 回到物理意义，真正决定系统状态的量是$p_i$，而$N$和$m$只是用来描述系统的粒子数和单元数，可以被看作是一个常数. 真正决定系统状态的概率分布的量是
  \[
     H(p_1,\dots,p_m)=-\sum_i p_i\log p_i.
@@ -629,13 +632,6 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
         \item 举一个例子说明，可能会有$I(X;Y;Z)<0$，所以这样定义的互信息并不一定真的代表“信息量”.
     \end{enumerate}
 
-    \item 本题证明 \eqref{eq:logP}.
-    \begin{enumerate}
-        \item 考虑两个数列$a_n$和$b_n$，他们都趋于正无穷，并且$\lim_{n\to\infty}a_n/b_n=1$，证明$\lim_{n\to\infty}\log a_n/\log b_n=1$. 这就是说，两个等价的无穷大，取对数之后依然是等价无穷大.
-        \item 证明：$\sim$关系对乘法和除法是封闭的，即如果$a_n\sim b_n$，那么$a_n\cdot c_n\sim b_n\cdot c_n$以及$a_n/c_n\sim b_n/c_n$. 这里，记号$a_n\sim b_n$表示$\lim_{n\to\infty}a_n/b_n=1$.
-        \item 利用前两问，证明 \eqref{eq:logP}.
-    \end{enumerate}
-
     \item 我们在熵以及K-L散度的定义中，都规定了一些无定义的量的值，这些值并不是随便规定的，他们实际上反映了熵或者K-L散度定义中的连续性.
     \begin{enumerate}
         \item 证明：对给定的$a>0$，$\lim_{x\to 0+}x\log (x/a)=0$，因此我们规定了$0\log 0=0$以及$0\log(0/a)=0$.
@@ -669,12 +665,12 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
         \item 将问题考虑成一个数理统计问题, 估计 $\theta$. 写出似然函数 
         \[L(\theta ; x_1, \ldots, x_N).\]
         \item 再将问题考虑为一个信息论问题, 对第$k$个观测样本，它的实际分布是$\Pr(X_k=x_k)=1$，写出每个样本的真实分布与估计分布之间的交叉熵的平均值
-        \[\frac{1}{N}S(\theta ; y_1, \ldots, y_N).\]
+        \[\frac{1}{N}S(\theta ; x_1, \ldots, x_N).\]
         \item 证明：以概率$1$成立
-        \[\lim_{n\to\infty}\frac{1}{N}S(\theta ; y_1, \ldots, y_N)=CH(B(1,p)\| B(1,\theta)).\]
+        \[\lim_{N\to\infty}\frac{1}{N}S(\theta ; x_1, \ldots, x_N)=CH(B(1,p)\| B(1,\theta)).\]
         因此，当样本数量足够大的时候，$S/N$就是真实分布与模型分布的交叉熵.
         \item 证明: 对任意$N$，
-        \[\arg\max_\theta L(\theta ; y_1, \ldots, y_N)=\arg\min _\theta S(\theta ; y_1, \ldots, y_N),\]
+        \[\arg\max_\theta L(\theta ; x_1, \ldots, x_N)=\arg\min _\theta S(\theta ; x_1, \ldots, x_N),\]
         也就是说，\textit{最大似然估计等价于最小化交叉熵}.
     \end{enumerate}
 
@@ -689,7 +685,7 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
         \[
             p_{\theta}(x) = \int p_\theta(z)p_\theta(x|z)dz.
         \]
-        然而，这个积分通常是直接写出表达式的，因为参数可能非常复杂（例如神经网络）. 为此，我们引入一个分布$q_{\phi}(z|x)$来近似后验分布，其中$\phi$是$q$的参数. 证明：
+        然而，这个积分通常是很难直接写出表达式的，因为参数可能非常复杂（例如神经网络）. 为此，我们引入一个分布$q_{\phi}(z|x)$来近似后验分布，其中$\phi$是$q$的参数. 证明：
         \[
             \log p_{\theta}(x) \geq \E_{z\sim q_{\phi}(z|x)}[\log p_{\theta}(x|z)] - D_\KL(q_{\phi}(z|x)\Vert p_{\theta}(z)).
         \]
@@ -708,9 +704,9 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
         扩散模型的思想就是学习后验概率中每一步加入的噪声，从而根据逆向过程生成数据.
         借助上一问的结论，证明损失函数可以写成：
         \begin{align*}
-            \mathcal{L} = \E_{q} [& D_\KL(q(x_{T}|x_{0}) \Vert p(x_{T})) +
-            \\& \sum_{t>1} D_\KL(q(x_{t-1}|x_{t},x_{0}) \Vert p_{\theta}(x_{t-1}|x_{t})) - \log p_{\theta}(x_{0}|x_{1})
-            ],
+            \mathcal{L} =&\underbrace{\E_{x_0\sim q(x_0)}[D_{\KL}\left(q\left(x_T | x_0\right) \| p\left(x_T\right)\right)]}_{L_T}+\\
+            &\qquad\sum_{t>1} \underbrace{\E_{x_0,x_t\sim q(x_0,x_t)}[D_{\KL}\left(q\left(x_{t-1} | x_t, x_0\right) \| p_\theta\left(x_{t-1} | x_t\right)\right)]}_{L_{t-1}}+\\
+            &\qquad\underbrace{\E_{x_0,x_1\sim q(x_0,x_1)}[-\log p_\theta\left(x_0 | x_1\right)]}_{L_0},        
         \end{align*}
         其中$q(x_{t-1}|x_{t},x_{0})$是前向过程的后验.
     \end{enumerate}

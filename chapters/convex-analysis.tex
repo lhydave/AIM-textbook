@@ -49,8 +49,8 @@
 \begin{itemize}
     \item 平方（$L^2$）损失函数：$L(P,T(X))=(Y-\hat f(X))^2$. 使用此损失函数的时候，我们要假定$f$在实数范围取值. 
     \item $L^1$损失函数：$L(P,T(X))=|Y-\hat f(X)|$. 使用此损失函数的时候，我们要假定$f$在实数范围取值. 
-    \item SVM损失函数（hinge损失函数）：$L(P,T(X))=\max\{0,1-Y\cdot\hat f(X)\}$. 使用此损失函数的时候，我们一般要假定$f(X)\in[-1,1]$. 
-    \item 交叉熵损失函数：$L(P,T(X))=CH(\hat f(X),Y)$. 在二分类问题中，我们假设$Y$的取值为$0$或$1$，分别代表负类和正类. 函数的估计值$\hat f (X)$输出的是样本$X$属于正类的概率，而我们把$Y$看成退化分布，此时交叉熵损失函数衡量的是$\hat f(X)$和$Y$之间的差距.
+    \item SVM损失函数（hinge损失函数）：$L(P,T(X))=\max\{0,1-Y\cdot\hat f(X)\}$. 使用此损失函数的时候，我们一般要假定$f(X)\in[-1,1]$. 关于SVM损失函数的更多内容，我们会在\Cref{sec:svm}中讨论，这里就不展开了。
+    \item 交叉熵损失函数：$L(P,T(X))=CH(\hat f(X),Y)$. 在二分类问题中，我们假设$Y$的取值为$0$或$1$，分别代表负类和正类. 函数的估计值$\hat f (X)$输出的是样本$X$属于正类的概率，而我们把$Y$看成退化分布，此时交叉熵损失函数衡量的是$\hat f(X)$和$Y$之间的差距. 关于交叉熵的更详细讨论，以及它如何在机器学习中被用来建模，请见\Cref{chap:information-theory}.
 \end{itemize}
 
 这些损失函数会用在不同的场景之中. 通常来说，机器学习中有两类问题：\textit{回归问题}和\textit{分类问题}. 他们两个的区别主要在于：
@@ -58,6 +58,10 @@
     \item 回归问题中，$f$取值为实数，而且通常随自变量连续变化；而分类问题中，$f$只取有限多个值，他们通常被作为标签（比如这张图片是人还是青蛙）使用.
     \item 在回归问题中，我们通常使用平方损失函数或者$L^1$损失函数；在分类问题中，我们通常使用SVM损失函数或者交叉熵损失函数.
 \end{itemize}
+
+在深度学习中，损失函数通常还会有正则化项，比如说，如果模型的参数是$\theta$，那么我们可以使用如下的损失函数
+\[\E_{X\sim P}[L(P,T(X))]+\lambda R(\theta).\]
+这里，$R(\theta)$是正则化项，$\lambda>0$是正则化系数. 正则化项的作用是防止模型过拟合，更详细的讨论请见\Cref{sec:high-dimensional-geometry}. 例如，$R(\theta)=\norm{\theta}_2^2$，这就是$L^2$正则化，这是最常用的正则化方法. 另外，$R(\theta)=\norm{\theta}_1$，这就是$L^1$正则化，它的作用是稀疏化模型参数. 通常来说，正则化系数$\lambda$越大，正则化的效果越明显，但过大的正则化系数会导致优化过分偏离原始的目标函数，从而导致模型欠拟合.
 
 \begin{remark}
     关于统计决策理论的更多内容，可以参考数理统计的教科书~\cite{shaoMathematicalStatistics2003}，统计学习的经典教材~\cite{hastieElementsStatisticalLearning2009} 则更加偏向机器学习的应用场景. 
@@ -68,25 +72,25 @@
 \begin{equation}
 \begin{alignedat}{2}
 \minimize_{x}&\quad f(x)\\
-\text{s.t.}&\quad f_i(x)=0,&\quad i=1,\dots,m,\\
-&\quad g_j(x)\leq 0,&\quad j=1,\dots,n,\\
+\text{s.t.}&\quad g_i(x)=0,&\quad i=1,\dots,m,\\
+&\quad h_j(x)\leq 0,&\quad j=1,\dots,n,\\
 &\quad x\in\Omega.
 \end{alignedat}
 \label{eq:opt-general}
 \end{equation}
-这里，s.t.（subject to）之后的内容表明了$x$取值的限制，因此被称为\textit{约束}. 其中$f_i(x)=0$和$g_j(x)\leq 0$被称为\textit{函数约束}，而$x\in\Omega$被称为\textit{集合约束}.
+这里，s.t.（subject to）之后的内容表明了$x$取值的限制，因此被称为\textit{约束}. 其中$g_i(x)=0$和$h_j(x)\leq 0$被称为\textit{函数约束}，而$x\in\Omega$被称为\textit{集合约束}.
 
 通常，为了简化记号，我们会把函数约束用向量的形式表示，比如，用
 \begin{align*}
-    &f(x)=0,\\
-    &g(x)\leq 0.
+    &g(x)=0,\\
+    &h(x)\leq 0.
 \end{align*}
 来表示 \eqref{eq:opt-general} 中的函数约束. 
 
-如果和本章开头的故事对比，能最小化$f$的那个$x$就是我们要找的松茸，而我们要爬的山就是 \eqref{eq:opt-general}. 不同的山自然有不同的特性，在优化这里，根据损失函数$f$、约束条件$f_i$和$g_j$的不同性质，我们可以对优化问题进行分类：
+如果和本章开头的故事对比，能最小化$f$的那个$x$就是我们要找的松茸，而我们要爬的山就是 \eqref{eq:opt-general}. 不同的山自然有不同的特性，在优化这里，根据损失函数$f$、约束条件$g_i$和$h_j$的不同性质，我们可以对优化问题进行分类：
 \begin{itemize}
-\item 无约束优化：约束条件$f_i$和$g_j$实际上不存在，即$m=n=0$，并且$\Omega$是全空间，比如$\R^n$.
-\item 有约束优化：至少存在一个约束条件，即$\min\{m,n\}\geq 1$，或者$\Omega$不是全空间. 
+\item 无约束优化：约束条件$g_i$和$h_j$实际上不存在，即$m=n=0$，并且$\Omega$是全空间，比如$\R^n$.
+\item 有约束优化：至少存在一个约束条件，即$\max\{m,n\}\geq 1$，或者$\Omega$不是全空间. 
 \item 光滑优化：损失函数和约束条件都是可微函数.\footnote{光滑这一词的含义在不同的文献中大相径庭，它可以指（连续）可微、连续可微、二次（连续）可微或者无穷次可微. }
 \item 线性优化：损失函数和约束条件都是线性函数（形如$a^\t x+b$）.
 \end{itemize}
@@ -266,21 +270,21 @@
 自然地，我们会问，\eqref{opt:grid-search} 会有更好的算法吗？ 这就是\textbf{下界问题}. 令人惊讶的是，对于这一个问题，我们可以证明网格搜索法是渐近意义下最优的！
 
 \begin{theorem}\label{thm:grid-search-lower-bound}
-    设$\epsilon<L/2$，要想对任意$f$都能找到 \eqref{opt:grid-search} 的 $\epsilon$-近似解，访问$\O$的算法（零阶算法）调用$\O$的次数至少为
-    \[\left\lfloor\frac{L}{2\epsilon}\right\rfloor^n.\]
+    设$\epsilon<L/4$，要想对任意$f$都能找到 \eqref{opt:grid-search} 的 $\epsilon$-近似解，访问$\O$的算法（零阶算法）调用$\O$的次数至少为
+    \[\left\lfloor\frac{L}{2\epsilon}-1\right\rfloor^n.\]
 \end{theorem}
 \begin{proof}
-设$p=\lfloor L/(2\epsilon)\rfloor$，对任意算法$A$，我们尝试构造一个函数，使得$A$调用$\O$的次数小于$p^n$时最多找到一个$\epsilon$-近似解.
+设$p=\lfloor L/(2\epsilon)-1\rfloor$，对任意算法$A$，我们尝试构造一个函数，使得$A$调用$\O$的次数小于$p^n$时找到的$\epsilon'$-近似解满足$\epsilon'>\epsilon$，即最多是$\epsilon'$-近似解，而不是$\epsilon$-近似解.
 
-构造思路：对任何测试点，使得$\O$总是返回$0$，于是，算法$A$只能找到$f=0$的解$\bar{x}$. 然而，这个函数的其他部分$A$都是访问不到的. 因为$A$最多可以访问$p^n-1$个点，所以我们可以在他没有访问到的点上把这个函数往下“挖”$\epsilon$，这样函数的最小值就变成了$-\epsilon$，这就是一个$\epsilon$-近似解.
+构造思路：对任何测试点，使得$\O$总是返回$0$，于是，算法$A$只能找到$f=0$的解$\bar{x}$. 然而，这个函数的其他部分$A$都是访问不到的. 因为$A$最多可以访问$p^n-1$个点，所以我们可以在他没有访问到的点上把这个函数往下“挖”$\epsilon'$，这里$\epsilon'$略微大于$\epsilon$，这样函数的最小值就变成了$-\epsilon'$，这就是一个$\epsilon'$-近似解.
 
-这一构造中，最重要的是说明往下“挖”$\epsilon$是可行的. 我们来证明这一点.
+这一构造中，最重要的是说明往下“挖”$\epsilon'$是可行的. 我们来证明这一点.
 
 同样，我们把整个$[0,1]^n$分成$p^n$个小方格，每个小方格的边长为$1/p$. 
 
 因为只有$p^n-1$个测试点，所以根据鸽巢原理，网格中至少有一个长为$1/p$的小方格$B$内部没有包含任何测试点. 假设这个小方格的中心是$x^*$，构造
-    \[\bar f(x)=\min\{0,L\norm{x-x^*}_\infty-\epsilon\}.\]
-这一构造如\Cref{fig:grid-func} 所示，它就是以$x^*$为中心，往下“挖”了一个锥，最底部是$(x^*,-\epsilon)$.
+    \[\bar f(x)=\min\{0,L\norm{x-x^*}_\infty-\epsilon'\}.\]
+其中$\epsilon'$是一个略微小于$\epsilon$的正数. 这一构造如\Cref{fig:grid-func} 所示，它就是以$x^*$为中心，往下“挖”了一个锥，最底部是$(x^*,-\epsilon')$.
 
 \begin{figure}[H]
     \centering
@@ -289,11 +293,11 @@
     \label{fig:grid-func}
 \end{figure}
 
-容易看出，$\bar f$是$L$-Lipschitz函数，并且最小值为$-\epsilon$.
+容易看出，$\bar f$是$L$-Lipschitz函数，并且最小值为$-\epsilon'$.
 
 函数$\bar f$非零的点只在方格
-    \[B'=\{x\in[0,1]^n:\norm{x-x^*}_\infty\leq\epsilon/L\}\]
-内部. 因为$1/(2p)\geq \epsilon/L$，所以$B'\subseteq B$. 所以所有测试点上$\O$都会返回$0$，这是一个$\epsilon$-近似解. 因此$A$通过小于$p^n$次对$\O$的调用最多只能找到$\epsilon$-近似解.
+    \[B'=\{x\in[0,1]^n:\norm{x-x^*}_\infty\leq\epsilon'/L\}\]
+内部. 因为$1/(2p)\geq \epsilon/(L-2\epsilon)$，所以只要取$\epsilon'>\epsilon$足够接近$\epsilon$，就有$B'\subseteq B$. 所以所有测试点上$\O$都会返回$0$，这是一个$\epsilon'$-近似解. 因此$A$通过小于$p^n$次对$\O$的调用只能找到一个$\epsilon'$-近似解，$\epsilon'>\epsilon$.
 \end{proof}
 
 以上两个结论分别给出了 \eqref{opt:grid-search} 问题的上下界，对比他们：
@@ -304,7 +308,7 @@
 \end{minipage}
 \begin{minipage}[t]{0.4\textwidth}
 问题的下界：
-    \[\left\lfloor\frac{L}{2\epsilon}\right\rfloor^n\]
+    \[\left\lfloor\frac{L}{2\epsilon}-1\right\rfloor^n\]
 \end{minipage}
 \end{center}
 尽管网格搜索是一个很慢的算法，但是我们证明了，在渐近意义下，优化问题 \eqref{opt:grid-search} 的最优算法就是网格搜索！因此，我们可以说，一般的优化问题是难解的. 
