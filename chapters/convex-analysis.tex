@@ -39,11 +39,11 @@
 \end{remark}
 
 决策$T$的一种量化指标是最小化期望意义下的损失函数：
-    \[\minimize_{T}\E_{X\sim P}[L(P,T(X))].\]
+    \[\minimize_{T}\quad\E_{X\sim P}[L(P,T(X))].\]
 在经济学中，这一量化指标实际上是von Neumann和Morgenstern \textit{期望效用理论}的具体体现，我们会在\Cref{sec:mixed-strategy}中详细讨论. 这一理论认为，个体在面对不确定的环境时，会选择最大化期望效用的决策；在这里，就是最小化期望损失的决策.
 
 通常，我们不能知道总体$P$的分布是什么，只知道样本$X_1,\dots,X_n$，此时我们用平均损失来代替期望损失：
-    \[\minimize_{T}\frac{1}{n}\sum_{i=1}^n L(P,T(X_i)).\]
+    \[\minimize_{T}\quad\frac{1}{n}\sum_{i=1}^n L(P,T(X_i)).\]
 
 现在我们考虑一个非常一般的决策任务. 假设我们的任务是估计函数$f$，但是我们只知道观测到的自变量$X$（来自总体$P$）以及它的函数值$Y=f(X)$，我们的决策是函数的估计值$\hat f$. 在机器学习中，$f$通常是需要训练的模型. 我们可以写出若干种损失函数：
 \begin{itemize}
