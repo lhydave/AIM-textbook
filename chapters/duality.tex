@@ -126,7 +126,7 @@
 
 上面的例子是很恼人的，因为我们无法通过直观的方式来判断曲面的维数. 所以，我们需要一些更强的方法来判断曲面的维数. 如果$h$是具有连续的一阶导数的函数，那么这个曲面是\textit{光滑}\footnote{在文献中，“光滑”这一词的含义有多种多样，例如无穷次可微、具有连续二阶导数等等. 因此，这里用光滑仅仅只是方便起见，在阅读文献时，需要根据具体的上下文来理解这一词的含义.}的. 我们只考虑光滑曲面，因为它们是最常见的情况.
 
-\Cref{ex:3d-constraint-2} 的第一个约束为什么不符合预期？在点$(1,0,0)$，球面$h_1(x)=0$的切平面恰好是$x_1 - 1 = 0$，这意味着在这个点，$h_1(x)=0$和$h_2(x)=0$其实只产生了一个有效的约束！这说明，“切平面”这样的概念对于维数有着至关重要的作用. 
+\Cref{ex:3d-constraint-2} 的第一个约束为什么不符合预期？在点$(1,0,0)$，球面$h_1(x)=0$的切平面恰好是约束$h_2(x)=x_1 - 1 = 0$，这意味着在这个点，可行解对应的空间“降维”了！这说明，“切平面”这样的概念对于维数有着至关重要的作用. 
     
 在一般空间中，我们可以通过\textit{切空间}的概念来描述曲面在某个点的维数. 切空间其实是所有过该点的切线的集合. 为了引入切线，我们先介绍曲线，
 \begin{definition}[曲线和切向量]
@@ -638,7 +638,7 @@ x_1^2+x_2^2&=5.
     因此，$p^*\geq \phi(\lambda,\mu)$对所有$\lambda,\mu$都成立，于是也有$p^*\geq d^*$.
 \end{proof}
 
-\subsection{Slater条件，强对偶定理}
+\subsection{Slater条件，Farkas引理，强对偶定理}
 
 设原始规划对应的最低点为
     \[K=(f(x^*),h(x^*)^\t,g(x^*)^\t)^\t=(p^*,u^*,v^*)^\t,\]
@@ -773,9 +773,61 @@ x_1^2+x_2^2&=5.
     \end{itemize}
 \end{proof}
 
-\begin{remark}
-    强对偶定理有一个特例，即线性规划. 尽管一般而言，线性规划不一定满足Slater条件，但是只要线性规划有可行解，它就成立强对偶定理. 线性规划的强对偶定理依赖于另外的几何直观，利用的是Farkas引理，这里就不展开了. 
-\end{remark}
+除了Slater条件，我们还有一个条件也能保证强对偶定理成立，那就是线性规划，尽管线性规划不一定满足Slater条件，但是只要线性规划有可行解，它就成立强对偶定理. 线性规划的强对偶定理依赖于完全不同的几何直观，即\textit{Farkas引理}. 
+
+\begin{theorem}[Farkas引理]\label{thm:farkas}
+    设$A$是一个$m\times n$的实矩阵，$b\in\R^m$，那么下列命题之一恰好成立：
+    \begin{itemize}
+        \item 存在$x$使得$Ax=b$且$x\geq 0$.
+        \item 存在$p$使得$A^\t p\geq 0$且$p^\t b<0$.
+    \end{itemize}
+\end{theorem}
+
+\begin{proof}
+我们给一个几何证明，这一证明同时也解释了Farkas引理的几何直观. 设矩阵$A$的列为$A_1,\dots,A_n$，那么$Ax=\sum_i x_iA_i$，因而这是由$A_i$线性组合而成的一个新向量. 这些向量的非负组合形成一个锥$\mathsf{Cone}(A) = \left\{Ax: x\geq 0\right\}$.
+
+考察向量$b$，它只会有两种情况：
+\begin{itemize}
+    \item $b$在锥的内部，或者说，$b$可以被表示为$Ax$的形式，因而存在$x$使得$Ax=b$且$x\geq 0$（第一种情况）.
+    \item $b$在锥的外部，或者说，$b$不能被表示为$Ax$的形式. 此时，线段$B=\{\lambda b:\lambda\in[0,1]\}$和$\mathsf{Cone}(A)$都是非空凸集，仅有一个公共点，是二者的边界点. 因而根据\Cref{thm:separation-hyperplane}，存在一个超平面将它们分开. 具体来说，设这个超平面的法向量为$p$（非零），那么，
+    \begin{itemize}
+        \item 对任意$Ax\in\mathsf{Cone}(A)$，$p^\t (Ax)\geq 0$，特别地，对$i=1,\dots,n$，$p^\t A_i\geq 0$.
+        \item 对任意$\lambda\in[0,1]$，$p^\t (\lambda b)\leq 0$，特别地，$p^\t b<0$.
+    \end{itemize}
+\end{itemize}
+\end{proof}
+
+利用Farkas引理，我们可以证明线性规划的强对偶定理. 
+\begin{theorem}[线性规划的强对偶定理]\label{thm:strong-duality-linear}
+    设原始规划为
+    \begin{align*}
+        \minimize_{x}\quad&c^\t x\\
+        \text{s.t.}\quad&A x\geq b.
+    \end{align*}
+    对偶规划为
+    \begin{align*}
+        \maximize_{y}\quad&b^\t y\\
+        \text{s.t.}\quad&A^\t y=c,\\
+        &y\geq 0.
+    \end{align*}
+如果原始规划和对偶规划都有可行解，那么原始规划的最优值等于对偶规划的最优值.
+\end{theorem}
+\begin{proof}
+    设原始规划和对偶规划的可行解分别是$\bar{x}$和$\bar{y}$，那么根据弱对偶定理，$b^\t \bar{y}\leq c^\t \bar{x}$. 所以原始规划和对偶规划的值都是有界的. 设原始规划的最优值为$p^*$，最优解为$x^*$. 
+
+    设$a_i$为$A$的第$i$行形成的向量（一个列向量），$I=\{i: a_i^\t x^*=b_i\}$为激活的约束下标集合. 首先证明，如果向量$d$满足$a_i^\t d\geq 0$，$i\in I$，那么，$c^\t d\geq 0$. 给定一个充分小的正数$\epsilon$，我们有
+    \[a_i^\t (x^*+\epsilon d)\geq a_i^\t x^*=b_i,\quad i\in I.\]
+    假设$\epsilon$充分小，那么，对于所有$i\notin I$，我们有$a_i^\t (x^*+\epsilon d)>b_i$，因此，$x^*+\epsilon d$是原始规划的可行解. 由于$x^*$是原始规划的最优解，所以
+    \[c^\t (x^*+\epsilon d)\geq c^\t x^*\implies c^\t d\geq 0.\]
+    由Farkas引理，第二种情况不成立，因而第一种情况成立，即存在非负$y_i^*$（$i\in I$）使得
+    \[c=\sum_{i\in I} y_i^* a_i.\]
+    补充定义$y_i^*=0$（$i\notin I$），那么
+    \[c=A^\t y^*,\quad y^*\geq 0.\]
+    因而，$y^*$是对偶规划的可行解. 此外，
+    \[b^\t y^*=\sum_{i\in I} y_i^* b_i=\sum_{i\in I} y_i^* a_i^\t x^*=c^\t x^*=p^*.\]
+    而弱对偶定理表明，对对偶规划的任意可行解$y$，$b^\t y\leq p^*=b^\t y^*$. 因而，$y^*$是对偶规划的最优解，并且强对偶定理成立.
+\end{proof}
+
 
 至此，我们已经学习了约束优化极值的多种性质，现总结如下：
 \begin{itemize}
@@ -843,7 +895,7 @@ $\gamma\le\gamma_i$等价于
     \item \textbf{凸约束下的凸函数优化.} 考虑以下问题：
     \begin{enumerate}
         \item 已知在无约束条件下，满足一阶条件的局部最小值点也是一阶可微凸函数的全局最小值点，即$f'(x^*)=0\iff f(x)\ge f(x^*), \forall x\in \R^n$. 当引入凸集约束时，请举一个反例说明: 最小值点不一定满足一阶条件.
-        \item 假设$f$是$\R^n$上的可微凸函数，$Q$是一个闭凸集. 证明：$x^*$是$f$在$Q$上的最小值点当且仅当对任意$x\in Q$，$\langle f'(x^*),x-x^*\rangle$.
+        \item 假设$f$是$\R^n$上的可微凸函数，$Q$是一个闭凸集. 证明：$x^*$是$f$在$Q$上的最小值点当且仅当对任意$x\in Q$，$\langle f'(x^*),x-x^*\rangle\geq 0$.
     \end{enumerate}
 
     \item 判断并说明下列情况的可行点是否都是一阶正规点.
@@ -857,7 +909,7 @@ $\gamma\le\gamma_i$等价于
     \min_x \quad&  \frac{1}{2}x^\t Qx\\
     \text{s.t.}\quad& Bx-b\le 0. 
     \end{align*}
-    假设$Q$可逆.
+    假设$Q$对称、可逆.
     \begin{enumerate}
         \item 写出对偶规划，要求形如
         \begin{align*}
