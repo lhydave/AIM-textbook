@@ -153,11 +153,14 @@
     度量$d:X\times X\to\R$是连续映射.
 \end{lemma}
 \begin{proof}
-    对于任意$x_1,x_2,y_1,y_2\in X$，有
+    对于任意$x_1,x_2,y_1,y_2\in X$，根据三角不等式，有
     \begin{align*}
-        |d(x_1,y_1)-d(x_2,y_2)|&\leq d(x_1,y_1)+d(x_2,y_2)\\
-        &\leq 2\max\{d(x_1,x_2),d(y_1,y_2)\}.
+        d(x_1,y_1)-d(x_2,y_2)&=d(x_1,y_1)-d(x_1,y_2)+d(x_1,y_2)-d(x_2,y_2)\\
+        &\leq d(y_1,y_2)+d(x_1,x_2).
     \end{align*}
+    同理，$d(x_2,y_2)-d(x_1,y_1)\leq d(y_1,y_2)+d(x_1,x_2)$，因此
+    \[|d(x_1,y_1)-d(x_2,y_2)|\leq d(y_1,y_2)+d(x_1,x_2).\]
+
     因此，对于任意$\epsilon>0$，取$\delta=\epsilon/2$，则对于任意$x_1,x_2,y_1,y_2\in X$，有
     \[d(x_1,x_2)<\delta,d(y_1,y_2)<\delta\implies |d(x_1,y_1)-d(x_2,y_2)|<\epsilon.\]
     因此$d$是连续映射.

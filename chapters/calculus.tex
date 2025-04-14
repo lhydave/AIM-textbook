@@ -706,7 +706,7 @@ $h$被称为\textbf{切向量}（回忆一维的情况），所有允许$h$的�
 这个向量$g$被称为$f$在$x$处的\textbf{梯度}，记作$\grad f(x)$. 
 
 我们需要进一步将梯度的坐标$(g_1,\dots,g_n)^\t$求出来. 考虑一个具体的分量$e_i$，根据定义，
-\[f(x+te_i)=f(x)+t\d f_x(te_i)+o(te_i)=f(x)+g_it+o(t).\]
+\[f(x+te_i)=f(x)+\d f_x(te_i)+o(te_i)=f(x)+g_it+o(t).\]
 因此，
 \[g_i=\lim_{t\to 0}\frac{f(x+te_i)-f(x)}{t}.\]
 我们给这样的导数一个名字，称为$f$在$x$对$x_i$的\textbf{偏导数}，记作$\frac{\partial f}{\partial x_i}(x)$或$\partial_i f(x)$，于是我们得到了梯度的坐标：
@@ -728,7 +728,7 @@ $h$被称为\textbf{切向量}（回忆一维的情况），所有允许$h$的�
 \[\grad f(x)=\nabla f(x).\]
 符号$\nabla$被称为\textbf{nabla算子}，它就是标准正交基下梯度的具体表示. 通常，我们会更简单地将$\nabla $记为$(\partial_1 ,\dots,\partial_n)^\t$. 
 
-接下来我们讨论向量值函数微分的表示问题. 选取$\R^m$（也就是$T\R_x^n$）的标准正交基$e_i$，选取$\R^m$（也就是$T\R^m_{f(x)}$）的标准正交基$e_i$，则根据\Cref{sec:matrix}的讨论，我们可以用一个$m\times n$的矩阵来表示$\d f_x$，这个矩阵被称为$f$在$x$处的\textbf{Jacobi矩阵}，记作$J_f(x)$. 
+接下来我们讨论向量值函数微分的表示问题. 选取$\R^n$（也就是$T\R_x^n$）的标准正交基$e_i$，选取$\R^m$（也就是$T\R^m_{f(x)}$）的标准正交基$e_i$，则根据\Cref{sec:matrix}的讨论，我们可以用一个$m\times n$的矩阵来表示$\d f_x$，这个矩阵被称为$f$在$x$处的\textbf{Jacobi矩阵}，记作$J_f(x)$. 
 
 下面我们计算$J_f(x)$的具体表示. 假设$f(x)$的坐标是
 \[(f_1(x),\dots,f_m(x))^\t,\]
