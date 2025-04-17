@@ -276,7 +276,7 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\dots+d(x_{n+k-1},x_{n+k})\\
     \end{itemize}
 文献中，这一假设被称为\textit{强凸性}.
 
-我们再假设存在常数$U>0$，对任意$x\in \R^n$，
+我们再假设存在常数$U\geq L$，对任意$x\in \R^n$，
     \[\lambda_{\max}(\nabla^2 f(x))\leq U,\]
 其中$\lambda_{\max}(A)$表示矩阵$A$的最大特征值.
 
@@ -299,9 +299,9 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\dots+d(x_{n+k-1},x_{n+k})\\
 
 注意到$\norm{I-\alpha\nabla^2f(z)}_2$等于$I-\alpha\nabla^2f(z)$特征值的最大模. 假设$\lambda_1,\dots,\lambda_n$是$\nabla^2f(z)$的特征值，则
 \[\norm{I-\alpha\nabla^2f(z)}_2=\max_{i=1,\dots,n}|1-\alpha\lambda_i|.\]
-根据条件可知，只要$\alpha<\max\{L,U\}^{-1}$，就有
-\[\norm{I-\alpha\nabla^2f(z)}_2\leq 1-\alpha \max\{L,U\} < 1.\]
-因此$\mathcal T^{(\alpha)}$就是一个压缩映射.
+只要
+\[0<1-\alpha\lambda_{\max} < 1\text{ 且\,} 0<1-\alpha\lambda_{\min} < 1,\]
+也就是$\alpha\in(0,\lambda_{\max}^{-1})$，就会有$\norm{I-\alpha\nabla^2f(z)}_2< 1$，此时$\mathcal T^{(\alpha)}$就是一个压缩映射. 根据条件，只需要$\alpha\in(0,U^{-1})$，就可以保证$\mathcal T^{(\alpha)}$是一个压缩映射.
 \end{example}
 
 \begin{remark}
