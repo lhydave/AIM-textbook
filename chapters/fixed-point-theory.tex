@@ -15,7 +15,7 @@
 
 如果关注序列$x_n$本身，要分析收敛性，我们需要通过寻找不同量之间的联系，比如$f(x_n)$和$f(x_{n+1})$之间的关系. 在数学中，这样的思路被归类到了\textit{数学分析}中.  
 
-一种更为抽象的做法是，我们直接看算法$A$本身的性质. 此时，要想说明$A$收敛，我们要说明$A$有一个“吸收点”，即不管从何处出发，经过若干次迭代，都会收敛到这个点附近. 这样的思路是更加现代的数学方法，它被归类到了\textit{算子法}和\textit{泛函分析}中. 
+一种更为抽象的做法是，我们直接看算法$A$本身的性质. 此时，要想说明$A$收敛，我们要说明$A$有一个“吸收点”，即不管从何处出发，经过若干次迭代，都会收敛到这个点附近. 这样的思路是更加现代的数学方法，它被归类到了\textit{算子法}和\textit{泛函分析}中. 在这种情况下，我们把我们的研究对象$A:X\to X$称为一个\textit{算子}.
 
 我们将看到，从算子的角度来理解收敛性，最终问题就归结到了\textit{不动点理论}. 本章将介绍两种不动点存在性定理，并介绍他们的应用.
 
@@ -129,7 +129,7 @@
 下面我们给出与Banach不动点定理相关的概念：
 
 \begin{definition}[压缩映射]
-考虑度量空间$(X,d)$到自身的映射$f:X\to X$. 如果存在$q\in(0,1)$，使得$X$中的任何两个点$x_1,x_2$都成立不等式
+考虑度量空间$(X,d)$到自身的映射$f:X\to X$（$f$被称之为算子）. 如果存在$q\in(0,1)$，使得$X$中的任何两个点$x_1,x_2$都成立不等式
     \[d(f(x_1),f(x_2))\leq q\cdot d(x_1,x_2),\]
 那么我们称$f$是一个\textbf{压缩映射}.
 \end{definition}
@@ -198,36 +198,51 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\dots+d(x_{n+k-1},x_{n+k})\\
 \[d(a,x_n)\leq \frac{q^n}{1-q}d(x_1,x_0).\]
 \end{proof}
 
-在进入应用之前，我们指出压缩映射在\textit{算子法}中的表述，这一部分的系统讨论需要线性代数的知识，请参阅\Cref{chap:linear-algebra}. 我们这里只做一个简单介绍. 
+对于具体的应用，比起抽象的度量，我们会关注更具体的空间。在$\R^n$中定义度量都有一个特点，他们都是用向量$x_1-x_2$的某种长度定义的，这种长度的概念在数学中有一个统一的抽象，即\textit{范数}. 
 
-首先，如果我们把压缩映射$f$看成一个算子$\mathcal A$，即把$X$中的元素变换到$X$中的元素，那么我们可以定义这一算子的\textit{范数}：
-
-\begin{definition}[算子范数]
-    设$X=\R^n$，对于算子$\mathcal A:X\to X$，它的\textbf{范数}定义为
-    \[\norm{\mathcal A}=\sup_{x\neq 0}\frac{\norm{\mathcal A x}}{\norm{x}}.\]
-    其中$\norm{\cdot}$是$X$上的$L^2$范数，即
-    \[\norm{x}=\sqrt{\sum_{i=1}^n|x_i|^2}.\]
+\begin{definition}[范数，赋范空间]
+设$X$是一个向量空间，$\norm{\cdot}:X\to\R$是一个函数，如果满足
+\begin{enumerate}
+    \item 非负性与非退化：对任意$x\in X$，$\norm{x}\geq 0$，且$\norm{x}=0$当且仅当$x=0$；
+    \item 齐次性：对任意$x\in X$，$\lambda\in\R$，$\norm{\lambda x}=|\lambda|\norm{x}$；
+    \item 三角不等式：对任意$x,y\in X$，$\norm{x+y}\leq \norm{x}+\norm{y}$. 
+\end{enumerate}
+则称$\norm{\cdot}$是$X$上的一个\textbf{范数}，$(X,\norm{\cdot})$称为一个\textbf{赋范空间}. 
 \end{definition}
 
-在这一概念下，我们可以改写压缩映射的定义. 对任意$x,y\in \R^n$，有
-\[\norm{\mathcal A x-\mathcal A y}\leq q\norm{x-y}\implies \frac{\norm{\mathcal A(x-y)}}{\norm{x-y}}\leq q.\]
-根据$x,y$的任意性，这其实就是说
-\[\norm{\mathcal A}\leq q<1.\]
-所以，压缩映射其实就是算子范数小于$1$的算子. 
+很容易看出，范数可以定义度量：$d(x_1,x_2)=\norm{x_1-x_2}$.
 
-反之，如果一个算子$\mathcal A$的范数$q$小于$1$，那么对任意$x,y\in \R^n$，有
-\[\norm{\mathcal A x-\mathcal A y}\leq \norm{\mathcal A}\norm{x-y}\leq q\norm{x-y}.\]
-因此，$\mathcal A$是一个压缩映射. 我们将这一讨论总结如下：
+下面，我们举一个非$\R^n$的范数的例子.
 
-\begin{theorem}\label{thm:operator-fixed-point}
-    设$X=\R^n$，对于算子$\mathcal A:X\to X$，以下两个条件等价：
-    \begin{itemize}
-        \item $\mathcal A$是压缩映射.
-        \item $\norm{\mathcal A}<1$.
-    \end{itemize}
-\end{theorem}
+\begin{example}[矩阵范数]
+    设$X$是$n\times m$的实矩阵空间，定义$A\in X$的\textbf{2-范数}为
+    \[\norm{A}=\sup_{x\in\R^m,\norm{x}_2=1}\norm{Ax}_2.\]
+    其中$\norm{\cdot}_2$是向量的$L^2$范数. 我们来验证它是一个范数.
 
-对于很多算子，直接验证压缩映射的定义比较困难，而验证算子范数小于$1$则相对容易. 因此这是一个特别实用的表述方式. 
+    \begin{enumerate}
+        \item 非负性与非退化：根据定义可知，对任意矩阵$A$，$\norm{A}_2\geq 0$。如果$A$是零矩阵，那么自然$\norm{A}=0$；反之，如果$\norm{A}=0$，那么对任意非零$x\in\R^m$，都有$\norm{Ax}_2\leq \norm{A}_2\cdot\norm{x}_2=0$，因此$Ax=0$，即$A$是零矩阵.
+        \item 齐次性：对任意矩阵$A\in X$，$\lambda\in\R$和$x\in \R^m$，有
+        \[\norm{\lambda A}_2=\sup_{\norm{x}_2=1}\norm{\lambda Ax}_2=|\lambda|\sup_{\norm{x}_2=1}\norm{Ax}_2=|\lambda|\norm{A}_2.\]
+        \item 三角不等式：对任意矩阵$A,B\in X$，有
+        \begin{align*}
+            \norm{A+B}_2&=\sup_{\norm{x}_2=1}\norm{(A+B)x}_2\\
+            &\leq \sup_{\norm{x}_2=1}\left(\norm{Ax}_2+\norm{Bx}_2\right)\\
+            &\leq \sup_{\norm{x}_2=1}\norm{Ax}_2+\sup_{\norm{x}_2=1}\norm{Bx}_2\\
+            &=\norm{A}_2+\norm{B}_2.
+        \end{align*}
+    \end{enumerate}
+    因此$\norm{\cdot}$是一个范数.
+
+    实际上，矩阵的2-范数是一个非常重要的范数，它与矩阵的特征值有密切的关系. 具体来说，根据谱定理（\Cref{thm:symmetric-operator-norm}），如果矩阵$A$是对称的，那么它的2-范数等于它的最大特征值的模. 具体来说，假设$A$的特征值为$\lambda_1,\dots,\lambda_n$，那么
+    \[\norm{A}_2=\max_{i=1,\dots,n}|\lambda_i|.\]
+\end{example}
+
+接下来，我们在赋范空间中重新考虑压缩映射的定义. 在赋范空间$(X,\norm{\cdot})$中，考虑算子$\mathcal A:X\to X$，如果存在$q\in(0,1)$，使得对任意$x,y\in X$，
+\[\norm{\mathcal A x - \mathcal A y}\leq q\cdot \norm{x-y},\]
+那么$\mathcal A$是一个压缩映射.
+
+接下来，我们从范数的角度给两个例子，说明压缩映射的应用.
+
 
 \begin{example}[落在地面上的地图]
 将一座公园的地图铺开在公园地面上，则地面上恰有唯一一点与地图上对应的点重合. 
@@ -236,10 +251,10 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\dots+d(x_{n+k-1},x_{n+k})\\
 \[x' = f(x) = \lambda Rx + b.\]
 其中$R$和$b$分别为旋转和平移变换. 
 
-根据旋转的定义，容易看出$\norm{Rx}=\norm{x}$，因此
-\[\norm{\lambda R}=\sup_{\norm{x}=1}\norm{\lambda Rx}=\lambda<1,\]
+根据旋转的定义，容易看出$\norm{Rx}_2=\norm{x}_2$，因此
+\[\norm{\lambda R}_2=\sup_{\norm{x}=1}\norm{\lambda Rx}_2=\lambda<1,\]
 所以对任意$x,y\in\Omega$，有
-\[\norm{f(x)-f(y)}=\norm{\lambda Rx-\lambda Ry}=\lambda\norm{Rx-Ry}= \lambda\norm{x-y}.\]
+\[\norm{f(x)-f(y)}_2=\norm{\lambda Rx-\lambda Ry}_2=\lambda\norm{Rx-Ry}_2= \lambda\norm{x-y}_2.\]
 因此$f$是一个压缩映射.
 
 由Banach不动点定理可知，压缩映射$f(x)$有唯一不动点$a=f(a)$.
@@ -252,7 +267,6 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\dots+d(x_{n+k-1},x_{n+k})\\
 \[x_{k+1}=x_k-\alpha_k f'(x_k),\]
 其中$\alpha_k$是第$k$步的\textbf{步长}，在这个例子中，我们假设$\alpha_k=\alpha$是一个常数.
 
-
 接下来，我们给出对$f$的假设：存在常数$L>0$，对任意$x\in \R^n$，
     \[\lambda_{\min}(\nabla^2 f(x))\geq L,\]
 其中
@@ -261,6 +275,10 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\dots+d(x_{n+k-1},x_{n+k})\\
         \item $\lambda_{\min}(A)$表示矩阵$A$的最小特征值.
     \end{itemize}
 文献中，这一假设被称为\textit{强凸性}.
+
+我们再假设存在常数$U>0$，对任意$x\in \R^n$，
+    \[\lambda_{\max}(\nabla^2 f(x))\leq U,\]
+其中$\lambda_{\max}(A)$表示矩阵$A$的最大特征值.
 
 我们要证明：对于足够小的$\alpha$，梯度下降能收敛到最小值点，且具有指数收敛速度.
 
@@ -277,9 +295,13 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\dots+d(x_{n+k-1},x_{n+k})\\
 \end{enumerate}
 
 我们只需要证明$\mathcal T^{(\alpha)}$是压缩映射，并给出压缩系数. 由有限增量原理（\Cref{thm:lagrange-finite-multi}）:
-\[\norm{\mathcal T^{(\alpha)}x - \mathcal T^{(\alpha)}y} \leq \sup_{z\in(x,y)}\norm{I - \alpha \nabla^2 f(z)}_2\cdot\norm{x-y}_2.\]
+\[\norm{\mathcal T^{(\alpha)}x - \mathcal T^{(\alpha)}y}_2 \leq \sup_{z\in(x,y)}\norm{I - \alpha \nabla^2 f(z)}_2\cdot\norm{x-y}_2.\]
 
-注意到$\norm{I-\alpha\nabla^2f(z)}_2$等于$I-\alpha\nabla^2f(z)$特征值的最大模，根据条件可知特征值的最大模 $\leq 1-L\alpha$. 因此，只要$\alpha<L^{-1}$，$\mathcal T^{(\alpha)}$就是一个压缩映射.
+注意到$\norm{I-\alpha\nabla^2f(z)}_2$等于$I-\alpha\nabla^2f(z)$特征值的最大模. 假设$\lambda_1,\dots,\lambda_n$是$\nabla^2f(z)$的特征值，则
+\[\norm{I-\alpha\nabla^2f(z)}_2=\max_{i=1,\dots,n}|1-\alpha\lambda_i|.\]
+根据条件可知，只要$\alpha<\max\{L,U\}^{-1}$，就有
+\[\norm{I-\alpha\nabla^2f(z)}_2\leq 1-\alpha \max\{L,U\} < 1.\]
+因此$\mathcal T^{(\alpha)}$就是一个压缩映射.
 \end{example}
 
 \begin{remark}
