@@ -198,7 +198,7 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\dots+d(x_{n+k-1},x_{n+k})\\
 \[d(a,x_n)\leq \frac{q^n}{1-q}d(x_1,x_0).\]
 \end{proof}
 
-对于具体的应用，比起抽象的度量，我们会关注更具体的空间。在$\R^n$中定义度量都有一个特点，他们都是用向量$x_1-x_2$的某种长度定义的，这种长度的概念在数学中有一个统一的抽象，即\textit{范数}. 
+对于具体的应用，比起抽象的度量，我们会关注更具体的空间. 在$\R^n$中定义度量都有一个特点，他们都是用向量$x_1-x_2$的某种长度定义的，这种长度的概念在数学中有一个统一的抽象，即\textit{范数}. 
 
 \begin{definition}[范数，赋范空间]
 设$X$是一个向量空间，$\norm{\cdot}:X\to\R$是一个函数，如果满足
@@ -216,11 +216,11 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\dots+d(x_{n+k-1},x_{n+k})\\
 
 \begin{example}[矩阵范数]
     设$X$是$n\times m$的实矩阵空间，定义$A\in X$的\textbf{2-范数}为
-    \[\norm{A}=\sup_{x\in\R^m,\norm{x}_2=1}\norm{Ax}_2.\]
+    \[\norm{A}_2=\sup_{x\in\R^m,\norm{x}_2=1}\norm{Ax}_2.\]
     其中$\norm{\cdot}_2$是向量的$L^2$范数. 我们来验证它是一个范数.
 
     \begin{enumerate}
-        \item 非负性与非退化：根据定义可知，对任意矩阵$A$，$\norm{A}_2\geq 0$。如果$A$是零矩阵，那么自然$\norm{A}=0$；反之，如果$\norm{A}=0$，那么对任意非零$x\in\R^m$，都有$\norm{Ax}_2\leq \norm{A}_2\cdot\norm{x}_2=0$，因此$Ax=0$，即$A$是零矩阵.
+        \item 非负性与非退化：根据定义可知，对任意矩阵$A$，$\norm{A}_2\geq 0$. 如果$A$是零矩阵，那么自然$\norm{A}_2=0$；反之，如果$\norm{A}=0$，那么对任意非零$x\in\R^m$，都有$\norm{Ax}_2\leq \norm{A}_2\cdot\norm{x}_2=0$，因此$Ax=0$，即$A$是零矩阵.
         \item 齐次性：对任意矩阵$A\in X$，$\lambda\in\R$和$x\in \R^m$，有
         \[\norm{\lambda A}_2=\sup_{\norm{x}_2=1}\norm{\lambda Ax}_2=|\lambda|\sup_{\norm{x}_2=1}\norm{Ax}_2=|\lambda|\norm{A}_2.\]
         \item 三角不等式：对任意矩阵$A,B\in X$，有
