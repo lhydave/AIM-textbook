@@ -214,7 +214,7 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\dots+d(x_{n+k-1},x_{n+k})\\
 
 下面，我们举一个非$\R^n$的范数的例子.
 
-\begin{example}[矩阵范数]
+\begin{example}[矩阵范数]\label{ex:matrix-norm}
     设$X$是$n\times m$的实矩阵空间，定义$A\in X$的\textbf{2-范数}为
     \[\norm{A}_2=\sup_{x\in\R^m,\norm{x}_2=1}\norm{Ax}_2.\]
     其中$\norm{\cdot}_2$是向量的$L^2$范数. 我们来验证它是一个范数.
@@ -296,12 +296,13 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\dots+d(x_{n+k-1},x_{n+k})\\
 
 我们只需要证明$\mathcal T^{(\alpha)}$是压缩映射，并给出压缩系数. 由有限增量原理（\Cref{thm:lagrange-finite-multi}）:
 \[\norm{\mathcal T^{(\alpha)}x - \mathcal T^{(\alpha)}y}_2 \leq \sup_{z\in(x,y)}\norm{I - \alpha \nabla^2 f(z)}_2\cdot\norm{x-y}_2.\]
+这里，$(x,y)=\{(1-t)x+ty|t\in(0,1)\}$是$x$和$y$之间的线段. 
 
-注意到$\norm{I-\alpha\nabla^2f(z)}_2$等于$I-\alpha\nabla^2f(z)$特征值的最大模. 假设$\lambda_1,\dots,\lambda_n$是$\nabla^2f(z)$的特征值，则
+注意到$\norm{I-\alpha\nabla^2f(z)}_2$等于$I-\alpha\nabla^2f(z)$特征值的最大模. 假设$\lambda_1,\dots,\lambda_n$是$\nabla^2f(z)$的特征值，则根据\Cref{ex:matrix-norm} 的讨论，
 \[\norm{I-\alpha\nabla^2f(z)}_2=\max_{i=1,\dots,n}|1-\alpha\lambda_i|.\]
 只要
 \[0<1-\alpha\lambda_{\max} < 1\text{ 且\,} 0<1-\alpha\lambda_{\min} < 1,\]
-也就是$\alpha\in(0,\lambda_{\max}^{-1})$，就会有$\norm{I-\alpha\nabla^2f(z)}_2< 1$，此时$\mathcal T^{(\alpha)}$就是一个压缩映射. 根据条件，只需要$\alpha\in(0,U^{-1})$，就可以保证$\mathcal T^{(\alpha)}$是一个压缩映射.
+也就是$\alpha\in(0,\lambda_{\max}^{-1})$，就会有$\norm{I-\alpha\nabla^2f(z)}_2< 1$. 根据条件，只需要$\alpha\in(0,U^{-1})$，就可以保证这一条件，与此同时，$\mathcal T^{(\alpha)}$是一个压缩映射，压缩系数为$1-\alpha L$.
 \end{example}
 
 \begin{remark}
