@@ -921,7 +921,7 @@ DDPM中的Markov核都是Gauss分布，具体如下：
 
 由于$p_\theta\left(x_{t-1}|x_t\right)=\mathcal{N}\left(x_{t-1} ; \mu_\theta\left(x_t, t\right), \sigma_t^2 \mathbf{I}\right)$，可以算得（见习题 \ref{exercise:diffusion-L-t-1}）：
 \begin{equation}
-L_{t-1}=\E_q\left[\frac{1}{2 \sigma_t^2}\norm{\tilde{\mu}_t\left(x_t, x_0\right)-\mu_\theta\left(x_t, t\right)}^2\right]+C,\label{eq:diffusion-L-t-1}
+L_{t-1}=\E_{x_0,x_t\sim q(x_0,x_t)}\left[\frac{1}{2 \sigma_t^2}\norm{\tilde{\mu}_t\left(x_t, x_0\right)-\mu_\theta\left(x_t, t\right)}^2\right]+C,\label{eq:diffusion-L-t-1}
 \end{equation}
 其中$C$是一个不含$\theta$的常数，并且
 \[
@@ -934,7 +934,7 @@ L_{t-1}=\E_q\left[\frac{1}{2 \sigma_t^2}\norm{\tilde{\mu}_t\left(x_t, x_0\right)
 \]
 引入随机变量$\epsilon\sim\mathcal{N}(0,\mathbf{I})$，我们可以将$L_{t-1}$写作：
 \[
-\E_{x_0, \epsilon}\left[\frac{\beta_t^2}{2 \sigma_t^2 \alpha_t\left(1-\bar{\alpha}_t\right)}\norm{\epsilon-\epsilon_\theta\left(\sqrt{\bar{\alpha}_t} x_0+\sqrt{1-\bar{\alpha}_t} \epsilon, t\right)}^2\right].
+\E_{x_0\sim q(x_0), \epsilon\sim\mathcal{N}(0,\mathbf{I})}\left[\frac{\beta_t^2}{2 \sigma_t^2 \alpha_t\left(1-\bar{\alpha}_t\right)}\norm{\epsilon-\epsilon_\theta\left(\sqrt{\bar{\alpha}_t} x_0+\sqrt{1-\bar{\alpha}_t} \epsilon, t\right)}^2\right].
 \]
 
 如果我们想用基于梯度方法对它进行优化，我们需要计算它的梯度. 然而，这是一个期望，没有办法直接求梯度，所以我们用采样到的$x_0$和$\epsilon$代替期望中的$x_0$和$\epsilon$，把它当成期望来求梯度. 
