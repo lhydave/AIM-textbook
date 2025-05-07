@@ -155,10 +155,10 @@
     在点$x^*=(1,0,0)$处，球面的切空间是什么？我们可以通过曲线来描述切空间. 考虑过$x^*$的圆弧：
     \[x_\theta(t)=(\cos t,\sin t\cos\theta,\sin t\sin\theta), \quad t\in[0,\pi],\]
     其中$\theta$是一个固定的参数，它表示圆弧的方向. 那么，
-    \[\dot{x}_\theta(0)=(0,-\sin\theta,\cos\theta),\]
+    \[\dot{x}_\theta(0)=(0,\cos\theta,\sin\theta),\]
     所以，$x^*$处的切空间至少包含以下集合
     \begin{align*}
-        \{(0,-k\sin \theta,k\cos\theta):k\in\R,\theta\in[0,2\pi)\}= \{(0,y,z):y,z\in\R\}.
+        \{(0,k\cos \theta,k\sin\theta):k\in\R,\theta\in[0,2\pi)\}= \{(0,y,z):y,z\in\R\}.
     \end{align*}
     因为球面是一个二维曲面，所以切空间不可能是整个三维空间. 因此，过$x^*$的切空间就是
     \[T_{x^*}(S^2)=\{(0,y,z):y,z\in\R\}.\]
@@ -861,7 +861,7 @@ x_1^2+x_2^2&=5.
 \end{figure}
 
 采样点$x_i$到分离超平面的归一化距离为
-\[\gamma_i=y_i\left(\left(\frac{w}{\norm{w}_2}\right)^\t x+\frac{b}{\norm{w}_2}\right).\]
+\[\gamma_i=y_i\left(\left(\frac{w}{\norm{w}_2}\right)^\t x_i+\frac{b}{\norm{w}_2}\right).\]
 $\gamma=\min_i\gamma_i$是最小的归一化距离. 于是我们的任务变成了最大化$\gamma$. 等价地，我们求解如下优化问题
 \begin{align*}
     \maximize_{w,b}\quad&\gamma \\
@@ -869,9 +869,9 @@ $\gamma=\min_i\gamma_i$是最小的归一化距离. 于是我们的任务变成�
 \end{align*}
 
 $\gamma\le\gamma_i$等价于
-\[y_i\left(\left(\frac{w}{\gamma\norm{w}_2}\right)^\t x+\frac{b}{\gamma\norm{w}_2}\right)\geq 1.\]
+\[y_i\left(\left(\frac{w}{\gamma\norm{w}_2}\right)^\t x_i+\frac{b}{\gamma\norm{w}_2}\right)\geq 1.\]
 简洁起见，把$w$替换成$\frac{w}{\gamma\norm{w}_2}$，把$b$替换成$\frac{b}{\gamma\norm{w}_2}$，我们有
-\[y_i(w^\t x+b)\geq 1.\]
+\[y_i(w^\t x_i+b)\geq 1.\]
 那么最大化$\gamma=\frac{1}{\norm{w}_2}$等价于最小化$\norm{w}_2^2$. 
 
 我们得到以下凸规划问题：

@@ -147,7 +147,7 @@ child {node (expand-eval-00) {
 \drawW{0}{1}
 \end{tikzpicture}
 }
-edge from parent [gray!50] node[left] {$P$}
+edge from parent [gray!50] node[left] {$p$}
 }
 child {node (expand-eval-01) {
 \begin{tikzpicture}
@@ -171,16 +171,16 @@ child {node (expand-eval-0100) {
 \drawGrid
 \end{tikzpicture}
 }
-edge from parent [black] node[left] {$P$}
+edge from parent [black] node[left] {$p$}
 }
 child {node (expand-eval-0101) {
 \begin{tikzpicture}[white]
 \drawGrid
 \end{tikzpicture}
 }
-edge from parent [black] node[right] {$P$}
+edge from parent [black] node[right] {$p$}
 }
-edge from parent [gray!50] node[left] {$P$}
+edge from parent [gray!50] node[left] {$p$}
 }
 child {node (expand-eval-011) {
 \begin{tikzpicture}
@@ -190,16 +190,16 @@ child {node (expand-eval-011) {
 \drawW{0}{1}
 \end{tikzpicture}
 }
-edge from parent [gray!50] node[right] {$P$}
+edge from parent [gray!50] node[right] {$p$}
 }
-edge from parent [gray!50] node[right] {$P$}
+edge from parent [gray!50] node[right] {$p$}
 };
 \end{tikzpicture}
 };
 \node at (6,-8.5) {$(p,v)=f_\theta$};
 \node (p) at (5.18,-8.55) {\phantom{$p$}};
-\node (P-label) at (7.82,-9.64) {\phantom{$P$}};
-\draw[->,-{Latex[length=3mm, width=4mm]},line width=4,rounded corners=0.2cm] (p) |- (P-label);
+\node (p-label) at (7.82,-9.64) {\phantom{$p$}};
+\draw[->,-{Latex[length=3mm, width=4mm]},line width=4,rounded corners=0.2cm] (p) |- (p-label);
 \end{scope}
 
 \begin{scope}[edge from parent/.style={draw, {Latex[length=3mm, width=4mm]}-, line width=4},]

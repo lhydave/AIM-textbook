@@ -220,7 +220,7 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\dots+d(x_{n+k-1},x_{n+k})\\
     其中$\norm{\cdot}_2$是向量的$L^2$范数. 我们来验证它是一个范数.
 
     \begin{enumerate}
-        \item 非负性与非退化：根据定义可知，对任意矩阵$A$，$\norm{A}_2\geq 0$. 如果$A$是零矩阵，那么自然$\norm{A}_2=0$；反之，如果$\norm{A}=0$，那么对任意非零$x\in\R^m$，都有$\norm{Ax}_2\leq \norm{A}_2\cdot\norm{x}_2=0$，因此$Ax=0$，即$A$是零矩阵.
+        \item 非负性与非退化：根据定义可知，对任意矩阵$A$，$\norm{A}_2\geq 0$. 如果$A$是零矩阵，那么自然$\norm{A}_2=0$；反之，如果$\norm{A}_2=0$，那么对任意非零$x\in\R^m$，都有$\norm{Ax}_2\leq \norm{A}_2\cdot\norm{x}_2=0$，因此$Ax=0$，即$A$是零矩阵.
         \item 齐次性：对任意矩阵$A\in X$，$\lambda\in\R$和$x\in \R^m$，有
         \[\norm{\lambda A}_2=\sup_{\norm{x}_2=1}\norm{\lambda Ax}_2=|\lambda|\sup_{\norm{x}_2=1}\norm{Ax}_2=|\lambda|\norm{A}_2.\]
         \item 三角不等式：对任意矩阵$A,B\in X$，有
