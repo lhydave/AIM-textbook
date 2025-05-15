@@ -148,7 +148,7 @@
 \end{proof}
 
 \begin{proof}[证明二：后向归纳法]
-从博弈树的叶节点往根节点推理，见图\Cref{fig:game-tree} 的收益部分. 
+从博弈树的叶节点往根节点推理，见图\Cref{fig:game-tree} 的收益部分，这个收益表示从这个节点出发，不论对手如何行动，玩家X总有一种策略能够拿到的收益. 
 
 如果此节点是玩家$i$的回合，那么往后一轮的局面已经完全确定.
 \begin{itemize}
@@ -809,7 +809,7 @@ Bellman方程的左右是同一个$V^{\boldsymbol \pi^*}$，此时是不动点�
 整理得
 \[\E\left[\sum_{t=0}^{k-1}\gamma^tQ(\pi_1^*(s^t),\hat{\pi}_2(s^t);s^t)\middle|s^0=s\right]\ge \alpha^*(s)-\gamma^k\norm{\alpha^*}_\infty.\]
 因此，
-\[V^{\pi_1^*,\hat{\pi}_2}(s)\ge \alpha^*(s) - \gamma^k\norm{\alpha^*}_\infty - \frac{\gamma^k}{1-\gamma}\sup|Q|.\]
+\[V^{\pi_1^*,\hat{\pi}_2}(s)\ge \alpha^*(s) - \gamma^k\norm{\alpha^*}_\infty + \frac{\gamma^k}{1-\gamma}\sup|Q|.\]
 令$k\to\infty$可得，上式右边趋于$\alpha^*(s)$，因此我们为玩家$1$选择的策略达到了$\alpha^*$的收益. 
 
 玩家$2$的$\pi_2^*$证明对称，因此$(\pi_1^*,\pi_2^*)$是一个MPE.
