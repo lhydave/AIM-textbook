@@ -251,11 +251,9 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\dots+d(x_{n+k-1},x_{n+k})\\
 \[x' = f(x) = \lambda Rx + b.\]
 其中$R$和$b$分别为旋转和平移变换. 
 
-根据旋转的定义，容易看出$\norm{Rx}_2=\norm{x}_2$，因此
-\[\norm{\lambda R}_2=\sup_{\norm{x}=1}\norm{\lambda Rx}_2=\lambda<1,\]
-所以对任意$x,y\in\Omega$，有
+根据旋转的定义，对任意$x\in\Omega$成立$\norm{Rx}_2=\norm{x}_2$，因此所以对任意$x,y\in\Omega$，有
 \[\norm{f(x)-f(y)}_2=\norm{\lambda Rx-\lambda Ry}_2=\lambda\norm{Rx-Ry}_2= \lambda\norm{x-y}_2.\]
-因此$f$是一个压缩映射.
+由于$\lambda\in(0,1)$，所以$f$是一个压缩映射.
 
 由Banach不动点定理可知，压缩映射$f(x)$有唯一不动点$a=f(a)$.
 \end{example}
@@ -416,12 +414,13 @@ Brouwer不动点定理可以通过该实际的例子来理解：将一张白纸�
 \[S=\left\{x\in\R^n|x\geq 0,\sum_i x_i=1\right\}.\]
 任意$x\in S$，有$Ax\geq 0$. 
 
-我们断言$Ax>0$. 若不然，$A$存在某一行全$0$（由$x\geq 0$和$A$非负可得）. 此时可将该$0$行交换到第一行，对应的列也交换，得到的矩阵为分块上三角，与不可约性矛盾.
+我们断言不会有$Ax=0$. 若不然，$A$存在某一列全$0$（由$x\geq 0$和$A$非负可得）. 此时可将该$0$列交换到第一列，对应的行也交换，得到的矩阵为分块上三角，与不可约性矛盾.
 
 可以在$S$上定义映射
 \[T(x) = \frac1{\rho(x)}Ax,\]
 其中$\rho(x) > 0$使得$T(x)\in S$. 具体来说，
 \[\rho(x) = \sum_i (Ax)_i = \sum_{i,j} a_{ij}x_j.\]
+由于$Ax$不会为$0$，因此$\rho(x)>0$.
 
 显然$T(x)$是$S\to S$的连续映射. $S$是一个有界凸闭集. 由Brouwer不动点定理，存在$x_0\in S$使得
 \[x_0 = T(x_0)=\frac1{\rho(x_0)}Ax_0.\]

@@ -373,7 +373,7 @@ $\lambda$被称为\textit{Lagrange乘子}. 必要条件可以被写作：
     \label{fig:select-y}
 \end{figure}
 
-下面我们说明为什么这样的$y$存在. 因为$x^*$是正规点，所以根据\Cref{thm:tan-space-characterize}，$T_{x^*}(S)=M^\perp$，其中
+下面我们说明为什么这样的$y$存在. 因为$x^*$是整个优化问题的正规点，所以$S$中的约束是线性无关的，因而$x^*$也是去掉了约束$g_k\leq 0$之后的正规点. 根据\Cref{thm:tan-space-characterize}，$T_{x^*}(S)=M^\perp$，其中
 
 \[M=\left\{\sum_{i} \alpha_i \nabla h_i(x^*)^\t+\sum_{j\in J\setminus\{k\}} \beta_j \nabla g_j(x^*)^\t:\alpha_i,\beta_j\in\R\right\}.\]
 根据正规点的定义，$\nabla g_k(x^*)^\t$不在$M$中，所以，$\nabla g_k(x^*)^\t$在$M^\perp$中的分量非零，于是，我们可以选择一个$y\in M^\perp$使得$\nabla g_k(x^*)y<0$. 
@@ -615,6 +615,8 @@ x_1^2+x_2^2&=5.
 \begin{theorem}[弱对偶定理]\label{thm:weak-duality}
     对于任意优化问题 \eqref{eq:non-differentiable-constraint}，我们有
     \[d^*\leq p^*.\]
+    因此，对任意原始规划的可行解$x$和对偶规划的可行解$(\lambda,\mu)$，我们有
+    \[\omega(x)\leq \phi(\lambda,\mu).\]
 \end{theorem}
 
 \begin{proof}
@@ -636,6 +638,10 @@ x_1^2+x_2^2&=5.
     这里，第二个不等式就是在旋转切平面至法向量为$(1,\lambda^\t,\mu^\t)^\t$，然后使得它只和$\mathcal{G}$下边缘切点接触. 
     
     因此，$p^*\geq \phi(\lambda,\mu)$对所有$\lambda,\mu$都成立，于是也有$p^*\geq d^*$.
+
+    注意到对任意原始规划的可行解$x$，成立$\omega(x)\geq p^*$；对任意对偶规划的可行解$(\lambda,\mu)$，成立$\phi(\lambda,\mu)\leq d^*$. 因此，我们有
+    \[\omega(x)\leq \phi(\lambda,\mu).\]
+    这就完成了证明.
 \end{proof}
 
 \subsection{Slater条件，Farkas引理，强对偶定理}
