@@ -291,11 +291,11 @@ $P_i\in\Delta(\Theta_i)$是玩家$i$类型的概率分布. 比较不直观的一
 
 猜硬币游戏的例子其实说明，正则形式博弈的混合策略Nash均衡被理解为：当不确定性趋于消失时候，BNE形成的行动概率分布. 这不是偶然的，实际上，所有的正则形式博弈的混合策略均衡都可以用一系列Bayes博弈的BNE\textit{纯化}.
 
-下面我们把猜硬币游戏的过程一般化. 考虑一个正则形式博弈$(I,A,u)$，其中$I$是玩家集合，$A$是行动空间，$u$是收益函数. 我们可以定义一个Bayes博弈，被称为\textit{扰动博弈}：
+下面我们把猜硬币游戏的过程一般化. 考虑一个正则形式博弈$(I,A,u)$，其中$I$是玩家集合，$A=(A_i)_{i\in I}$是行动空间，$u=(u_i)_{i\in I}$是收益函数. 我们可以定义一个Bayes博弈，被称为\textit{扰动博弈}：
 \begin{itemize}
-\item 给定一个扰动参数$\epsilon>0$，定义类型组合为$\theta=(\theta_i)_{i\in I}$，$\theta_i\in[-1,1]$，然后，将收益扰动为：
-    \[u_i'(s,\theta)=u_i(s)+\epsilon\theta_i.\]
-    \item 假设$\theta_i\sim F_i$，相互独立，$F_i$是具有连续可微密度的分布.
+\item 给定一个扰动参数$\epsilon>0$，定义类型组合为$\theta=(\theta_i)_{i\in I}$，$\theta_i=(\theta_i^s)_s$，其中$s$是所有纯策略组合，假设$\theta_i^s\in[-1,1]$，然后，将收益扰动为：
+    \[u_i'(s,\theta_i)=u_i(s)+\epsilon\theta_i^s.\]
+    \item 假设$\theta_i\sim F_i$，相互独立.
 \end{itemize}
 
 定义一个从Bayes博弈策略到正则形式博弈混合策略的映射$\phi$，给定一个Bayes博弈的策略组合$s$，$\phi(s)$是一个混合策略，满足
