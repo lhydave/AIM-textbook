@@ -41,18 +41,21 @@ latexmk main.tex --xelatex
 
 ### 通过 Issue 提出勘误和修改提议
 
-*在使用 Issue 提交建议之前，请仔细查阅 [Issue 规范](issue-format.md)，否则你的 Issue 可能会被忽略或关闭。*
+> [!IMPORTANT] 
+> *在使用 Issue 提交建议之前，请仔细查阅 [Issue 规范](issue-format.md)，否则你的 Issue 可能会被忽略或关闭。*
 
 1. 在本网页中，点击 `Issues` 标签。
 2. 点击 `New issue` 按钮。
 
 ![image](readme-img/issue-1.png)
 
-3. 在 `Title` 中输入勘误或修改提议的标题。
-4. 在 `Write` 中输入勘误或修改提议的详细内容，请具体到章节和页码，可以附上图片，数学请使用 LaTeX 公式。
-5. 点击 `Submit new issue` 按钮。
+3. 选择一个合适的 Issue 模板。目前支持 Typo、Format、Enhancement、Suggestion、Other 类型的 Issue 模板。
 
 ![image](readme-img/issue-2.png)
+
+4. 修改 Issue 的标题，填写 Issue 模板中的内容，请尽量详细地描述你发现的问题或提出的建议。
+
+![image](readme-img/issue-3.png)
 
 ## 通过 Pull Request 提交勘误和修改提议
 
