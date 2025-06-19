@@ -150,7 +150,9 @@
 
 接下来，我们说明，度量本身也是一个连续映射：
 \begin{lemma}\label{lemma:metric-continuous}
-    度量$d:X\times X\to\R$是连续映射.
+    考虑度量空间$(X,d)$，$d'$是$X\times X$上的度量，其中
+    \[d'((x_1,y_1),(x_2,y_2))=d(x_1,x_2)+d(y_1,y_2).\]
+    那么度量$d:X\times X\to\R$是连续映射.
 \end{lemma}
 \begin{proof}
     对于任意$x_1,x_2,y_1,y_2\in X$，根据三角不等式，有

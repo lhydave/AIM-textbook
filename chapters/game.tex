@@ -696,7 +696,7 @@ MDP的目标是找到一个策略 $\pi$，使得在该策略下可以获得最�
 在随机博弈中，玩家的理性即是在给定其他玩家的策略$\boldsymbol \pi_{-i}$的情况下，最大化其价值函数. 有了理性的定义，我们可以自然地引入最优反应的概念：
 
 \begin{definition}[Markov最优反应]
-    对于一个随机博弈，给定其他玩家的平稳策略$\boldsymbol \pi_{-i}$，玩家 $i$ 的\textbf{Markov最优反应}是一个策略 $\boldsymbol \pi_i$，使得对于任意状态 $s$ 和任意平稳策略$\boldsymbol \pi_i'$，
+    对于一个随机博弈，给定其他玩家的平稳策略$\boldsymbol \pi_{-i}$，玩家 $i$ 的\textbf{Markov最优反应}是一个平稳策略 $\boldsymbol \pi_i$，使得对于任意状态 $s$ 和任意平稳策略$\boldsymbol \pi_i'$，
     \[V_i^{\boldsymbol \pi_i,\boldsymbol \pi_{-i}}(s)\geq V_i^{\boldsymbol \pi_i',\boldsymbol \pi_{-i}}(s).\]
     最优反应对应的策略集合记为$BR_i(\boldsymbol \pi_{-i})$.
 \end{definition}
@@ -822,7 +822,7 @@ Bellman方程的左右是同一个$V^{\boldsymbol \pi^*}$，此时是不动点�
 
 最后，我们指出随机博弈和人工智能的关系. 正如MDP是强化学习的基础，随机博弈是多智能体强化学习的基础. 在多智能体强化学习中，每个智能体都是一个独立的决策者，按照一个MDP来决策. 但是，由于环境中有多个智能体，每个智能体的奖励函数都会受到其他智能体的影响，这正是随机博弈的情形. 
 
-利用多智能体强化学习，我们可以训练出极其强大的人工智能，例如，DeepMind在星际争霸2中训练出的AlphaStar~\cite{vinyalsGrandmasterLevelStarCraft2019} 就是一个例子. 通过人类数据与多智能体强化学习的自我训练，AlphaStar在星际争霸2的比赛中击败了世界冠军. 它展示了博弈论如何为人工智能的发展提供语言和训练方法. 
+利用多智能体强化学习，我们可以训练出极其强大的人工智能，DeepMind在星际争霸2中训练出的AlphaStar~\cite{vinyalsGrandmasterLevelStarCraft2019} 就是一个例子. 通过人类数据与多智能体强化学习的自我训练，AlphaStar在星际争霸2的比赛中击败了世界冠军. 它展示了博弈论如何为人工智能的发展提供语言和训练方法. 
 
 \begin{remark}
     博弈论有很多很好的参考教材，例如Aumann写的~\cite{aumannLecturesGameTheory1989}、Tirole和Fudenberg写的~\cite{fudenbergGameTheory1991}、Osborne和Rubinstein写的~\cite{osborneCourseGameTheory1994} 等.

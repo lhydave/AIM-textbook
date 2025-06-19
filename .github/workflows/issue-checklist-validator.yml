@@ -41,11 +41,12 @@ jobs:
             const title = issue.title || '';
             const validPrefixes = ['typo:', 'format:', 'enhance:', 'suggest:', 'other:'];
             const hasSectionReference = title.includes('第') && title.includes('节');
+            const isSpecialChapter = title.includes('第0章') || title.includes('第零章');
             const hasValidPrefix = validPrefixes.some(prefix => title.toLowerCase().startsWith(prefix));
             
             console.log(`Check 2 - Valid prefix: ${hasValidPrefix}, Section reference: ${hasSectionReference}`);
             
-            if (!hasValidPrefix || !hasSectionReference) {
+            if (!isSpecialChapter && (!hasValidPrefix || !hasSectionReference)) {
               missingItems.push("标题格式");
             }
             

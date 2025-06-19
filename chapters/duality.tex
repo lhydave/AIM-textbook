@@ -345,6 +345,7 @@ $\lambda$被称为\textit{Lagrange乘子}. 必要条件可以被写作：
     \nabla f(x^*)+\lambda^\t \nabla {h(x^*)}+\mu^\t \nabla g(x^*)&=0,\label{eq:KKT-1}\\
     {\mu^\t g(x^*)}&=0.\label{eq:KKT-2}
 \end{align}
+自然，$x^*$需要满足可行解的条件，即$h(x^*)=0$，$g(x^*)\leq 0$，$x^*\in\Omega$.
 \end{theorem}
 
 \begin{proof}
@@ -616,7 +617,7 @@ x_1^2+x_2^2&=5.
     对于任意优化问题 \eqref{eq:non-differentiable-constraint}，我们有
     \[d^*\leq p^*.\]
     因此，对任意原始规划的可行解$x$和对偶规划的可行解$(\lambda,\mu)$，我们有
-    \[\omega(x)\leq \phi(\lambda,\mu).\]
+    \[\phi(\lambda,\mu)\leq\omega(x).\]
 \end{theorem}
 
 \begin{proof}
@@ -640,7 +641,7 @@ x_1^2+x_2^2&=5.
     因此，$p^*\geq \phi(\lambda,\mu)$对所有$\lambda,\mu$都成立，于是也有$p^*\geq d^*$.
 
     注意到对任意原始规划的可行解$x$，成立$\omega(x)\geq p^*$；对任意对偶规划的可行解$(\lambda,\mu)$，成立$\phi(\lambda,\mu)\leq d^*$. 因此，我们有
-    \[\omega(x)\leq \phi(\lambda,\mu).\]
+    \[\phi(\lambda,\mu)\leq \omega(x).\]
     这就完成了证明.
 \end{proof}
 

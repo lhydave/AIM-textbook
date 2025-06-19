@@ -233,19 +233,19 @@ $\impliedby$：依然根据概率密度函数的定义，考虑$x,x'\in\mathcal 
     \end{align*}
     也就是 $A_i$ 将 $A_1, \dots, A_{i-1}$ 的输出和 $\mathcal X^n$ 中的一个数据集作为输入元素. 对$i=1,\dots,k$, $A_i$是 $\epsilon_i$-DP算法. 
         
-    依次运行算法 $A_i$ 得到算法$A : \mathcal X^n \to \mathcal Y_1 \times \dots \times \mathcal Y_k$，那么$A$是$\epsilon$-DP，其中$\epsilon = \sum_{i=1}^n \epsilon_i$.
+    依次运行算法 $A_i$ 得到算法$A : \mathcal X^n \to \mathcal Y_1 \times \dots \times \mathcal Y_k$，那么$A$是$\epsilon$-DP，其中$\epsilon = \sum_{i=1}^k \epsilon_i$.
 \end{proposition}
 \begin{proof}
-    对$n$用数学归纳法. 
+    对$k$用数学归纳法. 
     \begin{itemize}
-        \item 当$n=1$时，结论显然成立.
-        \item 假设结论对$n$成立，我们要证明对$n+1$结论成立.
+        \item 当$k=1$时，结论显然成立.
+        \item 假设结论对$k$成立，我们要证明对$k+1$结论成立.
         
-        考虑前$n$个算法的复合算法
-        \[A'(x) = (A_1(x), A_2(A_1(x), x), \dots, A_n(A_{n-1}(\dots A_1(x), \dots), x)).\]
-        由归纳假设，$A'$是$\sum_{i=1}^n\epsilon_i$-DP算法. 
-        
-        由于$A_{n+1}$是$\epsilon_{n+1}$-DP算法，$A'$与$A_{n+1}$的复合算法是$A$，所以利用\Cref{prop:composition}，$A$是$\sum_{i=1}^{n+1}\epsilon_i$-DP算法.
+        考虑前$k$个算法的复合算法
+        \[A'(x) = (A_1(x), A_2(A_1(x), x), \dots, A_k(A_{k-1}(\dots A_1(x), \dots), x)).\]
+        由归纳假设，$A'$是$\sum_{i=1}^k\epsilon_i$-DP算法.
+
+        由于$A_{k+1}$是$\epsilon_{k+1}$-DP算法，$A'$与$A_{k+1}$的复合算法是$A$，所以利用\Cref{prop:composition}，$A$是$\sum_{i=1}^{k+1}\epsilon_i$-DP算法.
     \end{itemize}
 \end{proof}
 
