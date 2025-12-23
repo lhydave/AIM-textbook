@@ -252,7 +252,7 @@ $P_i\in\Delta(\Theta_i)$是玩家$i$类型的概率分布. 比较不直观的一
 接下里，我们来看一个BNE的例子. 
 
 \begin{example}[猜硬币游戏]
-    考虑经典的猜硬币游戏（见\Cref{ex:matching-pennies}），这是一个正则形式博弈，收益矩阵为
+    考虑经典的猜硬币游戏（见\Cref{example:matching-pennies}），这是一个正则形式博弈，收益矩阵为
     \[
     \begin{array}{c|cc}
          &H&T  \\\hline
@@ -334,11 +334,11 @@ $P_i\in\Delta(\Theta_i)$是玩家$i$类型的概率分布. 比较不直观的一
 
 注意，事前理性和事中理性考虑的都是同样的策略，但是玩家面对的不确定性是不同的. 然而，事前理性和事中理性其实是等价的：
 
-\begin{theorem}\label{thm:exante-expost-equivalence}
+\begin{theorem}\label{theorem:exante-expost-equivalence}
     给定玩家集$I，$行动空间$A$，类型空间$\Theta$、收益函数$u$和类型空间的联合分布$P$，考虑策略组合$s=(s_i)_{i\in I}$，对任意玩家$i$，$s_i$是$s_{-i}$的事前最优反应当且仅当$s_i$是$s_{-i}$的事中最优反应.
 \end{theorem}
 
-这一定理的证明类似正则形式博弈无差别原理（\Cref{thm:indifference-principle}）的证明，见习题 \ref{exercise:exante-expost-equivalence}.
+这一定理的证明类似正则形式博弈无差别原理（\Cref{theorem:indifference-principle}）的证明，见习题 \ref{exercise:exante-expost-equivalence}.
 
 这一定理其实有一些反直觉：在Bayes博弈中，如果玩家面对的仅仅只是具有确定风险的不确定性，那么他是否不确定自己的类型并不会影响他的理性决策. 这其实是因为，玩家面对的仅仅是\textit{具有确定风险的不确定性}，而不是更加复杂的不确定性，因此，无论博弈如何进行，他在开始前就已经可以确定自己的最优策略.
 
@@ -647,7 +647,7 @@ Aumann知识算子的想法很清晰，它把所有关于知识的讨论转化�
 上面的很多命题我们都会称呼为“公理”，这是因为他们反映了知识的基本性质，是我们对知识的直觉认识. 实际上，我们可以反过来，从这些公理出发，推导出Aumann知识算子的定义. 
 于知识的逻辑推理！
 
-\begin{theorem}[\cite{bacharachExtensionsClaimAumann1985}]\label{thm:Aumann-operator-iff}
+\begin{theorem}[\cite{bacharachExtensionsClaimAumann1985}]\label{theorem:Aumann-operator-iff}
 考虑一个映射$K:2^\Omega\to 2^\Omega$，那么，以下两条等价：
 \begin{itemize}
     \item $K$满足 \eqref{eq:K0-awareness}--\eqref{eq:K4-negative-introspection}.
@@ -657,7 +657,7 @@ Aumann知识算子的想法很清晰，它把所有关于知识的讨论转化�
 
 这一定理的证明类似于上面公理的证明，见习题 \ref{exercise:Aumann-operator-iff}.
 
-诚然，Aumann知识算子的定义（在接受了之后）是非常直观且自然的. 然而，\Cref{thm:Aumann-operator-iff} 告诉我们，这样定义的知识算子，必须要承认很多不是特别合理的性质，例如负内省公理或者逻辑全知. 这似乎是一个两难的选择. 
+诚然，Aumann知识算子的定义（在接受了之后）是非常直观且自然的. 然而，\Cref{theorem:Aumann-operator-iff} 告诉我们，这样定义的知识算子，必须要承认很多不是特别合理的性质，例如负内省公理或者逻辑全知. 这似乎是一个两难的选择. 
 
 因此，回到本节开头的问题，用Bayes博弈研究知识，是不是得具体问题具体建模呢？Aumann知识算子给了一个很好的回答：如果过分一般，就会过分简化知识的概念，引入很多不合理的性质\footnote{实际上，直到今天，做知识论的哲学家普遍持有这样的观点：知识是一个无法被严格定义的哲学概念！因此，当知识被更进一步形式化成数学模型，我们更不能迷信它的普适性.}. 因此，既需要具体问题具体建模，也需要对知识的一般性质有所了解.
 
@@ -700,7 +700,7 @@ Aumann知识算子的想法很清晰，它把所有关于知识的讨论转化�
     \end{array}\]
     假设$\Pr(\theta_2=D)=p$，$0<p<1$，计算它的所有纯策略BNE. 这一结果给你带来了什么启示？
 
-    \item \label{exercise:exante-expost-equivalence} 仿照正则形式博弈无差别原理（\Cref{thm:indifference-principle}）的证明，证明\Cref{thm:exante-expost-equivalence}.
+    \item \label{exercise:exante-expost-equivalence} 仿照正则形式博弈无差别原理（\Cref{theorem:indifference-principle}）的证明，证明\Cref{theorem:exante-expost-equivalence}.
 
     \item *\label{exercise:Aumann-NE-common-knowledge} \textbf{达成Nash均衡的知识条件. }（\cite{aumannEpistemicConditionsNash1995}）形式化建模并证明下面的事实：
     \begin{enumerate}
@@ -717,7 +717,7 @@ Aumann知识算子的想法很清晰，它把所有关于知识的讨论转化�
     \end{itemize}
     这样的算子$U$存在吗？
 
-    \item *\label{exercise:Aumann-operator-iff}（\cite{bacharachExtensionsClaimAumann1985}）证明\Cref{thm:Aumann-operator-iff}.
+    \item *\label{exercise:Aumann-operator-iff}（\cite{bacharachExtensionsClaimAumann1985}）证明\Cref{theorem:Aumann-operator-iff}.
     
     \item *请查阅资料，回答以下关于Nash均衡的问题：
     \begin{enumerate}

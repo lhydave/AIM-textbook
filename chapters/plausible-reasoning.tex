@@ -117,7 +117,7 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 
 换言之，给定一个真的前提$\Gamma$，我们所关注的公式$\phi$也是真的. 这一概念只关心真值之间的关系，但是至于$\Gamma$如何导致$\phi$为真，不是这一概念可以刻画的. 
 
-\begin{example}\label{ex:semantic-implication}
+\begin{example}\label{example:semantic-implication}
 如果$\Gamma=\{p\to q,q\to r\}$，那么$\Gamma\vDash p\to r$. 我们来证明这个，对任意赋值$v$，如果$v(p\to q)=\T$，那么$v(p)=\F$或者$v(q)=\T$，
 \begin{itemize}
     \item 如果$v(p)=\F$，那么$v(p\to r)=\T$.
@@ -193,7 +193,7 @@ $(p\vee(q\to r))$是命题公式，但是$p\vee\vee q$不是.
 
 完备性定理有两层意思：能推理出来的都是真的，真的都能被推理出来. 并非所有的形式推理系统都有完备性定理，但是对于命题逻辑来说，这个定理成立的形式推理系统是更加符合直观的. 
 
-完备性定理的一个直接推论是，我们可以用真值表来检查从前提出发是否能推出结论. 例如，在\Cref{ex:semantic-implication} 中我们验证了$p\to q,q\to r\vDash p\to r$\footnote{在书写时，我们常常省略$\Gamma$中的花括号，因此这里写作$p\to q,q\to r\vDash p\to r$而不是$\{p\to q,q\to r\}\vDash p\to r$. 对于符号$\vdash$我们遵循同样的规则.}，所以也有
+完备性定理的一个直接推论是，我们可以用真值表来检查从前提出发是否能推出结论. 例如，在\Cref{example:semantic-implication} 中我们验证了$p\to q,q\to r\vDash p\to r$\footnote{在书写时，我们常常省略$\Gamma$中的花括号，因此这里写作$p\to q,q\to r\vDash p\to r$而不是$\{p\to q,q\to r\}\vDash p\to r$. 对于符号$\vdash$我们遵循同样的规则.}，所以也有
 \[p\to q,q\to r\vdash p\to r,\]
 即便我们完全不知道这一推理是如何进行的，我们依然知道这一推理是可行的！
 

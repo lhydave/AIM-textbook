@@ -198,7 +198,7 @@
 
 最后，我们给出条件概率的一些性质. 
 
-\begin{proposition}\label{prop:conditional-probability}
+\begin{proposition}\label{proposition:conditional-probability}
 设$(\Omega,\scF,\Pr)$是一个概率空间，那么
 \begin{enumerate}
     \item 对任意$A\in\scF$满足$\Pr(A)>0$，$\Pr(\cdot|A)$也是一个概率测度；
@@ -210,7 +210,7 @@
 
 接下来我们给两个在Bayes概率论以及随机过程中很重要的性质. 
 
-\begin{theorem}[全概率公式]\label{thm:total-probability}
+\begin{theorem}[全概率公式]\label{theorem:total-probability}
 设$(\Omega,\scF,\Pr)$是一个概率空间，$A_1,A_2,\ldots\in\scF$是一列两两不相交的事件，且$\Pr(A_i)>0$，$\bigcup_{i=1}^\infty A_i=\Omega$，则对任意的$C\in\scF$，有
 \[
     \Pr(C) = \sum_{i=1}^\infty \Pr(C|A_i)\Pr(A_i).
@@ -249,7 +249,7 @@
     这里$\bar A$指的是$A$的补集，即“第一个球是黑球”. 
 \end{example}
 
-\begin{theorem}[贝叶斯公式]\label{thm:bayes}
+\begin{theorem}[贝叶斯公式]\label{theorem:bayes}
 设$(\Omega,\scF,\Pr)$是一个概率空间，$A,B\in\scF$且$\Pr(A),\Pr(B)>0$，则
 \[
     \Pr(A|B) = \frac{\Pr(B|A)\Pr(A)}{\Pr(B)}.
@@ -260,7 +260,7 @@
 
 一个特别重要的推论被称为\textit{链式法则}，它是\textit{Bayes网络}的基础. 
 
-\begin{corollary}[链式法则]\label{cor:chain-rule}
+\begin{corollary}[链式法则]\label{corollary:chain-rule}
 设$(\Omega,\scF,\Pr)$是一个概率空间，$A_1,A_2,\ldots,A_n\in\scF$，且$\Pr(A_1\cap A_2\cap\dots\cap A_n)>0$，则
 \begin{align*}
     &\Pr(A_1\cap A_2\cap\dots\cap A_n)\\
@@ -305,7 +305,7 @@
 
 为了理解随机变量的概念，我们依然从古典概型入手. 
 
-\begin{example}\label{ex:random-variable}
+\begin{example}\label{example:random-variable}
 继续考虑先后投两个骰子的情况，假设概率空间是$(\Omega,\scF,\Pr)$，他们的定义我们在\Cref{subsec:kolmogorov-probability} 的末尾已经讨论过了. 
 
 我们可以定义一个从样本空间$\Omega$到$\N$的函数$S(i,j)=i+j$，也就是两个点数的和. 我们来看看$S$与事件域的关系. $\{S=s\}=\{(i,j)\in\Omega:i+j=s\}$，所以$S$将原本的事件精简成了一个数字. 这个过程丢弃了一些事件，例如$S$无法表达事件$\{(1,2)\}$，实际上，它无法区分$(1,2)$和$(2,1)$，它把这两个样本点都看成了$3$. 但是，$S$仍然保留了很多信息，例如，$S$可以区分事件$\{(1,1)\}$和$\{(2,2)\}$，它们分别对应$2$和$4$. 总结来说，$S$将原本更精细的事件域压缩成了更粗糙的事件域. 
@@ -327,13 +327,13 @@
 
 我们下面讨论一些随机变量的基本性质. 
 
-\begin{theorem}\label{thm:random-variable}
+\begin{theorem}\label{theorem:random-variable}
 设$(\Omega,\scF,\Pr)$是一个概率空间，$X:\Omega\to\R^n$是一个随机向量，$g:\R^n\to\R^m$是一个Borel函数，则$g(X)=g\circ X$也是一个随机向量. 
 \end{theorem}
 
 这一性质告诉我们了一种构造随机变量的方式：对一个随机变量进行一些Borel函数的操作. 下面的性质告诉我们，Borel函数包含了绝大部分我们关心的函数，因此在实际中，我们不需要担心一个映射作用完之后是否还是随机变量.
 
-\begin{proposition}\label{prop:borel-function}
+\begin{proposition}\label{proposition:borel-function}
 下面函数是Borel函数：
 \begin{enumerate}
     \item 所有的连续函数；
@@ -360,7 +360,7 @@
 
 容易验证，分布函数具有如下的性质：
 
-\begin{proposition}\label{prop:distribution-function}
+\begin{proposition}\label{proposition:distribution-function}
 设$(\Omega,\scF,\Pr)$是一个概率空间，$X:\Omega\to\R$是一个随机变量，$F_X$是它的分布函数，则
 \begin{enumerate}
     \item $F_X$是一个非减函数；
@@ -370,18 +370,18 @@
 \end{enumerate}
 \end{proposition}
 
-实际上，分布函数也可以由\Cref{prop:distribution-function} 的前三条性质给出定义，这是因为，满足前三条性质的函数恰好是某个随机变量的分布函数：
+实际上，分布函数也可以由\Cref{proposition:distribution-function} 的前三条性质给出定义，这是因为，满足前三条性质的函数恰好是某个随机变量的分布函数：
 
-\begin{theorem}\label{thm:distribution-function}
-设$F$是$\R\to\R$的函数，满足\Cref{prop:distribution-function} 的前三条性质. 
+\begin{theorem}\label{theorem:distribution-function}
+设$F$是$\R\to\R$的函数，满足\Cref{proposition:distribution-function} 的前三条性质. 
 
 在概率空间$([0,1],\scB([0,1]),\lambda)$上，存在一个随机变量$X$，使得$F_X=F$.
 \end{theorem}
 
-所以，我们今后也称呼满足\Cref{prop:distribution-function} 四条性质的函数为分布函数. 
+所以，我们今后也称呼满足\Cref{proposition:distribution-function} 四条性质的函数为分布函数. 
 
 我们看一个分布函数计算概率的简单例子. 
-\begin{example}\label{ex:distribution-prob}
+\begin{example}\label{example:distribution-prob}
     考虑$\R$上的分布函数$F$，它由随机变量$X$定义. 那么，
     \begin{itemize}
         \item $\Pr(X\leq a)=F(a)$，
@@ -404,7 +404,7 @@
 
 容易证明，分布函数具有如下的性质：
 
-\begin{proposition}\label{prop:distribution-function-n}
+\begin{proposition}\label{proposition:distribution-function-n}
 设$(\Omega,\scF,\Pr)$是一个概率空间，$X:\Omega\to\R^n$是一个随机向量，$F_X$是它的分布函数，则
 \begin{enumerate}
     \item 对任意$a_i\leq b_i$，$i=1,2,\ldots,n$，都有$\Delta_{a_ib_i}F_X(x_1,x_2,\ldots,x_n)\geq 0$；
@@ -415,23 +415,23 @@
 
 同样，以上三条性质就决定了一个分布函数. 我们有如下的定理：
 
-\begin{theorem}\label{thm:distribution-function-n}
-设$F$是$\R^n\to\R$的函数，满足\Cref{prop:distribution-function-n} 的三条性质.
+\begin{theorem}\label{theorem:distribution-function-n}
+设$F$是$\R^n\to\R$的函数，满足\Cref{proposition:distribution-function-n} 的三条性质.
 
 在概率空间$([0,1]^n,\scB([0,1]^n),\lambda)$上，存在一个随机向量$X$，使得$F_X=F$.
 \end{theorem}
 
-因此，我们今后也称呼满足\Cref{prop:distribution-function-n} 三条性质的函数为分布函数. 
+因此，我们今后也称呼满足\Cref{proposition:distribution-function-n} 三条性质的函数为分布函数. 
 
 \begin{remark}
-\Cref{thm:distribution-function} 和\Cref{thm:distribution-function-n} 其实还发挥着另一个重要的作用. 随机变量和随机向量的定义是非常抽象的，所以我们并不能很直接验证随机变量的存在性. 然而，分布函数却是极其容易构造的. 所以利用分布函数的存在性我们可以确保随机变量的存在性. 
+\Cref{theorem:distribution-function} 和\Cref{theorem:distribution-function-n} 其实还发挥着另一个重要的作用. 随机变量和随机向量的定义是非常抽象的，所以我们并不能很直接验证随机变量的存在性. 然而，分布函数却是极其容易构造的. 所以利用分布函数的存在性我们可以确保随机变量的存在性. 
 \end{remark}
 
 如果我们就限制在空间$([0,1]^n,\scB([0,1]^n),\lambda)$上，随机向量几乎就等同于分布函数. 在更一般的情况下，两个随机向量$X,Y$的分布函数相同时，我们称$X,Y$ \textit{同分布}，记为$X \stackrel{d}{=} Y$.
 
 现在，我们将分布函数与概率测度联系在一起. 下面的定理说明，分布函数$F$可以自然诱导出来一个概率测度$P$，在这个测度空间上，可以定义一个随机变量$X$，使得$F_X=F$.
 
-\begin{theorem}\label{thm:uniqueness-of-distribution-function}
+\begin{theorem}\label{theorem:uniqueness-of-distribution-function}
 设$F:\R^n\to\R$是一个分布函数，则在可测空间$(\R^n,\scB(\R^n))$上，存在唯一的概率测度$P$，使得对任意$a_i\leq b_i$，
 \[
     P\left(\prod_{i=1}^n(a_i,b_i]\right) = \Delta_{a_1b_1}\Delta_{a_2b_2}\dots\Delta_{a_nb_n}F(x_1,x_2,\ldots,x_n).
@@ -504,7 +504,7 @@ $\R$上的测度$\Pr$称为\textbf{绝对连续测度}，如果对任意$\epsilo
 
 那么，绝对连续测度对应的是连续分布函数吗？并非如此！不过，绝对连续测度对应的分布函数有相当漂亮的一种刻画方式：
 
-\begin{theorem}[微积分基本定理]\label{thm:lebesgue-differentiation-theorem}
+\begin{theorem}[微积分基本定理]\label{theorem:lebesgue-differentiation-theorem}
 设$F:\R\to\R$是绝对连续测度对应的分布函数，那么
 \[\lambda(\{x\in\R:F'(x)\text{ 不存在}\})=0.\]
 定义函数：
@@ -519,9 +519,9 @@ $\R$上的测度$\Pr$称为\textbf{绝对连续测度}，如果对任意$\epsilo
 \end{theorem}
 此处的积分可以理解为Riemann积分或者后面\Cref{sec:expectation} 中的Lebesgue积分. 
 
-\Cref{thm:lebesgue-differentiation-theorem} 意味着，绝对连续测度对应的分布函数几乎处处可以求导，并且所得到的导函数积分回去还是原来的分布函数，也就是微积分基本定理成立. 这样的函数我们称之为\textit{绝对连续函数}.
+\Cref{theorem:lebesgue-differentiation-theorem} 意味着，绝对连续测度对应的分布函数几乎处处可以求导，并且所得到的导函数积分回去还是原来的分布函数，也就是微积分基本定理成立. 这样的函数我们称之为\textit{绝对连续函数}.
 
-那么，这个$f$应该如何理解呢？先不管\Cref{thm:lebesgue-differentiation-theorem}，回到绝对连续测度，仿照导数的定义，考虑极限
+那么，这个$f$应该如何理解呢？先不管\Cref{theorem:lebesgue-differentiation-theorem}，回到绝对连续测度，仿照导数的定义，考虑极限
 \[\frac{\d\Pr}{\d\lambda}(x)=\lim_{\lambda(A)\to 0,x\in A}\frac{\Pr(A)}{\lambda(A)},\]
 也就是点$x$附近$\Pr(\cdot)$的微小变化相对于$\lambda(\cdot)$的微小变化.
 
@@ -536,16 +536,16 @@ $\R$上的测度$\Pr$称为\textbf{绝对连续测度}，如果对任意$\epsilo
 
 那么，概率测度和密度的区别是什么呢？对于刚接触概率论的人来说，似乎很难理解他们之间的区别. 比如说，有时候会写$p(X=x)$甚至$\Pr(X=x)$来表示密度在$x$处的值$p(x)$，又或者，用$\int\Pr(X=x)\d x$来表示对密度的积分. 这些当然都是不对的，我们下面慢慢论述. 
 
-首先，根据\Cref{thm:lebesgue-differentiation-theorem}，$F$是连续函数，所以根据\Cref{ex:distribution-prob}，$\Pr(X=x)=F(x)-F(x-)=F(x)-F(x)=0$. 所以$\Pr(X=x)$根本就是零，它和密度函数没有任何关系，所以上面这些写法都是错的. 
+首先，根据\Cref{theorem:lebesgue-differentiation-theorem}，$F$是连续函数，所以根据\Cref{example:distribution-prob}，$\Pr(X=x)=F(x)-F(x-)=F(x)-F(x)=0$. 所以$\Pr(X=x)$根本就是零，它和密度函数没有任何关系，所以上面这些写法都是错的. 
 
 那么，要怎么理解密度$p(\cdot)$和概率测度$\Pr(\cdot)$的区别呢？当然，从定义的角度他们就完全不同：一个是从实数到实数的映射，一个是从实数的集合到实数的映射. 但是这样的区别对于初学者来说并不直观. 最直观的区别就在于密度这一词：虽然铅很重（密度大），但是几亿倍于铅体积的棉花却应该比铅重. 所以，密度是微观的，刻画很小部分集合的概率值，也就是$\d\Pr=p_X\d \lambda$；而概率刻画的是宏观的，计算任何一个集合的概率，也就是$\Pr(X\in A)$.
 
 \begin{remark}
-    上面的记号$\d\Pr/\d\lambda$并不是随意写出来的，我们叫它导数也不是随意的. 在测度论中，\Cref{thm:lebesgue-differentiation-theorem} 可以被推广为\textbf{Radon-Nikodym定理}，这一定理直接保证了形如$\d\Pr/\d\lambda$的函数的存在性，这一函数被称之为\textbf{Radon-Nikodym导数}. 
+    上面的记号$\d\Pr/\d\lambda$并不是随意写出来的，我们叫它导数也不是随意的. 在测度论中，\Cref{theorem:lebesgue-differentiation-theorem} 可以被推广为\textbf{Radon-Nikodym定理}，这一定理直接保证了形如$\d\Pr/\d\lambda$的函数的存在性，这一函数被称之为\textbf{Radon-Nikodym导数}. 
 \end{remark}
 
 利用密度，我们可以很容易计算概率：
-\begin{theorem}\label{thm:continuous-prob}
+\begin{theorem}\label{theorem:continuous-prob}
 设$X$是一个连续型随机变量，$f$是它的密度函数，则对任意的$B\in\scB(\R)$，都有
 \[\Pr(X\in B)=\int_{x\in B}f(x)\d x.\]
 \end{theorem}
@@ -573,7 +573,7 @@ $\chi^2$ & $\chi^2_n$ & $p(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}\e^{-x/2}$，
 \end{table}
 
 \begin{remark}
-从\Cref{thm:lebesgue-differentiation-theorem} 来看，密度函数的定义似乎是唯一的，但是从积分的角度，如果密度函数在几个点上的值发生了变化，并不影响整个积分的值，从而也不影响求概率. 比如均匀分布$\U(a,b)$，端点$a,b$的值到底是$0$还是$1/(b-a)$并不重要，取任何一个值都是可以的.     
+从\Cref{theorem:lebesgue-differentiation-theorem} 来看，密度函数的定义似乎是唯一的，但是从积分的角度，如果密度函数在几个点上的值发生了变化，并不影响整个积分的值，从而也不影响求概率. 比如均匀分布$\U(a,b)$，端点$a,b$的值到底是$0$还是$1/(b-a)$并不重要，取任何一个值都是可以的.     
 \end{remark}
 
 \begin{remark}
@@ -608,7 +608,7 @@ $\chi^2$ & $\chi^2_n$ & $p(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}\e^{-x/2}$，
 
 连续型随机向量指的是它对应的概率测度是绝对连续的. 连续型随机向量的分布函数依然由绝对连续函数刻画：
 
-\begin{theorem}\label{thm:continuous-vector}
+\begin{theorem}\label{theorem:continuous-vector}
 设$F:\R^n\to\R$是绝对连续测度对应的分布函数，那么存在一个非负可积函数$f:\R^n\to\R$，使得对任意的$(x_1,\dots,x_n)\in\R^n$，都有
 \[F(x_1,\dots,x_n)=\int_{-\infty}^{x_1}\dots\int_{-\infty}^{x_n}f(y_1,\dots,y_n)\d y_1\dots\d y_n.\]
 \end{theorem}
@@ -621,13 +621,13 @@ $\chi^2$ & $\chi^2_n$ & $p(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}\e^{-x/2}$，
 这里，我们需要再给出一些$\d\lambda$和$\d x$关系的讨论. $\d\lambda$应该理解为Lebesgue测度的微小变化，然而我们并不假定这一变化是如何产生的. $\d x$理解为$x$的微小变化. $x$的微小变化自然就产生了$\lambda$的微小变化，即$\lambda(\d x)$. 所以，在$x$处，$\d\lambda$和$\d x$之间的关系应该是$\d\lambda=\lambda(\d x)$，于是$\d\lambda$应该理解为$\d x$形成的长方体的体积. 
 
 同样，密度给出了概率计算的一个重要工具：
-\begin{theorem}\label{thm:continuous-prob-vec}
+\begin{theorem}\label{theorem:continuous-prob-vec}
     设$X$是一个$n$维连续型随机向量，$f$是它的密度函数，则对任意的$B\in\scB(\R^n)$，都有
     \[\Pr(X\in B)=\int_{x\in B}f(x)\d x.\]
 \end{theorem}
 
 利用联合密度，可以计算边缘密度：
-\begin{theorem}\label{thm:continuous-marginal}
+\begin{theorem}\label{theorem:continuous-marginal}
     设$X=(X_1,\dots,X_n)$是一个$n$维连续型随机向量，则对任意的$1\leq i\leq n$，都有
     \begin{align*}
         &p_{X_i}(x_i)\\
@@ -671,7 +671,7 @@ $\chi^2$ & $\chi^2_n$ & $p(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}\e^{-x/2}$，
     =&\int_{-\infty}^{x_1}\frac{p_{X_1,X_2}(y,x_2)}{p_{X_2}(x_2)}\d y.
 \end{align*}
 
-对照\Cref{thm:lebesgue-differentiation-theorem}，我们知道$p_{X_1,X_2}/p_{X_2}$具有密度函数的形式，所以连续性随机向量所定义的条件分布也是连续型分布，密度函数被$p_{X_1,X_2}/p_{X_2}$通常记作$p_{X_1|X_2}$，称为$X_1$在给定$X_2$的条件下的\textit{条件密度}. 
+对照\Cref{theorem:lebesgue-differentiation-theorem}，我们知道$p_{X_1,X_2}/p_{X_2}$具有密度函数的形式，所以连续性随机向量所定义的条件分布也是连续型分布，密度函数被$p_{X_1,X_2}/p_{X_2}$通常记作$p_{X_1|X_2}$，称为$X_1$在给定$X_2$的条件下的\textit{条件密度}. 
 
 以上讨论也可以自然推广到$X_i$是随机向量的情况，我们就不给出了. 
 
@@ -687,23 +687,23 @@ $\chi^2$ & $\chi^2_n$ & $p(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}\e^{-x/2}$，
 
 这一定义中包含了无穷多个需要验证的等式，利用分布函数，我们可以将独立性的验证转化为一个等式的验证：
 
-\begin{theorem}\label{thm:independence}
+\begin{theorem}\label{theorem:independence}
 设$X_1,\dots,X_n$是$n$个随机向量，第$i$个的维数是$n_i$，$F_i$是$X_i$的分布函数，$F$是$(X_1,\dots,X_n)$的联合分布函数. $X_1,\dots,X_n$独立的充分必要条件是
 \[F(x_1,\dots,x_n)=F_1(x_1)\dots F_n(x_n),\]
 其中$x_i\in\R^{n_i}$.
 \end{theorem}
 
-对于离散型随机向量，它的分布函数完全由分布列决定，所以\Cref{thm:independence} 等价于如下命题：
+对于离散型随机向量，它的分布函数完全由分布列决定，所以\Cref{theorem:independence} 等价于如下命题：
 
-\begin{proposition}\label{prop:independence-discrete}
+\begin{proposition}\label{proposition:independence-discrete}
 设$X_1,\dots,X_n$是$n$个离散型随机向量，第$i$个的维数是$n_i$，$p_i$是$X_i$的分布列，$p$是$(X_1,\dots,X_n)$的联合分布列. $X_1,\dots,X_n$独立的充分必要条件是
 \[p(x_1,\dots,x_n)=p_1(x_1)\dots p_n(x_n),\]
 其中$x_i\in\R^{n_i}$.
 \end{proposition}
 
-对于连续型随机向量，它的分布函数完全由密度决定，所以\Cref{thm:independence} 等价于如下命题：
+对于连续型随机向量，它的分布函数完全由密度决定，所以\Cref{theorem:independence} 等价于如下命题：
 
-\begin{proposition}\label{prop:independence-continuous}
+\begin{proposition}\label{proposition:independence-continuous}
 设$X_1,\dots,X_n$是$n$个连续型随机向量，第$i$个的维数是$n_i$，$p_i$是$X_i$的密度函数. 假设他们的联合分布具有密度函数$p$. $X_1,\dots,X_n$独立的充分必要条件是
 \[p(x_1,\dots,x_n)=p_1(x_1)\dots p_n(x_n),\]
 其中$x_i\in\R^{n_i}$.
@@ -711,7 +711,7 @@ $\chi^2$ & $\chi^2_n$ & $p(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}\e^{-x/2}$，
 
 上面两个命题都有更简单的形式：
 
-\begin{corollary}\label{cor:independence-continuous}
+\begin{corollary}\label{corollary:independence-continuous}
 设$X_1,\dots,X_n$是$n$个连续型（离散型）随机向量，第$i$个的维数是$n_i$，假设他们的联合分布具有密度函数（分布列）$p$. $X_1,\dots,X_n$独立的充分必要条件存在函数$f_1,\dots,f_n$使得
 \[p(x_1,\dots,x_n)=f_1(x_1)\dots f_n(x_n),\]
 其中$x_i\in\R^{n_i}$.
@@ -740,7 +740,7 @@ $\chi^2$ & $\chi^2_n$ & $p(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}\e^{-x/2}$，
 
 自然，利用条件分布，我们可以给出独立的另一种刻画：
 
-\begin{proposition}\label{prop:independence-conditional}
+\begin{proposition}\label{proposition:independence-conditional}
 设$X_1,X_2$是两个随机变量，他们的联合分布是离散型或连续型的. $X_1,X_2$独立的充分必要条件是对任意的$x_1,x_2$，都有
 \[\Pr(X_1\leq x_1|X_2=x_2)=\Pr(X_1\leq x_1).\]
 如果$X_1,X_2$是离散型的，那么这一条件可以改写为
@@ -759,7 +759,7 @@ $\chi^2$ & $\chi^2_n$ & $p(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}\e^{-x/2}$，
 
 对于离散型随机向量，它的分布完全由分布列决定，很容易得到如下命题：
 
-\begin{theorem}\label{thm:discrete-function}
+\begin{theorem}\label{theorem:discrete-function}
 设$X$是一个离散型随机向量，$g$是一个函数，那么$Y=g(X)$也是一个离散型随机向量，它的分布列为
 \[\Pr(Y=y)=\sum_{x\in g^{-1}(y)}\Pr(X=x).\]
 \end{theorem}
@@ -784,19 +784,19 @@ $\chi^2$ & $\chi^2_n$ & $p(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}\e^{-x/2}$，
 \end{equation}
 总结以上讨论，我们得到连续型随机向量的函数的密度的计算公式：
 
-\begin{theorem}\label{thm:continuous-function}
+\begin{theorem}\label{theorem:continuous-function}
 设$X$是一个连续型随机向量，$g\in C(\R^n,\R^n)$，即$\R^n\to\R^n$的连续函数，假设$\lambda(\{x\in\R^n:\det g'(x)\neq 0\})=0$，则$Y=g(X)$也是一个连续型随机向量，它的密度函数为
 \[p_Y(y)=\begin{cases}
     \displaystyle\sum_{g(x)=y}|\det g'(g^{-1}(y))|^{-1}p_X(g^{-1}(y)),&\det g'(g^{-1}(y))\neq 0,\\
     0,&\text{其他}.
 \end{cases}\]
-其中求和号中$g^{-1}(y)$是根据相应的$x$，用反函数定理（\Cref{thm:inverse-function}）求出局部反函数. 
+其中求和号中$g^{-1}(y)$是根据相应的$x$，用反函数定理（\Cref{theorem:inverse-function}）求出局部反函数. 
 \end{theorem}
 
 这一定理的表述比较宽泛，我们可以给一个具体的例子来理解. 
 
 \begin{example}
-设$X$是一个连续型随机变量，$g(x)=x^2$，我们来计算$Y=X^2=g(X)$的密度. 直接计算\Cref{thm:continuous-function} 中的公式，我们有
+设$X$是一个连续型随机变量，$g(x)=x^2$，我们来计算$Y=X^2=g(X)$的密度. 直接计算\Cref{theorem:continuous-function} 中的公式，我们有
 \begin{align*}
     &\sum_{g(x)=y}|\det g'(g^{-1}(y))|^{-1}p_X(g^{-1}(y))\\
     =&\sum_{x^2=y}\frac{1}{2|x|}p_X(x)\\
@@ -805,7 +805,7 @@ $\chi^2$ & $\chi^2_n$ & $p(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}\e^{-x/2}$，
 这就给出了$Y$的密度. 
 \end{example}
 
-一般来说，\Cref{thm:continuous-function} 中的公式并不好记，最实用的还是根据$X$和$Y$在算相同的概率这一事实直接写出 \eqref{eq:eq-prob-2}，然后根据具体的$g$来计算. 比如上面的例子，我们可以直接写出
+一般来说，\Cref{theorem:continuous-function} 中的公式并不好记，最实用的还是根据$X$和$Y$在算相同的概率这一事实直接写出 \eqref{eq:eq-prob-2}，然后根据具体的$g$来计算. 比如上面的例子，我们可以直接写出
 \[p_Y\lambda(\d y)=p_X(\sqrt{y})\lambda(\d x)(\sqrt{y})+p_X(-\sqrt{y})\lambda(\d x)(-\sqrt{y}).\]
 两边除以$\lambda(\d y)$，再利用$\d y/\d x=1/(2x)$，就得到了$Y$的密度. 
 
@@ -825,7 +825,7 @@ $\chi^2$ & $\chi^2_n$ & $p(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}\e^{-x/2}$，
 
 最后，对随机向量作用函数是不会影响独立性的：
 
-\begin{proposition}\label{prop:independence-function}
+\begin{proposition}\label{proposition:independence-function}
 设$X_1,\dots,X_n$是$n$个随机向量，第$i$个的维数是$n_i$，$g_i$是$\R^{n_i}\to\R^{m_i}$的Borel函数，$Y_i=g_i(X_i)$，如果$X_1,\dots,X_n$相互独立，那么$Y_1,\dots,Y_n$也相互独立. 
 \end{proposition}
 
@@ -869,7 +869,7 @@ $\chi^2$ & $\chi^2_n$ & $p(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}\e^{-x/2}$，
 \[\E[X]=\sum_{k=1}^n x_k\Pr(A_k).\]
 这一定义与第一步是相容的：因为$I_A=1\cdot I_{A}$，所以$\E[I_A]=1\cdot\Pr(A)=\Pr(A)$. 
 
-第三步，定义\textit{非负随机变量}的数学期望. 非负随机变量是指$X(\omega)\geq 0$对任意$\omega$成立的随机变量$X$. 考虑一列简单随机变量$\{X_n\}_{n=1}^\infty$，它满足对于每一个$\omega\in\Omega$都有当$n\to\infty$时$X_n(\omega)\uparrow X(\omega)$. 容易验证，$\E[X_n]$也是单调递增的，所以根据\Cref{prop:monotone-bounded}，$\E[X_n]$有有限的极限或者趋于正无穷，我们都记为$\lim_{n\to\infty} \E[X_n]$.
+第三步，定义\textit{非负随机变量}的数学期望. 非负随机变量是指$X(\omega)\geq 0$对任意$\omega$成立的随机变量$X$. 考虑一列简单随机变量$\{X_n\}_{n=1}^\infty$，它满足对于每一个$\omega\in\Omega$都有当$n\to\infty$时$X_n(\omega)\uparrow X(\omega)$. 容易验证，$\E[X_n]$也是单调递增的，所以根据\Cref{proposition:monotone-bounded}，$\E[X_n]$有有限的极限或者趋于正无穷，我们都记为$\lim_{n\to\infty} \E[X_n]$.
 
 \begin{definition}[数学期望，Lebesgue积分，非负情形]
 称
@@ -949,7 +949,7 @@ $\chi^2$ & $\chi^2_n$ & $p(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}\e^{-x/2}$，
 
 我们已经给出了数学期望的定义，下面我们罗列一些数学期望的性质，但都不给出证明. 
 
-\begin{proposition}\label{prop:expectation-property}
+\begin{proposition}\label{proposition:expectation-property}
 \begin{enumerate}
 \item 期望的线性性：设$X,Y$是随机变量，$a,b\in\R$，如果$\E[X]$和$\E[Y]$都存在，那么$\E[aX+bY]$存在，且
 \[\E[aX+bY]=a\E[X]+b\E[Y].\]
@@ -961,11 +961,11 @@ $\chi^2$ & $\chi^2_n$ & $p(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}\e^{-x/2}$，
 \end{enumerate}
 \end{proposition}
 
-接下来，我们讨论随机变量函数的期望的求法. 假设$X$是一个$n$维随机向量，$g:\R^n\to\R$是一个Borel函数，那么$g(X)$也是一个随机变量（\Cref{thm:random-variable}）. 计算$\E[g(X)]$有以下两种方式，我们下面分别讨论. 
+接下来，我们讨论随机变量函数的期望的求法. 假设$X$是一个$n$维随机向量，$g:\R^n\to\R$是一个Borel函数，那么$g(X)$也是一个随机变量（\Cref{theorem:random-variable}）. 计算$\E[g(X)]$有以下两种方式，我们下面分别讨论. 
 
 第一种，利用\Cref{subsec:random-function} 中的方法，我们可以将$g(X)$的分布写出来，然后计算期望. 我们来看一个例子. 
 
-\begin{example}\label{ex:uniform-square}
+\begin{example}\label{example:uniform-square}
 设$X\sim\U(0,1)$，计算$\E[X^2]$. 直接算出$Y=X^2$的密度函数为
 \[p_Y(y)=\begin{cases}
     \frac{1}{2\sqrt{y}},&0\leq y\leq 1,\\
@@ -988,7 +988,7 @@ $\chi^2$ & $\chi^2_n$ & $p(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}\e^{-x/2}$，
 
 利用逼近的思想，我们可以将上述结论推广到$g$是任意的Borel函数的情况，于是我们有：
 
-\begin{theorem}\label{thm:expectation-function}
+\begin{theorem}\label{theorem:expectation-function}
 设$X$是一个$n$维随机向量，每一维都可积，$g:\R^n\to\R$是一个Borel函数，那么$\E[g(X)]$存在，且
 \[\E[g(X)]=\int_{\R^n} g(x)\d F_X(x).\]
 特别地，如果$X$是一个离散型随机变量，取值为$x_1,x_2,\dots$，那么
@@ -998,7 +998,7 @@ $\chi^2$ & $\chi^2_n$ & $p(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}\e^{-x/2}$，
 \end{theorem}
 
 \begin{example}
-我们重新算一次上面的\Cref{ex:uniform-square}，这次我们用\Cref{thm:expectation-function} 来计算. 设$X\sim\U(0,1)$，我们有
+我们重新算一次上面的\Cref{example:uniform-square}，这次我们用\Cref{theorem:expectation-function} 来计算. 设$X\sim\U(0,1)$，我们有
 \[E[X^2]=\int_0^1 x^2\d x=\frac{1}{3}.\]
 \end{example}
 
@@ -1006,7 +1006,7 @@ $\chi^2$ & $\chi^2_n$ & $p(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}\e^{-x/2}$，
 
 接下来，我们讨论示性函数的性质. 
 
-\begin{proposition}\label{prop:expectation-indicator}
+\begin{proposition}\label{proposition:expectation-indicator}
 \begin{enumerate}
     \item 设$A$是一个事件，那么$\E[I_A]=\Pr(A)$，$\var(I_A)=\Pr(A)(1-\Pr(A))$.
     \item 设$A,B$是两个事件，那么$I_AI_B=I_{AB}$，特别地，$I_A^2=I_A$.
@@ -1016,14 +1016,14 @@ $\chi^2$ & $\chi^2_n$ & $p(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}\e^{-x/2}$，
 
 利用示性函数，我们可以重写事件独立性的定义：
 
-\begin{proposition}\label{prop:independent-expectation}
+\begin{proposition}\label{proposition:independent-expectation}
 设$A,B$是两个事件，那么$A$和$B$独立的充分必要条件是
 \[\E[I_AI_B]=\E[I_A]\E[I_B].\]
 \end{proposition}
 
-如果我们还记得随机变量的期望是如何定义的，那么我们可以发现，\Cref{prop:independent-expectation} 的结论可以推广到随机变量的情形：
+如果我们还记得随机变量的期望是如何定义的，那么我们可以发现，\Cref{proposition:independent-expectation} 的结论可以推广到随机变量的情形：
 
-\begin{theorem}\label{thm:independent-expectation-2}
+\begin{theorem}\label{theorem:independent-expectation-2}
 设$X,Y$是两个相互独立的随机变量，那么
 \[\E[XY]=\E[X]\E[Y].\] 
 \end{theorem}
@@ -1034,7 +1034,7 @@ $\chi^2$ & $\chi^2_n$ & $p(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}\e^{-x/2}$，
 \[g(tx+(1-t)y)\leq tg(x)+(1-t)g(y).\]
 关于凸函数的更多讨论，见\Cref{sec:convex-function}. 我们有如下不等式：
 
-\begin{theorem}[Jensen不等式]\label{thm:jensen}
+\begin{theorem}[Jensen不等式]\label{theorem:jensen}
 设$X$是一个随机变量，$g:\R\to\R$是一个凸函数，那么
 \[g(\E[X])\leq \E[g(X)].\]
 \end{theorem}
@@ -1053,7 +1053,7 @@ $\chi^2$ & $\chi^2_n$ & $p(x)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}\e^{-x/2}$，
 
 容易验证，在差一个常数的意义下，协方差是一个对称正定的双线性型：
 
-\begin{proposition}\label{prop:covariance-inner-product}
+\begin{proposition}\label{proposition:covariance-inner-product}
 $\cov(\cdot,\cdot)$具有以下性质：
 \begin{enumerate}
     \item 对称性：任意随机变量$X,Y$，$\cov(X,Y)=\cov(Y,X)$；
@@ -1065,12 +1065,12 @@ $\cov(\cdot,\cdot)$具有以下性质：
 于是，在差一个常数的意义下，协方差是一个随机变量空间的内积. 按照内积空间的性质，随机变量的范数自然就是它的方差. 
 
 \begin{remark}
-    在\Cref{prop:covariance-inner-product} 中，我们使用了$\Pr(X=C)=1$这样的表达. 在概率论中，如果一个事件是概率$1$发生的，我们称之为\textit{几乎必然}发生. 在涉及与数学期望有关的性质的时候，我们通常只能在几乎必然的意义下成立，而不能在一般意义下成立. 比如说，“在差一个常数的意义下，协方差是一个随机变量空间的内积”这句话其实并不准确，严格来说，应该是“在差一个常数和几乎必然相等的意义下，协方差是一个随机变量空间的内积”. 也就是说，如果$\norm{X}=0$，那么$X$几乎必然为常数.
+    在\Cref{proposition:covariance-inner-product} 中，我们使用了$\Pr(X=C)=1$这样的表达. 在概率论中，如果一个事件是概率$1$发生的，我们称之为\textit{几乎必然}发生. 在涉及与数学期望有关的性质的时候，我们通常只能在几乎必然的意义下成立，而不能在一般意义下成立. 比如说，“在差一个常数的意义下，协方差是一个随机变量空间的内积”这句话其实并不准确，严格来说，应该是“在差一个常数和几乎必然相等的意义下，协方差是一个随机变量空间的内积”. 也就是说，如果$\norm{X}=0$，那么$X$几乎必然为常数.
 \end{remark}
 
 协方差与独立性密切关联：
 
-\begin{proposition}\label{prop:independent-covariance}
+\begin{proposition}\label{proposition:independent-covariance}
 设$X,Y$是两个随机变量，如果$X$和$Y$相互独立，那么
 \[\cov(X,Y)=0.\]
 \end{proposition}
@@ -1086,7 +1086,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
 如果$X$和$Y$分别是$m$维和$n$维随机向量，那么符号$\cov(X,Y)$表示的是$m\times n$的矩阵$(\cov(X_i,X_j))_{ij}$，称为$X$和$Y$的\textbf{协方差矩阵}. 特别地，如果$X=Y$，那么我们记$\cov(X,X)$为$\var(X)$，称为$X$的\textbf{协方差矩阵}. 
 \end{definition}
 
-根据Gram矩阵的性质（\Cref{prop:gram}），$X$的协方差矩阵是一个对称半正定矩阵. 
+根据Gram矩阵的性质（\Cref{proposition:gram}），$X$的协方差矩阵是一个对称半正定矩阵. 
 
 类似地，我们也可以定义随机向量的数学期望：
 
@@ -1100,13 +1100,13 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 首先是期望，很容易证明如下的结论：
 
-\begin{theorem}\label{thm:expectation-linear}
+\begin{theorem}\label{theorem:expectation-linear}
 设$X$是一个$n$维随机向量，$A$是一个$m\times n$的矩阵，那么$\E[AX]=A\E[X]$.
 \end{theorem}
 
 接下来是协方差矩阵. 利用Gram矩阵与二次型的关系，我们容易写出如下的结论：
 
-\begin{theorem}\label{thm:covariance-linear}
+\begin{theorem}\label{theorem:covariance-linear}
 设$X$是一个$n$维随机向量，$A$是一个$m\times n$的矩阵，那么
 \[\var(AX)=A\var(X)A^\t.\]
 \end{theorem}
@@ -1126,12 +1126,12 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 显然，特征函数由分布函数决定. 反过来，特征函数也可以唯一决定分布！
 
-\begin{theorem}\label{prop:characteristic-function-uniqueness}
+\begin{theorem}\label{proposition:characteristic-function-uniqueness}
 具有相同特征函数的随机变量（向量）具有相同的分布函数.
 \end{theorem}
 
 特征函数其实可以求出随机变量的分布函数：
-\begin{theorem}[逆转公式]\label{prop:characteristic-function}
+\begin{theorem}[逆转公式]\label{proposition:characteristic-function}
 设$X$是随机变量，它的特征函数为$f_X$，分布函数为$F_X$，那么
 \begin{enumerate}
     \item 对于$F$的任意两个连续点$a<b$，
@@ -1143,7 +1143,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 这一公式也有随机向量的版本：
 
-\begin{theorem}[逆转公式，随机向量版本]\label{prop:characteristic-function-vector}
+\begin{theorem}[逆转公式，随机向量版本]\label{proposition:characteristic-function-vector}
 设$X$是$n$维随机向量，它的特征函数为$f_X$，分布函数为$F_X$，那么
 \begin{enumerate}
     \item 对于$F$的两个点$a<b$，满足
@@ -1164,7 +1164,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 特征函数特别适合处理独立随机变量的和：
 
-\begin{theorem}\label{thm:characteristic-function-sum}
+\begin{theorem}\label{theorem:characteristic-function-sum}
 设$X_1,\dots,X_n$是$n$个相互独立的随机变量，它们的特征函数分别为$f_1,\dots,f_n$，那么$X_1+\dots+X_n$的特征函数为$f_1\dots f_n$.
 \end{theorem}
 
@@ -1172,14 +1172,14 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 特征函数也可以用来判定随机变量的独立性：
 
-\begin{theorem}\label{thm:characteristic-function-independence}
+\begin{theorem}\label{theorem:characteristic-function-independence}
 设$X_1,\dots,X_n$是$n$个随机变量，特征函数分别为$f_1,\dots,f_n$，随机向量$X=(X_1,\dots,X_n)^\t$，它的特征函数为$f$，那么$X_1,\dots,X_n$相互独立的充分必要条件是
 \[f(t_1,\dots,t_n)=f_1(t_1)\dots f_n(t_n).\]
 \end{theorem}
 
 特征函数的导数可以用来计算随机变量的矩：
 
-\begin{theorem}\label{thm:characteristic-function-moment}
+\begin{theorem}\label{theorem:characteristic-function-moment}
 设$X$是一个随机变量，它的特征函数为$f_X$，那么对任意正整数$k$，
 \[\E[X^k]=\frac{f_X^{(k)}(0)}{i^k}.\]
 \end{theorem}
@@ -1201,7 +1201,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 更一般地，考虑样本空间$\Omega$，事件$A_1,\dots,A_n$，它们两两互斥，且$\bigcup_{i=1}^n A_i=\Omega$，这形成了$\Omega$的一个分割，记为$\mathscr{A}$. 我们再假设$\Pr(A_i)>0$，我们有如下定义：
 
-\begin{definition}[基于分割的条件数学期望]\label{def:conditional-expectation}
+\begin{definition}[基于分割的条件数学期望]\label{definition:conditional-expectation}
 设$X$是一个随机变量，集族$\mathscr{A}=\{A_1,\dots,A_n\}$是$\Omega$的一个分割，满足$\Pr(A)>0$对任意$A\in\mathscr{A}$成立. $X$在$\mathscr{A}$上的\textbf{条件数学期望}是一个随机变量，记为$\E[X|\mathscr{A}]$，它的定义为
 \[\E[X|\mathscr{A}](\omega)=\sum_{i=1}^n \frac{\E[XI_{A_i}]}{\Pr(A_i)}I_{A_i}(\omega).\]
 \end{definition}
@@ -1225,7 +1225,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 这给了我们一般情况下的条件数学期望的定义：
 
-\begin{definition}[基于$\sigma$-代数的条件数学期望]\label{def:conditional-expectation-2}
+\begin{definition}[基于$\sigma$-代数的条件数学期望]\label{definition:conditional-expectation-2}
 设$X$是一个非负随机变量，$\G$是$\Omega$的一个$\sigma$-代数，随机变量$\E[X|\G]$被称为$X$关于$\G$的\textbf{条件数学期望}，如果它满足
 \begin{enumerate}
     \item 对任意$B\in\scB(\R)$，$\{\E[X|\G]\in B\}$是$\G$-可测的；
@@ -1252,13 +1252,13 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 我们说过，$\{X\in B\}$表示“$X$落在合理的值集上”. 在之前定义随机变量的时候，我们要求取合理的值集是一个事件，这里则是更加简单粗暴，我们直接定义$\{X\in B\}$是一个事件. 接下来，我们可以定义随机向量诱导的条件数学期望：
 
-\begin{definition}[随机向量诱导的条件数学期望]\label{def:conditional-expectation-vector}
+\begin{definition}[随机向量诱导的条件数学期望]\label{definition:conditional-expectation-vector}
 设$X$是一个随机变量，$Y$是一个随机向量，那么$X$关于$Y$的\textbf{条件数学期望}是一个随机变量，记为$\E[X|Y]$，定义为$\E[X|\sigma(Y)]$.
 \end{definition}
 
-我们之前定义过条件分布$\Pr(X\leq x|Y=y)$，利用这一分布，我们可以求出一个条件数学期望$\E[X|Y=y]$. 下面的命题表明，这一定义和\Cref{def:conditional-expectation-vector} 是相容的：
+我们之前定义过条件分布$\Pr(X\leq x|Y=y)$，利用这一分布，我们可以求出一个条件数学期望$\E[X|Y=y]$. 下面的命题表明，这一定义和\Cref{definition:conditional-expectation-vector} 是相容的：
 
-\begin{proposition}\label{prop:conditional-expectation-vector}
+\begin{proposition}\label{proposition:conditional-expectation-vector}
     设$X$是一个随机变量，$Y$是一个$n$维随机向量，那么存在一个Borel函数$g:\R^n\to\R$，使得对任意$\omega\in\Omega$，有
     \[\E[X|Y](\omega)=g(Y(\omega))\]
     并且
@@ -1269,7 +1269,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 接下来我们讨论条件数学期望的性质，我们依然只列举而不证明. 
 
-\begin{proposition}\label{prop:conditional-expectation-basic}
+\begin{proposition}\label{proposition:conditional-expectation-basic}
 设$(\Omega,\scF,\Pr)$是概率空间，$\G\subseteq\scF$是$\Omega$的一个$\sigma$-代数，那么
 \begin{enumerate}
 \item 期望的线性性：设$X,Y$是随机变量，$a,b\in\R$，如果$\E[X|\G]$和$\E[Y|\G]$都存在，那么$\E[aX+bY|\scF]$存在，且
@@ -1291,7 +1291,7 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 我们主要需要解释的是望远性. 可以把$\sigma$-代数理解成观测的能力，这一代数越大，观测的越细致. 望远性的意思就是，如果我们用两次观测能力强弱不同的$\sigma$-代数观测$X$，那么最终的结果只取决于最粗糙的那个$\sigma$-代数. 
 
-另外，重期望公式本质上就是期望版本的全概率公式（\Cref{thm:total-probability}）. 从基于分割的条件数学期望的角度来看，这件事会更明显. 假设我们有一个分割$\mathscr{A}=\{A_1,\dots,A_n\}$，并且$\Pr(A_i)>0$，那么
+另外，重期望公式本质上就是期望版本的全概率公式（\Cref{theorem:total-probability}）. 从基于分割的条件数学期望的角度来看，这件事会更明显. 假设我们有一个分割$\mathscr{A}=\{A_1,\dots,A_n\}$，并且$\Pr(A_i)>0$，那么
 \[\E[X]=\E[\E[X|\mathscr{A}]]=\sum_{i=1}^n \E[X|A_i]\Pr(A_i).\]
 
 最后，性质7是在说，如果$Y$是$\G$-可测的（也就是我们用$\G$可以完全确定$Y$），那么求条件期望的时候$Y$就相当于一个常数，可以提到期望的外面. 
@@ -1302,31 +1302,31 @@ $\cov(\cdot,\cdot)$具有以下性质：
 
 多元正态分布的定义在\Cref{subsec:random-vector} 中已经给出，首先，我们不加证明地给出它的特征函数：
 
-\begin{theorem}\label{thm:multivariate-normal-characteristic-function}
+\begin{theorem}\label{theorem:multivariate-normal-characteristic-function}
 设$\mu\in\R^n$，$\Sigma$是一个$n\times n$的对称正定矩阵，那么随机向量$X\sim\Nor(\mu,\Sigma)$的特征函数为
 \[f_X(t)=\exp\left(it^\t\mu-\frac{1}{2}t^\t\Sigma t\right).\]
 \end{theorem}
 
 利用 \eqref{eq:exponential-moment}，我们可以计算出多元正态分布的期望和协方差矩阵：
 
-\begin{proposition}\label{prop:multivariate-normal-expectation-covariance}
+\begin{proposition}\label{proposition:multivariate-normal-expectation-covariance}
 设$X\sim\Nor(\mu,\Sigma)$，那么
 \[\E[X]=\mu,\quad\var(X)=\Sigma.\]
 \end{proposition}
 
-现在我们将这一定义推广. 注意到，$\Sigma$就是$X$的协方差矩阵，所以\Cref{thm:multivariate-normal-characteristic-function} 中的$\Sigma$并不要求正定，只要半正定就可以定义一个特征函数了. 我们将这一定义推广到半正定矩阵的情形：
+现在我们将这一定义推广. 注意到，$\Sigma$就是$X$的协方差矩阵，所以\Cref{theorem:multivariate-normal-characteristic-function} 中的$\Sigma$并不要求正定，只要半正定就可以定义一个特征函数了. 我们将这一定义推广到半正定矩阵的情形：
 
-\begin{definition}[Gauss向量]\label{def:gauss-vector}
+\begin{definition}[Gauss向量]\label{definition:gauss-vector}
 设$\mu\in\R^n$，$\Sigma$是一个$n\times n$的对称半正定矩阵，如果随机向量$X$的特征函数为
 \[f_X(t)=\exp\left(it^\t\mu-\frac{1}{2}t^\t\Sigma t\right),\]
 那么称$X$是一个\textbf{Gauss向量}，记为$X\sim\Nor(\mu,\Sigma)$.
 \end{definition}
 
-如果$\Sigma$退化，$X$不能写出密度，所以也不是连续型随机向量. 但是，利用特征函数，我们依然可以研究$X$的性质. 特别是\Cref{prop:multivariate-normal-expectation-covariance}，对于Gauss向量仍然成立. 
+如果$\Sigma$退化，$X$不能写出密度，所以也不是连续型随机向量. 但是，利用特征函数，我们依然可以研究$X$的性质. 特别是\Cref{proposition:multivariate-normal-expectation-covariance}，对于Gauss向量仍然成立. 
 
 Gauss向量可以完全由它的期望和协方差矩阵刻画. 首先，Gauss向量的独立性等价于不相关性：
 
-\begin{theorem}\label{thm:gauss-vector-independence}
+\begin{theorem}\label{theorem:gauss-vector-independence}
 设$X=(X_1,\dots,X_n)\sim\Nor(\mu,\Sigma)$，那么$X_1,\dots,X_n$相互独立的充分必要条件是$X_1,\dots,X_n$两两不相关，即$\Sigma$是一个对角矩阵. 
 \end{theorem}
 
@@ -1334,14 +1334,14 @@ Gauss向量可以完全由它的期望和协方差矩阵刻画. 首先，Gauss�
 
 当然，这一判据可以推广到多个Gauss向量的情形：
 
-\begin{corollary}\label{cor:gauss-vector-independence-2}
+\begin{corollary}\label{corollary:gauss-vector-independence-2}
 设$X_1,\dots,X_n$是$n$个Gauss向量，它们相互独立的充分必要条件是$X_1,\dots,X_n$两两不相关，即协方差矩阵$\cov(X_i,X_j)=O$，$i\neq j$.
 \end{corollary}
 
 
-其次，利用\Cref{thm:expectation-linear} 和\Cref{thm:covariance-linear}，我们可以得到如下的结论：
+其次，利用\Cref{theorem:expectation-linear} 和\Cref{theorem:covariance-linear}，我们可以得到如下的结论：
 
-\begin{theorem}\label{thm:gauss-vector-linear}
+\begin{theorem}\label{theorem:gauss-vector-linear}
 设$X\sim\Nor(\mu,\Sigma)$，$A$是一个$m\times n$的矩阵，那么$AX\sim\Nor(A\mu,A\Sigma A^\t)$.
 \end{theorem}
 
@@ -1362,7 +1362,7 @@ Gauss向量可以完全由它的期望和协方差矩阵刻画. 首先，Gauss�
 
 接下来，我们给出大数定律的一个形式化描述：
 
-\begin{theorem}[Khinchin大数定律]\label{thm:khinchin}
+\begin{theorem}[Khinchin大数定律]\label{theorem:khinchin}
     设$X_1,X_2,\dots$是一系列独立同分布的随机变量，$\E[X_i]$存在，那么
     \[\frac{1}{n}\sum_{i=1}^n X_i\stackrel{P}{\to}\E[X_1].\]
 \end{theorem}
@@ -1379,11 +1379,11 @@ Gauss向量可以完全由它的期望和协方差矩阵刻画. 首先，Gauss�
         &=\left(\E[\e^{it/nX_1}]\right)^n\\
         &=\left(f_{X_1}\left(\frac{t}{n}\right)\right)^n.
     \end{align*}
-    根据\Cref{thm:characteristic-function-moment}，我们有
+    根据\Cref{theorem:characteristic-function-moment}，我们有
     \[f_{X_1}(t)=1+it\mu+o(t),\quad t\to 0.\]
     于是
     \[f_{S_n}(t)=\left(1+\frac{it\mu}{n}+o\left(\frac{t}{n}\right)\right)^n\to\e^{it\mu},\quad n\to\infty.\]
-    因此，根据\Cref{prop:characteristic-function-uniqueness}，$S_n$的分布趋于一个在$\mu$处集中的退化分布，根据定义，这意味着对任意$x$，当$n\to\infty$时，
+    因此，根据\Cref{proposition:characteristic-function-uniqueness}，$S_n$的分布趋于一个在$\mu$处集中的退化分布，根据定义，这意味着对任意$x$，当$n\to\infty$时，
     \[\Pr(S_n\leq x)\to\begin{cases}
         0,&x<\mu,\\
         1,&x\geq\mu.

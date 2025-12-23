@@ -60,7 +60,7 @@ H\left(\frac{1}{2},\frac{1}{3},\frac{1}{6}\right)=H\left(\frac{1}{2},\frac{1}{2}
 
 基于上面三个假设，Shannon证明了如下定理，这一定理直接给出了熵的概念.
 
-\begin{theorem}[Shannon定理]\label{thm:Shannon-thm}
+\begin{theorem}[Shannon定理]\label{theorem:Shannon-thm}
     $H$满足三个假设当且仅当
     \[H(p)=-C\sum_{i}p_i\log p_i,\]
     其中$C$是正常数，$0\log 0=0$.
@@ -147,7 +147,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 \end{figure}
 
 利用导数的方法，很容易证明：
-\begin{proposition}\label{prop:entropy-2prob}
+\begin{proposition}\label{proposition:entropy-2prob}
     $H(p)$在$p\in (0,1/2)$严格单调递增，在$p\in (1/2,1)$严格单调递减. 它的最小值是$0$，在$p\in\{0,1\}$取得；它的最大值是$\log 2$，在$p=1/2$取得.    
 \end{proposition}
 \begin{proof}
@@ -163,14 +163,14 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 \end{proof}
 这与我们对于“不确定性”的直觉是相一致的：当$p$接近$0$或$1$时，我们对于$X$的取值几乎是确定的，因此熵接近$0$；当$p$接近$1/2$时，我们对于$X$的取值几乎是完全不确定的，因此熵接近最大值$\log 2$. 
  
-实际上，这样的性质对于一般的分布也是成立的，我们分别将他们写在\Cref{prop:entropy-nonnegative} 和\Cref{prop:entropy-maximum} 中.
+实际上，这样的性质对于一般的分布也是成立的，我们分别将他们写在\Cref{proposition:entropy-nonnegative} 和\Cref{proposition:entropy-maximum} 中.
 
 考虑一般分布的熵$H(p)=H(p_1,\dots,p_n)$. 我们有如下性质：
-\begin{proposition}\label{prop:entropy-nonnegative}
+\begin{proposition}\label{proposition:entropy-nonnegative}
     $H(p)\geq 0$，等号成立当且仅当某个$p_i=1$.
 \end{proposition}
 \begin{proof}
-这是一个典型的证明，主要的技巧是使用熵的期望形式. 考虑随机变量$X$，其分布列为$p$. 回忆Jensen不等式（\Cref{thm:jensen}）：如果$f$是一个严格凸函数，那么
+这是一个典型的证明，主要的技巧是使用熵的期望形式. 考虑随机变量$X$，其分布列为$p$. 回忆Jensen不等式（\Cref{theorem:jensen}）：如果$f$是一个严格凸函数，那么
 \[\E[f(X)]\geq f(\E[X]).\]
 等号成立当且仅当$X$是常数.
 
@@ -179,7 +179,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 等号成立当且仅当$X$是常数，即对某个$i$，$p(i)=1$.
 \end{proof}
 
-\begin{proposition}\label{prop:entropy-adjust}
+\begin{proposition}\label{proposition:entropy-adjust}
     $p_i$朝着相等方向改变的时候$H$增加. 也就是说，假设
     \[ p_i<p_i'\leq p_j'<p_j,\quad p_i+p_j=p_i'+p_j',\]
     那么，用$p_i'$和$p_j'$代替原来的$p_i$和$p_j$，$H$将会变大. 
@@ -189,23 +189,23 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
     \begin{align*}
         &H(p_1,p_2,\dots)\\
         =&H(p_1+p_2,p_3,\dots)+(p_1+p_2)H\left(\frac{p_1}{p_1+p_2},\frac{p_2}{p_1+p_2}\right)\quad(\text{假设三})\\
-       \leq &H(p_1+p_2,p_3,\dots)+(p_1+p_2)H\left(\frac{p_1'}{p_1'+p_2'},\frac{p_2'}{p_1'+p_2'}\right)\quad(\text{\Cref{prop:entropy-2prob}})\\
+       \leq &H(p_1+p_2,p_3,\dots)+(p_1+p_2)H\left(\frac{p_1'}{p_1'+p_2'},\frac{p_2'}{p_1'+p_2'}\right)\quad(\text{\Cref{proposition:entropy-2prob}})\\
        =&H(p_1',p_2',p_3,\dots).\quad(\text{假设三})
     \end{align*}
 \end{proof}
 
-\begin{proposition}\label{prop:entropy-maximum}
+\begin{proposition}\label{proposition:entropy-maximum}
     当且仅当$p_1=\dots=p_n=1/n$时$H$取得最大值$\log n$.
 \end{proposition}
 \begin{proof}
     用反证法，假设达到最大值的时候存在$p_k\ne 1/n$，那么，因为$\sum_i p_i/n=1/n$，根据鸽巢原理，则必有$i,j$满足
     \[p_i<1/n<p_j.\]
-    根据\Cref{prop:entropy-adjust}，我们可以将$p_i$和$p_j$替换为$1/n$和$p_i+p_j-1/n$，而$H$增大，这与假设矛盾. 因此，$p_1=\dots=p_n=1/n$是$H$取得最大值的必要条件. 
+    根据\Cref{proposition:entropy-adjust}，我们可以将$p_i$和$p_j$替换为$1/n$和$p_i+p_j-1/n$，而$H$增大，这与假设矛盾. 因此，$p_1=\dots=p_n=1/n$是$H$取得最大值的必要条件. 
 
-    另一方面，因为$H$连续，所以根据Weierstrass最值定理（\Cref{thm:weierstrass}），$H$一定有最大值，所以$p_1=\dots=p_n=1/n$也是$H$取得最大值的充分条件.
+    另一方面，因为$H$连续，所以根据Weierstrass最值定理（\Cref{theorem:weierstrass}），$H$一定有最大值，所以$p_1=\dots=p_n=1/n$也是$H$取得最大值的充分条件.
 \end{proof}
 
-至此，\Cref{prop:entropy-nonnegative} 和\Cref{prop:entropy-maximum} 证明了一般情形的\Cref{prop:entropy-2prob}. 在等可能的时候不确定性最大，熵最大；在确定事件的时候不确定性最小，熵最小. 所以熵是符合直观的定义. 
+至此，\Cref{proposition:entropy-nonnegative} 和\Cref{proposition:entropy-maximum} 证明了一般情形的\Cref{proposition:entropy-2prob}. 在等可能的时候不确定性最大，熵最大；在确定事件的时候不确定性最小，熵最小. 所以熵是符合直观的定义. 
 
 接下来，我们讨论熵的拓展形式.
 
@@ -223,11 +223,11 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 
 联合分布熵和边缘分布熵之间的关系如下：
 
-\begin{proposition}\label{prop:entropy-joint-marginal}
+\begin{proposition}\label{proposition:entropy-joint-marginal}
     对任意随机变量$X,Y$，$H(X)\leq H(X,Y)\leq H(X)+H(Y)$. 第一个等号成立当且仅当以概率$1$，$Y$被$X$完全决定，也就是$Y$是$X$的函数；第二个等号成立当且仅当$X$和$Y$是独立的.
 \end{proposition}
 
-第一个不等号的证明等价于证明后面定义的条件熵的\Cref{prop:conditional-entropy-nonnegative}，而第二个不等式等价于信息不等式（\Cref{thm:information-inequality}），这里就都不给出证明了.
+第一个不等号的证明等价于证明后面定义的条件熵的\Cref{proposition:conditional-entropy-nonnegative}，而第二个不等式等价于信息不等式（\Cref{theorem:information-inequality}），这里就都不给出证明了.
 
 这两个不等式实际上非常符合我们对信息的直观. $H(X,Y)$是$X$和$Y$的联合不确定性，$H(X)$是$X$的不确定性，$H(Y)$是$Y$的不确定性. 
 \begin{itemize}
@@ -266,11 +266,11 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 换言之，我们现在进一步假定$X$也是不知道的，于是$H(Y|X)$就是平均上来说第二步中$Y$的不确定性. 
 
 条件熵和熵有着类似的性质：
-\begin{proposition}\label{prop:conditional-entropy-nonnegative}
+\begin{proposition}\label{proposition:conditional-entropy-nonnegative}
     $H(Y|X)\geq 0$，等号成立当且仅当以概率$1$，$Y$被$X$完全决定，也就是$Y$是$X$的函数.
 \end{proposition}
 \begin{proof}
-    仿照\Cref{prop:entropy-nonnegative} 的证明. 因为$-\log(\cdot)$是严格凸函数，所以根据Jensen不等式
+    仿照\Cref{proposition:entropy-nonnegative} 的证明. 因为$-\log(\cdot)$是严格凸函数，所以根据Jensen不等式
     \begin{align*}
         H(Y|X)=&\E_{X,Y}[-\log p_{Y| X}(Y|X)]\\
         \geq&-\log\E_{Y|X}[p_{Y|X}(Y|X)]\\
@@ -284,7 +284,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 \[\E[I(Y=y;X)] = H(X) - \E_{y\sim Y}[H(X|Y=y)] = H(X) - H(X|Y).\]
 一个自然的问题是，二者相互包含的信息量是什么关系？根据概率的链式法则，$p(x,y)=p_{X|Y}(x|y)p_Y(y)$，带入$H(X,Y)$的定义得熵的链式法则：
 
-\begin{proposition}\label{prop:entropy-chain-rule}
+\begin{proposition}\label{proposition:entropy-chain-rule}
     对任意离散随机变量$X,Y$，$H(X,Y)=H(Y)+H(X|Y)$.    
 \end{proposition}
 
@@ -298,11 +298,11 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 所以，$X$中包含的$Y$的信息和$Y$中包含的$X$的信息是一样多的！
 
 此外，直观上我们还应该觉得，信息量不能是负的，实际上的确如此：
-\begin{proposition}\label{prop:information-doesnt-hurt}
+\begin{proposition}\label{proposition:information-doesnt-hurt}
     $H(X)-H(X|Y)\geq 0$，等号成立当且仅当$X$和$Y$相互独立.
 \end{proposition}
 
-我们将在\Cref{sec:kl-divergence}看到，\Cref{prop:information-doesnt-hurt} 就是K-L散度信息不等式的一个特例，所以我们就不在这里给出证明了. \Cref{prop:information-doesnt-hurt} 表明知道任何信息都不会增加不确定性，这个原理被称为“Information doesn't hurt.”
+我们将在\Cref{sec:kl-divergence}看到，\Cref{proposition:information-doesnt-hurt} 就是K-L散度信息不等式的一个特例，所以我们就不在这里给出证明了. \Cref{proposition:information-doesnt-hurt} 表明知道任何信息都不会增加不确定性，这个原理被称为“Information doesn't hurt.”
 
 根据以上讨论，我们可以自然地定义$X$和$Y$的\textbf{互信息}为
 \[I(X;Y)=I(Y;X)=\E[I(X=x;Y)]=\E[I(Y=y;X)].\]
@@ -316,7 +316,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 同样，我们可以定义\textbf{条件互信息}为
 \[I(X;Y|Z)=H(X|Z)-H(X|Y,Z),\]
 表明$Z$已知时候$Y$给$X$带来的平均信息增益. 类似互信息，条件互信息有如下性质：
-\begin{proposition}\label{prop:conditional-mutual-information}
+\begin{proposition}\label{proposition:conditional-mutual-information}
     条件互信息满足以下性质：
     \begin{enumerate}
         \item 非负性：$I(X;Y|Z)\geq 0$，等号成立当且仅当$X$和$Y$在给定$Z$的条件下相互独立.
@@ -360,7 +360,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
     &=-\sum_{x,y}p(x,y)\log p_X(x)+\sum_{x,y}p(x,y)\log\frac{p(x,y)}{p_Y(y)}\\
     &=\sum_{x,y}p(x,y)\log\frac{p(x,y)}{p_X(x)p_Y(y)}.
 \end{align*}
-根据\Cref{prop:information-doesnt-hurt}，$I(X;Y)\geq 0$，等号成立当且仅当$X,Y$相互独立，即$p(x,y)=p_X(x)p_Y(y)$. $X,Y$之间的互信息越大，说明他们之间的关联越强，分布越不独立，$p(x,y)$越不接近$p_X(x)p_Y(y)$. 
+根据\Cref{proposition:information-doesnt-hurt}，$I(X;Y)\geq 0$，等号成立当且仅当$X,Y$相互独立，即$p(x,y)=p_X(x)p_Y(y)$. $X,Y$之间的互信息越大，说明他们之间的关联越强，分布越不独立，$p(x,y)$越不接近$p_X(x)p_Y(y)$. 
 
 上面的推导说明，互信息其实在用分布列的比值比较两个分布的接近程度，这样的想法被Kullback和Leibler~\cite{kullbackInformationSufficiency1951} 推广到了一般分布上. 考虑两个概率分布的似然函数$p_1$和$p_2$（也就是他们的分布列）. 抽取一个样本$X$，考虑如下两个假设：
 \begin{center}
@@ -380,7 +380,7 @@ $H$是关于$p$的函数，作图如\Cref{fig:entropy-figure} 所示.
 其中规定$0\log(0/0)=0$，$0\log(0/a)=0$，$a\log(a/0)=+\infty$.
 \end{definition}
 我们马上知道，互信息是K-L散度的一种特殊情况：
-\begin{proposition}\label{prop:mutual-information-kl-divergence}
+\begin{proposition}\label{proposition:mutual-information-kl-divergence}
     对于两个随机变量$X,Y$，成立$I(X;Y)=D_\KL(p_{X,Y}\|p_Xp_Y)$，其中$p_{X,Y}$是$X,Y$的联合分布列，$p_X,p_Y$分别是$X,Y$的边缘分布列.
 \end{proposition}
 
@@ -394,7 +394,7 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
 \subsection{两个关于信息的不等式}
 利用K-L散度，我们可以给出两个关于信息的不等式，它们分别是\textit{信息不等式}和\textit{数据处理不等式}.
 
-\begin{theorem}[信息不等式]\label{thm:information-inequality}
+\begin{theorem}[信息不等式]\label{theorem:information-inequality}
     对于两个概率分布列$p,q$，成立$D_\KL(p\Vert q)\geq0$，当且仅当$p=q$时取等号.
 \end{theorem}
 \begin{proof}
@@ -407,10 +407,10 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
     因此，$D_\KL(p\Vert q)\geq0$，当且仅当$p=q$时取等号.
 \end{proof}
 
-信息不等式表明，K-L散度虽然不是度量，但却是非负的，因而确实可以被作为熵，用来衡量“额外的不确定性”. 此外，\Cref{prop:information-doesnt-hurt} 是信息不等式的直接推论. 利用类似的方法，我们可以证明条件互信息的非负性（即\Cref{prop:conditional-mutual-information} 中的第一条）.
+信息不等式表明，K-L散度虽然不是度量，但却是非负的，因而确实可以被作为熵，用来衡量“额外的不确定性”. 此外，\Cref{proposition:information-doesnt-hurt} 是信息不等式的直接推论. 利用类似的方法，我们可以证明条件互信息的非负性（即\Cref{proposition:conditional-mutual-information} 中的第一条）.
 
 接下来我们叙述并证明数据处理不等式.
-\begin{theorem}[数据处理不等式]\label{thm:data-processing-inequality}
+\begin{theorem}[数据处理不等式]\label{theorem:data-processing-inequality}
     假设随机变量$X,Y,Z$形成了Markov链，那么$I(X;Y)\geq I(X;Z)$. 特别地，对任意函数$f$，成立
     \[I(X;Y)\geq I(X;f(Y)).\]
 \end{theorem}
@@ -489,7 +489,7 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
 \[N(k)\approx 2^{kH_2(p_1,\dots,p_s)}=\e^{kH(p_1,\dots,p_s)}.\]
 然而，长为$k$的所有消息数目为
 \[s^k=\e^{k\log s}.\]
-根据\Cref{prop:entropy-maximum}，只有当所有$p_i$相等的时候$N(k)$才会达到这一量级. 从这个意义上说，\textit{熵所刻画的信息量定量刻画了数据压缩可能的极限.}
+根据\Cref{proposition:entropy-maximum}，只有当所有$p_i$相等的时候$N(k)$才会达到这一量级. 从这个意义上说，\textit{熵所刻画的信息量定量刻画了数据压缩可能的极限.}
 
 以上关于信息编码下界以及数据压缩的讨论，在更一般的情况下也成立，此时这样的性质被称为\textit{渐近等分性}. 而这一性质成立对应的结果被称为\textit{Shannon-McMillan-Breiman定理}，它的陈述以及证明都需要用到更多随机过程的知识，这里就不再给出了，感兴趣的读者请参阅Shannon的工作~\cite{shannonMathematicalTheoryCommunication1948}、McMillan的工作 \cite{mcmillanBasicTheoremsInformation1953} 和Breiman的工作 \cite{breimanIndividualErgodicTheorem1957}. 
 
@@ -558,7 +558,7 @@ K-L散度可以看成两个分布之间的区分衡量标准，但他不是度�
 实际上，这个例子是有普适性的，所有的监督训练的分类问题都可以用这种方式来建模. 而在\Cref{sec:decision-optimization-principle}我们也会看到，此时交叉熵实际上被作为了一种\textit{损失函数}.
 
 \section{附录：Shannon定理的证明}\label{sec:Shannon-thm-proofs}
-我们在这一部分给出Shannon定理（\Cref{thm:Shannon-thm}）的证明. 整体上的思路是：
+我们在这一部分给出Shannon定理（\Cref{theorem:Shannon-thm}）的证明. 整体上的思路是：
 \begin{enumerate}
     \item 证明如果$f$是单调函数，对正整数$m,n$成立$f(mn)=f(m)+f(n)$，那么$f(n)=C\log n$.
     \item 求出$H(1/n,\dots,1/n)$的表达式.
@@ -623,7 +623,7 @@ f(mn)=f(m)+\frac{1}{n}\cdot nf(n)=f(m)+f(n).
 
 \section{习题}
 \begin{enumerate}[wide, labelindent=0pt]
-    \item \label{exercise:conditional-mutual-information} 证明\Cref{prop:conditional-mutual-information}. 
+    \item \label{exercise:conditional-mutual-information} 证明\Cref{proposition:conditional-mutual-information}. 
     
     \item （\cite{tingAmountInformation1962}）仿照集合论的思路，我们可以定义三个随机变量的互信息为：
     \[I(X;Y;Z)=I(X;Y)-I(X;Y|Z).\]

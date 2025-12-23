@@ -151,6 +151,47 @@
 }
 \usepackage[capitalize]{cleveref}
 
+% Fix cleveref+ctex on recent LaTeX kernels:
+% ctex defines \p@chapter/\p@section/... as 1-arg macros, but cleveref v0.21.4
+% builds \cref@currentlabel assuming \p@<counter> takes 0 args, which leaves a
+% stray \endcsname and breaks \Cref/\cref ("Extra \endcsname").
+\makeatletter
+\def\refstepcounter@noarg#1{%
+  \cref@old@refstepcounter{#1}%
+  \cref@constructprefix{#1}{\cref@result}%
+  \@ifundefined{cref@#1@alias}%
+    {\def\@tempa{#1}}%
+    {\def\@tempa{\csname cref@#1@alias\endcsname}}%
+  \protected@edef\cref@currentlabel{%
+    [\@tempa][\arabic{#1}][\cref@result]%
+    \csname p@#1\expandafter\endcsname\csname the#1\endcsname}}%
+\def\refstepcounter@optarg[#1]#2{%
+  \cref@old@refstepcounter{#2}%
+  \cref@constructprefix{#2}{\cref@result}%
+  \@ifundefined{cref@#1@alias}%
+    {\def\@tempa{#1}}%
+    {\def\@tempa{\csname cref@#1@alias\endcsname}}%
+  \protected@edef\cref@currentlabel{%
+    [\@tempa][\arabic{#2}][\cref@result]%
+    \csname p@#2\expandafter\endcsname\csname the#2\endcsname}}%
+
+% LaTeX's "firstaid/cleveref" hook (newer kernels) also updates
+% \cref@currentlabel at each \label; patch it to use the kernel-safe
+% \p@<counter> handling as well.
+\@ifundefined{firstaid@cref@updatelabeldata}{}{%
+  \renewcommand\firstaid@cref@updatelabeldata[1]{%
+    \cref@constructprefix{#1}{\cref@result}%
+    \@ifundefined{cref@#1@alias}%
+      {\def\@tempa{#1}}%
+      {\def\@tempa{\csname cref@#1@alias\endcsname}}%
+    \protected@xdef\cref@gcurrentlabel@temp{%
+      [\@tempa][\arabic{#1}][\cref@result]%
+      \csname p@#1\expandafter\endcsname\csname the#1\endcsname}%
+    \aftergroup\firstaid@cref@smugglelabel
+  }%
+}
+\makeatother
+
 % customize Chinese cref name
 \Crefformat{construction}{构造\,#2#1#3}
 \Crefformat{part}{第#2#1#3部分}

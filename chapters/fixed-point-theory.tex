@@ -40,7 +40,7 @@
 度量是一个非常直观的概念. 实际上，它就是Euclid空间中“距离”概念的抽象化. 
 
 下面，我们不加证明地给出一些度量的例子，他们的证明见习题 \ref{exercise:metric}.
-\begin{example}\label{ex:metric-main}
+\begin{example}\label{example:metric-main}
     考虑实数集$\R$，要成为度量空间，可以装备以下度量：
     \begin{itemize}
             \item 平凡的离散度量：$\forall x_1\neq x_2\ d(x_1,x_2)\equiv 1, d(x,x)=0$. 
@@ -83,7 +83,7 @@
 
 完备性这一概念就是说，这两个收敛性的定义是等价的，因此$a_n$的确是在靠近某个东西. 我们将它写作定理的形式：
 
-\begin{theorem}\label{thm:complete-metric-space-convergence}
+\begin{theorem}\label{theorem:complete-metric-space-convergence}
     设$(X,d)$是一个完备度量空间，对任意序列$\{x_n\}_{n\in\N}$，以下两个条件等价：
     \begin{itemize}
         \item $\{x_n\}$是Cauchy列.
@@ -99,7 +99,7 @@
 \end{proof}
 
 下面，我们不加证明地给出一些完备度量空间的例子，证明见习题 \ref{exercise:complete-metric-space}.
-\begin{example}\label{ex:complete-metric-space}
+\begin{example}\label{example:complete-metric-space}
 \begin{itemize}
 \item $L^p$度量下$\R^n$是完备的.
 \item 使用度量$d(x_1,x_2)=|x_1-x_2|$，则$X=\R\setminus\{0\}$不是完备度量空间. 考虑
@@ -169,7 +169,7 @@
 \end{proof}
 
 接下来，我们证明压缩映射一定有不动点，这就是Banach不动点定理：
-\begin{theorem}[Banach不动点定理，压缩映像原理]\label{thm:banach-fixed-point}
+\begin{theorem}[Banach不动点定理，压缩映像原理]\label{theorem:banach-fixed-point}
 
 完备度量空间$(X,d)$到自身的压缩映射$f:X\to X$具有唯一的不动点$a$. 
 
@@ -216,7 +216,7 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\dots+d(x_{n+k-1},x_{n+k})\\
 
 下面，我们举一个非$\R^n$的范数的例子.
 
-\begin{example}[矩阵范数]\label{ex:matrix-norm}
+\begin{example}[矩阵范数]\label{example:matrix-norm}
     设$X$是$n\times m$的实矩阵空间，定义$A\in X$的\textbf{2-范数}为
     \[\norm{A}_2=\sup_{x\in\R^m,\norm{x}_2=1}\norm{Ax}_2.\]
     其中$\norm{\cdot}_2$是向量的$L^2$范数. 我们来验证它是一个范数.
@@ -235,7 +235,7 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\dots+d(x_{n+k-1},x_{n+k})\\
     \end{enumerate}
     因此$\norm{\cdot}$是一个范数.
 
-    实际上，矩阵的2-范数是一个非常重要的范数，它与矩阵的特征值有密切的关系. 具体来说，根据谱定理（\Cref{thm:symmetric-operator-norm}），如果矩阵$A$是对称的，那么它的2-范数等于它的最大特征值的模. 具体来说，假设$A$的特征值为$\lambda_1,\dots,\lambda_n$，那么
+    实际上，矩阵的2-范数是一个非常重要的范数，它与矩阵的特征值有密切的关系. 具体来说，根据谱定理（\Cref{theorem:symmetric-operator-norm}），如果矩阵$A$是对称的，那么它的2-范数等于它的最大特征值的模. 具体来说，假设$A$的特征值为$\lambda_1,\dots,\lambda_n$，那么
     \[\norm{A}_2=\max_{i=1,\dots,n}|\lambda_i|.\]
 \end{example}
 
@@ -260,7 +260,7 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\dots+d(x_{n+k-1},x_{n+k})\\
 由Banach不动点定理可知，压缩映射$f(x)$有唯一不动点$a=f(a)$.
 \end{example}
 
-\begin{example}[梯度下降的收敛性，\cite{jungFixedPointViewGradient2017}]\label{ex:gradient-descent}
+\begin{example}[梯度下降的收敛性，\cite{jungFixedPointViewGradient2017}]\label{example:gradient-descent}
 这个例子研究如何利用算子法证明梯度下降的收敛性. 它需要较多微积分和线性代数的知识，请参阅\Cref{chap:calculus} 和\Cref{chap:linear-algebra}. 不过，理解整个思路并不需要这些知识.
 
 我们优化目标是寻找二阶可微凸函数$f(x),x\in \R^n$的最小值. 使用梯度下降方法：
@@ -286,7 +286,7 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\dots+d(x_{n+k-1},x_{n+k})\\
     \[\mathcal T^{(\alpha)}: x\mapsto x - \alpha\nabla f(x).\]
 我们要设法证明梯度下降算法是完备度量空间中的一个压缩映射. 
 \begin{enumerate}
-    \item 首先，根据\Cref{thm:differential-convex-equivalence}，可微凸函数$f$的最小值点充分必要地满足
+    \item 首先，根据\Cref{theorem:differential-convex-equivalence}，可微凸函数$f$的最小值点充分必要地满足
     \[\nabla f(x)=0.\]
     \item 其次，显然有
     \[\nabla f(x^*)=0 \iff \mathcal T^{(\alpha)}x^*=x^*.\]
@@ -294,11 +294,11 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\dots+d(x_{n+k-1},x_{n+k})\\
     \item 所以，我们只需要说明$\mathcal T^{(\alpha)}$是一个完备度量空间的压缩映射，就可以用Banach不动点定理证明梯度下降的收敛性.
 \end{enumerate}
 
-我们只需要证明$\mathcal T^{(\alpha)}$是压缩映射，并给出压缩系数. 由有限增量原理（\Cref{thm:lagrange-finite-multi}）:
+我们只需要证明$\mathcal T^{(\alpha)}$是压缩映射，并给出压缩系数. 由有限增量原理（\Cref{theorem:lagrange-finite-multi}）:
 \[\norm{\mathcal T^{(\alpha)}x - \mathcal T^{(\alpha)}y}_2 \leq \sup_{z\in(x,y)}\norm{I - \alpha \nabla^2 f(z)}_2\cdot\norm{x-y}_2.\]
 这里，$(x,y)=\{(1-t)x+ty|t\in(0,1)\}$是$x$和$y$之间的线段. 
 
-注意到$\norm{I-\alpha\nabla^2f(z)}_2$等于$I-\alpha\nabla^2f(z)$特征值的最大模. 假设$\lambda_1,\dots,\lambda_n$是$\nabla^2f(z)$的特征值，则根据\Cref{ex:matrix-norm} 的讨论，
+注意到$\norm{I-\alpha\nabla^2f(z)}_2$等于$I-\alpha\nabla^2f(z)$特征值的最大模. 假设$\lambda_1,\dots,\lambda_n$是$\nabla^2f(z)$的特征值，则根据\Cref{example:matrix-norm} 的讨论，
 \[\norm{I-\alpha\nabla^2f(z)}_2=\max_{i=1,\dots,n}|1-\alpha\lambda_i|.\]
 只要
 \[0<1-\alpha\lambda_{\max} < 1\text{ 且\,} 0<1-\alpha\lambda_{\min} < 1,\]
@@ -330,7 +330,7 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\dots+d(x_{n+k-1},x_{n+k})\\
 
 在Euclid空间中，我们有如下性质：
 
-\begin{theorem}\label{thm:compact-set-iff-bounded-closed}
+\begin{theorem}\label{theorem:compact-set-iff-bounded-closed}
     考虑集合$K\subseteq\R^n$，以下两个定义等价：
     \begin{itemize}
         \item $K$是紧集.
@@ -339,7 +339,7 @@ d(x_{n+k},x_n)&\leq d(x_n,x_{n+1})+\dots+d(x_{n+k-1},x_{n+k})\\
 \end{theorem}
 这里，有界的意思就是，存在一个半径$R$，使得$K$包含在半径为$R$的球内. 
 
-注意，\Cref{thm:compact-set-iff-bounded-closed} 只在$\R^n$中成立，对于一般的度量空间，紧集和有界闭集不一定等价（见习题 \ref{exercise:compact-not-bounded-closed}）. 
+注意，\Cref{theorem:compact-set-iff-bounded-closed} 只在$\R^n$中成立，对于一般的度量空间，紧集和有界闭集不一定等价（见习题 \ref{exercise:compact-not-bounded-closed}）. 
 
 有了上面的准备，我们就可以叙述Brouwer不动点定理了：
 
@@ -380,7 +380,7 @@ Brouwer不动点定理可以通过该实际的例子来理解：将一张白纸�
 
 接下来，我们说明，如果Markov链不可约（也就是流动性很好），它会有一个平稳遍历分布（即所有状态都是正概率）. 这个结论由以下定理给出：
 
-\begin{theorem}[Perron-Frobenius定理]\label{thm:perron-frobenius}
+\begin{theorem}[Perron-Frobenius定理]\label{theorem:perron-frobenius}
     设$A=(a_{ij})$为$n\times n$不可约实矩阵，所有元素均非负，$a_{ij}\geq 0$，则下列结论成立.
     \begin{itemize}
         \item 存在一个实特征值$r$，其他（左右）特征值$\lambda$的模均不超过$r$，即$|\lambda|\leq r$.
@@ -404,7 +404,7 @@ Brouwer不动点定理可以通过该实际的例子来理解：将一张白纸�
     即$\pi_0$是平稳遍历分布. 
 \end{proof}
 
-接下来，我们证明\Cref{thm:perron-frobenius}，这一证明主要基于 \cite{debreuNonnegativeSquareMatrices1953} 的思路. 
+接下来，我们证明\Cref{theorem:perron-frobenius}，这一证明主要基于 \cite{debreuNonnegativeSquareMatrices1953} 的思路. 
 
 首先证明$A$存在一个正的特征值$r>0$.
 
@@ -432,7 +432,7 @@ Brouwer不动点定理可以通过该实际的例子来理解：将一张白纸�
 
 同样的证明技巧可以用来证明，一个元素都是正数的实方阵一定有正的特征值，见习题 \ref{exercise:positive-eigenvalue}. 接下来的内容主要依赖线性代数而非不动点定理，不感兴趣的读者可以跳过.
 
-\begin{proof}[\Cref{thm:perron-frobenius} 的剩余证明]
+\begin{proof}[\Cref{theorem:perron-frobenius} 的剩余证明]
 我们接下来证明，与$r$对应的右特征向量所有元素恒正. 由之前的证明，与$r$对应的特征向量$x_0\in S$，则$x_0\geq 0$. 我们证明$x_0>0$.
 
 我们将$A$的行列进行交换，使得$Ax_0$非零的元素在上方. 具体来说，设$A = PBP^{-1}$，其中$P$是置换矩阵，则
@@ -489,9 +489,9 @@ Brouwer不动点定理可以通过该实际的例子来理解：将一张白纸�
 \section{习题}
 
 \begin{enumerate}[wide, labelindent=0pt]
-    \item \label{exercise:metric} 验证\Cref{ex:metric-main} 中的都是度量. 
+    \item \label{exercise:metric} 验证\Cref{example:metric-main} 中的都是度量. 
     
-    \item \label{exercise:complete-metric-space} 验证\Cref{ex:complete-metric-space} 中的都是完备度量空间. 
+    \item \label{exercise:complete-metric-space} 验证\Cref{example:complete-metric-space} 中的都是完备度量空间. 
     
     \item \label{exercise:compact-not-bounded-closed} 考虑空间
     \[\ell^2(\R)=\left\{a=(a_1,a_2,\dots)\in\R^{\infty}:\norm{a}_2=\sum_{i}a_i^2<+\infty\right\}.\]

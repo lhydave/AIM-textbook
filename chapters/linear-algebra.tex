@@ -101,7 +101,7 @@ $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性�
 
 线性空间的一个核心定理是基的存在性定理. 
 
-\begin{theorem}[基的存在性定理]\label{thm:existence-of-basis}
+\begin{theorem}[基的存在性定理]\label{theorem:existence-of-basis}
 设$V$是$F$-线性空间，则$V$中存在一个基. 
 \end{theorem}
 
@@ -146,7 +146,7 @@ $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性�
 
 例如，$\R^3$可以分解为$\R^3=\R e_1\oplus \R e_2\oplus \R e_3$，其中$\R e_i=\{\alpha e_i:\alpha\in\R\}$是$\R^3$的一维子空间，它们的直和就是$\R^3$. 注意到这个分解将三维线性空间分解成了三个一维线性空间，这不是偶然的，一般地，我们有下面的定理. 
 
-\begin{theorem}[维数定理]\label{thm:dim-thm}
+\begin{theorem}[维数定理]\label{theorem:dim-thm}
 设$V$是有限维$F$-线性空间，$V=U_1\oplus U_2$，则
 \[
     \dim V=\dim U_1+\dim U_2.
@@ -181,7 +181,7 @@ $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性�
 
 线性映射有如下基本性质：
 
-\begin{proposition}\label{prop:linear-map-basic}
+\begin{proposition}\label{proposition:linear-map-basic}
 设$f:V\to W$是域$F$上的线性映射，那么
 \begin{enumerate}
     \item $f(0)=0$；
@@ -228,7 +228,7 @@ $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性�
 
 刚刚讨论的$\R^m$与$\R^n$的同构是具有一般性的，这就是有限维线性空间的同构定理：
 
-\begin{theorem}[有限维线性空间的同构定理]\label{thm:finite-dim-linear-space-isomorphism}
+\begin{theorem}[有限维线性空间的同构定理]\label{theorem:finite-dim-linear-space-isomorphism}
 设$V$和$W$是有限维$F$-线性空间，则$V$与$W$同构当且仅当$\dim V=\dim W$. 
 \end{theorem}
 这一定理充分说明了，有限维线性空间中维数的意义：维数刻画了线性空间. 
@@ -252,7 +252,7 @@ $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性�
 \end{proof}
 
 此外，同构还有一个重要性质：
-\begin{proposition}\label{prop:isomorphism-composition}
+\begin{proposition}\label{proposition:isomorphism-composition}
 假设$f:V\to W$和$g:W\to U$是两个线性映射，如果$f$和$g$都是同构，那么$g\circ f$也是同构. 
 \end{proposition}
 \begin{proof}
@@ -263,23 +263,23 @@ $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性�
 
 接下来我们进一步研究线性映射所带来的结构. 我们刚刚说过，同态就是说把一些东西丢掉，剩下的东西可以被看成另一个空间的子空间. 丢掉的东西和剩下的东西，就是线性映射的\textit{核}与\textit{像}. 
 
-\begin{definition}[核与像]\label{def:kernel-image}
+\begin{definition}[核与像]\label{definition:kernel-image}
 设$V$和$W$是$F$-线性空间，$f:V\to W$是一个线性映射. $f$的\textbf{核}定义为$\ker f=\{x\in V:f(x)=0\}$，$f$的\textbf{像}定义为$\im f=\{f(x):x\in V\}$. 
 \end{definition}
 
 “把一些东西丢掉”这一表述可以精确地由以下定理给出：
 
-\begin{theorem}\label{thm:kernel-image-property}
+\begin{theorem}\label{theorem:kernel-image-property}
 设$V$和$W$是$F$-线性空间，$f:V\to W$是一个线性映射，则$\ker f$是$V$的线性子空间，$\im f$是$W$的线性子空间. 另外，
 \[\dim V=\dim\ker f+\dim\im f.\]
 \end{theorem}
 直观来说，这一定理表明，线性映射$f$把$V$抹掉了子空间$\ker f$，最终得到了空间$\im f$. 
 \begin{proof}
-这一证明类似于\Cref{thm:finite-dim-linear-space-isomorphism} 的证明，这里只给出思路，细节留给读者. 首先选出$\ker f$的基$v_1,\dots,v_k$，然后添加向量$u_1,\dots,u_l$扩充成$V$的基，然后证明$f(u_1),\dots,f(u_l)$是$\im f$的基. 
+这一证明类似于\Cref{theorem:finite-dim-linear-space-isomorphism} 的证明，这里只给出思路，细节留给读者. 首先选出$\ker f$的基$v_1,\dots,v_k$，然后添加向量$u_1,\dots,u_l$扩充成$V$的基，然后证明$f(u_1),\dots,f(u_l)$是$\im f$的基. 
 \end{proof}
 
 一个直接但重要的推论是：
-\begin{corollary}\label{cor:kernel-image-isomorphism}
+\begin{corollary}\label{corollary:kernel-image-isomorphism}
 设$V$和$W$是$F$-线性空间，$f:V\to W$是一个线性映射. 那么以下性质成立：
 \begin{enumerate}
     \item $\dim \im f\leq \dim V$，等号成立当且仅当$\ker f=\{0\}$；
@@ -297,12 +297,12 @@ $S$线性相关意味着$S$中的一些元素可以被另一些元素的线性�
 
 换言之，线性映射的秩就是它的像的维数. 秩越高的线性映射说明它把空间“压缩”得越少，丢掉的东西越少. 例如，$\R^n$的投影变换$\pi_m$的秩为$m$，说明它丢掉的东西只有$n-m$维，也就是后面的$n-m$个坐标. 
 
-\Cref{cor:kernel-image-isomorphism} 给出了复合线性映射秩的性质：
-\begin{corollary}\label{cor:rank-composition}
+\Cref{corollary:kernel-image-isomorphism} 给出了复合线性映射秩的性质：
+\begin{corollary}\label{corollary:rank-composition}
 设$V$、$W$和$U$是$F$-线性空间，$f:V\to W$和$g:W\to U$是两个线性映射，则$\rank (g\circ f)\leq \rank f$，等号成立当且仅当$\im f\cap \ker g=\{0\}$. 特别地，如果$f,g$都是满射，那么等号成立当且仅当$g$是同构. 此外，$\rank (g\circ f)\leq \rank g$，如果$f$是满射，那么等号成立. 
 \end{corollary}
 \begin{proof}
-    根据\Cref{cor:kernel-image-isomorphism}，我们有
+    根据\Cref{corollary:kernel-image-isomorphism}，我们有
     \[\rank (g\circ f)=\dim\im (g\circ f)\leq \dim \im f=\rank f.\]
     等号成立当且仅当在空间$\im f$中，$g$的核是$\{0\}$，换言之，$\im f\cap \ker g=\{0\}$. 特别地，如果$f$是满射，那么这一条件变为$\ker g=\{0\}$，如果$g$也是满射，那么$g$是同构. 
     
@@ -408,9 +408,9 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 
 对于满足$A^\t=A$的矩阵，我们称之为\textbf{对称矩阵}. 对于满足$A^\t=-A$的矩阵，我们称之为\textbf{反对称矩阵}. 
 
-现在，矩阵作为一个代数结构所需要的要素都已经给出了. 我们来看看矩阵的一些基本性质. 这些性质大多是从线性映射继承过来的（\Cref{prop:linear-map-basic}），我们在此略去证明. 
+现在，矩阵作为一个代数结构所需要的要素都已经给出了. 我们来看看矩阵的一些基本性质. 这些性质大多是从线性映射继承过来的（\Cref{proposition:linear-map-basic}），我们在此略去证明. 
 
-\begin{proposition}\label{prop:mat-basic}
+\begin{proposition}\label{proposition:mat-basic}
     设$A,B,C$都是域$F$上的$n$阶方阵，$\lambda,\mu\in F$，那么
     \begin{enumerate}
         \item $(\lambda A+\mu B)C=\lambda AC+\mu BC$；
@@ -444,7 +444,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 \[g^{-1}fg(v_i)=\sum_{j}a_{ji}'v_j.\]
 左边是$B^{-1}AB$，而右边对应的就是$A'$. 所以我们证明了
 
-\begin{theorem}\label{thm:base-change}
+\begin{theorem}\label{theorem:base-change}
     设$V$是$F$-线性空间，$f:V\to V$是一个线性算子，$\{v_1,\dots,v_n\}$和$\{w_1,\dots,w_n\}$是$V$的两个基. 假设$A$和$A'$分别是$f$在这两个基下的矩阵，$B$是从$\{v_1,\dots,v_n\}$到$\{w_1,\dots,w_n\}$的过渡矩阵，那么$A'=B^{-1}AB$. 
 \end{theorem}
 
@@ -472,15 +472,15 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 
 矩阵的秩最核心的定理是：
 
-\begin{theorem}\label{thm:rank}
+\begin{theorem}\label{theorem:rank}
     设$A$是一个$m\times n$矩阵，$A$的行秩、列秩与秩都相等. 
 \end{theorem}
 
 这一定理的证明通常涉及到矩阵的初等行变换，也可以用对偶空间理论的证明，我们这里就不给出了. 
 
-从线性映射复合的秩关系（\Cref{cor:rank-composition}），我们直接得到了矩阵乘法秩的性质：
+从线性映射复合的秩关系（\Cref{corollary:rank-composition}），我们直接得到了矩阵乘法秩的性质：
 
-\begin{proposition}\label{prop:rank-multiplication}
+\begin{proposition}\label{proposition:rank-multiplication}
     设$A$是一个$m\times n$矩阵，$B$是一个$n\times p$矩阵，那么
     \[\rank(AB)\leq \min\{\rank A,\rank B\}.\]
 如果$A$和$B$都是方阵，那么当$A$可逆时，$\rank(AB)=\rank B$；当$B$可逆时，$\rank(AB)=\rank A$.
@@ -490,7 +490,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 
 本节考虑线性函数的一种推广，即\textit{双线性函数}. 它是两个变量的函数，而且每个变量都是线性的. 这种函数在几何上有很多应用，比如内积. 我们先来给出它的定义. 
 
-\begin{definition}[双线性型]\label{def:bilinear-form}
+\begin{definition}[双线性型]\label{definition:bilinear-form}
     设$V$是一个$F$-线性空间，如果$V$上有一个映射$f:V\times V\to F$，满足
     \begin{enumerate}
         \item 对于任意的$v\in V$，$f(v,\cdot):V\to F$是一个线性映射；
@@ -522,24 +522,24 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 \]
 由于$x,y$是任意的，$X,Y$也是任意的，联立上面两式，$A'=P^\t A P$，这就是基变换公式. 对应到矩阵中，这被称为\textit{合同变换}. 
 
-\begin{definition}[合同矩阵]\label{def:congruent-matrix}
+\begin{definition}[合同矩阵]\label{definition:congruent-matrix}
     设$A,B$都是$n$阶方阵，如果存在一个可逆方阵$P$，使得$B=P^\t A P$，那么称$A$和$B$是\textbf{合同的}. 
 \end{definition}
 
-容易验证，合同关系是一个等价关系，这与相似关系是类似的. 根据\Cref{prop:rank-multiplication}，可逆矩阵相乘不改变矩阵的秩，所以合同矩阵的秩是相同的. 于是，双线性型的任意矩阵表示都有相同的秩，我们因此可以定义双线性型的秩：
+容易验证，合同关系是一个等价关系，这与相似关系是类似的. 根据\Cref{proposition:rank-multiplication}，可逆矩阵相乘不改变矩阵的秩，所以合同矩阵的秩是相同的. 于是，双线性型的任意矩阵表示都有相同的秩，我们因此可以定义双线性型的秩：
 
-\begin{definition}[双线性型的秩]\label{def:bilinear-form-rank}
+\begin{definition}[双线性型的秩]\label{definition:bilinear-form-rank}
     设$f$是$V$上的一个双线性型，如果$f$在某个基下的矩阵的秩是$r$，那么称$f$的\textbf{秩}是$r$.
 \end{definition}
 
 接下来，我们考虑一种特殊的双线性型：对称双线性型，即$f(x,y)=f(y,x)$对任意$x,y\in V$成立. 注意到，对称双线性型对应的矩阵是对称矩阵. 我们现在令$x=y$，定义$q(x)=f(x,x)$，那么$q$是一个实值函数，这样的函数便是\textit{二次型}. 
 
-\begin{definition}[二次型]\label{def:quadratic-form}
+\begin{definition}[二次型]\label{definition:quadratic-form}
     设$V$是数域$F$上的线性空间，$f$是$V$上的一个对称双线性型，那么定义$q:V\to F$为$q(x)=f(x,x)$，称$q$是$f$诱导的\textbf{二次型}. 
 \end{definition}
 
 自然，秩的概念也可以被迁移到二次型上：
-\begin{definition}[二次型的秩]\label{def:quadratic-form-rank}
+\begin{definition}[二次型的秩]\label{definition:quadratic-form-rank}
 设$q$是$V$上的一个二次型，如果定义$q$的\textbf{秩}为诱导它的双线性型$f$的秩. 
 \end{definition}
 
@@ -553,12 +553,12 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 \]
 这是一个关于$x_i$的二次函数. 通常来说，我们希望化简这一表示，如果能写成$\sum_{i=1}^n a_{ii}x_i^2$的形式，那么计算都会变得非常容易. 此时，二次型$q$的矩阵是对角矩阵. 
 
-\begin{definition}[规范型]\label{def:canonical-form}
+\begin{definition}[规范型]\label{definition:canonical-form}
     设$V$是数域$F$上的线性空间，$q$是$V$上的一个二次型，如果存在一组基，使得$q$在这组基下的矩阵是对角矩阵，那么称这个对角矩阵是$q$的\textbf{规范型}，这组基是\textbf{规范基}. 
 \end{definition}
 
 二次型的一个核心定理是，规范型总是存在：
-\begin{theorem}\label{thm:quadratic-form-diagonalization}
+\begin{theorem}\label{theorem:quadratic-form-diagonalization}
     设$V$是$F$-线性空间，$q$是$V$上的一个二次型，那么$q$存在规范型. 
 \end{theorem}
 \begin{proof}
@@ -572,14 +572,14 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 \end{proof}
 
 相应地，在矩阵上，这一定理的表述为：
-\begin{corollary}\label{cor:quadratic-form-diagonalization}
+\begin{corollary}\label{corollary:quadratic-form-diagonalization}
 任何对称矩阵$A$都合同于一个对角矩阵. 
 \end{corollary}
 
 
 在实数域上，这一定理还可以被加强：
 
-\begin{theorem}[惯性定理]\label{thm:inertia-theorem}
+\begin{theorem}[惯性定理]\label{theorem:inertia-theorem}
     设$V$是$\R$上的$n$维线性空间，$q$是$V$上的一个二次型，那么$q$存在形如
     \[
         q(x)=\sum_{i=1}^r \lambda_i x_i^2
@@ -591,7 +591,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 
 惯性定理给出了几类特殊的二次型：
 
-\begin{definition}[正定，半正定，负定，半负定]\label{def:positive-definite}
+\begin{definition}[正定，半正定，负定，半负定]\label{definition:positive-definite}
     设$V$是$\R$上的$n$维线性空间，$q$是$V$上的一个二次型. 
     \begin{itemize}
         \item 如果$q$的规范型是
@@ -620,7 +620,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 \end{definition}
 
 以上概念都可以直接用二次型的取值去等价定义：
-\begin{proposition}\label{prop:positive-definite}
+\begin{proposition}\label{proposition:positive-definite}
     设$V$是$\R$上的$n$维线性空间，$q$是$V$上的一个二次型. 
     \begin{itemize}
         \item $q$是正定的当且仅当对任意的非零向量$x\in V$，都有$q(x)>0$. 
@@ -635,7 +635,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 
 自然，这一命题的矩阵版本也是成立的. 一个直接的推论是：
 
-\begin{corollary}\label{cor:positive-definite}
+\begin{corollary}\label{corollary:positive-definite}
 设$A$是一个矩阵，那么$A^\t A$和$AA^\t$都是半正定的. 此外，$B$是一个正定矩阵当且仅当存在可逆矩阵$P$，使得$B=P^\t P$.
 \end{corollary}
 
@@ -682,7 +682,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 
 夹角对任意非零向量都可以定义，这是因为内积有Cauchy不等式：
 
-\begin{theorem}[Cauchy不等式]\label{thm:cauchy}
+\begin{theorem}[Cauchy不等式]\label{theorem:cauchy}
 设$V$是一个内积空间，$v,w\in V$，那么有
 \[
     |\inner{v}{w}|\leq \norm{v}\norm{w}.
@@ -701,7 +701,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 \end{proof}
 
 利用Cauchy不等式，我们可以证明模长满足三角不等式：
-\begin{theorem}[三角不等式]\label{thm:triangle}
+\begin{theorem}[三角不等式]\label{theorem:triangle}
 设$V$是一个内积空间，$v,w\in V$，那么有
 \[
     \norm{v+w}\leq \norm{v}+\norm{w}.
@@ -728,7 +728,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 
 接下来，我们继续表示论的观点，讨论内积空间中的基与坐标. 首先是正交与线性无关的关系. 
 
-\begin{proposition}\label{prop:orthogonal}
+\begin{proposition}\label{proposition:orthogonal}
 设$V$是一个内积空间，两两正交的非零向量$v_1,\dots,v_n\in V$是线性无关的. 
 \end{proposition}
 \begin{proof}
@@ -739,9 +739,9 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 因为$v_j\neq 0$，所以$\lambda_j=0$，这就证明了线性无关性. 
 \end{proof}
 
-两两正交的基被称为\textbf{正交基}，如果正交基的每个向量都是单位向量，那么称为\textbf{标准正交基}. 在内积空间中，基存在性定理（\Cref{thm:existence-of-basis}）可以被加强为标准正交基存在性定理：
+两两正交的基被称为\textbf{正交基}，如果正交基的每个向量都是单位向量，那么称为\textbf{标准正交基}. 在内积空间中，基存在性定理（\Cref{theorem:existence-of-basis}）可以被加强为标准正交基存在性定理：
 
-\begin{theorem}[标准正交基存在性定理]\label{thm:orthogonal-basis}
+\begin{theorem}[标准正交基存在性定理]\label{theorem:orthogonal-basis}
 设$V$是一个有限维内积空间，那么$V$中存在一个标准正交基. 
 \end{theorem}
 
@@ -749,7 +749,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 
 我们来看看这一定理的用处. 首先，它给出了计算坐标的简易方式. 
 
-\begin{proposition}\label{prop:projection}
+\begin{proposition}\label{proposition:projection}
 设$V$是一个内积空间，它的标准正交基是$e_1,\dots,e_n$，$v\in V$，那么
 \[
     v=\sum_{i=1}^n\inner{v}{e_i}e_i.
@@ -773,7 +773,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 
 综上，我们可以用一个向量的内积来表示线性函数：
 
-\begin{theorem}[Riesz表示定理]\label{thm:riesz}
+\begin{theorem}[Riesz表示定理]\label{theorem:riesz}
 设$V$是一个内积空间，$f$是$V$上的一个线性函数，那么存在唯一的向量$u\in V$，使得$f(v)=\inner{u}{v}$对任意的$v\in V$成立.
 \end{theorem}
 
@@ -781,7 +781,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 
 此外，利用标准正交基，内积空间中一组向量的线性无关性也可以用内积来判断，这就是\textit{Gram矩阵}. 
 
-\begin{definition}[Gram矩阵]\label{def:gram-matrix}
+\begin{definition}[Gram矩阵]\label{definition:gram-matrix}
 给定内积空间$V$的一组向量$v_1,\dots,v_k$，定义他们的\textbf{Gram矩阵}为$G=(\inner{v_i}{v_j})_{k\times k}$. 
 \end{definition}
 
@@ -789,7 +789,7 @@ f(x)=\sum_{i=1}^n x_i\sum_{j=1}^n a_{ji}v_j=\sum_{j=1}^n\left(\sum_{i=1}^n a_{ji
 
 Gram矩阵的基本性质是：
 
-\begin{proposition}\label{prop:gram}
+\begin{proposition}\label{proposition:gram}
 设$V$是一个内积空间，$v_1,\dots,v_k\in V$，他们的Gram矩阵为$G$，那么
 \begin{enumerate}
     \item $G$是对称矩阵；
@@ -807,7 +807,7 @@ Gram矩阵的基本性质是：
         &=\norm{\sum_{i=1}^kx_iv_i}^2\geq 0.
     \end{align*}
     因此$G$是半正定的.
-    \item 我们已经证明$f(x)\geq 0$. 由\Cref{prop:positive-definite}，$G$是正定的当且仅当等价式$f(x)=0\iff x=0$成立. 而$f(x)=\norm{\sum_{i=1}^kx_iv_i}^2$，因此$f(x)=0\iff \sum_{i=1}^kx_iv_i=0$，所以$x=0\iff v_1,\dots,v_k$线性无关.
+    \item 我们已经证明$f(x)\geq 0$. 由\Cref{proposition:positive-definite}，$G$是正定的当且仅当等价式$f(x)=0\iff x=0$成立. 而$f(x)=\norm{\sum_{i=1}^kx_iv_i}^2$，因此$f(x)=0\iff \sum_{i=1}^kx_iv_i=0$，所以$x=0\iff v_1,\dots,v_k$线性无关.
 \end{enumerate}
 \end{proof}
 
@@ -817,7 +817,7 @@ Gram矩阵的基本性质是：
 
 向量组之间的正交性也可以用Gram矩阵来刻画：
 
-\begin{proposition}\label{prop:orthogonal-gram}
+\begin{proposition}\label{proposition:orthogonal-gram}
 设$V$是一个内积空间，$v_1,\dots,v_k\in V$，那么下列命题等价：
 \begin{enumerate}
     \item $v_1,\dots,v_k$两两正交；
@@ -830,21 +830,21 @@ Gram矩阵的基本性质是：
 
 内积空间中，直和分解也可以被加强. 为此，我们先引入正交补的概念. 
 
-\begin{definition}[正交补]\label{def:orthogonal-complement}
+\begin{definition}[正交补]\label{definition:orthogonal-complement}
 设$V$是一个内积空间，$W\subseteq V$，那么$W$的\textbf{正交补}是
 \[
     W^\bot=\{v\in V:\forall w\in W,\inner{v}{w}=0\}.
 \]
 \end{definition}
 
-\begin{theorem}\label{prop:orthogonal-complement}
+\begin{theorem}\label{proposition:orthogonal-complement}
 设$V$是一个内积空间，$W\subseteq V$是一个有限维子空间，那么
 \[
     V=W\oplus W^\bot,\quad (W^\bot)^\bot=W.
 \]
 \end{theorem}
 
-这一定理的证明思路类似\Cref{thm:kernel-image-property} 的证明，区别是这里需要扩充标准正交基. 这里不再给出具体证明. 
+这一定理的证明思路类似\Cref{theorem:kernel-image-property} 的证明，区别是这里需要扩充标准正交基. 这里不再给出具体证明. 
 
 最后，我们考虑标准正交基之间的过渡矩阵. 设$V$是一个内积空间，$e_1,\dots,e_n$和$e_1',\dots,e_n'$都是$V$的标准正交基. 设$e_j'=a_{1j}e_1+\dots+a_{nj}e_n$，如此就得到了过渡矩阵$A$. 我们来看看$A$的性质. 
 
@@ -865,7 +865,7 @@ Gram矩阵的基本性质是：
 
 正交矩阵有很多等价的刻画：
 
-\begin{theorem}\label{thm:orthogonal-matrix}
+\begin{theorem}\label{theorem:orthogonal-matrix}
 设$A$是一个$n$阶方阵. 下列陈述等价：
 \begin{enumerate}
     \item $A$是一个正交矩阵.
@@ -881,7 +881,7 @@ Gram矩阵的基本性质是：
 
 利用基变换，我们马上可以得到以下正交矩阵的性质：
 
-\begin{proposition}\label{prop:orthogonal-matrix-property}
+\begin{proposition}\label{proposition:orthogonal-matrix-property}
 设$A,B$是$n$阶正交矩阵，那么
 \begin{enumerate}
     \item $I_n$是正交矩阵；
@@ -895,7 +895,7 @@ Gram矩阵的基本性质是：
 
 接下来，我们讨论内积空间的同构. 
 
-\begin{definition}[等距映射与等距同构]\label{def:isometry}
+\begin{definition}[等距映射与等距同构]\label{definition:isometry}
 设$V$和$W$都是内积空间，$T:V\to W$是一个线性映射，如果对任意的$v_1,v_2\in V$，都有$\inner{Tv_1}{Tv_2}=\inner{v_1}{v_2}$，那么称$T$是一个\textbf{等距映射}. 如果$T$是一个双射，那么称$T$是一个\textbf{等距同构}.
 \end{definition}
 
@@ -903,21 +903,21 @@ Gram矩阵的基本性质是：
 
 同样，内积空间的等距同构类只取决于维数；
 
-\begin{theorem}\label{thm:isometry}
+\begin{theorem}\label{theorem:isometry}
 设$V$和$W$都是有限维内积空间，那么$V$与$W$等距同构当且仅当$\dim V=\dim W$. 
 \end{theorem}
 \begin{proof}
-    证明完全类似\Cref{thm:finite-dim-linear-space-isomorphism} 的证明，此时将$V$的标准正交基一一对应到$W$的标准正交基上.
+    证明完全类似\Cref{theorem:finite-dim-linear-space-isomorphism} 的证明，此时将$V$的标准正交基一一对应到$W$的标准正交基上.
 \end{proof}
 
 等距同构对应的矩阵恰好就是正交矩阵. 
-\begin{theorem}\label{thm:isometry-matrix}
+\begin{theorem}\label{theorem:isometry-matrix}
 设$V$和$W$都是有限维内积空间，$f:V\to W$是一个等距同构，那么在$V$和$W$的标准正交基之下$f$是一个正交矩阵. 反之，$n$阶正交矩阵$A$诱导的线性映射$f_A:\R^n\to\R^n$是一个等距同构. 
 \end{theorem}
 \begin{proof}
-    后半部分（“反之”之后）由\Cref{thm:orthogonal-matrix} 的第二点直接得出. 我们来证明前半部分. 
+    后半部分（“反之”之后）由\Cref{theorem:orthogonal-matrix} 的第二点直接得出. 我们来证明前半部分. 
     
-    设$v_1,\dots,v_n$是$V$的标准正交基，$w_1,\dots,w_n$是$W$的标准正交基，$A$是$f$在这两组基下的矩阵. 考虑任意一个点$x\in V$，它的坐标是$X$. 那么$f(x)$的坐标是$AX$. 由于$f$是等距同构，所以$\norm{f(x)}=\norm{x}$，根据\Cref{prop:projection}，这等价于$\norm{AX}=\norm{X}$，由\Cref{thm:orthogonal-matrix} 的第二点，$A$是一个正交矩阵. 
+    设$v_1,\dots,v_n$是$V$的标准正交基，$w_1,\dots,w_n$是$W$的标准正交基，$A$是$f$在这两组基下的矩阵. 考虑任意一个点$x\in V$，它的坐标是$X$. 那么$f(x)$的坐标是$AX$. 由于$f$是等距同构，所以$\norm{f(x)}=\norm{x}$，根据\Cref{proposition:projection}，这等价于$\norm{AX}=\norm{X}$，由\Cref{theorem:orthogonal-matrix} 的第二点，$A$是一个正交矩阵. 
 \end{proof}
 
 \section{行列式}\label{sec:determinant}
@@ -959,7 +959,7 @@ Gram矩阵的基本性质是：
 
 下面仅罗列一些行列式的性质，但不给出证明. 
 
-\begin{proposition}\label{prop:determinant}
+\begin{proposition}\label{proposition:determinant}
     设$A,B$是两个$n$阶方阵，则
     \begin{enumerate}
         \item $\det I_n=1$；
@@ -971,7 +971,7 @@ Gram矩阵的基本性质是：
     \end{enumerate}
 \end{proposition}
 
-矩阵的行列式自然地定义了线性算子的行列式. 这一定义是良定义的，因为根据\Cref{thm:base-change}，如果$A$和$A'$是同一个线性算子在不同基下的矩阵，由过渡矩阵$B$给出，那么$A'=B^{-1}AB$，因此根据\Cref{prop:determinant}，
+矩阵的行列式自然地定义了线性算子的行列式. 这一定义是良定义的，因为根据\Cref{theorem:base-change}，如果$A$和$A'$是同一个线性算子在不同基下的矩阵，由过渡矩阵$B$给出，那么$A'=B^{-1}AB$，因此根据\Cref{proposition:determinant}，
 \begin{align*}
     \det A'&=\det(B^{-1}AB)\\
     &=(\det B^{-1})(\det A)(\det B)\\
@@ -988,7 +988,7 @@ Gram矩阵的基本性质是：
 
 具体来说，我们选择$V$的标准正交基$e_1,\dots,e_n$，他们的坐标是$E_1,\dots,E_n$. 考虑线性算子$f$，它对应的矩阵是$A$. 现在考虑单位立方体（自然也是平行体）$\Pi(e_1,\dots,e_n)$，那么在映射作用下平行体的边就变成了$\Pi(f(e_1),\dots,f(e_n))$. 因为是$\{e_i\}$是标准正交基，所以这些平行体实际上也可以写作$\Pi(E_1,\dots,E_n)$和$\Pi(AE_1,\dots,AE_n)$，注意到，后者实际上就是$\Pi(A^1,\dots, A^n)$，考虑他们的有向体积，这正好是行列式的定义. 
 
-作为一个注记，从线性算子的角度来看，行列式的性质（\Cref{prop:determinant}）就是非常自然的结果了. 我们将矩阵对应的线性映射写出. 那么，除了最后一条，\Cref{prop:determinant} 的性质都可以逐一解释：
+作为一个注记，从线性算子的角度来看，行列式的性质（\Cref{proposition:determinant}）就是非常自然的结果了. 我们将矩阵对应的线性映射写出. 那么，除了最后一条，\Cref{proposition:determinant} 的性质都可以逐一解释：
 \begin{enumerate}
     \item 恒等算子不改变有向体积，所以行列式为$1$；
     \item 两个算子$f_A$和$f_B$的复合对有向体积的改变是累乘，即先按比例$\det f_A$变，再按比例$\det f_B$变，因此矩阵乘积的行列式等于行列式的乘积；
@@ -1045,21 +1045,21 @@ Gram矩阵的基本性质是：
     \[\norm{A}=\sup_{\norm{x}=1}\norm{Ax}.\]
 \end{definition}
 
-给定标准正交基底，利用矩阵$A$表示线性映射$f$. 假设此时$x$的坐标是$X$，那么$\norm{f(x)}=\norm{AX}$，由\Cref{ex:metric-norm-continuous}、\Cref{prop:continuous-composition} 和\Cref{cor:continuous-linear}，$\norm{AX}$是$X$的连续函数，因此在紧集$\{X:\norm{X}=1\}$上取到最大值. 因此定义中的$\sup$实际上是一个$\max$. 这一结论对任意范数定义的算子范数都成立（而不仅仅只是内积诱导的范数）. 我们后面会利用内积的特性显式给出取到最大值的向量. 
+给定标准正交基底，利用矩阵$A$表示线性映射$f$. 假设此时$x$的坐标是$X$，那么$\norm{f(x)}=\norm{AX}$，由\Cref{example:metric-norm-continuous}、\Cref{proposition:continuous-composition} 和\Cref{corollary:continuous-linear}，$\norm{AX}$是$X$的连续函数，因此在紧集$\{X:\norm{X}=1\}$上取到最大值. 因此定义中的$\sup$实际上是一个$\max$. 这一结论对任意范数定义的算子范数都成立（而不仅仅只是内积诱导的范数）. 我们后面会利用内积的特性显式给出取到最大值的向量. 
 
 算子范数一个显然的性质是：
 
-\begin{proposition}\label{prop:norm-ineq}
+\begin{proposition}\label{proposition:norm-ineq}
 对有限维内积空间$V$中的线性算子$f$，$\norm{f(x)}\leq \norm{f}\norm{x}$对任意$x\in V$成立. 
 \end{proposition}
 
 利用这一条，我们马上得到
 
-\begin{proposition}\label{prop:operator-norm-ineq}
+\begin{proposition}\label{proposition:operator-norm-ineq}
 对有限维内积空间$V$中的线性算子$f,g$，$\norm{f\circ g}\leq \norm{f}\norm{g}$.
 \end{proposition}
 
-\begin{proposition}\label{prop:operator-power-norm-ineq}
+\begin{proposition}\label{proposition:operator-power-norm-ineq}
     对有限维内积空间$V$中的线性算子$f$，$\norm{f^k}\leq \norm{f}^k$，这里$f^k$表示$f$的$k$次复合. 
 \end{proposition}
 
@@ -1083,7 +1083,7 @@ Gram矩阵的基本性质是：
 
 显然，$V^\lambda$是$V$的一个线性子空间. 我们下面的任务是刻画特征子空间. 
 
-特征向量存在的意味着$V^\lambda$非零，也就是$\ker(f-\lambda\cdot \id)\neq\{0\}$. 因此，根据\Cref{cor:kernel-image-isomorphism}，$f-\lambda\cdot \id$不是满射，因此也不是双射，从而$\det(f-\lambda\cdot \id)=0$. 当选择一组基之后，$\det(f-\lambda\cdot \id)$就可以写成$\det(A-\lambda I_n)$的形式，其中$A$是$f$在这组基下的矩阵. 因此，我们得到了一个关于$\lambda$的方程：
+特征向量存在的意味着$V^\lambda$非零，也就是$\ker(f-\lambda\cdot \id)\neq\{0\}$. 因此，根据\Cref{corollary:kernel-image-isomorphism}，$f-\lambda\cdot \id$不是满射，因此也不是双射，从而$\det(f-\lambda\cdot \id)=0$. 当选择一组基之后，$\det(f-\lambda\cdot \id)$就可以写成$\det(A-\lambda I_n)$的形式，其中$A$是$f$在这组基下的矩阵. 因此，我们得到了一个关于$\lambda$的方程：
 \begin{equation}\label{eq:characteristic-equation}
     \det(A-\lambda I_n)=0.
 \end{equation}
@@ -1091,7 +1091,7 @@ Gram矩阵的基本性质是：
 
 我们需要验证特征多项式对于算子来说是良定义的，也就是不管怎么选取基，得到的特征多项式都是一样的.
 
-\begin{proposition}\label{prop:similar-matrix-same-characteristic-polynomial}
+\begin{proposition}\label{proposition:similar-matrix-same-characteristic-polynomial}
     设$A$是一个$n$阶方阵，$P$是一个可逆方阵，那么$A$与$P^{-1}AP$有相同的特征多项式. 
 \end{proposition}
 \begin{proof}
@@ -1124,16 +1124,16 @@ Gram矩阵的基本性质是：
 我们指出，自伴算子的矩阵在标准正交基下是实对称矩阵，这可以从内积的矩阵表示看出. 假设$A$是$f$在标准正交基下的矩阵，对任意$x,y\in V$，他们的坐标是$X,Y$，那么$\inner{f(x)}{y}=\inner{x}{f(y)}$等价于$(AX)^\t Y=X^\t(AY)$，也就是$X^\t A^\t Y=X^\t AY$. 将$X,Y$取遍所有可能的向量，我们得到$A^\t=A$.
 
 自伴算子的谱可以有一个非常好的刻画：
-\begin{theorem}\label{thm:symmetric-operator-spectrum}
+\begin{theorem}\label{theorem:symmetric-operator-spectrum}
     设$V$是一个$n$维内积空间，$f$是$V$上的一个自伴算子，$\lambda\in\R$. 那么$f$的特征多项式所有根都是实根，因此$\sigma(f)$是一个非空实数集. 此外，
     \[V=\bigoplus_{\lambda\in\sigma(f)}V^\lambda.\]
     因此，存在一组标准正交基，使得$f$在这组基下的矩阵是对角矩阵，这组基就是$f$的特征向量. 此外，对角线上的元素恰好是$f$的特征值，对于$\lambda\in\sigma(f)$，它在对角线上出现的次数就是$\dim V^\lambda$. 
 \end{theorem}
 
-这一证明非常类似\Cref{thm:orthogonal-basis} 和\Cref{thm:quadratic-form-diagonalization} 的证明，我们这里就不再赘述. 
+这一证明非常类似\Cref{theorem:orthogonal-basis} 和\Cref{theorem:quadratic-form-diagonalization} 的证明，我们这里就不再赘述. 
 
 这一定理在矩阵上表述为：
-\begin{corollary}\label{cor:symmetric-matrix-spectrum}
+\begin{corollary}\label{corollary:symmetric-matrix-spectrum}
 对任意实对称矩阵$A$，都存在一个正交矩阵$P$使得$P^{-1}AP=P^\t AP$是对角矩阵，这个对角矩阵的对角线上的元素就是$A$的特征值. 
 \end{corollary}
 
@@ -1148,7 +1148,7 @@ Gram矩阵的基本性质是：
 \label{fig:symmetric-operator}
 \end{figure}
 
-接下来，我们考虑自伴算子的范数与谱的关系. 设$f$是$V$上的一个自伴算子，那么根据\Cref{thm:symmetric-operator-spectrum}，存在一组标准正交基$e_1,\dots,e_n$，使得$f(e_i)=\lambda_i e_i$，$\lambda_i$是特征值（可重复）. 此时$f$对应的矩阵记为$A$，它是一个对角矩阵. 考虑任何一个向量$x\in V$，它的坐标是$X$，那么
+接下来，我们考虑自伴算子的范数与谱的关系. 设$f$是$V$上的一个自伴算子，那么根据\Cref{theorem:symmetric-operator-spectrum}，存在一组标准正交基$e_1,\dots,e_n$，使得$f(e_i)=\lambda_i e_i$，$\lambda_i$是特征值（可重复）. 此时$f$对应的矩阵记为$A$，它是一个对角矩阵. 考虑任何一个向量$x\in V$，它的坐标是$X$，那么
 \[
     \norm{f(x)}^2=\norm{AX}^2=\sum_{i=1}^n\lambda_i^2x_i^2.
 \]
@@ -1162,7 +1162,7 @@ Gram矩阵的基本性质是：
 \]
 从左到右，等号分别在$x=e_n$和$x=e_1$时取到. 因此，我们得到了
 
-\begin{theorem}\label{thm:symmetric-operator-norm}
+\begin{theorem}\label{theorem:symmetric-operator-norm}
     设$V$是一个$n$维内积空间，$f$是$V$上的一个自伴算子，那么
     \[\norm{f}=\max_{\lambda\in\sigma(f)}|\lambda|.\]
     如果最大值在特征值$\lambda_0$取到，其对应单位特征向量是$e_0$，那么

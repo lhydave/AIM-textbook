@@ -134,7 +134,7 @@ Netflix 为比赛公开了一份庞大的数据集，包含超过一亿条匿名
 以上定义需要对所有的（可测）值集$E$都成立，这给验证带来了极大的困难，如果随机算法的输出分布是更加常规的，我们可以简化验证的过程. 
 
 对于离散型的输出，我们有如下等价定义：
-\begin{proposition}\label{prop:discrete-dp}
+\begin{proposition}\label{proposition:discrete-dp}
     如果 $A(x)$对于任意 $x \in \mathcal X^n$ 都是离散型随机变量，那么随机算法$A$是数据集大小为 $n$ 的 $\epsilon$-DP算法当且仅当对于任意一对$1$-相邻数据集$x, x'$和所有的 $y \in \mathcal Y$，有
     \[
     \Pr(A(x) = y) \leq \e^{\epsilon} \cdot \Pr(A(x') = y).
@@ -156,7 +156,7 @@ $\impliedby$：假设$E=\{y_1,\dots,y_k,\dots\}\subseteq\mathcal Y$. 对每一�
 \end{proof}
 
 对连续型的输出，我们有如下等价定义：
-\begin{proposition}\label{prop:continuous-dp}
+\begin{proposition}\label{proposition:continuous-dp}
 如果 $A(x)$对于任意 $x \in \mathcal X^n$ 都是连续型随机变量，那么它存在概率密度函数，记为$h_{x}$. 此时，随机算法$A$是数据集大小为 $n$ 的 $\epsilon$-DP算法当且仅当对于任意一对$1$-相邻数据集$x, x'$和几乎所有的 $y \in \mathcal Y$，有
     \[
     h_{x}(y) \leq \e^{\epsilon} \cdot h_{x'}(y).
@@ -193,7 +193,7 @@ $\impliedby$：依然根据概率密度函数的定义，考虑$x,x'\in\mathcal 
 
 接下来我们给出差分隐私的基本性质. 首先，如果我们对一组数据$x$依次独立使用两个差分隐私算法$A_1$和$A_2$进行处理（允许$A_2$使用$A_1$输出的结果），得到两组数据，那么总体上看，这整个过程还是一个差分隐私算法. 
 
-\begin{proposition}[复合性，两个算法的情形]\label{prop:composition}
+\begin{proposition}[复合性，两个算法的情形]\label{proposition:composition}
     $A_1$ 和 $A_2$ 是相互独立的随机算法，其中 
     \begin{align*}
         A_1&: \mathcal X^n \to \mathcal Y_1,\\
@@ -225,7 +225,7 @@ $\impliedby$：依然根据概率密度函数的定义，考虑$x,x'\in\mathcal 
 
 利用数学归纳法，很容易推广到多个随机算法的复合性：
 
-\begin{proposition}[复合性，多个算法的情形]\label{prop:composition-multi}
+\begin{proposition}[复合性，多个算法的情形]\label{proposition:composition-multi}
     设 $A_1, A_2, \dots , A_k$ 为一列相互独立的随机算法， 
     \begin{align*}
         A_1&: \mathcal X^n \to \mathcal Y_1,\\
@@ -245,13 +245,13 @@ $\impliedby$：依然根据概率密度函数的定义，考虑$x,x'\in\mathcal 
         \[A'(x) = (A_1(x), A_2(A_1(x), x), \dots, A_k(A_{k-1}(\dots A_1(x), \dots), x)).\]
         由归纳假设，$A'$是$\sum_{i=1}^k\epsilon_i$-DP算法.
 
-        由于$A_{k+1}$是$\epsilon_{k+1}$-DP算法，$A'$与$A_{k+1}$的复合算法是$A$，所以利用\Cref{prop:composition}，$A$是$\sum_{i=1}^{k+1}\epsilon_i$-DP算法.
+        由于$A_{k+1}$是$\epsilon_{k+1}$-DP算法，$A'$与$A_{k+1}$的复合算法是$A$，所以利用\Cref{proposition:composition}，$A$是$\sum_{i=1}^{k+1}\epsilon_i$-DP算法.
     \end{itemize}
 \end{proof}
 
 接下来，我们说明差分隐私最关键的性质：一旦被差分隐私算法处理过，无论后续如何处理，都不会影响隐私保护的效果.
 
-\begin{proposition}[后处理]\label{prop:post-processing}
+\begin{proposition}[后处理]\label{proposition:post-processing}
     令 $A : \mathcal X^n \to \mathcal Y$, $B : \mathcal Y \to \mathcal Z$ 为相互独立的随机算法，其中 $\mathcal X$， $\mathcal Y$， $\mathcal Z$ 是任意集合. 如果 $A$ 是 $\epsilon$-DP算法，那么复合算法$ B(A(\cdot))$ 也是 $\epsilon$-DP算法.
 \end{proposition}
 \begin{proof}
@@ -275,7 +275,7 @@ $\impliedby$：依然根据概率密度函数的定义，考虑$x,x'\in\mathcal 
 
 最后，我们讨论如果有多个人的数据都发生变化的时候，隐私保护的性质会发生什么变化. 
 
-\begin{proposition}[群体隐私]\label{prop:group-privacy}
+\begin{proposition}[群体隐私]\label{proposition:group-privacy}
     令 $x, x' \in \mathcal X^n$ 是$k$-相邻数据集，$1 \leq k \leq n$. 如果 $A$ 是 $\epsilon$-DP算法，那么对所有的值集$E$，我们有
     \[
     \Pr(A(x) \in E) \leq \e^{k\epsilon}\Pr(A(x') \in E).
@@ -348,7 +348,7 @@ $\impliedby$：依然根据概率密度函数的定义，考虑$x,x'\in\mathcal 
     =& \frac{\prod_{i=1}^n \Pr(Y_i = y_i  | x_i)}{\prod_{i=1}^n \Pr(Y_i = y_i  | x'_i)} \\
     =& \frac{\Pr(Y_j = y_j  | x_j)}{\Pr(Y_j = y_j  | x'_j)}\leq 2.
     \end{align*}
-由\Cref{prop:discrete-dp}，RR算法是$\log 2$-DP算法.
+由\Cref{proposition:discrete-dp}，RR算法是$\log 2$-DP算法.
 \end{proof}
 
 另一方面，我们真正关心的是$\sum_{i=1}^n x_i$，也就是有多少人作弊. 我们希望RR算法的输出能够很好地估计出这一值，也就是RR算法得到的$\sum_{i=1}^n Y_i$是否能很好的估计出$\sum_{i=1}^n x_i$. 
@@ -431,7 +431,7 @@ Laplace分布是服从双边指数分布的随机变量进行线性变换后服�
 \end{itemize}
 如此，我们就得到了一个随机算法$A_{\mathsf{Lap}}$. 
 
-\begin{theorem}\label{thm:laplace-mechanism}
+\begin{theorem}\label{theorem:laplace-mechanism}
     对于任意的$\epsilon > 0$，$A_{\mathsf{Lap}}$是$\epsilon$-DP算法.
 \end{theorem}
 \begin{proof}
@@ -444,7 +444,7 @@ Laplace分布是服从双边指数分布的随机变量进行线性变换后服�
         &\leq \exp \left(\epsilon \frac{|\mu - \mu'|}{GS_f} \right)\leq \exp(\epsilon).
     \end{aligned}
     \]
-根据\Cref{prop:continuous-dp}，命题得证. 
+根据\Cref{proposition:continuous-dp}，命题得证. 
 \end{proof}
 
 \subsection{DP版本Lloyd算法}
@@ -503,14 +503,14 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\textit{Ll
 \end{itemize}
 
 简单来说，我们对原来Lloyd算法中产生的中间值都是用Laplace机制来加噪声，最终得到的中心也是加了噪声的. 以下定理表明上面的算法确实是一个$\epsilon$-DP算法. 
-\begin{theorem}\label{thm:lloyd}
+\begin{theorem}\label{theorem:lloyd}
     DP 版本的 Lloyd算法是$\epsilon$-DP算法.
 \end{theorem}
 
 \begin{proof}[证明概要]
 我们只在这里陈述证明的大致想法，将细节留到习题 \ref{exercise:lloyd}.
 
-首先，作为一个迭代算法，我们可以把每轮迭代看成一次算法$A_t$的执行，而整个算法是这些算法的复合，整个算法一共有$T$次复合. 由\Cref{prop:composition-multi}，我们只需要证明每一轮迭代是$(\epsilon/T)$-DP算法，那么整个算法就是$\epsilon$-DP算法.
+首先，作为一个迭代算法，我们可以把每轮迭代看成一次算法$A_t$的执行，而整个算法是这些算法的复合，整个算法一共有$T$次复合. 由\Cref{proposition:composition-multi}，我们只需要证明每一轮迭代是$(\epsilon/T)$-DP算法，那么整个算法就是$\epsilon$-DP算法.
 
 进一步，考虑证明每一个$A_t$是$(\epsilon/T)$-DP算法. 每一个$A_t$内部都是$k$个独立的Laplace机制，实际上是一个输入为$n_j,a_j$，输出为$\hat{n}_j$，$\hat{a}_j$的算法. 所以，只需要证明：每一个独立Laplace机制确实是$(\epsilon/T)$-DP，然后再证明这些独立的Laplace机制总和的效果依然是$(\epsilon/T)$-DP，我们就可以证明整个命题.
 \end{proof}
@@ -535,7 +535,7 @@ $k$-均值问题最常见的解决方法是使用迭代的启发式的\textit{Ll
 
     \item \label{exercise:gs-multidimensional} 设输出为$d$维的算法$f( x) = (\sum_{i=1}^n \Phi_1( x_i), \dots, \sum_{i=1}^n \Phi_d( x_i))$， $x_i\in\mathcal X$，满足$\Phi_j(\mathcal X)=\{0, 1\}$以及$\sum_{j=1}^d \Phi_j( x_i) = 1$. 请计算$\text{GS}_f$. 
 
-    \item \label{exercise:lloyd} 证明\Cref{thm:lloyd}.
+    \item \label{exercise:lloyd} 证明\Cref{theorem:lloyd}.
     \begin{hint}
         利用第 \ref{exercise:laplace-mechanism-multidimensional} 题和第 \ref{exercise:gs-multidimensional} 题的结果.
     \end{hint}

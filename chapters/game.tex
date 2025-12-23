@@ -135,7 +135,7 @@
 
 什么博弈是被决定的？这一问题的答案由Zermelo定理给出.
 
-\begin{theorem}[Zermelo定理]\label{thm:zermelo}
+\begin{theorem}[Zermelo定理]\label{theorem:zermelo}
 如果博弈是双人的、有限深的、确定的、完全信息的、输赢的，那么这个博弈是被决定的.
 \end{theorem}
 以上限定词缺一不可，缺少了任何一个都导致结论不成立，见习题 \ref{exercise:zermelo-fail}.
@@ -167,7 +167,7 @@
 \end{proof}
 
 如果博弈的结局还有平局，我们有如下Zermelo定理：
-\begin{theorem}[有平局的Zermelo定理]\label{thm:zermelo-draw}
+\begin{theorem}[有平局的Zermelo定理]\label{theorem:zermelo-draw}
 如果一个博弈是双人的、有限深的、确定的、完全信息的，博弈的结果有输赢平局三种，那么下面三条有且仅有一条成立：
 \begin{itemize}
     \item 第一个玩家有必胜策略.
@@ -290,7 +290,7 @@ MCTS的过程较为复杂，我们单独介绍. 树的组成如下：搜索节�
 
 下面，我们看两个典型的例子. 
 
-\begin{example}[囚徒困境]\label{ex:prisoner}
+\begin{example}[囚徒困境]\label{example:prisoner}
 在囚徒困境中，一共有两个玩家，行玩家和列玩家. 玩家的第一个选择是保持沉默，第二个选择是认罪并检举对方. 它有如下收益矩阵：
 \[
 \begin{pmatrix}
@@ -303,7 +303,7 @@ MCTS的过程较为复杂，我们单独介绍. 树的组成如下：搜索节�
 在这个例子中，博弈的属性非常鲜明：每个人的收益不仅仅取决于自己的选择，还取决于对方的选择. 因此，玩家在做决策时，必须要考虑对方玩家可能会如何行动. 
 \end{example}
 
-\begin{example}[猜硬币游戏]\label{ex:matching-pennies}
+\begin{example}[猜硬币游戏]\label{example:matching-pennies}
 在猜硬币游戏中，行列玩家分别有一枚硬币，他们秘密地抛掷. 如果两个玩家的硬币上面相同，行玩家获胜；否则列玩家获胜. 收益矩阵为：
     \[
     \begin{pmatrix}
@@ -364,7 +364,7 @@ s=(s_i)_{i\in I}.
 
 作为一个例子，我们继续考虑囚徒困境.
 \begin{example}[囚徒困境的纯策略Nash均衡]
-回忆\Cref{ex:prisoner}，它有如下收益矩阵：
+回忆\Cref{example:prisoner}，它有如下收益矩阵：
 \[
 \begin{pmatrix}
 -1,-1&-10,0\\
@@ -388,7 +388,7 @@ s=(s_i)_{i\in I}.
 我们现在验证，这个博弈没有纯策略Nash均衡. 如果行玩家选择第一行，那么列玩家的最优反应是第二列，然而，此时行玩家的最优反应是第二行；而行玩家选择第二行的情况类似. 因此，无论如何选，最优反应都不可能形成一个不动点（即均衡）.
 
 更一般地，二人正则形式输赢博弈中纯策略Nash均衡往往不存在. 我们有如下定理：
-\begin{theorem}\label{thm:zero-sum-pure-NE}
+\begin{theorem}\label{theorem:zero-sum-pure-NE}
 设$G=(I,\{A_i\}_{i\in I}, \{u_i\}_{i\in I})$是一个二人正则形式输赢博弈，其中$I=\{1,2\}$. 那么，$G$存在纯策略Nash均衡当且仅当其中一个玩家存在必胜策略. % HW：证明这个定理的矩阵博弈形式
 \end{theorem}
 证明见习题 \ref{exercise:zero-sum-pure-NE}.
@@ -487,7 +487,7 @@ $D$最大化$V$，$G$最小化$V$.
 \end{definition}
 
 同样，Nash均衡也可以理解为最优反应的不动点. 利用这一观点，Nash得以使用不动点定理（见习题\ref{exercise:proof-Nash-existence}）证明了Nash均衡的存在性：
-\begin{theorem}[Nash均衡存在性定理，\cite{nashEquilibriumPointsNperson1950,nashNonCooperativeGames1951}]\label{thm:Nash-existence}
+\begin{theorem}[Nash均衡存在性定理，\cite{nashEquilibriumPointsNperson1950,nashNonCooperativeGames1951}]\label{theorem:Nash-existence}
 任意有限正则形式博弈都存在一个Nash均衡.
 \end{theorem}
 
@@ -547,7 +547,7 @@ $D$最大化$V$，$G$最小化$V$.
 
 在上面的例子中，我们实际上得到了一个非常重要的结论：Nash均衡具有\textit{无差别原理}，它说明，Nash均衡中出现的那些行动一定都是取到了最大收益的行动. 这一原理可以被用来求解任意二人博弈的Nash均衡. 这一原理的证明和应用见习题 \ref{exercise:indifference-principle}. 
 
-\begin{theorem}[无差别原理]\label{thm:indifference-principle}
+\begin{theorem}[无差别原理]\label{theorem:indifference-principle}
 考虑正则形式博弈$G=(I,\{A_i\}_{i\in I},\{u_i\}_{i\in I})$，其中$I$是玩家集合，$A_i$是玩家$i$的行动空间，$u_i$是玩家$i$的收益函数. 如果$\sigma^*$是一个Nash均衡，那么对于任意玩家$i$和任意$a_i,a_i'$满足
 \[\sigma^*_i(a_i)>0,\quad \sigma^*_i(a_i')>0,\]
 有
@@ -688,7 +688,7 @@ MDP的目标是找到一个策略 $\pi$，使得在该策略下可以获得最�
 
 与MDP类似，价值函数也满足Bellman方程：
 
-\begin{theorem}[Bellman方程]\label{thm:stochastic-game-bellman}
+\begin{theorem}[Bellman方程]\label{theorem:stochastic-game-bellman}
         \[V_i^{\boldsymbol \pi}(s) = Q_i(\boldsymbol \pi(s);s) + \gamma \sum_{s'\in \calS} \calP^{\boldsymbol\pi}(s'|s)V_i^{\boldsymbol \pi}(s').\]
 \end{theorem}
 证明见习题 \ref{exercise:stochastic-game-bellman}.
@@ -709,11 +709,11 @@ MDP的目标是找到一个策略 $\pi$，使得在该策略下可以获得最�
 
 同样，MPE也可以被看作是最优反应的不动点. 类似Nash均衡的存在性定理，我们有如下的定理：
 
-\begin{theorem}[MPE存在性定理]\label{thm:MPE-existence}
+\begin{theorem}[MPE存在性定理]\label{theorem:MPE-existence}
 对于$N$个玩家、有限状态、有限动作空间的随机博弈，MPE存在.
 \end{theorem}
 
-下面我们介绍Shapley~\cite{shapleyStochasticGames1953} 关于双人零和随机博弈情形的证明，这一证明基于Banach不动点定理（\Cref{thm:banach-fixed-point}），非常类似MDP最优解存在性的证明（见\Cref{chap:fixed-point-theory}的习题 \ref{exercise:MDP-fixed-point}），但多了一些零和博弈的性质. 对于一般的情况，可以类似Nash均衡存在性，利用Brouwer不动点定理证明，见习题 \ref{exercise:proof-MPE-existence}.
+下面我们介绍Shapley~\cite{shapleyStochasticGames1953} 关于双人零和随机博弈情形的证明，这一证明基于Banach不动点定理（\Cref{theorem:banach-fixed-point}），非常类似MDP最优解存在性的证明（见\Cref{chap:fixed-point-theory}的习题 \ref{exercise:MDP-fixed-point}），但多了一些零和博弈的性质. 对于一般的情况，可以类似Nash均衡存在性，利用Brouwer不动点定理证明，见习题 \ref{exercise:proof-MPE-existence}.
 
 在双人零和的语境下，我们去掉收益函数$Q$的下标$i$，玩家$2$的收益函数是$-Q$. 注意，价值函数满足Bellman方程：
     \[V^{\boldsymbol \pi}(s) = Q(\boldsymbol \pi(s);s) + \gamma \sum_{s'\in \calS} \calP^{\boldsymbol\pi}(s'|s)V^{\boldsymbol \pi}(s').\]
@@ -836,7 +836,7 @@ Bellman方程的左右是同一个$V^{\boldsymbol \pi^*}$，此时是不动点�
         \item 写出一个不完全信息但其他条件没有被破坏的博弈，要求是一颗博弈树.
     \end{enumerate}
 
-    \item \label{exercise:zermelo-draw} 证明\Cref{thm:zermelo-draw}.
+    \item \label{exercise:zermelo-draw} 证明\Cref{theorem:zermelo-draw}.
 
     \item \label{exercise:gomoku} 在充分大（但有限）的棋盘上进行五子棋，黑方先手，白方后手，对落子没有限制，只要有空格就可以落子，首先下出连续五个同色子的玩家获胜（横向、纵向或者两个斜对角线向都可以），如果棋盘被下满还没有人获胜，则双方平局. 证明：黑方有不败策略，即黑方有一种策略，不论对手如何行动，都使得要么黑方获胜要么平局.
     
@@ -857,10 +857,10 @@ Bellman方程的左右是同一个$V^{\boldsymbol \pi^*}$，此时是不动点�
     \item \label{exercise:zero-sum-pure-NE} 设$G=(I,\{A_i\}_{i\in I}, \{u_i\}_{i\in I})$是一个二人正则输赢博弈，其中$I=\{1,2\}$，$A_i$是有限集合，$u_i(\cdot)\in\{0,1\}$，$u_1+u_2=1$.
     \begin{enumerate}
         \item 写出玩家$i$存在必胜策略的定义.
-        \item 证明：$G$存在纯策略Nash均衡当且仅当其中一个玩家存在必胜策略，从而证明\Cref{thm:zero-sum-pure-NE}.
+        \item 证明：$G$存在纯策略Nash均衡当且仅当其中一个玩家存在必胜策略，从而证明\Cref{theorem:zero-sum-pure-NE}.
     \end{enumerate}
 
-    \item \label{exercise:proof-Nash-existence} 使用Brouwer不动点定理证明\Cref{thm:Nash-existence}.
+    \item \label{exercise:proof-Nash-existence} 使用Brouwer不动点定理证明\Cref{theorem:Nash-existence}.
         \begin{hint}
         考虑混合策略空间$S$上的函数$f(\sigma) = \sigma'$的不动点，其中
         \[\sigma'_i(a_i) = \frac{\sigma_i(a_i) + \phi_{i,a_i}(\sigma)}{1+\sum_{b_i\in A_i}\phi_{i,b_i}(\sigma)},\]
@@ -874,14 +874,14 @@ Bellman方程的左右是同一个$V^{\boldsymbol \pi^*}$，此时是不动点�
 
     \item \label{exercise:indifference-principle} 本题讨论无差别原理. 
     \begin{enumerate}
-        \item 证明\Cref{thm:indifference-principle}.
+        \item 证明\Cref{theorem:indifference-principle}.
         \item 对有限行动空间的二人正则形式博弈，利用无差别原理给出一个求解\textit{所有}Nash均衡的算法. 
         \item 分析这一算法的时间复杂度.
     \end{enumerate}
 
     \item \label{exercise:state-sequence-Markov} 考虑一个随机博弈，有$N$个玩家，状态集合为$\calS$，玩家$i$的行动空间为$\mathcal A_i$，收益函数为$Q_i(\boldsymbol a;s)$，转移概率为$\calP(s'|s,\boldsymbol a)$. 假设玩家采用平稳策略$\boldsymbol \pi$，$s^0,s^1,\dots$是一个随机博弈的状态序列，证明：$\{s^t\}_{t=0}^{\infty}$是一个时齐Markov链. 
     
-    \item \label{exercise:stochastic-game-bellman} 证明\Cref{thm:stochastic-game-bellman}.
+    \item \label{exercise:stochastic-game-bellman} 证明\Cref{theorem:stochastic-game-bellman}.
     
-    \item *\label{exercise:proof-MPE-existence} （\cite{dengComplexityComputingMarkov2023}）仿照习题 \ref{exercise:proof-Nash-existence}，使用Brouwer不动点定理证明\Cref{thm:MPE-existence}.
+    \item *\label{exercise:proof-MPE-existence} （\cite{dengComplexityComputingMarkov2023}）仿照习题 \ref{exercise:proof-Nash-existence}，使用Brouwer不动点定理证明\Cref{theorem:MPE-existence}.
 \end{enumerate}

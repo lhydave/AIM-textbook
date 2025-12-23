@@ -32,7 +32,7 @@
 我们给出的定义是简化的Markov链，每个时刻之间的转移都是一样的转移矩阵，这样的Markov链被称为\textit{时齐的}. 有时候也会考虑非时齐的Markov链（例如扩散模型），即每个时刻之间的转移矩阵不一样，这样的Markov链被称为\textit{非时齐的}，此时$t$时刻的转移矩阵是$\calP(t)$，定义中Markov性的转移概率是$p_{kj}(t)$.
 
 Markov链是一种简化的带时间的概率模型，它最重要的性质是Markov性，即在固定现在的情况下，过去与未来相互独立. 这一性质的数学表述为：
-\begin{proposition}[Markov性]\label{prop:markov}
+\begin{proposition}[Markov性]\label{proposition:markov}
 给定Markov链$\{X_t\}_{t=0}^{\infty}$，转移矩阵为$\calP$，定义$Y_m=X_{n+m}$，$m\geq 0$，那么，条件在$X_n=i$下，$\{Y_m\}_{m=0}^{\infty}$是一个转移矩阵为$\calP$的Markov链，并且与$(X_0,\dots,X_{n-1})$相互独立.
 \end{proposition}
 证明见习题 \ref{exercise:Markov-property}.
@@ -44,7 +44,7 @@ Markov链是一种简化的带时间的概率模型，它最重要的性质是Ma
 \end{proposition}
 
 我们来看一个Markov链的例子. 
-\begin{example}[赌徒模型]\label{ex:gambling}
+\begin{example}[赌徒模型]\label{example:gambling}
     考虑公平对赌. 玩家$A$和$B$抛硬币来赌钱，$A$赌正面，$B$赌反面. 每一轮独立地抛硬币，正面朝上的概率和反面朝上的概率相等，都是$1/2$. 赢的一方给输的一方一块钱. $A$输$a$块钱破产，$B$输$b$块钱破产，$Z_i$是第$i$轮$A$的收入. $Z_0=X_0=0$是$A$初始的收入. $X_n=Z_0+\dots+Z_n$是$A$的累计收入. 那么，$\{X_n\}_{n\geq 0}$是一个Markov链.
     \begin{itemize}
         \item 状态空间：$\calS=\{-a,-a+1,\dots,0,1,\dots,b\}$，为$A$的累计收入可能取值.
@@ -84,13 +84,13 @@ Markov链是一种简化的带时间的概率模型，它最重要的性质是Ma
 Pólya的坛子还有一种有趣的解读：如果我们把人生的每一次选择都看成放球，我们经常会基于现在看到的东西（看到的黑球还是白球）投资自己的人生（放一个黑球还是白球），这样的结果是我们的人生会多姿多彩，百花齐放. 
 \end{example}
 
-我们回到赌徒模型（\Cref{ex:gambling}）. $A$的累计收入$\{X_n\}_{n\geq 0}$形成了Markov链. 根据Markov性，未来双方的收入变化只取决于现在，而和过去运气无关. 与之相关的一个现象是赌徒谬误，即认为过去的运气会影响未来的运气. 例如，如果一个人连续输了很多次，那么他会认为自己未来运气会变好，赢的概率更大. 但是，根据Markov性，过去的运气不会影响未来的运气，因此这种想法是错误的.“风水轮流转”在一场公平对赌中是不正确的认知. 那么，如何评估赌局的公平性？
+我们回到赌徒模型（\Cref{example:gambling}）. $A$的累计收入$\{X_n\}_{n\geq 0}$形成了Markov链. 根据Markov性，未来双方的收入变化只取决于现在，而和过去运气无关. 与之相关的一个现象是赌徒谬误，即认为过去的运气会影响未来的运气. 例如，如果一个人连续输了很多次，那么他会认为自己未来运气会变好，赢的概率更大. 但是，根据Markov性，过去的运气不会影响未来的运气，因此这种想法是错误的.“风水轮流转”在一场公平对赌中是不正确的认知. 那么，如何评估赌局的公平性？
 
 如果对赌是公平的，那么我们应该认为两个人每一轮的累计收入分布都是一样的，即
     \[\Pr(X_n=i|X_0=0)=\Pr(X_n=-i|X_0=0).\]
 因此，我们需要能够计算多步转移的概率. 设$p_{ij}^{(k)}$表示从状态$i$用$k$步转移到状态$j$的概率. $k$步转移概率形成了一个矩阵$\calP^{(k)}$. 下面的定理给出了计算\textit{多步转移概率}的方法.
 
-\begin{theorem}[Kolmogorov-Chapman方程]\label{thm:kolmogorov-chapman}
+\begin{theorem}[Kolmogorov-Chapman方程]\label{theorem:kolmogorov-chapman}
     $\calP^{(k+l)}=\calP^{(k)}\calP^{(l)}$.
 \end{theorem}
 
@@ -126,7 +126,7 @@ Kolmogorov-Chapman方程有两个重要的特例，前向方程：
 \end{figure}
 
 此外，利用归纳法，我们还有如下推论：
-\begin{corollary}\label{cor:kolmogorov-chapman}
+\begin{corollary}\label{corollary:kolmogorov-chapman}
     $\calP^{(k)}=\calP^k$.    
 \end{corollary}
 
@@ -158,7 +158,7 @@ Kolmogorov-Chapman方程有两个重要的特例，前向方程：
 
 我们再考虑一个例子. 一个四元环$\Z_4=\{0,1,2,3\}$上的Markov链$X_k$，转移矩阵为$p(i,i+1)=p(i,i-1)=1/2$，这里的表达式将$-1$和$4$等同，$4$和$0$等同. 如果初始分布集中在$0$上，那么我们会发现以概率$1$有$X_{2k}\in\{0,2\}$，$X_{2k+1}\in\{1,3\}$. 这种情况下，最终不会趋于一个稳定的分布！如果初始分布等概率地分布在$\{0,1\}$上，最终会趋于一个$\Z_4$上的均匀分布. 因此，并不是所有Markov链都具有这样的性质. 然而， 对于相当广泛的一类Markov链，这一结论成立，这就是\textit{遍历定理}.
 
-\begin{theorem}[遍历定理]\label{thm:ergodic-theorem}
+\begin{theorem}[遍历定理]\label{theorem:ergodic-theorem}
     设Markov链的状态空间为$\calS=\{1,\dots,N\}$，转移矩阵为$\calP=(p_{ij})$. 如果存在某个$n_0$，使得
     \begin{equation}
         \min_{ij}p_{ij}^{(n_0)}>0,\label{eq:reachable}
@@ -236,7 +236,7 @@ M_j^{\left(n_0+n\right)} - m_j^{\left(n_0+n\right)} &\leq \left(M_j^{(n)} - m_j^
 \end{align*}
 因此，$M_j^{(n)} - m_j^{(n)}$以指数速度收敛于$0$.
 
-由于 $m_j^{(n)}$有界且单调递增，因此存在极限 $\lambda_j = \lim _n m_j^{(n)}$（\Cref{prop:monotone-bounded}），这也是$M_j^{(n)}$的极限. 进一步，我们有
+由于 $m_j^{(n)}$有界且单调递增，因此存在极限 $\lambda_j = \lim _n m_j^{(n)}$（\Cref{proposition:monotone-bounded}），这也是$M_j^{(n)}$的极限. 进一步，我们有
 \[
     \left|p_{i j}^{(n)} - \lambda_j\right| \leq M_j^{(n)} - m_j^{(n)} \leq (1-\varepsilon)^{\left[n / n_0\right] - 1},
 \]
@@ -268,12 +268,12 @@ p_{i j}^{(n)} \geq \lambda_j - \varepsilon > 0, n \geq n_0.
 \end{proof}
 
 满足条件 \eqref{eq:stationary} 的分布被称为\textit{平稳分布}. 用性质$\lambda^\t \calP = \lambda^\t$很容易说明，平稳分布为初始状态时，Markov链的演化与时间无关：
-\begin{proposition}\label{prop:stationary-distribution}
+\begin{proposition}\label{proposition:stationary-distribution}
 设$\{X_n\}$是Markov链，如果$X_0$是平稳分布，那么随机变量列$(X_k,\dots,X_{k+l})$的联合分布不依赖于$k$.
 \end{proposition}
 
 如果Markov链是遍历的，那么平稳分布是唯一的：
-\begin{proposition}\label{prop:unique-stationary-distribution}
+\begin{proposition}\label{proposition:unique-stationary-distribution}
 设$\{X_n\}$是遍历的Markov链，那么它有唯一平稳分布$\lambda$. 
 \end{proposition}
     \begin{proof}
@@ -294,7 +294,7 @@ p_{i j}^{(n)} \geq \lambda_j - \varepsilon > 0, n \geq n_0.
 
 总结上面的观察，我们可以在Markov链上引入类似的价值系统，这就是Markov奖励过程（MRP）. 在进入正式定义之前，我们先来看一个例子.
 
-\begin{example}[李二的MRP]\label{ex:lier-MRP}
+\begin{example}[李二的MRP]\label{example:lier-MRP}
 在一个学期中，学生李二可能处于几种状态：在教室1中、刷手机、在教室2中、约会、睡觉、考试通过、考试挂科. 
 
 学生在不同的状态下会有不同的奖励，例如，李二总是进入教室1逼迫自己学习，因为不情愿，所以奖励是$-2$；但如果他被某个姑娘邀请去约会，他会很激动，所以奖励是$+5$. 
@@ -375,7 +375,7 @@ v(s) &= \E[G_t|S_t=s] \\
     &=\E[v(S_{t+1})|S_t=s].
 \end{align*}
 我们因此得到了\textbf{Bellman方程}~\cite{bellmanTheoryDynamicProgramming1952}：
-\begin{theorem}[Bellman方程]\label{thm:MRP-Bellman}
+\begin{theorem}[Bellman方程]\label{theorem:MRP-Bellman}
     $v(s)=\mathcal R_s + \gamma \sum_{s'\in \calS}\calP_{s,s'}v(s')$.
 \end{theorem}
 
@@ -397,7 +397,7 @@ Bellman方程可以用矩阵形式表达：
 
 \section{Markov决策过程（MDP）}\label{sec:MDP}
 
-上一节中我们建模了Markov链上的价值系统，即MRP，接下来我们进入建模决策的环节. 回顾李二的例子（\Cref{ex:lier-MRP}），我们在MRP中忽略了一个非常重要的考虑：当李二坐在教室1中的时候，李二不是随机地开始刷手机的，他需要\textit{选择}开始刷手机. 换言之，在MRP中，在当前状态可以做什么\textit{行动}是缺失的. 
+上一节中我们建模了Markov链上的价值系统，即MRP，接下来我们进入建模决策的环节. 回顾李二的例子（\Cref{example:lier-MRP}），我们在MRP中忽略了一个非常重要的考虑：当李二坐在教室1中的时候，李二不是随机地开始刷手机的，他需要\textit{选择}开始刷手机. 换言之，在MRP中，在当前状态可以做什么\textit{行动}是缺失的. 
 
 此外，李二的奖励其实不是由状态决定的，而是由他做了什么行动决定的，这样，李二才能评估做什么行动可以最大化自己的奖励，然后选择奖励高的那个行动. 实际上，认知神经科学的研究表明，人体的运动控制就是由类似的机制完成的：首先，大脑皮层会提出若干不同的运动计划，这些运动计划对应了不同的奖励（由多巴胺浓度来表征），人脑中有一个被称作基底神经节的结构，它负责“放行”奖励高于某个阈值的运动计划，于是人就可以产生这个动作了~\cite{cisekCorticalMechanismsAction2007,delongPrimateModelsMovement1990}.
 
@@ -450,7 +450,7 @@ MDP与MRP的关系由策略给出.
 对行动利用全概率公式. 
 \end{proof}
 
-现在我们有三个概念，MDP， MRP，以及Markov链，\Cref{prop:state-action-value} 给了他们三者的关系，我们可以总结到\Cref{fig:MDP-MRP-MarkovChain}. 
+现在我们有三个概念，MDP， MRP，以及Markov链，\Cref{proposition:state-action-value} 给了他们三者的关系，我们可以总结到\Cref{fig:MDP-MRP-MarkovChain}. 
 
 \begin{figure}[ht]
 \centering
@@ -478,7 +478,7 @@ MDP与MRP的关系由策略给出.
 
 行动-价值函数比起状态-价值函数更加具体，它可以帮助李二评判在当前选择每一个行动的回报，从而选择最优的行动. 而状态-价值函数则是对行动-价值函数的一个期望，因而是李二预期他从这个状态出发的回报. 具体来说，这两个价值函数有如下关系：
 
-\begin{proposition}\label{prop:state-action-value}
+\begin{proposition}\label{proposition:state-action-value}
 状态-价值函数$v_\pi(s)$和行动-价值函数$q_\pi(s,a)$之间有如下关系：
     \[v_\pi(s) = \E_{a\sim\pi(\cdot|s)}[q_\pi(s,a)]=\sum_{a\in\mathcal A}\pi(a|s)q_\pi(s,a),\]
     \[q_\pi(s,a) =\mathcal R_s^a + \gamma \sum_{s'\in \calS}\calP_{s,s'}^a v_\pi(s').\]
@@ -497,9 +497,9 @@ MDP与MRP的关系由策略给出.
 \[q_\pi(s,a) = \E_\pi[\contrastlight{R_{t+1}} + \light{\gamma q_\pi(S_{t+1},A_{t+1})}|S_t=s,A_t=a].\]
 \end{itemize}
 
-他们的计算方法和\Cref{thm:MRP-Bellman} 中的方法类似. 继续仿照\Cref{thm:MRP-Bellman} 的证明，我们可以得到MDP的Bellman方程（见习题 \ref{exercise:MDP-Bellman}）.
+他们的计算方法和\Cref{theorem:MRP-Bellman} 中的方法类似. 继续仿照\Cref{theorem:MRP-Bellman} 的证明，我们可以得到MDP的Bellman方程（见习题 \ref{exercise:MDP-Bellman}）.
 
-\begin{theorem}[Bellman方程]\label{thm:MDP-Bellman}
+\begin{theorem}[Bellman方程]\label{theorem:MDP-Bellman}
 \[v_\pi(s) = \sum_{a\in \mathcal A}\pi(a|s)\left(\mathcal R_s^a + \gamma \sum_{s'\in \calS}\calP_{s,s'}^av_\pi(s')\right),\]
 \[q_\pi(s,a) = \mathcal R_s^a + \gamma \sum_{s'\in \calS}\calP_{s,s'}^a \sum_{a'\in \mathcal A}\pi(a'|s')q_\pi(s',a').\]
 \end{theorem}
@@ -522,7 +522,7 @@ MDP与MRP的关系由策略给出.
 在以上定义中可能会遇到这样的问题：对两个状态$s_1$和$s_2$，存在两个不同的策略$\pi_1$和$\pi_2$，使得$v_\star(s_1)=v_{\pi_1}(s_1)$，$v_\star(s_2)=v_{\pi_2}(s_2)$. 此时，每个状态取到最大价值的策略$\pi$可能并不是同一个，因此$v_\star$并不是某个特定策略可以实现的值. 所以，我们需要证明，存在一个策略$\pi_\star$，$\pi_\star$都取得最大价值函数. 
 
 我们有如下定理，说明了这样策略的存在性，因而也证明了MDP解的存在性. 
-\begin{theorem}[MDP解的存在性]\label{thm:MDP-existence}
+\begin{theorem}[MDP解的存在性]\label{theorem:MDP-existence}
 对任意MDP，存在一个策略$\pi_\star$，
 \begin{itemize}
     \item 对任意状态$s$，$v_{\pi_\star}(s) = v_\star(s)$.
@@ -553,17 +553,17 @@ MDP与MRP的关系由策略给出.
 \end{corollary}
 
 两个最优价值函数之间有如下关系：
-\begin{proposition}\label{prop:state-action-value-optimal}
+\begin{proposition}\label{proposition:state-action-value-optimal}
 以下等式成立：
 \[v_\star(s) = \max_a q_\star(s,a),\]
 \[q_\star(s,a) = \mathcal R_s^a + \gamma \sum_{s'\in \calS}\calP_{s,s'}^av_\star(s').\]
 \end{proposition}
 \begin{proof}
-    在\Cref{thm:MDP-existence} 的证明中，我们将$\pi$取为$\pi_\star$，于是有
+    在\Cref{theorem:MDP-existence} 的证明中，我们将$\pi$取为$\pi_\star$，于是有
     \[v_\star(s) = v_{\pi_\star}(s) = q_{\star}(s,a_\star) = \max_a q_\star(s,a).\]
-    对于第二个等式，根据\Cref{thm:MDP-existence}，
+    对于第二个等式，根据\Cref{theorem:MDP-existence}，
     \[v_\star(s) = v_{\pi_\star}(s),\quad q_\star(s,a) = q_{\pi_\star}(s,a),\]
-    在\Cref{prop:state-action-value} 取$\pi=\pi_\star$即可得到.
+    在\Cref{proposition:state-action-value} 取$\pi=\pi_\star$即可得到.
 \end{proof}
 
 根据上面结论，如果我们知道$q_\star(s,a)$或者$v_\star(s)$，我们就能获得最优策略. 这一计算同样依赖Bellman方程\footnote{在文献中，这一Bellman方程被称为Bellman\textit{最优性}方程，而之前推导的Bellman方程被称为Bellman\textit{期望}方程. 为了不过度引入术语，我们这里不做这种区分. }：
@@ -573,9 +573,9 @@ MDP与MRP的关系由策略给出.
 \[q_\star(s,a) = \mathcal R_s^a+\gamma \sum_{s'\in \calS}\calP_{s,s'}^a\max_{a'}q_\star(s',a').\]
 \end{theorem}
 \begin{proof}
-    对于第一个方程，将\Cref{prop:state-action-value-optimal} 中第二个等式代入第一个等式即可得到. 
+    对于第一个方程，将\Cref{proposition:state-action-value-optimal} 中第二个等式代入第一个等式即可得到. 
 
-    对于第二个方程，将\Cref{prop:state-action-value-optimal} 中第一个等式代入第二个等式即可得到. 
+    对于第二个方程，将\Cref{proposition:state-action-value-optimal} 中第一个等式代入第二个等式即可得到. 
 \end{proof}
 
 同样，Bellman方程也可以被理解为不动点方程. 利用这一事实，我们可以用Banach不动点定理证明MDP解的存在性，见\Cref{chap:fixed-point-theory}的习题 \ref{exercise:MDP-fixed-point}.
@@ -622,7 +622,7 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
 \end{figure}    
 
 为了理解这一概念，我们可以考虑炒股的例子. 
-\begin{example}[美为HMM]\label{ex:meiwei-HMM}
+\begin{example}[美为HMM]\label{example:meiwei-HMM}
 假设我们要投资美为的股票，第$t$天的股票价格是$X_t$. 我们很希望理解整个$X_t$的变化趋势. 然而，美为股价的背后有一个神秘势力操控. 我们并不清楚这个神秘势力每天决策的具体细节，只知道他们的决策非常健忘，即他们的决策只依赖于前一天的决策. 他们会决定一个明天的预计股价$Z_t$，这构成了一个Markov链$\{Z_t\}$. 
 
 因为市场和汇率的波动，这个神秘势力无法完全决定股票的价格$X_t$，然而，他们每一天所决定的预期价格$Z_t$会导致股票价格的变化，我们可以认为$X_t$仅依赖于$Z_t$，但依然受到一些随机因素的影响. 作为简化，我们假设每天的随机影响是独立且一致的，服从分布$F(Z_t)$. 这样的得到的模型就是一个HMM.
@@ -666,7 +666,7 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
 
 以上的量都是已知的，所以我们已经可以计算评估问题了. 然而，这一方法的需要计算的乘法次数是$\O(t|\mathcal Z|^t)$，对于很大的$t$和$\mathcal Z$，这是不可接受的计算量. 我们需要更好的计算方法.
 
-接下来，我们采用前向方程（见\Cref{thm:kolmogorov-chapman}）的思路，从前$k$步的结果推出前$k+1$步的结果，然后据此列出递推方程. 在第$k+1$步，Markov链的状态发生了转移，按照从哪个状态转移到了哪个状态，我们可以拆分概率：
+接下来，我们采用前向方程（见\Cref{theorem:kolmogorov-chapman}）的思路，从前$k$步的结果推出前$k+1$步的结果，然后据此列出递推方程. 在第$k+1$步，Markov链的状态发生了转移，按照从哪个状态转移到了哪个状态，我们可以拆分概率：
 \begin{align*}
 &\Pr(X_{1:k+1}=x_{1:k+1}) \\
     = &\sum_{z'\in \mathcal Z}\Pr(X_{1:k}=x_{1:k}, Z_k=z')\Pr(X_{k+1}=x_{k+1}|Z_k=z')\\
@@ -720,7 +720,7 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
 \end{equation}
 同样，我们已经知道如何计算$\alpha_k(s)$和$\beta_k(s)$，所以这就可以用来计算平滑了.
 
-之后是预测：$\Pr(Z_k = s|X=x)$，$k > t$. 首先用过滤计算 $\lambda=\Pr(Z_t = s|X=x)$. 从$t$之后的隐状态都只依赖于$t$时刻的隐状态$Z_t$，因此，条件在$X=x$下，$Z_t,Z_{t+1},\dots,Z_k$构成了一个Markov链，它的初始分布为$\lambda$，转移矩阵为$T$. 于是我们利用\Cref{thm:kolmogorov-chapman} 来计算该Markov链第$k-t$步的分布.
+之后是预测：$\Pr(Z_k = s|X=x)$，$k > t$. 首先用过滤计算 $\lambda=\Pr(Z_t = s|X=x)$. 从$t$之后的隐状态都只依赖于$t$时刻的隐状态$Z_t$，因此，条件在$X=x$下，$Z_t,Z_{t+1},\dots,Z_k$构成了一个Markov链，它的初始分布为$\lambda$，转移矩阵为$T$. 于是我们利用\Cref{theorem:kolmogorov-chapman} 来计算该Markov链第$k-t$步的分布.
 
 最后是解码：求$z=(z_1,z_2,\dots,z_t)$，使得$\Pr(Z=z|X=x)$最大. 注意，这一概率最大等价于$\Pr(Z=z,X=x)$最大. 我们也使用递归的想法来解决这个问题. 同样，在前$k-1$个状态已经选好之后，考虑最后一个状态应该选哪个. 具体来说，定义
     \[\delta_k(s) = \max_{z_{1:k-1}}\Pr(Z_{1:k} = (z_{1:k-1}, s), X_{1:k}=x_{1:k}).\]
@@ -759,7 +759,7 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
 本节我们讨论基于Markov链的另一种模型，即扩散模型. 不同于之前的模型，扩散模型的启发来自物理学. 滴一滴墨水到水中，最后墨会均匀地在水中分布，这一过程不会反过来，即墨水不会自动聚集到一起. 同样的现象在热力学中也有体现：如果把金属勺子的一端放在热水中，热量会从热水中通过勺子传导到勺子的另一端，最终整个勺子会均匀地变热，而不会反过来. 这些现象都是\textit{扩散过程}. 本节的主要任务就是为这一过程建立数学模型，并讨论它的应用. 
 
 我们先看墨水的例子. 
-\begin{example}[墨水的扩散]\label{ex:ink-diffusion}
+\begin{example}[墨水的扩散]\label{example:ink-diffusion}
 墨水的扩散有一个具体的数学模型，即\textit{Ehrenfest模型}. 
 
 模型如\Cref{fig:ehrenfest-model} 所示. 在这个模型中，一共有两个箱子A和B，我们可以想象成这是水杯的上半部分和下半部分. 两个箱子里一共$N$个球，我们可以想象成这是墨水分子. 每个时刻，有很小的概率$\alpha>0$，盒子A和B中的球会保持不动；另外的$1-\alpha$的概率，我们均匀随机选择一个球，从一个箱子跳到另一个箱子，这就是扩散的过程. 
@@ -780,7 +780,7 @@ Bellman方程是\textit{强化学习}、经济学\textit{动态优化}的核心.
     \end{cases}
 \]
 
-下面我们来解释为什么墨水最终会均匀分布在水中. 从遍历定理（\Cref{thm:ergodic-theorem}）我们知道，对于一个遍历的Markov链，无论初始分布是什么，Markov链最终都会收敛到唯一平稳分布. 可以证明（见习题 \ref{exercise:ball-A-num}），$\{X_k\}$是一个遍历的Markov链，所以它会收敛到一个平稳分布$\pi\sim B(N,1/2)$. 
+下面我们来解释为什么墨水最终会均匀分布在水中. 从遍历定理（\Cref{theorem:ergodic-theorem}）我们知道，对于一个遍历的Markov链，无论初始分布是什么，Markov链最终都会收敛到唯一平稳分布. 可以证明（见习题 \ref{exercise:ball-A-num}），$\{X_k\}$是一个遍历的Markov链，所以它会收敛到一个平稳分布$\pi\sim B(N,1/2)$. 
 
 根据二项式的性质，该分布在$N/2$附近取到最大值，因此，这是墨分子最有可能的分布情况. 更精细的结论是（见习题 \ref{exercise:ball-A-num}），对任意$\epsilon>0$，当$N$充分大的时候，
 \[
@@ -895,7 +895,7 @@ DDPM中的Markov核都是Gauss分布，具体如下：
     & =-\int q\left(x_{0}\right) \cdot \log \left[\int q\left(x_{1:T} | x_{0}\right) \cdot p\left(x_{T}\right) \prod_{t=1}^T \frac{p\left(x_{t-1} | x_{t}\right)}{q\left(x_{t} | x_{t-1}\right)}\d x_{1:T}\right]\d x_{0}.
 \end{aligned}
 \]
-利用Jensen不等式（\Cref{thm:jensen}），$\log(\int q f\d x)\geq\int q\log(f)\d x$，这可以被放缩为：
+利用Jensen不等式（\Cref{theorem:jensen}），$\log(\int q f\d x)\geq\int q\log(f)\d x$，这可以被放缩为：
 \[
 \begin{aligned}
     K \leq & -\int q\left(x_{0:T}\right) \log \left[p\left(x_{T}\right) \prod_{t=1}^T \frac{p\left(x_{t-1} | x_{t}\right)}{q\left(x_{t} | x_{t-1}\right)}\right] \d x_{0:T}=L.
@@ -1003,7 +1003,7 @@ L_{t-1}=\E_{x_0,x_t\sim q(x_0,x_t)}\left[\frac{1}{2 \sigma_t^2}\norm{\tilde{\mu}
         \end{hint}
     \end{enumerate}
 
-    \item \label{exercise:MDP-Bellman} 证明\Cref{thm:MDP-Bellman}.
+    \item \label{exercise:MDP-Bellman} 证明\Cref{theorem:MDP-Bellman}.
 
     \item 假设一个机器人身处于下图所示的方格环境中，我们为其定义一个MDP $\langle\mathcal S,\mathcal A,\mathcal P,\mathcal R,\gamma\rangle$:
     \begin{itemize}
@@ -1039,7 +1039,7 @@ L_{t-1}=\E_{x_0,x_t\sim q(x_0,x_t)}\left[\frac{1}{2 \sigma_t^2}\norm{\tilde{\mu}
         \item 证明：$\{X_k\}$的平稳分布是$\pi\sim B(N,1/2)$.
         \item *对任意$\epsilon>0$，证明：
         \[
-            \lim_{N\to+\infty}\Pr\left(\limsup_{k\to\infty}\left|\frac{X_k}{N}-\frac{1}{2}\right|<\epsilon\right)=1.
+            \lim_{N\to+\infty}\limsup_{k\to\infty}\Pr\left(\left|\frac{X_k}{N}-\frac{1}{2}\right|<\epsilon\right)=1.
         \]
     \end{enumerate}
 

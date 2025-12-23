@@ -84,7 +84,7 @@
 如此纷繁的分类，实际上是为了更好地理解优化问题的性质. 不同的特殊结构会给优化带来特殊的性质，从而可以设计出更高效的算法.
 
 下面我们看几个经典的优化例子. 
-\begin{example}[最小二乘法]\label{ex:least-square}
+\begin{example}[最小二乘法]\label{example:least-square}
     给定矩阵$A\in\R^{m\times n}$和向量$b\in\R^m$，考虑如下优化问题：
     \begin{alignat*}{2}
     \minimize_{x}&\quad \norm{Ax-b}_2^2\\
@@ -120,7 +120,7 @@
     因此，我们利用特殊的几何结构，可以把最小二乘法转化为一个投影问题，从而高效求解. 反之，求投影也可以被写作一个优化问题. 
 \end{example}
 
-\begin{example}[线性规划]\label{ex:linear-programming}
+\begin{example}[线性规划]\label{example:linear-programming}
     给定矩阵$A\in\R^{m\times n}$和向量$b\in\R^m$，考虑如下优化问题：
     \begin{alignat*}{2}
     \minimize_{x}&\quad c^\t x\\
@@ -173,7 +173,7 @@
 
 有了上面这些记号，我们就可以将“没有万能算法”这一陈述写成定理了. 
 
-\begin{theorem}[没有免费午餐定理，\cite{wolpertNoFreeLunch1997}]\label{thm:no-free-lunch}
+\begin{theorem}[没有免费午餐定理，\cite{wolpertNoFreeLunch1997}]\label{theorem:no-free-lunch}
 对任意优化算法$A_1,A_2$，
     \[\sum_{f\in F} P(d_t|f,t,A_1)=\sum_{f\in F} P(d_t|f,t,A_2).\]
 \end{theorem}
@@ -255,7 +255,7 @@
 
 自然地，我们会问，\eqref{opt:grid-search} 会有更好的算法吗？ 这就是\textbf{下界问题}. 令人惊讶的是，对于这一个问题，我们可以证明网格搜索法是渐近意义下最优的！
 
-\begin{theorem}\label{thm:grid-search-lower-bound}
+\begin{theorem}\label{theorem:grid-search-lower-bound}
     设$\epsilon<L/4$，要想对任意$f$都能找到 \eqref{opt:grid-search} 的 $\epsilon$-近似解，访问$\O$的算法（零阶算法）调用$\O$的次数至少为
     \[\left\lfloor\frac{L}{2\epsilon}-1\right\rfloor^n.\]
 \end{theorem}
@@ -322,7 +322,7 @@
 
 与梯度下降算法相关的最小值必要条件是\textit{一阶条件}. 
 
-\begin{theorem}[一阶条件]\label{thm:first-order-condition}
+\begin{theorem}[一阶条件]\label{theorem:first-order-condition}
     如果$x^*$是可微函数$f$的局部最小值，那么
     \[f'(x^*)=0.\]
 \end{theorem}
@@ -375,7 +375,7 @@
 
 非常有趣的是，$\calF$完全由可微凸函数组成，这一点可以通过下面的定理得到证明. 
 
-\begin{theorem}\label{thm:differential-convex-equivalence}
+\begin{theorem}\label{theorem:differential-convex-equivalence}
     可微函数$f\in\calF$当且仅当$f$是凸函数.
 \end{theorem}   
 \begin{proof}
@@ -391,7 +391,7 @@
 
 下面，我们举一些基本的可微凸函数的例子（证明见习题 \ref{exercise:convex-function}）.
 
-\begin{example}\label{ex:convex-function}
+\begin{example}\label{example:convex-function}
     \begin{itemize}
         \item 对向量$x$，$f(x)=\inner{a}{x}+b$是凸函数.
         \item 对向量$x$，$f(x)=\norm{x}_2^2$是凸函数.
@@ -405,13 +405,13 @@
 现在，我们给了凸性的定义，下一步任务就是给出保持凸性不变的操作，这样我们可以用基本函数构造出更多的函数. 
 
 假设2实际上已经给出了一种凸性不变的操作，我们将它写成以下命题：
-\begin{proposition}\label{prop:nonnegative-combination}
+\begin{proposition}\label{proposition:nonnegative-combination}
     对任意$f,g\in\calF$和实数$\alpha,\beta\geq 0$，$\alpha f+\beta g\in\calF$.
 \end{proposition}
 
 另一个可以保持凸性的操作是\textit{仿射变换}. 所谓仿射变换，指的是向量空间$\R^n$到$\R^m$的映射$x\mapsto Ax+b$，其中$A$是$m\times n$矩阵，$b\in\R^m$. 仿射变换实际上就是带平移的线性映射，只是我们用变换的方式来表示它. 
 
-\begin{proposition}\label{prop:affine-transformation}
+\begin{proposition}\label{proposition:affine-transformation}
 假设函数$f:\R^n\to\R$属于$\calF$，那么对任意仿射变换$x\mapsto Ax+b$，$g(x)=f(Ax+b)\in\calF$.
 \end{proposition}
 \begin{proof}
@@ -442,7 +442,7 @@ Jensen不等式具有很强的几何解释：画一条$f$的割线，那么$f$�
 
 实际上，Jensen不等式给了凸函数一种等价的定义：
 
-\begin{theorem}\label{thm:convex-equivalence}
+\begin{theorem}\label{theorem:convex-equivalence}
     设$f$是可微的函数，那么$f$满足 \eqref{eq:def-convex} 当且仅当$f$满足 \eqref{eq:Jensen}.
 \end{theorem}
 \begin{proof}
@@ -473,12 +473,12 @@ Jensen不等式具有很强的几何解释：画一条$f$的割线，那么$f$�
     令$\alpha\to 1$，结合梯度的定义，即得 \eqref{eq:def-convex}.
 \end{proof}
 
-如果函数$f$不是可微的，那么\Cref{thm:convex-equivalence} 给了一个凸函数更加本质的定义：
+如果函数$f$不是可微的，那么\Cref{theorem:convex-equivalence} 给了一个凸函数更加本质的定义：
 \begin{definition}[凸函数]
     函数$f$满足对任意$x,y$成立 \eqref{eq:Jensen}，那么称$f$是\textbf{凸函数}.
 \end{definition}
 
-容易证明，之前陈述的可微凸函数的性质（\Cref{prop:nonnegative-combination}、\Cref{prop:affine-transformation}）对于这一更一般的凸函数定义也成立（见习题 \ref{exercise:convex-function-general-property}）.
+容易证明，之前陈述的可微凸函数的性质（\Cref{proposition:nonnegative-combination}、\Cref{proposition:affine-transformation}）对于这一更一般的凸函数定义也成立（见习题 \ref{exercise:convex-function-general-property}）.
 
 扩展定义之后的凸函数包括了我们之前讲的$L^p$（$p=1,2$）损失和SVM损失，以及机器学习中用到的大部分损失函数. 在实际情况中，凸函数是一类存在快速收敛算法的函数，例如梯度下降和Newton迭代法. 因此，我们可以说，凸函数类划定了优化问题中可以快速求解的函数类. 自此，凸性成为了优化中的核心概念. 
 
@@ -533,7 +533,7 @@ Jensen不等式具有很强的几何解释：画一条$f$的割线，那么$f$�
 \end{figure}
 
 上图揭示了凸集与凸函数的关系：
-\begin{theorem}\label{thm:convex-epi}
+\begin{theorem}\label{theorem:convex-epi}
     上图$\epi(f)$是凸集当且仅当$f$是凸函数.
 \end{theorem}
 
@@ -560,14 +560,14 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
 \end{definition}
 直观上说，下水平集是函数值小于$t$的区域.
 
-\begin{proposition}\label{prop:level-set}
+\begin{proposition}\label{proposition:level-set}
     如果函数$f$是凸函数，那么对任意$t\in\R$，下水平集$C_t(f)$是凸集.
 \end{proposition}
 这个命题的证明是直接的，见习题 \ref{exercise:convex-level-set}. 值得注意的是，不同于上图，这一命题的逆命题是不成立的，我们在习题 \ref{exercise:convex-level-set} 中讨论. 
 
 接下来，我们研究凸集的性质.
 
-\begin{proposition}\label{prop:convex-set-intersect}
+\begin{proposition}\label{proposition:convex-set-intersect}
     凸集的任意交依然是凸集.
 \end{proposition}
 \begin{proof}
@@ -593,7 +593,7 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
 \end{itemize}
 \end{example}
 
-从优化的角度来看，凸集本身具有\textit{最优近似性质}. 我们之前在\Cref{ex:least-square} 讨论过，求点到线性空间的投影是一个优化问题. 任何一个点都可以唯一地投影到线性空间的某个点上，因此整个空间通过投影就被近似到了一个线性子空间中. 
+从优化的角度来看，凸集本身具有\textit{最优近似性质}. 我们之前在\Cref{example:least-square} 讨论过，求点到线性空间的投影是一个优化问题. 任何一个点都可以唯一地投影到线性空间的某个点上，因此整个空间通过投影就被近似到了一个线性子空间中. 
 
 现在我们来推广这一思考. 给定任意非空集合$C\subseteq\R^n$，我们尝试将整个空间近似到集合$C$中. 定义点$x$到$C$的距离为：
 \[d(x,C)=\inf_{p\in C}\norm{x-p}_2.\]
@@ -603,7 +603,7 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
 
 直观上，如果$C$是Chebyshev集，通过投影，我们可以用$C$中的点来近似整个空间，并且只可能有一种近似的方式. 
 
-\begin{theorem}\label{thm:Chebyshev-convex}
+\begin{theorem}\label{theorem:Chebyshev-convex}
     在$\R^n$中，$C$是Chebyshev集当且仅当$C$是闭凸集.
 \end{theorem}
 这一定理的证明比较有技巧性，见习题 \ref{exercise:Chebyshev-convex}.
@@ -613,7 +613,7 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
 \subsection{分离超平面定理}
 
 凸集还有一个不平凡且重要的性质：
-\begin{theorem}[分离超平面定理]\label{thm:separation-hyperplane}
+\begin{theorem}[分离超平面定理]\label{theorem:separation-hyperplane}
 设$C,D$是两个非空不交凸集，也就是$C\cap D=\varnothing$. 那么，存在$a\neq 0$和$b\in\R$使得
 \begin{itemize}
     \item 任意$x\in C$，$a^\t x\leq b$.
@@ -629,7 +629,7 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
     分离超平面定理是如此直观，以至于我们觉得他是一个显然的结论. 但是，这一定理的成立并不平凡. 比如说，如果不是在$\R^n$中，而是在更一般的实线性空间中，这一定理依然成立，我们称之为\textit{Hahn-Banach定理}~\cite{taoHahnBanachTheoremMengers2007}. 然而，Hahn-Banach定理的证明需要使用选择公理（更准确说，Zorn引理），这一公理的合理性至今依然是有争议的！
 \end{remark}
 
-下面我们来证明\Cref{thm:separation-hyperplane}.
+下面我们来证明\Cref{theorem:separation-hyperplane}.
 
 \begin{proof}
 
@@ -699,7 +699,7 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
     来衡量分类器的性能，其中$p$是真实标签的分布（一个以概率$1$取单点值的退化分布），$q$是分类器$f$输出的预测标签分布. 假设训练集为$\{x^i\}_{i=1}^N\subseteq T^\ast$. 
     
     请将该分类器监督学习的过程写成优化问题.
-    \item *\label{exercise:no-free-lunch}（\cite{wolpertNoFreeLunch1997}）证明\Cref{thm:no-free-lunch}.
+    \item *\label{exercise:no-free-lunch}（\cite{wolpertNoFreeLunch1997}）证明\Cref{theorem:no-free-lunch}.
     
     \item *\textbf{强化学习与优化的关系. }强化学习利用 MDP 框架来描述问题，这其中最重要的一步就是定义奖励函数. 在最特殊的一种强化学习中，智能体只有在最后一轮才会获得奖励. 此时，智能体最大化奖励就仿佛是在做一个优化问题. 
     
@@ -738,7 +738,7 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
     \[\sigma \geq c_2\frac{q\sqrt{T\log(1/\delta)}}{\epsilon},\]
     那么DP-SGD是$(\epsilon,\delta)$-DP的.
     
-    \item \label{exercise:convex-function} 验证\Cref{ex:convex-function} 中的函数是凸函数.
+    \item \label{exercise:convex-function} 验证\Cref{example:convex-function} 中的函数是凸函数.
     
     \item \label{exercise:convex-operation} 当$h(\cdot):\R\to\R$是凸函数，$g(\cdot):\R\to\R$是不减的凸函数，证明：复合函数$f(x) = g(h(x))$为凸函数.
     
@@ -753,11 +753,11 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
             \item 使用 (1) 和 (2) 的结论证明，$J(\mathbf W_1,\mathbf W_2)$是非凸的.
         \end{enumerate}
 
-    \item \label{exercise:convex-function-general-property} 对一般定义的凸函数，验证\Cref{prop:nonnegative-combination} 和\Cref{prop:affine-transformation}.
+    \item \label{exercise:convex-function-general-property} 对一般定义的凸函数，验证\Cref{proposition:nonnegative-combination} 和\Cref{proposition:affine-transformation}.
     
     \item \label{exercise:convex-level-set} 对下水平集，完成以下习题. 
     \begin{enumerate}
-        \item 证明\Cref{prop:level-set}. 
+        \item 证明\Cref{proposition:level-set}. 
         \item 对函数$f$，如果对任意$t\in\R$，下水平集$C_t(f)$是凸集，那么$f$依然不一定是凸函数. 请给出一个$\R$上定义的反例.
     \end{enumerate}
     
@@ -766,9 +766,9 @@ $\impliedby$：取$(x_1,y_1),(x_2,y_2)\in\epi(f)$，根据凸函数的定义，
         这一问题比反问题要复杂得多，例如，圆是一个凸集，但是它不是任何凸函数的上图. 因此，上图并不是这一问题的答案.
     \end{hint}
     
-    \item *\label{exercise:Chebyshev-convex} 证明\Cref{thm:Chebyshev-convex}.
+    \item *\label{exercise:Chebyshev-convex} 证明\Cref{theorem:Chebyshev-convex}.
     
-    \item \label{exercise:separation-hyperplane-extension} 设$C,D$是两个非空不交凸集，$C$与$D$只有一个公共点$a$，且$a$是$C$和$D$的边界点. 证明\Cref{thm:separation-hyperplane} 对这种情况依然成立.
+    \item \label{exercise:separation-hyperplane-extension} 设$C,D$是两个非空不交凸集，$C$与$D$只有一个公共点$a$，且$a$是$C$和$D$的边界点. 证明\Cref{theorem:separation-hyperplane} 对这种情况依然成立.
     \begin{hint}
         为了严格证明这一点，请首先给出边界点的定义.
     \end{hint}

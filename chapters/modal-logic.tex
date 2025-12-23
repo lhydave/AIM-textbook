@@ -164,7 +164,7 @@ $\Diamond$读作“diamond”，对应的自然语言可以读为“可能”. �
 
 我们再来看一个例子. 
 
-\begin{example}\label{ex:kripke-model-basic}
+\begin{example}\label{example:kripke-model-basic}
 考虑\Cref{fig:kripke-model-basic} 中的Kripke模型. 对哪些$w_i$来说，下式成立？
 \[\Box (p\to\Box q).\]
 我们以$w_1$为例进行讨论. 其他情况非常类似，读者可以自行验证. 如果$w_1$是真实世界，上要成立上式，必须要所有后继节点上成立
@@ -231,7 +231,7 @@ Kripke模型并没有指定一个真实世界，接下来，我们引入一个�
 
 现在，我们进一步讨论语义的性质. 逻辑公式的语义，无论如何定义，其实都在讨论“什么是真的”这一基本问题. 在模态逻辑中，这一概念尤其复杂. 
 
-比如，在\Cref{ex:kripke-model-basic} 中，我们讨论了$\phi:\Box (p\to\Box q)$在一个Kripke模型中每个可能世界上的真值. 在例子的计算中，我们发现，所有可能世界上$\phi$都是真的. 所以，我们其实可以说，$\phi$在整个Kripke模型上也是真的. 
+比如，在\Cref{example:kripke-model-basic} 中，我们讨论了$\phi:\Box (p\to\Box q)$在一个Kripke模型中每个可能世界上的真值. 在例子的计算中，我们发现，所有可能世界上$\phi$都是真的. 所以，我们其实可以说，$\phi$在整个Kripke模型上也是真的. 
 
 更进一步，我们也想知道一些关于可能和必然的真理. 为了说明这一点，先回到命题逻辑中，考虑任意命题字母$p$，无论$p$是否是真的，下面这个公式永远都是真的：
 \[p\to p.\]
@@ -270,9 +270,9 @@ Kripke模型并没有指定一个真实世界，接下来，我们引入一个�
 
 因此，从左上角到右下角的过程，是从具体、特定的真值到一般、普遍的真值的过程.
 
-更抽象地来看，\Cref{ex:kripke-model-basic} 其实给出了左上角的一个例子，下面，我们可以演示右下角的一个例子. 
+更抽象地来看，\Cref{example:kripke-model-basic} 其实给出了左上角的一个例子，下面，我们可以演示右下角的一个例子. 
 
-\begin{example}\label{ex:modal-logic-frame-validity}
+\begin{example}\label{example:modal-logic-frame-validity}
 考虑\Cref{fig:frame-validity} 中的框架，它是\Cref{fig:kripke-model-basic} 中的Kripke模型去掉了命题字母的结果. 
 \begin{figure}[ht]
 \centering
@@ -313,7 +313,7 @@ Kripke模型并没有指定一个真实世界，接下来，我们引入一个�
 
 上面的例子说明，对于特定的公式，它会在某类模型上成立. 反过来，我们也可以讨论，成立特定公式的模型是什么样的，我们看下面的例子. 
 
-\begin{example}\label{ex:box-top}
+\begin{example}\label{example:box-top}
 考虑基础模态逻辑和它的公式$\Diamond \top$. 对于一个Kripke点模型$\mathcal{M},w$，假设$\mathcal{M}, w \vDash \Diamond \top$，我们来研究$\mathcal{M}$的特殊性质. 
 
 根据定义，这意味着存在一个点$v$，使得$w R v$并且$\mathcal{M}, v \vDash \top$，由于后一半永远成立，所以，这等价于$w$有一个后继. 同样的，对于任意框架$\mathcal{F}$，如果$\mathcal{F} \vDash \Diamond \top$，则基于$\mathcal{F}$的每个点模型$\mathcal{M}, v$都满足$\Diamond \top$，即$\mathcal{F}$的每个点都有后继. 
@@ -329,7 +329,7 @@ Kripke模型并没有指定一个真实世界，接下来，我们引入一个�
 \end{itemize}
 结合这两点，我们可以说，$p\to \Diamond p$定义了自反框架. 
 
-此外，结合这个例子与\Cref{ex:box-top}，我们会发现，一个框架的特定性质可以由多个不同的公式定义. 
+此外，结合这个例子与\Cref{example:box-top}，我们会发现，一个框架的特定性质可以由多个不同的公式定义. 
 \end{example}
 
 以上例子给我们启示，我们可以用模态公式去定义模型或框架的性质. 这种定义被称为\textit{模态可定义性}，我们给出如下定义. 
@@ -402,13 +402,13 @@ $\vDash (K_i(\phi\to\psi)\wedge K_i\phi)\to K_i\psi$.
 
 同样，泛化规则也没有使用框架类$H$的性质，所以它也是模态逻辑的普适规则. 
 
-\begin{proposition}[知识公理，真理公理]\label{prop:knowledge-axiom}
+\begin{proposition}[知识公理，真理公理]\label{proposition:knowledge-axiom}
 $\vDash_H K_i\phi\to\phi$.
 \end{proposition}
 
 注意，从知识公理开始，我们就开始使用了框架类$H$的性质. 从这里开始的性质，和\Cref{chap:bayesian-game}中讨论的知识的性质是一致的，所以这里不再赘述. 他们的证明类似前述性质，这里不再给出，见习题 \ref{exercise:epistemic-logic-axioms}.
 
-\begin{proposition}[内省公理]\label{prop:knowledge-introspection}
+\begin{proposition}[内省公理]\label{proposition:knowledge-introspection}
 正内省公理：
 \[\vDash_H K_i\phi\to K_iK_i\phi.\]
 
@@ -420,7 +420,7 @@ $\vDash_H K_i\phi\to\phi$.
 
 从哲学的角度讨论，还有一些别的公理. 
 
-\begin{proposition}[一致性公理]\label{prop:knowledge-consistency}
+\begin{proposition}[一致性公理]\label{proposition:knowledge-consistency}
 $\vDash_H\neg K_i\bot$.
 \end{proposition}
 
@@ -493,11 +493,11 @@ $\vDash_H\neg K_i\bot$.
 
 接下来，我们给出共同知识算子的性质. 实际上，共同知识算子可以充分必要地被下面两个公理所定义（验证见习题 \ref{exercise:common-knowledge-axioms}）：
 
-\begin{proposition}[不动点公理]\label{prop:common-knowledge-fixed-point}
+\begin{proposition}[不动点公理]\label{proposition:common-knowledge-fixed-point}
 \[\vDash C\phi\leftrightarrow E(\phi\wedge C\phi).\]
 \end{proposition}
 
-\begin{proposition}[归纳规则]\label{prop:common-knowledge-induction}
+\begin{proposition}[归纳规则]\label{proposition:common-knowledge-induction}
 如果
 \[\mathcal F\vDash \phi\to E(\phi\wedge\psi),\]
 那么 
@@ -710,7 +710,7 @@ P_i(s_i) = D(IS_i(s_i, \mathcal{R})), \quad \forall s_i \in S_i.
     \item 那么，我的决策还应该有：虽然我不知道今天下不下雨，但是如果今天是星期四，那么我会去KFC疯狂星期四.
 \end{itemize}
 
-\begin{proposition}\label{prop:consistent-decision}
+\begin{proposition}\label{proposition:consistent-decision}
     给定策略组合$P$和上下文$\gamma$，存在一个并-一致的决策函数$D$，使得$P$和$D$相容. 
 \end{proposition}
 
@@ -769,7 +769,7 @@ IS_1(s_1', \mathcal{R}) \subseteq S'.
         \item 不存在$R$-无穷迹，即没有一列$\{x_n\}_n$（允许重复）使得$x_iRx_{i+1}$，$i=0,1,\dots$.
     \end{enumerate}
 
-    \item \label{exercise:epistemic-logic-axioms} 证明\Cref{prop:knowledge-axiom}、\Cref{prop:knowledge-introspection} 和\Cref{prop:knowledge-consistency}.
+    \item \label{exercise:epistemic-logic-axioms} 证明\Cref{proposition:knowledge-axiom}、\Cref{proposition:knowledge-introspection} 和\Cref{proposition:knowledge-consistency}.
     
     \item \label{exercise:epistemic-logic-axiom-structure} 形式化叙述并证明\Cref{tab:epistemic-axiom-structure} 中公理和$R_i$性质之间的对应关系. 
     
@@ -777,7 +777,7 @@ IS_1(s_1', \mathcal{R}) \subseteq S'.
     
     \item  给定任意Kripke框架$\mathcal F$，证明：如果$\mathcal F\vDash\phi$，那么$\mathcal F\vDash C\phi$.
 
-    \item \label{exercise:common-knowledge-axioms} 证明\Cref{prop:common-knowledge-fixed-point} 和\Cref{prop:common-knowledge-induction}.
+    \item \label{exercise:common-knowledge-axioms} 证明\Cref{proposition:common-knowledge-fixed-point} 和\Cref{proposition:common-knowledge-induction}.
 
     \item \label{S5-Aumann-equivalence} \textbf{S5公理系统和Aumann结构的等价性. } 我们将分两个方向证明这一等价性. 考虑可能世界（样本点）的集合$S$. 在Aumann结构$A^M$中，我们定义了玩家$i$的信息集$\mathcal P_i$为$S$的一个划分. 自然，划分本身就定义了$S$上的一个等价关系$R_i$：$\mathcal P_i(s)=\mathcal P_i(s')$当且仅当$sR_is'$. 这一等价关系自然对应了Kripke模型中$K_i$算子的关系. 这样，就自然定义了由可能世界集$S$和等价关系$R_i$组成的Kripke框架$\mathcal F$. 
     
@@ -791,7 +791,7 @@ IS_1(s_1', \mathcal{R}) \subseteq S'.
 
     \item  我们使用知识逻辑建模了“泥泞的孩童”谜题. 假设脸上有泥巴的孩子有$k$个. 证明：对任意$l<k$，第$l$轮回答之后，Kripke模型中所有那些恰好有$l$个$1$的可能世界会被消掉.
 
-    \item \label{exercise:consistent-decision} 证明\Cref{prop:consistent-decision}.
+    \item \label{exercise:consistent-decision} 证明\Cref{proposition:consistent-decision}.
     
     \item *\label{exercise:Aumann-agreement} 阅读文献~\cite{aumannAgreeingDisagree1976}，叙述并证明原始的Aumann达成一致定理. 
 \end{enumerate}

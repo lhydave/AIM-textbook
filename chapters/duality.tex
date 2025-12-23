@@ -73,7 +73,7 @@
 
 我们首先指出，优化问题的函数约束其实有很强的几何意义，更偏微积分的讨论请参见\Cref{chap:calculus}，更为详细的论述可以参见数学分析教材~\cite{zorichMathematicalAnalysis2015} 和微分流形的教材~\cite{leeIntroductionSmoothManifolds2012}. 我们先只关注 \eqref{eq:general-constraint} 中的等式约束$h(x)=0$，考虑如下例子. 
 
-\begin{example}[二维空间中的约束]\label{ex:2d-constraint}
+\begin{example}[二维空间中的约束]\label{example:2d-constraint}
 考虑二维空间中的如下约束：
 \begin{align*}
     h_1(x)&=x_1^2+x_2^2-1=0,\\
@@ -82,7 +82,7 @@
 第一个约束$h_1(x)=0$定义了一个圆环，它是一维曲面\footnote{严格来说，一维空间应该叫曲线. 不过，为了和后面高维空间的术语保持一致，我们都称之为曲面. }. 第二个约束$h_2(x)=0$定义了一条直线，也是一维曲面. 这两个约束的交集是两个点，即零维曲面.
 \end{example}
 
-\begin{example}[三维空间中的约束]\label{ex:3d-constraint}
+\begin{example}[三维空间中的约束]\label{example:3d-constraint}
 考虑三维空间中的如下约束：
 \begin{align*}
     h_1(x)&=x_1^2+x_2^2+x_3^2-1=0,\\
@@ -91,7 +91,7 @@
 第一个约束$h_1(x)=0$定义了一个球面，它是一个二维曲面. 第二个约束$h_2(x)=0$定义了一个平面，也是一个二维曲面. 这两个约束的交集是一个圆环，即一维曲面.
 \end{example}
 
-我们可以从另一角度来理解这两个例子. 在\Cref{ex:2d-constraint} 中，原本$(x_1,x_2)$两个维度都是自由选择的，所以我们可以用两个互相独立的参数来描述这个点. 当加入约束$h_1(x)=0$之后，给定一个$x_1$，我们我们并不能自由选择$x_2$，而是要满足约束$h_1(x)=0$. 容易看出，我们只用一个参数$\theta$就可以描述这个约束下的点：
+我们可以从另一角度来理解这两个例子. 在\Cref{example:2d-constraint} 中，原本$(x_1,x_2)$两个维度都是自由选择的，所以我们可以用两个互相独立的参数来描述这个点. 当加入约束$h_1(x)=0$之后，给定一个$x_1$，我们我们并不能自由选择$x_2$，而是要满足约束$h_1(x)=0$. 容易看出，我们只用一个参数$\theta$就可以描述这个约束下的点：
 \[
 (x_1,x_2)=(\cos\theta,\sin\theta),\quad \theta\in[0,2\pi).
 \]
@@ -101,13 +101,13 @@
 \]
 因此，约束$h_2(x)=0$将原本的一维空间约束到了零维空间.
 
-类似地，在\Cref{ex:3d-constraint} 中，原本$(x_1,x_2,x_3)$可以用三个互相独立的参数来描述，当加入约束$h_1(x)=0$之后，我们只能用两个独立的参数来描述，而加入约束$h_2(x)=0$之后，我们只需要一个参数就可以描述这个约束下的点. 这对应的就是三维空间被约束到了二维空间，再被约束到了一维空间.
+类似地，在\Cref{example:3d-constraint} 中，原本$(x_1,x_2,x_3)$可以用三个互相独立的参数来描述，当加入约束$h_1(x)=0$之后，我们只能用两个独立的参数来描述，而加入约束$h_2(x)=0$之后，我们只需要一个参数就可以描述这个约束下的点. 这对应的就是三维空间被约束到了二维空间，再被约束到了一维空间.
 
 更一般地，如果$h:\R^n\to\R^m$，那么$h$的每一维都对$\R^n$增加了一个约束，最终$h(x)=0$定义了一个$n-m$维的曲面（在通常情况下）. 
 
 不过，这一性质并不是绝对的，请看下面的例子. 
 
-\begin{example}\label{ex:3d-constraint-2}
+\begin{example}\label{example:3d-constraint-2}
 在三维空间中，考虑如下约束：
 \begin{align*}
     h_1(x)&=x_1^2+x_2^2+x_3^2-1=0,\\
@@ -126,7 +126,7 @@
 
 上面的例子是很恼人的，因为我们无法通过直观的方式来判断曲面的维数. 所以，我们需要一些更强的方法来判断曲面的维数. 如果$h$是具有连续的一阶导数的函数，那么这个曲面是\textit{光滑}\footnote{在文献中，“光滑”这一词的含义有多种多样，例如无穷次可微、具有连续二阶导数等等. 因此，这里用光滑仅仅只是方便起见，在阅读文献时，需要根据具体的上下文来理解这一词的含义.}的. 我们只考虑光滑曲面，因为它们是最常见的情况.
 
-\Cref{ex:3d-constraint-2} 的第一个约束为什么不符合预期？在点$(1,0,0)$，球面$h_1(x)=0$的切平面恰好是约束$h_2(x)=x_1 - 1 = 0$，这意味着在这个点，可行解对应的空间“降维”了！这说明，“切平面”这样的概念对于维数有着至关重要的作用. 
+\Cref{example:3d-constraint-2} 的第一个约束为什么不符合预期？在点$(1,0,0)$，球面$h_1(x)=0$的切平面恰好是约束$h_2(x)=x_1 - 1 = 0$，这意味着在这个点，可行解对应的空间“降维”了！这说明，“切平面”这样的概念对于维数有着至关重要的作用. 
     
 在一般空间中，我们可以通过\textit{切空间}的概念来描述曲面在某个点的维数. 切空间其实是所有过该点的切线的集合. 为了引入切线，我们先介绍曲线，
 \begin{definition}[曲线和切向量]
@@ -149,7 +149,7 @@
 
 下面我们看一个切空间的例子.
 
-\begin{example}[三维球面的切空间]\label{ex:tan-space}
+\begin{example}[三维球面的切空间]\label{example:tan-space}
     考虑三维空间中的单位球面
     \[S^2=\{x\in\R^3:x_1^2+x_2^2+x_3^2=1\}.\]
     在点$x^*=(1,0,0)$处，球面的切空间是什么？我们可以通过曲线来描述切空间. 考虑过$x^*$的圆弧：
@@ -164,7 +164,7 @@
     \[T_{x^*}(S^2)=\{(0,y,z):y,z\in\R\}.\]
 \end{example}
 
-\Cref{ex:tan-space} 中的切空间是一个二维的线性空间. 直观上，任何切空间都是应该一个线性空间，这也是它名字的来源. 
+\Cref{example:tan-space} 中的切空间是一个二维的线性空间. 直观上，任何切空间都是应该一个线性空间，这也是它名字的来源. 
 \begin{lemma}\label{lemma:tan-space}
     切空间是一个线性空间. 
 \end{lemma}
@@ -188,11 +188,11 @@
 \label{fig:tangent-space}
 \end{figure}
 
-对于\Cref{ex:tan-space}，我们可以看到，
+对于\Cref{example:tan-space}，我们可以看到，
 \[\nabla h_1(x)=(2x_1,2x_2,2x_3)\implies \nabla h_1(x^*)=(2,0,0).\]
 因此，切空间$T_{x^*}(S^2)$的法向量是$(2,0,0)$，我们可以重新描述切空间为一个二维平面
 \[T_{x^*}(S^2): 2x_1+0x_2+0x_3=0\iff x_1=0.\]
-这和\Cref{ex:tan-space} 的结果是一致的.
+这和\Cref{example:tan-space} 的结果是一致的.
 
 记
 \[M=\left\{\sum_{i} \alpha_i \nabla h_i(x^*)^\t:\alpha_i\in\R\right\},\]
@@ -206,11 +206,11 @@
     \nabla h_m(x^*)
 \end{pmatrix}.\]
 
-我们已经证明$T_{x^*}(S)\subseteq M^\perp$. 进一步，\Cref{ex:tan-space} 的结果表明，$T_{x^*}(S)=M^\perp$，即切空间和$M^\perp$是相等的. 然而，如果对于\Cref{ex:3d-constraint-2} 中的第一个$h$，我们会发现切空间和$M^\perp$是不相等的：$h(x)=0$对应的是单个点，对于单个点的切空间自然是一个零维空间，然而，和$\nabla h(x^*)$正交的空间是整个二维空间！
+我们已经证明$T_{x^*}(S)\subseteq M^\perp$. 进一步，\Cref{example:tan-space} 的结果表明，$T_{x^*}(S)=M^\perp$，即切空间和$M^\perp$是相等的. 然而，如果对于\Cref{example:3d-constraint-2} 中的第一个$h$，我们会发现切空间和$M^\perp$是不相等的：$h(x)=0$对应的是单个点，对于单个点的切空间自然是一个零维空间，然而，和$\nabla h(x^*)$正交的空间是整个二维空间！
 
 以上例子说明两件事，首先，切空间和$M^\perp$不一定相等；其次，切空间和$M^\perp$的关系和曲面的维数有关. 为了说明这一点，我们引入\textit{正规点}的概念. 
 
-\begin{definition}[正规点]\label{def:regular-point}
+\begin{definition}[正规点]\label{definition:regular-point}
 考虑优化问题 \eqref{eq:eq-constraint-only-differentiable}，当一个点$x^*\in\Omega$满足约束${h(x^*)}=0$，且梯度向量$\nabla h_1(x^*),\nabla h_2(x^*),\dots,\nabla h_m(x^*)$线性无关时，它被称作该约束的\textbf{正规点}. 
 \end{definition}
 
@@ -222,7 +222,7 @@
     \label{fig:tan-2constraint}
 \end{figure}
 
-\begin{theorem}[正规点切空间刻画定理]\label{thm:tan-space-characterize}
+\begin{theorem}[正规点切空间刻画定理]\label{theorem:tan-space-characterize}
 设曲面$S\subseteq\R^n$由约束$h(x)=0$定义，$x^*\in S$是正规点，那么，
 \[T_{x^*}(S)=M^\perp=\{{y:\nabla h(x^*)y=0}\}.\]
 \end{theorem}
@@ -248,7 +248,7 @@
 其中$f,h$都具有连续的一阶导数.
 
 设$x^*$ 是一个约束$h(x)=0$一个正规点，同时也是函数$f$的一个在可行域中的极值点. 这一部分的目标是得到条件极值的一阶必要条件：
-\begin{theorem}[条件极值的一阶必要条件]\label{thm:eq-opt-cond-1}
+\begin{theorem}[条件极值的一阶必要条件]\label{theorem:eq-opt-cond-1}
     令$x^*$是满足约束${h(x)=0}$的正规点，如果$x^*$是$f$的极值点，那么存在一个${\lambda}\in \R^m$使得
     \[\nabla f(x^*)+{\lambda^\t \nabla h(x^*)=0}. \]
 \end{theorem}
@@ -263,20 +263,20 @@ $\lambda$被称为\textit{Lagrange乘子}. 必要条件可以被写作：
     \nabla_{\lambda} l({x,\lambda})&=0.
 \end{align*}
 
-这一个求解条件极值的方法会在大部分微积分课程中给出，我们这里的更重要的任务是给出这一方法的几何解释. 注意，\Cref{thm:eq-opt-cond-1} 本质上在说，$\nabla f(x^*)$是$\nabla h_i(x^*)$的线性组合，所以我们的目标就是得到这一事实. 
+这一个求解条件极值的方法会在大部分微积分课程中给出，我们这里的更重要的任务是给出这一方法的几何解释. 注意，\Cref{theorem:eq-opt-cond-1} 本质上在说，$\nabla f(x^*)$是$\nabla h_i(x^*)$的线性组合，所以我们的目标就是得到这一事实. 
 
 假设$h(x)=0$形成的曲面是$S$，考虑正规极值点$x^*\in S$. 我们任选一条曲线$x(t)$过$x^*=x(0.5)$，那么，$f(x(t))$在$t=0.5$处取得了极小值. 根据微积分的极值定理，我们有
 \[\left.\frac{\d}{\d t}f(x(t))\right|_{t=0.5}=0\iff \nabla f(x^*)\dot{x}(0.5)=0.\]
 因此，$\nabla f(x^*)$和切向量$\dot{x}(0.5)$正交，因为曲线$x(t)$是任意选取的，所以$\nabla f(x^*)$也和切空间$T_{x^*}(S)$正交.
 
-现在，回忆\Cref{thm:tan-space-characterize}，我们知道切空间$T_{x^*}(S)=M^\perp$，因此
+现在，回忆\Cref{theorem:tan-space-characterize}，我们知道切空间$T_{x^*}(S)=M^\perp$，因此
 \[\nabla f(x^*)^\t\in (M^\perp)^\perp=M=\left\{\sum_{i} \lambda_i \nabla h_i(x^*)^\t:\lambda_i\in\R\right\}.\]
-换言之，$\nabla f(x^*)$是$\nabla h_i(x^*)$的线性组合，这就证明了\Cref{thm:eq-opt-cond-1}.
+换言之，$\nabla f(x^*)$是$\nabla h_i(x^*)$的线性组合，这就证明了\Cref{theorem:eq-opt-cond-1}.
 
 
 最后，作为应用，我们考虑一个例子.
 
-\begin{example}[最大熵]\label{ex:max-entropy}
+\begin{example}[最大熵]\label{example:max-entropy}
 考虑一个离散的概率分布，其分布列为$p_i=\Pr(X=x_i),i=1,\dots,n$. 该分布的熵为
 \[\epsilon = -\sum_{i=1}^n p_i \log p_i.\]
 该分布的均值为$\sum_{i=1}^n x_i p_i$. 
@@ -339,7 +339,7 @@ $\lambda$被称为\textit{Lagrange乘子}. 必要条件可以被写作：
 
 换言之，此时的正规点不仅考虑等式约束，还要考虑起作用的（被激活的）不等式约束，这些不等式约束相当于等式约束. 类似Lagrange乘子法，此时的一阶必要条件为：
 
-\begin{theorem}[Karush-Kuhn-Tucker条件，\cite{karushMinimaFunctionsSeveral1939,kuhnNonlinearProgramming1951}]\label{thm:KKT}
+\begin{theorem}[Karush-Kuhn-Tucker条件，\cite{karushMinimaFunctionsSeveral1939,kuhnNonlinearProgramming1951}]\label{theorem:KKT}
 令$x^*$为优化问题 \eqref{eq:ineq-constraint-inequality-differentiable} 的正规极小值点，那么，存在向量$\lambda\in\R^m$和向量$\mu\in \R^p$且$\mu\geq 0$使得
 \begin{align}
     \nabla f(x^*)+\lambda^\t \nabla {h(x^*)}+\mu^\t \nabla g(x^*)&=0,\label{eq:KKT-1}\\
@@ -349,7 +349,7 @@ $\lambda$被称为\textit{Lagrange乘子}. 必要条件可以被写作：
 \end{theorem}
 
 \begin{proof}
-考虑$x^*$的邻域$U$，在这个邻域内，我们可以将问题 \eqref{eq:ineq-constraint-inequality-differentiable} 写作 \eqref{eq:ineq-constraint-inequality-differentiable-active}，即只考虑激活的约束. 由于$x^*$是一个极小值点，根据\Cref{thm:eq-opt-cond-1}，存在$\lambda\in\R^m,\mu\in\R^{|J|}$使得
+考虑$x^*$的邻域$U$，在这个邻域内，我们可以将问题 \eqref{eq:ineq-constraint-inequality-differentiable} 写作 \eqref{eq:ineq-constraint-inequality-differentiable-active}，即只考虑激活的约束. 由于$x^*$是一个极小值点，根据\Cref{theorem:eq-opt-cond-1}，存在$\lambda\in\R^m,\mu\in\R^{|J|}$使得
 \[
 \nabla f(x^*)+\lambda^\t \nabla {h(x^*)}+\mu_J^\t \nabla g_J(x^*)=0.
 \]
@@ -374,7 +374,7 @@ $\lambda$被称为\textit{Lagrange乘子}. 必要条件可以被写作：
     \label{fig:select-y}
 \end{figure}
 
-下面我们说明为什么这样的$y$存在. 因为$x^*$是整个优化问题的正规点，所以$S$中的约束是线性无关的，因而$x^*$也是去掉了约束$g_k\leq 0$之后的正规点. 根据\Cref{thm:tan-space-characterize}，$T_{x^*}(S)=M^\perp$，其中
+下面我们说明为什么这样的$y$存在. 因为$x^*$是整个优化问题的正规点，所以$S$中的约束是线性无关的，因而$x^*$也是去掉了约束$g_k\leq 0$之后的正规点. 根据\Cref{theorem:tan-space-characterize}，$T_{x^*}(S)=M^\perp$，其中
 
 \[M=\left\{\sum_{i} \alpha_i \nabla h_i(x^*)^\t+\sum_{j\in J\setminus\{k\}} \beta_j \nabla g_j(x^*)^\t:\alpha_i,\beta_j\in\R\right\}.\]
 根据正规点的定义，$\nabla g_k(x^*)^\t$不在$M$中，所以，$\nabla g_k(x^*)^\t$在$M^\perp$中的分量非零，于是，我们可以选择一个$y\in M^\perp$使得$\nabla g_k(x^*)y<0$. 
@@ -393,7 +393,7 @@ $\lambda$被称为\textit{Lagrange乘子}. 必要条件可以被写作：
 
 条件 \eqref{eq:KKT-1} 对应的就是Lagrange乘子，而 \eqref{eq:KKT-2} 则是\textit{互补松弛条件}：
 
-\begin{proposition}[互补松弛条件]\label{prop:complementary-slackness}
+\begin{proposition}[互补松弛条件]\label{proposition:complementary-slackness}
     对于一个优化问题 \eqref{eq:ineq-constraint-inequality-differentiable}，考虑一个正规极小值点$x^*$和对应的Lagrange乘子$\lambda,\mu$. 我们有以下结论：
     \begin{itemize}
         \item $\mu\geq 0$；
@@ -435,7 +435,7 @@ x_1^2+x_2^2&=5.
 
 \subsection{原始规划与对偶规划}
 
-我们在推导KKT条件（\Cref{thm:KKT}）的时候，最终得到了如下的Lagrange函数：
+我们在推导KKT条件（\Cref{theorem:KKT}）的时候，最终得到了如下的Lagrange函数：
 \[L(x,\lambda,\mu)=f(x)+\lambda^\t h(x)+\mu^\t g(x).\]
 而KKT条件的第一条可以被写作
 \[\nabla_x L(x,\lambda,\mu)=\nabla f(x)+\lambda^\t \nabla h(x)+\mu^\t \nabla g(x)=0.\]
@@ -453,7 +453,7 @@ x_1^2+x_2^2&=5.
 
 我们先说明，求解这一问题可以用Lagrange函数重写. 
 
-\begin{proposition}\label{prop:lagrange-primal}
+\begin{proposition}\label{proposition:lagrange-primal}
     优化问题 \eqref{eq:non-differentiable-constraint} 可以被写作
     \[\minimize_{x}\quad \sup_{\lambda,\mu\geq 0} L(x,\lambda,\mu).\]
     假设它的最优值为$p^*$，那么我们有：
@@ -613,7 +613,7 @@ x_1^2+x_2^2&=5.
 
 有了上述几何直观，我们可以阐述并证明\textit{弱对偶定理}.
 
-\begin{theorem}[弱对偶定理]\label{thm:weak-duality}
+\begin{theorem}[弱对偶定理]\label{theorem:weak-duality}
     对于任意优化问题 \eqref{eq:non-differentiable-constraint}，我们有
     \[d^*\leq p^*.\]
     因此，对任意原始规划的可行解$x$和对偶规划的可行解$(\lambda,\mu)$，我们有
@@ -680,7 +680,7 @@ x_1^2+x_2^2&=5.
     如果 \eqref{eq:non-differentiable-constraint} 是凸规划，那么$\mathcal G^*$是凸集.
 \end{lemma}
 \begin{proof}
-    这一证明非常类似\Cref{thm:convex-epi} 的证明. 考虑系数$\theta\in[0,1]$和两个点$(t_1,u_1^\t,v_1^\t)^\t,(t_2,u_2^\t,v_2^\t)^\t\in\mathcal G^*$，我们要证明
+    这一证明非常类似\Cref{theorem:convex-epi} 的证明. 考虑系数$\theta\in[0,1]$和两个点$(t_1,u_1^\t,v_1^\t)^\t,(t_2,u_2^\t,v_2^\t)^\t\in\mathcal G^*$，我们要证明
     \begin{equation}
         \theta(t_1,u_1^\t,v_1^\t)^\t+(1-\theta)(t_2,u_2^\t,v_2^\t)^\t\in\mathcal G^*.\label{eq:proof-G*-convex}
     \end{equation}
@@ -698,7 +698,7 @@ x_1^2+x_2^2&=5.
 
 接下来，我们说明$\mathcal G^*$完全位于过$K$的（水平）切平面上方，从而证明强对偶定理.
 
-\begin{theorem}[强对偶定理]\label{thm:strong-duality}
+\begin{theorem}[强对偶定理]\label{theorem:strong-duality}
     如果 \eqref{eq:non-differentiable-constraint} 是凸规划并且满足Slater条件，那么
     \[d^*=p^*.\]
     此外，如果$p^*$有限，那么存在$x^*\in\R^n$，$\lambda^*\in\R^m$和$\mu^*\in\R^p\,(\mu^*\geq 0)$使得
@@ -716,7 +716,7 @@ x_1^2+x_2^2&=5.
 
     设$h(x)=Ax+b$，我们不妨设$A$是满秩矩阵，否则约束$h(x)=0$要么无法满足，要么有冗余的约束. 当有冗余约束的时候，冗余约束可以用其他约束线性表示出来，因此后面的讨论总可以先把冗余约束去掉，然后再进行线性组合表达出原先的冗余约束.
 
-    根据\cref{lemma:G*-convex}，$\mathcal G^*$是凸集. 我们需要选出来从$K$作出的切平面. 一个自然的选择是使用分离超平面定理（\Cref{thm:separation-hyperplane}）. 定义另一个凸集为
+    根据\cref{lemma:G*-convex}，$\mathcal G^*$是凸集. 我们需要选出来从$K$作出的切平面. 一个自然的选择是使用分离超平面定理（\Cref{theorem:separation-hyperplane}）. 定义另一个凸集为
     \[\mathcal{C}=\{(t,0,0)^\t: t<p^*\}.\]
     也就是一根恰好位于最低点下方的一个“杆”，见\Cref{fig:duality-proof-strong-dual}.
 
@@ -731,7 +731,7 @@ x_1^2+x_2^2&=5.
     \[f(x)\leq t<p^*, h(x)=u=0, g(x)\leq v=0,\]
     这意味着$x$是一个可行解，但是它的目标值小于$p^*$，这与$p^*$的定义矛盾. 所以，没有这样的交点. 
 
-    因此，我们可以用分离超平面定理（\Cref{thm:separation-hyperplane}）找到一个非零$\alpha=(\alpha_t,\alpha_u^\t,\alpha_v^\t)^\t$和$\beta$使得
+    因此，我们可以用分离超平面定理（\Cref{theorem:separation-hyperplane}）找到一个非零$\alpha=(\alpha_t,\alpha_u^\t,\alpha_v^\t)^\t$和$\beta$使得
     \begin{align*}
         (t,u^\t,v^\t)^\t\in\mathcal G^*&\implies \alpha_t t+\alpha_u^\t u+\alpha_v^\t v\geq \beta,\\
         (t,0,0)^\t\in\mathcal C&\implies \alpha_t t\leq \beta.
@@ -782,7 +782,7 @@ x_1^2+x_2^2&=5.
 
 除了Slater条件，我们还有一个条件也能保证强对偶定理成立，那就是线性规划，尽管线性规划不一定满足Slater条件，但是只要线性规划有可行解，它就成立强对偶定理. 线性规划的强对偶定理依赖于完全不同的几何直观，即\textit{Farkas引理}. 
 
-\begin{theorem}[Farkas引理]\label{thm:farkas}
+\begin{theorem}[Farkas引理]\label{theorem:farkas}
     设$A$是一个$m\times n$的实矩阵，$b\in\R^m$，那么下列命题之一恰好成立：
     \begin{itemize}
         \item 存在$x$使得$Ax=b$且$x\geq 0$.
@@ -796,7 +796,7 @@ x_1^2+x_2^2&=5.
 考察向量$b$，它只会有两种情况：
 \begin{itemize}
     \item $b$在锥的内部，或者说，$b$可以被表示为$Ax$的形式，因而存在$x$使得$Ax=b$且$x\geq 0$（第一种情况）.
-    \item $b$在锥的外部，或者说，$b$不能被表示为$Ax$的形式. 此时，线段$B=\{\lambda b:\lambda\in[0,1]\}$和$\mathsf{Cone}(A)$都是非空凸集，仅有一个公共点，是二者的边界点. 因而根据\Cref{thm:separation-hyperplane}，存在一个超平面将它们分开. 具体来说，设这个超平面的法向量为$p$（非零），那么，
+    \item $b$在锥的外部，或者说，$b$不能被表示为$Ax$的形式. 此时，线段$B=\{\lambda b:\lambda\in[0,1]\}$和$\mathsf{Cone}(A)$都是非空凸集，仅有一个公共点，是二者的边界点. 因而根据\Cref{theorem:separation-hyperplane}，存在一个超平面将它们分开. 具体来说，设这个超平面的法向量为$p$（非零），那么，
     \begin{itemize}
         \item 对任意$Ax\in\mathsf{Cone}(A)$，$p^\t (Ax)\geq 0$，特别地，对$i=1,\dots,n$，$p^\t A_i\geq 0$.
         \item 对任意$\lambda\in[0,1]$，$p^\t (\lambda b)\leq 0$，特别地，$p^\t b<0$.
@@ -805,7 +805,7 @@ x_1^2+x_2^2&=5.
 \end{proof}
 
 利用Farkas引理，我们可以证明线性规划的强对偶定理. 
-\begin{theorem}[线性规划的强对偶定理]\label{thm:strong-duality-linear}
+\begin{theorem}[线性规划的强对偶定理]\label{theorem:strong-duality-linear}
     设原始规划为
     \begin{align*}
         \minimize_{x}\quad&c^\t x\\
@@ -838,11 +838,11 @@ x_1^2+x_2^2&=5.
 
 至此，我们已经学习了约束优化极值的多种性质，现总结如下：
 \begin{itemize}
-    \item \textbf{Lagrange 乘子法}（\Cref{thm:eq-opt-cond-1}）：适用于仅含等式约束的光滑优化问题，给出了极值的一阶必要条件. 
-    \item \textbf{KKT 条件}（\Cref{thm:KKT}）：适用于同时包含等式和不等式约束的光滑优化问题，给出了极值的一阶必要条件. 
-    \item \textbf{松弛互补条件}（\Cref{prop:complementary-slackness}）：适用于包含等式和不等式约束的优化问题，描述了不等式约束对应的 Lagrange 乘子的符号性质. 
-    \item \textbf{弱对偶定理}（\Cref{thm:weak-duality}）：对于任意优化问题，原始问题的最优值总是不小于对偶问题的最优值. 
-    \item \textbf{强对偶定理}（\Cref{thm:strong-duality}）：对于满足 Slater 条件的凸优化问题（或线性规划问题），原始问题的最优值等于对偶问题的最优值. 
+    \item \textbf{Lagrange 乘子法}（\Cref{theorem:eq-opt-cond-1}）：适用于仅含等式约束的光滑优化问题，给出了极值的一阶必要条件. 
+    \item \textbf{KKT 条件}（\Cref{theorem:KKT}）：适用于同时包含等式和不等式约束的光滑优化问题，给出了极值的一阶必要条件. 
+    \item \textbf{松弛互补条件}（\Cref{proposition:complementary-slackness}）：适用于包含等式和不等式约束的优化问题，描述了不等式约束对应的 Lagrange 乘子的符号性质. 
+    \item \textbf{弱对偶定理}（\Cref{theorem:weak-duality}）：对于任意优化问题，原始问题的最优值总是不小于对偶问题的最优值. 
+    \item \textbf{强对偶定理}（\Cref{theorem:strong-duality}）：对于满足 Slater 条件的凸优化问题（或线性规划问题），原始问题的最优值等于对偶问题的最优值. 
 \end{itemize}
 
 \begin{remark}
@@ -898,7 +898,7 @@ $\gamma\le\gamma_i$等价于
 \section{习题}
 
 \begin{enumerate}[wide, labelindent=0pt]
-    \item 用Lagrange乘子法重新证明\Cref{prop:entropy-maximum}.
+    \item 用Lagrange乘子法重新证明\Cref{proposition:entropy-maximum}.
     \item \textbf{凸约束下的凸函数优化.} 考虑以下问题：
     \begin{enumerate}
         \item 已知在无约束条件下，满足一阶条件的局部最小值点也是一阶可微凸函数的全局最小值点，即$f'(x^*)=0\iff f(x)\ge f(x^*), \forall x\in \R^n$. 当引入凸集约束时，请举一个反例说明: 最小值点不一定满足一阶条件.
