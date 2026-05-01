@@ -693,7 +693,7 @@ v(\text{男人}) - v(\text{女人}) \approx v(\text{国王}) - v(\text{女王}).
     \[\phi(X)=\left(1-\frac{b}{\norm{X}^2}\right)X.\]
     \begin{enumerate}
         \item 证明，均方误差具有如下分解：
-        \[\E\left[\norm{\phi(X)-n}^2\right]=n-2b\E\left[\frac{(X-\mu)^\t X}{\norm{X}^2}\right]+b^2\E\left[\frac{1}{\norm{X}^2}\right].\]
+        \[\E\left[\norm{\phi(X)-\mu}^2\right]=n-2b\E\left[\frac{(X-\mu)^\t X}{\norm{X}^2}\right]+b^2\E\left[\frac{1}{\norm{X}^2}\right].\]
         \item 注意到，$\norm{X}^2$是一个自由度为$n$、非中心参数为$\norm{\mu}^2$的$\chi^2$分布. 本问将它转化为中心$\chi^2$分布. 按如下方式定义随机变量$W$：首先，生成一个随机变量$K$，服从参数为$\norm{\mu}^2/2$的Poisson分布，然后，条件在$K=k$，$W$服从自由度为为$n+2k$的中心$\chi^2$分布. 证明：$W$和$\norm{X}^2$有相同的分布. 
         \item 证明：
         \[\E\left[\frac{1}{\norm{X}^2}\right]=\E\left[\frac{1}{n-2+2K}\right].\]
